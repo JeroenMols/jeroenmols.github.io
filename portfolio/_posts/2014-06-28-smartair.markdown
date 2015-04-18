@@ -7,6 +7,8 @@ img: SmartAir_poster.jpg
 alt: image-alt
 project-date: February 2014
 client: Royal Philips
-category: Android development
+clienturl: http://www.philips.com
+appstore: Google Play
+appstoreurl: https://play.google.com/store/apps/details?id=com.philips.cl.di.dev.pa
 description: Android app to control a Philips Smart Air Purifier via Wi-Fi or Philips backend.
 ---
