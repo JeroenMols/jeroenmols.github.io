@@ -15,7 +15,7 @@ color:
 
 # Footer settings
 footer:
-  copyright: Dr. Henry Jekyll
+  copyright: Jeroen Mols
   location: Location
   social: Around the Web
   credits: Credits
@@ -33,10 +33,12 @@ social:
 
 # Postal address (add as many lines as necessary)
 address:
-  - line: Mol, Antwerp, Belgium
+  - line: Mol
+  - line: Antwerp
+  - line: Belgium
 
 # Credits content
-credits: 'Freelancer is a free to use, open source Bootstrap theme created by <a href="http://startbootstrap.com">Start Bootstrap</a>.'
+credits: 'This website is based on the free Bootstrap <a href="http://startbootstrap.com/template-overviews/freelancer/">Freelancer theme</a>'
 
 # Build settings
 markdown: kramdown
