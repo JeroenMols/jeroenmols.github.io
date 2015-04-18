@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: portfolio
 modal-id: tomorrowland
 date: 2013-12-10
 title: Tomorrowland Radio

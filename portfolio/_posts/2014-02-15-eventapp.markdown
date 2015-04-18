@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: portfolio
 modal-id: eventapp
 date: 2014-02-15
 title: Event App Platform

@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: portfolio
 modal-id: airstudio
 date: 2013-10-15
 title: AirStudio+

@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: portfolio
 modal-id: smartair
 date: 2014-06-28
 title: Philips Smart Air

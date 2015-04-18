@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: portfolio
 modal-id: lightingpos
 date: 2014-08-31
 title: Lighting Point of Sale

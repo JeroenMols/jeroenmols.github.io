@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: portfolio
 modal-id: saecoavanti
 date: 2014-12-03
 title: Saeco Avanti Espresso Machine
