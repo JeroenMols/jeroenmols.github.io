@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: blog_post
 title: What's Jekyll?
 ---
 
