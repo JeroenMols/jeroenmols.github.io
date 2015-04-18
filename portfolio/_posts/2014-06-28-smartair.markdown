@@ -1,0 +1,12 @@
+---
+layout: default
+modal-id: smartair
+date: 2014-06-28
+title: Philips Smart Air
+img: SmartAir_poster.jpg
+alt: image-alt
+project-date: February 2014
+client: Royal Philips
+category: Android development
+description: Android app to control a Philips Smart Air Purifier via Wi-Fi or Philips backend.
+---

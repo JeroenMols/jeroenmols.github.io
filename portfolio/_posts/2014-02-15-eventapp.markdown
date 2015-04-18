@@ -1,0 +1,12 @@
+---
+layout: default
+modal-id: eventapp
+date: 2014-02-15
+title: Event App Platform
+img: eventapp_poster.jpg
+alt: image-alt
+project-date: December 2013
+client: Personal app
+category: Android development
+description: Android app to share videos/pictures/posts during an event.
+---
