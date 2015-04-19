@@ -9,7 +9,7 @@ contact: static
 
 # Color settings (hex-codes without the leading hash-tag)
 color:
-  primary: d28445 #80B3FF
+  primary: d28445 #80B3FF    Note: also change in hyde.css (theme-base-custom) and main.css (#portfolio .portfolio-item .portfolio-link .caption)
   secondary: 2c3e50 #FD6E8A
   secondary-dark: 233140 #A2122F
 
