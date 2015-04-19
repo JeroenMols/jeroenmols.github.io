@@ -177,6 +177,15 @@ a.sidebar-nav-item:focus {
 
 /* Base16 (http://chriskempson.github.io/base16/#default) */
 
+/* Custom */
+.theme-base-custom .sidebar {
+  background-color: #2c3e50;
+}
+.theme-base-custom .content a,
+.theme-base-custom .related-posts li a:hover {
+  color: #d28445;
+}
+
 /* Red */
 .theme-base-08 .sidebar {
   background-color: #ac4142;
