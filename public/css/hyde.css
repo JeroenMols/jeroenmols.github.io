@@ -81,9 +81,28 @@ h6 {
   }
 }
 
+/* Sidebar title */
+.sidebar-title h1 {
+  text-align: center;
+  text-decoration: none;
+}
+
 /* Sidebar links */
 .sidebar a {
   color: #fff;
+}
+
+a.sidebar-link:hover,
+a.sidebar-link:focus,
+a.sidebar-link:active {
+    outline: 0;
+    color: #d28445;
+    text-decoration: none;
+}
+
+.copyright {
+  font-size: 0.75em;
+  text-align: center;
 }
 
 /* About section */
@@ -92,6 +111,10 @@ h6 {
   margin-top: 0;
   font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
   font-size: 1.5em;
+}
+
+.sidebar-subtitle {
+  text-align: center;
 }
 
 /* Sidebar nav */
@@ -158,6 +181,7 @@ a.sidebar-nav-item:focus {
 }
 
 .list-inline {
+    text-align: center;
     padding-left: 0;
     list-style: none;
     margin-left: -5px

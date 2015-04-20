@@ -50,10 +50,11 @@ relative_permalinks: true
 
 # Setup
 blogtitle:            Jeroen Mols
-blogtagline:          'A Jekyll theme'
-blogdescription:      'A brazen two-column <a href="http://jekyllrb.com" target="_blank">Jekyll</a> theme that pairs a prominent sidebar with uncomplicated content. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.'
-url:          jeroenmols.github.io
+blogtagline:          'Blog of Jeroen Mols, the Android developer you should hire.'
+blogdescription:      'Android developer with a great <a class="sidebar-link" href="/">portfolio</a>.'
+url:                  jeroenmols.github.io
 blogbaseurl:          /
+blogurlpart:          blog
 
 author:
   name:           'Mark Otto'
