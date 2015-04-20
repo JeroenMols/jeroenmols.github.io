@@ -9,7 +9,7 @@ contact: static
 
 # Color settings (hex-codes without the leading hash-tag)
 color:
-  primary: d28445 #80B3FF    Note: also change in hyde.css (theme-base-custom) and main.css (#portfolio .portfolio-item .portfolio-link .caption)
+  primary: d28445 #80B3FF    Note: also change in hyde.css (theme-base-custom, btn-outline) and main.css (#portfolio .portfolio-item .portfolio-link .caption)
   secondary: 2c3e50 #FD6E8A
   secondary-dark: 233140 #A2122F
 
@@ -49,7 +49,7 @@ permalink:        pretty
 relative_permalinks: true
 
 # Setup
-blogtitle:            Hyde
+blogtitle:            Jeroen Mols
 blogtagline:          'A Jekyll theme'
 blogdescription:      'A brazen two-column <a href="http://jekyllrb.com" target="_blank">Jekyll</a> theme that pairs a prominent sidebar with uncomplicated content. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.'
 url:          jeroenmols.github.io
@@ -61,6 +61,3 @@ author:
 
 paginate:         5
 paginate_path: "/blog/page:num/"
-
-# Custom vars
-version:          2.1.0
