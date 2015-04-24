@@ -1,0 +1,28 @@
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about sidebar-title">
+      
+      <img class="img-responsive" src="../img/profile.png" alt="">
+
+      <h1>
+        <a class="sidebar-link" href="{{ site.blogbaseurl }}blog">
+          {{ site.blogtitle }}
+        </a>
+      </h1>
+
+      <ul class="list-inline">
+        {% for network in site.social %}
+          <li>
+              <a href="{{ network.url }}" class="btn-social btn-outline" target="blank"><i class="fa fa-fw fa-{{ network.title }}"></i></a>
+          </li>
+        {% endfor %}
+      </ul>
+
+      <p class="sidebar-subtitle">{{ site.blogdescription }}</p>
+    </div>
+
+    <div class="copyright">
+      <p>Copyright &copy; {{ site.footer.copyright }} {{ site.time | date: '%Y' }}</p>
+    </div>
+  </div>
+</div>

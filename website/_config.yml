@@ -1,0 +1,64 @@
+# Site settings
+title: Jeroen Mols
+email: jmols.mobile@gmail.com
+url: https://jeroenmols.github.io
+description: "Portfolio of Jeroen Mols, the Android developer you should hire."
+
+# Contact form: comment the line below if you want to stick with the default PHP contact form
+contact: static
+
+# Color settings (hex-codes without the leading hash-tag)
+color:
+  primary: d28445 #80B3FF    Note: also change in hyde.css (theme-base-custom, btn-outline) and main.css (#portfolio .portfolio-item .portfolio-link .caption)
+  secondary: 2c3e50 #FD6E8A
+  secondary-dark: 233140 #A2122F
+
+# Footer settings
+footer:
+  copyright: Jeroen Mols
+  location: Location
+  social: Around the Web
+  credits: Credits
+
+# Social networks usernames (many more available: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.)
+social:
+  - title: twitter
+    url: https://twitter.com/molsjeroen
+  - title: stack-overflow
+    url: https://stackoverflow.com/users/2771851/jmols
+  - title: github
+    url: https://github.com/JeroenMols
+  - title: linkedin
+    url: https://be.linkedin.com/pub/jeroen-mols/25/a62/995
+
+# Postal address (add as many lines as necessary)
+address:
+  - line: Mol
+  - line: Antwerp
+  - line: Belgium
+
+# Credits content
+credits: 'This website is based on the free Bootstrap <a href="http://startbootstrap.com/template-overviews/freelancer/">Freelancer theme</a>'
+
+# Build settings
+markdown: kramdown
+highlighter:      pygments
+
+# Permalinks
+permalink:        pretty
+relative_permalinks: true
+
+# Setup
+blogtitle:            Jeroen Mols
+blogtagline:          'Blog of Jeroen Mols, the Android developer you should hire.'
+blogdescription:      'Android developer with a great <a class="sidebar-link" href="/">portfolio</a>.'
+url:                  jeroenmols.github.io
+blogbaseurl:          /
+blogurlpart:          blog
+
+author:
+  name:           'Mark Otto'
+  url:            https://twitter.com/mdo
+
+paginate:         5
+paginate_path: "/blog/page:num/"

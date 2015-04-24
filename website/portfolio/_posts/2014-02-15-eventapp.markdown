@@ -1,0 +1,13 @@
+---
+layout: portfolio
+modal-id: eventapp
+date: 2014-02-15
+title: Event App Platform
+img: eventapp_poster.jpg
+alt: image-alt
+project-date: December 2013
+client: Personal app
+appstore: Google Play
+appstoreurl: https://play.google.com/store/apps/details?id=com.jmolsmobile.brittenjeroen
+description: Android app to share videos/pictures/posts during an event.
+---
