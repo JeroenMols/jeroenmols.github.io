@@ -1,0 +1,13 @@
+echo ""
+echo "### Cleaning up resources"
+cd ../
+ls | grep -v 'jekyll-code' | xargs rm -rf
+cd -
+echo ""
+echo "### Running jekyll"
+jekyll build
+echo ""
+echo "### Copying generated site"
+cp -r  _site/* ../
+echo ""
+echo "### Done"

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Jeroen Mols</title>
+    <description>Portfolio of Jeroen Mols, the Android developer you should hire.</description>
+    <link>jeroenmols.github.io/</link>
+    <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Fri, 24 Apr 2015 22:34:21 +0200</pubDate>
+    <lastBuildDate>Fri, 24 Apr 2015 22:34:21 +0200</lastBuildDate>
+    <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>Saeco Avanti Espresso Machine</title>
+        <description>Android app to control a Saeco Avanti Espresso machine via Bluetooth LE.</description>
+        <pubDate>Wed, 03 Dec 2014 00:00:00 +0100</pubDate>
+        <link>jeroenmols.github.io/portfolio/2014/12/03/saecoavanti/</link>
+        <guid isPermaLink="true">jeroenmols.github.io/portfolio/2014/12/03/saecoavanti/</guid>
+        
+        
+        <category>portfolio</category>
+        
+      </item>
+    
+      <item>
+        <title>Lighting Point of Sale</title>
+        <description>Android app to demo/explain the Philips Hue lights in stores.</description>
+        <pubDate>Sun, 31 Aug 2014 00:00:00 +0200</pubDate>
+        <link>jeroenmols.github.io/portfolio/2014/08/31/lightingpos/</link>
+        <guid isPermaLink="true">jeroenmols.github.io/portfolio/2014/08/31/lightingpos/</guid>
+        
+        
+        <category>portfolio</category>
+        
+      </item>
+    
+      <item>
+        <title>Philips Smart Air</title>
+        <description>Android app to control a Philips Smart Air Purifier via Wi-Fi or Philips backend.</description>
+        <pubDate>Sat, 28 Jun 2014 00:00:00 +0200</pubDate>
+        <link>jeroenmols.github.io/portfolio/2014/06/28/smartair/</link>
+        <guid isPermaLink="true">jeroenmols.github.io/portfolio/2014/06/28/smartair/</guid>
+        
+        
+        <category>portfolio</category>
+        
+      </item>
+    
+      <item>
+        <title>Event App Platform</title>
+        <description>Android app to share videos/pictures/posts during an event.</description>
+        <pubDate>Sat, 15 Feb 2014 00:00:00 +0100</pubDate>
+        <link>jeroenmols.github.io/portfolio/2014/02/15/eventapp/</link>
+        <guid isPermaLink="true">jeroenmols.github.io/portfolio/2014/02/15/eventapp/</guid>
+        
+        
+        <category>portfolio</category>
+        
+      </item>
+    
+      <item>
+        <title>Introducing Hyde</title>
+        <description></description>
+        <pubDate>Sat, 28 Dec 2013 00:00:00 +0100</pubDate>
+        <link>jeroenmols.github.io/blog/2013/12/28/introducing-hyde/</link>
+        <guid isPermaLink="true">jeroenmols.github.io/blog/2013/12/28/introducing-hyde/</guid>
+        
+        
+        <category>blog</category>
+        
+      </item>
+    
+      <item>
+        <title>Tomorrowland Radio</title>
+        <description>Added music streaming functionality to existing Android app.</description>
+        <pubDate>Tue, 10 Dec 2013 00:00:00 +0100</pubDate>
+        <link>jeroenmols.github.io/portfolio/2013/12/10/tomorrowlandradio/</link>
+        <guid isPermaLink="true">jeroenmols.github.io/portfolio/2013/12/10/tomorrowlandradio/</guid>
+        
+        
+        <category>portfolio</category>
+        
+      </item>
+    
+      <item>
+        <title>AirStudio+</title>
+        <description>Android app to browse and stream music throughout your home network.</description>
+        <pubDate>Tue, 15 Oct 2013 00:00:00 +0200</pubDate>
+        <link>jeroenmols.github.io/portfolio/2013/10/15/airstudio/</link>
+        <guid isPermaLink="true">jeroenmols.github.io/portfolio/2013/10/15/airstudio/</guid>
+        
+        
+        <category>portfolio</category>
+        
+      </item>
+    
+      <item>
+        <title>Example content</title>
+        <description></description>
+        <pubDate>Tue, 07 Feb 2012 00:00:00 +0100</pubDate>
+        <link>jeroenmols.github.io/blog/2012/02/07/example-content/</link>
+        <guid isPermaLink="true">jeroenmols.github.io/blog/2012/02/07/example-content/</guid>
+        
+        
+        <category>blog</category>
+        
+      </item>
+    
+      <item>
+        <title>What&#39;s Jekyll?</title>
+        <description></description>
+        <pubDate>Mon, 06 Feb 2012 00:00:00 +0100</pubDate>
+        <link>jeroenmols.github.io/blog/2012/02/06/whats-jekyll/</link>
+        <guid isPermaLink="true">jeroenmols.github.io/blog/2012/02/06/whats-jekyll/</guid>
+        
+        
+        <category>blog</category>
+        
+      </item>
+    
+  </channel>
+</rss>
