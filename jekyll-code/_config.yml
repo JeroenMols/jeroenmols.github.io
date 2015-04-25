@@ -38,7 +38,7 @@ address:
   - line: Belgium
 
 # Credits content
-credits: 'This website is based on the free Bootstrap <a href="http://startbootstrap.com/template-overviews/freelancer/">Freelancer theme</a>'
+credits: 'This website is based on the free Bootstrap <a href="http://startbootstrap.com/template-overviews/freelancer/">Freelancer theme</a>.</br> The blog is based on <a href="http://hyde.getpoole.com"/>Hyde</a>'
 
 # Build settings
 markdown: kramdown
@@ -57,8 +57,8 @@ blogbaseurl:          /
 blogurlpart:          blog
 
 author:
-  name:           'Mark Otto'
-  url:            https://twitter.com/mdo
+  name:           'Jeroen Mols'
+  url:            https://twitter.com/molsjeroen
 
 paginate:         5
 paginate_path: "/blog/page:num/"
