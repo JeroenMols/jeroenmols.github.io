@@ -252,6 +252,40 @@ a.sidebar-nav-item:focus {
 }
 
 
+/*
+ * Blog images
+ */
+
+@media (min-width: 48em) {
+  .post-title {
+    font-size: 2rem; }
+}
+
+.post-overlay-header {
+  border-radius: 4px;
+  min-height: 300px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  margin-bottom: .5rem;
+}
+
+.post-overlay-header-title {
+  background-color: rgba(0, 0, 0, 0.35);
+  position: absolute; bottom: 0;
+  padding: 1rem 1rem 0 1rem; }
+
+.post-overlay-header a {
+  color: #FFF;
+}
+.post-overlay-header a:hover, a:focus {
+  color: #CCC; }
+
+.post-overlay-header .post-date {
+  color: #DDDDDD;
+}
+
+
 
 /*
  * Themes

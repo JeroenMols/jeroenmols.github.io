@@ -1,7 +1,8 @@
 ---
 layout: blog/post
-title: How I created my blog using Jekyll
-published: false
+title: How I created my blog
+published: true
+img: img/blog/jekyll.png
 ---
 
 ## Preface
