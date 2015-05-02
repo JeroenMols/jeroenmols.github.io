@@ -5,9 +5,21 @@
     <description>Portfolio of Jeroen Mols, the Android developer you should hire.</description>
     <link>jeroenmols.github.io/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 25 Apr 2015 15:16:22 +0200</pubDate>
-    <lastBuildDate>Sat, 25 Apr 2015 15:16:22 +0200</lastBuildDate>
+    <pubDate>Sat, 02 May 2015 12:18:29 +0200</pubDate>
+    <lastBuildDate>Sat, 02 May 2015 12:18:29 +0200</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>How I created my blog</title>
+        <description></description>
+        <pubDate>Sat, 25 Apr 2015 00:00:00 +0200</pubDate>
+        <link>jeroenmols.github.io/blog/2015/04/25/blog-creation/</link>
+        <guid isPermaLink="true">jeroenmols.github.io/blog/2015/04/25/blog-creation/</guid>
+        
+        
+        <category>blog</category>
+        
+      </item>
     
       <item>
         <title>Saeco Avanti Espresso Machine</title>
@@ -58,18 +70,6 @@
       </item>
     
       <item>
-        <title>Introducing Hyde</title>
-        <description></description>
-        <pubDate>Sat, 28 Dec 2013 00:00:00 +0100</pubDate>
-        <link>jeroenmols.github.io/blog/2013/12/28/introducing-hyde/</link>
-        <guid isPermaLink="true">jeroenmols.github.io/blog/2013/12/28/introducing-hyde/</guid>
-        
-        
-        <category>blog</category>
-        
-      </item>
-    
-      <item>
         <title>Tomorrowland Radio</title>
         <description>Added music streaming functionality to existing Android app.</description>
         <pubDate>Tue, 10 Dec 2013 00:00:00 +0100</pubDate>
@@ -90,30 +90,6 @@
         
         
         <category>portfolio</category>
-        
-      </item>
-    
-      <item>
-        <title>Example content</title>
-        <description></description>
-        <pubDate>Tue, 07 Feb 2012 00:00:00 +0100</pubDate>
-        <link>jeroenmols.github.io/blog/2012/02/07/example-content/</link>
-        <guid isPermaLink="true">jeroenmols.github.io/blog/2012/02/07/example-content/</guid>
-        
-        
-        <category>blog</category>
-        
-      </item>
-    
-      <item>
-        <title>What&#39;s Jekyll?</title>
-        <description></description>
-        <pubDate>Mon, 06 Feb 2012 00:00:00 +0100</pubDate>
-        <link>jeroenmols.github.io/blog/2012/02/06/whats-jekyll/</link>
-        <guid isPermaLink="true">jeroenmols.github.io/blog/2012/02/06/whats-jekyll/</guid>
-        
-        
-        <category>blog</category>
         
       </item>
     

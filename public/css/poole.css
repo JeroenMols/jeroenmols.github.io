@@ -67,7 +67,7 @@ body {
 
 /* No `:visited` state is required by default (browsers will use `a`) */
 a {
-  color: #268bd2;
+  color: #d28445;
   text-decoration: none;
 }
 a strong {
@@ -77,6 +77,10 @@ a strong {
 a:hover,
 a:focus {
   text-decoration: underline;
+  -o-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -webkit-transition: 0.3s;
 }
 
 /* Headings */
@@ -370,7 +374,7 @@ tbody tr:nth-child(odd) th {
   color: #999;
 }
 .related-posts li a:hover {
-  color: #268bd2;
+  color: #d28445;
   text-decoration: none;
 }
 .related-posts li a:hover small {

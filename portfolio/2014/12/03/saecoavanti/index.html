@@ -164,7 +164,7 @@
         </div>
     </section>
     
-    <!-- Portfolio Grid Section -->
+    <!-- Blog Section -->
     <section class="success" id="blog">
         <div class="container">
             <div class="row">
@@ -174,41 +174,11 @@
                 </div>
             </div>
             <div class="row">
-                <center><img src="img/coming_soon.png" class="img-responsive"></center>
-               <!-- 
-                    <div class="col-sm-4 portfolio-item">
-                        <a href="#portfolioModal-" class="portfolio-link" data-toggle="modal">
-                            <div class="caption">
-                                <div class="caption-content">
-                                    <i class="fa fa-search-plus fa-3x"></i>
-                                </div>
-                            </div>
-                            <img src="img/portfolio/" class="img-responsive" alt="">
-                        </a>
-                    </div>
-                
-                    <div class="col-sm-4 portfolio-item">
-                        <a href="#portfolioModal-" class="portfolio-link" data-toggle="modal">
-                            <div class="caption">
-                                <div class="caption-content">
-                                    <i class="fa fa-search-plus fa-3x"></i>
-                                </div>
-                            </div>
-                            <img src="img/portfolio/" class="img-responsive" alt="">
-                        </a>
-                    </div>
-                
-                    <div class="col-sm-4 portfolio-item">
-                        <a href="#portfolioModal-" class="portfolio-link" data-toggle="modal">
-                            <div class="caption">
-                                <div class="caption-content">
-                                    <i class="fa fa-search-plus fa-3x"></i>
-                                </div>
-                            </div>
-                            <img src="img/portfolio/" class="img-responsive" alt="">
-                        </a>
-                    </div>
-                 -->
+                <div class="col-lg-8 col-lg-offset-2">
+                    <p>Having postponed this for quite some time, Jeroen recently started blogging about the things he's passionated about. While a lot of the posts will cover 
+                        Android, it is certainly not limited to that.</p>
+                    <p>Checkout the blog <a href="http://jeroenmols.github.io/blog" style="color:#2c3e50" target="blank">here</a> and don't hesitate to leave a comment or provide feedback.</p>
+            </div>
             </div>
         </div>
     </section>
@@ -311,6 +281,183 @@
 
      <!-- Portfolio Modals -->
  
+    <div class="portfolio-modal modal fade" id="portfolioModal-" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>How I created my blog</h2>
+                            <hr class="star-primary">
+                            <img src="img/portfolio/img/blog/jekyll.png" class="img-responsive img-centered" alt="">
+                            <p>## Preface
+For quite some months, I've been planning to create a website and start blogging about the things I'm passionate about. Last week, I finally decided to setup a [portfolio](http://jeroenmols.github.io) and [blog](http://jeroen.mols.github.io/blog) using GitHub pages and Jekyll.
+
+Since I'm an Android and not a web developer, the first blogging subject wasn't hard to find: challenges I came across in setting up this website and blog.
+
+> **Disclaimer:** Eventually I had to use a workaround - that's why I don't build websites professionally - but I strongly believe in a *Just do It* mentality and then learn/improve as you go. 
+
+## Why Jekyll
+Keeping it simple, I only had few requirements for my blog:
+
+- Responsive website
+- Easy to setup and maintain
+- No lock-in: able to migrate to other platforms
+- Support for pagination and comments
+
+First thing I learned was the difference between a static (e.g. Jekyll) and dynamic website (e.g. Wordpress) via a [great presentation](http://nilclass.com/courses/what-is-a-static-website/) by [@plusjade](https://twitter.com/plusjade).
+
+The main advantage of static websites is their loading speed because all pages are generated before they are served. Installing the generator on your local machine is simple, making it easy to test your site before deploying online. Posts are written in Markdown, so no HTML clutter nor extra tools needed. Just a text generator and Git to conveniently version all changes.
+
+>**Protip:** One of my colleagues [@inferis](https://twitter.com/inferis) even gets spelling corrections via Pull request!
+
+As GitHub pages natively supports Jekyll, I didn't really spent much time on choosing which [static site generator](https://staticsitegenerators.net/) to use.
+
+## Setting up
+Installing Jekyll was really a breeze, I just had to run `gem install Jekyll` and then I could build my website using `jekyll build` or test it locally using `jekyll serve`.
+
+> **Note:** both commands will generate your website in the `_site` folder, which you shouldn't add to version control!
+
+Instead of making a new Jekyll site, I decided to fork two existing themes:
+
+- [Hyde](http://hyde.getpoole.com/): a clean two-column theme for my Blog
+- [Freelancer](http://startbootstrap.com/template-overviews/freelancer/): to have a cool portfolio
+
+Both themes offer quite some predefined customization options via the `_config.yml` file, but for advanced theming you can also directly edit the CSS files.
+
+## Merging two Jekyll themes
+Where I originally only wanted to have a blog, the Freelancer theme was just too cool to ignore. Consequently merging two themes was one of the first things I had to do.
+
+It seemed most convenient to have my portfolio under my main url and to include my blog under a subfolder (i.e. `jeroenmols.github.io/blog`). 
+
+To do this I merged the blog theme into the portfolio (main) theme: 
+
+- Add a subfolder `blog/` with the `index.html` of my blog.
+
+- Move all my portfolio posts and blog posts into separate folders:
+	- all portfolio posts went into `portfolio/_posts`
+	- all blog posts went into `blog/_posts`
+
+	This allows to easily loop through all portfolio or blog posts separately: 
+	
+	- `{{ "{% for post in site.categories.portfolio " }}%}`
+	- `{{ "{% for post in site.categories.blog " }}%}`
+
+- Move all files in `_layouts` and `_includes` from my blog into the corresponding folders of my portfolio theme.
+	- Optionally you can move files into subfolders to keep things clean (`_includes/blog`), as long as you also update all references to these files. (in `_layouts/blog.html` I now refer to my includes as `blog/<original name>`)
+	- Same holds true if you have naming conflicts (for instance two layouts with the same name), you can just rename one and update all references in all files using it.
+	
+- Move all other folders and files into the root of the main theme
+
+- Merge the configurations from both `_config.yml` files
+	- Again you can rename conflicting configurations (or merge duplicate ones) if you update all references.
+
+- Fix all references to not found images/css/... files in the blog theme. This is necessary because the original theme was assuming to run in the root directory, and now we moved it to a subdirectory `blog/`.
+	- I found that the best way to do this is to run `jekyll build` and have a look at the generated output in the `_site` directory. From this you can learn what's wrong and fix it.
+
+After this I could run `Jekyll serve` and everything worked flawlessly!
+
+...
+
+Wait...
+
+...
+
+Why are my portfolio posts also showing up in my blog?
+
+...
+
+Damn you Jekyll! 
+
+Turns out Jekyll does not support paginating categories and hence it will lump all posts it finds together, in my case both portfolio (unwanted) and blog (wanted). Even more, there is no plugin to add this functionality either! Pretty weird, and a huge limitation if you ask me.
+
+So I did what every self-respecting programmer would do: pray to the Stackoverflow and GitHub gods. And my prayers where answered by a code snippet of [benxtan](https://github.com/benxtan), which I found in an issue tracker of a very old [Jekyll pagination plugin](https://github.com/Painted-Fox/jekyll-category-pagination/issues/6). To enable this plugin, simply create a `_plugins` folder and copy the code snippet into a `category_pagination.rb` file.
+
+>**Note**: the former plugin was no longer working, because it was referring to classes that were renamed/moved classes in newer Jekyll versions.
+
+## GitHub and Jekyll plugins
+My new shiny portfolio and blog were working locally, but when I pushed it to GitHub, the pagination again included both blog and portfolio posts. Turns out that GitHub doesn't allow you to run custom Jekyll plugins except for a few that they have whitelisted.
+
+>**[Plugins on GitHub Pages](http://jekyllrb.com/docs/plugins/)**
+>
+>GitHub Pages is powered by Jekyll. However, all Pages sites are generated using the --safe option to disable custom plugins for security reasons. Unfortunately, this means your plugins won’t work if you’re deploying to GitHub Pages.
+
+At this point, I am/was completely stuck, because even if Jekyll would add support for category pagination, I would still need to wait for GitHub to update their Jekyll version.
+
+Only option remaining was to directly push the generated `_site` directory into my repository and to disable the Jekyll generator on GitHub pages. 
+
+>Note that this is a really suboptimal solution, because this effectively means pushing a high amount of auto-generated files to your repo, frequently. So if anyone has a better suggestion to solve the pagination issue, please let me know!
+
+To make this work, there are a couple of things you need to do:
+
+- Disable Jekyll on GitHub pages by pushing an empty file with name `.nojekyll` to the root of your repo
+
+- Move all auto generated content from the `_site` folder into the root of your repository, so that its `index.html` is displayed when someone browses to your main page.
+
+This actually by itself imposes a new problem, namely where to put your Jekyll source code? I solved this by:
+
+- move all source files to a subfolder `jekyll-source` in my main repository
+
+- generating all static pages into `jekyll-source/_site` using `jekyll build`
+
+- removing all files and folders from my root directory, except for the `jekyll-source` directory
+
+- copying the entire content of `jekyll-source/_site` into my root folder
+
+I know this is not a great solution, but it gets the job done, and I was able to automate all of this in a [release script](https://github.com/JeroenMols/jeroenmols.github.io/blob/master/jekyll-code/release) that you can run by calling `.release` from the `jekyll-source` folder.
+
+>**Note**: I also considered two other options:
+>
+>- Use a `CNAME` file to redirect my main url into a subfolder. This does not work, as the `CNAME` file can only be used for top-level domains.
+>- Use a placeholder `index.html` which redirect the main url into a subfolder.
+>
+>I didn't use any of those mechanisms as that would unnecessarily complicate my website url.
+
+
+## Protips
+If you really want to make your site look spectacular:
+
+- Site icon: add the following to the head of your `index.html` page:
+`<link rel="favicon-144-precomposed" sizes="144x144" href="<link_to_your_icon>">`
+
+- Site toolbar/status bar color on Android: add the following to the head of your `index.html` page: `<meta name="theme-color" content="<your_color_hex>">`
+
+
+## Conclusion
+I'm glad that I finally got my portfolio and blog up and running. My current solution might not be the best one in the world, but it is automated, maintainable and I can easily add blog posts in the future. Don't hesitate to look at my [GitHub repo](https://github.com/JeroenMols/jeroenmols.github.io) for the full source code. Hopefully the code and my post can help others to setup the same in the future.
+
+Would I use Jekyll again if I would start over? Probably yes. 
+
+The only real limitation I ran into was due to the paginator combining the posts from both my portfolio and blog. This caused me to disable Jekyll completely and push the generated site directly to GitHub pages. While this really sucked, using another static site generator would also have forced me to do this (because GitHub only supports Jekyll). Furthermore combining two themes is already quite advanced, and if you stick to just one theme Jekyll is actually very convenient to use.
+</p>
+
+                            <ul class="list-inline item-details">
+                                <li>Client:
+                                    <strong><a href=></a>
+                                    </strong>
+                                </li>
+                                <li>Date:
+                                    <strong></strong>
+                                </li>
+                                <li>Download:
+                                    <strong><a href=></a>
+                                    </strong>
+                                </li>
+                            </ul>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="portfolio-modal modal fade" id="portfolioModal-saecoavanti" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
@@ -467,80 +614,6 @@
         </div>
     </div>
 
-    <div class="portfolio-modal modal fade" id="portfolioModal-" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <h2>Introducing Hyde</h2>
-                            <hr class="star-primary">
-                            <img src="img/portfolio/" class="img-responsive img-centered" alt="">
-                            <p><p>Hyde is a brazen two-column <a href="http://jekyllrb.com">Jekyll</a> theme that pairs a prominent sidebar with uncomplicated content. It’s based on <a href="http://getpoole.com">Poole</a>, the Jekyll butler.</p>
-
-<h3 id="built-on-poole">Built on Poole</h3>
-
-<p>Poole is the Jekyll Butler, serving as an upstanding and effective foundation for Jekyll themes by <a href="https://twitter.com/mdo">@mdo</a>. Poole, and every theme built on it (like Hyde here) includes the following:</p>
-
-<ul>
-  <li>Complete Jekyll setup included (layouts, config, <a href="/404">404</a>, <a href="/atom.xml">RSS feed</a>, posts, and <a href="/about">example page</a>)</li>
-  <li>Mobile friendly design and development</li>
-  <li>Easily scalable text and component sizing with <code>rem</code> units in the CSS</li>
-  <li>Support for a wide gamut of HTML elements</li>
-  <li>Related posts (time-based, because Jekyll) below each post</li>
-  <li>Syntax highlighting, courtesy Pygments (the Python-based code snippet highlighter)</li>
-</ul>
-
-<h3 id="hyde-features">Hyde features</h3>
-
-<p>In addition to the features of Poole, Hyde adds the following:</p>
-
-<ul>
-  <li>Sidebar includes support for textual modules and a dynamically generated navigation with active link support</li>
-  <li>Two orientations for content and sidebar, default (left sidebar) and <a href="https://github.com/poole/lanyon#reverse-layout">reverse</a> (right sidebar), available via <code>&lt;body&gt;</code> classes</li>
-  <li><a href="https://github.com/poole/hyde#themes">Eight optional color schemes</a>, available via <code>&lt;body&gt;</code> classes</li>
-</ul>
-
-<p><a href="https://github.com/poole/hyde#readme">Head to the readme</a> to learn more.</p>
-
-<h3 id="browser-support">Browser support</h3>
-
-<p>Hyde is by preference a forward-thinking project. In addition to the latest versions of Chrome, Safari (mobile and desktop), and Firefox, it is only compatible with Internet Explorer 9 and above.</p>
-
-<h3 id="download">Download</h3>
-
-<p>Hyde is developed on and hosted with GitHub. Head to the <a href="https://github.com/poole/hyde">GitHub repository</a> for downloads, bug reports, and features requests.</p>
-
-<p>Thanks!</p>
-</p>
-
-                            <ul class="list-inline item-details">
-                                <li>Client:
-                                    <strong><a href=></a>
-                                    </strong>
-                                </li>
-                                <li>Date:
-                                    <strong></strong>
-                                </li>
-                                <li>Download:
-                                    <strong><a href=></a>
-                                    </strong>
-                                </li>
-                            </ul>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="portfolio-modal modal fade" id="portfolioModal-tomorrowland" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
@@ -608,229 +681,6 @@
                                 </li>
                                 <li>Download:
                                     <strong><a href=https://play.google.com/store/apps/details?id=com.philips.airstudioplus>Google Play</a>
-                                    </strong>
-                                </li>
-                            </ul>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="portfolio-modal modal fade" id="portfolioModal-" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <h2>Example content</h2>
-                            <hr class="star-primary">
-                            <img src="img/portfolio/" class="img-responsive img-centered" alt="">
-                            <p><div class="message">
-  Howdy! This is an example blog post that shows several types of HTML content supported in this theme.
-</div>
-
-<p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. <em>Aenean eu leo quam.</em> Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
-
-<blockquote>
-  <p>Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-</blockquote>
-
-<p>Etiam porta <strong>sem malesuada magna</strong> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-
-<h2 id="inline-html-elements">Inline HTML elements</h2>
-
-<p>HTML defines a long list of available inline tags, a complete list of which can be found on the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element">Mozilla Developer Network</a>.</p>
-
-<ul>
-  <li><strong>To bold text</strong>, use <code>&lt;strong&gt;</code>.</li>
-  <li><em>To italicize text</em>, use <code>&lt;em&gt;</code>.</li>
-  <li>Abbreviations, like <abbr title="HyperText Markup Langage">HTML</abbr> should use <code>&lt;abbr&gt;</code>, with an optional <code>title</code> attribute for the full phrase.</li>
-  <li>Citations, like <cite>— Mark otto</cite>, should use <code>&lt;cite&gt;</code>.</li>
-  <li><del>Deleted</del> text should use <code>&lt;del&gt;</code> and <ins>inserted</ins> text should use <code>&lt;ins&gt;</code>.</li>
-  <li>Superscript <sup>text</sup> uses <code>&lt;sup&gt;</code> and subscript <sub>text</sub> uses <code>&lt;sub&gt;</code>.</li>
-</ul>
-
-<p>Most of these elements are styled by browsers with few modifications on our part.</p>
-
-<h2 id="heading">Heading</h2>
-
-<p>Vivamus sagittis lacus vel augue rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-
-<h3 id="code">Code</h3>
-
-<p>Cum sociis natoque penatibus et magnis dis <code>code element</code> montes, nascetur ridiculus mus.</p>
-
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// Example can be run directly in your JavaScript console</span>
-
-<span class="c1">// Create a function that takes two arguments and returns the sum of those arguments</span>
-<span class="kd">var</span> <span class="nx">adder</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Function</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;return a + b&quot;</span><span class="p">);</span>
-
-<span class="c1">// Call the function</span>
-<span class="nx">adder</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
-<span class="c1">// &gt; 8</span></code></pre></div>
-
-<p>Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
-
-<h3 id="gists-via-github-pages">Gists via GitHub Pages</h3>
-
-<p>Vestibulum id ligula porta felis euismod semper. Nullam quis risus eget urna mollis ornare vel eu leo. Donec sed odio dui.</p>
-
-<script src="https://gist.github.com/5555251.js?file=gist.md"> </script>
-
-<p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sed odio dui. Vestibulum id ligula porta felis euismod semper.</p>
-
-<h3 id="lists">Lists</h3>
-
-<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-
-<ul>
-  <li>Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</li>
-  <li>Donec id elit non mi porta gravida at eget metus.</li>
-  <li>Nulla vitae elit libero, a pharetra augue.</li>
-</ul>
-
-<p>Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.</p>
-
-<ol>
-  <li>Vestibulum id ligula porta felis euismod semper.</li>
-  <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>
-  <li>Maecenas sed diam eget risus varius blandit sit amet non magna.</li>
-</ol>
-
-<p>Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.</p>
-
-<dl>
-  <dt>HyperText Markup Language (HTML)</dt>
-  <dd>The language used to describe and define the content of a Web page</dd>
-
-  <dt>Cascading Style Sheets (CSS)</dt>
-  <dd>Used to describe the appearance of Web content</dd>
-
-  <dt>JavaScript (JS)</dt>
-  <dd>The programming language used to build advanced Web sites and applications</dd>
-</dl>
-
-<p>Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Nullam quis risus eget urna mollis ornare vel eu leo.</p>
-
-<h3 id="images">Images</h3>
-
-<p>Quisque consequat sapien eget quam rhoncus, sit amet laoreet diam tempus. Aliquam aliquam metus erat, a pulvinar turpis suscipit at.</p>
-
-<p><img src="http://placehold.it/800x400" alt="placeholder" title="Large example image" />
-<img src="http://placehold.it/400x200" alt="placeholder" title="Medium example image" />
-<img src="http://placehold.it/200x200" alt="placeholder" title="Small example image" /></p>
-
-<h3 id="tables">Tables</h3>
-
-<p>Aenean lacinia bibendum nulla sed consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Upvotes</th>
-      <th>Downvotes</th>
-    </tr>
-  </thead>
-  <tfoot>
-    <tr>
-      <td>Totals</td>
-      <td>21</td>
-      <td>23</td>
-    </tr>
-  </tfoot>
-  <tbody>
-    <tr>
-      <td>Alice</td>
-      <td>10</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <td>Bob</td>
-      <td>4</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <td>Charlie</td>
-      <td>7</td>
-      <td>9</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Nullam id dolor id nibh ultricies vehicula ut id elit. Sed posuere consectetur est at lobortis. Nullam quis risus eget urna mollis ornare vel eu leo.</p>
-
-<hr />
-
-<p>Want to see something else added? <a href="https://github.com/poole/poole/issues/new">Open an issue.</a></p>
-</p>
-
-                            <ul class="list-inline item-details">
-                                <li>Client:
-                                    <strong><a href=></a>
-                                    </strong>
-                                </li>
-                                <li>Date:
-                                    <strong></strong>
-                                </li>
-                                <li>Download:
-                                    <strong><a href=></a>
-                                    </strong>
-                                </li>
-                            </ul>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="portfolio-modal modal fade" id="portfolioModal-" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <h2>What's Jekyll?</h2>
-                            <hr class="star-primary">
-                            <img src="img/portfolio/" class="img-responsive img-centered" alt="">
-                            <p><p><a href="http://jekyllrb.com">Jekyll</a> is a static site generator, an open-source tool for creating simple yet powerful websites of all shapes and sizes. From <a href="https://github.com/mojombo/jekyll/blob/master/README.markdown">the project’s readme</a>:</p>
-
-<blockquote>
-  <p>Jekyll is a simple, blog aware, static site generator. It takes a template directory […] and spits out a complete, static website suitable for serving with Apache or your favorite web server. This is also the engine behind GitHub Pages, which you can use to host your project’s page or blog right here from GitHub.</p>
-</blockquote>
-
-<p>It’s an immensely useful tool and one we encourage you to use here with Hyde.</p>
-
-<p>Find out more by <a href="https://github.com/mojombo/jekyll">visiting the project on GitHub</a>.</p>
-</p>
-
-                            <ul class="list-inline item-details">
-                                <li>Client:
-                                    <strong><a href=></a>
-                                    </strong>
-                                </li>
-                                <li>Date:
-                                    <strong></strong>
-                                </li>
-                                <li>Download:
-                                    <strong><a href=></a>
                                     </strong>
                                 </li>
                             </ul>
