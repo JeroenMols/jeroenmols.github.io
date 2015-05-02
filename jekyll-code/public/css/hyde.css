@@ -261,6 +261,7 @@ a.sidebar-nav-item:focus {
   .post-title {
     font-size: 2rem;
     color: #d28445;
+    text-decoration: none;
 }
 
 .post-overlay-header {
@@ -281,7 +282,8 @@ a.sidebar-nav-item:focus {
   color: #FFF;
 }
 .post-overlay-header a:hover, a:focus {
-  color: #CCC; }
+  color: #CCC;
+  text-decoration: none; }
 
 .post-overlay-header .post-date {
   color: #DDDDDD;
