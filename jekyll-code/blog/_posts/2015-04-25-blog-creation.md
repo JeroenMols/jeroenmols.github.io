@@ -2,6 +2,7 @@
 layout: blog/post
 title: How I created my blog
 published: true
+comments: true
 img: img/blog/jekyll.png
 ---
 
