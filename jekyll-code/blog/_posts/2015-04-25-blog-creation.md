@@ -1,5 +1,5 @@
 ---
-layout: blog/post
+layout: post
 title: How I created my blog
 published: true
 comments: true
@@ -11,7 +11,7 @@ For quite some months, I've been planning to create a website and start blogging
 
 Since I'm an Android and not a web developer, the first blogging subject wasn't hard to find: challenges I came across in setting up this website and blog.
 
-> **Disclaimer:** Eventually I had to use a workaround - that's why I don't build websites professionally - but I strongly believe in a *Just do It* mentality and then learn/improve as you go. 
+> **Disclaimer:** Eventually I had to use a workaround - that's why I don't build websites professionally - but I strongly believe in a *Just do It* mentality and then learn/improve as you go.
 
 ## Why Jekyll
 Keeping it simple, I only had few requirements for my blog:
@@ -44,9 +44,9 @@ Both themes offer quite some predefined customization options via the `_config.y
 ## Merging two Jekyll themes
 Where I originally only wanted to have a blog, the Freelancer theme was just too cool to ignore. Consequently merging two themes was one of the first things I had to do.
 
-It seemed most convenient to have my portfolio under my main url and to include my blog under a subfolder (i.e. `jeroenmols.github.io/blog`). 
+It seemed most convenient to have my portfolio under my main url and to include my blog under a subfolder (i.e. `jeroenmols.github.io/blog`).
 
-To do this I merged the blog theme into the portfolio (main) theme: 
+To do this I merged the blog theme into the portfolio (main) theme:
 
 - Add a subfolder `blog/` with the `index.html` of my blog.
 
@@ -54,15 +54,15 @@ To do this I merged the blog theme into the portfolio (main) theme:
 	- all portfolio posts went into `portfolio/_posts`
 	- all blog posts went into `blog/_posts`
 
-	This allows to easily loop through all portfolio or blog posts separately: 
-	
+	This allows to easily loop through all portfolio or blog posts separately:
+
 	- `{{ "{% for post in site.categories.portfolio " }}%}`
 	- `{{ "{% for post in site.categories.blog " }}%}`
 
 - Move all files in `_layouts` and `_includes` from my blog into the corresponding folders of my portfolio theme.
 	- Optionally you can move files into subfolders to keep things clean (`_includes/blog`), as long as you also update all references to these files. (in `_layouts/blog.html` I now refer to my includes as `blog/<original name>`)
 	- Same holds true if you have naming conflicts (for instance two layouts with the same name), you can just rename one and update all references in all files using it.
-	
+
 - Move all other folders and files into the root of the main theme
 
 - Merge the configurations from both `_config.yml` files
@@ -83,7 +83,7 @@ Why are my portfolio posts also showing up in my blog?
 
 ...
 
-Damn you Jekyll! 
+Damn you Jekyll!
 
 Turns out Jekyll does not support paginating categories and hence it will lump all posts it finds together, in my case both portfolio (unwanted) and blog (wanted). Even more, there is no plugin to add this functionality either! Pretty weird, and a huge limitation if you ask me.
 
@@ -100,7 +100,7 @@ My new shiny portfolio and blog were working locally, but when I pushed it to Gi
 
 At this point, I am/was completely stuck, because even if Jekyll would add support for category pagination, I would still need to wait for GitHub to update their Jekyll version.
 
-Only option remaining was to directly push the generated `_site` directory into my repository and to disable the Jekyll generator on GitHub pages. 
+Only option remaining was to directly push the generated `_site` directory into my repository and to disable the Jekyll generator on GitHub pages.
 
 >Note that this is a really suboptimal solution, because this effectively means pushing a high amount of auto-generated files to your repo, frequently. So if anyone has a better suggestion to solve the pagination issue, please let me know!
 
@@ -142,6 +142,6 @@ If you really want to make your site look spectacular:
 ## Conclusion
 I'm glad that I finally got my portfolio and blog up and running. My current solution might not be the best one in the world, but it is automated, maintainable and I can easily add blog posts in the future. Don't hesitate to look at my [GitHub repo](https://github.com/JeroenMols/jeroenmols.github.io) for the full source code. Hopefully the code and my post can help others to setup the same in the future.
 
-Would I use Jekyll again if I would start over? Probably yes. 
+Would I use Jekyll again if I would start over? Probably yes.
 
 The only real limitation I ran into was due to the paginator combining the posts from both my portfolio and blog. This caused me to disable Jekyll completely and push the generated site directly to GitHub pages. While this really sucked, using another static site generator would also have forced me to do this (because GitHub only supports Jekyll). Furthermore combining two themes is already quite advanced, and if you stick to just one theme Jekyll is actually very convenient to use.
