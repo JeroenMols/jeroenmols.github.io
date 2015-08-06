@@ -29,9 +29,7 @@ While there are some options available to choose from, I personally selected [Ar
 - User access control
 - Free and open source
 
-<center><iframe width="420" height="315" src="http://www.youtube.com/embed/aa4YBDUDWy0" frameborder="0" allowfullscreen>&nbsp;</iframe></center>
-
-<iframe width="560" height="315" src="http://www.youtube.com/embed/aa4YBDUDWy0" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+<iframe width="560" height="315" src="http://www.youtube.com/embed/aa4YBDUDWy0" frameborder="0" style="display:block; margin: 0 auto;">&nbsp;</iframe>
 
 For more information have a look at the [alternatives](https://maven.apache.org/repository-management.html), checkout this [feature comparison matrix](http://www.jfrog.com/blog/artifactory-vs-nexus-integration-matrix/) or review all of the [Artifactory features](https://www.jfrog.com/confluence/display/RTF/Artifactory+Comparison+Matrix).
 
