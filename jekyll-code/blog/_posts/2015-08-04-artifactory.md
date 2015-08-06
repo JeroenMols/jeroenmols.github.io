@@ -83,10 +83,11 @@ Every Maven artifact is identified by three different parameters:
 - groupId: usually the package name of your library
 - version: identifies different releases of the same artifact
 
-As we can easily generate the `artifactId` from the library project name, we only have to explicitly define the other two in the `build.gradle` file.
+For these we will explicitly define a variable in the `build.gradle` file.
 
 ```groovy
-def packageName = 'com.jmolsmobile.myawesomelibrary'
+def artifactName = 'awesomelibrary'
+def packageName = 'com.jeroenmols.awesomelibrary'
 def libraryVersion = '1.0.0'
 ```
 
@@ -98,11 +99,11 @@ publishing {
         aar(MavenPublication) {
             groupId packageName
             version = libraryVersion
-            artifactId project.getName()
+            artifactId artifactName
 
             // Tell maven to prepare the generated "*.aar" file for publishing
-            artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
-        }
+            artifact("$buildDir/outputs/aar/$artifactName-release.aar")
+      }
     }
 }
 ```
@@ -158,7 +159,7 @@ After we can simply add the artifact as a dependency in the `build.gradle` file 
 
 ```groovy
 dependencies {
-    compile "com.jmolsmobile.myawesomelibrary:1.0.0"
+    compile 'com.jeroenmols.awesomelibrary:1.0.0'
 }
 ```
 
@@ -172,4 +173,4 @@ In the next blog post I will zoom in on more advanced topics like:
 - User access management and rights
 - Removing hardcoded username and password from `build.gradle`
 
-I have also uploaded a complete example on GitHub for your reference.
+I have also uploaded a [complete example](https://github.com/JeroenMols/ArtifactoryExample) on GitHub for your reference.
