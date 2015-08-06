@@ -4,7 +4,7 @@
  <title>Jeroen Mols</title>
  <link href="jeroenmols.github.io/atom.xml" rel="self"/>
  <link href="jeroenmols.github.io/"/>
- <updated>2015-08-06T23:24:36+02:00</updated>
+ <updated>2015-08-06T23:32:40+02:00</updated>
  <id>jeroenmols.github.io</id>
  <author>
    <name>Jeroen Mols</name>
@@ -45,9 +45,7 @@
 &lt;li&gt;Free and open source&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div&gt;&lt;center&gt;&lt;iframe width=&quot;420&quot; height=&quot;315&quot; src=&quot;http://www.youtube.com/embed/aa4YBDUDWy0&quot; frameborder=&quot;0&quot; allowfullscreen&gt;test&lt;/iframe&gt;&lt;/center&gt;&lt;/div&gt;
-
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;http://www.youtube.com/embed/aa4YBDUDWy0&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;allowfullscreen&quot;&gt;test&lt;/iframe&gt;
+&lt;p&gt;&lt;center&gt;&lt;a href=&quot;http://www.youtube.com/watch?v=aa4YBDUDWy0&quot;&gt;&lt;img src=&quot;http://img.youtube.com/vi/aa4YBDUDWy0/0.jpg&quot; alt=&quot;What is Artifactory&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;&lt;/p&gt;
 
 &lt;p&gt;For more information have a look at the &lt;a href=&quot;https://maven.apache.org/repository-management.html&quot;&gt;alternatives&lt;/a&gt;, checkout this &lt;a href=&quot;http://www.jfrog.com/blog/artifactory-vs-nexus-integration-matrix/&quot;&gt;feature comparison matrix&lt;/a&gt; or review all of the &lt;a href=&quot;https://www.jfrog.com/confluence/display/RTF/Artifactory+Comparison+Matrix&quot;&gt;Artifactory features&lt;/a&gt;.&lt;/p&gt;
 
@@ -69,7 +67,7 @@ SEVERE: One or more listeners failed to start. Full details will be found in the
 
 &lt;p&gt;Thankfully this is incredibly easy to do. Just download the latest version of &lt;a href=&quot;http://www.jfrog.com/open-source/&quot;&gt;Artifactory&lt;/a&gt;, unpack the archive and run the &lt;code&gt;artifactory&lt;/code&gt; executable for your platform.&lt;/p&gt;
 
-&lt;p&gt;&lt;center&gt;&lt;iframe width=&quot;420&quot; height=&quot;315&quot; src=&quot;http://www.youtube.com/embed/7ZSUHgHDMmc&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;&lt;a href=&quot;http://www.youtube.com/watch?v=7ZSUHgHDMmc&quot;&gt;&lt;img src=&quot;http://img.youtube.com/vi/7ZSUHgHDMmc/0.jpg&quot; alt=&quot;&amp;lt; 1min Artifactory set up&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;&lt;/p&gt;
 
 &lt;p&gt;You can easily verify your installation and start experimenting with its features by navigating to &lt;a href=&quot;http://localhost:8081/artifactory/&quot;&gt;http://localhost:8081/artifactory/&lt;/a&gt;. For now, don&amp;#39;t worry about all of the settings, we will configure what we need later on.&lt;/p&gt;
 
