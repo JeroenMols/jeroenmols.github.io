@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Publish to a private Maven 1
+title: A private Maven repository for Android in 30 min
 published: true
 comments: true
 img: img/blog/artifactory.png
@@ -8,7 +8,9 @@ img: img/blog/artifactory.png
 
 Setting up your own Maven repository and uploading artifacts to it is quite a daunting task. As I went through this experience myself recently, I want to help others in setting up their own Maven repository via [Artifactory](http://www.jfrog.com/open-source/) and automate uploading artifacts using Gradle.
 
-Note that while some of the material focusses on Android, most of it is applicable more generally.
+In less than 30 minutes you will have a fully operational private Maven repository and have configured your Gradle buildscripts to upload your Android library artifacts.
+
+Note that the material presented here can quite easily be extended to be applicable in a broader scope beyond Android.
 
 ## Setting up a Repository Manager
 First of all we need to make sure we have an actual Maven repository to upload our artifacts to. According to [Maven](https://maven.apache.org/repository-management.html) you should use a repository manager to do that:
