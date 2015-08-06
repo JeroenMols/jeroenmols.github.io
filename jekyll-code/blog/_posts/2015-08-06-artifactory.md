@@ -29,9 +29,9 @@ While there are some options available to choose from, I personally selected [Ar
 - User access control
 - Free and open source
 
-<div><center><iframe width="420" height="315" src="http://www.youtube.com/embed/aa4YBDUDWy0" frameborder="0" allowfullscreen></iframe></center></div>
+<div><center><iframe width="420" height="315" src="http://www.youtube.com/embed/aa4YBDUDWy0" frameborder="0" allowfullscreen>test</iframe></center></div>
 
-<div><iframe width="560" height="315" src="http://www.youtube.com/embed/aa4YBDUDWy0" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>
+<iframe width="560" height="315" src="http://www.youtube.com/embed/aa4YBDUDWy0" frameborder="0" allowfullscreen="allowfullscreen">test</iframe>
 
 For more information have a look at the [alternatives](https://maven.apache.org/repository-management.html), checkout this [feature comparison matrix](http://www.jfrog.com/blog/artifactory-vs-nexus-integration-matrix/) or review all of the [Artifactory features](https://www.jfrog.com/confluence/display/RTF/Artifactory+Comparison+Matrix).
 
@@ -57,7 +57,7 @@ SEVERE: One or more listeners failed to start. Full details will be found in the
 ### Install Artifactory
 Thankfully this is incredibly easy to do. Just download the latest version of [Artifactory](http://www.jfrog.com/open-source/), unpack the archive and run the `artifactory` executable for your platform.
 
-<div><center><iframe width="420" height="315" src="http://www.youtube.com/embed/7ZSUHgHDMmc" frameborder="0"></iframe></center></div>
+<center><iframe width="420" height="315" src="http://www.youtube.com/embed/7ZSUHgHDMmc" frameborder="0" allowfullscreen></iframe></center>
 
 You can easily verify your installation and start experimenting with its features by navigating to [http://localhost:8081/artifactory/](http://localhost:8081/artifactory/). For now, don't worry about all of the settings, we will configure what we need later on.
 

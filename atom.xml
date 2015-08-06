@@ -4,7 +4,7 @@
  <title>Jeroen Mols</title>
  <link href="jeroenmols.github.io/atom.xml" rel="self"/>
  <link href="jeroenmols.github.io/"/>
- <updated>2015-08-06T23:21:53+02:00</updated>
+ <updated>2015-08-06T23:24:36+02:00</updated>
  <id>jeroenmols.github.io</id>
  <author>
    <name>Jeroen Mols</name>
@@ -23,177 +23,154 @@
 
 &lt;p&gt;Note that the material presented here can quite easily be extended to be applicable in a broader scope beyond Android.&lt;/p&gt;
 
-&lt;h2 id=&quot;setting-up-a-repository-manager&quot;&gt;Setting up a Repository Manager&lt;/h2&gt;
+&lt;h2&gt;Setting up a Repository Manager&lt;/h2&gt;
+
 &lt;p&gt;First of all we need to make sure we have an actual Maven repository to upload our artifacts to. According to &lt;a href=&quot;https://maven.apache.org/repository-management.html&quot;&gt;Maven&lt;/a&gt; you should use a repository manager to do that:&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;Best Practice - Using a Repository Manager&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Best Practice - Using a Repository Manager&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;A repository manager is a dedicated server application designed to manage repositories of binary components. The usage of a repository manager is considered an essential best practice for any significant usage of Maven.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;A repository manager is a dedicated server application designed to manage repositories of binary components. The usage of a repository manager is considered an essential best practice for any significant usage of Maven.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;why-artifactory&quot;&gt;Why Artifactory?&lt;/h3&gt;
+&lt;h3&gt;Why Artifactory?&lt;/h3&gt;
 
 &lt;p&gt;While there are some options available to choose from, I personally selected &lt;a href=&quot;http://www.jfrog.com/open-source/&quot;&gt;Artifactory&lt;/a&gt; because:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Clear and attractive UI&lt;/li&gt;
-  &lt;li&gt;Super fast configuration&lt;/li&gt;
-  &lt;li&gt;Gradle plugin&lt;/li&gt;
-  &lt;li&gt;User access control&lt;/li&gt;
-  &lt;li&gt;Free and open source&lt;/li&gt;
+&lt;li&gt;Clear and attractive UI&lt;/li&gt;
+&lt;li&gt;Super fast configuration&lt;/li&gt;
+&lt;li&gt;Gradle plugin&lt;/li&gt;
+&lt;li&gt;User access control&lt;/li&gt;
+&lt;li&gt;Free and open source&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div&gt;&lt;center&gt;&lt;iframe width=&quot;420&quot; height=&quot;315&quot; src=&quot;http://www.youtube.com/embed/aa4YBDUDWy0&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;&lt;/center&gt;&lt;/div&gt;
+&lt;div&gt;&lt;center&gt;&lt;iframe width=&quot;420&quot; height=&quot;315&quot; src=&quot;http://www.youtube.com/embed/aa4YBDUDWy0&quot; frameborder=&quot;0&quot; allowfullscreen&gt;test&lt;/iframe&gt;&lt;/center&gt;&lt;/div&gt;
 
-&lt;div&gt;&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;http://www.youtube.com/embed/aa4YBDUDWy0&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;allowfullscreen&quot;&gt;&lt;/iframe&gt;&lt;/div&gt;
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;http://www.youtube.com/embed/aa4YBDUDWy0&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;allowfullscreen&quot;&gt;test&lt;/iframe&gt;
 
 &lt;p&gt;For more information have a look at the &lt;a href=&quot;https://maven.apache.org/repository-management.html&quot;&gt;alternatives&lt;/a&gt;, checkout this &lt;a href=&quot;http://www.jfrog.com/blog/artifactory-vs-nexus-integration-matrix/&quot;&gt;feature comparison matrix&lt;/a&gt; or review all of the &lt;a href=&quot;https://www.jfrog.com/confluence/display/RTF/Artifactory+Comparison+Matrix&quot;&gt;Artifactory features&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h3 id=&quot;verify-you-have-java-sdk-8&quot;&gt;Verify you have Java SDK 8&lt;/h3&gt;
-&lt;p&gt;Before you get started, make sure that you have Java SDK 8 installed, or otherwise Artifactory won’t start. You can easily verify your Java version with &lt;code&gt;java -version&lt;/code&gt;:&lt;/p&gt;
+&lt;h3&gt;Verify you have Java SDK 8&lt;/h3&gt;
 
-&lt;p&gt;&lt;code&gt;bash
-$ java -version
-java version &quot;1.8.0_51&quot;
-Java(TM) SE Runtime Environment (build 1.8.0_51-b16)
-Java HotSpot(TM) 64-Bit Server VM (build 25.51-b03, mixed mode)
-&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Before you get started, make sure that you have Java SDK 8 installed, or otherwise Artifactory won&amp;#39;t start. You can easily verify your Java version with &lt;code&gt;java -version&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;java -version
+java version &lt;span class=&quot;s2&quot;&gt;&amp;quot;1.8.0_51&amp;quot;&lt;/span&gt;
+Java&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;TM&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; SE Runtime Environment &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;build 1.8.0_51-b16&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+Java HotSpot&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;TM&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 64-Bit Server VM &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;build 25.51-b03, mixed mode&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If it doesn&amp;#39;t output at least version &lt;code&gt;1.8.x&lt;/code&gt;, you should &lt;a href=&quot;http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html&quot;&gt;download&lt;/a&gt; and install a new Java SDK before you continue.&lt;/p&gt;
 
-&lt;p&gt;If it doesn’t output at least version &lt;code&gt;1.8.x&lt;/code&gt;, you should &lt;a href=&quot;http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html&quot;&gt;download&lt;/a&gt; and install a new Java SDK before you continue.&lt;/p&gt;
-
-&lt;p&gt;Note that the error you get if you don’t have Java 8 looks a bit cryptic:&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;
-Aug 05, 2015 9:29:31 AM org.apache.catalina.core.StandardContext startInternal
+&lt;p&gt;Note that the error you get if you don&amp;#39;t have Java 8 looks a bit cryptic:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;Aug 05, 2015 9:29:31 AM org.apache.catalina.core.StandardContext startInternal
 SEVERE: One or more listeners failed to start. Full details will be found in the appropriate container log file
-&lt;/code&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Install Artifactory&lt;/h3&gt;
 
-&lt;h3 id=&quot;install-artifactory&quot;&gt;Install Artifactory&lt;/h3&gt;
 &lt;p&gt;Thankfully this is incredibly easy to do. Just download the latest version of &lt;a href=&quot;http://www.jfrog.com/open-source/&quot;&gt;Artifactory&lt;/a&gt;, unpack the archive and run the &lt;code&gt;artifactory&lt;/code&gt; executable for your platform.&lt;/p&gt;
 
-&lt;div&gt;&lt;center&gt;&lt;iframe width=&quot;420&quot; height=&quot;315&quot; src=&quot;http://www.youtube.com/embed/7ZSUHgHDMmc&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;&lt;/center&gt;&lt;/div&gt;
+&lt;p&gt;&lt;center&gt;&lt;iframe width=&quot;420&quot; height=&quot;315&quot; src=&quot;http://www.youtube.com/embed/7ZSUHgHDMmc&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;&lt;/center&gt;&lt;/p&gt;
 
-&lt;p&gt;You can easily verify your installation and start experimenting with its features by navigating to &lt;a href=&quot;http://localhost:8081/artifactory/&quot;&gt;http://localhost:8081/artifactory/&lt;/a&gt;. For now, don’t worry about all of the settings, we will configure what we need later on.&lt;/p&gt;
+&lt;p&gt;You can easily verify your installation and start experimenting with its features by navigating to &lt;a href=&quot;http://localhost:8081/artifactory/&quot;&gt;http://localhost:8081/artifactory/&lt;/a&gt;. For now, don&amp;#39;t worry about all of the settings, we will configure what we need later on.&lt;/p&gt;
 
-&lt;h3 id=&quot;configuring-gradle-to-upload-android-artifacts&quot;&gt;Configuring Gradle to upload Android artifacts&lt;/h3&gt;
-&lt;p&gt;Let’s upload a very simple archive by configuring a new Gradle task for our Android library project.&lt;/p&gt;
+&lt;h3&gt;Configuring Gradle to upload Android artifacts&lt;/h3&gt;
+
+&lt;p&gt;Let&amp;#39;s upload a very simple archive by configuring a new Gradle task for our Android library project.&lt;/p&gt;
 
 &lt;p&gt;In your top level &lt;code&gt;build.gradle&lt;/code&gt; file, add a reference to the repository of the Artifactory Gradle plugin:&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;groovy
-buildscript {
-    dependencies {
-        classpath &quot;org.jfrog.buildinfo:build-info-extractor-gradle:3.1.1&quot;
-    }
-}
-&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Next in your library we will need to apply two new plugins: one to prepare the Maven artifacts &lt;code&gt;maven-publish&lt;/code&gt; and one to upload the archives to Artifactory ` com.jfrog.artifactory`:&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;groovy
-apply plugin: &#39;com.jfrog.artifactory&#39;
-apply plugin: &#39;maven-publish&#39;
-&lt;/code&gt;&lt;/p&gt;
-
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;buildscript&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;classpath&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;org.jfrog.buildinfo:build-info-extractor-gradle:3.1.1&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Next in your library we will need to apply two new plugins: one to prepare the Maven artifacts &lt;code&gt;maven-publish&lt;/code&gt; and one to upload the archives to Artifactory &lt;code&gt;com.jfrog.artifactory&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;apply&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;plugin:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;com.jfrog.artifactory&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;apply&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;plugin:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;maven-publish&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Every Maven artifact is identified by three different parameters:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;artifactId: the name of your library&lt;/li&gt;
-  &lt;li&gt;groupId: usually the package name of your library&lt;/li&gt;
-  &lt;li&gt;version: identifies different releases of the same artifact&lt;/li&gt;
+&lt;li&gt;artifactId: the name of your library&lt;/li&gt;
+&lt;li&gt;groupId: usually the package name of your library&lt;/li&gt;
+&lt;li&gt;version: identifies different releases of the same artifact&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;For these we will explicitly define a variable in the &lt;code&gt;build.gradle&lt;/code&gt; file.&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;groovy
-def artifactName = &#39;awesomelibrary&#39;
-def packageName = &#39;com.jeroenmols.awesomelibrary&#39;
-def libraryVersion = &#39;1.0.0&#39;
-&lt;/code&gt;&lt;/p&gt;
-
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;kt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;artifactName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;awesomelibrary&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;packageName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;com.jeroenmols.awesomelibrary&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;libraryVersion&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;1.0.0&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Now we need to configure the &lt;code&gt;maven-publish&lt;/code&gt; plugin so that it knows which artifacts to publish to Artifactory. For our purpose we will refer to the &lt;code&gt;***-release.aar&lt;/code&gt; file, generated by the &lt;code&gt;assembleRelease&lt;/code&gt; task. Note that we can predict the name by taking the name of the Library project:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;publishing&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;publications&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;aar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MavenPublication&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;groupId&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;packageName&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;libraryVersion&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;artifactId&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;artifactName&lt;/span&gt;
 
-&lt;p&gt;```groovy
-publishing {
-    publications {
-        aar(MavenPublication) {
-            groupId packageName
-            version = libraryVersion
-            artifactId artifactName&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;        // Tell maven to prepare the generated &quot;*.aar&quot; file for publishing
-        artifact(&quot;$buildDir/outputs/aar/$artifactName-release.aar&quot;)
-  }
-} } ```
-&lt;/code&gt;&lt;/pre&gt;
-
+            &lt;span class=&quot;c1&quot;&gt;// Tell maven to prepare the generated &amp;quot;*.aar&amp;quot; file for publishing&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;artifact&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;$buildDir/outputs/aar/$artifactName-release.aar&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Finally we need to configure the &lt;code&gt;com.jfrog.artifactory&lt;/code&gt; plugin so it knows which repository to publish the artifacts to. For simplicity we will upload the artifact to the locally running Artifactory instance (&lt;a href=&quot;http://localhost:8081/artifactory&quot;&gt;http://localhost:8081/artifactory&lt;/a&gt;) and place it in the default &lt;code&gt;libs-release-local&lt;/code&gt; repository. Note that the username &lt;code&gt;admin&lt;/code&gt; and password &lt;code&gt;password&lt;/code&gt; are hardcoded in this example, but we will provide a better solution for that later.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;artifactory&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;contextUrl&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;http://localhost:8081/artifactory&amp;#39;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;publish&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;repository&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;// The Artifactory repository key to publish to&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;repoKey&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;libs-release-local&amp;#39;&lt;/span&gt;
 
-&lt;p&gt;```groovy
-artifactory {
-    contextUrl = ‘http://localhost:8081/artifactory’
-    publish {
-        repository {
-            // The Artifactory repository key to publish to
-            repoKey = ‘libs-release-local’&lt;/p&gt;
+            &lt;span class=&quot;n&quot;&gt;username&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;admin&amp;quot;&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;password&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;password&amp;quot;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;defaults&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;// Tell the Artifactory Plugin which artifacts should be published to Artifactory.&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;publications&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;aar&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;publishArtifacts&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
 
-&lt;pre&gt;&lt;code&gt;        username = &quot;admin&quot;
-        password = &quot;password&quot;
-    }
-    defaults {
-        // Tell the Artifactory Plugin which artifacts should be published to Artifactory.
-        publications(&#39;aar&#39;)
-        publishArtifacts = true
+            &lt;span class=&quot;c1&quot;&gt;// Properties to be attached to the published artifacts.&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;properties&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;qa.level&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;basic&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;dev.team&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;core&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;// Publish generated POM files to Artifactory (true by default)&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;publishPom&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Deploying artifacts&lt;/h3&gt;
 
-        // Properties to be attached to the published artifacts.
-        properties = [&#39;qa.level&#39;: &#39;basic&#39;, &#39;dev.team&#39;: &#39;core&#39;]
-        // Publish generated POM files to Artifactory (true by default)
-        publishPom = true
-    }
-} } ```
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;deploying-artifacts&quot;&gt;Deploying artifacts&lt;/h3&gt;
 &lt;p&gt;Now that our Gradle buildscripts are properly configured we can easily publish artifacts to Artifactory by running the following command:&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;groovy
-gradle assembleRelease artifactoryPublish
-&lt;/code&gt;&lt;/p&gt;
-
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;gradle&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;assembleRelease&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;artifactoryPublish&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Notice how we first invoke &lt;code&gt;assembleRelease&lt;/code&gt; before we invoke the actual &lt;code&gt;artifactoryPublish&lt;/code&gt; task, because of the way we defined the artifacts to publish in the previous section.&lt;/p&gt;
 
-&lt;h3 id=&quot;using-the-artifacts&quot;&gt;Using the artifacts&lt;/h3&gt;
+&lt;h3&gt;Using the artifacts&lt;/h3&gt;
+
 &lt;p&gt;To make use of the published artifacts in another project we have to add our Artifactory repository to the list of Maven repositories in your top level &lt;code&gt;build.gradle&lt;/code&gt; file:&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;groovy
-allprojects {
-    repositories {
-        maven { url &quot;http://localhost:8081/artifactory/libs-release-local&quot; }
-    }
-}
-&lt;/code&gt;&lt;/p&gt;
-
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;allprojects&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;repositories&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;maven&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;http://localhost:8081/artifactory/libs-release-local&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;After we can simply add the artifact as a dependency in the &lt;code&gt;build.gradle&lt;/code&gt; file of our main project:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;compile&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;com.jeroenmols.awesomelibrary:1.0.0&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Wrap-up&lt;/h2&gt;
 
-&lt;p&gt;&lt;code&gt;groovy
-dependencies {
-    compile &#39;com.jeroenmols.awesomelibrary:1.0.0&#39;
-}
-&lt;/code&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
 &lt;p&gt;Congratulations! You now have a fully working Maven repository manager with a Gradle script to generate and upload your artifacts.&lt;/p&gt;
 
 &lt;p&gt;In the next blog post I will zoom in on more advanced topics like:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Library projects with dependencies&lt;/li&gt;
-  &lt;li&gt;Configuring your own repositories&lt;/li&gt;
-  &lt;li&gt;User access management and rights&lt;/li&gt;
-  &lt;li&gt;Removing hardcoded username and password from &lt;code&gt;build.gradle&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Library projects with dependencies&lt;/li&gt;
+&lt;li&gt;Configuring your own repositories&lt;/li&gt;
+&lt;li&gt;User access management and rights&lt;/li&gt;
+&lt;li&gt;Removing hardcoded username and password from &lt;code&gt;build.gradle&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;I have also uploaded a &lt;a href=&quot;https://github.com/JeroenMols/ArtifactoryExample&quot;&gt;complete example&lt;/a&gt; on GitHub for your reference.&lt;/p&gt;
@@ -205,23 +182,25 @@ dependencies {
    <link href="jeroenmols.github.io/blog/2015/04/25/blog-creation/"/>
    <updated>2015-04-25T00:00:00+02:00</updated>
    <id>jeroenmols.github.io/blog/2015/04/25/blog-creation</id>
-   <content type="html">&lt;h2 id=&quot;preface&quot;&gt;Preface&lt;/h2&gt;
-&lt;p&gt;For quite some months, I’ve been planning to create a website and start blogging about the things I’m passionate about. Last week, I finally decided to setup a &lt;a href=&quot;http://jeroenmols.github.io&quot;&gt;portfolio&lt;/a&gt; and &lt;a href=&quot;http://jeroen.mols.github.io/blog&quot;&gt;blog&lt;/a&gt; using GitHub pages and Jekyll.&lt;/p&gt;
+   <content type="html">&lt;h2&gt;Preface&lt;/h2&gt;
 
-&lt;p&gt;Since I’m an Android and not a web developer, the first blogging subject wasn’t hard to find: challenges I came across in setting up this website and blog.&lt;/p&gt;
+&lt;p&gt;For quite some months, I&amp;#39;ve been planning to create a website and start blogging about the things I&amp;#39;m passionate about. Last week, I finally decided to setup a &lt;a href=&quot;http://jeroenmols.github.io&quot;&gt;portfolio&lt;/a&gt; and &lt;a href=&quot;http://jeroen.mols.github.io/blog&quot;&gt;blog&lt;/a&gt; using GitHub pages and Jekyll.&lt;/p&gt;
+
+&lt;p&gt;Since I&amp;#39;m an Android and not a web developer, the first blogging subject wasn&amp;#39;t hard to find: challenges I came across in setting up this website and blog.&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;Disclaimer:&lt;/strong&gt; Eventually I had to use a workaround - that’s why I don’t build websites professionally - but I strongly believe in a &lt;em&gt;Just do It&lt;/em&gt; mentality and then learn/improve as you go.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Disclaimer:&lt;/strong&gt; Eventually I had to use a workaround - that&amp;#39;s why I don&amp;#39;t build websites professionally - but I strongly believe in a &lt;em&gt;Just do It&lt;/em&gt; mentality and then learn/improve as you go.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h2 id=&quot;why-jekyll&quot;&gt;Why Jekyll&lt;/h2&gt;
+&lt;h2&gt;Why Jekyll&lt;/h2&gt;
+
 &lt;p&gt;Keeping it simple, I only had few requirements for my blog:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Responsive website&lt;/li&gt;
-  &lt;li&gt;Easy to setup and maintain&lt;/li&gt;
-  &lt;li&gt;No lock-in: able to migrate to other platforms&lt;/li&gt;
-  &lt;li&gt;Support for pagination and comments&lt;/li&gt;
+&lt;li&gt;Responsive website&lt;/li&gt;
+&lt;li&gt;Easy to setup and maintain&lt;/li&gt;
+&lt;li&gt;No lock-in: able to migrate to other platforms&lt;/li&gt;
+&lt;li&gt;Support for pagination and comments&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;First thing I learned was the difference between a static (e.g. Jekyll) and dynamic website (e.g. Wordpress) via a &lt;a href=&quot;http://nilclass.com/courses/what-is-a-static-website/&quot;&gt;great presentation&lt;/a&gt; by &lt;a href=&quot;https://twitter.com/plusjade&quot;&gt;@plusjade&lt;/a&gt;.&lt;/p&gt;
@@ -229,28 +208,30 @@ dependencies {
 &lt;p&gt;The main advantage of static websites is their loading speed because all pages are generated before they are served. Installing the generator on your local machine is simple, making it easy to test your site before deploying online. Posts are written in Markdown, so no HTML clutter nor extra tools needed. Just a text generator and Git to conveniently version all changes.&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;Protip:&lt;/strong&gt; One of my colleagues &lt;a href=&quot;https://twitter.com/inferis&quot;&gt;@inferis&lt;/a&gt; even gets spelling corrections via Pull request!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Protip:&lt;/strong&gt; One of my colleagues &lt;a href=&quot;https://twitter.com/inferis&quot;&gt;@inferis&lt;/a&gt; even gets spelling corrections via Pull request!&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;As GitHub pages natively supports Jekyll, I didn’t really spent much time on choosing which &lt;a href=&quot;https://staticsitegenerators.net/&quot;&gt;static site generator&lt;/a&gt; to use.&lt;/p&gt;
+&lt;p&gt;As GitHub pages natively supports Jekyll, I didn&amp;#39;t really spent much time on choosing which &lt;a href=&quot;https://staticsitegenerators.net/&quot;&gt;static site generator&lt;/a&gt; to use.&lt;/p&gt;
 
-&lt;h2 id=&quot;setting-up&quot;&gt;Setting up&lt;/h2&gt;
+&lt;h2&gt;Setting up&lt;/h2&gt;
+
 &lt;p&gt;Installing Jekyll was really a breeze, I just had to run &lt;code&gt;gem install Jekyll&lt;/code&gt; and then I could build my website using &lt;code&gt;jekyll build&lt;/code&gt; or test it locally using &lt;code&gt;jekyll serve&lt;/code&gt;.&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; both commands will generate your website in the &lt;code&gt;_site&lt;/code&gt; folder, which you shouldn’t add to version control!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; both commands will generate your website in the &lt;code&gt;_site&lt;/code&gt; folder, which you shouldn&amp;#39;t add to version control!&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;Instead of making a new Jekyll site, I decided to fork two existing themes:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://hyde.getpoole.com/&quot;&gt;Hyde&lt;/a&gt;: a clean two-column theme for my Blog&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://startbootstrap.com/template-overviews/freelancer/&quot;&gt;Freelancer&lt;/a&gt;: to have a cool portfolio&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://hyde.getpoole.com/&quot;&gt;Hyde&lt;/a&gt;: a clean two-column theme for my Blog&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://startbootstrap.com/template-overviews/freelancer/&quot;&gt;Freelancer&lt;/a&gt;: to have a cool portfolio&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Both themes offer quite some predefined customization options via the &lt;code&gt;_config.yml&lt;/code&gt; file, but for advanced theming you can also directly edit the CSS files.&lt;/p&gt;
 
-&lt;h2 id=&quot;merging-two-jekyll-themes&quot;&gt;Merging two Jekyll themes&lt;/h2&gt;
+&lt;h2&gt;Merging two Jekyll themes&lt;/h2&gt;
+
 &lt;p&gt;Where I originally only wanted to have a blog, the Freelancer theme was just too cool to ignore. Consequently merging two themes was one of the first things I had to do.&lt;/p&gt;
 
 &lt;p&gt;It seemed most convenient to have my portfolio under my main url and to include my blog under a subfolder (i.e. &lt;code&gt;jeroenmols.github.io/blog&lt;/code&gt;).&lt;/p&gt;
@@ -258,54 +239,47 @@ dependencies {
 &lt;p&gt;To do this I merged the blog theme into the portfolio (main) theme:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Add a subfolder &lt;code&gt;blog/&lt;/code&gt; with the &lt;code&gt;index.html&lt;/code&gt; of my blog.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Move all my portfolio posts and blog posts into separate folders:
-    &lt;ul&gt;
-      &lt;li&gt;all portfolio posts went into &lt;code&gt;portfolio/_posts&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;all blog posts went into &lt;code&gt;blog/_posts&lt;/code&gt;&lt;/li&gt;
-    &lt;/ul&gt;
+&lt;li&gt;&lt;p&gt;Add a subfolder &lt;code&gt;blog/&lt;/code&gt; with the &lt;code&gt;index.html&lt;/code&gt; of my blog.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Move all my portfolio posts and blog posts into separate folders:&lt;/p&gt;
 
-    &lt;p&gt;This allows to easily loop through all portfolio or blog posts separately:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;all portfolio posts went into &lt;code&gt;portfolio/_posts&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;all blog posts went into &lt;code&gt;blog/_posts&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
-    &lt;ul&gt;
-      &lt;li&gt;&lt;code&gt;{% for post in site.categories.portfolio %}&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;code&gt;{% for post in site.categories.blog %}&lt;/code&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Move all files in &lt;code&gt;_layouts&lt;/code&gt; and &lt;code&gt;_includes&lt;/code&gt; from my blog into the corresponding folders of my portfolio theme.
-    &lt;ul&gt;
-      &lt;li&gt;Optionally you can move files into subfolders to keep things clean (&lt;code&gt;_includes/blog&lt;/code&gt;), as long as you also update all references to these files. (in &lt;code&gt;_layouts/blog.html&lt;/code&gt; I now refer to my includes as &lt;code&gt;blog/&amp;lt;original name&amp;gt;&lt;/code&gt;)&lt;/li&gt;
-      &lt;li&gt;Same holds true if you have naming conflicts (for instance two layouts with the same name), you can just rename one and update all references in all files using it.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Move all other folders and files into the root of the main theme&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Merge the configurations from both &lt;code&gt;_config.yml&lt;/code&gt; files
-    &lt;ul&gt;
-      &lt;li&gt;Again you can rename conflicting configurations (or merge duplicate ones) if you update all references.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Fix all references to not found images/css/… files in the blog theme. This is necessary because the original theme was assuming to run in the root directory, and now we moved it to a subdirectory &lt;code&gt;blog/&lt;/code&gt;.
-    &lt;ul&gt;
-      &lt;li&gt;I found that the best way to do this is to run &lt;code&gt;jekyll build&lt;/code&gt; and have a look at the generated output in the &lt;code&gt;_site&lt;/code&gt; directory. From this you can learn what’s wrong and fix it.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
+&lt;p&gt;This allows to easily loop through all portfolio or blog posts separately:
+- &lt;code&gt;{% for post in site.categories.portfolio %}&lt;/code&gt;
+- &lt;code&gt;{% for post in site.categories.blog %}&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Move all files in &lt;code&gt;_layouts&lt;/code&gt; and &lt;code&gt;_includes&lt;/code&gt; from my blog into the corresponding folders of my portfolio theme.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Optionally you can move files into subfolders to keep things clean (&lt;code&gt;_includes/blog&lt;/code&gt;), as long as you also update all references to these files. (in &lt;code&gt;_layouts/blog.html&lt;/code&gt; I now refer to my includes as &lt;code&gt;blog/&amp;lt;original name&amp;gt;&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Same holds true if you have naming conflicts (for instance two layouts with the same name), you can just rename one and update all references in all files using it.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Move all other folders and files into the root of the main theme&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Merge the configurations from both &lt;code&gt;_config.yml&lt;/code&gt; files&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Again you can rename conflicting configurations (or merge duplicate ones) if you update all references.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Fix all references to not found images/css/... files in the blog theme. This is necessary because the original theme was assuming to run in the root directory, and now we moved it to a subdirectory &lt;code&gt;blog/&lt;/code&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;I found that the best way to do this is to run &lt;code&gt;jekyll build&lt;/code&gt; and have a look at the generated output in the &lt;code&gt;_site&lt;/code&gt; directory. From this you can learn what&amp;#39;s wrong and fix it.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;After this I could run &lt;code&gt;Jekyll serve&lt;/code&gt; and everything worked flawlessly!&lt;/p&gt;
 
-&lt;p&gt;…&lt;/p&gt;
+&lt;p&gt;...&lt;/p&gt;
 
-&lt;p&gt;Wait…&lt;/p&gt;
+&lt;p&gt;Wait...&lt;/p&gt;
 
-&lt;p&gt;…&lt;/p&gt;
+&lt;p&gt;...&lt;/p&gt;
 
 &lt;p&gt;Why are my portfolio posts also showing up in my blog?&lt;/p&gt;
 
-&lt;p&gt;…&lt;/p&gt;
+&lt;p&gt;...&lt;/p&gt;
 
 &lt;p&gt;Damn you Jekyll!&lt;/p&gt;
 
@@ -314,16 +288,17 @@ dependencies {
 &lt;p&gt;So I did what every self-respecting programmer would do: pray to the Stackoverflow and GitHub gods. And my prayers where answered by a code snippet of &lt;a href=&quot;https://github.com/benxtan&quot;&gt;benxtan&lt;/a&gt;, which I found in an issue tracker of a very old &lt;a href=&quot;https://github.com/Painted-Fox/jekyll-category-pagination/issues/6&quot;&gt;Jekyll pagination plugin&lt;/a&gt;. To enable this plugin, simply create a &lt;code&gt;_plugins&lt;/code&gt; folder and copy the code snippet into a &lt;code&gt;category_pagination.rb&lt;/code&gt; file.&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: the former plugin was no longer working, because it was referring to classes that were renamed/moved classes in newer Jekyll versions.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: the former plugin was no longer working, because it was referring to classes that were renamed/moved classes in newer Jekyll versions.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h2 id=&quot;github-and-jekyll-plugins&quot;&gt;GitHub and Jekyll plugins&lt;/h2&gt;
-&lt;p&gt;My new shiny portfolio and blog were working locally, but when I pushed it to GitHub, the pagination again included both blog and portfolio posts. Turns out that GitHub doesn’t allow you to run custom Jekyll plugins except for a few that they have whitelisted.&lt;/p&gt;
+&lt;h2&gt;GitHub and Jekyll plugins&lt;/h2&gt;
+
+&lt;p&gt;My new shiny portfolio and blog were working locally, but when I pushed it to GitHub, the pagination again included both blog and portfolio posts. Turns out that GitHub doesn&amp;#39;t allow you to run custom Jekyll plugins except for a few that they have whitelisted.&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://jekyllrb.com/docs/plugins/&quot;&gt;Plugins on GitHub Pages&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://jekyllrb.com/docs/plugins/&quot;&gt;Plugins on GitHub Pages&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 
-  &lt;p&gt;GitHub Pages is powered by Jekyll. However, all Pages sites are generated using the –safe option to disable custom plugins for security reasons. Unfortunately, this means your plugins won’t work if you’re deploying to GitHub Pages.&lt;/p&gt;
+&lt;p&gt;GitHub Pages is powered by Jekyll. However, all Pages sites are generated using the --safe option to disable custom plugins for security reasons. Unfortunately, this means your plugins won’t work if you’re deploying to GitHub Pages.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;At this point, I am/was completely stuck, because even if Jekyll would add support for category pagination, I would still need to wait for GitHub to update their Jekyll version.&lt;/p&gt;
@@ -331,65 +306,51 @@ dependencies {
 &lt;p&gt;Only option remaining was to directly push the generated &lt;code&gt;_site&lt;/code&gt; directory into my repository and to disable the Jekyll generator on GitHub pages.&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Note that this is a really suboptimal solution, because this effectively means pushing a high amount of auto-generated files to your repo, frequently. So if anyone has a better suggestion to solve the pagination issue, please let me know!&lt;/p&gt;
+&lt;p&gt;Note that this is a really suboptimal solution, because this effectively means pushing a high amount of auto-generated files to your repo, frequently. So if anyone has a better suggestion to solve the pagination issue, please let me know!&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;To make this work, there are a couple of things you need to do:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Disable Jekyll on GitHub pages by pushing an empty file with name &lt;code&gt;.nojekyll&lt;/code&gt; to the root of your repo&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Move all auto generated content from the &lt;code&gt;_site&lt;/code&gt; folder into the root of your repository, so that its &lt;code&gt;index.html&lt;/code&gt; is displayed when someone browses to your main page.&lt;/p&gt;
-  &lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Disable Jekyll on GitHub pages by pushing an empty file with name &lt;code&gt;.nojekyll&lt;/code&gt; to the root of your repo&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Move all auto generated content from the &lt;code&gt;_site&lt;/code&gt; folder into the root of your repository, so that its &lt;code&gt;index.html&lt;/code&gt; is displayed when someone browses to your main page.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;This actually by itself imposes a new problem, namely where to put your Jekyll source code? I solved this by:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;move all source files to a subfolder &lt;code&gt;jekyll-source&lt;/code&gt; in my main repository&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;generating all static pages into &lt;code&gt;jekyll-source/_site&lt;/code&gt; using &lt;code&gt;jekyll build&lt;/code&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;removing all files and folders from my root directory, except for the &lt;code&gt;jekyll-source&lt;/code&gt; directory&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;copying the entire content of &lt;code&gt;jekyll-source/_site&lt;/code&gt; into my root folder&lt;/p&gt;
-  &lt;/li&gt;
+&lt;li&gt;&lt;p&gt;move all source files to a subfolder &lt;code&gt;jekyll-source&lt;/code&gt; in my main repository&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;generating all static pages into &lt;code&gt;jekyll-source/_site&lt;/code&gt; using &lt;code&gt;jekyll build&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;removing all files and folders from my root directory, except for the &lt;code&gt;jekyll-source&lt;/code&gt; directory&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;copying the entire content of &lt;code&gt;jekyll-source/_site&lt;/code&gt; into my root folder&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;I know this is not a great solution, but it gets the job done, and I was able to automate all of this in a &lt;a href=&quot;https://github.com/JeroenMols/jeroenmols.github.io/blob/master/jekyll-code/release&quot;&gt;release script&lt;/a&gt; that you can run by calling &lt;code&gt;.release&lt;/code&gt; from the &lt;code&gt;jekyll-source&lt;/code&gt; folder.&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: I also considered two other options:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: I also considered two other options:&lt;/p&gt;
 
-  &lt;ul&gt;
-    &lt;li&gt;Use a &lt;code&gt;CNAME&lt;/code&gt; file to redirect my main url into a subfolder. This does not work, as the &lt;code&gt;CNAME&lt;/code&gt; file can only be used for top-level domains.&lt;/li&gt;
-    &lt;li&gt;Use a placeholder &lt;code&gt;index.html&lt;/code&gt; which redirect the main url into a subfolder.&lt;/li&gt;
-  &lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;Use a &lt;code&gt;CNAME&lt;/code&gt; file to redirect my main url into a subfolder. This does not work, as the &lt;code&gt;CNAME&lt;/code&gt; file can only be used for top-level domains.&lt;/li&gt;
+&lt;li&gt;Use a placeholder &lt;code&gt;index.html&lt;/code&gt; which redirect the main url into a subfolder.&lt;/li&gt;
+&lt;/ul&gt;
 
-  &lt;p&gt;I didn’t use any of those mechanisms as that would unnecessarily complicate my website url.&lt;/p&gt;
+&lt;p&gt;I didn&amp;#39;t use any of those mechanisms as that would unnecessarily complicate my website url.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h2 id=&quot;protips&quot;&gt;Protips&lt;/h2&gt;
+&lt;h2&gt;Protips&lt;/h2&gt;
+
 &lt;p&gt;If you really want to make your site look spectacular:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Site icon: add the following to the head of your &lt;code&gt;index.html&lt;/code&gt; page:
-&lt;code&gt;&amp;lt;link rel=&quot;favicon-144-precomposed&quot; sizes=&quot;144x144&quot; href=&quot;&amp;lt;link_to_your_icon&amp;gt;&quot;&amp;gt;&lt;/code&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Site toolbar/status bar color on Android: add the following to the head of your &lt;code&gt;index.html&lt;/code&gt; page: &lt;code&gt;&amp;lt;meta name=&quot;theme-color&quot; content=&quot;&amp;lt;your_color_hex&amp;gt;&quot;&amp;gt;&lt;/code&gt;&lt;/p&gt;
-  &lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Site icon: add the following to the head of your &lt;code&gt;index.html&lt;/code&gt; page:
+&lt;code&gt;&amp;lt;link rel=&amp;quot;favicon-144-precomposed&amp;quot; sizes=&amp;quot;144x144&amp;quot; href=&amp;quot;&amp;lt;link_to_your_icon&amp;gt;&amp;quot;&amp;gt;&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Site toolbar/status bar color on Android: add the following to the head of your &lt;code&gt;index.html&lt;/code&gt; page: &lt;code&gt;&amp;lt;meta name=&amp;quot;theme-color&amp;quot; content=&amp;quot;&amp;lt;your_color_hex&amp;gt;&amp;quot;&amp;gt;&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;I’m glad that I finally got my portfolio and blog up and running. My current solution might not be the best one in the world, but it is automated, maintainable and I can easily add blog posts in the future. Don’t hesitate to look at my &lt;a href=&quot;https://github.com/JeroenMols/jeroenmols.github.io&quot;&gt;GitHub repo&lt;/a&gt; for the full source code. Hopefully the code and my post can help others to setup the same in the future.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;I&amp;#39;m glad that I finally got my portfolio and blog up and running. My current solution might not be the best one in the world, but it is automated, maintainable and I can easily add blog posts in the future. Don&amp;#39;t hesitate to look at my &lt;a href=&quot;https://github.com/JeroenMols/jeroenmols.github.io&quot;&gt;GitHub repo&lt;/a&gt; for the full source code. Hopefully the code and my post can help others to setup the same in the future.&lt;/p&gt;
 
 &lt;p&gt;Would I use Jekyll again if I would start over? Probably yes.&lt;/p&gt;
 
@@ -402,8 +363,7 @@ dependencies {
    <link href="jeroenmols.github.io/portfolio/2015/01/19/landscapevideocamera/"/>
    <updated>2015-01-19T00:00:00+01:00</updated>
    <id>jeroenmols.github.io/portfolio/2015/01/19/landscapevideocamera</id>
-   <content type="html">
-</content>
+   <content type="html"></content>
  </entry>
  
  <entry>
@@ -411,8 +371,7 @@ dependencies {
    <link href="jeroenmols.github.io/portfolio/2014/12/03/saecoavanti/"/>
    <updated>2014-12-03T00:00:00+01:00</updated>
    <id>jeroenmols.github.io/portfolio/2014/12/03/saecoavanti</id>
-   <content type="html">
-</content>
+   <content type="html"></content>
  </entry>
  
  <entry>
@@ -420,8 +379,7 @@ dependencies {
    <link href="jeroenmols.github.io/portfolio/2014/08/31/lightingpos/"/>
    <updated>2014-08-31T00:00:00+02:00</updated>
    <id>jeroenmols.github.io/portfolio/2014/08/31/lightingpos</id>
-   <content type="html">
-</content>
+   <content type="html"></content>
  </entry>
  
  <entry>
@@ -429,8 +387,7 @@ dependencies {
    <link href="jeroenmols.github.io/portfolio/2014/06/28/smartair/"/>
    <updated>2014-06-28T00:00:00+02:00</updated>
    <id>jeroenmols.github.io/portfolio/2014/06/28/smartair</id>
-   <content type="html">
-</content>
+   <content type="html"></content>
  </entry>
  
  <entry>
@@ -438,8 +395,7 @@ dependencies {
    <link href="jeroenmols.github.io/portfolio/2014/02/15/eventapp/"/>
    <updated>2014-02-15T00:00:00+01:00</updated>
    <id>jeroenmols.github.io/portfolio/2014/02/15/eventapp</id>
-   <content type="html">
-</content>
+   <content type="html"></content>
  </entry>
  
  <entry>
@@ -447,8 +403,7 @@ dependencies {
    <link href="jeroenmols.github.io/portfolio/2013/12/10/tomorrowlandradio/"/>
    <updated>2013-12-10T00:00:00+01:00</updated>
    <id>jeroenmols.github.io/portfolio/2013/12/10/tomorrowlandradio</id>
-   <content type="html">
-</content>
+   <content type="html"></content>
  </entry>
  
  <entry>
@@ -456,8 +411,7 @@ dependencies {
    <link href="jeroenmols.github.io/portfolio/2013/10/15/airstudio/"/>
    <updated>2013-10-15T00:00:00+02:00</updated>
    <id>jeroenmols.github.io/portfolio/2013/10/15/airstudio</id>
-   <content type="html">
-</content>
+   <content type="html"></content>
  </entry>
  
  <entry>
@@ -465,8 +419,7 @@ dependencies {
    <link href="jeroenmols.github.io/portfolio/2013/04/01/wi-filetransfer/"/>
    <updated>2013-04-01T00:00:00+02:00</updated>
    <id>jeroenmols.github.io/portfolio/2013/04/01/wi-filetransfer</id>
-   <content type="html">
-</content>
+   <content type="html"></content>
  </entry>
  
  <entry>
@@ -474,8 +427,7 @@ dependencies {
    <link href="jeroenmols.github.io/portfolio/2010/09/25/videobox/"/>
    <updated>2010-09-25T00:00:00+02:00</updated>
    <id>jeroenmols.github.io/portfolio/2010/09/25/videobox</id>
-   <content type="html">
-</content>
+   <content type="html"></content>
  </entry>
  
 
