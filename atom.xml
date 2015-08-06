@@ -4,7 +4,7 @@
  <title>Jeroen Mols</title>
  <link href="jeroenmols.github.io/atom.xml" rel="self"/>
  <link href="jeroenmols.github.io/"/>
- <updated>2015-08-06T23:32:40+02:00</updated>
+ <updated>2015-08-07T00:02:57+02:00</updated>
  <id>jeroenmols.github.io</id>
  <author>
    <name>Jeroen Mols</name>
@@ -143,6 +143,10 @@ SEVERE: One or more listeners failed to start. Full details will be found in the
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;gradle&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;assembleRelease&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;artifactoryPublish&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Notice how we first invoke &lt;code&gt;assembleRelease&lt;/code&gt; before we invoke the actual &lt;code&gt;artifactoryPublish&lt;/code&gt; task, because of the way we defined the artifacts to publish in the previous section.&lt;/p&gt;
+
+&lt;p&gt;You can very easily verify that the upload was successful by navigating to &lt;a href=&quot;http://localhost:8081&quot;&gt;localhost:8081&lt;/a&gt; and signing in with the default admin credentials.&lt;/p&gt;
+
+&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/artifactory_screenshot.png&quot;&gt;&lt;img src=&quot;/img/blog/artifactory_screenshot.png&quot; alt=&quot;Verify a successful upload in the Artifactory control panel.&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
 
 &lt;h3&gt;Using the artifacts&lt;/h3&gt;
 

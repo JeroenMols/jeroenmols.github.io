@@ -467,6 +467,10 @@ SEVERE: One or more listeners failed to start. Full details will be found in the
 </code></pre></div>
 <p>Notice how we first invoke <code>assembleRelease</code> before we invoke the actual <code>artifactoryPublish</code> task, because of the way we defined the artifacts to publish in the previous section.</p>
 
+<p>You can very easily verify that the upload was successful by navigating to <a href="http://localhost:8081">localhost:8081</a> and signing in with the default admin credentials.</p>
+
+<p><center><a href="/img/blog/artifactory_screenshot.png"><img src="/img/blog/artifactory_screenshot.png" alt="Verify a successful upload in the Artifactory control panel."></a></center></p>
+
 <h3>Using the artifacts</h3>
 
 <p>To make use of the published artifacts in another project we have to add our Artifactory repository to the list of Maven repositories in your top level <code>build.gradle</code> file:</p>
