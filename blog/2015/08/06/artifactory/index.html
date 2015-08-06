@@ -102,154 +102,177 @@
 
 <p>Note that the material presented here can quite easily be extended to be applicable in a broader scope beyond Android.</p>
 
-<h2>Setting up a Repository Manager</h2>
-
+<h2 id="setting-up-a-repository-manager">Setting up a Repository Manager</h2>
 <p>First of all we need to make sure we have an actual Maven repository to upload our artifacts to. According to <a href="https://maven.apache.org/repository-management.html">Maven</a> you should use a repository manager to do that:</p>
 
 <blockquote>
-<p><strong>Best Practice - Using a Repository Manager</strong></p>
-
-<p>A repository manager is a dedicated server application designed to manage repositories of binary components. The usage of a repository manager is considered an essential best practice for any significant usage of Maven.</p>
+  <p><strong>Best Practice - Using a Repository Manager</strong></p>
 </blockquote>
 
-<h3>Why Artifactory?</h3>
+<blockquote>
+  <p>A repository manager is a dedicated server application designed to manage repositories of binary components. The usage of a repository manager is considered an essential best practice for any significant usage of Maven.</p>
+</blockquote>
+
+<h3 id="why-artifactory">Why Artifactory?</h3>
 
 <p>While there are some options available to choose from, I personally selected <a href="http://www.jfrog.com/open-source/">Artifactory</a> because:</p>
 
 <ul>
-<li>Clear and attractive UI</li>
-<li>Super fast configuration</li>
-<li>Gradle plugin</li>
-<li>User access control</li>
-<li>Free and open source</li>
+  <li>Clear and attractive UI</li>
+  <li>Super fast configuration</li>
+  <li>Gradle plugin</li>
+  <li>User access control</li>
+  <li>Free and open source</li>
 </ul>
 
-<div><center><iframe width="420" height="315" src="http://www.youtube.com/embed/aa4YBDUDWy0" frameborder="0" allowfullscreen></iframe></center></div>
+<div><center><iframe width="420" height="315" src="http://www.youtube.com/embed/aa4YBDUDWy0" frameborder="0" allowfullscreen=""></iframe></center></div>
 
 <div><iframe width="560" height="315" src="http://www.youtube.com/embed/aa4YBDUDWy0" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>
 
 <p>For more information have a look at the <a href="https://maven.apache.org/repository-management.html">alternatives</a>, checkout this <a href="http://www.jfrog.com/blog/artifactory-vs-nexus-integration-matrix/">feature comparison matrix</a> or review all of the <a href="https://www.jfrog.com/confluence/display/RTF/Artifactory+Comparison+Matrix">Artifactory features</a>.</p>
 
-<h3>Verify you have Java SDK 8</h3>
+<h3 id="verify-you-have-java-sdk-8">Verify you have Java SDK 8</h3>
+<p>Before you get started, make sure that you have Java SDK 8 installed, or otherwise Artifactory won’t start. You can easily verify your Java version with <code>java -version</code>:</p>
 
-<p>Before you get started, make sure that you have Java SDK 8 installed, or otherwise Artifactory won&#39;t start. You can easily verify your Java version with <code>java -version</code>:</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>java -version
-java version <span class="s2">&quot;1.8.0_51&quot;</span>
-Java<span class="o">(</span>TM<span class="o">)</span> SE Runtime Environment <span class="o">(</span>build 1.8.0_51-b16<span class="o">)</span>
-Java HotSpot<span class="o">(</span>TM<span class="o">)</span> 64-Bit Server VM <span class="o">(</span>build 25.51-b03, mixed mode<span class="o">)</span>
-</code></pre></div>
-<p>If it doesn&#39;t output at least version <code>1.8.x</code>, you should <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">download</a> and install a new Java SDK before you continue.</p>
+<p><code>bash
+$ java -version
+java version "1.8.0_51"
+Java(TM) SE Runtime Environment (build 1.8.0_51-b16)
+Java HotSpot(TM) 64-Bit Server VM (build 25.51-b03, mixed mode)
+</code></p>
 
-<p>Note that the error you get if you don&#39;t have Java 8 looks a bit cryptic:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">Aug 05, 2015 9:29:31 AM org.apache.catalina.core.StandardContext startInternal
+<p>If it doesn’t output at least version <code>1.8.x</code>, you should <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">download</a> and install a new Java SDK before you continue.</p>
+
+<p>Note that the error you get if you don’t have Java 8 looks a bit cryptic:</p>
+
+<p><code>
+Aug 05, 2015 9:29:31 AM org.apache.catalina.core.StandardContext startInternal
 SEVERE: One or more listeners failed to start. Full details will be found in the appropriate container log file
-</code></pre></div>
-<h3>Install Artifactory</h3>
+</code></p>
 
+<h3 id="install-artifactory">Install Artifactory</h3>
 <p>Thankfully this is incredibly easy to do. Just download the latest version of <a href="http://www.jfrog.com/open-source/">Artifactory</a>, unpack the archive and run the <code>artifactory</code> executable for your platform.</p>
 
-<p><center><iframe width="420" height="315" src="http://www.youtube.com/embed/7ZSUHgHDMmc" frameborder="0" allowfullscreen></iframe></center></p>
+<div><center><iframe width="420" height="315" src="http://www.youtube.com/embed/7ZSUHgHDMmc" frameborder="0"></iframe></center></div>
 
-<p>You can easily verify your installation and start experimenting with its features by navigating to <a href="http://localhost:8081/artifactory/">http://localhost:8081/artifactory/</a>. For now, don&#39;t worry about all of the settings, we will configure what we need later on.</p>
+<p>You can easily verify your installation and start experimenting with its features by navigating to <a href="http://localhost:8081/artifactory/">http://localhost:8081/artifactory/</a>. For now, don’t worry about all of the settings, we will configure what we need later on.</p>
 
-<h3>Configuring Gradle to upload Android artifacts</h3>
-
-<p>Let&#39;s upload a very simple archive by configuring a new Gradle task for our Android library project.</p>
+<h3 id="configuring-gradle-to-upload-android-artifacts">Configuring Gradle to upload Android artifacts</h3>
+<p>Let’s upload a very simple archive by configuring a new Gradle task for our Android library project.</p>
 
 <p>In your top level <code>build.gradle</code> file, add a reference to the repository of the Artifactory Gradle plugin:</p>
-<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">buildscript</span> <span class="o">{</span>
-    <span class="n">dependencies</span> <span class="o">{</span>
-        <span class="n">classpath</span> <span class="s2">&quot;org.jfrog.buildinfo:build-info-extractor-gradle:3.1.1&quot;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div>
-<p>Next in your library we will need to apply two new plugins: one to prepare the Maven artifacts <code>maven-publish</code> and one to upload the archives to Artifactory <code>com.jfrog.artifactory</code>:</p>
-<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">&#39;com.jfrog.artifactory&#39;</span>
-<span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">&#39;maven-publish&#39;</span>
-</code></pre></div>
+
+<p><code>groovy
+buildscript {
+    dependencies {
+        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:3.1.1"
+    }
+}
+</code></p>
+
+<p>Next in your library we will need to apply two new plugins: one to prepare the Maven artifacts <code>maven-publish</code> and one to upload the archives to Artifactory ` com.jfrog.artifactory`:</p>
+
+<p><code>groovy
+apply plugin: 'com.jfrog.artifactory'
+apply plugin: 'maven-publish'
+</code></p>
+
 <p>Every Maven artifact is identified by three different parameters:</p>
 
 <ul>
-<li>artifactId: the name of your library</li>
-<li>groupId: usually the package name of your library</li>
-<li>version: identifies different releases of the same artifact</li>
+  <li>artifactId: the name of your library</li>
+  <li>groupId: usually the package name of your library</li>
+  <li>version: identifies different releases of the same artifact</li>
 </ul>
 
 <p>For these we will explicitly define a variable in the <code>build.gradle</code> file.</p>
-<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="kt">def</span> <span class="n">artifactName</span> <span class="o">=</span> <span class="s1">&#39;awesomelibrary&#39;</span>
-<span class="kt">def</span> <span class="n">packageName</span> <span class="o">=</span> <span class="s1">&#39;com.jeroenmols.awesomelibrary&#39;</span>
-<span class="kt">def</span> <span class="n">libraryVersion</span> <span class="o">=</span> <span class="s1">&#39;1.0.0&#39;</span>
-</code></pre></div>
+
+<p><code>groovy
+def artifactName = 'awesomelibrary'
+def packageName = 'com.jeroenmols.awesomelibrary'
+def libraryVersion = '1.0.0'
+</code></p>
+
 <p>Now we need to configure the <code>maven-publish</code> plugin so that it knows which artifacts to publish to Artifactory. For our purpose we will refer to the <code>***-release.aar</code> file, generated by the <code>assembleRelease</code> task. Note that we can predict the name by taking the name of the Library project:</p>
-<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">publishing</span> <span class="o">{</span>
-    <span class="n">publications</span> <span class="o">{</span>
-        <span class="n">aar</span><span class="o">(</span><span class="n">MavenPublication</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">groupId</span> <span class="n">packageName</span>
-            <span class="n">version</span> <span class="o">=</span> <span class="n">libraryVersion</span>
-            <span class="n">artifactId</span> <span class="n">artifactName</span>
 
-            <span class="c1">// Tell maven to prepare the generated &quot;*.aar&quot; file for publishing</span>
-            <span class="n">artifact</span><span class="o">(</span><span class="s2">&quot;$buildDir/outputs/aar/$artifactName-release.aar&quot;</span><span class="o">)</span>
-      <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div>
+<p>```groovy
+publishing {
+    publications {
+        aar(MavenPublication) {
+            groupId packageName
+            version = libraryVersion
+            artifactId artifactName</p>
+
+<pre><code>        // Tell maven to prepare the generated "*.aar" file for publishing
+        artifact("$buildDir/outputs/aar/$artifactName-release.aar")
+  }
+} } ```
+</code></pre>
+
 <p>Finally we need to configure the <code>com.jfrog.artifactory</code> plugin so it knows which repository to publish the artifacts to. For simplicity we will upload the artifact to the locally running Artifactory instance (<a href="http://localhost:8081/artifactory">http://localhost:8081/artifactory</a>) and place it in the default <code>libs-release-local</code> repository. Note that the username <code>admin</code> and password <code>password</code> are hardcoded in this example, but we will provide a better solution for that later.</p>
-<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">artifactory</span> <span class="o">{</span>
-    <span class="n">contextUrl</span> <span class="o">=</span> <span class="s1">&#39;http://localhost:8081/artifactory&#39;</span>
-    <span class="n">publish</span> <span class="o">{</span>
-        <span class="n">repository</span> <span class="o">{</span>
-            <span class="c1">// The Artifactory repository key to publish to</span>
-            <span class="n">repoKey</span> <span class="o">=</span> <span class="s1">&#39;libs-release-local&#39;</span>
 
-            <span class="n">username</span> <span class="o">=</span> <span class="s2">&quot;admin&quot;</span>
-            <span class="n">password</span> <span class="o">=</span> <span class="s2">&quot;password&quot;</span>
-        <span class="o">}</span>
-        <span class="n">defaults</span> <span class="o">{</span>
-            <span class="c1">// Tell the Artifactory Plugin which artifacts should be published to Artifactory.</span>
-            <span class="n">publications</span><span class="o">(</span><span class="s1">&#39;aar&#39;</span><span class="o">)</span>
-            <span class="n">publishArtifacts</span> <span class="o">=</span> <span class="kc">true</span>
+<p>```groovy
+artifactory {
+    contextUrl = ‘http://localhost:8081/artifactory’
+    publish {
+        repository {
+            // The Artifactory repository key to publish to
+            repoKey = ‘libs-release-local’</p>
 
-            <span class="c1">// Properties to be attached to the published artifacts.</span>
-            <span class="n">properties</span> <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;qa.level&#39;</span><span class="o">:</span> <span class="s1">&#39;basic&#39;</span><span class="o">,</span> <span class="s1">&#39;dev.team&#39;</span><span class="o">:</span> <span class="s1">&#39;core&#39;</span><span class="o">]</span>
-            <span class="c1">// Publish generated POM files to Artifactory (true by default)</span>
-            <span class="n">publishPom</span> <span class="o">=</span> <span class="kc">true</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div>
-<h3>Deploying artifacts</h3>
+<pre><code>        username = "admin"
+        password = "password"
+    }
+    defaults {
+        // Tell the Artifactory Plugin which artifacts should be published to Artifactory.
+        publications('aar')
+        publishArtifacts = true
 
+        // Properties to be attached to the published artifacts.
+        properties = ['qa.level': 'basic', 'dev.team': 'core']
+        // Publish generated POM files to Artifactory (true by default)
+        publishPom = true
+    }
+} } ```
+</code></pre>
+
+<h3 id="deploying-artifacts">Deploying artifacts</h3>
 <p>Now that our Gradle buildscripts are properly configured we can easily publish artifacts to Artifactory by running the following command:</p>
-<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">gradle</span> <span class="n">assembleRelease</span> <span class="n">artifactoryPublish</span>
-</code></pre></div>
+
+<p><code>groovy
+gradle assembleRelease artifactoryPublish
+</code></p>
+
 <p>Notice how we first invoke <code>assembleRelease</code> before we invoke the actual <code>artifactoryPublish</code> task, because of the way we defined the artifacts to publish in the previous section.</p>
 
-<h3>Using the artifacts</h3>
-
+<h3 id="using-the-artifacts">Using the artifacts</h3>
 <p>To make use of the published artifacts in another project we have to add our Artifactory repository to the list of Maven repositories in your top level <code>build.gradle</code> file:</p>
-<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">allprojects</span> <span class="o">{</span>
-    <span class="n">repositories</span> <span class="o">{</span>
-        <span class="n">maven</span> <span class="o">{</span> <span class="n">url</span> <span class="s2">&quot;http://localhost:8081/artifactory/libs-release-local&quot;</span> <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div>
-<p>After we can simply add the artifact as a dependency in the <code>build.gradle</code> file of our main project:</p>
-<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">dependencies</span> <span class="o">{</span>
-    <span class="n">compile</span> <span class="s1">&#39;com.jeroenmols.awesomelibrary:1.0.0&#39;</span>
-<span class="o">}</span>
-</code></pre></div>
-<h2>Wrap-up</h2>
 
+<p><code>groovy
+allprojects {
+    repositories {
+        maven { url "http://localhost:8081/artifactory/libs-release-local" }
+    }
+}
+</code></p>
+
+<p>After we can simply add the artifact as a dependency in the <code>build.gradle</code> file of our main project:</p>
+
+<p><code>groovy
+dependencies {
+    compile 'com.jeroenmols.awesomelibrary:1.0.0'
+}
+</code></p>
+
+<h2 id="wrap-up">Wrap-up</h2>
 <p>Congratulations! You now have a fully working Maven repository manager with a Gradle script to generate and upload your artifacts.</p>
 
 <p>In the next blog post I will zoom in on more advanced topics like:</p>
 
 <ul>
-<li>Library projects with dependencies</li>
-<li>Configuring your own repositories</li>
-<li>User access management and rights</li>
-<li>Removing hardcoded username and password from <code>build.gradle</code></li>
+  <li>Library projects with dependencies</li>
+  <li>Configuring your own repositories</li>
+  <li>User access management and rights</li>
+  <li>Removing hardcoded username and password from <code>build.gradle</code></li>
 </ul>
 
 <p>I have also uploaded a <a href="https://github.com/JeroenMols/ArtifactoryExample">complete example</a> on GitHub for your reference.</p>

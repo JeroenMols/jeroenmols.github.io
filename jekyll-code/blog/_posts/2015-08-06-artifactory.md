@@ -57,7 +57,7 @@ SEVERE: One or more listeners failed to start. Full details will be found in the
 ### Install Artifactory
 Thankfully this is incredibly easy to do. Just download the latest version of [Artifactory](http://www.jfrog.com/open-source/), unpack the archive and run the `artifactory` executable for your platform.
 
-<center><iframe width="420" height="315" src="http://www.youtube.com/embed/7ZSUHgHDMmc" frameborder="0" allowfullscreen></iframe></center>
+<div><center><iframe width="420" height="315" src="http://www.youtube.com/embed/7ZSUHgHDMmc" frameborder="0"></iframe></center></div>
 
 You can easily verify your installation and start experimenting with its features by navigating to [http://localhost:8081/artifactory/](http://localhost:8081/artifactory/). For now, don't worry about all of the settings, we will configure what we need later on.
 

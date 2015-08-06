@@ -41,7 +41,7 @@ address:
 credits: 'This website is based on the free Bootstrap <a href="http://startbootstrap.com/template-overviews/freelancer/">Freelancer theme</a>.</br> The blog is based on <a href="http://hyde.getpoole.com"/>Hyde</a>'
 
 # Build settings
-markdown: Redcarpet
+markdown: kramdown
 highlighter:      pygments
 
 # Permalinks
