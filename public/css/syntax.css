@@ -60,7 +60,7 @@
 .highlight .vi { color: #033 } /* Name.Variable.Instance */
 .highlight .il { color: #f60 } /* Literal.Number.Integer.Long */
 
-// Make code scroll
+/*Make code scroll horizontal*/
 .highlight pre code * { white-space: nowrap; }
 .highlight pre { overflow-x: auto; }
 .highlight pre code { white-space: pre; }
