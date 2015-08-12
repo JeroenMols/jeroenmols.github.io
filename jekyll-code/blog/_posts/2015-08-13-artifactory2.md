@@ -11,7 +11,6 @@ In my previous [blogpost]({% post_url 2015-08-06-artifactory %}) I described how
 You will learn how to:
 
 - handle library projects with dependencies
-- generate the artifactId
 - configure custom repositories
 - manage user access
 - securely provide username and password
@@ -29,7 +28,7 @@ To better understand this, consider the a new library `AwesomeAdvancedLibrary`, 
 
 ```groovy
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.jeroenmols.awesomeadvancedlibrary:awesomeadvancedlibrary:1.0.0'
     compile 'com.google.guava:guava:18.0'
 }
 ```
@@ -45,101 +44,18 @@ One `compile` dependency should suffice to use the library.
 >
 > A better example would be a universal *analytics* library, which offers a universal API to track analytics and redirects all calls internally to one or more analytics providers. For this case packaging dependencies makes sense, because no other part of the app will talk to the dependency directly. It also hides implementation details, so the app doesn't need to be modified when switching to a new provider.
 
+Imagine if we would simply resort to the buildscript we had in my previous [blogpost]({% post_url 2015-08-06-artifactory %}). While compiling the library the `Guava` dependency will not be included, because the would make it unnecessarily large. Instead, the compiler will tell the library: "don't worry about this dependency, the app will provide it for you."
 
+The app on the other hand wouldn't have a clue which dependencies the library actually needs (how would it?) and hence the app will compile just fine. However, it would crash at runtime while trying to access the Library with the following exception:
 
-When using the `maven-publish` plugin, these dependencies won't be added
-
- By default the Gradle `maven-publish` won't add the artifact dependencies to the `pom.xml`, causing you to have to specify this dependency manually in your
-
-
-<!-- Setting up your own Maven repository and uploading artifacts to it is quite a daunting task. As I went through this experience myself recently, I want to help others in setting up their own Maven repository via [Artifactory](http://www.jfrog.com/open-source/) and automate uploading artifacts using Gradle.
-
-In less than 30 minutes you will have a fully operational private Maven repository and have configured your Gradle buildscripts to upload your Android library artifacts.
-
-Note that the material presented here can quite easily be extended to be applicable in a broader scope beyond Android.
-
-## Setting up a Repository Manager
-First of all we need to make sure we have an actual Maven repository to upload our artifacts to. According to [Maven](https://maven.apache.org/repository-management.html) you should use a repository manager to do that:
-
-> **Best Practice - Using a Repository Manager**
-
-> A repository manager is a dedicated server application designed to manage repositories of binary components. The usage of a repository manager is considered an essential best practice for any significant usage of Maven.
-
-### Why Artifactory?
-
-While there are some options available to choose from, I personally selected [Artifactory](http://www.jfrog.com/open-source/) because:
-
-- Clear and attractive UI
-- Super fast configuration
-- Gradle plugin
-- User access control
-- Free and open source
-
-<center>[![What is Artifactory](http://img.youtube.com/vi/aa4YBDUDWy0/0.jpg)](http://www.youtube.com/watch?v=aa4YBDUDWy0)</center></p>
-
-For more information have a look at the [alternatives](https://maven.apache.org/repository-management.html), checkout this [feature comparison matrix](http://www.jfrog.com/blog/artifactory-vs-nexus-integration-matrix/) or review all of the [Artifactory features](https://www.jfrog.com/confluence/display/RTF/Artifactory+Comparison+Matrix).
-
-### Verify you have Java SDK 8
-Before you get started, make sure that you have Java SDK 8 installed, or otherwise Artifactory won't start. You can easily verify your Java version with `java -version`:
-
-```bash
-$ java -version
-java version "1.8.0_51"
-Java(TM) SE Runtime Environment (build 1.8.0_51-b16)
-Java HotSpot(TM) 64-Bit Server VM (build 25.51-b03, mixed mode)
+```Java
+08-09 20:49:46.096  28892-28892/? E/AndroidRuntime﹕ FATAL EXCEPTION: main
+Process: com.jeroenmols.awesomeadvancedapplication, PID: 28892
+java.lang.NoClassDefFoundError: Failed resolution of: Lcom/google/common/base/CharMatcher;
+    at com.jeroenmols.awesomeadvancedlibrary.AwesomeConvertor.toAwesome(AwesomeConvertor.java:11)
 ```
 
-If it doesn't output at least version `1.8.x`, you should [download](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) and install a new Java SDK before you continue.
-
-Note that the error you get if you don't have Java 8 looks a bit cryptic:
-
-```
-Aug 05, 2015 9:29:31 AM org.apache.catalina.core.StandardContext startInternal
-SEVERE: One or more listeners failed to start. Full details will be found in the appropriate container log file
-```
-
-### Install Artifactory
-Thankfully this is incredibly easy to do. Just download the latest version of [Artifactory](http://www.jfrog.com/open-source/), unpack the archive and run the `artifactory` executable for your platform.
-
-<center>[![< 1min Artifactory set up](http://img.youtube.com/vi/7ZSUHgHDMmc/0.jpg)](http://www.youtube.com/watch?v=7ZSUHgHDMmc)</center></p>
-
-You can easily verify your installation and start experimenting with its features by navigating to [http://localhost:8081/artifactory/](http://localhost:8081/artifactory/). For now, don't worry about all of the settings, we will configure what we need later on.
-
-### Configuring Gradle to upload Android artifacts
-Let's upload a very simple archive by configuring a new Gradle task for our Android library project.
-
-In your top level `build.gradle` file, add a reference to the repository of the Artifactory Gradle plugin:
-
-```groovy
-buildscript {
-    dependencies {
-        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:3.1.1"
-    }
-}
-```
-
-Next in your library we will need to apply two new plugins: one to prepare the Maven artifacts `maven-publish` and one to upload the archives to Artifactory ` com.jfrog.artifactory`:
-
-```groovy
-apply plugin: 'com.jfrog.artifactory'
-apply plugin: 'maven-publish'
-```
-
-Every Maven artifact is identified by three different parameters:
-
-- artifactId: the name of your library
-- groupId: usually the package name of your library
-- version: identifies different releases of the same artifact
-
-For these we will explicitly define a variable in the `build.gradle` file.
-
-```groovy
-def artifactName = 'awesomelibrary'
-def packageName = 'com.jeroenmols.awesomelibrary'
-def libraryVersion = '1.0.0'
-```
-
-Now we need to configure the `maven-publish` plugin so that it knows which artifacts to publish to Artifactory. For our purpose we will refer to the `***-release.aar` file, generated by the `assembleRelease` task. Note that we can predict the name by taking the name of the Library project:
+In order to solve this, we need to ensure that the `pom.xml` file of the library contains the right dependencies. This can be done by manually adding the `pom.withXml{}` element to the `publish task` in our `build.gradle` file:
 
 ```groovy
 publishing {
@@ -147,82 +63,82 @@ publishing {
         aar(MavenPublication) {
             groupId packageName
             version = libraryVersion
-            artifactId artifactName
+            artifactId project.getName()
+            artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
 
-            // Tell maven to prepare the generated "*.aar" file for publishing
-            artifact("$buildDir/outputs/aar/$artifactName-release.aar")
-      }
-    }
-}
-```
-
-Finally we need to configure the `com.jfrog.artifactory` plugin so it knows which repository to publish the artifacts to. For simplicity we will upload the artifact to the locally running Artifactory instance ([http://localhost:8081/artifactory](http://localhost:8081/artifactory)) and place it in the default `libs-release-local` repository. Note that the username `admin` and password `password` are hardcoded in this example, but we will provide a better solution for that later.
-
-```groovy
-artifactory {
-    contextUrl = 'http://localhost:8081/artifactory'
-    publish {
-        repository {
-            // The Artifactory repository key to publish to
-            repoKey = 'libs-release-local'
-
-            username = "admin"
-            password = "password"
-        }
-        defaults {
-            // Tell the Artifactory Plugin which artifacts should be published to Artifactory.
-            publications('aar')
-            publishArtifacts = true
-
-            // Properties to be attached to the published artifacts.
-            properties = ['qa.level': 'basic', 'dev.team': 'core']
-            // Publish generated POM files to Artifactory (true by default)
-            publishPom = true
+            pom.withXml {
+                def dependencies = asNode().appendNode('dependencies')
+                configurations.getByName("_releaseCompile").getResolvedConfiguration().getFirstLevelModuleDependencies().each {
+                    def dependency = dependencies.appendNode('dependency')
+                    dependency.appendNode('groupId', it.moduleGroup)
+                    dependency.appendNode('artifactId', it.moduleName)
+                    dependency.appendNode('version', it.moduleVersion)
+                }
+            }
         }
     }
 }
 ```
 
-### Deploying artifacts
-Now that our Gradle buildscripts are properly configured we can easily publish artifacts to Artifactory by running the following command:
+Note that while you could similarly also add repositories for artifacts in this way to the `pom.xml`, Gradle itself [won't look](https://discuss.gradle.org/t/resolving-problem-when-maven-repo-contains-pom-but-not-jar/7174) for repositories in that file. Therefore if you use libraries from 3rd party repositories, you will still always need those repositories to the `build.gradle` of your app.
+
+## Securely provide username and password
+Obviously we do not want to store our username and password in plain text in any file that we check in to our version control system. So to make sure we hide that, create a `gradle.properties` file in the root of your project and add the following content:
 
 ```groovy
-gradle assembleRelease artifactoryPublish
+artifactory_username=admin
+artifactory_password=password
 ```
 
-Notice how we first invoke `assembleRelease` before we invoke the actual `artifactoryPublish` task, because of the way we defined the artifacts to publish in the previous section.
+Then in your `build.gradle` file, refer to the properties like this:
 
-You can very easily verify that the upload was successful by navigating to [localhost:8081](http://localhost:8081) and signing in with the default admin credentials.
+```groovy
+username = artifactory_username
+password = artifactory_password
+```
 
-<center><a href="{{ site.blogbaseurl }}img/blog/artifactory_screenshot.png"><img src="{{ site.blogbaseurl }}img/blog/artifactory_screenshot.png" alt="Verify a successful upload in the Artifactory control panel."></a></center>
+Now it is important to realize what we've done: "we obfuscated the password, so it is not immediately obvious what the password is anymore". However if you check in the `gradle.properties` file into version control, then people will still be able to see your password. Therefore you must do one or the following:
 
-### Using the artifacts
-To make use of the published artifacts in another project we have to add our Artifactory repository to the list of Maven repositories in your top level `build.gradle` file:
+- Don't add `gradle.properties` to your version control system. (add it to your `.gitignore` file instead)
+- Move the `gradle.properties` to the base `~/.gradle` folder on your hard drive. I personally recommend this approach as you can never accidentally check in your username and password.
+
+## Working with Snapshot and Release builds
+While the Artifactory Gradle plugin doesn't have support for snapshot/release builds out of the box, we can easily add this functionality by relying on the artifact version:
+
+- For release builds: use symantic versioning e.g. `1.0.0`
+- For Snapshot builds: use symantic versioning with `-SNAPSHOT` suffix e.g. `1.0.0-SNAPSHOT`
+
+We can then direct each one to a different repository in Artifactory by changing the repository key as follows:
+
+```groovy
+repoKey = libraryVersion.endsWith('SNAPSHOT') ? 'libs-snapshot-local' : 'libs-release-local'
+ ```
+
+On the application side we then need to add two different Maven urls so we can refer to artifacts in both repositories.
 
 ```groovy
 allprojects {
     repositories {
-        maven { url "http://localhost:8081/artifactory/libs-release-local" }
+      maven { url "http://localhost:8081/artifactory/libs-release-local" }
+      maven { url "http://localhost:8081/artifactory/libs-snapshot-local" }
     }
 }
 ```
 
-After we can simply add the artifact as a dependency in the `build.gradle` file of our main project:
+Referencing artifacts is exactly the same as before, just don't forget to add the `-SNAPSHOT` suffix for snapshot artifacts.
 
-```groovy
-dependencies {
-    compile 'com.jeroenmols.awesomelibrary:1.0.0'
-}
-```
+Alternatively we can also create a `virtual` repository in Artifactory which wraps around both repositories so we only have to add one URL to our app. This is a very elegant solution, but does create a dependency of your source code on your Artifactory setup.
 
-## Wrap-up
-Congratulations! You now have a fully working Maven repository manager with a Gradle script to generate and upload your artifacts.
+1. Login to Artifactory and go to admin > repositories > virtual
+  <center><a href="{{ site.blogbaseurl }}img/blog/artifactory2_virtualrepo1.png"><img src="{{ site.blogbaseurl }}img/blog/artifactory2_virtualrepo1.png" alt="All virtual repositories can be found under admin - repositories - virtual"></a></center>
+2. Create a new virtual maven repository which contains both `libs-release-local` and `libs-snapshot-local`
+  <center><a href="{{ site.blogbaseurl }}img/blog/artifactory2_virtualrepo2.png"><img src="{{ site.blogbaseurl }}img/blog/artifactory2_virtualrepo2.png" alt="Create a new virtual maven repository which contains both libs-release-local and libs-snapshot-local"></a></center>
+3. In the top level `build.gradle` of your application, add the following repository:
 
-In the next blog post I will zoom in on more advanced topics like:
-
-- Library projects with dependencies
-- Configuring your own repositories
-- User access management and rights
-- Removing hardcoded username and password from `build.gradle`
-
-I have also uploaded a [complete example](https://github.com/JeroenMols/ArtifactoryExample) on GitHub for your reference. -->
+  ```groovy
+  allprojects {
+      repositories {
+        maven { url "http://localhost:8081/artifactory/libs-local" }
+      }
+  }
+  ```
