@@ -6,7 +6,7 @@ comments: true
 img: img/blog/artifactory2.png
 ---
 
-My previous [blogpost]({% post_url 2015-08-06-artifactory %}) described how to set up your own private Maven repository with Artifactory in 30 minutes. This second and final part will make things more interesting and take your setup to the next level.
+My previous [blog post]({% post_url 2015-08-06-artifactory %}) described how to set up your own private Maven repository with Artifactory in 30 minutes. This second and final part will make things more interesting and take your setup to the next level.
 
 You will learn how to:
 

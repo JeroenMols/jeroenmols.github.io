@@ -177,7 +177,7 @@ dependencies {
 ## Wrap-up
 Congratulations! You now have a fully working Maven repository manager with a Gradle script to generate and upload your artifacts.
 
-In the next blog post I will zoom in on more advanced topics like:
+In the next [blog post]({% post_url 2015-08-13-artifactory2 %}) I will zoom in on more advanced topics like:
 
 - Library projects with dependencies
 - Configuring your own repositories
