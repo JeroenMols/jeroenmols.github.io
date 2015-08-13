@@ -214,7 +214,7 @@ allprojects {
 And we are all set with authenticated access to our repositories.
 
 ## Wrap-up
-That's a wrap to my two part blogpost! We made our previous repository a lot more secure, added support for dependencies and can now differentiate between release and snapshot artifacts.
+That's a wrap to my two part blogpost about Artifactory! We made our previous repository a lot more secure, added support for dependencies and can now differentiate between release and snapshot artifacts.
 
 No more excuses not to write reusable code!
 
