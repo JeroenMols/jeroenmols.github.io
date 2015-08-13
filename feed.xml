@@ -5,9 +5,21 @@
     <description>Portfolio of Jeroen Mols, the Android developer you should hire.</description>
     <link>jeroenmols.github.io/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 09 Aug 2015 20:32:42 +0200</pubDate>
-    <lastBuildDate>Sun, 09 Aug 2015 20:32:42 +0200</lastBuildDate>
+    <pubDate>Thu, 13 Aug 2015 22:09:47 +0200</pubDate>
+    <lastBuildDate>Thu, 13 Aug 2015 22:09:47 +0200</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>Getting the most out of Artifactory</title>
+        <description></description>
+        <pubDate>Thu, 13 Aug 2015 00:00:00 +0200</pubDate>
+        <link>jeroenmols.github.io/blog/2015/08/13/artifactory2/</link>
+        <guid isPermaLink="true">jeroenmols.github.io/blog/2015/08/13/artifactory2/</guid>
+        
+        
+        <category>blog</category>
+        
+      </item>
     
       <item>
         <title>A private Maven repository for Android in 30 min</title>
@@ -111,18 +123,6 @@
         <pubDate>Tue, 15 Oct 2013 00:00:00 +0200</pubDate>
         <link>jeroenmols.github.io/portfolio/2013/10/15/airstudio/</link>
         <guid isPermaLink="true">jeroenmols.github.io/portfolio/2013/10/15/airstudio/</guid>
-        
-        
-        <category>portfolio</category>
-        
-      </item>
-    
-      <item>
-        <title>Wi-FileTransfer</title>
-        <description>Android app to transfer any file between all your devices (Android, Windows, Mac and Linux)</description>
-        <pubDate>Mon, 01 Apr 2013 00:00:00 +0200</pubDate>
-        <link>jeroenmols.github.io/portfolio/2013/04/01/wi-filetransfer/</link>
-        <guid isPermaLink="true">jeroenmols.github.io/portfolio/2013/04/01/wi-filetransfer/</guid>
         
         
         <category>portfolio</category>
