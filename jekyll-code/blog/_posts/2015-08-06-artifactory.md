@@ -3,7 +3,7 @@ layout: post
 title: A private Maven repository for Android in 30 min
 published: true
 comments: true
-img: img/blog/artifactory.png
+img: img/blog/artifactory/artifactory.png
 ---
 
 Setting up your own Maven repository and uploading artifacts to it is quite a daunting task. As I went through this experience myself recently, I want to help others in setting up their own Maven repository via [Artifactory](http://www.jfrog.com/open-source/) and automate uploading artifacts using Gradle.
@@ -153,7 +153,7 @@ Notice how we first invoke `assembleRelease` before we invoke the actual `artifa
 
 You can very easily verify that the upload was successful by navigating to [localhost:8081](http://localhost:8081) and signing in with the default admin credentials.
 
-<center><a href="{{ site.blogbaseurl }}img/blog/artifactory_screenshot.png"><img src="{{ site.blogbaseurl }}img/blog/artifactory_screenshot.png" alt="Verify a successful upload in the Artifactory control panel."></a></center>
+<center><a href="{{ site.blogbaseurl }}img/blog/artifactory/artifactory_screenshot.png"><img src="{{ site.blogbaseurl }}img/blog/artifactory/artifactory_screenshot.png" alt="Verify a successful upload in the Artifactory control panel."></a></center>
 
 ### Using the artifacts
 To make use of the published artifacts in another project we have to add our Artifactory repository to the list of Maven repositories in your top level `build.gradle` file:
