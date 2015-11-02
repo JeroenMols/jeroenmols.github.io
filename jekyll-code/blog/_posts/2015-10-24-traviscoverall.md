@@ -3,34 +3,34 @@ layout: post
 title: Free CI and code coverage for Github projects
 published: true
 comments: true
-img: img/blog/traviscoveralls.png
+img: img/blog/traviscoveralls/traviscoveralls.png
 ---
 
 Wouldn't you love to have your open source projects built automatically by a continuous integration server? And to have a detailed code coverage report for all your unit tests? Even when someone generated a pull request? And how about having cool badges to show off all of this?
 
 <center>[![Build Status](https://travis-ci.org/JeroenMols/LandscapeVideoCamera.svg?branch=master)](https://travis-ci.org/JeroenMols/LandscapeVideoCamera) [![Coverage Status](https://coveralls.io/repos/JeroenMols/LandscapeVideoCamera/badge.svg?branch=master&service=github)](https://coveralls.io/github/JeroenMols/LandscapeVideoCamera?branch=master)</center>
 
-Actually, all of this a breeze to set up, once you understand what works and what doesn't! It is even completely free for open source projects!
+Actually, all of this a breeze to set up, once you understand what works and what doesn't. It is even completely free for open source projects!
 
 In less than half an hour, this blogpost will add CI and code coverage to your projects, just like I did for my own library [LandscapeVideoCamera](https://github.com/JeroenMols/LandscapeVideoCamera). While this article focusses on Android, the material presented here can quite easily be extended to a broader scope.
 
 ## Preface
 In order to keep things simple, I created a very basic project containing a [Calculator class](https://github.com/JeroenMols/TravisCoverallsExample/blob/master/app/src/main/java/com/jeroenmols/traviscoveralls/Calculator.java) and some [Android tests](https://github.com/JeroenMols/TravisCoverallsExample/blob/master/app/src/androidTest/java/com/jeroenmols/traviscoveralls/CalculatorTest.java). This will make things easier to understand as we'll add everything step by step to this project.
 
-Later on I will present a more elaborate (and usefull) example, namely my own open source library [LandscapeVideoCamera](https://github.com/JeroenMols/LandscapeVideoCamera). I test driven refactored this project completely some time ago, resulting in respectable code coverage statistics.
+Later on I will present a more elaborate (and usefull) example, namely my own open source library [LandscapeVideoCamera](https://github.com/JeroenMols/LandscapeVideoCamera). Some time ago, I test driven refactored this project completely resulting in respectable code coverage statistics.
 
 ## Travis
 ### About
 [Travis](https://travis-ci.org/) is a feature rich online CI service which integrates nicely with a lot of existing services. One major advantage over Jenkins is that you can put the entire CI configuration file under version control. It is completely free for open source projects, although private repositories are also supported on a subscription basis.
 
-<center><a href="{{ site.blogbaseurl }}img/blog/travis-workflow.png"><img src="{{ site.blogbaseurl }}img/blog/travis-workflow.png" alt="Travis workflow"></a></center>
+<center><a href="{{ site.blogbaseurl }}img/blog/traviscoveralls/travis-workflow.png"><img src="{{ site.blogbaseurl }}img/blog/traviscoveralls/travis-workflow.png" alt="Travis workflow"></a></center>
 
 ### Basic configuration
 In order to get started, go to [travis-ci.org](https://travis-ci.org/), login with your GitHub account and authorize Travis to access your repositories.
 
-<center><a href="{{ site.blogbaseurl }}img/blog/travis-authorize.png"><img src="{{ site.blogbaseurl }}img/blog/travis-authorize.png" alt="Allow Travis to access your GitHub projects"></a></center>
+<center><a href="{{ site.blogbaseurl }}img/blog/traviscoveralls/travis-authorize.png"><img src="{{ site.blogbaseurl }}img/blog/traviscoveralls/travis-authorize.png" alt="Allow Travis to access your GitHub projects"></a></center>
 
-Next, create a new file '.travis.yml' into the root of your project. (Note that this file will be hidden on Mac OSX/Linux systems) Open the file and specify the language of your project, in our case Android:
+Next, create a new file `.travis.yml` into the root of your project (note that this file will be hidden on Mac OSX/Linux systems). Open the file and specify the language of your project, in our case Android:
 
 ```yaml
 language: android
@@ -46,7 +46,7 @@ android:
     - extra-android-m2repository
 ```
 
-Note that our sample only depends on the AppCompat and design support library, hence there is only one extra defined `extra-android-m2repository`. In case your project uses other dependencies from the Android SDK, you can easily select it from the entire [dependency list](https://github.com/JeroenMols/TravisCoverallsExample/blob/master/misc/android_sdk_dependencies.txt) and add an extra item.
+Note that our sample only depends on the AppCompat and design support library, hence there is only one extra defined `extra-android-m2repository`. In case your project uses other dependencies from the Android SDK, you can easily select them from the entire [dependency list](https://github.com/JeroenMols/TravisCoverallsExample/blob/master/misc/android_sdk_dependencies.txt) and add an extra item.
 
 > **Extra: listing Android SDK dependencies**
 >
@@ -63,17 +63,17 @@ script:
     - ./gradlew assembleDebug
 ```
 
-Now that we have configured everything in the `travis.yml` file, we need to enable the project, so Travis will start listing to code changes. This can be done by going to your profile on [Travis](http://travis-ci.org) and flipping the appropriate slider.
+Now that we have configured everything in the `travis.yml` file, we need to enable the project, so Travis will start listening to code changes. This can be done by going to your profile on [Travis](http://travis-ci.org) and flipping the appropriate slider.
 
-<center><a href="{{ site.blogbaseurl }}img/blog/travis-enableproject.png"><img src="{{ site.blogbaseurl }}img/blog/travis-enableproject.png" alt="Enable project in Travis"></a></center>
+<center><a href="{{ site.blogbaseurl }}img/blog/traviscoveralls/travis-enableproject.png"><img src="{{ site.blogbaseurl }}img/blog/traviscoveralls/travis-enableproject.png" alt="Enable project in Travis"></a></center>
 
 This will result in the project being shown on the left hand side of your dashboard, while indicating that there are no builds.
 
-<center><a href="{{ site.blogbaseurl }}img/blog/travis-nobuilds.png"><img src="{{ site.blogbaseurl }}img/blog/travis-nobuilds.png" alt="Travis overview with no builds, push code to origin to trigger a build."></a></center>
+<center><a href="{{ site.blogbaseurl }}img/blog/traviscoveralls/travis-nobuilds.png"><img src="{{ site.blogbaseurl }}img/blog/traviscoveralls/travis-nobuilds.png" alt="Travis overview with no builds, push code to origin to trigger a build."></a></center>
 
 Builds are automatically triggered whenever you push code to your GitHub repository or someone else creates a pull request. Therefore push some changes to GitHub and watch Travis pick them up automatically and start building your project.
 
-<center><a href="{{ site.blogbaseurl }}img/blog/travis-firstbuild.png"><img src="{{ site.blogbaseurl }}img/blog/travis-firstbuild.png" alt="First build in Travis"></a></center>
+<center><a href="{{ site.blogbaseurl }}img/blog/traviscoveralls/travis-firstbuild.png"><img src="{{ site.blogbaseurl }}img/blog/traviscoveralls/travis-firstbuild.png" alt="First build in Travis"></a></center>
 
 Congrats! You now have a fully working Continuous Integration server for your [open source project](https://travis-ci.org/JeroenMols/TravisCoverallsExample).
 
@@ -81,17 +81,17 @@ Congrats! You now have a fully working Continuous Integration server for your [o
 While running normal unit tests is straight forward, Android tests are a different story because they require an Android emulator to run on. And because Travis support for Android is still in [beta](http://docs.travis-ci.com/user/languages/android/), there are a couple of limitations to consider:
 
 1. Only `armeabi-v7a` emulators are supported.
-2. The latest Android M emulator is not yet supported.
+2. The Android M emulator is not yet supported.
 
 > **Extra limitations of Travis Android support**
 >
 > You can *skip this if you want*, just some extra context
 >
-> First of all, Travis does not yet support HAXM to speed up intel emulators, so there is no speed up while using an `x86` emulator. Even more, the latest `x86_64 Android M` emulator requires hardware acceleration, so that one simply cannot be used on Travis! For more information see issue [1419](https://github.com/travis-ci/travis-ci/issues/1419) and [1395](https://github.com/travis-ci/travis-ci/issues/1395) or check out this [failing build](https://travis-ci.org/JeroenMols/LandscapeVideoCamera/builds/88619658#L693)
+> First of all, Travis does not yet support HAXM to speed up intel emulators, so there is no speed up while using an `x86` emulator. Even more, the latest `x86_64 Android M` emulator requires hardware acceleration, so that one simply cannot be used on Travis! For more information see issue [1419](https://github.com/travis-ci/travis-ci/issues/1419) and [1395](https://github.com/travis-ci/travis-ci/issues/1395) or check out this [failing build](https://travis-ci.org/JeroenMols/LandscapeVideoCamera/builds/88619658#L693).
 >
-> Secondly, Travis does not yet support the latest Android M emulator, causing the built-in `android-wait-for-emulator` script to time out while the emulator is booting. Therefore I recommend to use the `android-22` emulator instead. (for more information see this [failing build](https://travis-ci.org/JeroenMols/LandscapeVideoCamera/builds/88620580#L1069))
+> Secondly, Travis does not yet support the latest Android M emulator, causing the built-in `android-wait-for-emulator` script to time out while the emulator is booting. Therefore I recommend to use the `android-22` emulator instead. For more information see this [failing build](https://travis-ci.org/JeroenMols/LandscapeVideoCamera/builds/88620580#L1069).
 
-So you'll have to accept that builds will be slow (starting emulator + running test) and that you cannot use an Android M emulator. But if these are acceptable, read on and I'll explain how to set up everyting up for tests.
+So you'll have to accept that builds will be slow (starting emulator + running test) and that you cannot use an Android M emulator. But if these are acceptable, read on and I'll explain how to set up everything for running tests.
 
 First of all, define the Android version and processor architecture of the emulator by adding a new environment at the top of the `travis.yml` file:
 
@@ -155,14 +155,14 @@ script:
 
 ## Coveralls
 ### About
-[Coveralls](https://coveralls.io/) is a visually attractive online code coverage tool which can provide a lot of nice detailed statistics such as line coverage and repository trends. Furthermore it allows you to show of your code coverage and encourages you to increase it. Like Travis, it is free for open source projects, but a subscription service is available for private repositories.
+[Coveralls](https://coveralls.io/) is a visually attractive online code coverage tool which provides detailed statistics such as line coverage and repository trends. Furthermore it allows you to show of your code coverage and encourages you to increase it. Like Travis, it is free for open source projects, but a subscription service is available for private repositories.
 
-<center><a href="{{ site.blogbaseurl }}img/blog/coveralls-example.png"><img src="{{ site.blogbaseurl }}img/blog/coveralls-example.png" alt="Example coveralls dashboard"></a></center>
+<center><a href="{{ site.blogbaseurl }}img/blog/traviscoveralls/coveralls-example.png"><img src="{{ site.blogbaseurl }}img/blog/traviscoveralls/coveralls-example.png" alt="Example coveralls dashboard"></a></center>
 
 ### Enabling Android code coverage
-First of all, your Android project will needs to be configured to generate code coverage reports. As such, ensure that you are using at least version 0.4 of the [Android testing support library](https://google.github.io/android-testing-support-library/) (there was an [issue](https://code.google.com/p/android/issues/detail?id=170607) in version 0.3).
+First of all, your Android project needs to be configured to generate code coverage reports. As such, ensure that you are using at least version 0.4 of the [Android testing support library](https://google.github.io/android-testing-support-library/) (there was an [issue](https://code.google.com/p/android/issues/detail?id=170607) in version 0.3).
 
-Then add the flag `testCoverageEnabled` to the debug buildTypes in your projects `build.gradle` file. This will ensure that a code coverage report is generated in the `build/reports/coverage/` folder whenever you run `gradle connectedAndroidTest`.
+Then add the flag `testCoverageEnabled` to the debug buildTypes in your main module's `build.gradle` file, causing a code coverage report to be generated in the `build/reports/coverage/` folder.
 
 ```groovy
 android {
@@ -176,14 +176,16 @@ android {
 }
 ```
 
-<center><a href="{{ site.blogbaseurl }}img/blog/coveralls-rawcoverage.png"><img src="{{ site.blogbaseurl }}img/blog/coveralls-rawcoverage.png" alt="Basic coverage report generated by the built in Android code coverage"></a></center>
+At this point, you should be able to run `gradle connectedAndroidTest` and view an `html` and `xml` report in the above mentioned directory.
+
+<center><a href="{{ site.blogbaseurl }}img/blog/traviscoveralls/coveralls-rawcoverage.png"><img src="{{ site.blogbaseurl }}img/blog/traviscoveralls/coveralls-rawcoverage.png" alt="Basic coverage report generated by the built in Android code coverage"></a></center>
 
 ### Basic configuration
 In order to get started, go to [coveralls.io](https://coveralls.io/), login with your GitHub account and authorize Coveralls to access your repositories.
 
-<center><a href="{{ site.blogbaseurl }}img/blog/coveralls-authorize.png"><img src="{{ site.blogbaseurl }}img/blog/coveralls-authorize.png" alt="Allow Coveralls to access your GitHub projects"></a></center>
+<center><a href="{{ site.blogbaseurl }}img/blog/traviscoveralls/coveralls-authorize.png"><img src="{{ site.blogbaseurl }}img/blog/traviscoveralls/coveralls-authorize.png" alt="Allow Coveralls to access your GitHub projects"></a></center>
 
-Next, we'll need to configure your `build.gradle` files to upload the coverage reports to Coveralls after each successful CI build. Therefore add a new classpath dependency to the root project `build.gradle` file.
+Next, we'll need to configure your `build.gradle` files to upload the coverage reports to Coveralls after each successful CI build. Therefore add a new classpath dependency to the root projects `build.gradle` file.
 
 ```groovy
 buildscript {
@@ -196,7 +198,7 @@ buildscript {
 }
 ```
 
-Then we can apply the `coveralls` plugin, point it to the coverage reports directory and ensure it only runs on CI builds. Add the following to your main module `build.gradle` file:
+Then we can apply the `coveralls` plugin, point it to the coverage reports directory and ensure it only runs on CI builds by adding the following to your main module's `build.gradle` file:
 
 ```groovy
 apply plugin: 'com.github.kt3k.coveralls'
@@ -215,7 +217,7 @@ tasks.coveralls {
 
 Note that we also added a dependency on the `connectedAndroidTest` task as that is the one that will actually generate the code coverage report.
 
-Let's now change the build task in the `travis.yml` so it runs the coveralls task after each built. While not strictly necessary to still define the `connectedAndroidTest` task, I prefer to do so as it makes it more explicit what `Gradle` will exactly be building.
+Let's now change the build task in the `travis.yml` so it runs the `coveralls` task after every build. While not strictly necessary to still define the `connectedAndroidTest` task, I prefer to do so as it makes it more explicit what `Gradle` will exactly be building.
 
 ```yaml
 script:
@@ -224,73 +226,27 @@ script:
 
 ```
 
-Next we need to activate our GitHub repository in coveralls, so it picks up the output from the Gradle plugin. This can easily be done by clicking `add repos` on [coveralls.io](https://coveralls.io) and flipping the switch on your repository.
+Next we need to activate our GitHub repository in coveralls, so it picks up the output from the `Gradle` plugin. This can easily be done by clicking `add repos` on [coveralls.io](https://coveralls.io) and flipping the switch on your repository.
 
-<center><a href="{{ site.blogbaseurl }}img/blog/travis-enableproject.png"><img src="{{ site.blogbaseurl }}img/blog/travis-enableproject.png" alt="Enable project in Travis"></a></center>
+<center><a href="{{ site.blogbaseurl }}img/blog/traviscoveralls/coveralls-enableproject.png"><img src="{{ site.blogbaseurl }}img/blog/traviscoveralls/coveralls-enableproject.png" alt="Enable project in Coveralls"></a></center>
 
-This will result in the project being add to your dashboard without any builds.
+This will result in the project being added to your dashboard without any builds.
 
-<center><a href="{{ site.blogbaseurl }}img/blog/travis-enableproject.png"><img src="{{ site.blogbaseurl }}img/blog/travis-enableproject.png" alt="Enable project in Travis"></a></center>
+<center><a href="{{ site.blogbaseurl }}img/blog/traviscoveralls/coveralls-nobuilds.png"><img src="{{ site.blogbaseurl }}img/blog/traviscoveralls/coveralls-nobuilds.png" alt="No builds yet in Coveralls"></a></center>
 
 Simply trigger a Travis build by pushing some changes to start seeing code coverage results online.
 
 Finally you can easily add a badge to your repository by clicking the `Badge urls` button from the green banner in the detail view.
 
-[![Coverage Status](https://coveralls.io/repos/JeroenMols/TravisCoverallsExample/badge.svg?branch=master&service=github)](https://coveralls.io/github/JeroenMols/TravisCoverallsExample?branch=master)
+<center>[![Coverage Status](https://coveralls.io/repos/JeroenMols/TravisCoverallsExample/badge.svg?branch=master&service=github)](https://coveralls.io/github/JeroenMols/TravisCoverallsExample?branch=master)</center>
 
-Congratulations you know have attractive code coverage reports for your repository!
+Congratulations you know have attractive code coverage reports for [your repository](https://coveralls.io/github/JeroenMols/TravisCoverallsExample)!
 
 ## Wrap-up
-Adding Travis CI and Coveralls code coverage to your project is fairly straightforward once you know what works and especially what doesn't work. Hopefully this blogpost was able to remove a lot of those frustrating barriers to entry.
+Adding Travis CI and Coveralls code coverage to your project is fairly straightforward once you know what works and especially what doesn't work. Hopefully this blogpost was able to remove a lot of those frustrating barriers of entry.
 
 A basic example project with everything in this blogpost integrated is available on [GitHub](https://github.com/JeroenMols/TravisCoverallsExample). But in case you're interested in a real life example, have a look at my Android library [LandscapeVideoCamera](https://github.com/JeroenMols/LandscapeVideoCamera), which actually has decent code coverage statistics.
 
 <center>[![Build Status](https://travis-ci.org/JeroenMols/LandscapeVideoCamera.svg?branch=master)](https://travis-ci.org/JeroenMols/LandscapeVideoCamera) [![Coverage Status](https://coveralls.io/repos/JeroenMols/LandscapeVideoCamera/badge.svg?branch=master&service=github)](https://coveralls.io/github/JeroenMols/LandscapeVideoCamera?branch=master)</center>
 
 As always you can reach me [@molsjeroen](https://twitter.com/molsjeroen) on twitter, or leave a comment below!
-
-
-
-// summarize everything
-
-
-
-
-
-
-
-
-
-
-
-
-
-And I'll show you
-What if I would tell you this is actually a breeze to set up (once you know the quirks of course)? And that it is entirely free for open source projects?
-
-While continuous integration servers such as Jenkins have become a given for apps developed in a corporate environment, a lot of privately developed apps and libraries do not yet benefit from CI. This makes sense, because running your own server and configuring/maintaining CI software is quite a hassle.
-
-Like I did in my own library [LandscapeVideoCamera](https://github.com/JeroenMols/LandscapeVideoCamera), this post will show you how to add CI and code coverage to your own open source project. How to have all pushes and pull requests build (and tested!) automatically. Get detailed statistics about the code coverage. And finally add really cool badges to show off all of this:
-
-[![Build Status](https://travis-ci.org/JeroenMols/LandscapeVideoCamera.svg?branch=master)](https://travis-ci.org/JeroenMols/LandscapeVideoCamera) [![Coverage Status](https://coveralls.io/repos/JeroenMols/LandscapeVideoCamera/badge.svg?branch=master&service=github)](https://coveralls.io/github/JeroenMols/LandscapeVideoCamera?branch=master)
-
-Not only will this take you less than half an hour to set up, but it is also completely free for open source projects! While this article focusses on Android, the material presented here can quite easily be extended to be applicable in a broader scope.
-
-
-
-I added CI to my own open source library [LandscapeVideoCamera](https://github.com/JeroenMols/LandscapeVideoCamera). Not only are all commits and Pull requests build (and tested!) on every push, but I even get detailed statistics of the code coverage. Finally I now have badges to show off all of this:
-
-
-
-
-What if I told you that you can still have continuous integration without needing your own server? That you do not need to setup, configure and maintain the CI software yourself? That even advanced features such as code coverage are supported? And that they even create really cool show-of badges?
-
-
-
-
-
-
-When my library [LandscapeVideoCamera](https://github.com/JeroenMols/LandscapeVideoCamera) started to gain some traction in the Android community I wanted to professionalize my setup. Not only did I want to guarantee that the code is always building
-
-- Ensuring that the source code is built on every checkin (this is also valid for pull requests)
-- Adding a badge indicating code coverage.
