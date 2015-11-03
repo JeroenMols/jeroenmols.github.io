@@ -23,7 +23,7 @@ Note that the material presented here can quite easily be extended to be applica
 ## Library projects with dependencies
 Imagine if your Android library project itself has dependencies. Then the application using the library wouldn't be able to run unless it provides all dependencies the library requires.
 
-To better understand this, consider the new [`AwesomeAdvancedLibrary`](https://github.com/JeroenMols/ArtifactoryExample/blob/master/AwesomeAdvancedLibrary/awesomeadvancedlibrary/src/main/java/com/jeroenmols/awesomeadvancedlibrary/AwesomeConvertor.java) which makes use of [Guava](https://github.com/google/guava) to *awesomize* a `String`. The application using this libary should be agnostic of this dependency. Hence we do not want to define two dependencies:
+To better understand this, consider the new [`AwesomeAdvancedLibrary`](https://github.com/JeroenMols/ArtifactoryExample/blob/master/AwesomeAdvancedLibrary/awesomeadvancedlibrary/src/main/java/com/jeroenmols/awesomeadvancedlibrary/AwesomeConvertor.java) which makes use of [Guava](https://github.com/google/guava) to *awesomize* a `String`. The application using this library should be agnostic of this dependency. Hence we do not want to define two dependencies:
 
 ```groovy
 dependencies {
