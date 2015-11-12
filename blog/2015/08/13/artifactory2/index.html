@@ -93,7 +93,7 @@
   <span class="post-date">13 Aug 2015</span>
 
   
-   <img src="/img/blog/artifactory2.png" alt="Getting the most out of Artifactory">
+   <img src="/img/blog/artifactory2/artifactory2.png" alt="Getting the most out of Artifactory">
   
  
   <p>My previous <a href="/blog/2015/08/06/artifactory/">blog post</a> described how to set up your own private Maven repository with Artifactory in 30 minutes. This second and final part will make things more interesting and take your setup to the next level.</p>
@@ -116,7 +116,7 @@
 
 <p>Imagine if your Android library project itself has dependencies. Then the application using the library wouldn&#39;t be able to run unless it provides all dependencies the library requires.</p>
 
-<p>To better understand this, consider the new <a href="https://github.com/JeroenMols/ArtifactoryExample/blob/master/AwesomeAdvancedLibrary/awesomeadvancedlibrary/src/main/java/com/jeroenmols/awesomeadvancedlibrary/AwesomeConvertor.java"><code>AwesomeAdvancedLibrary</code></a> which makes use of <a href="https://github.com/google/guava">Guava</a> to <em>awesomize</em> a <code>String</code>. The application using this libary should be agnostic of this dependency. Hence we do not want to define two dependencies:</p>
+<p>To better understand this, consider the new <a href="https://github.com/JeroenMols/ArtifactoryExample/blob/master/AwesomeAdvancedLibrary/awesomeadvancedlibrary/src/main/java/com/jeroenmols/awesomeadvancedlibrary/AwesomeConvertor.java"><code>AwesomeAdvancedLibrary</code></a> which makes use of <a href="https://github.com/google/guava">Guava</a> to <em>awesomize</em> a <code>String</code>. The application using this library should be agnostic of this dependency. Hence we do not want to define two dependencies:</p>
 <div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">dependencies</span> <span class="o">{</span>
     <span class="n">compile</span> <span class="s1">&#39;com.jeroenmols.awesomeadvancedlibrary:awesomeadvancedlibrary:1.0.0&#39;</span>
     <span class="n">compile</span> <span class="s1">&#39;com.google.guava:guava:18.0&#39;</span>
@@ -209,9 +209,9 @@
 
 <ol>
 <li>Login to Artifactory and go to admin &gt; repositories &gt; virtual
-<center><a href="/img/blog/artifactory2_virtualrepo1.png"><img src="/img/blog/artifactory2_virtualrepo1.png" alt="All virtual repositories can be found under admin - repositories - virtual"></a></center></li>
+<center><a href="/img/blog/artifactory2/artifactory2_virtualrepo1.png"><img src="/img/blog/artifactory2/artifactory2_virtualrepo1.png" alt="All virtual repositories can be found under admin - repositories - virtual"></a></center></li>
 <li>Create a new virtual maven repository which contains both <code>libs-release-local</code> and <code>libs-snapshot-local</code>
-<center><a href="/img/blog/artifactory2_virtualrepo2.png"><img src="/img/blog/artifactory2_virtualrepo2.png" alt="Create a new virtual maven repository which contains both libs-release-local and libs-snapshot-local"></a></center></li>
+<center><a href="/img/blog/artifactory2/artifactory2_virtualrepo2.png"><img src="/img/blog/artifactory2/artifactory2_virtualrepo2.png" alt="Create a new virtual maven repository which contains both libs-release-local and libs-snapshot-local"></a></center></li>
 <li>In the top level <code>build.gradle</code> of your application, replace the two previous URLS by the following:</li>
 </ol>
 <div class="highlight"><pre><code class="language-groovy" data-lang="groovy">  <span class="n">allprojects</span> <span class="o">{</span>
@@ -237,23 +237,23 @@
 </code></pre></div>
 <p>Next, go to the <code>Users</code> pane and add two new user: <code>consumer</code> and <code>deployer</code>. Make sure not to add them to any group.</p>
 
-<p><center><a href="/img/blog/artifactory2_user1.png"><img src="/img/blog/artifactory2_user1.png" alt="Settings for consumer user"></a></center></p>
+<p><center><a href="/img/blog/artifactory2/artifactory2_user1.png"><img src="/img/blog/artifactory2/artifactory2_user1.png" alt="Settings for consumer user"></a></center></p>
 
-<p><center><a href="/img/blog/artifactory2_user2.png"><img src="/img/blog/artifactory2_user2.png" alt="Settings for deployer user"></a></center></p>
+<p><center><a href="/img/blog/artifactory2/artifactory2_user2.png"><img src="/img/blog/artifactory2/artifactory2_user2.png" alt="Settings for deployer user"></a></center></p>
 
 <p>Note that you probably also want to change your admin password at this stage. ;)</p>
 
 <p>Now go to the <code>Permissions</code> pane and add a new <code>Consume Libraries</code> permission. Set the Selected repositories to include the snapshot and release repository, and in the <code>Users</code> tab add the <code>consumer</code> user with read permissions.</p>
 
-<p><center><a href="/img/blog/artifactory2_permission1.png"><img src="/img/blog/artifactory2_permission1.png" alt="Settings for Consume Libraries permission"></a></center></p>
+<p><center><a href="/img/blog/artifactory2/artifactory2_permission1.png"><img src="/img/blog/artifactory2/artifactory2_permission1.png" alt="Settings for Consume Libraries permission"></a></center></p>
 
-<p><center><a href="/img/blog/artifactory2_permission2.png"><img src="/img/blog/artifactory2_permission2.png" alt="Settings for Consume Libraries permission"></a></center></p>
+<p><center><a href="/img/blog/artifactory2/artifactory2_permission2.png"><img src="/img/blog/artifactory2/artifactory2_permission2.png" alt="Settings for Consume Libraries permission"></a></center></p>
 
 <p>Add a second permission: <code>Deploy Libraries</code> with the snapshot and release repository included. Here give the <code>deployer</code> user <code>Deploy/Cache</code> permission but not <code>Delete/Overwrite</code> as you never want to override an existing artifact!</p>
 
-<p><center><a href="/img/blog/artifactory2_permission3.png"><img src="/img/blog/artifactory2_permission3.png" alt="Settings for Deploy Libraries permission"></a></center></p>
+<p><center><a href="/img/blog/artifactory2/artifactory2_permission3.png"><img src="/img/blog/artifactory2/artifactory2_permission3.png" alt="Settings for Deploy Libraries permission"></a></center></p>
 
-<p><center><a href="/img/blog/artifactory2_permission4.png"><img src="/img/blog/artifactory2_permission4.png" alt="Settings for Deploy Libraries permission"></a></center></p>
+<p><center><a href="/img/blog/artifactory2/artifactory2_permission4.png"><img src="/img/blog/artifactory2/artifactory2_permission4.png" alt="Settings for Deploy Libraries permission"></a></center></p>
 
 <p>All we need to do now is modify the Library and Application to make use of these new users. This is easy for the Library as you can simply replace the <code>admin</code> user with the <code>deploy</code> user in the <code>gradle.properties</code> file.</p>
 
@@ -273,7 +273,7 @@
 <li>Copy the API key</li>
 </ul>
 
-<p><center><a href="/img/blog/artifactory2_consumer.png"><img src="/img/blog/artifactory2_consumer.png" alt="Copy the API key from the consumer profile."></a></center></p></li>
+<p><center><a href="/img/blog/artifactory2/artifactory2_consumer.png"><img src="/img/blog/artifactory2/artifactory2_consumer.png" alt="Copy the API key from the consumer profile."></a></center></p></li>
 </ul>
 
 <p>Now add the user authentication to the top level <code>build.gradle</code> file:</p>

@@ -4,7 +4,7 @@
  <title>Jeroen Mols</title>
  <link href="jeroenmols.github.io/atom.xml" rel="self"/>
  <link href="jeroenmols.github.io/"/>
- <updated>2015-08-13T22:13:00+02:00</updated>
+ <updated>2015-11-12T10:21:42+01:00</updated>
  <id>jeroenmols.github.io</id>
  <author>
    <name>Jeroen Mols</name>
@@ -37,7 +37,7 @@
 
 &lt;p&gt;Imagine if your Android library project itself has dependencies. Then the application using the library wouldn&amp;#39;t be able to run unless it provides all dependencies the library requires.&lt;/p&gt;
 
-&lt;p&gt;To better understand this, consider the new &lt;a href=&quot;https://github.com/JeroenMols/ArtifactoryExample/blob/master/AwesomeAdvancedLibrary/awesomeadvancedlibrary/src/main/java/com/jeroenmols/awesomeadvancedlibrary/AwesomeConvertor.java&quot;&gt;&lt;code&gt;AwesomeAdvancedLibrary&lt;/code&gt;&lt;/a&gt; which makes use of &lt;a href=&quot;https://github.com/google/guava&quot;&gt;Guava&lt;/a&gt; to &lt;em&gt;awesomize&lt;/em&gt; a &lt;code&gt;String&lt;/code&gt;. The application using this libary should be agnostic of this dependency. Hence we do not want to define two dependencies:&lt;/p&gt;
+&lt;p&gt;To better understand this, consider the new &lt;a href=&quot;https://github.com/JeroenMols/ArtifactoryExample/blob/master/AwesomeAdvancedLibrary/awesomeadvancedlibrary/src/main/java/com/jeroenmols/awesomeadvancedlibrary/AwesomeConvertor.java&quot;&gt;&lt;code&gt;AwesomeAdvancedLibrary&lt;/code&gt;&lt;/a&gt; which makes use of &lt;a href=&quot;https://github.com/google/guava&quot;&gt;Guava&lt;/a&gt; to &lt;em&gt;awesomize&lt;/em&gt; a &lt;code&gt;String&lt;/code&gt;. The application using this library should be agnostic of this dependency. Hence we do not want to define two dependencies:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;compile&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;com.jeroenmols.awesomeadvancedlibrary:awesomeadvancedlibrary:1.0.0&amp;#39;&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;compile&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;com.google.guava:guava:18.0&amp;#39;&lt;/span&gt;
@@ -130,9 +130,9 @@
 
 &lt;ol&gt;
 &lt;li&gt;Login to Artifactory and go to admin &amp;gt; repositories &amp;gt; virtual
-&lt;center&gt;&lt;a href=&quot;/img/blog/artifactory2_virtualrepo1.png&quot;&gt;&lt;img src=&quot;/img/blog/artifactory2_virtualrepo1.png&quot; alt=&quot;All virtual repositories can be found under admin - repositories - virtual&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/li&gt;
+&lt;center&gt;&lt;a href=&quot;/img/blog/artifactory2/artifactory2_virtualrepo1.png&quot;&gt;&lt;img src=&quot;/img/blog/artifactory2/artifactory2_virtualrepo1.png&quot; alt=&quot;All virtual repositories can be found under admin - repositories - virtual&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/li&gt;
 &lt;li&gt;Create a new virtual maven repository which contains both &lt;code&gt;libs-release-local&lt;/code&gt; and &lt;code&gt;libs-snapshot-local&lt;/code&gt;
-&lt;center&gt;&lt;a href=&quot;/img/blog/artifactory2_virtualrepo2.png&quot;&gt;&lt;img src=&quot;/img/blog/artifactory2_virtualrepo2.png&quot; alt=&quot;Create a new virtual maven repository which contains both libs-release-local and libs-snapshot-local&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/li&gt;
+&lt;center&gt;&lt;a href=&quot;/img/blog/artifactory2/artifactory2_virtualrepo2.png&quot;&gt;&lt;img src=&quot;/img/blog/artifactory2/artifactory2_virtualrepo2.png&quot; alt=&quot;Create a new virtual maven repository which contains both libs-release-local and libs-snapshot-local&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/li&gt;
 &lt;li&gt;In the top level &lt;code&gt;build.gradle&lt;/code&gt; of your application, replace the two previous URLS by the following:&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;  &lt;span class=&quot;n&quot;&gt;allprojects&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
@@ -158,23 +158,23 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Next, go to the &lt;code&gt;Users&lt;/code&gt; pane and add two new user: &lt;code&gt;consumer&lt;/code&gt; and &lt;code&gt;deployer&lt;/code&gt;. Make sure not to add them to any group.&lt;/p&gt;
 
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/artifactory2_user1.png&quot;&gt;&lt;img src=&quot;/img/blog/artifactory2_user1.png&quot; alt=&quot;Settings for consumer user&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/artifactory2/artifactory2_user1.png&quot;&gt;&lt;img src=&quot;/img/blog/artifactory2/artifactory2_user1.png&quot; alt=&quot;Settings for consumer user&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/artifactory2_user2.png&quot;&gt;&lt;img src=&quot;/img/blog/artifactory2_user2.png&quot; alt=&quot;Settings for deployer user&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/artifactory2/artifactory2_user2.png&quot;&gt;&lt;img src=&quot;/img/blog/artifactory2/artifactory2_user2.png&quot; alt=&quot;Settings for deployer user&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
 
 &lt;p&gt;Note that you probably also want to change your admin password at this stage. ;)&lt;/p&gt;
 
 &lt;p&gt;Now go to the &lt;code&gt;Permissions&lt;/code&gt; pane and add a new &lt;code&gt;Consume Libraries&lt;/code&gt; permission. Set the Selected repositories to include the snapshot and release repository, and in the &lt;code&gt;Users&lt;/code&gt; tab add the &lt;code&gt;consumer&lt;/code&gt; user with read permissions.&lt;/p&gt;
 
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/artifactory2_permission1.png&quot;&gt;&lt;img src=&quot;/img/blog/artifactory2_permission1.png&quot; alt=&quot;Settings for Consume Libraries permission&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/artifactory2/artifactory2_permission1.png&quot;&gt;&lt;img src=&quot;/img/blog/artifactory2/artifactory2_permission1.png&quot; alt=&quot;Settings for Consume Libraries permission&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/artifactory2_permission2.png&quot;&gt;&lt;img src=&quot;/img/blog/artifactory2_permission2.png&quot; alt=&quot;Settings for Consume Libraries permission&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/artifactory2/artifactory2_permission2.png&quot;&gt;&lt;img src=&quot;/img/blog/artifactory2/artifactory2_permission2.png&quot; alt=&quot;Settings for Consume Libraries permission&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
 
 &lt;p&gt;Add a second permission: &lt;code&gt;Deploy Libraries&lt;/code&gt; with the snapshot and release repository included. Here give the &lt;code&gt;deployer&lt;/code&gt; user &lt;code&gt;Deploy/Cache&lt;/code&gt; permission but not &lt;code&gt;Delete/Overwrite&lt;/code&gt; as you never want to override an existing artifact!&lt;/p&gt;
 
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/artifactory2_permission3.png&quot;&gt;&lt;img src=&quot;/img/blog/artifactory2_permission3.png&quot; alt=&quot;Settings for Deploy Libraries permission&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/artifactory2/artifactory2_permission3.png&quot;&gt;&lt;img src=&quot;/img/blog/artifactory2/artifactory2_permission3.png&quot; alt=&quot;Settings for Deploy Libraries permission&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/artifactory2_permission4.png&quot;&gt;&lt;img src=&quot;/img/blog/artifactory2_permission4.png&quot; alt=&quot;Settings for Deploy Libraries permission&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/artifactory2/artifactory2_permission4.png&quot;&gt;&lt;img src=&quot;/img/blog/artifactory2/artifactory2_permission4.png&quot; alt=&quot;Settings for Deploy Libraries permission&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
 
 &lt;p&gt;All we need to do now is modify the Library and Application to make use of these new users. This is easy for the Library as you can simply replace the &lt;code&gt;admin&lt;/code&gt; user with the &lt;code&gt;deploy&lt;/code&gt; user in the &lt;code&gt;gradle.properties&lt;/code&gt; file.&lt;/p&gt;
 
@@ -194,7 +194,7 @@
 &lt;li&gt;Copy the API key&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/artifactory2_consumer.png&quot;&gt;&lt;img src=&quot;/img/blog/artifactory2_consumer.png&quot; alt=&quot;Copy the API key from the consumer profile.&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/artifactory2/artifactory2_consumer.png&quot;&gt;&lt;img src=&quot;/img/blog/artifactory2/artifactory2_consumer.png&quot; alt=&quot;Copy the API key from the consumer profile.&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Now add the user authentication to the top level &lt;code&gt;build.gradle&lt;/code&gt; file:&lt;/p&gt;
@@ -360,7 +360,7 @@ SEVERE: One or more listeners failed to start. Full details will be found in the
 
 &lt;p&gt;You can very easily verify that the upload was successful by navigating to &lt;a href=&quot;http://localhost:8081&quot;&gt;localhost:8081&lt;/a&gt; and signing in with the default admin credentials.&lt;/p&gt;
 
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/artifactory_screenshot.png&quot;&gt;&lt;img src=&quot;/img/blog/artifactory_screenshot.png&quot; alt=&quot;Verify a successful upload in the Artifactory control panel.&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/artifactory/artifactory_screenshot.png&quot;&gt;&lt;img src=&quot;/img/blog/artifactory/artifactory_screenshot.png&quot; alt=&quot;Verify a successful upload in the Artifactory control panel.&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
 
 &lt;h3&gt;Using the artifacts&lt;/h3&gt;
 
