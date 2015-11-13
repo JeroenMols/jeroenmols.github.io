@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Free CI and code coverage for Github projects
-published: false
+title: Level up GitHub builds with CI and code coverage
+published: true
 comments: true
 img: img/blog/traviscoveralls/traviscoveralls.png
 ---
