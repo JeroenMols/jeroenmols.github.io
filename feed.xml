@@ -5,9 +5,21 @@
     <description>Portfolio of Jeroen Mols, the Android developer you should hire.</description>
     <link>jeroenmols.github.io/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 12 Nov 2015 22:11:09 +0100</pubDate>
-    <lastBuildDate>Thu, 12 Nov 2015 22:11:09 +0100</lastBuildDate>
+    <pubDate>Fri, 13 Nov 2015 10:42:29 +0100</pubDate>
+    <lastBuildDate>Fri, 13 Nov 2015 10:42:29 +0100</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>Level up GitHub builds with CI and code coverage</title>
+        <description></description>
+        <pubDate>Fri, 13 Nov 2015 00:00:00 +0100</pubDate>
+        <link>jeroenmols.github.io/blog/2015/11/13/traviscoveralls/</link>
+        <guid isPermaLink="true">jeroenmols.github.io/blog/2015/11/13/traviscoveralls/</guid>
+        
+        
+        <category>blog</category>
+        
+      </item>
     
       <item>
         <title>Getting the most out of Artifactory</title>
@@ -111,18 +123,6 @@
         <pubDate>Tue, 10 Dec 2013 00:00:00 +0100</pubDate>
         <link>jeroenmols.github.io/portfolio/2013/12/10/tomorrowlandradio/</link>
         <guid isPermaLink="true">jeroenmols.github.io/portfolio/2013/12/10/tomorrowlandradio/</guid>
-        
-        
-        <category>portfolio</category>
-        
-      </item>
-    
-      <item>
-        <title>AirStudio+</title>
-        <description>Android app to browse and stream music throughout your home network.</description>
-        <pubDate>Tue, 15 Oct 2013 00:00:00 +0200</pubDate>
-        <link>jeroenmols.github.io/portfolio/2013/10/15/airstudio/</link>
-        <guid isPermaLink="true">jeroenmols.github.io/portfolio/2013/10/15/airstudio/</guid>
         
         
         <category>portfolio</category>

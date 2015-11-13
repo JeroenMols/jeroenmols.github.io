@@ -4,13 +4,241 @@
  <title>Jeroen Mols</title>
  <link href="jeroenmols.github.io/atom.xml" rel="self"/>
  <link href="jeroenmols.github.io/"/>
- <updated>2015-11-12T22:11:09+01:00</updated>
+ <updated>2015-11-13T10:42:29+01:00</updated>
  <id>jeroenmols.github.io</id>
  <author>
    <name>Jeroen Mols</name>
    <email></email>
  </author>
 
+ 
+ <entry>
+   <title>Level up GitHub builds with CI and code coverage</title>
+   <link href="jeroenmols.github.io/blog/2015/11/13/traviscoveralls/"/>
+   <updated>2015-11-13T00:00:00+01:00</updated>
+   <id>jeroenmols.github.io/blog/2015/11/13/traviscoveralls</id>
+   <content type="html">&lt;p&gt;Wouldn&amp;#39;t you love to have your open source projects built automatically by a continuous integration server? And to have a detailed code coverage report for all your unit tests? Even when someone generated a pull request? And how about having cool badges to show off all of this?&lt;/p&gt;
+
+&lt;p&gt;&lt;center&gt;&lt;a href=&quot;https://travis-ci.org/JeroenMols/LandscapeVideoCamera&quot;&gt;&lt;img src=&quot;https://travis-ci.org/JeroenMols/LandscapeVideoCamera.svg?branch=master&quot; alt=&quot;Build Status&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://coveralls.io/github/JeroenMols/LandscapeVideoCamera?branch=master&quot;&gt;&lt;img src=&quot;https://coveralls.io/repos/JeroenMols/LandscapeVideoCamera/badge.svg?branch=master&amp;amp;service=github&quot; alt=&quot;Coverage Status&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+
+&lt;p&gt;Actually, all of this a breeze to set up, once you understand what works and what doesn&amp;#39;t. It is even completely free for open source projects!&lt;/p&gt;
+
+&lt;p&gt;In less than half an hour, this blogpost will add CI and code coverage to your projects, just like I did for my own library &lt;a href=&quot;https://github.com/JeroenMols/LandscapeVideoCamera&quot;&gt;LandscapeVideoCamera&lt;/a&gt;. While this article focusses on Android, the material presented here can quite easily be extended to a broader scope.&lt;/p&gt;
+
+&lt;h2&gt;Preface&lt;/h2&gt;
+
+&lt;p&gt;In order to keep things simple, I created a very basic project containing a &lt;a href=&quot;https://github.com/JeroenMols/TravisCoverallsExample/blob/master/app/src/main/java/com/jeroenmols/traviscoveralls/Calculator.java&quot;&gt;Calculator class&lt;/a&gt; and some &lt;a href=&quot;https://github.com/JeroenMols/TravisCoverallsExample/blob/master/app/src/androidTest/java/com/jeroenmols/traviscoveralls/CalculatorTest.java&quot;&gt;Android tests&lt;/a&gt;. This will make things easier to understand as we&amp;#39;ll add everything step by step to this project.&lt;/p&gt;
+
+&lt;p&gt;Later on I will present a more elaborate (and usefull) example, namely my own open source library &lt;a href=&quot;https://github.com/JeroenMols/LandscapeVideoCamera&quot;&gt;LandscapeVideoCamera&lt;/a&gt;. Some time ago, I test driven refactored this project completely resulting in respectable code coverage statistics.&lt;/p&gt;
+
+&lt;h2&gt;Travis&lt;/h2&gt;
+
+&lt;h3&gt;About&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://travis-ci.org/&quot;&gt;Travis&lt;/a&gt; is a feature rich online CI service which integrates nicely with a lot of existing services. One major advantage over Jenkins is that you can put the entire CI configuration file under version control. It is completely free for open source projects, although private repositories are also supported on a subscription basis.&lt;/p&gt;
+
+&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/traviscoveralls/travis-workflow.png&quot;&gt;&lt;img src=&quot;/img/blog/traviscoveralls/travis-workflow.png&quot; alt=&quot;Travis workflow&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+
+&lt;h3&gt;Basic configuration&lt;/h3&gt;
+
+&lt;p&gt;In order to get started, go to &lt;a href=&quot;https://travis-ci.org/&quot;&gt;travis-ci.org&lt;/a&gt;, login with your GitHub account and authorize Travis to access your repositories.&lt;/p&gt;
+
+&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/traviscoveralls/travis-authorize.png&quot;&gt;&lt;img src=&quot;/img/blog/traviscoveralls/travis-authorize.png&quot; alt=&quot;Allow Travis to access your GitHub projects&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+
+&lt;p&gt;Next, create a new file &lt;code&gt;.travis.yml&lt;/code&gt; into the root of your project (note that this file will be hidden on Mac OSX/Linux systems). Open the file and specify the language of your project, in our case Android:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;language&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;android&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now Travis needs to know all dependencies in order to build the project. As such specify the build tools version and compile Android SDK version (note that this must match the &lt;code&gt;compileSdkVersion&lt;/code&gt; of your &lt;a href=&quot;https://github.com/JeroenMols/TravisCoverallsExample/blob/master/app/build.gradle&quot;&gt;&lt;code&gt;build.gradle&lt;/code&gt;&lt;/a&gt; file!). While there is an option to use the latest build tools version, I recommend to declare an explicit version as this makes your builds more reproducible. Next specify all of the Android SDK manager dependencies your project needs so Travis can install them before building the project.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;l-Scalar-Plain&quot;&gt;components&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;p-Indicator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;build-tools-22.0.1&lt;/span&gt;
+    &lt;span class=&quot;p-Indicator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;android-23&lt;/span&gt;
+    &lt;span class=&quot;p-Indicator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;extra-android-m2repository&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Note that our sample only depends on the AppCompat and design support library, hence there is only one extra defined &lt;code&gt;extra-android-m2repository&lt;/code&gt;. In case your project uses other dependencies from the Android SDK, you can easily select them from the entire &lt;a href=&quot;https://github.com/JeroenMols/TravisCoverallsExample/blob/master/misc/android_sdk_dependencies.txt&quot;&gt;dependency list&lt;/a&gt; and add an extra item.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Extra: listing Android SDK dependencies&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;To generate the above mentioned list of Android SDK components, simply run the following command on your local machine:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;android list sdk --no-ui --all --extended
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;After, specify the exact &lt;code&gt;Gradle&lt;/code&gt; command to run, in our case &lt;code&gt;assembleDebug&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;p-Indicator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;./gradlew assembleDebug&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now that we have configured everything in the &lt;code&gt;travis.yml&lt;/code&gt; file, we need to enable the project, so Travis will start listening to code changes. This can be done by going to your profile on &lt;a href=&quot;http://travis-ci.org&quot;&gt;Travis&lt;/a&gt; and flipping the appropriate slider.&lt;/p&gt;
+
+&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/traviscoveralls/travis-enableproject.png&quot;&gt;&lt;img src=&quot;/img/blog/traviscoveralls/travis-enableproject.png&quot; alt=&quot;Enable project in Travis&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+
+&lt;p&gt;This will result in the project being shown on the left hand side of your dashboard, while indicating that there are no builds.&lt;/p&gt;
+
+&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/traviscoveralls/travis-nobuilds.png&quot;&gt;&lt;img src=&quot;/img/blog/traviscoveralls/travis-nobuilds.png&quot; alt=&quot;Travis overview with no builds, push code to origin to trigger a build.&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+
+&lt;p&gt;Builds are automatically triggered whenever you push code to your GitHub repository or someone else creates a pull request. Therefore push some changes to GitHub and watch Travis pick them up automatically and start building your project.&lt;/p&gt;
+
+&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/traviscoveralls/travis-firstbuild.png&quot;&gt;&lt;img src=&quot;/img/blog/traviscoveralls/travis-firstbuild.png&quot; alt=&quot;First build in Travis&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+
+&lt;p&gt;Congrats! You now have a fully working Continuous Integration server for your &lt;a href=&quot;https://travis-ci.org/JeroenMols/TravisCoverallsExample&quot;&gt;open source project&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3&gt;Running Android unit tests&lt;/h3&gt;
+
+&lt;p&gt;While running normal unit tests is straight forward, Android tests are a different story because they require an Android emulator to run on. And because Travis support for Android is still in &lt;a href=&quot;http://docs.travis-ci.com/user/languages/android/&quot;&gt;beta&lt;/a&gt;, there are a couple of limitations to consider:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Only &lt;code&gt;armeabi-v7a&lt;/code&gt; emulators are supported.&lt;/li&gt;
+&lt;li&gt;The Android M emulator is not yet supported.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Extra limitations of Travis Android support&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;You can &lt;em&gt;skip this if you want&lt;/em&gt;, just some extra context&lt;/p&gt;
+
+&lt;p&gt;First of all, Travis does not yet support HAXM to speed up intel emulators, so there is no speed up while using an &lt;code&gt;x86&lt;/code&gt; emulator. Even more, the latest &lt;code&gt;x86_64 Android M&lt;/code&gt; emulator requires hardware acceleration, so that one simply cannot be used on Travis! For more information see issue &lt;a href=&quot;https://github.com/travis-ci/travis-ci/issues/1419&quot;&gt;1419&lt;/a&gt; and &lt;a href=&quot;https://github.com/travis-ci/travis-ci/issues/1395&quot;&gt;1395&lt;/a&gt; or check out this &lt;a href=&quot;https://travis-ci.org/JeroenMols/LandscapeVideoCamera/builds/88619658#L693&quot;&gt;failing build&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Secondly, Travis does not yet support the latest Android M emulator, causing the built-in &lt;code&gt;android-wait-for-emulator&lt;/code&gt; script to time out while the emulator is booting. Therefore I recommend to use the &lt;code&gt;android-22&lt;/code&gt; emulator instead. For more information see this &lt;a href=&quot;https://travis-ci.org/JeroenMols/LandscapeVideoCamera/builds/88620580#L1069&quot;&gt;failing build&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;So you&amp;#39;ll have to accept that builds will be slow (starting emulator + running test) and that you cannot use an Android M emulator. But if these are acceptable, read on and I&amp;#39;ll explain how to set up everything for running tests.&lt;/p&gt;
+
+&lt;p&gt;First of all, define the Android version and processor architecture of the emulator by adding a new environment at the top of the &lt;code&gt;travis.yml&lt;/code&gt; file:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;l-Scalar-Plain&quot;&gt;matrix&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;p-Indicator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;ANDROID_TARGET=android-22 ANDROID_ABI=armeabi-v7a&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Then, ensure that all dependencies for the Android emulator are installed, by adding both the platform version and emulator image to the &lt;code&gt;components&lt;/code&gt; section. Note that it is important to add both, because the Android emulator will only install if the corresponding Android platform is installed (see this &lt;a href=&quot;https://travis-ci.org/JeroenMols/LandscapeVideoCamera/builds/88631850#L815&quot;&gt;failing build&lt;/a&gt;).&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;l-Scalar-Plain&quot;&gt;components&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;l-Scalar-Plain&quot;&gt;...&lt;/span&gt;
+    &lt;span class=&quot;l-Scalar-Plain&quot;&gt;- android-22&lt;/span&gt;
+    &lt;span class=&quot;l-Scalar-Plain&quot;&gt;- sys-img-armeabi-v7a-android-22&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now we need to create a new Android emulator and start it before our build. As starting takes a really long time, Travis offers a built-in &lt;code&gt;android-wait-for-emulator&lt;/code&gt; script to facilitate this. Finally we need to unlock the emulator once started by sending a key event.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;before_script&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;p-Indicator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI&lt;/span&gt;
+    &lt;span class=&quot;p-Indicator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;emulator -avd test -no-skin -no-audio -no-window &amp;amp;&lt;/span&gt;
+    &lt;span class=&quot;p-Indicator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;android-wait-for-emulator&lt;/span&gt;
+    &lt;span class=&quot;p-Indicator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;adb shell input keyevent 82 &amp;amp;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;After all of this configuration, all we need to do is change the &lt;code&gt;Gradle&lt;/code&gt; command to run all of the tests and trigger a new build by pushing all these changes.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;p-Indicator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;./gradlew connectedAndroidTest&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Taking things further&lt;/h3&gt;
+
+&lt;p&gt;As mentioned in the introduction, Travis is a really feature rich CI service. Therefore this section provides some tips to take things even further.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Build notifications:&lt;/strong&gt; Travis supports sending notifications via Slack, HipChat, email,... whenever a built fails/succeeds.&lt;/p&gt;
+For more information, have a look at the &lt;a href=&quot;http://docs.travis-ci.com/user/notifications/&quot;&gt;Travis documentation&lt;/a&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;notifications&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;l-Scalar-Plain&quot;&gt;email&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;p-Indicator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;jmols.mobile@gmail.com&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Build status badge:&lt;/strong&gt; Click the build badge on your Travis homepage to generate png/markdown/... build badges.&lt;/p&gt;
+&lt;a href=&quot;https://travis-ci.org/JeroenMols/TravisCoverallsExample&quot;&gt;&lt;img src=&quot;https://travis-ci.org/JeroenMols/TravisCoverallsExample.svg?branch=master&quot; alt=&quot;Build Status&quot;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Branch information:&lt;/strong&gt; Print which branch or pull request is being built.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;p-Indicator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;echo &amp;quot;Travis branch is $TRAVIS_BRANCH&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;p-Indicator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;echo &amp;quot;Travis branch is in pull request $TRAVIS_PULL+REQUEST&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;More options:&lt;/strong&gt; Have a look at the &lt;a href=&quot;http://docs.travis-ci.com/user/languages/android/&quot;&gt;Travis documentation&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Coveralls&lt;/h2&gt;
+
+&lt;h3&gt;About&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://coveralls.io/&quot;&gt;Coveralls&lt;/a&gt; is a visually attractive online code coverage tool which provides detailed statistics such as line coverage and repository trends. Furthermore it allows you to show of your code coverage and encourages you to increase it. Like Travis, it is free for open source projects, but a subscription service is available for private repositories.&lt;/p&gt;
+
+&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/traviscoveralls/coveralls-example.png&quot;&gt;&lt;img src=&quot;/img/blog/traviscoveralls/coveralls-example.png&quot; alt=&quot;Example coveralls dashboard&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+
+&lt;h3&gt;Enabling Android code coverage&lt;/h3&gt;
+
+&lt;p&gt;First of all, your Android project needs to be configured to generate code coverage reports. As such, ensure that you are using at least version 0.4 of the &lt;a href=&quot;https://google.github.io/android-testing-support-library/&quot;&gt;Android testing support library&lt;/a&gt; (there was an &lt;a href=&quot;https://code.google.com/p/android/issues/detail?id=170607&quot;&gt;issue&lt;/a&gt; in version 0.3).&lt;/p&gt;
+
+&lt;p&gt;Then add the flag &lt;code&gt;testCoverageEnabled&lt;/code&gt; to the debug buildTypes in your main module&amp;#39;s &lt;code&gt;build.gradle&lt;/code&gt; file, causing a code coverage report to be generated in the &lt;code&gt;build/reports/coverage/&lt;/code&gt; folder.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;android&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;buildTypes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;debug&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;testCoverageEnabled&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;At this point, you should be able to run &lt;code&gt;gradle connectedAndroidTest&lt;/code&gt; and view an &lt;code&gt;html&lt;/code&gt; and &lt;code&gt;xml&lt;/code&gt; report in the above mentioned directory.&lt;/p&gt;
+
+&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/traviscoveralls/coveralls-rawcoverage.png&quot;&gt;&lt;img src=&quot;/img/blog/traviscoveralls/coveralls-rawcoverage.png&quot; alt=&quot;Basic coverage report generated by the built in Android code coverage&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+
+&lt;h3&gt;Basic configuration&lt;/h3&gt;
+
+&lt;p&gt;In order to get started, go to &lt;a href=&quot;https://coveralls.io/&quot;&gt;coveralls.io&lt;/a&gt;, login with your GitHub account and authorize Coveralls to access your repositories.&lt;/p&gt;
+
+&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/traviscoveralls/coveralls-authorize.png&quot;&gt;&lt;img src=&quot;/img/blog/traviscoveralls/coveralls-authorize.png&quot; alt=&quot;Allow Coveralls to access your GitHub projects&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+
+&lt;p&gt;Next, we&amp;#39;ll need to configure your &lt;code&gt;build.gradle&lt;/code&gt; files to upload the coverage reports to Coveralls after each successful CI build. Therefore add a new classpath dependency to the root projects &lt;code&gt;build.gradle&lt;/code&gt; file.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;buildscript&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;classpath&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.4.0&amp;#39;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Then we can apply the &lt;code&gt;coveralls&lt;/code&gt; plugin, point it to the coverage reports directory and ensure it only runs on CI builds by adding the following to your main module&amp;#39;s &lt;code&gt;build.gradle&lt;/code&gt; file:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;apply&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;plugin:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;com.github.kt3k.coveralls&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;coveralls&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;jacocoReportPath&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;${buildDir}/reports/coverage/debug/report.xml&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;tasks&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;coveralls&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;dependsOn&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;connectedAndroidTest&amp;#39;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;onlyIf&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;CI&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Note that we also added a dependency on the &lt;code&gt;connectedAndroidTest&lt;/code&gt; task as that is the one that will actually generate the code coverage report.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#39;s now change the build task in the &lt;code&gt;travis.yml&lt;/code&gt; so it runs the &lt;code&gt;coveralls&lt;/code&gt; task after every build. While not strictly necessary to still define the &lt;code&gt;connectedAndroidTest&lt;/code&gt; task, I prefer to do so as it makes it more explicit what &lt;code&gt;Gradle&lt;/code&gt; will exactly be building.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;l-Scalar-Plain&quot;&gt;...&lt;/span&gt;
+  &lt;span class=&quot;l-Scalar-Plain&quot;&gt;- ./gradlew connectedAndroidTest coveralls&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Next we need to activate our GitHub repository in coveralls, so it picks up the output from the &lt;code&gt;Gradle&lt;/code&gt; plugin. This can easily be done by clicking &lt;code&gt;add repos&lt;/code&gt; on &lt;a href=&quot;https://coveralls.io&quot;&gt;coveralls.io&lt;/a&gt; and flipping the switch on your repository.&lt;/p&gt;
+
+&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/traviscoveralls/coveralls-enableproject.png&quot;&gt;&lt;img src=&quot;/img/blog/traviscoveralls/coveralls-enableproject.png&quot; alt=&quot;Enable project in Coveralls&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+
+&lt;p&gt;This will result in the project being added to your dashboard without any builds.&lt;/p&gt;
+
+&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/traviscoveralls/coveralls-nobuilds.png&quot;&gt;&lt;img src=&quot;/img/blog/traviscoveralls/coveralls-nobuilds.png&quot; alt=&quot;No builds yet in Coveralls&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+
+&lt;p&gt;Simply trigger a Travis build by pushing some changes to start seeing code coverage results online.&lt;/p&gt;
+
+&lt;p&gt;Finally you can easily add a badge to your repository by clicking the &lt;code&gt;Badge urls&lt;/code&gt; button from the green banner in the detail view.&lt;/p&gt;
+
+&lt;p&gt;&lt;center&gt;&lt;a href=&quot;https://coveralls.io/github/JeroenMols/TravisCoverallsExample?branch=master&quot;&gt;&lt;img src=&quot;https://coveralls.io/repos/JeroenMols/TravisCoverallsExample/badge.svg?branch=master&amp;amp;service=github&quot; alt=&quot;Coverage Status&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+
+&lt;p&gt;Congratulations you know have attractive code coverage reports for &lt;a href=&quot;https://coveralls.io/github/JeroenMols/TravisCoverallsExample&quot;&gt;your repository&lt;/a&gt;!&lt;/p&gt;
+
+&lt;h2&gt;Wrap-up&lt;/h2&gt;
+
+&lt;p&gt;Adding Travis CI and Coveralls code coverage to your project is fairly straightforward once you know what works and especially what doesn&amp;#39;t work. Hopefully this blogpost was able to remove a lot of those frustrating barriers of entry.&lt;/p&gt;
+
+&lt;p&gt;A basic example project with everything in this blogpost integrated is available on &lt;a href=&quot;https://github.com/JeroenMols/TravisCoverallsExample&quot;&gt;GitHub&lt;/a&gt;. But in case you&amp;#39;re interested in a real life example, have a look at my Android library &lt;a href=&quot;https://github.com/JeroenMols/LandscapeVideoCamera&quot;&gt;LandscapeVideoCamera&lt;/a&gt;, which actually has decent code coverage statistics.&lt;/p&gt;
+
+&lt;p&gt;&lt;center&gt;&lt;a href=&quot;https://travis-ci.org/JeroenMols/LandscapeVideoCamera&quot;&gt;&lt;img src=&quot;https://travis-ci.org/JeroenMols/LandscapeVideoCamera.svg?branch=master&quot; alt=&quot;Build Status&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://coveralls.io/github/JeroenMols/LandscapeVideoCamera?branch=master&quot;&gt;&lt;img src=&quot;https://coveralls.io/repos/JeroenMols/LandscapeVideoCamera/badge.svg?branch=master&amp;amp;service=github&quot; alt=&quot;Coverage Status&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+
+&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Getting the most out of Artifactory</title>
