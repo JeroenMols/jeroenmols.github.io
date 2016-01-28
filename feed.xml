@@ -5,9 +5,21 @@
     <description>Portfolio of Jeroen Mols, the Android developer you should hire.</description>
     <link>jeroenmols.github.io/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 16 Nov 2015 06:51:38 +0100</pubDate>
-    <lastBuildDate>Mon, 16 Nov 2015 06:51:38 +0100</lastBuildDate>
+    <pubDate>Fri, 29 Jan 2016 00:28:28 +0100</pubDate>
+    <lastBuildDate>Fri, 29 Jan 2016 00:28:28 +0100</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>Year in review 2015</title>
+        <description></description>
+        <pubDate>Fri, 29 Jan 2016 00:00:00 +0100</pubDate>
+        <link>jeroenmols.github.io/blog/2016/01/29/yearinreview/</link>
+        <guid isPermaLink="true">jeroenmols.github.io/blog/2016/01/29/yearinreview/</guid>
+        
+        
+        <category>blog</category>
+        
+      </item>
     
       <item>
         <title>Level up GitHub builds with CI and code coverage</title>
@@ -111,18 +123,6 @@
         <pubDate>Sat, 15 Feb 2014 00:00:00 +0100</pubDate>
         <link>jeroenmols.github.io/portfolio/2014/02/15/eventapp/</link>
         <guid isPermaLink="true">jeroenmols.github.io/portfolio/2014/02/15/eventapp/</guid>
-        
-        
-        <category>portfolio</category>
-        
-      </item>
-    
-      <item>
-        <title>Tomorrowland Radio</title>
-        <description>Added music streaming functionality to existing Android app.</description>
-        <pubDate>Tue, 10 Dec 2013 00:00:00 +0100</pubDate>
-        <link>jeroenmols.github.io/portfolio/2013/12/10/tomorrowlandradio/</link>
-        <guid isPermaLink="true">jeroenmols.github.io/portfolio/2013/12/10/tomorrowlandradio/</guid>
         
         
         <category>portfolio</category>

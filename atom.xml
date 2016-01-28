@@ -4,13 +4,42 @@
  <title>Jeroen Mols</title>
  <link href="jeroenmols.github.io/atom.xml" rel="self"/>
  <link href="jeroenmols.github.io/"/>
- <updated>2015-11-16T06:51:38+01:00</updated>
+ <updated>2016-01-29T00:28:28+01:00</updated>
  <id>jeroenmols.github.io</id>
  <author>
    <name>Jeroen Mols</name>
    <email></email>
  </author>
 
+ 
+ <entry>
+   <title>Year in review 2015</title>
+   <link href="jeroenmols.github.io/blog/2016/01/29/yearinreview/"/>
+   <updated>2016-01-29T00:00:00+01:00</updated>
+   <id>jeroenmols.github.io/blog/2016/01/29/yearinreview</id>
+   <content type="html">&lt;p&gt;Finally found the time to write my &lt;code&gt;year in review&lt;/code&gt;. #insomnia&lt;/p&gt;
+
+&lt;p&gt;2015 was a huge year for me! I even dare to say the biggest one of my life so far as I became a father of a lovely daughter Lene. Its really hard to over state how big of an impact that has on your life and how fantastic it is to see your own baby grow (and recognize parts of yourself in her). This obviously also explains my late &lt;code&gt;year in review&lt;/code&gt; post. #perfectexcuse&lt;/p&gt;
+
+&lt;p&gt;On a technical level I also fared well and I&amp;#39;m very happy with what I&amp;#39;ve been able to accomplish:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Created an library with &amp;gt;500 stars on  &lt;a href=&quot;https://github.com/JeroenMols/LandscapeVideoCamera&quot;&gt;Github&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Started my own blog and &lt;a href=&quot;http://jeroenmols.com&quot;&gt;website&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Featured blogpost in &lt;a href=&quot;http://androidweekly.net/issues/issue-165&quot;&gt;Android Weekly&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Spoke at my first conference &lt;a href=&quot;https://speakerdeck.com/jeroenmols/distributing-to-a-public-or-private-maven-repository&quot;&gt;Droidcon Paris&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Actively started using &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;twitter&lt;/a&gt; and gained &amp;gt;100 followers&lt;/li&gt;
+&lt;li&gt;Gained &amp;gt;1000 reputation on &lt;a href=&quot;https://stackoverflow.com/users/2771851/jmols&quot;&gt;stackoverflow&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Landed a new job at Philips Hue&lt;/li&gt;
+&lt;li&gt;Learned Xamarin and built a cross platform app&lt;/li&gt;
+&lt;li&gt;Wrote the worlds latest &lt;code&gt;year in review&lt;/code&gt; post&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Next year will be more challenging as my daughter has become a lot more effective at grabbing my attention than my laptop. However I want to increase my efforts contributing back to the community by speaking at more conferences and writing more blogposts. Finally I also want to visit Google IO, which is about time I got there, don&amp;#39;t you agree? ;)&lt;/p&gt;
+
+&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Level up GitHub builds with CI and code coverage</title>
