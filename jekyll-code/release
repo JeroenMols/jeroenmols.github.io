@@ -1,6 +1,10 @@
 echo ""
 echo "### Cleaning up resources"
 cd ../
+if [ ! -d jekyll-code ]; then
+echo "Aborting due to wrong folder"
+exit 1                 
+fi
 ls | grep -v 'jekyll-code' | xargs rm -rf
 cd -
 echo ""
