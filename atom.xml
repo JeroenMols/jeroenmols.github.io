@@ -4,13 +4,187 @@
  <title>Jeroen Mols</title>
  <link href="jeroenmols.github.io/atom.xml" rel="self"/>
  <link href="jeroenmols.github.io/"/>
- <updated>2016-01-29T00:28:28+01:00</updated>
+ <updated>2016-02-03T21:37:39+01:00</updated>
  <id>jeroenmols.github.io</id>
  <author>
    <name>Jeroen Mols</name>
    <email></email>
  </author>
 
+ 
+ <entry>
+   <title>Bitbucket as a private Maven repository</title>
+   <link href="jeroenmols.github.io/blog/2016/02/05/wagongit/"/>
+   <updated>2016-02-05T00:00:00+01:00</updated>
+   <id>jeroenmols.github.io/blog/2016/02/05/wagongit</id>
+   <content type="html">&lt;p&gt;As my previous blogposts already covered how to set up a private Maven repository, you might wonder &amp;quot;Why again a Maven blogpost?&amp;quot;. Well that&amp;#39;s a fair question and the answer is twofold:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Backup mechanism, to ensure you never ever loose releases.&lt;/li&gt;
+&lt;li&gt;Remote access outside of your local network (intranet).&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;And Git implicitly solves both! :)&lt;/p&gt;
+
+&lt;p&gt;I&amp;#39;ll demonstrate how to configure Bitbucket as a free private remote Maven repository and automate everything in one simple Gradle script.&lt;/p&gt;
+
+&lt;h2&gt;Preface&lt;/h2&gt;
+
+&lt;p&gt;While you could use any Git repository (like GitHub), I choose Bitbucket as it offers &lt;a href=&quot;https://bitbucket.org/product/pricing&quot;&gt;free private repositories&lt;/a&gt; for small teams. Furthermore it has an API which we will need for some of the wizardry later on.&lt;/p&gt;
+
+&lt;p&gt;All source code is available on &lt;a href=&quot;https://github.com/JeroenMols/WagonGitExample&quot;&gt;Github&lt;/a&gt; and can be used after some minor BitBucket configuration.&lt;/p&gt;
+
+&lt;h2&gt;Bitbucket&lt;/h2&gt;
+
+&lt;p&gt;Without any further a do, lets get to it and start configuring BitBucket.&lt;/p&gt;
+
+&lt;p&gt;Login to Bitbucket and create a new private repository called &lt;code&gt;maven_repository&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/wagongit/createrepository.png&quot;&gt;&lt;img src=&quot;/img/blog/wagongit/createrepository.png&quot; alt=&quot;Create new BitBucket repository&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+
+&lt;p&gt;Checkout the repository locally, create a &lt;code&gt;README.md&lt;/code&gt; file and commit that file to your local branch. Now push that branch to BitBucket, BUT make sure to push it to a remote branch called &amp;quot;releases&amp;quot;. (this is key, as the plugin we&amp;#39;ll use later on depends on this)&lt;/p&gt;
+
+&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/wagongit/releasebranch.png&quot;&gt;&lt;img src=&quot;/img/blog/wagongit/releasebranch.png&quot; alt=&quot;BitBucket repository with main branch releases.&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Troubleshooting releases branch&lt;/strong&gt;
+If you accidentally push your local branch to a remote called &lt;code&gt;master&lt;/code&gt;, create a new branch locally called releases, push that to a remote &lt;code&gt;releases&lt;/code&gt; and change your main branch in the BitBucket settings for that repository.&lt;/p&gt;
+
+&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/wagongit/configuremainbranch.png&quot;&gt;&lt;img src=&quot;/img/blog/wagongit/configuremainbranch.png&quot; alt=&quot;Change the main branch from master to releases&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+
+&lt;p&gt;You can safely remove origin/master if you want.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2&gt;Wagon-git&lt;/h2&gt;
+
+&lt;p&gt;To upload Maven artifacts to a Git repository, we will use a Maven plugin called &lt;a href=&quot;https://synergian.github.io/wagon-git/&quot;&gt;Wagon-git&lt;/a&gt;, which can hook into the existing Gradle DSL for Maven uploads.&lt;/p&gt;
+
+&lt;p&gt;Simply add a new repository:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;repositories&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;maven&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;https://raw.github.com/synergian/wagon-git/releases&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;And configure Maven like you would normally do, but with our BitBucket repository url in a particular format:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;uploadArchives&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;repositories&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;mavenDeployer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;repository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;url:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;git:releases://git@bitbucket.org:&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;COMPANY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;/&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;REPOSITORY_NAME&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;.git&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Where &lt;code&gt;COMPANY&lt;/code&gt; is the name of your BitBucket organization and &lt;code&gt;REPOSITORY_NAME&lt;/code&gt; is &lt;code&gt;maven_repository&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Now you can simply create a new release by running the following command:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;./gradlew assembleRelease uploadArchives
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;And check BitBucket for the resulting artifacts.&lt;/p&gt;
+
+&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/wagongit/releasecommits.png&quot;&gt;&lt;img src=&quot;/img/blog/wagongit/releasecommits.png&quot; alt=&quot;Release commit of a Maven upload to BitBucket.&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/wagongit/releasecommitdetails.png&quot;&gt;&lt;img src=&quot;/img/blog/wagongit/releasecommitdetails.png&quot; alt=&quot;File details of a release commit.&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+
+&lt;h2&gt;Unique versions only&lt;/h2&gt;
+
+&lt;p&gt;As Git naturally allows you to override existing files, we will need to do something to prevent this from happening. Otherwise, you could have a v1.1.3 library, which is stable one day and full of bugs the next (because someone replaced it in the Maven repo). Not exactly what you want, right?&lt;/p&gt;
+
+&lt;p&gt;We will use the BitBucket API to verify if a particular release already exists:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;task&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lookForArtifacts&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;doLast&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;repositoryUrl&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;https://api.bitbucket.org/1.0/repositories/&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;COMPANY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;/&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;REPOSITORY_NAME&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;/raw/releases/&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;artifactPath&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;urlExists&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;repositoryUrl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;RuntimeException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;Artifact with version &amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ARTIFACT_VERSION&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot; already exist - not executing uploadArchives&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Quite simple actually: just reverse engineer the url of a particular release artifact and the see if we get a 200 response or not.&lt;/p&gt;
+
+&lt;p&gt;Finally we ensure that we always run the previous task before running the Maven task:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;uploadArchives&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;dependsOn&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lookForArtifacts&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Running &lt;code&gt;./gradlew uploadArchives&lt;/code&gt; now successfully creates a release.&lt;/p&gt;
+
+&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/wagongit/checkforartifacts.png&quot;&gt;&lt;img src=&quot;/img/blog/wagongit/checkforartifacts.png&quot; alt=&quot;Check for existing artifacts before uploadArchives.&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+
+&lt;h2&gt;Consuming artifacts&lt;/h2&gt;
+
+&lt;p&gt;Add your Maven repository to the list of repositories in your main &lt;code&gt;build.gradle&lt;/code&gt; file:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;allprojects&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;repositories&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;jcenter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;maven&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;credentials&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;username&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;USERNAME&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;password&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PASSWORD&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;https://api.bitbucket.org/1.0/repositories/jeroenmols/maven_repository/raw/releases&amp;quot;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Note that we have to provide a &lt;code&gt;username&lt;/code&gt; and &lt;code&gt;password&lt;/code&gt; as we are connecting to a private repository.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Important&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Make sure not to put your username and password directly into the &lt;code&gt;build.gradle&lt;/code&gt; file! That would be a major security risk. Instead have a look at &lt;a href=&quot;http://localhost:4000/blog/2015/08/13/artifactory2/&quot;&gt;this blogpost&lt;/a&gt; to learn how to securely provide a username and password.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Now simply add a dependency on your library like you are used to and you&amp;#39;re ready.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;compile&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;com.jeroenmols.awesomelibrary:awesomelibrary:1.0.0&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Putting it all together&lt;/h2&gt;
+
+&lt;p&gt;To make your life a lot easier, I&amp;#39;ve created a &lt;a href=&quot;https://github.com/JeroenMols/WagonGitExample/blob/master/library/publish-bitbucket.gradle&quot;&gt;Gradle script&lt;/a&gt; that does everything for you.&lt;/p&gt;
+
+&lt;p&gt;Setting up your project is easy:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Add the following plugin to the top of the &lt;a href=&quot;https://github.com/JeroenMols/WagonGitExample/blob/master/library/build.gradle&quot;&gt;build.gradle&lt;/a&gt; file in your library folder&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;  &lt;span class=&quot;n&quot;&gt;apply&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;from:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;publish-bitbucket.gradle&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ol&gt;
+&lt;li&gt;Create a &lt;a href=&quot;https://github.com/JeroenMols/WagonGitExample/blob/master/library/gradle.properties&quot;&gt;gradle.properties&lt;/a&gt; file within your library folder with the following parameters:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;  &lt;span class=&quot;n&quot;&gt;ARTIFACT_VERSION&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;version_here&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;ARTIFACT_NAME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;libraryname_here&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;ARTIFACT_PACKAGE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;packagename_here&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;ARTIFACT_PACKAGING&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;aar&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//You could also use jar&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;COMPANY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bitbucket_team_company_here&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//Username if not part of team&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;REPOSITORY_NAME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bitbucket_reponame_here&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ol&gt;
+&lt;li&gt;Create a &lt;a href=&quot;https://github.com/JeroenMols/WagonGitExample/blob/master/gradle.properties&quot;&gt;gradle.properties&lt;/a&gt; file in the root of your project (or better in the global &lt;code&gt;.gradle&lt;/code&gt; folder on your system) with the following parameters&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;  &lt;span class=&quot;n&quot;&gt;USERNAME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;username_here&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;PASSWORD&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;password_here&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ol&gt;
+&lt;li&gt;Run the following command to upload a version to your Maven repository.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;  ./gradlew uploadArchives
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Thats&amp;#39;s it!&lt;/p&gt;
+
+&lt;h2&gt;Wrap-up&lt;/h2&gt;
+
+&lt;p&gt;Configuring BitBucket or GitHub as a (private) Maven repository is quite easy and can be fully automated in a single Gradle script. Hopefully this blogpost has inspired many of you to start reusing more code.&lt;/p&gt;
+
+&lt;p&gt;A basic example project with everything in this blogpost integrated is available on &lt;a href=&quot;https://github.com/JeroenMols/WagonGitExample&quot;&gt;GitHub&lt;/a&gt;. Or you can also directly integrate the &lt;a href=&quot;https://raw.githubusercontent.com/JeroenMols/WagonGitExample/master/library/publish-bitbucket.gradle&quot;&gt;Gradle script&lt;/a&gt; into your library.&lt;/p&gt;
+
+&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Year in review 2015</title>

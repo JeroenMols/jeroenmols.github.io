@@ -9,5 +9,6 @@ jekyll build
 echo ""
 echo "### Copying generated site"
 cp -r  _site/* ../
+cp CNAME ../
 echo ""
 echo "### Done"
