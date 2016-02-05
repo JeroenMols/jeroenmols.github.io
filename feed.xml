@@ -5,12 +5,12 @@
     <description>Portfolio of Jeroen Mols, the Android developer you should hire.</description>
     <link>jeroenmols.github.io/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 04 Feb 2016 19:22:01 +0100</pubDate>
-    <lastBuildDate>Thu, 04 Feb 2016 19:22:01 +0100</lastBuildDate>
+    <pubDate>Fri, 05 Feb 2016 17:17:40 +0100</pubDate>
+    <lastBuildDate>Fri, 05 Feb 2016 17:17:40 +0100</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
-        <title>Bitbucket as a private Maven repository</title>
+        <title>Git as a secure private Maven repository</title>
         <description></description>
         <pubDate>Fri, 05 Feb 2016 00:00:00 +0100</pubDate>
         <link>jeroenmols.github.io/blog/2016/02/05/wagongit/</link>
