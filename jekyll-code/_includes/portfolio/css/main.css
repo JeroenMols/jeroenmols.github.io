@@ -4,45 +4,6 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-/*
- * Blog images
- */
-
-@media (min-width: 48em) {
-  .blogpost-title {
-    font-size: 2rem;
-    color: #d28445;
-  }
-}
-
-.blogpost-overlay-header {
-  border-radius: 4px;
-  min-height: 300px;
-  background-size: cover;
-  background-position: center;
-  position: relative;
-  margin-bottom: .5rem;
-}
-
-.blogpost-overlay-header-title {
-  background-color: rgba(0, 0, 0, 0.35);
-  position: absolute; bottom: 0;
-  padding: 1rem 1rem 0 1rem; }
-
-.blogpost-overlay-header a {
-  color: #FFF;
-}
-.blogpost-overlay-header a:hover, a:focus {
-  color: #CCC;
-  text-decoration: none; }
-
-.blogpost-overlay-header .post-date {
-  color: #DDDDDD;
-}
-
-
-
-
 
 body {
     overflow-x: hidden;
@@ -543,4 +504,41 @@ footer .footer-below {
     -webkit-transform: rotate(90deg);
     -ms-transform: rotate(90deg);
     transform: rotate(90deg);
+}
+
+
+/*
+ * Blog images
+ */
+
+@media (min-width: 48em) {
+  .blogpost-title {
+    font-size: 2rem;
+    color: #d28445;
+  }
+}
+
+.blogpost-overlay-header {
+  border-radius: 4px;
+  min-height: 300px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  margin-bottom: .5rem;
+}
+
+.blogpost-overlay-header-title {
+  background-color: rgba(0, 0, 0, 0.35);
+  position: absolute; bottom: 0;
+  padding: 1rem 1rem 0 1rem; }
+
+.blogpost-overlay-header a {
+  color: #FFF;
+}
+.blogpost-overlay-header a:hover, a:focus {
+  color: #CCC;
+  text-decoration: none; }
+
+.blogpost-overlay-header .blogpost-date {
+  color: #DDDDDD;
 }
