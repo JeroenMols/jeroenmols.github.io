@@ -1,49 +1,52 @@
 
     <!-- Blog Section -->
-    <section class="success" id="blog">
+    <section id="blog">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2>Blog</h2>
-                    <hr class="star-light">
+                    <hr class="star-primary">
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
-                    <p>Having postponed this for quite some time, Jeroen recently started blogging about the things he's passionated about. While a lot of the posts will cover 
-                        Android, it is certainly not limited to that.</p>
-                    <p>Checkout the blog <a href="http://jeroenmols.github.io/blog" style="color:#2c3e50" target="blank">here</a> and don't hesitate to leave a comment or provide feedback.</p>
-			
-		<div class="row">
-                {% for post in site.categories.blog %}
-			{% if forloop.index0 <= 1 %}
-				<div class="col-lg-6">
-					<div class="post">
+		    <p>Do you know that feeling of experimenting with something new, finding a blogpost and totally getting things to work?</p> 
+		    <p>Well that's the reason Jeroen started giving back to the community. While a lot of the posts cover Android, he will write about anything he's passionated about.</p>
+			<p>Checkout all interesting topics <a href="http://jeroenmols.com/blog" target="blank">on the full blog</a> or directly choose one of the latests posts below.</p>
 
-					    {% if post.img %}
-					    <div class="blogpost-overlay-header" style="background-image: url({{ site.blogbaseurl }}{{ post.img }})">
-					    <div class="blogpost-overlay-header-title">
-					    {% endif %}  
+                    			
+			<div class="row">
+			{% for post in site.categories.blog %}
+				{% if forloop.index0 <= 1 %}
+					<div class="col-lg-6">
+						<div class="post">
+						    </br>
 
-					    <h1 class="blogpost-title">
-					      <a href="{{ post.url }}">
-						{{ post.title }}
-					      </a>
-					    </h1>
+						    {% if post.img %}
+						    <div class="blogpost-overlay-header" style="background-image: url({{ site.blogbaseurl }}{{ post.img }})">
+						    <div class="blogpost-overlay-header-title">
+						    {% endif %}  
 
-					    <span class="blogpost-date">{{ post.date | date_to_string }}</span>
+						    <h1 class="blogpost-title">
+						      <a href="{{ post.url }}">
+							{{ post.title }}
+						      </a>
+						    </h1>
 
-					    {% if post.img %}
-					    </div>
-					    </div>
-					    {% endif %}
+						    <span class="blogpost-date">{{ post.date | date_to_string }}</span>
 
+						    {% if post.img %}
+						    </div>
+						    </div>
+						    {% endif %}
+
+						</div>
 					</div>
-				</div>
-			{% endif %}
-			 
-                {% endfor %}
-            </div>
+
+				{% endif %}
+				 
+			{% endfor %}
+		    </div>
 			
             	</div>
             </div>
