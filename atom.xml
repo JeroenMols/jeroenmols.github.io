@@ -4,7 +4,7 @@
  <title>Jeroen Mols</title>
  <link href="jeroenmols.github.io/atom.xml" rel="self"/>
  <link href="jeroenmols.github.io/"/>
- <updated>2016-02-05T17:17:40+01:00</updated>
+ <updated>2016-02-06T19:43:50+01:00</updated>
  <id>jeroenmols.github.io</id>
  <author>
    <name>Jeroen Mols</name>
@@ -32,7 +32,7 @@
 
 &lt;p&gt;While you could use any Git repository (like GitHub), I choose Bitbucket as it offers &lt;a href=&quot;https://bitbucket.org/product/pricing&quot;&gt;free private repositories&lt;/a&gt; for small teams. Furthermore it has an API which we will need for some of the wizardry later on.&lt;/p&gt;
 
-&lt;p&gt;All source code is available on &lt;a href=&quot;https://github.com/JeroenMols/WagonGitExample&quot;&gt;Github&lt;/a&gt; and can be used after some minor BitBucket configuration.&lt;/p&gt;
+&lt;p&gt;All source code is available on &lt;a href=&quot;https://github.com/JeroenMols/WagonGitExample&quot;&gt;Github&lt;/a&gt; and can be used after some minor BitBucket configuration. You can find the &lt;a href=&quot;https://github.com/JeroenMols/GitAsMaven&quot;&gt;Gradle script&lt;/a&gt; in a separate repository.&lt;/p&gt;
 
 &lt;h2&gt;Bitbucket&lt;/h2&gt;
 
@@ -150,7 +150,7 @@ If you accidentally push your local branch to a remote called &lt;code&gt;master
 &lt;ol&gt;
 &lt;li&gt;Add the following plugin to the top of the &lt;a href=&quot;https://github.com/JeroenMols/WagonGitExample/blob/master/library/build.gradle&quot;&gt;build.gradle&lt;/a&gt; file in your library folder&lt;/li&gt;
 &lt;/ol&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;  &lt;span class=&quot;n&quot;&gt;apply&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;from:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;publish-bitbucket.gradle&amp;#39;&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;  &lt;span class=&quot;n&quot;&gt;apply&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;from:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;https://raw.githubusercontent.com/JeroenMols/GitAsMaven/master/publish-bitbucket.gradle&amp;#39;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;ol&gt;
 &lt;li&gt;Create a &lt;a href=&quot;https://github.com/JeroenMols/WagonGitExample/blob/master/library/gradle.properties&quot;&gt;gradle.properties&lt;/a&gt; file within your library folder with the following parameters:&lt;/li&gt;
@@ -180,7 +180,7 @@ If you accidentally push your local branch to a remote called &lt;code&gt;master
 
 &lt;p&gt;Configuring BitBucket or GitHub as a (private) Maven repository is quite easy and can be fully automated in a single Gradle script. Hopefully this blogpost has inspired many of you to start reusing more code.&lt;/p&gt;
 
-&lt;p&gt;A basic example project with everything in this blogpost integrated is available on &lt;a href=&quot;https://github.com/JeroenMols/WagonGitExample&quot;&gt;GitHub&lt;/a&gt;. Or you can also directly integrate the &lt;a href=&quot;https://raw.githubusercontent.com/JeroenMols/WagonGitExample/master/library/publish-bitbucket.gradle&quot;&gt;Gradle script&lt;/a&gt; into your library.&lt;/p&gt;
+&lt;p&gt;A basic example project with everything in this blogpost integrated is available on &lt;a href=&quot;https://github.com/JeroenMols/WagonGitExample&quot;&gt;GitHub&lt;/a&gt;. Or you can also directly integrate the &lt;a href=&quot;https://github.com/JeroenMols/GitAsMaven&quot;&gt;Gradle script&lt;/a&gt; into your library.&lt;/p&gt;
 
 &lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;
 </content>

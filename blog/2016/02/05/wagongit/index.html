@@ -115,7 +115,7 @@
 
 <p>While you could use any Git repository (like GitHub), I choose Bitbucket as it offers <a href="https://bitbucket.org/product/pricing">free private repositories</a> for small teams. Furthermore it has an API which we will need for some of the wizardry later on.</p>
 
-<p>All source code is available on <a href="https://github.com/JeroenMols/WagonGitExample">Github</a> and can be used after some minor BitBucket configuration.</p>
+<p>All source code is available on <a href="https://github.com/JeroenMols/WagonGitExample">Github</a> and can be used after some minor BitBucket configuration. You can find the <a href="https://github.com/JeroenMols/GitAsMaven">Gradle script</a> in a separate repository.</p>
 
 <h2>Bitbucket</h2>
 
@@ -233,7 +233,7 @@ If you accidentally push your local branch to a remote called <code>master</code
 <ol>
 <li>Add the following plugin to the top of the <a href="https://github.com/JeroenMols/WagonGitExample/blob/master/library/build.gradle">build.gradle</a> file in your library folder</li>
 </ol>
-<div class="highlight"><pre><code class="language-groovy" data-lang="groovy">  <span class="n">apply</span> <span class="nl">from:</span> <span class="s1">&#39;publish-bitbucket.gradle&#39;</span>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy">  <span class="n">apply</span> <span class="nl">from:</span> <span class="s1">&#39;https://raw.githubusercontent.com/JeroenMols/GitAsMaven/master/publish-bitbucket.gradle&#39;</span>
 </code></pre></div>
 <ol>
 <li>Create a <a href="https://github.com/JeroenMols/WagonGitExample/blob/master/library/gradle.properties">gradle.properties</a> file within your library folder with the following parameters:</li>
@@ -263,7 +263,7 @@ If you accidentally push your local branch to a remote called <code>master</code
 
 <p>Configuring BitBucket or GitHub as a (private) Maven repository is quite easy and can be fully automated in a single Gradle script. Hopefully this blogpost has inspired many of you to start reusing more code.</p>
 
-<p>A basic example project with everything in this blogpost integrated is available on <a href="https://github.com/JeroenMols/WagonGitExample">GitHub</a>. Or you can also directly integrate the <a href="https://raw.githubusercontent.com/JeroenMols/WagonGitExample/master/library/publish-bitbucket.gradle">Gradle script</a> into your library.</p>
+<p>A basic example project with everything in this blogpost integrated is available on <a href="https://github.com/JeroenMols/WagonGitExample">GitHub</a>. Or you can also directly integrate the <a href="https://github.com/JeroenMols/GitAsMaven">Gradle script</a> into your library.</p>
 
 <p>As always you can reach me <a href="https://twitter.com/molsjeroen">@molsjeroen</a> on twitter, or leave a comment below!</p>
 
