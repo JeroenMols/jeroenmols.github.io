@@ -46,6 +46,9 @@ credits: 'This website is based on the free Bootstrap <a href="http://startboots
 markdown: Redcarpet
 highlighter:      pygments
 
+redcarpet:
+  extensions: ["autolink", "strikethrough", "superscript", "footnotes", "tables", "no_intra_emphasis"]
+
 # Permalinks
 permalink:        pretty
 relative_permalinks: true
