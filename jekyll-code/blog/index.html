@@ -7,25 +7,30 @@ title: Home
   {% for post in paginator.posts %}
   <div class="post">
 
-    {% if post.img %}
-    <div class="post-overlay-header" style="background-image: url({{ site.blogbaseurl }}{{ post.img }})">
-    <div class="post-overlay-header-title">
-    {% endif %}  
+    {% capture year %}{{post.date | date: "%Y"}}{% endcapture %}
+      {% if year >= "2015" %}
 
-    <h1 class="post-title">
-      <a href="{{ post.url }}">
-        {{ post.title }}
-      </a>
-    </h1>
+        {% if post.img %}
+        <div class="post-overlay-header" style="background-image: url({{ site.blogbaseurl }}{{ post.img }})">
+        <div class="post-overlay-header-title">
+        {% endif %}
 
-    <span class="post-date">{{ post.date | date_to_string }}</span>
+        <h1 class="post-title">
+          <a href="{{ post.url }}">
+            {{ post.title }}
+          </a>
+        </h1>
 
-    {% if post.img %}
-    </div>
-    </div>
-    {% endif %}  
- 
-    {{ post.content | strip_html | truncatewords:30 }}
+        <span class="post-date">{{ post.date | date_to_string }}</span>
+
+        {% if post.img %}
+        </div>
+        </div>
+        {% endif %}
+
+        {{ post.content | strip_html | truncatewords:30 }}
+
+    {% endif %}
 
   </div>
   {% endfor %}
