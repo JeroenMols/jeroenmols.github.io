@@ -4,7 +4,7 @@
  <title>Jeroen Mols</title>
  <link href="jeroenmols.github.io/atom.xml" rel="self"/>
  <link href="jeroenmols.github.io/"/>
- <updated>2016-02-29T22:31:09+01:00</updated>
+ <updated>2016-03-01T07:41:22+01:00</updated>
  <id>jeroenmols.github.io</id>
  <author>
    <name>Jeroen Mols</name>
@@ -1118,6 +1118,27 @@ SEVERE: One or more listeners failed to start. Full details will be found in the
 &lt;h4&gt;&amp;lt;SIZE&amp;gt; (optional)&lt;/h4&gt;
 
 &lt;p&gt;Either a precise size or size bucket. Optionally used for drawables and dimensions. &lt;/br&gt;  (e.g. &lt;code&gt;24dp&lt;/code&gt;, &lt;code&gt;small&lt;/code&gt;))&lt;/p&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h2&gt;Advantages&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Ordering of resources by screen&lt;/strong&gt; &lt;br&gt;
+The &lt;code&gt;WHERE&lt;/code&gt; part describes what screen a resource belongs to. Hence it is easy to get all IDs, drawables, dimensions,... for a particular screen.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Strongly typed resource IDs&lt;/strong&gt; &lt;br&gt;
+For resource IDs, the &lt;code&gt;WHAT&lt;/code&gt; describes the class name of the xml element it belongs to. Therefore you always know what class you need to cast your &lt;code&gt;findViewById()&lt;/code&gt; calls to.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Better resource organizing&lt;/strong&gt; &lt;br&gt;
+File browsers/project navigator usually sort files alphabetically. This means layouts and drawables are grouped by their &lt;code&gt;WHAT&lt;/code&gt; (activity, fragment,..) and &lt;code&gt;WHERE&lt;/code&gt; prefix respectively. A simple Android Studio plugin/feature can now display these resources as if they where in there own folder.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Better autocomplete&lt;/strong&gt; &lt;br&gt;
+Because resource names are far more predictable, using the IDE&amp;#39;s autocomplete becomes even better. Usually entering the &lt;code&gt;WHAT&lt;/code&gt; or &lt;code&gt;WHERE&lt;/code&gt; is sufficient to narrow autocomplete down to a limited set of options.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;No more name conflicts&lt;/strong&gt; &lt;br&gt;
+Similar resources in different are either &lt;code&gt;generic&lt;/code&gt; or have a different &lt;code&gt;WHERE&lt;/code&gt;. A fixed naming scheme avoids all naming collisions.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cleaner resource names&lt;/strong&gt; &lt;br&gt;
+Overall all resources will be named more logical, causing a cleaner Android project.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Tools support&lt;/strong&gt; &lt;br&gt;
+This naming scheme could be easily supported by the Android Studio offering features such as: lint rules to enforce theses names, refactoring support when you change a &lt;code&gt;WHAT&lt;/code&gt; or &lt;code&gt;WHERE&lt;/code&gt;, better resource visualisation in project view,...&lt;/li&gt;
+&lt;/ol&gt;
 
 &lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;
 

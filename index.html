@@ -2033,6 +2033,27 @@ SEVERE: One or more listeners failed to start. Full details will be found in the
 
 <p><br><br></p>
 
+<h2>Advantages</h2>
+
+<ol>
+<li><strong>Ordering of resources by screen</strong> <br>
+The <code>WHERE</code> part describes what screen a resource belongs to. Hence it is easy to get all IDs, drawables, dimensions,... for a particular screen.</li>
+<li><strong>Strongly typed resource IDs</strong> <br>
+For resource IDs, the <code>WHAT</code> describes the class name of the xml element it belongs to. Therefore you always know what class you need to cast your <code>findViewById()</code> calls to.</li>
+<li><strong>Better resource organizing</strong> <br>
+File browsers/project navigator usually sort files alphabetically. This means layouts and drawables are grouped by their <code>WHAT</code> (activity, fragment,..) and <code>WHERE</code> prefix respectively. A simple Android Studio plugin/feature can now display these resources as if they where in there own folder.</li>
+<li><strong>Better autocomplete</strong> <br>
+Because resource names are far more predictable, using the IDE&#39;s autocomplete becomes even better. Usually entering the <code>WHAT</code> or <code>WHERE</code> is sufficient to narrow autocomplete down to a limited set of options.</li>
+<li><strong>No more name conflicts</strong> <br>
+Similar resources in different are either <code>generic</code> or have a different <code>WHERE</code>. A fixed naming scheme avoids all naming collisions.</li>
+<li><strong>Cleaner resource names</strong> <br>
+Overall all resources will be named more logical, causing a cleaner Android project.</li>
+<li><strong>Tools support</strong> <br>
+This naming scheme could be easily supported by the Android Studio offering features such as: lint rules to enforce theses names, refactoring support when you change a <code>WHAT</code> or <code>WHERE</code>, better resource visualisation in project view,...</li>
+</ol>
+
+<p><br><br></p>
+
 <h2>Layouts</h2>
 
 <p>Layouts are relatively simple, as there is usually only one per screen. Therefore the rule can be simplified to:</p>
