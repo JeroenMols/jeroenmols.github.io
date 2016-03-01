@@ -37,6 +37,25 @@ Either a precise size or size bucket. Optionally used for drawables and dimensio
 
 <br><br>
 
+## Advantages
+
+1. **Ordering of resources by screen** <br>
+  The `WHERE` part describes what screen a resource belongs to. Hence it is easy to get all IDs, drawables, dimensions,... for a particular screen.
+2. **Strongly typed resource IDs** <br>
+  For resource IDs, the `WHAT` describes the class name of the xml element it belongs to. Therefore you always know what class you need to cast your `findViewById()` calls to.
+3. **Better resource organizing** <br>
+  File browsers/project navigator usually sort files alphabetically. This means layouts and drawables are grouped by their `WHAT` (activity, fragment,..) and `WHERE` prefix respectively. A simple Android Studio plugin/feature can now display these resources as if they where in there own folder.
+3. **Better autocomplete** <br>
+  Because resource names are far more predictable, using the IDE's autocomplete becomes even better. Usually entering the `WHAT` or `WHERE` is sufficient to narrow autocomplete down to a limited set of options.
+4. **No more name conflicts** <br>
+  Similar resources in different are either `generic` or have a different `WHERE`. A fixed naming scheme avoids all naming collisions.
+5. **Cleaner resource names** <br>
+  Overall all resources will be named more logical, causing a cleaner Android project.
+6. **Tools support** <br>
+  This naming scheme could be easily supported by the Android Studio offering features such as: lint rules to enforce theses names, refactoring support when you change a `WHAT` or `WHERE`, better resource visualisation in project view,...
+
+<br><br>
+
 ## Layouts
 Layouts are relatively simple, as there is usually only one per screen. Therefore the rule can be simplified to:
 
