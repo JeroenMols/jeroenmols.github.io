@@ -10,9 +10,9 @@ Managing Android resources in large projects is tedious and grows out of control
 - easy lookup of any resource (autocomplete)
 - logical, predictable names
 - clean ordering of resources
-- no naming conflicts
+- strongly typed resources
 
-The cheat sheet below provides everything as an easy reference:
+This blogpost will explain the mechanism and all its advantages. The cheat sheet below provides everything as an easy reference:
 
 <center><a href="{{ site.blogbaseurl }}img/blog/resourcenaming/resourcenaming_cheatsheet.jpg"><img src="{{ site.blogbaseurl }}img/blog/resourcenaming/resourcenaming_cheatsheet.jpg" alt="Resource naming cheat sheet"></a></center>
 
