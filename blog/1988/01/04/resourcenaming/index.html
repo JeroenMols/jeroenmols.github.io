@@ -111,7 +111,7 @@
 
 <p>This blogpost will explain the mechanism, its advantages, limitations and provide an easy to use cheat sheet.</p>
 
-<p><br><br></p>
+<p><br></p>
 
 <h2>Basic principle</h2>
 
@@ -137,7 +137,7 @@
 
 <p><center><a href="/img/blog/resourcenaming/resourcenaming_cheatsheet.png"><img src="/img/blog/resourcenaming/resourcenaming_cheatsheet.png" alt="Resource naming cheat sheet"></a></center></p>
 
-<p><br><br></p>
+<p><br></p>
 
 <h2>Advantages</h2>
 
@@ -158,7 +158,7 @@ Overall all resources will be named more logical, causing a cleaner Android proj
 This naming scheme could be easily supported by the Android Studio offering features such as: lint rules to enforce these names, refactoring support when you change a <code>WHAT</code> or <code>WHERE</code>, better resource visualisation in project view,...</li>
 </ol>
 
-<p><br><br></p>
+<p><br></p>
 
 <h2>Layouts</h2>
 
@@ -206,7 +206,7 @@ This naming scheme could be easily supported by the Android Studio offering feat
 <li><strong>layout_actionbar_backbutton</strong>: layout for an actionbar with a backbutton (too simple to be a customview)</li>
 </ul>
 
-<p><br><br></p>
+<p><br></p>
 
 <h2>Strings</h2>
 
@@ -229,7 +229,7 @@ This naming scheme could be easily supported by the Android Studio offering feat
 
 <p><code>&lt;WHERE&gt;</code> obviously is the same for all resources in the same view.</p>
 
-<p><br><br></p>
+<p><br></p>
 
 <h2>Drawables</h2>
 
@@ -252,7 +252,7 @@ This naming scheme could be easily supported by the Android Studio offering feat
 <li><strong>all_infoicon_24dp</strong>: 24dp version of generic info icon</li>
 </ul>
 
-<p><br><br></p>
+<p><br></p>
 
 <h2>IDs</h2>
 
@@ -268,7 +268,7 @@ This naming scheme could be easily supported by the Android Studio offering feat
 <li><strong>textview_articledetail_title</strong> -&gt; title TextView in ArticleDetailFragment</li>
 </ul>
 
-<p><br><br></p>
+<p><br></p>
 
 <h2>Dimensions</h2>
 
@@ -336,7 +336,7 @@ This naming scheme could be easily supported by the Android Studio offering feat
 <li><strong>height_menu_profileimage</strong>: height of profile image in menu</li>
 </ul>
 
-<p><br><br></p>
+<p><br></p>
 
 <h2>Known limitations</h2>
 
@@ -346,6 +346,8 @@ To avoid collisions in the <code>&lt;WHERE&gt;</code> argument, View (like) clas
 <li><p><strong>Refactoring not supported</strong>
 Changing class names does not change along resource names when refactoring. So if you rename &quot;MainActivity&quot; to &quot;ContentActivity&quot;, the layout &quot;activity_main&quot; won&#39;t be renamed to &quot;activity_content&quot;. Hopefully Android Studio will one day add support for this.</p></li>
 </ol>
+
+<p><br></p>
 
 <h2>Wrap-up</h2>
 
