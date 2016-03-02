@@ -14,7 +14,7 @@ Managing Android resources in large projects is tedious and grows out of control
 
 This blogpost will explain the mechanism, its advantages, limitations and provide an easy to use cheat sheet.
 
-<br><br>
+<br>
 
 ## Basic principle
 All resource names follow a simple convention, with minor differences between different resource types. (outlined below)
@@ -35,7 +35,7 @@ Either a precise size or size bucket. Optionally used for drawables and dimensio
 
 <center><a href="{{ site.blogbaseurl }}img/blog/resourcenaming/resourcenaming_cheatsheet.png"><img src="{{ site.blogbaseurl }}img/blog/resourcenaming/resourcenaming_cheatsheet.png" alt="Resource naming cheat sheet"></a></center>
 
-<br><br>
+<br>
 
 ## Advantages
 
@@ -54,7 +54,7 @@ Either a precise size or size bucket. Optionally used for drawables and dimensio
 7. **Tools support** <br>
   This naming scheme could be easily supported by the Android Studio offering features such as: lint rules to enforce these names, refactoring support when you change a `WHAT` or `WHERE`, better resource visualisation in project view,...
 
-<br><br>
+<br>
 
 ## Layouts
 Layouts are relatively simple, as there usually are only a few layouts per screen. Therefore the rule can be simplified to:
@@ -79,7 +79,7 @@ Examples:
 - **item_article**: list item in ArticleRecyclerView
 - **layout_actionbar_backbutton**: layout for an actionbar with a backbutton (too simple to be a customview)
 
-<br><br>
+<br>
 
 ## Strings
 The `<WHAT>` part for Strings is irrelevant. So either we use `<WHERE>` to indicate where the string will be used:
@@ -99,7 +99,7 @@ Examples:
 
 `<WHERE>` obviously is the same for all resources in the same view.
 
-<br><br>
+<br>
 
 ## Drawables
 The `<WHAT>` part for Drawables is irrelevant. So either we use `<WHERE>` to indicate where the drawable will be used:
@@ -119,7 +119,7 @@ Examples:
 - **all_infoicon_large**: large version of generic info icon
 - **all_infoicon_24dp**: 24dp version of generic info icon
 
-<br><br>
+<br>
 
 ## IDs
 For IDs, `<WHAT>` is the class name of the xml element it belongs to. Next is the screen the ID is in, followed by an optional description to distinguish similar elements in one screen.
@@ -132,7 +132,7 @@ Examples:
 - **imageview_menu_profile** -> profile image in custom MenuView
 - **textview_articledetail_title** -> title TextView in ArticleDetailFragment
 
-<br><br>
+<br>
 
 ## Dimensions
 Apps should only define a limited set of dimensions, which are constantly reused. This makes most dimensions `all` by default.
@@ -168,7 +168,7 @@ Examples:
 - **size_menu_icon**: size of icons in menu
 - **height_menu_profileimage**: height of profile image in menu
 
-<br><br>
+<br>
 
 ## Known limitations
 1. **Screens need to have unique names**<br>
@@ -176,6 +176,8 @@ To avoid collisions in the `<WHERE>` argument, View (like) classes must have uni
 
 2. **Refactoring not supported**
 Changing class names does not change along resource names when refactoring. So if you rename "MainActivity" to "ContentActivity", the layout "activity_main" won't be renamed to "activity_content". Hopefully Android Studio will one day add support for this.
+
+<br>
 
 ## Wrap-up
 That's it! A clean simple and easy to use resource naming scheme.
