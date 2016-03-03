@@ -170,34 +170,23 @@ Examples:
 
 <br>
 
-## Other resources
-#### Colors
-Similar to dimensions, apps should only define a limited set of colors. However, colors have different meaningful ways of being organized, depending on your app design concept:
-
-- based on a `<WHAT>`: foreground_, background_, textcolor_, ...
-- based on the actual color: white_100, orange_75, blue_dark,...
-- based on the theme: primary, primary_dark, secondary,...
-
-Therefore no default naming is suggested for now.
-
-#### Animations
-Animations can come in a variety of forms, making it harder to generalize their names. This is especially true, as I don't want to limit creativity in this area.
-
-#### Raw resources and assets
-I haven't included assets, nor raw resources as they are very varied and less used. Therefore it doesn't make much sense to "force" them into one common sheme.
-
-<br>
-
 ## Known limitations
 1. **Screens need to have unique names**<br>
 To avoid collisions in the `<WHERE>` argument, View (like) classes must have unique names. Therefore you cannot have a "MainActivity" and a "MainFragment", because the "Main" prefix would no longer uniquely identify one `<WHERE>`.
 
-2. **Refactoring not supported**
+2. **Refactoring not supported**<br>
 Changing class names does not change along resource names when refactoring. So if you rename "MainActivity" to "ContentActivity", the layout "activity_main" won't be renamed to "activity_content". Hopefully Android Studio will one day add support for this.
+
+3. **Not all resource types supported**<br>
+The proposed scheme currently does not yet support all resource types. For some resources this is because they are less frequently used and tend to be very varied (e.g. raw and assets). For other resources this is because they are a lot harder to generalize (e.g. themes/styles/colors/animations).
+
+    Your apps colors palette likely wants to reuse the terminology of your design philosophy. Animations can range from modest (fade) to very exotic. Themes and styles already have a naming scheme that allows you to implicitly inherit properties.
 
 <br>
 
 ## Wrap-up
 That's it! A clean simple and easy to use resource naming scheme. Don't forget to download the <a href="{{ site.blogbaseurl }}img/blog/resourcenaming/resourcenaming_cheatsheet.png">cheat sheet</a> for easy reference!
+
+Even though this scheme doesn't (yet) cover all resource types, it does provide an easy to use solution for where most naming pain currently is. In a future blogpost I'll also make a suggestion for the other ones.
 
 Let me know what you think by contacting me [@molsjeroen](https://twitter.com/molsjeroen) on twitter, or leaving a comment below!
