@@ -4,7 +4,7 @@
  <title>Jeroen Mols</title>
  <link href="jeroenmols.github.io/atom.xml" rel="self"/>
  <link href="jeroenmols.github.io/"/>
- <updated>2016-03-02T13:19:46+01:00</updated>
+ <updated>2016-03-03T09:12:23+01:00</updated>
  <id>jeroenmols.github.io</id>
  <author>
    <name>Jeroen Mols</name>
@@ -1325,17 +1325,21 @@ This naming scheme could be easily supported by the Android Studio offering feat
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;Screens need to have unique names&lt;/strong&gt;&lt;br&gt;
 To avoid collisions in the &lt;code&gt;&amp;lt;WHERE&amp;gt;&lt;/code&gt; argument, View (like) classes must have unique names. Therefore you cannot have a &amp;quot;MainActivity&amp;quot; and a &amp;quot;MainFragment&amp;quot;, because the &amp;quot;Main&amp;quot; prefix would no longer uniquely identify one &lt;code&gt;&amp;lt;WHERE&amp;gt;&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Refactoring not supported&lt;/strong&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Refactoring not supported&lt;/strong&gt;&lt;br&gt;
 Changing class names does not change along resource names when refactoring. So if you rename &amp;quot;MainActivity&amp;quot; to &amp;quot;ContentActivity&amp;quot;, the layout &amp;quot;activity_main&amp;quot; won&amp;#39;t be renamed to &amp;quot;activity_content&amp;quot;. Hopefully Android Studio will one day add support for this.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Not all resource types supported&lt;/strong&gt;&lt;br&gt;
+The proposed scheme currently does not yet support all resource types. For some resources this is because they are less frequently used and tend to be very varied (e.g. raw and assets). For other resources this is because they are a lot harder to generalize (e.g. themes/styles/colors/animations).&lt;/p&gt;
+
+&lt;p&gt;Your apps colors palette likely wants to reuse the terminology of your design philosophy. Animations can range from modest (fade) to very exotic. Themes and styles already have a naming scheme that allows you to implicitly inherit properties.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
 
 &lt;h2&gt;Wrap-up&lt;/h2&gt;
 
-&lt;p&gt;That&amp;#39;s it! A clean simple and easy to use resource naming scheme.&lt;/p&gt;
+&lt;p&gt;That&amp;#39;s it! A clean simple and easy to use resource naming scheme. Don&amp;#39;t forget to download the &lt;a href=&quot;/img/blog/resourcenaming/resourcenaming_cheatsheet.png&quot;&gt;cheat sheet&lt;/a&gt; for easy reference!&lt;/p&gt;
 
-&lt;p&gt;I haven&amp;#39;t included assets, nor raw resources as they are very varied and less used. Therefore it doesn&amp;#39;t make much sense to &amp;quot;force&amp;quot; them into one common sheme.&lt;/p&gt;
+&lt;p&gt;Even though this scheme doesn&amp;#39;t (yet) cover all resource types, it does provide an easy to use solution for where most naming pain currently is. In a future blogpost I&amp;#39;ll also make a suggestion for the other ones.&lt;/p&gt;
 
 &lt;p&gt;Let me know what you think by contacting me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leaving a comment below!&lt;/p&gt;
 </content>

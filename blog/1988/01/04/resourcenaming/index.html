@@ -343,17 +343,21 @@ This naming scheme could be easily supported by the Android Studio offering feat
 <ol>
 <li><p><strong>Screens need to have unique names</strong><br>
 To avoid collisions in the <code>&lt;WHERE&gt;</code> argument, View (like) classes must have unique names. Therefore you cannot have a &quot;MainActivity&quot; and a &quot;MainFragment&quot;, because the &quot;Main&quot; prefix would no longer uniquely identify one <code>&lt;WHERE&gt;</code>.</p></li>
-<li><p><strong>Refactoring not supported</strong>
+<li><p><strong>Refactoring not supported</strong><br>
 Changing class names does not change along resource names when refactoring. So if you rename &quot;MainActivity&quot; to &quot;ContentActivity&quot;, the layout &quot;activity_main&quot; won&#39;t be renamed to &quot;activity_content&quot;. Hopefully Android Studio will one day add support for this.</p></li>
+<li><p><strong>Not all resource types supported</strong><br>
+The proposed scheme currently does not yet support all resource types. For some resources this is because they are less frequently used and tend to be very varied (e.g. raw and assets). For other resources this is because they are a lot harder to generalize (e.g. themes/styles/colors/animations).</p>
+
+<p>Your apps colors palette likely wants to reuse the terminology of your design philosophy. Animations can range from modest (fade) to very exotic. Themes and styles already have a naming scheme that allows you to implicitly inherit properties.</p></li>
 </ol>
 
 <p><br></p>
 
 <h2>Wrap-up</h2>
 
-<p>That&#39;s it! A clean simple and easy to use resource naming scheme.</p>
+<p>That&#39;s it! A clean simple and easy to use resource naming scheme. Don&#39;t forget to download the <a href="/img/blog/resourcenaming/resourcenaming_cheatsheet.png">cheat sheet</a> for easy reference!</p>
 
-<p>I haven&#39;t included assets, nor raw resources as they are very varied and less used. Therefore it doesn&#39;t make much sense to &quot;force&quot; them into one common sheme.</p>
+<p>Even though this scheme doesn&#39;t (yet) cover all resource types, it does provide an easy to use solution for where most naming pain currently is. In a future blogpost I&#39;ll also make a suggestion for the other ones.</p>
 
 <p>Let me know what you think by contacting me <a href="https://twitter.com/molsjeroen">@molsjeroen</a> on twitter, or leaving a comment below!</p>
 
