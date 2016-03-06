@@ -5,7 +5,13 @@ published: true
 comments: true
 img: img/blog/resourcenaming/resourcenaming.png
 ---
-Managing Android resources in large projects is tedious and grows out of control easily. This lack of XML namespaces frustrates us all, so let's introduce a simple scheme that will elegantly solve all your pains.
+Do you remember the last time you had to dig into `strings.xml` to find the right String to use? Or that you manually had to go over all drawables to find the one you needed? Or that you used a dimension with size in its name as a margin or padding?
+
+Whenever we start a new project, we take a lot of care in setting up our architecture, CI, build flavors,... But do you also have a strategy to name your resources?
+
+You should! Because the lack of XML namespaces, makes managing Android resources tedious. And causes things to grow out of control easily, especially in large projects.
+
+So let's introduce a simple scheme that will solve your pains.
 
 - easy lookup of any resource (autocomplete)
 - logical, predictable names
