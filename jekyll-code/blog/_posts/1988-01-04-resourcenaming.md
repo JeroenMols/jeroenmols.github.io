@@ -5,7 +5,7 @@ published: true
 comments: true
 img: img/blog/resourcenaming/resourcenaming.png
 ---
-Do you remember the last time you had to dig into `strings.xml` to find the right String to use? Or that you manually had to go over all drawables to find the one you needed? Or that you used a dimension with size in its name as a margin or padding?
+Do you remember the last time you had to dig into `strings.xml` to find the right String to use? Or that you manually had to go over all drawables to find the one you needed?
 
 Whenever we start a new project, we take a lot of care in setting up our architecture, CI, build flavors,... But do you also have a strategy to name your resources?
 
@@ -23,12 +23,14 @@ This blogpost will explain the mechanism, its advantages, limitations and provid
 <br>
 
 ## Basic principle
-All resource names follow a simple convention, with minor differences between different resource types. (outlined below)
+All resource names follow a simple convention.
 
 <img src="{{ site.blogbaseurl }}img/blog/resourcenaming/whatwheredescriptionsize.jpg" alt="what_where_description_size">
 
+Let's first describe every element briefly. After the advantages, we'll see how this applies to each resource type.
+
 #### &lt;WHAT&gt;
-Typically a standard Android view class. Limited set of options per resource type (see below). </br> (e.g. MainActivity -> `activity`)
+Indicate what the resource actually represents, often a standard Android view class. Limited options per resource type. </br> (e.g. MainActivity -> `activity`)
 
 #### &lt;WHERE&gt;
 Describe where it logically belongs in the app. Resources used in multiple screens use `all`, all others use the custom part of the Android view subclass they are in. </br> (e.g. MainActivity -> `main`, ArticleDetailFragment -> `articledetail`)
@@ -39,9 +41,10 @@ Differentiate multiple elements in one screen. </br> (e.g. `title`)
 #### &lt;SIZE&gt; (optional)
 Either a precise size or size bucket. Optionally used for drawables and dimensions. </br>  (e.g. `24dp`, `small`))
 
-<center><a href="{{ site.blogbaseurl }}img/blog/resourcenaming/resourcenaming_cheatsheet.png"><img src="{{ site.blogbaseurl }}img/blog/resourcenaming/resourcenaming_cheatsheet.png" alt="Resource naming cheat sheet"></a></center>
+<center><a href="{{ site.blogbaseurl }}img/blog/resourcenaming/resourcenaming_cheatsheet.pdf"><img src="{{ site.blogbaseurl }}img/blog/resourcenaming/resourcenaming_cheatsheet.png" alt="Resource naming cheat sheet"></a></center>
 
-<br>
+Download and print the <a href="{{ site.blogbaseurl }}img/blog/resourcenaming/resourcenaming_cheatsheet.pdf">cheat sheet</a> for easy reference.
+<br><br>
 
 ## Advantages
 
@@ -191,7 +194,7 @@ The proposed scheme currently does not yet support all resource types. For some 
 <br>
 
 ## Wrap-up
-That's it! A clean simple and easy to use resource naming scheme. Don't forget to download the <a href="{{ site.blogbaseurl }}img/blog/resourcenaming/resourcenaming_cheatsheet.png">cheat sheet</a> for easy reference!
+That's it! A clean simple and easy to use resource naming scheme. Don't forget to download the <a href="{{ site.blogbaseurl }}img/blog/resourcenaming/resourcenaming_cheatsheet.pdf">cheat sheet</a> for easy reference!
 
 Even though this scheme doesn't (yet) cover all resource types, it does provide an easy to use solution for where most naming pain currently is. In a future blogpost I'll also make a suggestion for the other ones.
 
