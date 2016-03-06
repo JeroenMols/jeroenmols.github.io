@@ -4,7 +4,7 @@
  <title>Jeroen Mols</title>
  <link href="jeroenmols.github.io/atom.xml" rel="self"/>
  <link href="jeroenmols.github.io/"/>
- <updated>2016-03-03T09:12:23+01:00</updated>
+ <updated>2016-03-06T19:42:05+01:00</updated>
  <id>jeroenmols.github.io</id>
  <author>
    <name>Jeroen Mols</name>
@@ -1082,7 +1082,13 @@ SEVERE: One or more listeners failed to start. Full details will be found in the
    <link href="jeroenmols.github.io/blog/1988/01/04/resourcenaming/"/>
    <updated>1988-01-04T00:00:00+01:00</updated>
    <id>jeroenmols.github.io/blog/1988/01/04/resourcenaming</id>
-   <content type="html">&lt;p&gt;Managing Android resources in large projects is tedious and grows out of control easily. This lack of XML namespaces frustrates us all, so let&amp;#39;s introduce a simple scheme that will elegantly solve all your pains.&lt;/p&gt;
+   <content type="html">&lt;p&gt;Do you remember the last time you had to dig into &lt;code&gt;strings.xml&lt;/code&gt; to find the right String to use? Or that you manually had to go over all drawables to find the one you needed? Or that you used a dimension with size in its name as a margin or padding?&lt;/p&gt;
+
+&lt;p&gt;Whenever we start a new project, we take a lot of care in setting up our architecture, CI, build flavors,... But do you also have a strategy to name your resources?&lt;/p&gt;
+
+&lt;p&gt;You should! Because the lack of XML namespaces, makes managing Android resources tedious. And causes things to grow out of control easily, especially in large projects.&lt;/p&gt;
+
+&lt;p&gt;So let&amp;#39;s introduce a simple scheme that will solve your pains.&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;easy lookup of any resource (autocomplete)&lt;/li&gt;
