@@ -100,7 +100,7 @@
    <img src="/img/blog/resourcenaming/resourcenaming.png" alt="A successful XML naming convention">
   
  
-  <p>Do you remember the last time you had to dig into <code>strings.xml</code> to find the right String to use? Or that you manually had to go over all drawables to find the one you needed? Or that you used a dimension with size in its name as a margin or padding?</p>
+  <p>Do you remember the last time you had to dig into <code>strings.xml</code> to find the right String to use? Or that you manually had to go over all drawables to find the one you needed?</p>
 
 <p>Whenever we start a new project, we take a lot of care in setting up our architecture, CI, build flavors,... But do you also have a strategy to name your resources?</p>
 
@@ -121,13 +121,15 @@
 
 <h2>Basic principle</h2>
 
-<p>All resource names follow a simple convention, with minor differences between different resource types. (outlined below)</p>
+<p>All resource names follow a simple convention.</p>
 
 <p><img src="/img/blog/resourcenaming/whatwheredescriptionsize.jpg" alt="what_where_description_size"></p>
 
+<p>Let&#39;s first describe every element briefly. After the advantages, we&#39;ll see how this applies to each resource type.</p>
+
 <h4>&lt;WHAT&gt;</h4>
 
-<p>Typically a standard Android view class. Limited set of options per resource type (see below). </br> (e.g. MainActivity -&gt; <code>activity</code>)</p>
+<p>Indicate what the resource actually represents, often a standard Android view class. Limited options per resource type. </br> (e.g. MainActivity -&gt; <code>activity</code>)</p>
 
 <h4>&lt;WHERE&gt;</h4>
 
@@ -141,9 +143,10 @@
 
 <p>Either a precise size or size bucket. Optionally used for drawables and dimensions. </br>  (e.g. <code>24dp</code>, <code>small</code>))</p>
 
-<p><center><a href="/img/blog/resourcenaming/resourcenaming_cheatsheet.png"><img src="/img/blog/resourcenaming/resourcenaming_cheatsheet.png" alt="Resource naming cheat sheet"></a></center></p>
+<p><center><a href="/img/blog/resourcenaming/resourcenaming_cheatsheet.pdf"><img src="/img/blog/resourcenaming/resourcenaming_cheatsheet.png" alt="Resource naming cheat sheet"></a></center></p>
 
-<p><br></p>
+<p>Download and print the <a href="/img/blog/resourcenaming/resourcenaming_cheatsheet.pdf">cheat sheet</a> for easy reference.
+<br><br></p>
 
 <h2>Advantages</h2>
 
@@ -361,7 +364,7 @@ The proposed scheme currently does not yet support all resource types. For some 
 
 <h2>Wrap-up</h2>
 
-<p>That&#39;s it! A clean simple and easy to use resource naming scheme. Don&#39;t forget to download the <a href="/img/blog/resourcenaming/resourcenaming_cheatsheet.png">cheat sheet</a> for easy reference!</p>
+<p>That&#39;s it! A clean simple and easy to use resource naming scheme. Don&#39;t forget to download the <a href="/img/blog/resourcenaming/resourcenaming_cheatsheet.pdf">cheat sheet</a> for easy reference!</p>
 
 <p>Even though this scheme doesn&#39;t (yet) cover all resource types, it does provide an easy to use solution for where most naming pain currently is. In a future blogpost I&#39;ll also make a suggestion for the other ones.</p>
 

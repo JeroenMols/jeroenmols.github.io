@@ -4,7 +4,7 @@
  <title>Jeroen Mols</title>
  <link href="jeroenmols.github.io/atom.xml" rel="self"/>
  <link href="jeroenmols.github.io/"/>
- <updated>2016-03-06T19:42:05+01:00</updated>
+ <updated>2016-03-06T21:46:06+01:00</updated>
  <id>jeroenmols.github.io</id>
  <author>
    <name>Jeroen Mols</name>
@@ -1082,7 +1082,7 @@ SEVERE: One or more listeners failed to start. Full details will be found in the
    <link href="jeroenmols.github.io/blog/1988/01/04/resourcenaming/"/>
    <updated>1988-01-04T00:00:00+01:00</updated>
    <id>jeroenmols.github.io/blog/1988/01/04/resourcenaming</id>
-   <content type="html">&lt;p&gt;Do you remember the last time you had to dig into &lt;code&gt;strings.xml&lt;/code&gt; to find the right String to use? Or that you manually had to go over all drawables to find the one you needed? Or that you used a dimension with size in its name as a margin or padding?&lt;/p&gt;
+   <content type="html">&lt;p&gt;Do you remember the last time you had to dig into &lt;code&gt;strings.xml&lt;/code&gt; to find the right String to use? Or that you manually had to go over all drawables to find the one you needed?&lt;/p&gt;
 
 &lt;p&gt;Whenever we start a new project, we take a lot of care in setting up our architecture, CI, build flavors,... But do you also have a strategy to name your resources?&lt;/p&gt;
 
@@ -1103,13 +1103,15 @@ SEVERE: One or more listeners failed to start. Full details will be found in the
 
 &lt;h2&gt;Basic principle&lt;/h2&gt;
 
-&lt;p&gt;All resource names follow a simple convention, with minor differences between different resource types. (outlined below)&lt;/p&gt;
+&lt;p&gt;All resource names follow a simple convention.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/img/blog/resourcenaming/whatwheredescriptionsize.jpg&quot; alt=&quot;what_where_description_size&quot;&gt;&lt;/p&gt;
 
+&lt;p&gt;Let&amp;#39;s first describe every element briefly. After the advantages, we&amp;#39;ll see how this applies to each resource type.&lt;/p&gt;
+
 &lt;h4&gt;&amp;lt;WHAT&amp;gt;&lt;/h4&gt;
 
-&lt;p&gt;Typically a standard Android view class. Limited set of options per resource type (see below). &lt;/br&gt; (e.g. MainActivity -&amp;gt; &lt;code&gt;activity&lt;/code&gt;)&lt;/p&gt;
+&lt;p&gt;Indicate what the resource actually represents, often a standard Android view class. Limited options per resource type. &lt;/br&gt; (e.g. MainActivity -&amp;gt; &lt;code&gt;activity&lt;/code&gt;)&lt;/p&gt;
 
 &lt;h4&gt;&amp;lt;WHERE&amp;gt;&lt;/h4&gt;
 
@@ -1123,9 +1125,10 @@ SEVERE: One or more listeners failed to start. Full details will be found in the
 
 &lt;p&gt;Either a precise size or size bucket. Optionally used for drawables and dimensions. &lt;/br&gt;  (e.g. &lt;code&gt;24dp&lt;/code&gt;, &lt;code&gt;small&lt;/code&gt;))&lt;/p&gt;
 
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/resourcenaming/resourcenaming_cheatsheet.png&quot;&gt;&lt;img src=&quot;/img/blog/resourcenaming/resourcenaming_cheatsheet.png&quot; alt=&quot;Resource naming cheat sheet&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/resourcenaming/resourcenaming_cheatsheet.pdf&quot;&gt;&lt;img src=&quot;/img/blog/resourcenaming/resourcenaming_cheatsheet.png&quot; alt=&quot;Resource naming cheat sheet&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;Download and print the &lt;a href=&quot;/img/blog/resourcenaming/resourcenaming_cheatsheet.pdf&quot;&gt;cheat sheet&lt;/a&gt; for easy reference.
+&lt;br&gt;&lt;br&gt;&lt;/p&gt;
 
 &lt;h2&gt;Advantages&lt;/h2&gt;
 
@@ -1343,7 +1346,7 @@ The proposed scheme currently does not yet support all resource types. For some 
 
 &lt;h2&gt;Wrap-up&lt;/h2&gt;
 
-&lt;p&gt;That&amp;#39;s it! A clean simple and easy to use resource naming scheme. Don&amp;#39;t forget to download the &lt;a href=&quot;/img/blog/resourcenaming/resourcenaming_cheatsheet.png&quot;&gt;cheat sheet&lt;/a&gt; for easy reference!&lt;/p&gt;
+&lt;p&gt;That&amp;#39;s it! A clean simple and easy to use resource naming scheme. Don&amp;#39;t forget to download the &lt;a href=&quot;/img/blog/resourcenaming/resourcenaming_cheatsheet.pdf&quot;&gt;cheat sheet&lt;/a&gt; for easy reference!&lt;/p&gt;
 
 &lt;p&gt;Even though this scheme doesn&amp;#39;t (yet) cover all resource types, it does provide an easy to use solution for where most naming pain currently is. In a future blogpost I&amp;#39;ll also make a suggestion for the other ones.&lt;/p&gt;
 
