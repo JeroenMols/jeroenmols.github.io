@@ -114,6 +114,35 @@
 									</br>
 
 									
+									<div class="blogpost-overlay-header" style="background-image: url(/img/blog/resourcenaming/resourcenaming.png)">
+									<div class="blogpost-overlay-header-title">
+									  
+
+									<h1 class="blogpost-title">
+									  <a href="/blog/2016/03/07/resourcenaming/">
+									A successful XML naming convention
+									  </a>
+									</h1>
+
+									<span class="blogpost-date">07 Mar 2016</span>
+
+									
+									</div>
+									</div>
+									
+
+								</div>
+							</div>
+
+						
+						 
+					
+						
+							<div class="col-lg-6">
+								<div class="post">
+									</br>
+
+									
 									<div class="blogpost-overlay-header" style="background-image: url(/img/blog/wagongit/wagongit.png)">
 									<div class="blogpost-overlay-header-title">
 									  
@@ -183,35 +212,6 @@
 									</h1>
 
 									<span class="blogpost-date">13 Nov 2015</span>
-
-									
-									</div>
-									</div>
-									
-
-								</div>
-							</div>
-
-						
-						 
-					
-						
-							<div class="col-lg-6">
-								<div class="post">
-									</br>
-
-									
-									<div class="blogpost-overlay-header" style="background-image: url(/img/blog/artifactory2/artifactory2.png)">
-									<div class="blogpost-overlay-header-title">
-									  
-
-									<h1 class="blogpost-title">
-									  <a href="/blog/2015/08/13/artifactory2/">
-									Getting the most out of Artifactory
-									  </a>
-									</h1>
-
-									<span class="blogpost-date">13 Aug 2015</span>
 
 									
 									</div>
@@ -464,6 +464,313 @@
 
      <!-- Portfolio Modals -->
  
+    <div class="portfolio-modal modal fade" id="portfolioModal-" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>A successful XML naming convention</h2>
+                            <hr class="star-primary">
+                            <img src="img/portfolio/img/blog/resourcenaming/resourcenaming.png" class="img-responsive img-centered" alt="">
+                            <p><p>Do you remember the last time you had to dig into <code>strings.xml</code> to find the right String to use? Or that you manually had to go over all drawables to find the one you needed?</p>
+
+<p>Whenever we start a new project, we take a lot of care in setting up our architecture, CI, build flavors,... But do you also have a strategy to name your resources?</p>
+
+<p>You should! Because the lack of XML namespaces, makes managing Android resources tedious. And causes things to grow out of control easily, especially in large projects.</p>
+
+<p>So let&#39;s introduce a simple scheme that will solve your pains.</p>
+
+<ul>
+<li>easy lookup of any resource (autocomplete)</li>
+<li>logical, predictable names</li>
+<li>clean ordering of resources</li>
+<li>strongly typed resources</li>
+</ul>
+
+<p>This blogpost will explain the mechanism, its advantages, limitations and provide an easy to use cheat sheet.</p>
+
+<p><br></p>
+
+<h2>Basic principle</h2>
+
+<p>All resource names follow a simple convention.</p>
+
+<p><img src="/img/blog/resourcenaming/whatwheredescriptionsize.jpg" alt="what_where_description_size"></p>
+
+<p>Let&#39;s first describe every element briefly. After the advantages, we&#39;ll see how this applies to each resource type.</p>
+
+<h4>&lt;WHAT&gt;</h4>
+
+<p>Indicate what the resource actually represents, often a standard Android view class. Limited options per resource type. </br> (e.g. MainActivity -&gt; <code>activity</code>)</p>
+
+<h4>&lt;WHERE&gt;</h4>
+
+<p>Describe where it logically belongs in the app. Resources used in multiple screens use <code>all</code>, all others use the custom part of the Android view subclass they are in. </br> (e.g. MainActivity -&gt; <code>main</code>, ArticleDetailFragment -&gt; <code>articledetail</code>)</p>
+
+<h4>&lt;DESCRIPTION&gt;</h4>
+
+<p>Differentiate multiple elements in one screen. </br> (e.g. <code>title</code>)</p>
+
+<h4>&lt;SIZE&gt; (optional)</h4>
+
+<p>Either a precise size or size bucket. Optionally used for drawables and dimensions. </br>  (e.g. <code>24dp</code>, <code>small</code>))</p>
+
+<p><center><a href="/img/blog/resourcenaming/resourcenaming_cheatsheet.pdf"><img src="/img/blog/resourcenaming/resourcenaming_cheatsheet.png" alt="Resource naming cheat sheet"></a></center></p>
+
+<p>Download and print the <a href="/img/blog/resourcenaming/resourcenaming_cheatsheet.pdf">cheat sheet</a> for easy reference.
+<br><br></p>
+
+<h2>Advantages</h2>
+
+<ol>
+<li><strong>Ordering of resources by screen</strong> <br>
+The <code>WHERE</code> part describes what screen a resource belongs to. Hence it is easy to get all IDs, drawables, dimensions,... for a particular screen.</li>
+<li><strong>Strongly typed resource IDs</strong> <br>
+For resource IDs, the <code>WHAT</code> describes the class name of the xml element it belongs to. This makes is easy to what to cast your <code>findViewById()</code> calls to.</li>
+<li><strong>Better resource organizing</strong> <br>
+File browsers/project navigator usually sort files alphabetically. This means layouts and drawables are grouped by their <code>WHAT</code> (activity, fragment,..) and <code>WHERE</code> prefix respectively. A simple Android Studio plugin/feature can now display these resources as if they were in their own folder.</li>
+<li><strong>More efficient autocomplete</strong> <br>
+Because resource names are far more predictable, using the IDE&#39;s autocomplete becomes even easier. Usually entering the <code>WHAT</code> or <code>WHERE</code> is sufficient to narrow autocomplete down to a limited set of options.</li>
+<li><strong>No more name conflicts</strong> <br>
+Similar resources in different screens are either <code>all</code> or have a different <code>WHERE</code>. A fixed naming scheme avoids all naming collisions.</li>
+<li><strong>Cleaner resource names</strong> <br>
+Overall all resources will be named more logical, causing a cleaner Android project.</li>
+<li><strong>Tools support</strong> <br>
+This naming scheme could be easily supported by the Android Studio offering features such as: lint rules to enforce these names, refactoring support when you change a <code>WHAT</code> or <code>WHERE</code>, better resource visualisation in project view,...</li>
+</ol>
+
+<p><br></p>
+
+<h2>Layouts</h2>
+
+<p>Layouts are relatively simple, as there usually are only a few layouts per screen. Therefore the rule can be simplified to:</p>
+
+<p><img src="/img/blog/resourcenaming/layouts.png" alt="what_where.xml"></p>
+
+<p>Where <code>&lt;WHAT&gt;</code> is one of the following:</p>
+
+<table><thead>
+<tr>
+<th>Prefix</th>
+<th>Usage</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>activity</td>
+<td>contentview for activity</td>
+</tr>
+<tr>
+<td>fragment</td>
+<td>view for a fragment</td>
+</tr>
+<tr>
+<td>view</td>
+<td>inflated by a custom view</td>
+</tr>
+<tr>
+<td>item</td>
+<td>layout used in list/recycler/gridview</td>
+</tr>
+<tr>
+<td>layout</td>
+<td>layout reused using the include tag</td>
+</tr>
+</tbody></table>
+
+<p>Examples:</p>
+
+<ul>
+<li><strong>activity_main</strong>: content view of the MainActivity</li>
+<li><strong>fragment_articledetail</strong>: view for the ArticleDetailFragment</li>
+<li><strong>view_menu</strong>: layout inflated by custom view class MenuView</li>
+<li><strong>item_article</strong>: list item in ArticleRecyclerView</li>
+<li><strong>layout_actionbar_backbutton</strong>: layout for an actionbar with a backbutton (too simple to be a customview)</li>
+</ul>
+
+<p><br></p>
+
+<h2>Strings</h2>
+
+<p>The <code>&lt;WHAT&gt;</code> part for Strings is irrelevant. So either we use <code>&lt;WHERE&gt;</code> to indicate where the string will be used:</p>
+
+<p><img src="/img/blog/resourcenaming/strings.png" alt="where_description.xml"></p>
+
+<p>or <code>all</code> if the string is reused throughout the app:</p>
+
+<p><img src="/img/blog/resourcenaming/strings2.png" alt="all_description.xml"></p>
+
+<p>Examples:</p>
+
+<ul>
+<li><strong>articledetail_title</strong>: title of ArticleDetailFragment</li>
+<li><strong>feedback_explanation</strong>: feedback explanation in FeedbackFragment</li>
+<li><strong>feedback_namehint</strong>: hint of name field in FeedbackFragment</li>
+<li><strong>all_done</strong>: generic &quot;done&quot; string</li>
+</ul>
+
+<p><code>&lt;WHERE&gt;</code> obviously is the same for all resources in the same view.</p>
+
+<p><br></p>
+
+<h2>Drawables</h2>
+
+<p>The <code>&lt;WHAT&gt;</code> part for Drawables is irrelevant. So either we use <code>&lt;WHERE&gt;</code> to indicate where the drawable will be used:</p>
+
+<p><img src="/img/blog/resourcenaming/drawables.png" alt="where_description_size.xml"></p>
+
+<p>or <code>all</code> if the drawable is reused throughout the app:</p>
+
+<p><img src="/img/blog/resourcenaming/drawables2.png" alt="all_description_size.xml"></p>
+
+<p>Optionally you can add a <code>&lt;SIZE&gt;</code> argument, which can be an actual size &quot;24dp&quot; or a size qualifier &quot;small&quot;.</p>
+
+<p>Examples:</p>
+
+<ul>
+<li><strong>articledetail_placeholder</strong>: placeholder in ArticleDetailFragment</li>
+<li><strong>all_infoicon</strong>: generic info icon</li>
+<li><strong>all_infoicon_large</strong>: large version of generic info icon</li>
+<li><strong>all_infoicon_24dp</strong>: 24dp version of generic info icon</li>
+</ul>
+
+<p><br></p>
+
+<h2>IDs</h2>
+
+<p>For IDs, <code>&lt;WHAT&gt;</code> is the class name of the xml element it belongs to. Next is the screen the ID is in, followed by an optional description to distinguish similar elements in one screen.</p>
+
+<p><img src="/img/blog/resourcenaming/ids.png" alt="what_where_description.xml"></p>
+
+<p>Examples:</p>
+
+<ul>
+<li><strong>tablayout_main</strong> -&gt; TabLayout in MainActivity</li>
+<li><strong>imageview_menu_profile</strong> -&gt; profile image in custom MenuView</li>
+<li><strong>textview_articledetail_title</strong> -&gt; title TextView in ArticleDetailFragment</li>
+</ul>
+
+<p><br></p>
+
+<h2>Dimensions</h2>
+
+<p>Apps should only define a limited set of dimensions, which are constantly reused. This makes most dimensions <code>all</code> by default.</p>
+
+<p>Therefore you should mostly use:</p>
+
+<p><img src="/img/blog/resourcenaming/dimensions2.png" alt="what_all_description_size.xml"></p>
+
+<p>and optionally use the screen specific variant:</p>
+
+<p><img src="/img/blog/resourcenaming/dimensions.png" alt="what_where_description_size.xml"></p>
+
+<p>Where <code>&lt;WHAT&gt;</code> is one of the following:</p>
+
+<table><thead>
+<tr>
+<th>Prefix</th>
+<th>Usage</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>width</td>
+<td>width in dp</td>
+</tr>
+<tr>
+<td>height</td>
+<td>height in dp</td>
+</tr>
+<tr>
+<td>size</td>
+<td>if width == height</td>
+</tr>
+<tr>
+<td>margin</td>
+<td>margin in dp</td>
+</tr>
+<tr>
+<td>padding</td>
+<td>padding in dp</td>
+</tr>
+<tr>
+<td>elevation</td>
+<td>elevation in dp</td>
+</tr>
+<tr>
+<td>keyline</td>
+<td>absolute keyline measured from view edge in dp</td>
+</tr>
+<tr>
+<td>textsize</td>
+<td>size of text in sp</td>
+</tr>
+</tbody></table>
+
+<p>Note that this list only contains the most used <code>&lt;WHAT&gt;</code>s. Other dimensions qualifiers like: rotation, scale,... are usually only used in drawables and as such less reused.</p>
+
+<p>Examples:</p>
+
+<ul>
+<li><strong>height_toolbar</strong>: height of all toolbars</li>
+<li><strong>keyline_listtext</strong>: listitem text is aligned at this keyline</li>
+<li><strong>textsize_medium</strong>: medium size of all text</li>
+<li><strong>size_menu_icon</strong>: size of icons in menu</li>
+<li><strong>height_menu_profileimage</strong>: height of profile image in menu</li>
+</ul>
+
+<p><br></p>
+
+<h2>Known limitations</h2>
+
+<ol>
+<li><p><strong>Screens need to have unique names</strong><br>
+To avoid collisions in the <code>&lt;WHERE&gt;</code> argument, View (like) classes must have unique names. Therefore you cannot have a &quot;MainActivity&quot; and a &quot;MainFragment&quot;, because the &quot;Main&quot; prefix would no longer uniquely identify one <code>&lt;WHERE&gt;</code>.</p></li>
+<li><p><strong>Refactoring not supported</strong><br>
+Changing class names does not change along resource names when refactoring. So if you rename &quot;MainActivity&quot; to &quot;ContentActivity&quot;, the layout &quot;activity_main&quot; won&#39;t be renamed to &quot;activity_content&quot;. Hopefully Android Studio will one day add support for this.</p></li>
+<li><p><strong>Not all resource types supported</strong><br>
+The proposed scheme currently does not yet support all resource types. For some resources this is because they are less frequently used and tend to be very varied (e.g. raw and assets). For other resources this is because they are a lot harder to generalize (e.g. themes/styles/colors/animations).</p>
+
+<p>Your apps colors palette likely wants to reuse the terminology of your design philosophy. Animations can range from modest (fade) to very exotic. Themes and styles already have a naming scheme that allows you to implicitly inherit properties.</p></li>
+</ol>
+
+<p><br></p>
+
+<h2>Wrap-up</h2>
+
+<p>That&#39;s it! A clean simple and easy to use resource naming scheme. Don&#39;t forget to download the <a href="/img/blog/resourcenaming/resourcenaming_cheatsheet.pdf">cheat sheet</a> for easy reference!</p>
+
+<p>Even though this scheme doesn&#39;t (yet) cover all resource types, it does provide an easy to use solution for where most naming pain currently is. In a future blogpost I&#39;ll also make a suggestion for the other ones.</p>
+
+<p>Let me know what you think by contacting me <a href="https://twitter.com/molsjeroen">@molsjeroen</a> on twitter, or leaving a comment below!</p>
+</p>
+
+                            <ul class="list-inline item-details">
+                                <li>Client:
+                                    <strong><a href=></a>
+                                    </strong>
+                                </li>
+                                <li>Date:
+                                    <strong></strong>
+                                </li>
+                                <li>Download:
+                                    <strong><a href=></a>
+                                    </strong>
+                                </li>
+                            </ul>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="portfolio-modal modal fade" id="portfolioModal-" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
@@ -1968,313 +2275,6 @@ SEVERE: One or more listeners failed to start. Full details will be found in the
                                 </li>
                                 <li>Download:
                                     <strong><a href=>/</a>
-                                    </strong>
-                                </li>
-                            </ul>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="portfolio-modal modal fade" id="portfolioModal-" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <h2>A successful XML naming convention</h2>
-                            <hr class="star-primary">
-                            <img src="img/portfolio/img/blog/resourcenaming/resourcenaming.png" class="img-responsive img-centered" alt="">
-                            <p><p>Do you remember the last time you had to dig into <code>strings.xml</code> to find the right String to use? Or that you manually had to go over all drawables to find the one you needed?</p>
-
-<p>Whenever we start a new project, we take a lot of care in setting up our architecture, CI, build flavors,... But do you also have a strategy to name your resources?</p>
-
-<p>You should! Because the lack of XML namespaces, makes managing Android resources tedious. And causes things to grow out of control easily, especially in large projects.</p>
-
-<p>So let&#39;s introduce a simple scheme that will solve your pains.</p>
-
-<ul>
-<li>easy lookup of any resource (autocomplete)</li>
-<li>logical, predictable names</li>
-<li>clean ordering of resources</li>
-<li>strongly typed resources</li>
-</ul>
-
-<p>This blogpost will explain the mechanism, its advantages, limitations and provide an easy to use cheat sheet.</p>
-
-<p><br></p>
-
-<h2>Basic principle</h2>
-
-<p>All resource names follow a simple convention.</p>
-
-<p><img src="/img/blog/resourcenaming/whatwheredescriptionsize.jpg" alt="what_where_description_size"></p>
-
-<p>Let&#39;s first describe every element briefly. After the advantages, we&#39;ll see how this applies to each resource type.</p>
-
-<h4>&lt;WHAT&gt;</h4>
-
-<p>Indicate what the resource actually represents, often a standard Android view class. Limited options per resource type. </br> (e.g. MainActivity -&gt; <code>activity</code>)</p>
-
-<h4>&lt;WHERE&gt;</h4>
-
-<p>Describe where it logically belongs in the app. Resources used in multiple screens use <code>all</code>, all others use the custom part of the Android view subclass they are in. </br> (e.g. MainActivity -&gt; <code>main</code>, ArticleDetailFragment -&gt; <code>articledetail</code>)</p>
-
-<h4>&lt;DESCRIPTION&gt;</h4>
-
-<p>Differentiate multiple elements in one screen. </br> (e.g. <code>title</code>)</p>
-
-<h4>&lt;SIZE&gt; (optional)</h4>
-
-<p>Either a precise size or size bucket. Optionally used for drawables and dimensions. </br>  (e.g. <code>24dp</code>, <code>small</code>))</p>
-
-<p><center><a href="/img/blog/resourcenaming/resourcenaming_cheatsheet.pdf"><img src="/img/blog/resourcenaming/resourcenaming_cheatsheet.png" alt="Resource naming cheat sheet"></a></center></p>
-
-<p>Download and print the <a href="/img/blog/resourcenaming/resourcenaming_cheatsheet.pdf">cheat sheet</a> for easy reference.
-<br><br></p>
-
-<h2>Advantages</h2>
-
-<ol>
-<li><strong>Ordering of resources by screen</strong> <br>
-The <code>WHERE</code> part describes what screen a resource belongs to. Hence it is easy to get all IDs, drawables, dimensions,... for a particular screen.</li>
-<li><strong>Strongly typed resource IDs</strong> <br>
-For resource IDs, the <code>WHAT</code> describes the class name of the xml element it belongs to. This makes is easy to what to cast your <code>findViewById()</code> calls to.</li>
-<li><strong>Better resource organizing</strong> <br>
-File browsers/project navigator usually sort files alphabetically. This means layouts and drawables are grouped by their <code>WHAT</code> (activity, fragment,..) and <code>WHERE</code> prefix respectively. A simple Android Studio plugin/feature can now display these resources as if they were in their own folder.</li>
-<li><strong>More efficient autocomplete</strong> <br>
-Because resource names are far more predictable, using the IDE&#39;s autocomplete becomes even easier. Usually entering the <code>WHAT</code> or <code>WHERE</code> is sufficient to narrow autocomplete down to a limited set of options.</li>
-<li><strong>No more name conflicts</strong> <br>
-Similar resources in different screens are either <code>all</code> or have a different <code>WHERE</code>. A fixed naming scheme avoids all naming collisions.</li>
-<li><strong>Cleaner resource names</strong> <br>
-Overall all resources will be named more logical, causing a cleaner Android project.</li>
-<li><strong>Tools support</strong> <br>
-This naming scheme could be easily supported by the Android Studio offering features such as: lint rules to enforce these names, refactoring support when you change a <code>WHAT</code> or <code>WHERE</code>, better resource visualisation in project view,...</li>
-</ol>
-
-<p><br></p>
-
-<h2>Layouts</h2>
-
-<p>Layouts are relatively simple, as there usually are only a few layouts per screen. Therefore the rule can be simplified to:</p>
-
-<p><img src="/img/blog/resourcenaming/layouts.png" alt="what_where.xml"></p>
-
-<p>Where <code>&lt;WHAT&gt;</code> is one of the following:</p>
-
-<table><thead>
-<tr>
-<th>Prefix</th>
-<th>Usage</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>activity</td>
-<td>contentview for activity</td>
-</tr>
-<tr>
-<td>fragment</td>
-<td>view for a fragment</td>
-</tr>
-<tr>
-<td>view</td>
-<td>inflated by a custom view</td>
-</tr>
-<tr>
-<td>item</td>
-<td>layout used in list/recycler/gridview</td>
-</tr>
-<tr>
-<td>layout</td>
-<td>layout reused using the include tag</td>
-</tr>
-</tbody></table>
-
-<p>Examples:</p>
-
-<ul>
-<li><strong>activity_main</strong>: content view of the MainActivity</li>
-<li><strong>fragment_articledetail</strong>: view for the ArticleDetailFragment</li>
-<li><strong>view_menu</strong>: layout inflated by custom view class MenuView</li>
-<li><strong>item_article</strong>: list item in ArticleRecyclerView</li>
-<li><strong>layout_actionbar_backbutton</strong>: layout for an actionbar with a backbutton (too simple to be a customview)</li>
-</ul>
-
-<p><br></p>
-
-<h2>Strings</h2>
-
-<p>The <code>&lt;WHAT&gt;</code> part for Strings is irrelevant. So either we use <code>&lt;WHERE&gt;</code> to indicate where the string will be used:</p>
-
-<p><img src="/img/blog/resourcenaming/strings.png" alt="where_description.xml"></p>
-
-<p>or <code>all</code> if the string is reused throughout the app:</p>
-
-<p><img src="/img/blog/resourcenaming/strings2.png" alt="all_description.xml"></p>
-
-<p>Examples:</p>
-
-<ul>
-<li><strong>articledetail_title</strong>: title of ArticleDetailFragment</li>
-<li><strong>feedback_explanation</strong>: feedback explanation in FeedbackFragment</li>
-<li><strong>feedback_namehint</strong>: hint of name field in FeedbackFragment</li>
-<li><strong>all_done</strong>: generic &quot;done&quot; string</li>
-</ul>
-
-<p><code>&lt;WHERE&gt;</code> obviously is the same for all resources in the same view.</p>
-
-<p><br></p>
-
-<h2>Drawables</h2>
-
-<p>The <code>&lt;WHAT&gt;</code> part for Drawables is irrelevant. So either we use <code>&lt;WHERE&gt;</code> to indicate where the drawable will be used:</p>
-
-<p><img src="/img/blog/resourcenaming/drawables.png" alt="where_description_size.xml"></p>
-
-<p>or <code>all</code> if the drawable is reused throughout the app:</p>
-
-<p><img src="/img/blog/resourcenaming/drawables2.png" alt="all_description_size.xml"></p>
-
-<p>Optionally you can add a <code>&lt;SIZE&gt;</code> argument, which can be an actual size &quot;24dp&quot; or a size qualifier &quot;small&quot;.</p>
-
-<p>Examples:</p>
-
-<ul>
-<li><strong>articledetail_placeholder</strong>: placeholder in ArticleDetailFragment</li>
-<li><strong>all_infoicon</strong>: generic info icon</li>
-<li><strong>all_infoicon_large</strong>: large version of generic info icon</li>
-<li><strong>all_infoicon_24dp</strong>: 24dp version of generic info icon</li>
-</ul>
-
-<p><br></p>
-
-<h2>IDs</h2>
-
-<p>For IDs, <code>&lt;WHAT&gt;</code> is the class name of the xml element it belongs to. Next is the screen the ID is in, followed by an optional description to distinguish similar elements in one screen.</p>
-
-<p><img src="/img/blog/resourcenaming/ids.png" alt="what_where_description.xml"></p>
-
-<p>Examples:</p>
-
-<ul>
-<li><strong>tablayout_main</strong> -&gt; TabLayout in MainActivity</li>
-<li><strong>imageview_menu_profile</strong> -&gt; profile image in custom MenuView</li>
-<li><strong>textview_articledetail_title</strong> -&gt; title TextView in ArticleDetailFragment</li>
-</ul>
-
-<p><br></p>
-
-<h2>Dimensions</h2>
-
-<p>Apps should only define a limited set of dimensions, which are constantly reused. This makes most dimensions <code>all</code> by default.</p>
-
-<p>Therefore you should mostly use:</p>
-
-<p><img src="/img/blog/resourcenaming/dimensions2.png" alt="what_all_description_size.xml"></p>
-
-<p>and optionally use the screen specific variant:</p>
-
-<p><img src="/img/blog/resourcenaming/dimensions.png" alt="what_where_description_size.xml"></p>
-
-<p>Where <code>&lt;WHAT&gt;</code> is one of the following:</p>
-
-<table><thead>
-<tr>
-<th>Prefix</th>
-<th>Usage</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>width</td>
-<td>width in dp</td>
-</tr>
-<tr>
-<td>height</td>
-<td>height in dp</td>
-</tr>
-<tr>
-<td>size</td>
-<td>if width == height</td>
-</tr>
-<tr>
-<td>margin</td>
-<td>margin in dp</td>
-</tr>
-<tr>
-<td>padding</td>
-<td>padding in dp</td>
-</tr>
-<tr>
-<td>elevation</td>
-<td>elevation in dp</td>
-</tr>
-<tr>
-<td>keyline</td>
-<td>absolute keyline measured from view edge in dp</td>
-</tr>
-<tr>
-<td>textsize</td>
-<td>size of text in sp</td>
-</tr>
-</tbody></table>
-
-<p>Note that this list only contains the most used <code>&lt;WHAT&gt;</code>s. Other dimensions qualifiers like: rotation, scale,... are usually only used in drawables and as such less reused.</p>
-
-<p>Examples:</p>
-
-<ul>
-<li><strong>height_toolbar</strong>: height of all toolbars</li>
-<li><strong>keyline_listtext</strong>: listitem text is aligned at this keyline</li>
-<li><strong>textsize_medium</strong>: medium size of all text</li>
-<li><strong>size_menu_icon</strong>: size of icons in menu</li>
-<li><strong>height_menu_profileimage</strong>: height of profile image in menu</li>
-</ul>
-
-<p><br></p>
-
-<h2>Known limitations</h2>
-
-<ol>
-<li><p><strong>Screens need to have unique names</strong><br>
-To avoid collisions in the <code>&lt;WHERE&gt;</code> argument, View (like) classes must have unique names. Therefore you cannot have a &quot;MainActivity&quot; and a &quot;MainFragment&quot;, because the &quot;Main&quot; prefix would no longer uniquely identify one <code>&lt;WHERE&gt;</code>.</p></li>
-<li><p><strong>Refactoring not supported</strong><br>
-Changing class names does not change along resource names when refactoring. So if you rename &quot;MainActivity&quot; to &quot;ContentActivity&quot;, the layout &quot;activity_main&quot; won&#39;t be renamed to &quot;activity_content&quot;. Hopefully Android Studio will one day add support for this.</p></li>
-<li><p><strong>Not all resource types supported</strong><br>
-The proposed scheme currently does not yet support all resource types. For some resources this is because they are less frequently used and tend to be very varied (e.g. raw and assets). For other resources this is because they are a lot harder to generalize (e.g. themes/styles/colors/animations).</p>
-
-<p>Your apps colors palette likely wants to reuse the terminology of your design philosophy. Animations can range from modest (fade) to very exotic. Themes and styles already have a naming scheme that allows you to implicitly inherit properties.</p></li>
-</ol>
-
-<p><br></p>
-
-<h2>Wrap-up</h2>
-
-<p>That&#39;s it! A clean simple and easy to use resource naming scheme. Don&#39;t forget to download the <a href="/img/blog/resourcenaming/resourcenaming_cheatsheet.pdf">cheat sheet</a> for easy reference!</p>
-
-<p>Even though this scheme doesn&#39;t (yet) cover all resource types, it does provide an easy to use solution for where most naming pain currently is. In a future blogpost I&#39;ll also make a suggestion for the other ones.</p>
-
-<p>Let me know what you think by contacting me <a href="https://twitter.com/molsjeroen">@molsjeroen</a> on twitter, or leaving a comment below!</p>
-</p>
-
-                            <ul class="list-inline item-details">
-                                <li>Client:
-                                    <strong><a href=></a>
-                                    </strong>
-                                </li>
-                                <li>Date:
-                                    <strong></strong>
-                                </li>
-                                <li>Download:
-                                    <strong><a href=></a>
                                     </strong>
                                 </li>
                             </ul>

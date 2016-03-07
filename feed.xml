@@ -5,9 +5,21 @@
     <description>Portfolio of Jeroen Mols, the Android developer you should hire.</description>
     <link>jeroenmols.github.io/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 06 Mar 2016 21:46:06 +0100</pubDate>
-    <lastBuildDate>Sun, 06 Mar 2016 21:46:06 +0100</lastBuildDate>
+    <pubDate>Mon, 07 Mar 2016 08:04:51 +0100</pubDate>
+    <lastBuildDate>Mon, 07 Mar 2016 08:04:51 +0100</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>A successful XML naming convention</title>
+        <description></description>
+        <pubDate>Mon, 07 Mar 2016 00:00:00 +0100</pubDate>
+        <link>jeroenmols.github.io/blog/2016/03/07/resourcenaming/</link>
+        <guid isPermaLink="true">jeroenmols.github.io/blog/2016/03/07/resourcenaming/</guid>
+        
+        
+        <category>blog</category>
+        
+      </item>
     
       <item>
         <title>Git as a secure private Maven repository</title>
@@ -111,18 +123,6 @@
         <pubDate>Sun, 31 Aug 2014 00:00:00 +0200</pubDate>
         <link>jeroenmols.github.io/portfolio/2014/08/31/lightingpos/</link>
         <guid isPermaLink="true">jeroenmols.github.io/portfolio/2014/08/31/lightingpos/</guid>
-        
-        
-        <category>portfolio</category>
-        
-      </item>
-    
-      <item>
-        <title>Philips Smart Air</title>
-        <description>Android app to control a Philips Smart Air Purifier via Wi-Fi or Philips backend.</description>
-        <pubDate>Sat, 28 Jun 2014 00:00:00 +0200</pubDate>
-        <link>jeroenmols.github.io/portfolio/2014/06/28/smartair/</link>
-        <guid isPermaLink="true">jeroenmols.github.io/portfolio/2014/06/28/smartair/</guid>
         
         
         <category>portfolio</category>
