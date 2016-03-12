@@ -57,7 +57,7 @@ relative_permalinks: true
 blogtitle:            Jeroen Mols
 blogtagline:          'Blog of Jeroen Mols, the Android developer you should hire.'
 blogdescription:      'Android developer with a great <a class="sidebar-link" href="/">portfolio</a>.'
-url:                  jeroenmols.github.io
+url:                  http://jeroenmols.com
 blogbaseurl:          /
 blogurlpart:          blog
 
