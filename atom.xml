@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
  <title>Jeroen Mols</title>
- <link href="jeroenmols.github.io/atom.xml" rel="self"/>
- <link href="jeroenmols.github.io/"/>
- <updated>2016-03-07T08:04:51+01:00</updated>
- <id>jeroenmols.github.io</id>
+ <link href="http://jeroenmols.com/atom.xml" rel="self"/>
+ <link href="http://jeroenmols.com/"/>
+ <updated>2016-03-12T17:03:44+01:00</updated>
+ <id>http://jeroenmols.com</id>
  <author>
    <name>Jeroen Mols</name>
    <email></email>
@@ -14,9 +14,9 @@
  
  <entry>
    <title>A successful XML naming convention</title>
-   <link href="jeroenmols.github.io/blog/2016/03/07/resourcenaming/"/>
+   <link href="http://jeroenmols.com/blog/2016/03/07/resourcenaming/"/>
    <updated>2016-03-07T00:00:00+01:00</updated>
-   <id>jeroenmols.github.io/blog/2016/03/07/resourcenaming</id>
+   <id>http://jeroenmols.com/blog/2016/03/07/resourcenaming</id>
    <content type="html">&lt;p&gt;Do you remember the last time you had to dig into &lt;code&gt;strings.xml&lt;/code&gt; to find the right String to use? Or that you manually had to go over all drawables to find the one you needed?&lt;/p&gt;
 
 &lt;p&gt;Whenever we start a new project, we take a lot of care in setting up our architecture, CI, build flavors,... But do you also have a strategy to name your resources?&lt;/p&gt;
@@ -291,9 +291,9 @@ The proposed scheme currently does not yet support all resource types. For some 
  
  <entry>
    <title>Git as a secure private Maven repository</title>
-   <link href="jeroenmols.github.io/blog/2016/02/05/wagongit/"/>
+   <link href="http://jeroenmols.com/blog/2016/02/05/wagongit/"/>
    <updated>2016-02-05T00:00:00+01:00</updated>
-   <id>jeroenmols.github.io/blog/2016/02/05/wagongit</id>
+   <id>http://jeroenmols.com/blog/2016/02/05/wagongit</id>
    <content type="html">&lt;p&gt;As my previous blogposts already covered how to set up a private Maven repository, you might wonder &amp;quot;Why again a Maven blogpost?&amp;quot;. Well that&amp;#39;s a fair question and the answer is twofold:&lt;/p&gt;
 
 &lt;ol&gt;
@@ -465,9 +465,9 @@ If you accidentally push your local branch to a remote called &lt;code&gt;master
  
  <entry>
    <title>Year in review 2015</title>
-   <link href="jeroenmols.github.io/blog/2016/01/29/yearinreview/"/>
+   <link href="http://jeroenmols.com/blog/2016/01/29/yearinreview/"/>
    <updated>2016-01-29T00:00:00+01:00</updated>
-   <id>jeroenmols.github.io/blog/2016/01/29/yearinreview</id>
+   <id>http://jeroenmols.com/blog/2016/01/29/yearinreview</id>
    <content type="html">&lt;p&gt;Finally found the time to write my &lt;code&gt;year in review&lt;/code&gt;. #insomnia&lt;/p&gt;
 
 &lt;p&gt;2015 was a huge year for me! I even dare to say the biggest one of my life so far as I became a father of a lovely daughter Lene. Its really hard to over state how big of an impact that has on your life and how fantastic it is to see your own baby grow (and recognize parts of yourself in her). This obviously also explains my late &lt;code&gt;year in review&lt;/code&gt; post. #perfectexcuse&lt;/p&gt;
@@ -494,9 +494,9 @@ If you accidentally push your local branch to a remote called &lt;code&gt;master
  
  <entry>
    <title>Level up GitHub builds with CI and code coverage</title>
-   <link href="jeroenmols.github.io/blog/2015/11/13/traviscoveralls/"/>
+   <link href="http://jeroenmols.com/blog/2015/11/13/traviscoveralls/"/>
    <updated>2015-11-13T00:00:00+01:00</updated>
-   <id>jeroenmols.github.io/blog/2015/11/13/traviscoveralls</id>
+   <id>http://jeroenmols.com/blog/2015/11/13/traviscoveralls</id>
    <content type="html">&lt;p&gt;Wouldn&amp;#39;t you love to have your open source projects built automatically by a continuous integration server? And to have a detailed code coverage report for all your unit tests? Even when someone generated a pull request? And how about having cool badges to show off all of this?&lt;/p&gt;
 
 &lt;p&gt;&lt;center&gt;&lt;a href=&quot;https://travis-ci.org/JeroenMols/LandscapeVideoCamera&quot;&gt;&lt;img src=&quot;https://travis-ci.org/JeroenMols/LandscapeVideoCamera.svg?branch=master&quot; alt=&quot;Build Status&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://coveralls.io/github/JeroenMols/LandscapeVideoCamera?branch=master&quot;&gt;&lt;img src=&quot;https://coveralls.io/repos/JeroenMols/LandscapeVideoCamera/badge.svg?branch=master&amp;amp;service=github&quot; alt=&quot;Coverage Status&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
@@ -722,9 +722,9 @@ For more information, have a look at the &lt;a href=&quot;http://docs.travis-ci.
  
  <entry>
    <title>Getting the most out of Artifactory</title>
-   <link href="jeroenmols.github.io/blog/2015/08/13/artifactory2/"/>
+   <link href="http://jeroenmols.com/blog/2015/08/13/artifactory2/"/>
    <updated>2015-08-13T00:00:00+02:00</updated>
-   <id>jeroenmols.github.io/blog/2015/08/13/artifactory2</id>
+   <id>http://jeroenmols.com/blog/2015/08/13/artifactory2</id>
    <content type="html">&lt;p&gt;My previous &lt;a href=&quot;/blog/2015/08/06/artifactory/&quot;&gt;blog post&lt;/a&gt; described how to set up your own private Maven repository with Artifactory in 30 minutes. This second and final part will make things more interesting and take your setup to the next level.&lt;/p&gt;
 
 &lt;p&gt;You will learn how to:&lt;/p&gt;
@@ -934,9 +934,9 @@ For more information, have a look at the &lt;a href=&quot;http://docs.travis-ci.
  
  <entry>
    <title>A private Maven repository for Android in 30 min</title>
-   <link href="jeroenmols.github.io/blog/2015/08/06/artifactory/"/>
+   <link href="http://jeroenmols.com/blog/2015/08/06/artifactory/"/>
    <updated>2015-08-06T00:00:00+02:00</updated>
-   <id>jeroenmols.github.io/blog/2015/08/06/artifactory</id>
+   <id>http://jeroenmols.com/blog/2015/08/06/artifactory</id>
    <content type="html">&lt;p&gt;Setting up your own Maven repository and uploading artifacts to it is quite a daunting task. As I went through this experience myself recently, I want to help others in setting up their own Maven repository via &lt;a href=&quot;http://www.jfrog.com/open-source/&quot;&gt;Artifactory&lt;/a&gt; and automate uploading artifacts using Gradle.&lt;/p&gt;
 
 &lt;p&gt;In less than 30 minutes you will have a fully operational private Maven repository and have configured your Gradle buildscripts to upload your Android library artifacts.&lt;/p&gt;
@@ -1103,9 +1103,9 @@ SEVERE: One or more listeners failed to start. Full details will be found in the
  
  <entry>
    <title>How I created my blog</title>
-   <link href="jeroenmols.github.io/blog/2015/04/25/blog-creation/"/>
+   <link href="http://jeroenmols.com/blog/2015/04/25/blog-creation/"/>
    <updated>2015-04-25T00:00:00+02:00</updated>
-   <id>jeroenmols.github.io/blog/2015/04/25/blog-creation</id>
+   <id>http://jeroenmols.com/blog/2015/04/25/blog-creation</id>
    <content type="html">&lt;h2&gt;Preface&lt;/h2&gt;
 
 &lt;p&gt;For quite some months, I&amp;#39;ve been planning to create a website and start blogging about the things I&amp;#39;m passionate about. Last week, I finally decided to setup a &lt;a href=&quot;http://jeroenmols.github.io&quot;&gt;portfolio&lt;/a&gt; and &lt;a href=&quot;http://jeroen.mols.github.io/blog&quot;&gt;blog&lt;/a&gt; using GitHub pages and Jekyll.&lt;/p&gt;
@@ -1284,73 +1284,73 @@ SEVERE: One or more listeners failed to start. Full details will be found in the
  
  <entry>
    <title>LandscapeVideoCamera</title>
-   <link href="jeroenmols.github.io/portfolio/2015/01/19/landscapevideocamera/"/>
+   <link href="http://jeroenmols.com/portfolio/2015/01/19/landscapevideocamera/"/>
    <updated>2015-01-19T00:00:00+01:00</updated>
-   <id>jeroenmols.github.io/portfolio/2015/01/19/landscapevideocamera</id>
+   <id>http://jeroenmols.com/portfolio/2015/01/19/landscapevideocamera</id>
    <content type="html"></content>
  </entry>
  
  <entry>
    <title>Saeco Avanti Espresso Machine</title>
-   <link href="jeroenmols.github.io/portfolio/2014/12/03/saecoavanti/"/>
+   <link href="http://jeroenmols.com/portfolio/2014/12/03/saecoavanti/"/>
    <updated>2014-12-03T00:00:00+01:00</updated>
-   <id>jeroenmols.github.io/portfolio/2014/12/03/saecoavanti</id>
+   <id>http://jeroenmols.com/portfolio/2014/12/03/saecoavanti</id>
    <content type="html"></content>
  </entry>
  
  <entry>
    <title>Lighting Point of Sale</title>
-   <link href="jeroenmols.github.io/portfolio/2014/08/31/lightingpos/"/>
+   <link href="http://jeroenmols.com/portfolio/2014/08/31/lightingpos/"/>
    <updated>2014-08-31T00:00:00+02:00</updated>
-   <id>jeroenmols.github.io/portfolio/2014/08/31/lightingpos</id>
+   <id>http://jeroenmols.com/portfolio/2014/08/31/lightingpos</id>
    <content type="html"></content>
  </entry>
  
  <entry>
    <title>Philips Smart Air</title>
-   <link href="jeroenmols.github.io/portfolio/2014/06/28/smartair/"/>
+   <link href="http://jeroenmols.com/portfolio/2014/06/28/smartair/"/>
    <updated>2014-06-28T00:00:00+02:00</updated>
-   <id>jeroenmols.github.io/portfolio/2014/06/28/smartair</id>
+   <id>http://jeroenmols.com/portfolio/2014/06/28/smartair</id>
    <content type="html"></content>
  </entry>
  
  <entry>
    <title>Event App Platform</title>
-   <link href="jeroenmols.github.io/portfolio/2014/02/15/eventapp/"/>
+   <link href="http://jeroenmols.com/portfolio/2014/02/15/eventapp/"/>
    <updated>2014-02-15T00:00:00+01:00</updated>
-   <id>jeroenmols.github.io/portfolio/2014/02/15/eventapp</id>
+   <id>http://jeroenmols.com/portfolio/2014/02/15/eventapp</id>
    <content type="html"></content>
  </entry>
  
  <entry>
    <title>Tomorrowland Radio</title>
-   <link href="jeroenmols.github.io/portfolio/2013/12/10/tomorrowlandradio/"/>
+   <link href="http://jeroenmols.com/portfolio/2013/12/10/tomorrowlandradio/"/>
    <updated>2013-12-10T00:00:00+01:00</updated>
-   <id>jeroenmols.github.io/portfolio/2013/12/10/tomorrowlandradio</id>
+   <id>http://jeroenmols.com/portfolio/2013/12/10/tomorrowlandradio</id>
    <content type="html"></content>
  </entry>
  
  <entry>
    <title>AirStudio+</title>
-   <link href="jeroenmols.github.io/portfolio/2013/10/15/airstudio/"/>
+   <link href="http://jeroenmols.com/portfolio/2013/10/15/airstudio/"/>
    <updated>2013-10-15T00:00:00+02:00</updated>
-   <id>jeroenmols.github.io/portfolio/2013/10/15/airstudio</id>
+   <id>http://jeroenmols.com/portfolio/2013/10/15/airstudio</id>
    <content type="html"></content>
  </entry>
  
  <entry>
    <title>Wi-FileTransfer</title>
-   <link href="jeroenmols.github.io/portfolio/2013/04/01/wi-filetransfer/"/>
+   <link href="http://jeroenmols.com/portfolio/2013/04/01/wi-filetransfer/"/>
    <updated>2013-04-01T00:00:00+02:00</updated>
-   <id>jeroenmols.github.io/portfolio/2013/04/01/wi-filetransfer</id>
+   <id>http://jeroenmols.com/portfolio/2013/04/01/wi-filetransfer</id>
    <content type="html"></content>
  </entry>
  
  <entry>
    <title>VideoBox</title>
-   <link href="jeroenmols.github.io/portfolio/2010/09/25/videobox/"/>
+   <link href="http://jeroenmols.com/portfolio/2010/09/25/videobox/"/>
    <updated>2010-09-25T00:00:00+02:00</updated>
-   <id>jeroenmols.github.io/portfolio/2010/09/25/videobox</id>
+   <id>http://jeroenmols.com/portfolio/2010/09/25/videobox</id>
    <content type="html"></content>
  </entry>
  
