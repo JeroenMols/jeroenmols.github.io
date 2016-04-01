@@ -423,7 +423,7 @@ Social sharing
   }
 }
 
-.social-share li, ul  {
+.social-share li, .social-share ul  {
   display: inline-block;
   margin: 0;
   padding: 0;
