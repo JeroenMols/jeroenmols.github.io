@@ -114,6 +114,35 @@
 									</br>
 
 									
+									<div class="blogpost-overlay-header" style="background-image: url(/img/blog/droidconit16/droidconit.png)">
+									<div class="blogpost-overlay-header-title">
+									  
+
+									<h1 class="blogpost-title">
+									  <a href="/blog/2016/04/08/droidconit/">
+									Droidcon Italy recap
+									  </a>
+									</h1>
+
+									<span class="blogpost-date">08 Apr 2016</span>
+
+									
+									</div>
+									</div>
+									
+
+								</div>
+							</div>
+
+						
+						 
+					
+						
+							<div class="col-lg-6">
+								<div class="post">
+									</br>
+
+									
 									<div class="blogpost-overlay-header" style="background-image: url(/img/blog/resourcenaming/resourcenaming.png)">
 									<div class="blogpost-overlay-header-title">
 									  
@@ -195,32 +224,6 @@
 						
 						 
 					
-						
-							<div class="col-lg-6">
-								<div class="post">
-									</br>
-
-									
-									<div class="blogpost-overlay-header" style="background-image: url(/img/blog/traviscoveralls/traviscoveralls.png)">
-									<div class="blogpost-overlay-header-title">
-									  
-
-									<h1 class="blogpost-title">
-									  <a href="/blog/2015/11/13/traviscoveralls/">
-									Level up GitHub builds with CI and code coverage
-									  </a>
-									</h1>
-
-									<span class="blogpost-date">13 Nov 2015</span>
-
-									
-									</div>
-									</div>
-									
-
-								</div>
-							</div>
-
 						
 						 
 					
@@ -464,6 +467,154 @@
 
      <!-- Portfolio Modals -->
  
+    <div class="portfolio-modal modal fade" id="portfolioModal-" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>Droidcon Italy recap</h2>
+                            <hr class="star-primary">
+                            <img src="img/portfolio/img/blog/droidconit16/droidconit.png" class="img-responsive img-centered" alt="">
+                            <p><p>A conference about our favorite Green little robots? In sunny Italy? With great food and a party? Yeah, I can image how you must feel in case you missed it... I on the other hand was fortunate enough to attend and speak at this awesome conference.</p>
+
+<p>With over 770 attendees and four different tracks, it was obviously not possible to attend every session. But I did notice some general themes and would like to share my personal highlights with you.</p>
+
+<p><br></p>
+
+<h2>We are all UX</h2>
+
+<p><center><a href="/img/blog/droidconit16/wereallux.jpg"><img style="width: 50%" src="/img/blog/droidconit16/wereallux.jpg" alt="We are all UX"></a></center></p>
+
+<p>The holy grail in app development is to have an amazing user experience. While app performance and feature set are obviously important, you must also understand your users, simplify main use cases and have a delightful design.</p>
+
+<p>Do you really think a developer or designer alone can create such a great UX? NO, off course not! They&#39;ll both have to work together and synergize to really blow the users of their feet. We need more pairing between developers and designers folks!</p>
+
+<p>The best advice I got was:</p>
+
+<ul>
+<li>A prototype is worth a thousand meetings.</li>
+<li>Five people to test your prototype with is the sweet spot. It&#39;s enough to notice patterns, yet not too much to be a burden.</li>
+<li>Developers and designers should be transparent and open to learn from each other</li>
+<li>&quot;How might we...&quot; is a great way to phrase problems as opportunities</li>
+</ul>
+
+<p><br></p>
+
+<h2>Optimizing layouts</h2>
+
+<p><center><a href="/img/blog/droidconit16/leanlayouts.jpg"><img src="/img/blog/droidconit16/leanlayouts.jpg" alt="Loving lean layouts"></a></center></p>
+
+<p>Screens containing a lot of views can sometimes render slowly. Mostly caused by deeply nested view hierarchies and/or using RelativeLayouts as a root element. Using &quot;heavy&quot; layouts in lists or increased nesting makes these problems multiplicative instead of simply additive.</p>
+
+<p>When running into issues, first resolve to Lint and investigate all warnings. If the problem persist, Hierarchy viewer will help you understanding what&#39;s going on. Always prefer simple solutions over complex ones and if you really really have to you can go - Facebook Style - replacing views with drawables.</p>
+
+<p>The best advice in this track was:</p>
+
+<ul>
+<li>Rendering times in Hierarchy Viewer are not reliable</li>
+<li>Optimize responsibly</li>
+</ul>
+
+<p><br></p>
+
+<h2>DEX diet</h2>
+
+<p><center><a href="/img/blog/droidconit16/classyshark.png"><img src="/img/blog/droidconit16/classyshark.png" alt="ClassyShark"></a></center></p>
+
+<p>Hitting the DEX method limit or trying to improve your app security? As a real Proguard expert you created an amazing configuration and now all those problems are gone. Or are they?</p>
+
+<p>Analyzing your own APK file is a must to verify what methods are actually stripped and what code is obfuscated. Who knows you might even find some duplicate dependencies (GSON anyone?), causing a further method count reduction. Thanksfully all of this has become a breeze thanks to tools like <a href="http://www.classyshark.com/">ClassyShark</a>.</p>
+
+<p>The best advice here was:</p>
+
+<ul>
+<li>Be restrictive using Proguard iso keeping entire packages</li>
+<li>IDE method count != dex method count</li>
+<li>Use <a href="http://www.methodscount.com/">methodscount.com</a> to see how large a lib is before using it</li>
+</ul>
+
+<p><br></p>
+
+<h2>Other hot topics</h2>
+
+<p><center><a href="/img/blog/droidconit16/android_cookie.jpg"><img style="width: 50%" src="/img/blog/droidconit16/android_cookie.jpg" alt="Android cookies"></a></center></p>
+
+<p>Besides the three main themes, other topics varied from Kotlin, over library distribution to (MVP) architecture and app store optimizations. Awesome sources of inspiration, brought by even more awesome speakers.</p>
+
+<p>My key takeaways:</p>
+
+<ul>
+<li>Use App invites to grow your user base</li>
+<li>If you don&#39;t like testing your code, most likely customers won&#39;t like testing your app either</li>
+<li>Italian food is awesome</li>
+</ul>
+
+<p><br></p>
+
+<h2>Conference slides</h2>
+
+<p>Section still under development...</p>
+
+<ul>
+<li><a href="https://speakerdeck.com/jeroenmols/distribute-your-libraries-via-maven-even-privately">Distribute your libraries via Maven, even privately</a> by Jeroen Mols</li>
+<li><a href="https://photos.google.com/share/AF1QipMB_VOceGeOuQZ0UhBf0dKrGhgu92k8-qpXu0X5WtWUvoSqFJKRsoPzESyuhNEDRw?key=VVctWHBsVG4zZVlsRlBjVGRBWkIzT295Vk9qcWlB">Think like a designer</a> by Nick Butcher</li>
+<li><a href="https://speakerdeck.com/dorvaryn/let-it-flow">Let it flow</a> by Benjamin Augustin</li>
+<li><a href="https://speakerdeck.com/alosdev/perfmatters-for-android-droidcon-turin-2016">#Perfmatters for Android</a> by Hasan Hosgel</li>
+<li><a href="https://docs.google.com/presentation/d/1f05lCKSnCuzn9nJUMHN0nZ_buIVtsVnB_lrT4FR3wXo/edit#slide=id.p">Android Library A-Z</a> by Martin Liersch</li>
+<li><a href="http://blog.rafols.org/wp-content/uploads/2016_04_droidcon_it.pdf">The bytecode mumbo-jumbo</a> by Raimon Ràfols</li>
+<li><a href="https://speakerdeck.com/dextor/to-65k-and-beyond">To ∞ (~65K) and beyond!</a> by Sebastiano Gottardo</li>
+<li><a href="http://www.slideshare.net/fabio_collini/data-binding-in-action-using-mvvm-pattern">Android data binding in action using MVVM pattern</a> by Fabio Collini</li>
+<li><a href="https://speakerdeck.com/danybony/from-clockwork-to-smartwatch">From Clockwork to smartwatch</a> by Daniele Bonaldo</li>
+<li><a href="http://www.slideshare.net/KellyShuster/internal-android-library-management-droidcon-sf-2016">Android internal library management</a> by Kelly Shuster</li>
+<li><a href="https://speakerdeck.com/jonreeve/reverse-engineering-is-not-just-for-hackers">Reverse engineering is not just for hackers</a> by Jon Reeve</li>
+<li><a href="https://speakerdeck.com/anothem/how-to-talk-to-your-users">How to talk to your users</a> by Alex Florescu</li>
+<li><a href="http://www.slideshare.net/Aetheros/crafting-great-hypotheses-droidcon-2016">Crafting Great Hypotheses</a> by Hoang Huynh</li>
+<li><a href="http://www.slideshare.net/KristijanJurkovi/building-maintainable-app">Building maintainable app with MVP and Dagger2</a> by Kristijan Jurković</li>
+<li><a href="http://www.slideshare.net/duckma/build-an-efficient-rest-client-on-android-droidcon-it-2016-matteo-gazzurelli?ref=http://blog.duckma.com/2016/04/build-efficient-rest-client-on-android.html">Build An Efficient REST Client On Android</a> by Matteo Gazzurelli</li>
+<li><a href="https://docs.google.com/presentation/d/1DK_kOp--XXdV_BYOYWw-wWPvJ1B_i4NIclDqWQqBSw8/edit#slide=id.p">Chronicles of TDD</a> by Luca Falsina</li>
+<li><a href="https://backend4android.github.io/#/">Backend 4 Android developers</a> by
+Antonio Mallia &amp; Nicola Corti</li>
+<li><a href="http://www.slideshare.net/AlessandroMartellucc/a-realtime-infrastructure-for-android-apps-firebase-may-be-what-you-needand-even-more">A realtime infrastructure for Android apps: Firebase may be what you need..and even more!</a> by
+Alessandro Martellucci</li>
+</ul>
+
+<p><br></p>
+
+<h2>Credits</h2>
+
+<p>Thanks to the entire Droidcon Italy team for organizing such a great conference and to all sponsers for their support.</p>
+
+<p><center><a href="/img/blog/droidconit16/droidconit_team.jpg"><img src="/img/blog/droidconit16/droidconit_team.jpg" alt="Droidcon Italy team"></a></center></p>
+</p>
+
+                            <ul class="list-inline item-details">
+                                <li>Client:
+                                    <strong><a href=></a>
+                                    </strong>
+                                </li>
+                                <li>Date:
+                                    <strong></strong>
+                                </li>
+                                <li>Download:
+                                    <strong><a href=></a>
+                                    </strong>
+                                </li>
+                            </ul>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="portfolio-modal modal fade" id="portfolioModal-" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">

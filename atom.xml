@@ -4,13 +4,131 @@
  <title>Jeroen Mols</title>
  <link href="http://jeroenmols.com/atom.xml" rel="self"/>
  <link href="http://jeroenmols.com/"/>
- <updated>2016-04-01T12:27:31+02:00</updated>
+ <updated>2016-04-08T22:43:01+02:00</updated>
  <id>http://jeroenmols.com</id>
  <author>
    <name>Jeroen Mols</name>
    <email></email>
  </author>
 
+ 
+ <entry>
+   <title>Droidcon Italy recap</title>
+   <link href="http://jeroenmols.com/blog/2016/04/08/droidconit/"/>
+   <updated>2016-04-08T00:00:00+02:00</updated>
+   <id>http://jeroenmols.com/blog/2016/04/08/droidconit</id>
+   <content type="html">&lt;p&gt;A conference about our favorite Green little robots? In sunny Italy? With great food and a party? Yeah, I can image how you must feel in case you missed it... I on the other hand was fortunate enough to attend and speak at this awesome conference.&lt;/p&gt;
+
+&lt;p&gt;With over 770 attendees and four different tracks, it was obviously not possible to attend every session. But I did notice some general themes and would like to share my personal highlights with you.&lt;/p&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h2&gt;We are all UX&lt;/h2&gt;
+
+&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/droidconit16/wereallux.jpg&quot;&gt;&lt;img style=&quot;width: 50%&quot; src=&quot;/img/blog/droidconit16/wereallux.jpg&quot; alt=&quot;We are all UX&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+
+&lt;p&gt;The holy grail in app development is to have an amazing user experience. While app performance and feature set are obviously important, you must also understand your users, simplify main use cases and have a delightful design.&lt;/p&gt;
+
+&lt;p&gt;Do you really think a developer or designer alone can create such a great UX? NO, off course not! They&amp;#39;ll both have to work together and synergize to really blow the users of their feet. We need more pairing between developers and designers folks!&lt;/p&gt;
+
+&lt;p&gt;The best advice I got was:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;A prototype is worth a thousand meetings.&lt;/li&gt;
+&lt;li&gt;Five people to test your prototype with is the sweet spot. It&amp;#39;s enough to notice patterns, yet not too much to be a burden.&lt;/li&gt;
+&lt;li&gt;Developers and designers should be transparent and open to learn from each other&lt;/li&gt;
+&lt;li&gt;&amp;quot;How might we...&amp;quot; is a great way to phrase problems as opportunities&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h2&gt;Optimizing layouts&lt;/h2&gt;
+
+&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/droidconit16/leanlayouts.jpg&quot;&gt;&lt;img src=&quot;/img/blog/droidconit16/leanlayouts.jpg&quot; alt=&quot;Loving lean layouts&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+
+&lt;p&gt;Screens containing a lot of views can sometimes render slowly. Mostly caused by deeply nested view hierarchies and/or using RelativeLayouts as a root element. Using &amp;quot;heavy&amp;quot; layouts in lists or increased nesting makes these problems multiplicative instead of simply additive.&lt;/p&gt;
+
+&lt;p&gt;When running into issues, first resolve to Lint and investigate all warnings. If the problem persist, Hierarchy viewer will help you understanding what&amp;#39;s going on. Always prefer simple solutions over complex ones and if you really really have to you can go - Facebook Style - replacing views with drawables.&lt;/p&gt;
+
+&lt;p&gt;The best advice in this track was:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Rendering times in Hierarchy Viewer are not reliable&lt;/li&gt;
+&lt;li&gt;Optimize responsibly&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h2&gt;DEX diet&lt;/h2&gt;
+
+&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/droidconit16/classyshark.png&quot;&gt;&lt;img src=&quot;/img/blog/droidconit16/classyshark.png&quot; alt=&quot;ClassyShark&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+
+&lt;p&gt;Hitting the DEX method limit or trying to improve your app security? As a real Proguard expert you created an amazing configuration and now all those problems are gone. Or are they?&lt;/p&gt;
+
+&lt;p&gt;Analyzing your own APK file is a must to verify what methods are actually stripped and what code is obfuscated. Who knows you might even find some duplicate dependencies (GSON anyone?), causing a further method count reduction. Thanksfully all of this has become a breeze thanks to tools like &lt;a href=&quot;http://www.classyshark.com/&quot;&gt;ClassyShark&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The best advice here was:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Be restrictive using Proguard iso keeping entire packages&lt;/li&gt;
+&lt;li&gt;IDE method count != dex method count&lt;/li&gt;
+&lt;li&gt;Use &lt;a href=&quot;http://www.methodscount.com/&quot;&gt;methodscount.com&lt;/a&gt; to see how large a lib is before using it&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h2&gt;Other hot topics&lt;/h2&gt;
+
+&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/droidconit16/android_cookie.jpg&quot;&gt;&lt;img style=&quot;width: 50%&quot; src=&quot;/img/blog/droidconit16/android_cookie.jpg&quot; alt=&quot;Android cookies&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+
+&lt;p&gt;Besides the three main themes, other topics varied from Kotlin, over library distribution to (MVP) architecture and app store optimizations. Awesome sources of inspiration, brought by even more awesome speakers.&lt;/p&gt;
+
+&lt;p&gt;My key takeaways:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Use App invites to grow your user base&lt;/li&gt;
+&lt;li&gt;If you don&amp;#39;t like testing your code, most likely customers won&amp;#39;t like testing your app either&lt;/li&gt;
+&lt;li&gt;Italian food is awesome&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h2&gt;Conference slides&lt;/h2&gt;
+
+&lt;p&gt;Section still under development...&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/jeroenmols/distribute-your-libraries-via-maven-even-privately&quot;&gt;Distribute your libraries via Maven, even privately&lt;/a&gt; by Jeroen Mols&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://photos.google.com/share/AF1QipMB_VOceGeOuQZ0UhBf0dKrGhgu92k8-qpXu0X5WtWUvoSqFJKRsoPzESyuhNEDRw?key=VVctWHBsVG4zZVlsRlBjVGRBWkIzT295Vk9qcWlB&quot;&gt;Think like a designer&lt;/a&gt; by Nick Butcher&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/dorvaryn/let-it-flow&quot;&gt;Let it flow&lt;/a&gt; by Benjamin Augustin&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/alosdev/perfmatters-for-android-droidcon-turin-2016&quot;&gt;#Perfmatters for Android&lt;/a&gt; by Hasan Hosgel&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://docs.google.com/presentation/d/1f05lCKSnCuzn9nJUMHN0nZ_buIVtsVnB_lrT4FR3wXo/edit#slide=id.p&quot;&gt;Android Library A-Z&lt;/a&gt; by Martin Liersch&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://blog.rafols.org/wp-content/uploads/2016_04_droidcon_it.pdf&quot;&gt;The bytecode mumbo-jumbo&lt;/a&gt; by Raimon Ràfols&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/dextor/to-65k-and-beyond&quot;&gt;To ∞ (~65K) and beyond!&lt;/a&gt; by Sebastiano Gottardo&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.slideshare.net/fabio_collini/data-binding-in-action-using-mvvm-pattern&quot;&gt;Android data binding in action using MVVM pattern&lt;/a&gt; by Fabio Collini&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/danybony/from-clockwork-to-smartwatch&quot;&gt;From Clockwork to smartwatch&lt;/a&gt; by Daniele Bonaldo&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.slideshare.net/KellyShuster/internal-android-library-management-droidcon-sf-2016&quot;&gt;Android internal library management&lt;/a&gt; by Kelly Shuster&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/jonreeve/reverse-engineering-is-not-just-for-hackers&quot;&gt;Reverse engineering is not just for hackers&lt;/a&gt; by Jon Reeve&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/anothem/how-to-talk-to-your-users&quot;&gt;How to talk to your users&lt;/a&gt; by Alex Florescu&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.slideshare.net/Aetheros/crafting-great-hypotheses-droidcon-2016&quot;&gt;Crafting Great Hypotheses&lt;/a&gt; by Hoang Huynh&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.slideshare.net/KristijanJurkovi/building-maintainable-app&quot;&gt;Building maintainable app with MVP and Dagger2&lt;/a&gt; by Kristijan Jurković&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.slideshare.net/duckma/build-an-efficient-rest-client-on-android-droidcon-it-2016-matteo-gazzurelli?ref=http://blog.duckma.com/2016/04/build-efficient-rest-client-on-android.html&quot;&gt;Build An Efficient REST Client On Android&lt;/a&gt; by Matteo Gazzurelli&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://docs.google.com/presentation/d/1DK_kOp--XXdV_BYOYWw-wWPvJ1B_i4NIclDqWQqBSw8/edit#slide=id.p&quot;&gt;Chronicles of TDD&lt;/a&gt; by Luca Falsina&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://backend4android.github.io/#/&quot;&gt;Backend 4 Android developers&lt;/a&gt; by
+Antonio Mallia &amp;amp; Nicola Corti&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.slideshare.net/AlessandroMartellucc/a-realtime-infrastructure-for-android-apps-firebase-may-be-what-you-needand-even-more&quot;&gt;A realtime infrastructure for Android apps: Firebase may be what you need..and even more!&lt;/a&gt; by
+Alessandro Martellucci&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h2&gt;Credits&lt;/h2&gt;
+
+&lt;p&gt;Thanks to the entire Droidcon Italy team for organizing such a great conference and to all sponsers for their support.&lt;/p&gt;
+
+&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/droidconit16/droidconit_team.jpg&quot;&gt;&lt;img src=&quot;/img/blog/droidconit16/droidconit_team.jpg&quot; alt=&quot;Droidcon Italy team&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>A successful XML naming convention</title>

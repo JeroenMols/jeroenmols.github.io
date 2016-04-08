@@ -5,9 +5,21 @@
     <description>Portfolio of Jeroen Mols, the Android developer you should hire.</description>
     <link>http://jeroenmols.com/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 01 Apr 2016 12:27:31 +0200</pubDate>
-    <lastBuildDate>Fri, 01 Apr 2016 12:27:31 +0200</lastBuildDate>
+    <pubDate>Fri, 08 Apr 2016 22:43:01 +0200</pubDate>
+    <lastBuildDate>Fri, 08 Apr 2016 22:43:01 +0200</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>Droidcon Italy recap</title>
+        <description></description>
+        <pubDate>Fri, 08 Apr 2016 00:00:00 +0200</pubDate>
+        <link>http://jeroenmols.com/blog/2016/04/08/droidconit/</link>
+        <guid isPermaLink="true">http://jeroenmols.com/blog/2016/04/08/droidconit/</guid>
+        
+        
+        <category>blog</category>
+        
+      </item>
     
       <item>
         <title>A successful XML naming convention</title>
@@ -111,18 +123,6 @@
         <pubDate>Wed, 03 Dec 2014 00:00:00 +0100</pubDate>
         <link>http://jeroenmols.com/portfolio/2014/12/03/saecoavanti/</link>
         <guid isPermaLink="true">http://jeroenmols.com/portfolio/2014/12/03/saecoavanti/</guid>
-        
-        
-        <category>portfolio</category>
-        
-      </item>
-    
-      <item>
-        <title>Lighting Point of Sale</title>
-        <description>Android app to demo/explain the Philips Hue lights in stores.</description>
-        <pubDate>Sun, 31 Aug 2014 00:00:00 +0200</pubDate>
-        <link>http://jeroenmols.com/portfolio/2014/08/31/lightingpos/</link>
-        <guid isPermaLink="true">http://jeroenmols.com/portfolio/2014/08/31/lightingpos/</guid>
         
         
         <category>portfolio</category>
