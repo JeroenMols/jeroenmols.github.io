@@ -98,6 +98,8 @@ Alessandro Martellucci
 - [A friend in need - A JS indeed](http://www.slideshare.net/yoni1984/a-friend-in-need-a-js-indeed) by Yonatan Levin
 - [Application Architecture for Scaled Agile](https://speakerdeck.com/sangsoonam/application-architecture-for-scaled-agile-droidconit-2016) by Sangsoo Nam
 - [FLUX based clean architecure](https://speakerdeck.com/unsign3d/flux-based-clean-architecure) by Luca Bruzzone
+- [Engage and retain users in android world](http://www.slideshare.net/MatteoBonifazi/engage-and-retain-users-in-the-android-world-droidcon-italy-2016?from_m_app=android) by Matteo Bonifazi
+- [Bonjour Android, it's Zeroconf](https://speakerdeck.com/tiwiz/bonjour-android-its-zeroconf) by Roberto Orgiu
 
 <br>
 
