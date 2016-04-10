@@ -95,6 +95,9 @@ Alessandro Martellucci
 - [Evolving the Android core with Aspects](http://www.slideshare.net/CarloPescio/evolving-the-android-core-with-aspects) by Carlo Pescio
 - [Android: It's time to go to work!](https://speakerdeck.com/nibble/android-its-time-to-go-to-work) by Pietro Maggi
 - [Drive together not the same](https://speakerdeck.com/joaobiriba/drive-together-not-the-same) by Giovanni Laquidara
+- [A friend in need - A JS indeed](http://www.slideshare.net/yoni1984/a-friend-in-need-a-js-indeed) by Yonatan Levin
+- [Application Architecture for Scaled Agile](https://speakerdeck.com/sangsoonam/application-architecture-for-scaled-agile-droidconit-2016) by Sangsoo Nam
+- [FLUX based clean architecure](https://speakerdeck.com/unsign3d/flux-based-clean-architecure) by Luca Bruzzone
 
 <br>
 
