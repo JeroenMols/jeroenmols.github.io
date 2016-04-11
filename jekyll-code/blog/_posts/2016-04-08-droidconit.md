@@ -101,6 +101,7 @@ Alessandro Martellucci
 - [Engage and retain users in android world](http://www.slideshare.net/MatteoBonifazi/engage-and-retain-users-in-the-android-world-droidcon-italy-2016?from_m_app=android) by Matteo Bonifazi
 - [Bonjour Android, it's Zeroconf](https://speakerdeck.com/tiwiz/bonjour-android-its-zeroconf) by Roberto Orgiu
 - [We're all UX!](https://speakerdeck.com/lyslydia/were-all-ux) by Lydia Selimalhigazi and Caroline Smith
+- [Mastering the NDK](http://www.slideshare.net/ph0b/mastering-the-ndk-with-android-studio-and-the-gradleexperimental-plugin) by Xavier Hallade
 
 <br>
 
