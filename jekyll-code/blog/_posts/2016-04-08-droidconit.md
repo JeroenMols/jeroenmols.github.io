@@ -70,7 +70,6 @@ My key takeaways:
 <br>
 
 ## Conference slides
-Section still under development...
 
 - [Distribute your libraries via Maven, even privately](https://speakerdeck.com/jeroenmols/distribute-your-libraries-via-maven-even-privately) by Jeroen Mols
 - [Think like a designer](https://photos.google.com/share/AF1QipMB_VOceGeOuQZ0UhBf0dKrGhgu92k8-qpXu0X5WtWUvoSqFJKRsoPzESyuhNEDRw?key=VVctWHBsVG4zZVlsRlBjVGRBWkIzT295Vk9qcWlB) by Nick Butcher
@@ -102,6 +101,8 @@ Alessandro Martellucci
 - [Bonjour Android, it's Zeroconf](https://speakerdeck.com/tiwiz/bonjour-android-its-zeroconf) by Roberto Orgiu
 - [We're all UX!](https://speakerdeck.com/lyslydia/were-all-ux) by Lydia Selimalhigazi and Caroline Smith
 - [Mastering the NDK](http://www.slideshare.net/ph0b/mastering-the-ndk-with-android-studio-and-the-gradleexperimental-plugin) by Xavier Hallade
+- [BLE beacons, Eddystone and Physical Web](https://www.blueupbeacons.com/docs/WorkshopBeacons.pdf) by Alessio Cucini and Samuele Forconi
+- [World-Class Testing Development Pipeline for Android](http://www.slideshare.net/PedroVicenteGmezSnch/worldclass-testing-development-pipeline-for-android) by Pedro Vicente Gómez Sánchez]
 
 <br>
 
