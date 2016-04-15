@@ -103,6 +103,7 @@ Alessandro Martellucci
 - [Mastering the NDK](http://www.slideshare.net/ph0b/mastering-the-ndk-with-android-studio-and-the-gradleexperimental-plugin) by Xavier Hallade
 - [BLE beacons, Eddystone and Physical Web](https://www.blueupbeacons.com/docs/WorkshopBeacons.pdf) by Alessio Cucini and Samuele Forconi
 - [World-Class Testing Development Pipeline for Android](http://www.slideshare.net/PedroVicenteGmezSnch/worldclass-testing-development-pipeline-for-android) by Pedro Vicente Gómez Sánchez]
+- [ClassShark - Android and Java executables browser](http://www.slideshare.net/seamaster29/classshark-android-and-java-executables-browser) by Boris Farber
 
 <br>
 
