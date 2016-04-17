@@ -5,10 +5,10 @@
     <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Lighting Point of Sale</title>
+    <title>Het nieuwsblad</title>
     <meta name="viewport" content="width=device-width">
     <meta name="description" content="Portfolio of Jeroen Mols, the Android developer you should hire.">
-    <link rel="canonical" href="http://jeroenmols.com/portfolio/2014/08/31/lightingpos/">
+    <link rel="canonical" href="http://jeroenmols.com/portfolio/2015/07/01/nieuwsblad/">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
 
     <!-- Custom CSS & Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
@@ -1973,145 +1973,179 @@ I have also uploaded a [complete example](https://github.com/JeroenMols/Artifact
                             <h2>How I created my blog</h2>
                             <hr class="star-primary">
                             <img src="img/portfolio/img/blog/jekyll.png" class="img-responsive img-centered" alt="">
-                            <p>## Preface
-For quite some months, I've been planning to create a website and start blogging about the things I'm passionate about. Last week, I finally decided to setup a [portfolio](http://jeroenmols.github.io) and [blog](http://jeroen.mols.github.io/blog) using GitHub pages and Jekyll.
+                            <p><h2>Preface</h2>
 
-Since I'm an Android and not a web developer, the first blogging subject wasn't hard to find: challenges I came across in setting up this website and blog.
+<p>For quite some months, I&#39;ve been planning to create a website and start blogging about the things I&#39;m passionate about. Last week, I finally decided to setup a <a href="http://jeroenmols.github.io">portfolio</a> and <a href="http://jeroen.mols.github.io/blog">blog</a> using GitHub pages and Jekyll.</p>
 
-> **Disclaimer:** Eventually I had to use a workaround - that's why I don't build websites professionally - but I strongly believe in a *Just do It* mentality and then learn/improve as you go.
+<p>Since I&#39;m an Android and not a web developer, the first blogging subject wasn&#39;t hard to find: challenges I came across in setting up this website and blog.</p>
 
-## Why Jekyll
-Keeping it simple, I only had few requirements for my blog:
+<blockquote>
+<p><strong>Disclaimer:</strong> Eventually I had to use a workaround - that&#39;s why I don&#39;t build websites professionally - but I strongly believe in a <em>Just do It</em> mentality and then learn/improve as you go.</p>
+</blockquote>
 
-- Responsive website
-- Easy to setup and maintain
-- No lock-in: able to migrate to other platforms
-- Support for pagination and comments
+<h2>Why Jekyll</h2>
 
-First thing I learned was the difference between a static (e.g. Jekyll) and dynamic website (e.g. Wordpress) via a [great presentation](http://nilclass.com/courses/what-is-a-static-website/) by [@plusjade](https://twitter.com/plusjade).
+<p>Keeping it simple, I only had few requirements for my blog:</p>
 
-The main advantage of static websites is their loading speed because all pages are generated before they are served. Installing the generator on your local machine is simple, making it easy to test your site before deploying online. Posts are written in Markdown, so no HTML clutter nor extra tools needed. Just a text generator and Git to conveniently version all changes.
+<ul>
+<li>Responsive website</li>
+<li>Easy to setup and maintain</li>
+<li>No lock-in: able to migrate to other platforms</li>
+<li>Support for pagination and comments</li>
+</ul>
 
->**Protip:** One of my colleagues [@inferis](https://twitter.com/inferis) even gets spelling corrections via Pull request!
+<p>First thing I learned was the difference between a static (e.g. Jekyll) and dynamic website (e.g. Wordpress) via a <a href="http://nilclass.com/courses/what-is-a-static-website/">great presentation</a> by <a href="https://twitter.com/plusjade">@plusjade</a>.</p>
 
-As GitHub pages natively supports Jekyll, I didn't really spent much time on choosing which [static site generator](https://staticsitegenerators.net/) to use.
+<p>The main advantage of static websites is their loading speed because all pages are generated before they are served. Installing the generator on your local machine is simple, making it easy to test your site before deploying online. Posts are written in Markdown, so no HTML clutter nor extra tools needed. Just a text generator and Git to conveniently version all changes.</p>
 
-## Setting up
-Installing Jekyll was really a breeze, I just had to run `gem install Jekyll` and then I could build my website using `jekyll build` or test it locally using `jekyll serve`.
+<blockquote>
+<p><strong>Protip:</strong> One of my colleagues <a href="https://twitter.com/inferis">@inferis</a> even gets spelling corrections via Pull request!</p>
+</blockquote>
 
-> **Note:** both commands will generate your website in the `_site` folder, which you shouldn't add to version control!
+<p>As GitHub pages natively supports Jekyll, I didn&#39;t really spent much time on choosing which <a href="https://staticsitegenerators.net/">static site generator</a> to use.</p>
 
-Instead of making a new Jekyll site, I decided to fork two existing themes:
+<h2>Setting up</h2>
 
-- [Hyde](http://hyde.getpoole.com/): a clean two-column theme for my Blog
-- [Freelancer](http://startbootstrap.com/template-overviews/freelancer/): to have a cool portfolio
+<p>Installing Jekyll was really a breeze, I just had to run <code>gem install Jekyll</code> and then I could build my website using <code>jekyll build</code> or test it locally using <code>jekyll serve</code>.</p>
 
-Both themes offer quite some predefined customization options via the `_config.yml` file, but for advanced theming you can also directly edit the CSS files.
+<blockquote>
+<p><strong>Note:</strong> both commands will generate your website in the <code>_site</code> folder, which you shouldn&#39;t add to version control!</p>
+</blockquote>
 
-## Merging two Jekyll themes
-Where I originally only wanted to have a blog, the Freelancer theme was just too cool to ignore. Consequently merging two themes was one of the first things I had to do.
+<p>Instead of making a new Jekyll site, I decided to fork two existing themes:</p>
 
-It seemed most convenient to have my portfolio under my main url and to include my blog under a subfolder (i.e. `jeroenmols.github.io/blog`).
+<ul>
+<li><a href="http://hyde.getpoole.com/">Hyde</a>: a clean two-column theme for my Blog</li>
+<li><a href="http://startbootstrap.com/template-overviews/freelancer/">Freelancer</a>: to have a cool portfolio</li>
+</ul>
 
-To do this I merged the blog theme into the portfolio (main) theme:
+<p>Both themes offer quite some predefined customization options via the <code>_config.yml</code> file, but for advanced theming you can also directly edit the CSS files.</p>
 
-- Add a subfolder `blog/` with the `index.html` of my blog.
+<h2>Merging two Jekyll themes</h2>
 
-- Move all my portfolio posts and blog posts into separate folders:
-	- all portfolio posts went into `portfolio/_posts`
-	- all blog posts went into `blog/_posts`
+<p>Where I originally only wanted to have a blog, the Freelancer theme was just too cool to ignore. Consequently merging two themes was one of the first things I had to do.</p>
 
-	This allows to easily loop through all portfolio or blog posts separately:
+<p>It seemed most convenient to have my portfolio under my main url and to include my blog under a subfolder (i.e. <code>jeroenmols.github.io/blog</code>).</p>
 
-	- `{{ "{% for post in site.categories.portfolio " }}%}`
-	- `{{ "{% for post in site.categories.blog " }}%}`
+<p>To do this I merged the blog theme into the portfolio (main) theme:</p>
 
-- Move all files in `_layouts` and `_includes` from my blog into the corresponding folders of my portfolio theme.
-	- Optionally you can move files into subfolders to keep things clean (`_includes/blog`), as long as you also update all references to these files. (in `_layouts/blog.html` I now refer to my includes as `blog/<original name>`)
-	- Same holds true if you have naming conflicts (for instance two layouts with the same name), you can just rename one and update all references in all files using it.
+<ul>
+<li><p>Add a subfolder <code>blog/</code> with the <code>index.html</code> of my blog.</p></li>
+<li><p>Move all my portfolio posts and blog posts into separate folders:</p>
 
-- Move all other folders and files into the root of the main theme
+<ul>
+<li>all portfolio posts went into <code>portfolio/_posts</code></li>
+<li>all blog posts went into <code>blog/_posts</code></li>
+</ul>
 
-- Merge the configurations from both `_config.yml` files
-	- Again you can rename conflicting configurations (or merge duplicate ones) if you update all references.
+<p>This allows to easily loop through all portfolio or blog posts separately:
+- <code>{% for post in site.categories.portfolio %}</code>
+- <code>{% for post in site.categories.blog %}</code></p></li>
+<li><p>Move all files in <code>_layouts</code> and <code>_includes</code> from my blog into the corresponding folders of my portfolio theme.</p>
 
-- Fix all references to not found images/css/... files in the blog theme. This is necessary because the original theme was assuming to run in the root directory, and now we moved it to a subdirectory `blog/`.
-	- I found that the best way to do this is to run `jekyll build` and have a look at the generated output in the `_site` directory. From this you can learn what's wrong and fix it.
+<ul>
+<li>Optionally you can move files into subfolders to keep things clean (<code>_includes/blog</code>), as long as you also update all references to these files. (in <code>_layouts/blog.html</code> I now refer to my includes as <code>blog/&lt;original name&gt;</code>)</li>
+<li>Same holds true if you have naming conflicts (for instance two layouts with the same name), you can just rename one and update all references in all files using it.</li>
+</ul></li>
+<li><p>Move all other folders and files into the root of the main theme</p></li>
+<li><p>Merge the configurations from both <code>_config.yml</code> files</p>
 
-After this I could run `Jekyll serve` and everything worked flawlessly!
+<ul>
+<li>Again you can rename conflicting configurations (or merge duplicate ones) if you update all references.</li>
+</ul></li>
+<li><p>Fix all references to not found images/css/... files in the blog theme. This is necessary because the original theme was assuming to run in the root directory, and now we moved it to a subdirectory <code>blog/</code>.</p>
 
-...
+<ul>
+<li>I found that the best way to do this is to run <code>jekyll build</code> and have a look at the generated output in the <code>_site</code> directory. From this you can learn what&#39;s wrong and fix it.</li>
+</ul></li>
+</ul>
 
-Wait...
+<p>After this I could run <code>Jekyll serve</code> and everything worked flawlessly!</p>
 
-...
+<p>...</p>
 
-Why are my portfolio posts also showing up in my blog?
+<p>Wait...</p>
 
-...
+<p>...</p>
 
-Damn you Jekyll!
+<p>Why are my portfolio posts also showing up in my blog?</p>
 
-Turns out Jekyll does not support paginating categories and hence it will lump all posts it finds together, in my case both portfolio (unwanted) and blog (wanted). Even more, there is no plugin to add this functionality either! Pretty weird, and a huge limitation if you ask me.
+<p>...</p>
 
-So I did what every self-respecting programmer would do: pray to the Stackoverflow and GitHub gods. And my prayers where answered by a code snippet of [benxtan](https://github.com/benxtan), which I found in an issue tracker of a very old [Jekyll pagination plugin](https://github.com/Painted-Fox/jekyll-category-pagination/issues/6). To enable this plugin, simply create a `_plugins` folder and copy the code snippet into a `category_pagination.rb` file.
+<p>Damn you Jekyll!</p>
 
->**Note**: the former plugin was no longer working, because it was referring to classes that were renamed/moved classes in newer Jekyll versions.
+<p>Turns out Jekyll does not support paginating categories and hence it will lump all posts it finds together, in my case both portfolio (unwanted) and blog (wanted). Even more, there is no plugin to add this functionality either! Pretty weird, and a huge limitation if you ask me.</p>
 
-## GitHub and Jekyll plugins
-My new shiny portfolio and blog were working locally, but when I pushed it to GitHub, the pagination again included both blog and portfolio posts. Turns out that GitHub doesn't allow you to run custom Jekyll plugins except for a few that they have whitelisted.
+<p>So I did what every self-respecting programmer would do: pray to the Stackoverflow and GitHub gods. And my prayers where answered by a code snippet of <a href="https://github.com/benxtan">benxtan</a>, which I found in an issue tracker of a very old <a href="https://github.com/Painted-Fox/jekyll-category-pagination/issues/6">Jekyll pagination plugin</a>. To enable this plugin, simply create a <code>_plugins</code> folder and copy the code snippet into a <code>category_pagination.rb</code> file.</p>
 
->**[Plugins on GitHub Pages](http://jekyllrb.com/docs/plugins/)**
->
->GitHub Pages is powered by Jekyll. However, all Pages sites are generated using the --safe option to disable custom plugins for security reasons. Unfortunately, this means your plugins won’t work if you’re deploying to GitHub Pages.
+<blockquote>
+<p><strong>Note</strong>: the former plugin was no longer working, because it was referring to classes that were renamed/moved classes in newer Jekyll versions.</p>
+</blockquote>
 
-At this point, I am/was completely stuck, because even if Jekyll would add support for category pagination, I would still need to wait for GitHub to update their Jekyll version.
+<h2>GitHub and Jekyll plugins</h2>
 
-Only option remaining was to directly push the generated `_site` directory into my repository and to disable the Jekyll generator on GitHub pages.
+<p>My new shiny portfolio and blog were working locally, but when I pushed it to GitHub, the pagination again included both blog and portfolio posts. Turns out that GitHub doesn&#39;t allow you to run custom Jekyll plugins except for a few that they have whitelisted.</p>
 
->Note that this is a really suboptimal solution, because this effectively means pushing a high amount of auto-generated files to your repo, frequently. So if anyone has a better suggestion to solve the pagination issue, please let me know!
+<blockquote>
+<p><strong><a href="http://jekyllrb.com/docs/plugins/">Plugins on GitHub Pages</a></strong></p>
 
-To make this work, there are a couple of things you need to do:
+<p>GitHub Pages is powered by Jekyll. However, all Pages sites are generated using the --safe option to disable custom plugins for security reasons. Unfortunately, this means your plugins won’t work if you’re deploying to GitHub Pages.</p>
+</blockquote>
 
-- Disable Jekyll on GitHub pages by pushing an empty file with name `.nojekyll` to the root of your repo
+<p>At this point, I am/was completely stuck, because even if Jekyll would add support for category pagination, I would still need to wait for GitHub to update their Jekyll version.</p>
 
-- Move all auto generated content from the `_site` folder into the root of your repository, so that its `index.html` is displayed when someone browses to your main page.
+<p>Only option remaining was to directly push the generated <code>_site</code> directory into my repository and to disable the Jekyll generator on GitHub pages.</p>
 
-This actually by itself imposes a new problem, namely where to put your Jekyll source code? I solved this by:
+<blockquote>
+<p>Note that this is a really suboptimal solution, because this effectively means pushing a high amount of auto-generated files to your repo, frequently. So if anyone has a better suggestion to solve the pagination issue, please let me know!</p>
+</blockquote>
 
-- move all source files to a subfolder `jekyll-source` in my main repository
+<p>To make this work, there are a couple of things you need to do:</p>
 
-- generating all static pages into `jekyll-source/_site` using `jekyll build`
+<ul>
+<li><p>Disable Jekyll on GitHub pages by pushing an empty file with name <code>.nojekyll</code> to the root of your repo</p></li>
+<li><p>Move all auto generated content from the <code>_site</code> folder into the root of your repository, so that its <code>index.html</code> is displayed when someone browses to your main page.</p></li>
+</ul>
 
-- removing all files and folders from my root directory, except for the `jekyll-source` directory
+<p>This actually by itself imposes a new problem, namely where to put your Jekyll source code? I solved this by:</p>
 
-- copying the entire content of `jekyll-source/_site` into my root folder
+<ul>
+<li><p>move all source files to a subfolder <code>jekyll-source</code> in my main repository</p></li>
+<li><p>generating all static pages into <code>jekyll-source/_site</code> using <code>jekyll build</code></p></li>
+<li><p>removing all files and folders from my root directory, except for the <code>jekyll-source</code> directory</p></li>
+<li><p>copying the entire content of <code>jekyll-source/_site</code> into my root folder</p></li>
+</ul>
 
-I know this is not a great solution, but it gets the job done, and I was able to automate all of this in a [release script](https://github.com/JeroenMols/jeroenmols.github.io/blob/master/jekyll-code/release) that you can run by calling `.release` from the `jekyll-source` folder.
+<p>I know this is not a great solution, but it gets the job done, and I was able to automate all of this in a <a href="https://github.com/JeroenMols/jeroenmols.github.io/blob/master/jekyll-code/release">release script</a> that you can run by calling <code>.release</code> from the <code>jekyll-source</code> folder.</p>
 
->**Note**: I also considered two other options:
->
->- Use a `CNAME` file to redirect my main url into a subfolder. This does not work, as the `CNAME` file can only be used for top-level domains.
->- Use a placeholder `index.html` which redirect the main url into a subfolder.
->
->I didn't use any of those mechanisms as that would unnecessarily complicate my website url.
+<blockquote>
+<p><strong>Note</strong>: I also considered two other options:</p>
 
+<ul>
+<li>Use a <code>CNAME</code> file to redirect my main url into a subfolder. This does not work, as the <code>CNAME</code> file can only be used for top-level domains.</li>
+<li>Use a placeholder <code>index.html</code> which redirect the main url into a subfolder.</li>
+</ul>
 
-## Protips
-If you really want to make your site look spectacular:
+<p>I didn&#39;t use any of those mechanisms as that would unnecessarily complicate my website url.</p>
+</blockquote>
 
-- Site icon: add the following to the head of your `index.html` page:
-`<link rel="favicon-144-precomposed" sizes="144x144" href="<link_to_your_icon>">`
+<h2>Protips</h2>
 
-- Site toolbar/status bar color on Android: add the following to the head of your `index.html` page: `<meta name="theme-color" content="<your_color_hex>">`
+<p>If you really want to make your site look spectacular:</p>
 
+<ul>
+<li><p>Site icon: add the following to the head of your <code>index.html</code> page:
+<code>&lt;link rel=&quot;favicon-144-precomposed&quot; sizes=&quot;144x144&quot; href=&quot;&lt;link_to_your_icon&gt;&quot;&gt;</code></p></li>
+<li><p>Site toolbar/status bar color on Android: add the following to the head of your <code>index.html</code> page: <code>&lt;meta name=&quot;theme-color&quot; content=&quot;&lt;your_color_hex&gt;&quot;&gt;</code></p></li>
+</ul>
 
-## Conclusion
-I'm glad that I finally got my portfolio and blog up and running. My current solution might not be the best one in the world, but it is automated, maintainable and I can easily add blog posts in the future. Don't hesitate to look at my [GitHub repo](https://github.com/JeroenMols/jeroenmols.github.io) for the full source code. Hopefully the code and my post can help others to setup the same in the future.
+<h2>Conclusion</h2>
 
-Would I use Jekyll again if I would start over? Probably yes.
+<p>I&#39;m glad that I finally got my portfolio and blog up and running. My current solution might not be the best one in the world, but it is automated, maintainable and I can easily add blog posts in the future. Don&#39;t hesitate to look at my <a href="https://github.com/JeroenMols/jeroenmols.github.io">GitHub repo</a> for the full source code. Hopefully the code and my post can help others to setup the same in the future.</p>
 
-The only real limitation I ran into was due to the paginator combining the posts from both my portfolio and blog. This caused me to disable Jekyll completely and push the generated site directly to GitHub pages. While this really sucked, using another static site generator would also have forced me to do this (because GitHub only supports Jekyll). Furthermore combining two themes is already quite advanced, and if you stick to just one theme Jekyll is actually very convenient to use.
+<p>Would I use Jekyll again if I would start over? Probably yes.</p>
+
+<p>The only real limitation I ran into was due to the paginator combining the posts from both my portfolio and blog. This caused me to disable Jekyll completely and push the generated site directly to GitHub pages. While this really sucked, using another static site generator would also have forced me to do this (because GitHub only supports Jekyll). Furthermore combining two themes is already quite advanced, and if you stick to just one theme Jekyll is actually very convenient to use.</p>
 </p>
 
                             <ul class="list-inline item-details">

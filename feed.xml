@@ -5,8 +5,8 @@
     <description>Portfolio of Jeroen Mols, the Android developer you should hire.</description>
     <link>http://jeroenmols.com/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 15 Apr 2016 20:31:15 +0200</pubDate>
-    <lastBuildDate>Fri, 15 Apr 2016 20:31:15 +0200</lastBuildDate>
+    <pubDate>Sun, 17 Apr 2016 13:56:55 +0200</pubDate>
+    <lastBuildDate>Sun, 17 Apr 2016 13:56:55 +0200</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -94,6 +94,18 @@
       </item>
     
       <item>
+        <title>Het nieuwsblad</title>
+        <description>Next generation news app for one of the major Belgian news papers. It is written in Xamarin with a challenging multi branded, cross platform setup. All of the app content comes from a backend CMS allowing the look and feel to be completely changed without updating the app. This doesn&#39;t only include colors and texts, but also all settings, tabs and even layouts of lists can be fully customized.</description>
+        <pubDate>Wed, 01 Jul 2015 00:00:00 +0200</pubDate>
+        <link>http://jeroenmols.com/portfolio/2015/07/01/nieuwsblad/</link>
+        <guid isPermaLink="true">http://jeroenmols.com/portfolio/2015/07/01/nieuwsblad/</guid>
+        
+        
+        <category>portfolio</category>
+        
+      </item>
+    
+      <item>
         <title>How I created my blog</title>
         <description></description>
         <pubDate>Sat, 25 Apr 2015 00:00:00 +0200</pubDate>
@@ -111,18 +123,6 @@
         <pubDate>Mon, 19 Jan 2015 00:00:00 +0100</pubDate>
         <link>http://jeroenmols.com/portfolio/2015/01/19/landscapevideocamera/</link>
         <guid isPermaLink="true">http://jeroenmols.com/portfolio/2015/01/19/landscapevideocamera/</guid>
-        
-        
-        <category>portfolio</category>
-        
-      </item>
-    
-      <item>
-        <title>Saeco Avanti Espresso Machine</title>
-        <description>Android app to control a Saeco Avanti Espresso machine via Bluetooth LE.</description>
-        <pubDate>Wed, 03 Dec 2014 00:00:00 +0100</pubDate>
-        <link>http://jeroenmols.com/portfolio/2014/12/03/saecoavanti/</link>
-        <guid isPermaLink="true">http://jeroenmols.com/portfolio/2014/12/03/saecoavanti/</guid>
         
         
         <category>portfolio</category>

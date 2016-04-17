@@ -37,6 +37,15 @@ a.active {
     color: #d28445;
 }
 
+.success a,
+.success a:hover,
+.success a:focus,
+.success a:active,
+.success a.active {
+    outline: 0;
+    color: #2c3e50;
+}
+
 h1,
 h2,
 h3,

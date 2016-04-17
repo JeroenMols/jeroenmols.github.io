@@ -4,7 +4,7 @@
  <title>Jeroen Mols</title>
  <link href="http://jeroenmols.com/atom.xml" rel="self"/>
  <link href="http://jeroenmols.com/"/>
- <updated>2016-04-15T20:31:15+02:00</updated>
+ <updated>2016-04-17T13:56:55+02:00</updated>
  <id>http://jeroenmols.com</id>
  <author>
    <name>Jeroen Mols</name>
@@ -1228,6 +1228,14 @@ SEVERE: One or more listeners failed to start. Full details will be found in the
 
 &lt;p&gt;I have also uploaded a &lt;a href=&quot;https://github.com/JeroenMols/ArtifactoryExample&quot;&gt;complete example&lt;/a&gt; on GitHub for your reference.&lt;/p&gt;
 </content>
+ </entry>
+ 
+ <entry>
+   <title>Het nieuwsblad</title>
+   <link href="http://jeroenmols.com/portfolio/2015/07/01/nieuwsblad/"/>
+   <updated>2015-07-01T00:00:00+02:00</updated>
+   <id>http://jeroenmols.com/portfolio/2015/07/01/nieuwsblad</id>
+   <content type="html"></content>
  </entry>
  
  <entry>
