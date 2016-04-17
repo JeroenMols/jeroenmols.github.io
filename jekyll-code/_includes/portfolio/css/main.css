@@ -30,6 +30,15 @@ a.active {
     color: #{{ site.color.primary }};
 }
 
+.success a,
+.success a:hover,
+.success a:focus,
+.success a:active,
+.success a.active {
+    outline: 0;
+    color: #{{ site.color.secondary }};
+}
+
 h1,
 h2,
 h3,
