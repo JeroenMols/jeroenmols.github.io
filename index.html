@@ -117,6 +117,35 @@
 									</br>
 
 									
+									<div class="blogpost-overlay-header" style="background-image: url(/img/blog/methodcount/methodcount.png)">
+									<div class="blogpost-overlay-header-title">
+									  
+
+									<h1 class="blogpost-title">
+									  <a href="/blog/2016/05/06/methodcount/">
+									Efficiently reducing your method count
+									  </a>
+									</h1>
+
+									<span class="blogpost-date">06 May 2016</span>
+
+									
+									</div>
+									</div>
+									
+
+								</div>
+							</div>
+
+						
+						 
+					
+						
+							<div class="col-lg-6">
+								<div class="post">
+									</br>
+
+									
 									<div class="blogpost-overlay-header" style="background-image: url(/img/blog/droidconit16/droidconit.png)">
 									<div class="blogpost-overlay-header-title">
 									  
@@ -198,32 +227,6 @@
 						
 						 
 					
-						
-							<div class="col-lg-6">
-								<div class="post">
-									</br>
-
-									
-									<div class="blogpost-overlay-header" style="background-image: url(/img/blog/yearinreview15/yearinreview15.png)">
-									<div class="blogpost-overlay-header-title">
-									  
-
-									<h1 class="blogpost-title">
-									  <a href="/blog/2016/01/29/yearinreview/">
-									Year in review 2015
-									  </a>
-									</h1>
-
-									<span class="blogpost-date">29 Jan 2016</span>
-
-									
-									</div>
-									</div>
-									
-
-								</div>
-							</div>
-
 						
 						 
 					
@@ -521,6 +524,261 @@
 
      <!-- Portfolio Modals -->
  
+    <div class="portfolio-modal modal fade" id="portfolioModal-" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>Efficiently reducing your method count</h2>
+                            <hr class="star-primary">
+                            <img src="img/portfolio/img/blog/methodcount/methodcount.png" class="img-responsive img-centered" alt="">
+                            <p><p>As green field projects are a rare breed, chances are that you&#39;ve inherited a legacy code base. If you&#39;re as lucky as me, that code base has over 65k methods causing the build times to be boringly slow.</p>
+
+<p>Today I would like to show how you can visualize your current method count and understand what libraries are eating up the largest part of that. Next it&#39;s time to reduce said method count and remove that nasty multidex solution once and for all.</p>
+
+<p><br></p>
+
+<h2>Visualizing method count</h2>
+
+<p>The easiest and most attractive way (imho) to visualize the method count is by using the <a href="https://github.com/KeepSafe/dexcount-gradle-plugin">Dexcount Gradle Plugin</a>. Applying it to your project is as easy as adding a classpath dependency to your root <code>build.gradle</code> and applying the plugin to your App <code>build.gradle</code>.</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="c1">// root build.gradle file</span>
+<span class="n">buildscript</span> <span class="o">{</span>
+    <span class="n">repositories</span> <span class="o">{</span>
+        <span class="n">jcenter</span><span class="o">()</span> <span class="c1">// or mavenCentral()</span>
+    <span class="o">}</span>
+
+    <span class="n">dependencies</span> <span class="o">{</span>
+        <span class="n">classpath</span> <span class="s1">&#39;com.getkeepsafe.dexcount:dexcount-gradle-plugin:0.5.0&#39;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="c1">// app build.gradle file (apply AFTER Android plugin)</span>
+<span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">&#39;com.getkeepsafe.dexcount&#39;</span>
+</code></pre></div>
+<p>Running a normal project build <code>./gradlew assembleDebug</code> will now print out the current method count in the console:</p>
+
+<p><center><a href="/img/blog/methodcount/methodcount_output.png"><img src="/img/blog/methodcount/methodcount_output.png" alt="Method count output of template project with full Google Play Services"></a></center></p>
+
+<p>and generate an interactive graphical report in the outputs folder <code>build/outputs/dexcount/debugChart</code>:</p>
+
+<p><center><a href="/img/blog/methodcount/dexcount-googleplayservices/debugChart/index.html"><img src="/img/blog/methodcount/methodcount_graphic.gif" alt="Method count graphical output of template project with full Google Play Services"></a></center></p>
+
+<p>Click the graphic above to interact with it.</p>
+
+<p>Using the graphical representation of the method count for all packages in your app, it becomes really easy to find which libraries are consuming your precious method count. Some of the usual suspects are big monolithic libraries like <a href="https://github.com/google/guava">Guava</a> and the non-split-up <a href="https://developers.google.com/android/guides/overview#the_google_play_services_client_library">Google play services</a>. In the next section will see what we can do about these.</p>
+
+<p><br></p>
+
+<h2>Reducing method count</h2>
+
+<h3>Choosing the right libraries</h3>
+
+<p>Normally I recommend never to optimize unless you have a problem. But with method counts, I really advice you to consider the method count before you start using a library for two reasons:</p>
+
+<ol>
+<li>Replacing libraries in existing apps can be very challenging, if not almost impossible.</li>
+<li>Many developers are using huge libraries just to do simple things. (<code>Strings.isNullOrEmpty()</code> anyone?) Note that you don&#39;t need to use a library for everything!</li>
+</ol>
+
+<p>Fortunately there is a great website <a href="http://www.methodscount.com/">methodscount.com</a> that tells you the method count of a library before you start using it. This can really be helpful to avoid using &quot;large libraries&quot; which only add limited benefit to your app.</p>
+
+<h3>Replacing existing libraries</h3>
+
+<p>Often there are multiple libraries accomplishing the same goals. Take for instance image loading:</p>
+
+<table><thead>
+<tr>
+<th>Library</th>
+<th>Method count</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Picasso 2.5.2</td>
+<td>849</td>
+</tr>
+<tr>
+<td>Universal Image Loader 1.9.5</td>
+<td>1206</td>
+</tr>
+<tr>
+<td>Glide 3.7.0</td>
+<td>2879</td>
+</tr>
+<tr>
+<td>Fresco 0.9.0</td>
+<td>12984</td>
+</tr>
+</tbody></table>
+
+<p>Each of these libraries have their own benefits and features, so choose wisely and balance the features you are going to use versus the method count impact it will have.</p>
+
+<p>That being said, replacing libraries in existing projects can be incredibly hard and may not even be feasible on the short term. Later I&#39;ll suggest an alternative solution to reduce method count in existing libraries.</p>
+
+<h3>Running Proguard</h3>
+
+<p>Proguard is a great tool to strip out unused code from your app, but you typically only run it for release builds to save precious build time. If that&#39;s not really an issue for you, by all means you can also enable proguard for debug builds:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">buildTypes</span> <span class="o">{</span>
+    <span class="n">debug</span> <span class="o">{</span>
+        <span class="n">minifyEnabled</span> <span class="kc">true</span>
+        <span class="n">proguardFiles</span> <span class="nf">getDefaultProguardFile</span><span class="o">(</span><span class="s1">&#39;proguard-android.txt&#39;</span><span class="o">),</span> <span class="s1">&#39;proguard-rules.pro&#39;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+<h3>Reducing library size</h3>
+
+<p>If it&#39;s not feasible to replace an existing library or to run Proguard all the time, then it becomes really interesting. Because if Proguard can strip out code during a release build, why not use it ahead of time to create a modified version of a library with fewer methods?</p>
+
+<p>Well this is possible, but you&#39;ll have to manually specify which parts of the library you are going to use! This is because Proguard doesn&#39;t have a context during library stripping of what methods your application will be needing and what not.</p>
+
+<p>Let&#39;s reproduce one of the projects I recently started working on as an example. Guava was used throughout the app extensively, making it very hard/risky to remove. But because of the huge method count we were constantly flirting with the 65k method limit and had to enable multi dex.</p>
+
+<p><center><a href="/img/blog/methodcount/dexcount-guava/debugChart/index.html"><img src="/img/blog/methodcount/methodcount_graphic_guava.gif" alt="Method count graphical output of sample project with Guava"></a></center></p>
+
+<p>First of all you need to know what parts of the library the app was actually using. This can easily be done by running the following command in your <code>src</code> folder.</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">grep -roh . -e <span class="s1">&#39;com.google.common.*&#39;</span> <span class="p">|</span> sort <span class="p">|</span> uniq
+</code></pre></div>
+<p>This simply looks for all import statements starting with the library prefix (for Guava that is <code>com.google.common</code>), removes all clutter from the grep output, sorts it and takes all unique references.</p>
+
+<p><center><a href="/img/blog/methodcount/grep_output.png"><img src="/img/blog/methodcount/grep_output.png" alt="Grep output for references to Guava in an existing project"></a></center></p>
+
+<p>Next we&#39;ll create a simple proguard configuration that keeps all top level packages, without any obfuscation or optimizations.</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="o">-</span><span class="n">dontoptimize</span>
+<span class="o">-</span><span class="n">dontobfuscate</span>
+
+<span class="o">-</span><span class="n">keep</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">base</span><span class="o">.**</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="o">*;</span>
+<span class="o">}</span>
+
+<span class="o">-</span><span class="n">keep</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">collect</span><span class="o">.**</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="o">*;</span>
+<span class="o">}</span>
+
+<span class="o">-</span><span class="n">keep</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">primitives</span><span class="o">.**</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="o">*;</span>
+<span class="o">}</span>
+
+<span class="o">-</span><span class="n">keep</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">util</span><span class="o">.**</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="o">*;</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>Now we&#39;ll use a little Gradle script that takes a library as an input, runs Proguard on it an creates a new library as an output. If you&#39;re interested I advice you look at the <a href="https://github.com/JeroenMols/MethodCountExample/blob/master/shrink_lib/build.gradle">source code</a>, which is based on a script by <a href="https://github.com/ligi/shrinkGuava">@mr_ligi</a>. This gradle script outputs a shrinked library version, which can be copied to the libs folder of your project.</p>
+
+<p>Looking at our example, this simple process saved us 4000 methods and we are only just above the dex method limit.</p>
+
+<p><center><a href="/img/blog/methodcount/dexcount-packageshrink/debugChart/index.html"><img src="/img/blog/methodcount/methodcount_graphic_packageshrink.gif" alt="Method count graphical output of sample project with stripped out Guava"></a></center></p>
+
+<p>Back to the drawing board, because this isn&#39;t nearly enough! Turns out the <code>collect</code> package by itself has over 8000 methods, so I decided to just keep certain classes instead of the entire package.</p>
+
+<p>This more aggressive approach will most likely cause some compile errors when you try to use the library in your app, so I had to iterate and add some extra classes until all of those were solved. The resulting Proguard configuration looks like this:</p>
+<div class="highlight"><pre><code class="language-Java" data-lang="Java"><span class="o">-</span><span class="n">dontoptimize</span>
+<span class="o">-</span><span class="n">dontobfuscate</span>
+
+<span class="o">-</span><span class="n">keep</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">base</span><span class="o">.**</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="o">*;</span>
+<span class="o">}</span>
+
+<span class="o">-</span><span class="n">keep</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">collect</span><span class="o">.</span><span class="na">Sets</span>
+<span class="o">-</span><span class="n">keepclassmembers</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">collect</span><span class="o">.</span><span class="na">Sets</span><span class="o">**</span> <span class="o">{</span>
+ <span class="o">*;</span>
+ <span class="o">}</span>
+
+ <span class="o">-</span><span class="n">keep</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">collect</span><span class="o">.</span><span class="na">Collections2</span>
+ <span class="o">-</span><span class="n">keepclassmembers</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">collect</span><span class="o">.</span><span class="na">Collections2</span><span class="o">**</span> <span class="o">{</span>
+  <span class="o">*;</span>
+  <span class="o">}</span>
+
+<span class="o">-</span><span class="n">keep</span> <span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">collect</span><span class="o">.</span><span class="na">Lists</span>
+<span class="o">-</span><span class="n">keepclassmembers</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">collect</span><span class="o">.</span><span class="na">Lists</span><span class="o">**</span> <span class="o">{</span>
+ <span class="o">*;</span>
+ <span class="o">}</span>
+
+<span class="o">-</span><span class="n">keep</span> <span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">collect</span><span class="o">.</span><span class="na">Iterables</span>
+<span class="o">-</span><span class="n">keepclassmembers</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">collect</span><span class="o">.</span><span class="na">Iterables</span><span class="o">**</span> <span class="o">{</span>
+ <span class="o">*;</span>
+ <span class="o">}</span>
+
+<span class="o">-</span><span class="n">keep</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">collect</span><span class="o">.</span><span class="na">ImmutableList</span><span class="o">.**</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="o">*;</span>
+<span class="o">}</span>
+
+<span class="o">-</span><span class="n">keep</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">io</span><span class="o">.</span><span class="na">CharStreams</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="o">*;</span>
+<span class="o">}</span>
+
+<span class="o">-</span><span class="n">keep</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">collect</span><span class="o">.</span><span class="na">HashMultiset</span>
+<span class="o">-</span><span class="n">keepclassmembers</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">collect</span><span class="o">.</span><span class="na">HashMultiset</span><span class="o">**</span> <span class="o">{</span>
+ <span class="o">*;</span>
+ <span class="o">}</span>
+
+<span class="o">-</span><span class="n">keep</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">collect</span><span class="o">.</span><span class="na">HashBiMap</span>
+<span class="o">-</span><span class="n">keepclassmembers</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">collect</span><span class="o">.</span><span class="na">HashBiMap</span><span class="o">**</span> <span class="o">{</span>
+ <span class="o">*;</span>
+ <span class="o">}</span>
+
+<span class="o">-</span><span class="n">keep</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">javax</span><span class="o">.</span><span class="na">annotation</span><span class="o">.</span><span class="na">Nullable</span><span class="o">.**</span> <span class="o">{</span>
+     <span class="kd">public</span> <span class="o">*;</span>
+ <span class="o">}</span>
+
+<span class="o">-</span><span class="n">keep</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">util</span><span class="o">.**</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="o">*;</span>
+<span class="o">}</span>
+
+<span class="o">-</span><span class="n">keep</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">primitives</span><span class="o">.**</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="o">*;</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>Resulting in an extra decrease of almost 4500 methods, which brings the total removed methods to 8500!</p>
+
+<p><center><a href="/img/blog/methodcount/dexcount-agressiveshrink/debugChart/index.html"><img src="/img/blog/methodcount/methodcount_graphic_agressiveshrink.gif" alt="Method count graphical output of sample project with aggressively stripped out Guava"></a></center></p>
+
+<p>Further our build times have not only improved because we no longer need multidexing, but also because the compiler now has less code to process.</p>
+
+<p>Obviously your mileage will vary depending on what library you choose. For low coupled, highly cohesive libraries (like Guava), this technique works really well, but for other libraries it might not.</p>
+
+<blockquote>
+<p><strong>Disclaimer</strong></p>
+
+<p>The technique presented above should be used with caution! Because instead of relying on Proguard to strip out what&#39;s not needed, we&#39;re now doing that manually, which is more error prone.</p>
+</blockquote>
+
+<p><br></p>
+
+<h2>Wrap-up</h2>
+
+<p>Hitting the 65k method limit is a real pain, but choosing wisely what libraries you use can already bring you a long way. Fortunately there are great tools like the <a href="https://github.com/KeepSafe/dexcount-gradle-plugin">Dexcount Gradle Plugin</a> and <a href="http://www.methodscount.com/">methodscount.com</a> to help with these decisions.</p>
+
+<p>For existing projects, always try to replace existing large method libraries with alternatives. If this is not feasible and you feel comfortably using Proguard, you can use the latter to preprocess and shrink existing libraries.</p>
+
+<p>As always you can reach me <a href="https://twitter.com/molsjeroen">@molsjeroen</a> on twitter, or leave a comment below!</p>
+</p>
+
+                            <ul class="list-inline item-details">
+                                <li>Client:
+                                    <strong><a href=></a>
+                                    </strong>
+                                </li>
+                                <li>Date:
+                                    <strong></strong>
+                                </li>
+                                <li>Download:
+                                    <strong><a href=></a>
+                                    </strong>
+                                </li>
+                            </ul>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="portfolio-modal modal fade" id="portfolioModal-" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
