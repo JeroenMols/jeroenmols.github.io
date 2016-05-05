@@ -4,7 +4,7 @@
  <title>Jeroen Mols</title>
  <link href="http://jeroenmols.com/atom.xml" rel="self"/>
  <link href="http://jeroenmols.com/"/>
- <updated>2016-05-06T01:11:59+02:00</updated>
+ <updated>2016-05-06T01:17:08+02:00</updated>
  <id>http://jeroenmols.com</id>
  <author>
    <name>Jeroen Mols</name>
@@ -232,6 +232,8 @@
 &lt;p&gt;Hitting the 65k method limit is a real pain, but choosing wisely what libraries you use can already bring you a long way. Fortunately there are great tools like the &lt;a href=&quot;https://github.com/KeepSafe/dexcount-gradle-plugin&quot;&gt;Dexcount Gradle Plugin&lt;/a&gt; and &lt;a href=&quot;http://www.methodscount.com/&quot;&gt;methodscount.com&lt;/a&gt; to help with these decisions.&lt;/p&gt;
 
 &lt;p&gt;For existing projects, always try to replace existing large method libraries with alternatives. If this is not feasible and you feel comfortably using Proguard, you can use the latter to preprocess and shrink existing libraries.&lt;/p&gt;
+
+&lt;p&gt;A basic example project with everything in this blogpost integrated is available on &lt;a href=&quot;https://github.com/JeroenMols/MethodCountExample&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;
 </content>
