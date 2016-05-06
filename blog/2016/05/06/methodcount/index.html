@@ -183,7 +183,7 @@
 
 <h3>Running Proguard</h3>
 
-<p>Proguard is a great tool to strip out unused code from your app, but you typically only run it for release builds to save precious build time. If that&#39;s not really an issue for you, by all means you can also enable proguard for debug builds:</p>
+<p>Proguard is a great tool to strip out unused code from your app, but you typically only run it for release builds to save precious build time. If that&#39;s not really an issue for you, by all means you can also enable Proguard for debug builds:</p>
 <div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">buildTypes</span> <span class="o">{</span>
     <span class="n">debug</span> <span class="o">{</span>
         <span class="n">minifyEnabled</span> <span class="kc">true</span>
@@ -197,7 +197,7 @@
 
 <p>Well this is possible, but you&#39;ll have to manually specify which parts of the library you are going to use! This is because Proguard doesn&#39;t have a context during library stripping of what methods your application will be needing and what not.</p>
 
-<p>Let&#39;s reproduce one of the projects I recently started working on as an example. Guava was used throughout the app extensively, making it very hard/risky to remove. But because of the huge method count we were constantly flirting with the 65k method limit and had to enable multi dex.</p>
+<p>Let&#39;s reproduce one of the projects I recently started working on as an example. Guava was used throughout the app extensively, making it very hard/risky to remove. But because of the huge method count we were constantly flirting with the 65k method limit and had to enable multidex.</p>
 
 <p><center><a href="/img/blog/methodcount/dexcount-guava/debugChart/index.html"><img src="/img/blog/methodcount/methodcount_graphic_guava.gif" alt="Method count graphical output of sample project with Guava"></a></center></p>
 
@@ -208,7 +208,7 @@
 
 <p><center><a href="/img/blog/methodcount/grep_output.png"><img src="/img/blog/methodcount/grep_output.png" alt="Grep output for references to Guava in an existing project"></a></center></p>
 
-<p>Next we&#39;ll create a simple proguard configuration that keeps all top level packages, without any obfuscation or optimizations.</p>
+<p>Next we&#39;ll create a simple Proguard configuration that keeps all top level packages, without any obfuscation or optimizations.</p>
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="o">-</span><span class="n">dontoptimize</span>
 <span class="o">-</span><span class="n">dontobfuscate</span>
 
@@ -228,7 +228,7 @@
     <span class="kd">public</span> <span class="o">*;</span>
 <span class="o">}</span>
 </code></pre></div>
-<p>Now we&#39;ll use a little Gradle script that takes a library as an input, runs Proguard on it an creates a new library as an output. If you&#39;re interested I advice you look at the <a href="https://github.com/JeroenMols/MethodCountExample/blob/master/shrink_lib/build.gradle">source code</a>, which is based on a script by <a href="https://github.com/ligi/shrinkGuava">@mr_ligi</a>. This gradle script outputs a shrinked library version, which can be copied to the libs folder of your project.</p>
+<p>Now we&#39;ll use a little Gradle script that takes a library as an input, runs Proguard on it an creates a new library as an output. If you&#39;re interested I advice you look at the <a href="https://github.com/JeroenMols/MethodCountExample/blob/master/shrink_lib/build.gradle">source code</a>, which is based on a script by <a href="https://github.com/ligi/shrinkGuava">@mr_ligi</a>. This Gradle script outputs a shrinked library version, which can be copied to the libs folder of your project.</p>
 
 <p>Looking at our example, this simple process saved us 4000 methods and we are only just above the dex method limit.</p>
 
