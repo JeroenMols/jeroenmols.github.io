@@ -37,18 +37,18 @@ title: Home
 </div>
 
 <div class="pagination">
-  {% if paginator.next_page %}
-    <a class="pagination-item older" href="{{ site.blogpagingbaseurl }}page{{paginator.next_page}}">Older</a>
-  {% else %}
-    <span class="pagination-item older">Older</span>
-  {% endif %}
   {% if paginator.previous_page %}
     {% if paginator.page == 2 %}
-      <a class="pagination-item newer" href="{{ site.blogpagingbaseurl }}">Newer</a>
+      <a class="pagination-item newer" href="{{ site.blogbaseurl }}{{ site.blogurlpart }}">Newer</a>
     {% else %}
-      <a class="pagination-item newer" href="{{ site.blogpagingbaseurl }}page{{paginator.previous_page}}">Newer</a>
+      <a class="pagination-item newer" href="{{ site.blogbaseurl }}{{ site.blogurlpart }}/page{{paginator.previous_page}}">Newer</a>
     {% endif %}
   {% else %}
     <span class="pagination-item newer">Newer</span>
+  {% endif %}
+  {% if paginator.next_page %}
+    <a class="pagination-item older" href="{{ site.blogbaseurl }}{{ site.blogurlpart }}/page{{paginator.next_page}}">Older</a>
+  {% else %}
+    <span class="pagination-item older">Older</span>
   {% endif %}
 </div>
