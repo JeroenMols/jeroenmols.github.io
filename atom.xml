@@ -4,13 +4,144 @@
  <title>Jeroen Mols</title>
  <link href="http://jeroenmols.com/atom.xml" rel="self"/>
  <link href="http://jeroenmols.com/"/>
- <updated>2016-05-07T21:42:37+02:00</updated>
+ <updated>2016-06-17T19:18:55+02:00</updated>
  <id>http://jeroenmols.com</id>
  <author>
    <name>Jeroen Mols</name>
    <email></email>
  </author>
 
+ 
+ <entry>
+   <title>Droidcon Berlin recap</title>
+   <link href="http://jeroenmols.com/blog/2016/06/18/droidconde/"/>
+   <updated>2016-06-18T00:00:00+02:00</updated>
+   <id>http://jeroenmols.com/blog/2016/06/18/droidconde</id>
+   <content type="html">&lt;p&gt;Having founded the entire Droidcon franchise in 2009, Droidcon Berlin is a magical conference to be at. Not only do they have an awesome lineup of speakers (including yours truly). But they also organize great after hour events. Further they&amp;#39;re the first conference ever where I didn&amp;#39;t have any Wi-Fi issues (looking at you #io16).&lt;/p&gt;
+
+&lt;p&gt;As there were four different tracks, it was obviously not possible to attend every session. But I did notice some general themes and would like to share my personal highlights with you.&lt;/p&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h2&gt;Architecture&lt;/h2&gt;
+
+&lt;p&gt;While Android is maturing as a platform, developers are also professionalizing their applications. Every growing apps mean that testability, maintenance and refactoring is only increasing in importance.&lt;/p&gt;
+
+&lt;p&gt;My key takeaways:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;MVP is a UI pattern not an architecture&lt;/li&gt;
+&lt;li&gt;All dependencies should point in one direction&lt;/li&gt;
+&lt;li&gt;Don&amp;#39;t be dogmatic&lt;/li&gt;
+&lt;li&gt;Users don&amp;#39;t care about your architecture&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h2&gt;IoT&lt;/h2&gt;
+
+&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/droidconde16/iotcoffee.jpg&quot;&gt;&lt;img src=&quot;/img/blog/droidconde16/iotcoffee.jpg&quot; alt=&quot;Philips Hue Coffee&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+
+&lt;p&gt;Interest in IoT products is steadily increasing, but as a developer it is still not easy to create IoT apps. Properly handling things like Bluetooth LE keeps on being plagued by device specific issues. And seemingly simple problems like properly handling a user sign in are still extremely complex.&lt;/p&gt;
+
+&lt;p&gt;My key takeaways:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;When using BT LE, only support API 21 or higher&lt;/li&gt;
+&lt;li&gt;Handle all bluetooth LE callbacks on separate HandlerThread&lt;/li&gt;
+&lt;li&gt;Firebase can handle all sign in complexity for you&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h2&gt;Designing for the next billion&lt;/h2&gt;
+
+&lt;p&gt;Where we used to be educated that &amp;quot;a developer phone is not a user phone&amp;quot;, this message is now morphing towards people in emerging markets. Designing for such markets doesn&amp;#39;t only require functional changes like developing for offline first, but it even requires you to completely think your UX.&lt;/p&gt;
+
+&lt;p&gt;My key takeaways:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;access to cheap fast internet is not a given&lt;/li&gt;
+&lt;li&gt;battery life is even more precious in emerging countries&lt;/li&gt;
+&lt;li&gt;understandable UX when smartphone is your first computer&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h2&gt;Other hot topics&lt;/h2&gt;
+
+&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/droidconde16/alphastates.jpg&quot;&gt;&lt;img src=&quot;/img/blog/droidconde16/alphastates.jpg&quot; alt=&quot;You can use alpha values for button states in XML&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+
+&lt;p&gt;Besides these, also a lot of attention was spent on testing and tooling. There were great talks about styling, theming and creating custom views. And many sessions also dived deeper into optimizing your apps performance. Bit unfortunate that there weren&amp;#39;t any more talks on the new Android N features.&lt;/p&gt;
+
+&lt;p&gt;My key takeaways:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You can use alpha values for button states in XML&lt;/li&gt;
+&lt;li&gt;Use overlay themes instead of changing text colors&lt;/li&gt;
+&lt;li&gt;Tests should be fast, focussed and reliable&lt;/li&gt;
+&lt;li&gt;It maybe worth to convert an existing app to RXJava, but keep it contained to particular layers. (e.g. Webservice)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h2&gt;Sketchnoting&lt;/h2&gt;
+
+&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/droidconde16/sketchnoting.jpg&quot;&gt;&lt;img src=&quot;/img/blog/droidconde16/sketchnoting.jpg&quot; alt=&quot;Corey Leigh Latislaw creating a sketch note&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+
+&lt;p&gt;Sketch notes are really awesome! In this, creative people summarize a talk into a very cool one pager. This doesn&amp;#39;t only look great, but it&amp;#39;s also by far the easiest way to get a high level view of a talk.&lt;/p&gt;
+
+&lt;p&gt;At Droidcon both &lt;a href=&quot;https://twitter.com/corey_latislaw&quot;&gt;Corey Leigh Latislaw&lt;/a&gt; and &lt;a href=&quot;https://twitter.com/TeresaHolfeld&quot;&gt;Teresa Holfeld&lt;/a&gt; were actively creating sketch notes. You should check their twitter feeds for the awesome content they created.&lt;/p&gt;
+
+&lt;p&gt;Just a sample:&lt;/p&gt;
+
+&lt;p&gt;&lt;center&gt;&lt;blockquote class=&quot;twitter-tweet&quot; data-lang=&quot;en&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;Offline First by &lt;a href=&quot;https://twitter.com/glynn_bird&quot;&gt;@glynn_bird&lt;/a&gt; at &lt;a href=&quot;https://twitter.com/hashtag/droidconDe?src=hash&quot;&gt;#droidconDe&lt;/a&gt;. &lt;a href=&quot;https://twitter.com/hashtag/sketchnote?src=hash&quot;&gt;#sketchnote&lt;/a&gt; &lt;a href=&quot;https://t.co/SkeriMsigT&quot;&gt;pic.twitter.com/SkeriMsigT&lt;/a&gt;&lt;/p&gt;&amp;mdash; Corey Leigh Latislaw (@corey_latislaw) &lt;a href=&quot;https://twitter.com/corey_latislaw/status/743390864660135937&quot;&gt;June 16, 2016&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/center&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;center&gt;&lt;blockquote class=&quot;twitter-tweet&quot; data-lang=&quot;en&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;Themes and Styles demystified: talk by &lt;a href=&quot;https://twitter.com/chrisbanes&quot;&gt;@chrisbanes&lt;/a&gt; &lt;a href=&quot;https://twitter.com/hashtag/droidconDE?src=hash&quot;&gt;#droidconDE&lt;/a&gt; &lt;a href=&quot;https://twitter.com/hashtag/sketchnotes?src=hash&quot;&gt;#sketchnotes&lt;/a&gt; &lt;a href=&quot;https://t.co/mXNcW8lGRS&quot;&gt;pic.twitter.com/mXNcW8lGRS&lt;/a&gt;&lt;/p&gt;&amp;mdash; Teresa Holfeld (@TeresaHolfeld) &lt;a href=&quot;https://twitter.com/TeresaHolfeld/status/743438928666034176&quot;&gt;June 16, 2016&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/center&gt;&lt;/p&gt;
+
+&lt;p&gt;Thanks for both of them for creating such great summaries.&lt;/p&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h2&gt;Conference slides&lt;/h2&gt;
+
+&lt;p&gt;While the conference organizers will publish all slides very soon, I can image that quite a few people are already looking for a sneak preview. Hence I bundled everything I could already gather from socials.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/jeroenmols/testing-made-sweet-with-a-mockito&quot;&gt;Testing made sweet with a Mockito&lt;/a&gt; by Jeroen Mols&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/jonreeve/reverse-engineering-is-not-just-for-hackers&quot;&gt;Reverse engineering is not just for hackers&lt;/a&gt; by Jon Reeve&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.dropbox.com/s/gptg2di0j67xz04/Droidcon%20Berlin%202016.key?dl=0&quot;&gt;Refactoring Plaid - A reactive MVP approach&lt;/a&gt; by Hannes Dorfmann&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/aselims/android-and-iot-at-droidconde-16&quot;&gt;Android &amp;amp; IoT&lt;/a&gt; by Selim Salman&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.slideshare.net/dpreussler/unit-testing-without-robolectric-droidcon-berlin-2016&quot;&gt;Unit testing without Robolectric&lt;/a&gt; by
+Danny Preussler&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/alosdev/perfmatters-for-android-droidcon-berlin-2016&quot;&gt;#Perfmatters for Android&lt;/a&gt; by Hasan Hosgel&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/nibble/life-of-android-enterprise-developers-in-the-age-of-android-for-work&quot;&gt;Life of Android Enterprise Developers in the age of Android for Work&lt;/a&gt; by Pietro Maggi&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.slideshare.net/Nilhcem/the-2016-android-developer-toolbox-berlin&quot;&gt;The 2016 Android Developer Toolbox&lt;/a&gt; by Gautier Mechling&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/erikhellman/practical-bluetooth-low-energy-on-android&quot;&gt;Practical Bluetooth Low Energy on Android&lt;/a&gt; by Erik Hellman&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.slideshare.net/MarcosPlacona/contextual-communications-and-why-you-should-care-droidcon-de&quot;&gt;Contextual Communications And Why You Should Care&lt;/a&gt; by Marcos Placona&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/radzio/deep-dive-into-android-data-binding&quot;&gt;Deep dive into Android Data Binding&lt;/a&gt; by Radek Piekarz&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://docs.google.com/presentation/d/1Fldq6lWkrVeBdDyPwMQ7jkItZ1m2XMpDXQzu3IwbSE8/edit#slide=id.p&quot;&gt;Let&amp;#39;s get physical&lt;/a&gt; by Albrecht Noll and Pascal Welsch&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.slideshare.net/polanskitomasz&quot;&gt;Testing Why? When? How?&lt;/a&gt; by Tomasz Polański&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Slides of similar talks by same speakers used at different conferences.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/randomlytyping/babbq-2015-loving-lean-layouts&quot;&gt;Loving lean layouts&lt;/a&gt; by Huyen Tue Dao&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/dorvaryn/let-it-flow&quot;&gt;Let it flow - unidirectional data flow architecture on Android&lt;/a&gt; by Benjamin Augustin&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/lyslydia/were-all-ux&quot;&gt;We&amp;#39;re all UX!&lt;/a&gt; by Lydia Selimalhigazi and Caroline Smith&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.slideshare.net/seamaster29/classshark-android-and-java-executables-browser&quot;&gt;10 ways to analyse runtime failure using Classy Shark&lt;/a&gt; by Boris Farber&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h2&gt;Credits&lt;/h2&gt;
+
+&lt;p&gt;Thanks to the entire Droidcon Berlin team for organizing such a great conference and to all sponsers for their support. Keep up the awesome job!&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Efficiently reducing your method count</title>
