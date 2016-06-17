@@ -4,7 +4,7 @@
  <title>Jeroen Mols</title>
  <link href="http://jeroenmols.com/atom.xml" rel="self"/>
  <link href="http://jeroenmols.com/"/>
- <updated>2016-06-17T19:18:55+02:00</updated>
+ <updated>2016-06-17T22:31:20+02:00</updated>
  <id>http://jeroenmols.com</id>
  <author>
    <name>Jeroen Mols</name>
@@ -55,6 +55,8 @@
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
 
 &lt;h2&gt;Designing for the next billion&lt;/h2&gt;
+
+&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/droidconde16/nextbillion.jpg&quot;&gt;&lt;img src=&quot;/img/blog/droidconde16/nextbillion.jpg&quot; alt=&quot;Philips Hue Coffee&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
 
 &lt;p&gt;Where we used to be educated that &amp;quot;a developer phone is not a user phone&amp;quot;, this message is now morphing towards people in emerging markets. Designing for such markets doesn&amp;#39;t only require functional changes like developing for offline first, but it even requires you to completely think your UX.&lt;/p&gt;
 
