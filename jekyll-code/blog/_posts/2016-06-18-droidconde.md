@@ -90,6 +90,8 @@ Thanks for both of them for creating such great summaries.
 ## Conference slides
 While the conference organizers will publish all slides very soon, I can image that quite a few people are already looking for a sneak preview. Hence I bundled everything I could already gather from socials.
 
+... section still under development
+
 - [Testing made sweet with a Mockito](https://speakerdeck.com/jeroenmols/testing-made-sweet-with-a-mockito) by Jeroen Mols
 - [Reverse engineering is not just for hackers](https://speakerdeck.com/jonreeve/reverse-engineering-is-not-just-for-hackers) by Jon Reeve
 - [Refactoring Plaid - A reactive MVP approach](https://www.dropbox.com/s/gptg2di0j67xz04/Droidcon%20Berlin%202016.key?dl=0) by Hannes Dorfmann
@@ -104,6 +106,9 @@ Danny Preussler
 - [Deep dive into Android Data Binding](https://speakerdeck.com/radzio/deep-dive-into-android-data-binding) by Radek Piekarz
 - [Let's get physical](https://docs.google.com/presentation/d/1Fldq6lWkrVeBdDyPwMQ7jkItZ1m2XMpDXQzu3IwbSE8/edit#slide=id.p) by Albrecht Noll and Pascal Welsch
 - [Testing Why? When? How?](http://www.slideshare.net/polanskitomasz) by Tomasz Polański
+- [Adopting RxJava on Airbnb Android](https://speakerdeck.com/felipecsl/adopting-rxjava-on-airbnb-android) by Felipe Lima
+- [Elegant?? Unit Testing](https://speakerdeck.com/guardiola31337/elegant-unit-testing-droidcon-berlin-2016) by Pablo Guardiola
+- [Material design custom views](https://docs.google.com/presentation/d/1JaTb9KDMtE9-9g9zRIXKzLB5WwGVVEI8F-wGtNSo-0c/edit#slide=id.ge54df3a86_0_53) by Said Tahsin Dane
 
 Slides of similar talks by same speakers used at different conferences.
 
