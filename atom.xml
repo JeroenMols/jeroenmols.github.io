@@ -4,7 +4,7 @@
  <title>Jeroen Mols</title>
  <link href="http://jeroenmols.com/atom.xml" rel="self"/>
  <link href="http://jeroenmols.com/"/>
- <updated>2016-06-19T22:01:49+02:00</updated>
+ <updated>2016-06-20T09:01:10+02:00</updated>
  <id>http://jeroenmols.com</id>
  <author>
    <name>Jeroen Mols</name>
@@ -116,7 +116,7 @@
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/jeroenmols/testing-made-sweet-with-a-mockito&quot;&gt;Testing made sweet with a Mockito&lt;/a&gt; by Jeroen Mols&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/jonreeve/reverse-engineering-is-not-just-for-hackers&quot;&gt;Reverse engineering is not just for hackers&lt;/a&gt; by Jon Reeve&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://www.dropbox.com/s/gptg2di0j67xz04/Droidcon%20Berlin%202016.key?dl=0&quot;&gt;Refactoring Plaid - A reactive MVP approach&lt;/a&gt; by Hannes Dorfmann&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/sockeqwe/refactoring-plaid-a-reactive-mvp-approach&quot;&gt;Refactoring Plaid - A reactive MVP approach&lt;/a&gt; by Hannes Dorfmann&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/aselims/android-and-iot-at-droidconde-16&quot;&gt;Android &amp;amp; IoT&lt;/a&gt; by Selim Salman&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;http://www.slideshare.net/dpreussler/unit-testing-without-robolectric-droidcon-berlin-2016&quot;&gt;Unit testing without Robolectric&lt;/a&gt; by
 Danny Preussler&lt;/li&gt;
@@ -134,6 +134,7 @@ Danny Preussler&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://photos.google.com/share/AF1QipPpuNyuATl-Ae09WzlXkxyHXxoOxZ_-uXLKB4uALR3bG3vnpcYLl2UIAKoNYGzd-g?key=X0o2U3EyLVdRWkxfQm9hUG5uZGUtN0wwc2UwTnpB&quot;&gt;Android TV: Building apps with Google&amp;#39;s Leanback Library&lt;/a&gt; by Joe Birch&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/scompt/screenshot-your-entire-app&quot;&gt;Screenshot your Entire App&lt;/a&gt; by Edward Dale&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;http://www.slideshare.net/AgentK/little-helpers-for-android-development-with-kotlin&quot;&gt;Little helpers for Android development with Kotlin&lt;/a&gt; by Kai Koenig&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/sergiiz/effective-android-development&quot;&gt;Effective Android Development&lt;/a&gt; by Sergii Zhuk&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Slides of similar talks by same speakers used at different conferences.&lt;/p&gt;
