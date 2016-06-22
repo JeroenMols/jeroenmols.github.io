@@ -4,7 +4,7 @@
  <title>Jeroen Mols</title>
  <link href="http://jeroenmols.com/atom.xml" rel="self"/>
  <link href="http://jeroenmols.com/"/>
- <updated>2016-06-20T09:01:10+02:00</updated>
+ <updated>2016-06-22T11:00:07+02:00</updated>
  <id>http://jeroenmols.com</id>
  <author>
    <name>Jeroen Mols</name>
@@ -1600,14 +1600,6 @@ SEVERE: One or more listeners failed to start. Full details will be found in the
  </entry>
  
  <entry>
-   <title>Het nieuwsblad</title>
-   <link href="http://jeroenmols.com/portfolio/2015/07/01/nieuwsblad/"/>
-   <updated>2015-07-01T00:00:00+02:00</updated>
-   <id>http://jeroenmols.com/portfolio/2015/07/01/nieuwsblad</id>
-   <content type="html"></content>
- </entry>
- 
- <entry>
    <title>How I created my blog</title>
    <link href="http://jeroenmols.com/blog/2015/04/25/blog-creation/"/>
    <updated>2015-04-25T00:00:00+02:00</updated>
@@ -1786,78 +1778,6 @@ SEVERE: One or more listeners failed to start. Full details will be found in the
 
 &lt;p&gt;The only real limitation I ran into was due to the paginator combining the posts from both my portfolio and blog. This caused me to disable Jekyll completely and push the generated site directly to GitHub pages. While this really sucked, using another static site generator would also have forced me to do this (because GitHub only supports Jekyll). Furthermore combining two themes is already quite advanced, and if you stick to just one theme Jekyll is actually very convenient to use.&lt;/p&gt;
 </content>
- </entry>
- 
- <entry>
-   <title>LandscapeVideoCamera</title>
-   <link href="http://jeroenmols.com/portfolio/2015/01/19/landscapevideocamera/"/>
-   <updated>2015-01-19T00:00:00+01:00</updated>
-   <id>http://jeroenmols.com/portfolio/2015/01/19/landscapevideocamera</id>
-   <content type="html"></content>
- </entry>
- 
- <entry>
-   <title>Saeco Avanti Espresso Machine</title>
-   <link href="http://jeroenmols.com/portfolio/2014/12/03/saecoavanti/"/>
-   <updated>2014-12-03T00:00:00+01:00</updated>
-   <id>http://jeroenmols.com/portfolio/2014/12/03/saecoavanti</id>
-   <content type="html"></content>
- </entry>
- 
- <entry>
-   <title>Lighting Point of Sale</title>
-   <link href="http://jeroenmols.com/portfolio/2014/08/31/lightingpos/"/>
-   <updated>2014-08-31T00:00:00+02:00</updated>
-   <id>http://jeroenmols.com/portfolio/2014/08/31/lightingpos</id>
-   <content type="html"></content>
- </entry>
- 
- <entry>
-   <title>Philips Smart Air</title>
-   <link href="http://jeroenmols.com/portfolio/2014/06/28/smartair/"/>
-   <updated>2014-06-28T00:00:00+02:00</updated>
-   <id>http://jeroenmols.com/portfolio/2014/06/28/smartair</id>
-   <content type="html"></content>
- </entry>
- 
- <entry>
-   <title>Event App Platform</title>
-   <link href="http://jeroenmols.com/portfolio/2014/02/15/eventapp/"/>
-   <updated>2014-02-15T00:00:00+01:00</updated>
-   <id>http://jeroenmols.com/portfolio/2014/02/15/eventapp</id>
-   <content type="html"></content>
- </entry>
- 
- <entry>
-   <title>Tomorrowland Radio</title>
-   <link href="http://jeroenmols.com/portfolio/2013/12/10/tomorrowlandradio/"/>
-   <updated>2013-12-10T00:00:00+01:00</updated>
-   <id>http://jeroenmols.com/portfolio/2013/12/10/tomorrowlandradio</id>
-   <content type="html"></content>
- </entry>
- 
- <entry>
-   <title>AirStudio+</title>
-   <link href="http://jeroenmols.com/portfolio/2013/10/15/airstudio/"/>
-   <updated>2013-10-15T00:00:00+02:00</updated>
-   <id>http://jeroenmols.com/portfolio/2013/10/15/airstudio</id>
-   <content type="html"></content>
- </entry>
- 
- <entry>
-   <title>Wi-FileTransfer</title>
-   <link href="http://jeroenmols.com/portfolio/2013/04/01/wi-filetransfer/"/>
-   <updated>2013-04-01T00:00:00+02:00</updated>
-   <id>http://jeroenmols.com/portfolio/2013/04/01/wi-filetransfer</id>
-   <content type="html"></content>
- </entry>
- 
- <entry>
-   <title>VideoBox</title>
-   <link href="http://jeroenmols.com/portfolio/2010/09/25/videobox/"/>
-   <updated>2010-09-25T00:00:00+02:00</updated>
-   <id>http://jeroenmols.com/portfolio/2010/09/25/videobox</id>
-   <content type="html"></content>
  </entry>
  
 
