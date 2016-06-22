@@ -7,9 +7,9 @@ layout: null
     <title>{{ site.title | xml_escape }}</title>
     <description>{{ site.description | xml_escape }}</description>
     <image>
-    	<url>https://i0.wp.com/riggaroo.co.za/wp-content/uploads/2016/02/cropped-rebecca_franks.png?fit=32%2C32&#038;ssl=1</url>
+    	<url>{{ site.url }}/public/avatar.jpg</url>
     	<title>Jeroen Mols</title>
-    	<link>{{ site.url }}/public/avatar.jpg</link>
+    	<link>{{ site.url }}</link>
     	<width>741</width>
     	<height>741</height>
     </image>
