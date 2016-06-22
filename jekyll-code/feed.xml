@@ -6,6 +6,13 @@ layout: null
   <channel>
     <title>{{ site.title | xml_escape }}</title>
     <description>{{ site.description | xml_escape }}</description>
+    <image>
+    	<url>https://i0.wp.com/riggaroo.co.za/wp-content/uploads/2016/02/cropped-rebecca_franks.png?fit=32%2C32&#038;ssl=1</url>
+    	<title>Jeroen Mols</title>
+    	<link>{{ site.url }}/public/avatar.jpg</link>
+    	<width>741</width>
+    	<height>741</height>
+    </image>
     <link>{{ site.url }}/</link>
     <atom:link href="{{ "/feed.xml" }}" rel="self" type="application/rss+xml" />
     <pubDate>{{ site.time | date_to_rfc822 }}</pubDate>
