@@ -7,14 +7,14 @@ layout: null
     <title>{{ site.title | xml_escape }}</title>
     <description>{{ site.description | xml_escape }}</description>
     <image>
-    	<url>{{ site.url }}/public/avatar.jpg</url>
+    	<url>{{ site.url }}/img/profile.jpg</url>
     	<title>Jeroen Mols</title>
     	<link>{{ site.url }}</link>
-    	<width>741</width>
-    	<height>741</height>
+    	<width>144</width>
+    	<height>144</height>
     </image>
     <link>{{ site.url }}/</link>
-    <atom:link href="{{ "/feed.xml" }}" rel="self" type="application/rss+xml" />
+    <atom:link href="{{ site.url }}/feed.xml" rel="self" type="application/rss+xml" />
     <pubDate>{{ site.time | date_to_rfc822 }}</pubDate>
     <lastBuildDate>{{ site.time | date_to_rfc822 }}</lastBuildDate>
     <generator>Jekyll v{{ jekyll.version }}</generator>
