@@ -4,16 +4,16 @@
     <title>Jeroen Mols</title>
     <description>Portfolio of Jeroen Mols, the Android developer you should hire.</description>
     <image>
-    	<url>http://jeroenmols.com/public/avatar.jpg</url>
+    	<url>http://jeroenmols.com/img/profile.jpg</url>
     	<title>Jeroen Mols</title>
     	<link>http://jeroenmols.com</link>
-    	<width>741</width>
-    	<height>741</height>
+    	<width>144</width>
+    	<height>144</height>
     </image>
     <link>http://jeroenmols.com/</link>
-    <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 22 Jun 2016 11:39:44 +0200</pubDate>
-    <lastBuildDate>Wed, 22 Jun 2016 11:39:44 +0200</lastBuildDate>
+    <atom:link href="http://jeroenmols.com/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Wed, 22 Jun 2016 12:36:50 +0200</pubDate>
+    <lastBuildDate>Wed, 22 Jun 2016 12:36:50 +0200</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
