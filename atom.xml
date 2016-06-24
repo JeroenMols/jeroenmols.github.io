@@ -6,7 +6,7 @@
  <link href="http://jeroenmols.com/"/>
  <icon>http://jeroenmols.com/public/favicon.ico</icon>
  <logo>http://jeroenmols.com/img/profile.jpg</logo>
- <updated>2016-06-22T13:29:58+02:00</updated>
+ <updated>2016-06-24T08:18:18+02:00</updated>
  <id>http://jeroenmols.com</id>
  <author>
    <name>Jeroen Mols</name>
@@ -112,8 +112,6 @@
 
 &lt;p&gt;While the conference organizers will publish all slides very soon, I can image that quite a few people are already looking for a sneak preview. Hence I bundled everything I could already gather from socials.&lt;/p&gt;
 
-&lt;p&gt;... section still under development&lt;/p&gt;
-
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/jeroenmols/testing-made-sweet-with-a-mockito&quot;&gt;Testing made sweet with a Mockito&lt;/a&gt; by Jeroen Mols&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/jonreeve/reverse-engineering-is-not-just-for-hackers&quot;&gt;Reverse engineering is not just for hackers&lt;/a&gt; by Jon Reeve&lt;/li&gt;
@@ -136,11 +134,7 @@ Danny Preussler&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/scompt/screenshot-your-entire-app&quot;&gt;Screenshot your Entire App&lt;/a&gt; by Edward Dale&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;http://www.slideshare.net/AgentK/little-helpers-for-android-development-with-kotlin&quot;&gt;Little helpers for Android development with Kotlin&lt;/a&gt; by Kai Koenig&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/sergiiz/effective-android-development&quot;&gt;Effective Android Development&lt;/a&gt; by Sergii Zhuk&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Slides of similar talks by same speakers used at different conferences.&lt;/p&gt;
-
-&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/colabug/android-is-the-world-phone-droidcon-berlin&quot;&gt;Android is the World Phone&lt;/a&gt; by Corey Latislaw&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/randomlytyping/babbq-2015-loving-lean-layouts&quot;&gt;Loving lean layouts&lt;/a&gt; by Huyen Tue Dao&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/dorvaryn/let-it-flow&quot;&gt;Let it flow - unidirectional data flow architecture on Android&lt;/a&gt; by Benjamin Augustin&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/lyslydia/were-all-ux&quot;&gt;We&amp;#39;re all UX!&lt;/a&gt; by Lydia Selimalhigazi and Caroline Smith&lt;/li&gt;
