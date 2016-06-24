@@ -90,8 +90,6 @@ Thanks for both of them for creating such great summaries.
 ## Conference slides
 While the conference organizers will publish all slides very soon, I can image that quite a few people are already looking for a sneak preview. Hence I bundled everything I could already gather from socials.
 
-... section still under development
-
 - [Testing made sweet with a Mockito](https://speakerdeck.com/jeroenmols/testing-made-sweet-with-a-mockito) by Jeroen Mols
 - [Reverse engineering is not just for hackers](https://speakerdeck.com/jonreeve/reverse-engineering-is-not-just-for-hackers) by Jon Reeve
 - [Refactoring Plaid - A reactive MVP approach](https://speakerdeck.com/sockeqwe/refactoring-plaid-a-reactive-mvp-approach) by Hannes Dorfmann
@@ -113,9 +111,7 @@ Danny Preussler
 - [Screenshot your Entire App](https://speakerdeck.com/scompt/screenshot-your-entire-app) by Edward Dale
 - [Little helpers for Android development with Kotlin](http://www.slideshare.net/AgentK/little-helpers-for-android-development-with-kotlin) by Kai Koenig
 - [Effective Android Development](https://speakerdeck.com/sergiiz/effective-android-development) by Sergii Zhuk
-
-Slides of similar talks by same speakers used at different conferences.
-
+- [Android is the World Phone](https://speakerdeck.com/colabug/android-is-the-world-phone-droidcon-berlin) by Corey Latislaw
 - [Loving lean layouts](https://speakerdeck.com/randomlytyping/babbq-2015-loving-lean-layouts) by Huyen Tue Dao
 - [Let it flow - unidirectional data flow architecture on Android](https://speakerdeck.com/dorvaryn/let-it-flow) by Benjamin Augustin
 - [We're all UX!](https://speakerdeck.com/lyslydia/were-all-ux) by Lydia Selimalhigazi and Caroline Smith
