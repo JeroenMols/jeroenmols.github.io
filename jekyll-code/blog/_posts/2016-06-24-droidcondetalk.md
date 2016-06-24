@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Testing made sweet with a Mockito
-published: false
+published: true
 comments: true
 img: img/blog/droidconde16talk/droidcondetalk.png
 ---
