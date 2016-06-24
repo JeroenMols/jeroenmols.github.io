@@ -6,12 +6,76 @@
  <link href="http://jeroenmols.com/"/>
  <icon>http://jeroenmols.com/public/favicon.ico</icon>
  <logo>http://jeroenmols.com/img/profile.jpg</logo>
- <updated>2016-06-24T23:53:48+02:00</updated>
+ <updated>2016-06-24T23:58:33+02:00</updated>
  <id>http://jeroenmols.com</id>
  <author>
    <name>Jeroen Mols</name>
  </author>
 
+ 
+ <entry>
+   <title>Testing made sweet with a Mockito</title>
+   <link href="http://jeroenmols.com/blog/2016/06/24/droidcondetalk/"/>
+   <updated>2016-06-24T00:00:00+02:00</updated>
+   <id>http://jeroenmols.com/blog/2016/06/24/droidcondetalk</id>
+   <content type="html"><![CDATA[&lt;p&gt;At Droidcon Berlin 2016 I had a great time talking about testing using the &lt;a href=&quot;http://mockito.org/&quot;&gt;Mockito&lt;/a&gt; framework. While the talk wasn&amp;#39;t recorded unfortunately, the great folks at &lt;a href=&quot;https://voicerepublic.com/series/droidcon-berlin-2016&quot;&gt;Voice Republic&lt;/a&gt; recorded an audio version which you can listen to as a podcast or together with the slides.&lt;/p&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h2&gt;Talk&lt;/h2&gt;
+
+&lt;script async class=&quot;speakerdeck-embed&quot; data-id=&quot;061ea326e4b24a3aa961440fd699c481&quot; data-ratio=&quot;1.77777777777778&quot; src=&quot;//speakerdeck.com/assets/embed.js&quot;&gt;&lt;/script&gt;
+
+&lt;iframe width=&quot;100%&quot; height=&quot;32%&quot; src=&quot;https://voicerepublic.com/embed/talks/testing-made-sweet-with-a-mockito&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;p&gt;The past year has been huge for Android testing: Testing support lib, fast JVM unit tests,... Having such great tools means writing tests is a breeze! All your apps currently have &amp;gt;80% code coverage, right? Yay! Or wait... is it really? Is all your common Android logic (networking, databases,...) tested? Do you isolate parts of your code base to keep your tests small? And what about providing relevant testing data?&lt;/p&gt;
+
+&lt;p&gt;In order to achieve this, you need to make use of mocks and stubs. And that&amp;#39;s exactly what this talk will be about: What is a mock? What&amp;#39;s the difference between a mock and a stub? Are mocks the only way to provide relevant data for your unit tests? What do I do with all the final classes/methods in the Android SDK? How do I architect my app to make it easier to test? ...&lt;/p&gt;
+
+&lt;p&gt;After having adopted TDD as my main development workflow for almost a year now, I feel comfortable saying everything can be tested. Its just a matter of having someone experience show you how.&lt;/p&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h2&gt;Code&lt;/h2&gt;
+
+&lt;p&gt;A fully working sample project with all principles is available &lt;a href=&quot;https://github.com/JeroenMols/MockitoExample&quot;&gt;on Github&lt;/a&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/JeroenMols/MockitoExample/blob/master/app/build.gradle&quot;&gt;build.gradle&lt;/a&gt; file indicating how to configure Mockito
+
+&lt;ul&gt;
+&lt;li&gt;testCompile: for tests run on your computer in a JVM (src/test folder)&lt;/li&gt;
+&lt;li&gt;androidTestCompile: for tests run on an Android device (src/androidTest folder)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/JeroenMols/MockitoExample/blob/master/app/src/test/java/com/jeroenmols/mockitoexample/UserTest.java&quot;&gt;UserTest&lt;/a&gt; class demonstrating Mockito usage
+
+&lt;ul&gt;
+&lt;li&gt;TLDR: JVM unit tests with mockito are easy to read and write&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/JeroenMols/MockitoExample/blob/master/app/src/androidTest/java/com/jeroenmols/mockitoexample/UserTestAndroid.java&quot;&gt;UserTestAndroid&lt;/a&gt; class demonstrating Mockito usage on Android device
+
+&lt;ul&gt;
+&lt;li&gt;TLDR: Mockito can be used on Android, but need to use V1 and dexmaker&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/JeroenMols/MockitoExample/blob/master/app/src/main/java/com/jeroenmols/mockitoexample/HandlerWrapper.java&quot;&gt;HandlerWrapper&lt;/a&gt; class indicating how to test final methods
+
+&lt;ul&gt;
+&lt;li&gt;TLDR: Wrap final or statics methods with a different non static/final method&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/JeroenMols/MockitoExample/blob/master/app/src/test/java/com/jeroenmols/mockitoexample/TestUserData.java&quot;&gt;TestUserData&lt;/a&gt; class indicating how to provide testing data for POJO objects
+
+&lt;ul&gt;
+&lt;li&gt;TLDR: Override all methods with default values instead of creating a mock and stubbing them out&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h2&gt;Audience&lt;/h2&gt;
+
+&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/droidconde16talk/audience.jpg&quot;&gt;&lt;img src=&quot;/img/blog/droidconde16talk/audience.jpg&quot; alt=&quot;Quite some people interested in my talk&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+]]></content>
+ </entry>
  
  <entry>
    <title>Droidcon Berlin recap</title>
