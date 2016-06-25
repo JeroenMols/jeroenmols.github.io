@@ -24,7 +24,7 @@ layout: null
    <id>{{ site.url }}{{ post.id }}</id>
    <content type="html"><![CDATA[
      {% if post.img %}
-        <img src="{{ site.blogbaseurl }}{{ post.img }}" alt="{{ post.title }}">
+        <img src="{{ site.url }}/{{ post.img }}" alt="{{ post.title }}">
      {% endif %}
      {{ post.content | split:"<h2>" | first | remove:"<p><br></p>"}}<p>...</p>]]>
    </content>

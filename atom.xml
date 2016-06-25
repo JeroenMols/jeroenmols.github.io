@@ -6,7 +6,7 @@
  <link href="http://jeroenmols.com/"/>
  <icon>http://jeroenmols.com/public/favicon.ico</icon>
  <logo>http://jeroenmols.com/img/profile.jpg</logo>
- <updated>2016-06-25T16:10:46+02:00</updated>
+ <updated>2016-06-25T16:26:41+02:00</updated>
  <id>http://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -20,7 +20,7 @@
    <id>http://jeroenmols.com/blog/2016/06/24/droidcondetalk</id>
    <content type="html"><![CDATA[
      
-        <img src="/img/blog/droidconde16talk/droidcondetalk.png" alt="Testing made sweet with a Mockito">
+        <img src="http://jeroenmols.com/img/blog/droidconde16talk/droidcondetalk.png" alt="Testing made sweet with a Mockito">
      
      <p>At Droidcon Berlin 2016 I had a great time talking about testing using the <a href="http://mockito.org/">Mockito</a> framework. While the talk wasn&#39;t recorded unfortunately, the great folks at <a href="https://voicerepublic.com/series/droidcon-berlin-2016">Voice Republic</a> recorded an audio version which you can listen to as a podcast or together with the slides.</p>
 
@@ -37,7 +37,7 @@
    <id>http://jeroenmols.com/blog/2016/06/18/droidconde</id>
    <content type="html"><![CDATA[
      
-        <img src="/img/blog/droidconde16/droidconde.png" alt="Droidcon Berlin recap">
+        <img src="http://jeroenmols.com/img/blog/droidconde16/droidconde.png" alt="Droidcon Berlin recap">
      
      <p>Having founded the entire Droidcon franchise in 2009, Droidcon Berlin is a magical conference to be at. Not only do they have an awesome lineup of speakers (including yours truly). But they also organize great after hour events. Further they&#39;re the first conference ever where I didn&#39;t have any Wi-Fi issues (looking at you #io16).</p>
 
@@ -56,7 +56,7 @@
    <id>http://jeroenmols.com/blog/2016/05/06/methodcount</id>
    <content type="html"><![CDATA[
      
-        <img src="/img/blog/methodcount/methodcount.png" alt="Efficiently reducing your method count">
+        <img src="http://jeroenmols.com/img/blog/methodcount/methodcount.png" alt="Efficiently reducing your method count">
      
      <p>As green field projects are a rare breed, chances are that you&#39;ve inherited a legacy code base. If you&#39;re as lucky as me, that code base has over 65k methods causing the build times to be boringly slow.</p>
 
@@ -75,7 +75,7 @@
    <id>http://jeroenmols.com/blog/2016/04/08/droidconit</id>
    <content type="html"><![CDATA[
      
-        <img src="/img/blog/droidconit16/droidconit.png" alt="Droidcon Italy recap">
+        <img src="http://jeroenmols.com/img/blog/droidconit16/droidconit.png" alt="Droidcon Italy recap">
      
      <p>A conference about our favorite Green little robots? In sunny Italy? With great food and a party? Yeah, I can image how you must feel in case you missed it... I on the other hand was fortunate enough to attend and speak at this awesome conference.</p>
 
@@ -94,7 +94,7 @@
    <id>http://jeroenmols.com/blog/2016/03/07/resourcenaming</id>
    <content type="html"><![CDATA[
      
-        <img src="/img/blog/resourcenaming/resourcenaming.png" alt="A successful XML naming convention">
+        <img src="http://jeroenmols.com/img/blog/resourcenaming/resourcenaming.png" alt="A successful XML naming convention">
      
      <p>Do you remember the last time you had to dig into <code>strings.xml</code> to find the right String to use? Or that you manually had to go over all drawables to find the one you needed?</p>
 
@@ -126,7 +126,7 @@
    <id>http://jeroenmols.com/blog/2016/02/05/wagongit</id>
    <content type="html"><![CDATA[
      
-        <img src="/img/blog/wagongit/wagongit.png" alt="Git as a secure private Maven repository">
+        <img src="http://jeroenmols.com/img/blog/wagongit/wagongit.png" alt="Git as a secure private Maven repository">
      
      <p>As my previous blogposts already covered how to set up a private Maven repository, you might wonder &quot;Why again a Maven blogpost?&quot;. Well that&#39;s a fair question and the answer is twofold:</p>
 
@@ -150,7 +150,7 @@
    <id>http://jeroenmols.com/blog/2016/01/29/yearinreview</id>
    <content type="html"><![CDATA[
      
-        <img src="/img/blog/yearinreview15/yearinreview15.png" alt="Year in review 2015">
+        <img src="http://jeroenmols.com/img/blog/yearinreview15/yearinreview15.png" alt="Year in review 2015">
      
      <p>Finally found the time to write my <code>year in review</code>. #insomnia</p>
 
@@ -184,7 +184,7 @@
    <id>http://jeroenmols.com/blog/2015/11/13/traviscoveralls</id>
    <content type="html"><![CDATA[
      
-        <img src="/img/blog/traviscoveralls/traviscoveralls.png" alt="Level up GitHub builds with CI and code coverage">
+        <img src="http://jeroenmols.com/img/blog/traviscoveralls/traviscoveralls.png" alt="Level up GitHub builds with CI and code coverage">
      
      <p>Wouldn&#39;t you love to have your open source projects built automatically by a continuous integration server? And to have a detailed code coverage report for all your unit tests? Even when someone generated a pull request? And how about having cool badges to show off all of this?</p>
 
@@ -205,7 +205,7 @@
    <id>http://jeroenmols.com/blog/2015/08/13/artifactory2</id>
    <content type="html"><![CDATA[
      
-        <img src="/img/blog/artifactory2/artifactory2.png" alt="Getting the most out of Artifactory">
+        <img src="http://jeroenmols.com/img/blog/artifactory2/artifactory2.png" alt="Getting the most out of Artifactory">
      
      <p>My previous <a href="/blog/2015/08/06/artifactory/">blog post</a> described how to set up your own private Maven repository with Artifactory in 30 minutes. This second and final part will make things more interesting and take your setup to the next level.</p>
 
@@ -234,7 +234,7 @@
    <id>http://jeroenmols.com/blog/2015/08/06/artifactory</id>
    <content type="html"><![CDATA[
      
-        <img src="/img/blog/artifactory/artifactory.png" alt="A private Maven repository for Android in 30 min">
+        <img src="http://jeroenmols.com/img/blog/artifactory/artifactory.png" alt="A private Maven repository for Android in 30 min">
      
      <p>Setting up your own Maven repository and uploading artifacts to it is quite a daunting task. As I went through this experience myself recently, I want to help others in setting up their own Maven repository via <a href="http://www.jfrog.com/open-source/">Artifactory</a> and automate uploading artifacts using Gradle.</p>
 
@@ -253,7 +253,7 @@
    <id>http://jeroenmols.com/blog/2015/04/25/blog-creation</id>
    <content type="html"><![CDATA[
      
-        <img src="/img/blog/jekyll.png" alt="How I created my blog">
+        <img src="http://jeroenmols.com/img/blog/jekyll.png" alt="How I created my blog">
      
      <p>For quite some months, I&#39;ve been planning to create a website and start blogging about the things I&#39;m passionate about. Last week, I finally decided to setup a <a href="http://jeroenmols.github.io">portfolio</a> and <a href="http://jeroen.mols.github.io/blog">blog</a> using GitHub pages and Jekyll.</p>
 
