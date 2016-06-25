@@ -3,7 +3,8 @@ layout: null
 ---
 
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
+<feed xmlns="http://www.w3.org/2005/Atom"
+      xmlns:webfeeds="http://webfeeds.org/rss/1.0">
 
  <title>{{ site.title }}</title>
  <link href="{{ site.url }}/atom.xml" rel="self"/>
@@ -15,6 +16,9 @@ layout: null
  <author>
    <name>{{ site.author.name }}</name>
  </author>
+
+ <webfeeds:cover image="{{ site.url }}/img/profile.jpg" />
+ <webfeeds:icon>{{ site.url }}/img/profile.jpg</webfeeds:icon>
 
  {% for post in site.categories.blog %}
  <entry>

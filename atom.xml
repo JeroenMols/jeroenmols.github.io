@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
+<feed xmlns="http://www.w3.org/2005/Atom"
+      xmlns:webfeeds="http://webfeeds.org/rss/1.0">
 
  <title>Jeroen Mols</title>
  <link href="http://jeroenmols.com/atom.xml" rel="self"/>
  <link href="http://jeroenmols.com/"/>
  <icon>http://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog of Jeroen Mols, the Android developer you should hire.</subtitle>
- <updated>2016-06-25T17:32:46+02:00</updated>
+ <updated>2016-06-25T17:43:26+02:00</updated>
  <id>http://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
  </author>
+
+ <webfeeds:cover image="http://jeroenmols.com/img/profile.jpg" />
+ <webfeeds:icon>http://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
  
  <entry>
