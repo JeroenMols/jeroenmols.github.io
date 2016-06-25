@@ -5,8 +5,6 @@ published: true
 comments: true
 img: img/blog/jekyll.png
 ---
-
-## Preface
 For quite some months, I've been planning to create a website and start blogging about the things I'm passionate about. Last week, I finally decided to setup a [portfolio](http://jeroenmols.github.io) and [blog](http://jeroen.mols.github.io/blog) using GitHub pages and Jekyll.
 
 Since I'm an Android and not a web developer, the first blogging subject wasn't hard to find: challenges I came across in setting up this website and blog.
