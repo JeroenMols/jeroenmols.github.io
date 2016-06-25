@@ -9,6 +9,7 @@ layout: null
  <link href="{{ site.url }}/atom.xml" rel="self"/>
  <link href="{{ site.url }}/"/>
  <icon>{{ site.url }}/img/profile.jpg</icon>
+ <subtitle>{{ site.blogtagline }}</subtitle>
  <updated>{{ site.time | date_to_xmlschema }}</updated>
  <id>{{ site.url }}/</id>
  <author>

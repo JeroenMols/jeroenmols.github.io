@@ -5,7 +5,8 @@
  <link href="http://jeroenmols.com/atom.xml" rel="self"/>
  <link href="http://jeroenmols.com/"/>
  <icon>http://jeroenmols.com/img/profile.jpg</icon>
- <updated>2016-06-25T17:01:23+02:00</updated>
+ <subtitle>Blog of Jeroen Mols, the Android developer you should hire.</subtitle>
+ <updated>2016-06-25T17:10:48+02:00</updated>
  <id>http://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
