@@ -26,7 +26,8 @@ layout: null
      {% if post.img %}
         <img src="{{ site.url }}/{{ post.img }}" alt="{{ post.title }}">
      {% endif %}
-     {{ post.content | split:"<h2>" | first | remove:"<p><br></p>"}}<p>...</p>]]>
+     {{ post.content | split:"<h2>" | first | remove:"<p><br></p>"}}
+     <a href="{{ site.url }}{{ post.url }}">Continue reading</p>]]>
    </content>
  </entry>
  {% endfor %}
