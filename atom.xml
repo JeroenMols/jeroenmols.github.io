@@ -6,8 +6,8 @@
  <link href="http://jeroenmols.com/"/>
  <icon>http://jeroenmols.com/public/favicon.ico</icon>
  <logo>http://jeroenmols.com/img/profile.jpg</logo>
- <updated>2016-06-24T23:58:33+02:00</updated>
- <id>http://jeroenmols.com</id>
+ <updated>2016-06-25T15:45:43+02:00</updated>
+ <id>http://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
  </author>
@@ -18,63 +18,11 @@
    <link href="http://jeroenmols.com/blog/2016/06/24/droidcondetalk/"/>
    <updated>2016-06-24T00:00:00+02:00</updated>
    <id>http://jeroenmols.com/blog/2016/06/24/droidcondetalk</id>
-   <content type="html"><![CDATA[&lt;p&gt;At Droidcon Berlin 2016 I had a great time talking about testing using the &lt;a href=&quot;http://mockito.org/&quot;&gt;Mockito&lt;/a&gt; framework. While the talk wasn&amp;#39;t recorded unfortunately, the great folks at &lt;a href=&quot;https://voicerepublic.com/series/droidcon-berlin-2016&quot;&gt;Voice Republic&lt;/a&gt; recorded an audio version which you can listen to as a podcast or together with the slides.&lt;/p&gt;
+   <content type="html"><![CDATA[<p>At Droidcon Berlin 2016 I had a great time talking about testing using the <a href="http://mockito.org/">Mockito</a> framework. While the talk wasn&#39;t recorded unfortunately, the great folks at <a href="https://voicerepublic.com/series/droidcon-berlin-2016">Voice Republic</a> recorded an audio version which you can listen to as a podcast or together with the slides.</p>
 
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+<p><br></p>
 
-&lt;h2&gt;Talk&lt;/h2&gt;
-
-&lt;script async class=&quot;speakerdeck-embed&quot; data-id=&quot;061ea326e4b24a3aa961440fd699c481&quot; data-ratio=&quot;1.77777777777778&quot; src=&quot;//speakerdeck.com/assets/embed.js&quot;&gt;&lt;/script&gt;
-
-&lt;iframe width=&quot;100%&quot; height=&quot;32%&quot; src=&quot;https://voicerepublic.com/embed/talks/testing-made-sweet-with-a-mockito&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; allowfullscreen&gt;&lt;/iframe&gt;
-
-&lt;p&gt;The past year has been huge for Android testing: Testing support lib, fast JVM unit tests,... Having such great tools means writing tests is a breeze! All your apps currently have &amp;gt;80% code coverage, right? Yay! Or wait... is it really? Is all your common Android logic (networking, databases,...) tested? Do you isolate parts of your code base to keep your tests small? And what about providing relevant testing data?&lt;/p&gt;
-
-&lt;p&gt;In order to achieve this, you need to make use of mocks and stubs. And that&amp;#39;s exactly what this talk will be about: What is a mock? What&amp;#39;s the difference between a mock and a stub? Are mocks the only way to provide relevant data for your unit tests? What do I do with all the final classes/methods in the Android SDK? How do I architect my app to make it easier to test? ...&lt;/p&gt;
-
-&lt;p&gt;After having adopted TDD as my main development workflow for almost a year now, I feel comfortable saying everything can be tested. Its just a matter of having someone experience show you how.&lt;/p&gt;
-
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
-
-&lt;h2&gt;Code&lt;/h2&gt;
-
-&lt;p&gt;A fully working sample project with all principles is available &lt;a href=&quot;https://github.com/JeroenMols/MockitoExample&quot;&gt;on Github&lt;/a&gt;.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/JeroenMols/MockitoExample/blob/master/app/build.gradle&quot;&gt;build.gradle&lt;/a&gt; file indicating how to configure Mockito
-
-&lt;ul&gt;
-&lt;li&gt;testCompile: for tests run on your computer in a JVM (src/test folder)&lt;/li&gt;
-&lt;li&gt;androidTestCompile: for tests run on an Android device (src/androidTest folder)&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/JeroenMols/MockitoExample/blob/master/app/src/test/java/com/jeroenmols/mockitoexample/UserTest.java&quot;&gt;UserTest&lt;/a&gt; class demonstrating Mockito usage
-
-&lt;ul&gt;
-&lt;li&gt;TLDR: JVM unit tests with mockito are easy to read and write&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/JeroenMols/MockitoExample/blob/master/app/src/androidTest/java/com/jeroenmols/mockitoexample/UserTestAndroid.java&quot;&gt;UserTestAndroid&lt;/a&gt; class demonstrating Mockito usage on Android device
-
-&lt;ul&gt;
-&lt;li&gt;TLDR: Mockito can be used on Android, but need to use V1 and dexmaker&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/JeroenMols/MockitoExample/blob/master/app/src/main/java/com/jeroenmols/mockitoexample/HandlerWrapper.java&quot;&gt;HandlerWrapper&lt;/a&gt; class indicating how to test final methods
-
-&lt;ul&gt;
-&lt;li&gt;TLDR: Wrap final or statics methods with a different non static/final method&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/JeroenMols/MockitoExample/blob/master/app/src/test/java/com/jeroenmols/mockitoexample/TestUserData.java&quot;&gt;TestUserData&lt;/a&gt; class indicating how to provide testing data for POJO objects
-
-&lt;ul&gt;
-&lt;li&gt;TLDR: Override all methods with default values instead of creating a mock and stubbing them out&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
-
-&lt;h2&gt;Audience&lt;/h2&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/droidconde16talk/audience.jpg&quot;&gt;&lt;img src=&quot;/img/blog/droidconde16talk/audience.jpg&quot; alt=&quot;Quite some people interested in my talk&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
-]]></content>
+<p>...</p>]]></content>
  </entry>
  
  <entry>
@@ -82,135 +30,13 @@
    <link href="http://jeroenmols.com/blog/2016/06/18/droidconde/"/>
    <updated>2016-06-18T00:00:00+02:00</updated>
    <id>http://jeroenmols.com/blog/2016/06/18/droidconde</id>
-   <content type="html"><![CDATA[&lt;p&gt;Having founded the entire Droidcon franchise in 2009, Droidcon Berlin is a magical conference to be at. Not only do they have an awesome lineup of speakers (including yours truly). But they also organize great after hour events. Further they&amp;#39;re the first conference ever where I didn&amp;#39;t have any Wi-Fi issues (looking at you #io16).&lt;/p&gt;
+   <content type="html"><![CDATA[<p>Having founded the entire Droidcon franchise in 2009, Droidcon Berlin is a magical conference to be at. Not only do they have an awesome lineup of speakers (including yours truly). But they also organize great after hour events. Further they&#39;re the first conference ever where I didn&#39;t have any Wi-Fi issues (looking at you #io16).</p>
 
-&lt;p&gt;As there were four different tracks, it was obviously not possible to attend every session. But I did notice some general themes and would like to share my personal highlights with you.&lt;/p&gt;
+<p>As there were four different tracks, it was obviously not possible to attend every session. But I did notice some general themes and would like to share my personal highlights with you.</p>
 
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+<p><br></p>
 
-&lt;h2&gt;Architecture&lt;/h2&gt;
-
-&lt;p&gt;While Android is maturing as a platform, developers are also professionalizing their applications. Every growing apps mean that testability, maintenance and refactoring is only increasing in importance.&lt;/p&gt;
-
-&lt;p&gt;My key takeaways:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;MVP is a UI pattern not an architecture&lt;/li&gt;
-&lt;li&gt;All dependencies should point in one direction&lt;/li&gt;
-&lt;li&gt;Don&amp;#39;t be dogmatic&lt;/li&gt;
-&lt;li&gt;Users don&amp;#39;t care about your architecture&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
-
-&lt;h2&gt;IoT&lt;/h2&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/droidconde16/iotcoffee.jpg&quot;&gt;&lt;img src=&quot;/img/blog/droidconde16/iotcoffee.jpg&quot; alt=&quot;Philips Hue Coffee&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;Interest in IoT products is steadily increasing, but as a developer it is still not easy to create IoT apps. Properly handling things like Bluetooth LE keeps on being plagued by device specific issues. And seemingly simple problems like properly handling a user sign in are still extremely complex.&lt;/p&gt;
-
-&lt;p&gt;My key takeaways:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;When using BT LE, only support API 21 or higher&lt;/li&gt;
-&lt;li&gt;Handle all bluetooth LE callbacks on separate HandlerThread&lt;/li&gt;
-&lt;li&gt;Firebase can handle all sign in complexity for you&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
-
-&lt;h2&gt;Designing for the next billion&lt;/h2&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/droidconde16/nextbillion.jpg&quot;&gt;&lt;img src=&quot;/img/blog/droidconde16/nextbillion.jpg&quot; alt=&quot;Philips Hue Coffee&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;Where we used to be educated that &amp;quot;a developer phone is not a user phone&amp;quot;, this message is now morphing towards people in emerging markets. Designing for such markets doesn&amp;#39;t only require functional changes like developing for offline first, but it even requires you to completely think your UX.&lt;/p&gt;
-
-&lt;p&gt;My key takeaways:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;access to cheap fast internet is not a given&lt;/li&gt;
-&lt;li&gt;battery life is even more precious in emerging countries&lt;/li&gt;
-&lt;li&gt;understandable UX when smartphone is your first computer&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
-
-&lt;h2&gt;Other hot topics&lt;/h2&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/droidconde16/alphastates.jpg&quot;&gt;&lt;img src=&quot;/img/blog/droidconde16/alphastates.jpg&quot; alt=&quot;You can use alpha values for button states in XML&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;Besides these, also a lot of attention was spent on testing and tooling. There were great talks about styling, theming and creating custom views. And many sessions also dived deeper into optimizing your apps performance. Bit unfortunate that there weren&amp;#39;t any more talks on the new Android N features.&lt;/p&gt;
-
-&lt;p&gt;My key takeaways:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;You can use alpha values for button states in XML&lt;/li&gt;
-&lt;li&gt;Use overlay themes instead of changing text colors&lt;/li&gt;
-&lt;li&gt;Tests should be fast, focussed and reliable&lt;/li&gt;
-&lt;li&gt;It maybe worth to convert an existing app to RXJava, but keep it contained to particular layers. (e.g. Webservice)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
-
-&lt;h2&gt;Sketchnoting&lt;/h2&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/droidconde16/sketchnoting.jpg&quot;&gt;&lt;img src=&quot;/img/blog/droidconde16/sketchnoting.jpg&quot; alt=&quot;Corey Leigh Latislaw creating a sketch note&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;Sketch notes are really awesome! In this, creative people summarize a talk into a very cool one pager. This doesn&amp;#39;t only look great, but it&amp;#39;s also by far the easiest way to get a high level view of a talk.&lt;/p&gt;
-
-&lt;p&gt;At Droidcon both &lt;a href=&quot;https://twitter.com/corey_latislaw&quot;&gt;Corey Leigh Latislaw&lt;/a&gt; and &lt;a href=&quot;https://twitter.com/TeresaHolfeld&quot;&gt;Teresa Holfeld&lt;/a&gt; were actively creating sketch notes. You should check their twitter feeds for the awesome content they created.&lt;/p&gt;
-
-&lt;p&gt;Just a sample:&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;blockquote class=&quot;twitter-tweet&quot; data-lang=&quot;en&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;Offline First by &lt;a href=&quot;https://twitter.com/glynn_bird&quot;&gt;@glynn_bird&lt;/a&gt; at &lt;a href=&quot;https://twitter.com/hashtag/droidconDe?src=hash&quot;&gt;#droidconDe&lt;/a&gt;. &lt;a href=&quot;https://twitter.com/hashtag/sketchnote?src=hash&quot;&gt;#sketchnote&lt;/a&gt; &lt;a href=&quot;https://t.co/SkeriMsigT&quot;&gt;pic.twitter.com/SkeriMsigT&lt;/a&gt;&lt;/p&gt;&amp;mdash; Corey Leigh Latislaw (@corey_latislaw) &lt;a href=&quot;https://twitter.com/corey_latislaw/status/743390864660135937&quot;&gt;June 16, 2016&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script async src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;blockquote class=&quot;twitter-tweet&quot; data-lang=&quot;en&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;Themes and Styles demystified: talk by &lt;a href=&quot;https://twitter.com/chrisbanes&quot;&gt;@chrisbanes&lt;/a&gt; &lt;a href=&quot;https://twitter.com/hashtag/droidconDE?src=hash&quot;&gt;#droidconDE&lt;/a&gt; &lt;a href=&quot;https://twitter.com/hashtag/sketchnotes?src=hash&quot;&gt;#sketchnotes&lt;/a&gt; &lt;a href=&quot;https://t.co/mXNcW8lGRS&quot;&gt;pic.twitter.com/mXNcW8lGRS&lt;/a&gt;&lt;/p&gt;&amp;mdash; Teresa Holfeld (@TeresaHolfeld) &lt;a href=&quot;https://twitter.com/TeresaHolfeld/status/743438928666034176&quot;&gt;June 16, 2016&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script async src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;Thanks for both of them for creating such great summaries.&lt;/p&gt;
-
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
-
-&lt;h2&gt;Conference slides&lt;/h2&gt;
-
-&lt;p&gt;While the conference organizers will publish all slides very soon, I can image that quite a few people are already looking for a sneak preview. Hence I bundled everything I could already gather from socials.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/jeroenmols/testing-made-sweet-with-a-mockito&quot;&gt;Testing made sweet with a Mockito&lt;/a&gt; by Jeroen Mols&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/jonreeve/reverse-engineering-is-not-just-for-hackers&quot;&gt;Reverse engineering is not just for hackers&lt;/a&gt; by Jon Reeve&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/sockeqwe/refactoring-plaid-a-reactive-mvp-approach&quot;&gt;Refactoring Plaid - A reactive MVP approach&lt;/a&gt; by Hannes Dorfmann&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/aselims/android-and-iot-at-droidconde-16&quot;&gt;Android &amp;amp; IoT&lt;/a&gt; by Selim Salman&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.slideshare.net/dpreussler/unit-testing-without-robolectric-droidcon-berlin-2016&quot;&gt;Unit testing without Robolectric&lt;/a&gt; by
-Danny Preussler&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/alosdev/perfmatters-for-android-droidcon-berlin-2016&quot;&gt;#Perfmatters for Android&lt;/a&gt; by Hasan Hosgel&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/nibble/life-of-android-enterprise-developers-in-the-age-of-android-for-work&quot;&gt;Life of Android Enterprise Developers in the age of Android for Work&lt;/a&gt; by Pietro Maggi&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.slideshare.net/Nilhcem/the-2016-android-developer-toolbox-berlin&quot;&gt;The 2016 Android Developer Toolbox&lt;/a&gt; by Gautier Mechling&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/erikhellman/practical-bluetooth-low-energy-on-android&quot;&gt;Practical Bluetooth Low Energy on Android&lt;/a&gt; by Erik Hellman&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.slideshare.net/MarcosPlacona/contextual-communications-and-why-you-should-care-droidcon-de&quot;&gt;Contextual Communications And Why You Should Care&lt;/a&gt; by Marcos Placona&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/radzio/deep-dive-into-android-data-binding&quot;&gt;Deep dive into Android Data Binding&lt;/a&gt; by Radek Piekarz&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://docs.google.com/presentation/d/1Fldq6lWkrVeBdDyPwMQ7jkItZ1m2XMpDXQzu3IwbSE8/edit#slide=id.p&quot;&gt;Let&amp;#39;s get physical&lt;/a&gt; by Albrecht Noll and Pascal Welsch&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.slideshare.net/polanskitomasz&quot;&gt;Testing Why? When? How?&lt;/a&gt; by Tomasz Polański&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/felipecsl/adopting-rxjava-on-airbnb-android&quot;&gt;Adopting RxJava on Airbnb Android&lt;/a&gt; by Felipe Lima&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/guardiola31337/elegant-unit-testing-droidcon-berlin-2016&quot;&gt;Elegant?? Unit Testing&lt;/a&gt; by Pablo Guardiola&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://docs.google.com/presentation/d/1JaTb9KDMtE9-9g9zRIXKzLB5WwGVVEI8F-wGtNSo-0c/edit#slide=id.ge54df3a86_0_53&quot;&gt;Material design custom views&lt;/a&gt; by Said Tahsin Dane&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://photos.google.com/share/AF1QipPpuNyuATl-Ae09WzlXkxyHXxoOxZ_-uXLKB4uALR3bG3vnpcYLl2UIAKoNYGzd-g?key=X0o2U3EyLVdRWkxfQm9hUG5uZGUtN0wwc2UwTnpB&quot;&gt;Android TV: Building apps with Google&amp;#39;s Leanback Library&lt;/a&gt; by Joe Birch&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/scompt/screenshot-your-entire-app&quot;&gt;Screenshot your Entire App&lt;/a&gt; by Edward Dale&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.slideshare.net/AgentK/little-helpers-for-android-development-with-kotlin&quot;&gt;Little helpers for Android development with Kotlin&lt;/a&gt; by Kai Koenig&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/sergiiz/effective-android-development&quot;&gt;Effective Android Development&lt;/a&gt; by Sergii Zhuk&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/colabug/android-is-the-world-phone-droidcon-berlin&quot;&gt;Android is the World Phone&lt;/a&gt; by Corey Latislaw&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/randomlytyping/babbq-2015-loving-lean-layouts&quot;&gt;Loving lean layouts&lt;/a&gt; by Huyen Tue Dao&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/dorvaryn/let-it-flow&quot;&gt;Let it flow - unidirectional data flow architecture on Android&lt;/a&gt; by Benjamin Augustin&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/lyslydia/were-all-ux&quot;&gt;We&amp;#39;re all UX!&lt;/a&gt; by Lydia Selimalhigazi and Caroline Smith&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.slideshare.net/seamaster29/classshark-android-and-java-executables-browser&quot;&gt;10 ways to analyse runtime failure using Classy Shark&lt;/a&gt; by Boris Farber&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
-
-&lt;h2&gt;Credits&lt;/h2&gt;
-
-&lt;p&gt;Thanks to the entire Droidcon Berlin team for organizing such a great conference and to all sponsers for their support. Keep up the awesome job!&lt;/p&gt;
-]]></content>
+<p>...</p>]]></content>
  </entry>
  
  <entry>
@@ -218,226 +44,13 @@ Danny Preussler&lt;/li&gt;
    <link href="http://jeroenmols.com/blog/2016/05/06/methodcount/"/>
    <updated>2016-05-06T00:00:00+02:00</updated>
    <id>http://jeroenmols.com/blog/2016/05/06/methodcount</id>
-   <content type="html"><![CDATA[&lt;p&gt;As green field projects are a rare breed, chances are that you&amp;#39;ve inherited a legacy code base. If you&amp;#39;re as lucky as me, that code base has over 65k methods causing the build times to be boringly slow.&lt;/p&gt;
+   <content type="html"><![CDATA[<p>As green field projects are a rare breed, chances are that you&#39;ve inherited a legacy code base. If you&#39;re as lucky as me, that code base has over 65k methods causing the build times to be boringly slow.</p>
 
-&lt;p&gt;Today I would like to show how you can visualize your current method count and understand what libraries are eating up the largest part of that. Next it&amp;#39;s time to reduce said method count and remove that nasty multidex solution once and for all.&lt;/p&gt;
+<p>Today I would like to show how you can visualize your current method count and understand what libraries are eating up the largest part of that. Next it&#39;s time to reduce said method count and remove that nasty multidex solution once and for all.</p>
 
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+<p><br></p>
 
-&lt;h2&gt;Visualizing method count&lt;/h2&gt;
-
-&lt;p&gt;The easiest and most attractive way (imho) to visualize the method count is by using the &lt;a href=&quot;https://github.com/KeepSafe/dexcount-gradle-plugin&quot;&gt;Dexcount Gradle Plugin&lt;/a&gt;. Applying it to your project is as easy as adding a classpath dependency to your root &lt;code&gt;build.gradle&lt;/code&gt; and applying the plugin to your App &lt;code&gt;build.gradle&lt;/code&gt;.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// root build.gradle file&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;buildscript&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;repositories&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;jcenter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// or mavenCentral()&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;classpath&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;com.getkeepsafe.dexcount:dexcount-gradle-plugin:0.5.0&amp;#39;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// app build.gradle file (apply AFTER Android plugin)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;apply&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;plugin:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;com.getkeepsafe.dexcount&amp;#39;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Running a normal project build &lt;code&gt;./gradlew assembleDebug&lt;/code&gt; will now print out the current method count in the console:&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/methodcount/methodcount_output.png&quot;&gt;&lt;img src=&quot;/img/blog/methodcount/methodcount_output.png&quot; alt=&quot;Method count output of template project with full Google Play Services&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;and generate an interactive graphical report in the outputs folder &lt;code&gt;build/outputs/dexcount/debugChart&lt;/code&gt;:&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/methodcount/dexcount-googleplayservices/debugChart/index.html&quot;&gt;&lt;img src=&quot;/img/blog/methodcount/methodcount_graphic.gif&quot; alt=&quot;Method count graphical output of template project with full Google Play Services&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;Click the graphic above to interact with it.&lt;/p&gt;
-
-&lt;p&gt;Using the graphical representation of the method count for all packages in your app, it becomes really easy to find which libraries are consuming your precious method count. Some of the usual suspects are big monolithic libraries like &lt;a href=&quot;https://github.com/google/guava&quot;&gt;Guava&lt;/a&gt; and the non-split-up &lt;a href=&quot;https://developers.google.com/android/guides/overview#the_google_play_services_client_library&quot;&gt;Google play services&lt;/a&gt;. In the next section will see what we can do about these.&lt;/p&gt;
-
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
-
-&lt;h2&gt;Reducing method count&lt;/h2&gt;
-
-&lt;h3&gt;Choosing the right libraries&lt;/h3&gt;
-
-&lt;p&gt;Normally I recommend never to optimize unless you have a problem. But with method counts, I really advice you to consider the method count before you start using a library for two reasons:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Replacing libraries in existing apps can be very challenging, if not almost impossible.&lt;/li&gt;
-&lt;li&gt;Many developers are using huge libraries just to do simple things. (&lt;code&gt;Strings.isNullOrEmpty()&lt;/code&gt; anyone?) Note that you don&amp;#39;t need to use a library for everything!&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Fortunately there is a great website &lt;a href=&quot;http://www.methodscount.com/&quot;&gt;methodscount.com&lt;/a&gt; that tells you the method count of a library before you start using it. This can really be helpful to avoid using &amp;quot;large libraries&amp;quot; which only add limited benefit to your app.&lt;/p&gt;
-
-&lt;h3&gt;Replacing existing libraries&lt;/h3&gt;
-
-&lt;p&gt;Often there are multiple libraries accomplishing the same goals. Take for instance image loading:&lt;/p&gt;
-
-&lt;table&gt;&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Library&lt;/th&gt;
-&lt;th&gt;Method count&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;Picasso 2.5.2&lt;/td&gt;
-&lt;td&gt;849&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Universal Image Loader 1.9.5&lt;/td&gt;
-&lt;td&gt;1206&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Glide 3.7.0&lt;/td&gt;
-&lt;td&gt;2879&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Fresco 0.9.0&lt;/td&gt;
-&lt;td&gt;12984&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;&lt;/table&gt;
-
-&lt;p&gt;Each of these libraries have their own benefits and features, so choose wisely and balance the features you are going to use versus the method count impact it will have.&lt;/p&gt;
-
-&lt;p&gt;That being said, replacing libraries in existing projects can be incredibly hard and may not even be feasible on the short term. Later I&amp;#39;ll suggest an alternative solution to reduce method count in existing libraries.&lt;/p&gt;
-
-&lt;h3&gt;Running Proguard&lt;/h3&gt;
-
-&lt;p&gt;Proguard is a great tool to strip out unused code from your app, but you typically only run it for release builds to save precious build time. If that&amp;#39;s not really an issue for you, by all means you can also enable Proguard for debug builds:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;buildTypes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;debug&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;minifyEnabled&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;proguardFiles&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getDefaultProguardFile&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;proguard-android.txt&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;proguard-rules.pro&amp;#39;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3&gt;Reducing library size&lt;/h3&gt;
-
-&lt;p&gt;If it&amp;#39;s not feasible to replace an existing library or to run Proguard all the time, then it becomes really interesting. Because if Proguard can strip out code during a release build, why not use it ahead of time to create a modified version of a library with fewer methods?&lt;/p&gt;
-
-&lt;p&gt;Well this is possible, but you&amp;#39;ll have to manually specify which parts of the library you are going to use! This is because Proguard doesn&amp;#39;t have a context during library stripping of what methods your application will be needing and what not.&lt;/p&gt;
-
-&lt;p&gt;Let&amp;#39;s reproduce one of the projects I recently started working on as an example. Guava was used throughout the app extensively, making it very hard/risky to remove. But because of the huge method count we were constantly flirting with the 65k method limit and had to enable multidex.&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/methodcount/dexcount-guava/debugChart/index.html&quot;&gt;&lt;img src=&quot;/img/blog/methodcount/methodcount_graphic_guava.gif&quot; alt=&quot;Method count graphical output of sample project with Guava&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;First of all you need to know what parts of the library the app was actually using. This can easily be done by running the following command in your &lt;code&gt;src&lt;/code&gt; folder.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;grep -roh . -e &lt;span class=&quot;s1&quot;&gt;&amp;#39;com.google.common.*&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; sort &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; uniq
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;This simply looks for all import statements starting with the library prefix (for Guava that is &lt;code&gt;com.google.common&lt;/code&gt;), removes all clutter from the grep output, sorts it and takes all unique references.&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/methodcount/grep_output.png&quot;&gt;&lt;img src=&quot;/img/blog/methodcount/grep_output.png&quot; alt=&quot;Grep output for references to Guava in an existing project&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;Next we&amp;#39;ll create a simple Proguard configuration that keeps all top level packages, without any obfuscation or optimizations.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dontoptimize&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dontobfuscate&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keep&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;google&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;common&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.**&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keep&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;google&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;common&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;collect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.**&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keep&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;google&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;common&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;primitives&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.**&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keep&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;google&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;common&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;util&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.**&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Now we&amp;#39;ll use a little Gradle script that takes a library as an input, runs Proguard on it an creates a new library as an output. If you&amp;#39;re interested I advice you look at the &lt;a href=&quot;https://github.com/JeroenMols/MethodCountExample/blob/master/shrink_lib/build.gradle&quot;&gt;source code&lt;/a&gt;, which is based on a script by &lt;a href=&quot;https://github.com/ligi/shrinkGuava&quot;&gt;@mr_ligi&lt;/a&gt;. This Gradle script outputs a shrinked library version, which can be copied to the libs folder of your project.&lt;/p&gt;
-
-&lt;p&gt;Looking at our example, this simple process saved us 4000 methods and we are only just above the dex method limit.&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/methodcount/dexcount-packageshrink/debugChart/index.html&quot;&gt;&lt;img src=&quot;/img/blog/methodcount/methodcount_graphic_packageshrink.gif&quot; alt=&quot;Method count graphical output of sample project with stripped out Guava&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;Back to the drawing board, because this isn&amp;#39;t nearly enough! Turns out the &lt;code&gt;collect&lt;/code&gt; package by itself has over 8000 methods, so I decided to just keep certain classes instead of the entire package.&lt;/p&gt;
-
-&lt;p&gt;This more aggressive approach will most likely cause some compile errors when you try to use the library in your app, so I had to iterate and add some extra classes until all of those were solved. The resulting Proguard configuration looks like this:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-Java&quot; data-lang=&quot;Java&quot;&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dontoptimize&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dontobfuscate&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keep&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;google&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;common&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.**&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keep&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;google&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;common&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;collect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Sets&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keepclassmembers&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;google&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;common&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;collect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Sets&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
- &lt;span class=&quot;o&quot;&gt;*;&lt;/span&gt;
- &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
- &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keep&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;google&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;common&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;collect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Collections2&lt;/span&gt;
- &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keepclassmembers&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;google&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;common&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;collect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Collections2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;*;&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keep&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;google&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;common&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;collect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Lists&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keepclassmembers&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;google&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;common&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;collect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Lists&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
- &lt;span class=&quot;o&quot;&gt;*;&lt;/span&gt;
- &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keep&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;google&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;common&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;collect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Iterables&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keepclassmembers&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;google&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;common&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;collect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Iterables&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
- &lt;span class=&quot;o&quot;&gt;*;&lt;/span&gt;
- &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keep&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;google&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;common&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;collect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;ImmutableList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.**&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keep&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;google&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;common&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;io&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;CharStreams&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keep&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;google&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;common&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;collect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;HashMultiset&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keepclassmembers&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;google&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;common&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;collect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;HashMultiset&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
- &lt;span class=&quot;o&quot;&gt;*;&lt;/span&gt;
- &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keep&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;google&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;common&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;collect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;HashBiMap&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keepclassmembers&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;google&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;common&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;collect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;HashBiMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
- &lt;span class=&quot;o&quot;&gt;*;&lt;/span&gt;
- &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keep&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;javax&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;annotation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Nullable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.**&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-     &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*;&lt;/span&gt;
- &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keep&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;google&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;common&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;util&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.**&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keep&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;google&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;common&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;primitives&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.**&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Resulting in an extra decrease of almost 4500 methods, which brings the total removed methods to 8500!&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/methodcount/dexcount-agressiveshrink/debugChart/index.html&quot;&gt;&lt;img src=&quot;/img/blog/methodcount/methodcount_graphic_agressiveshrink.gif&quot; alt=&quot;Method count graphical output of sample project with aggressively stripped out Guava&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;Further our build times have not only improved because we no longer need multidexing, but also because the compiler now has less code to process.&lt;/p&gt;
-
-&lt;p&gt;Obviously your mileage will vary depending on what library you choose. For low coupled, highly cohesive libraries (like Guava), this technique works really well, but for other libraries it might not.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Disclaimer&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;The technique presented above should be used with caution! Because instead of relying on Proguard to strip out what&amp;#39;s not needed, we&amp;#39;re now doing that manually, which is more error prone.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
-
-&lt;h2&gt;Wrap-up&lt;/h2&gt;
-
-&lt;p&gt;Hitting the 65k method limit is a real pain, but choosing wisely what libraries you use can already bring you a long way. Fortunately there are great tools like the &lt;a href=&quot;https://github.com/KeepSafe/dexcount-gradle-plugin&quot;&gt;Dexcount Gradle Plugin&lt;/a&gt; and &lt;a href=&quot;http://www.methodscount.com/&quot;&gt;methodscount.com&lt;/a&gt; to help with these decisions.&lt;/p&gt;
-
-&lt;p&gt;For existing projects, always try to replace existing large method libraries with alternatives. If this is not feasible and you feel comfortably using Proguard, you can use the latter to preprocess and shrink existing libraries.&lt;/p&gt;
-
-&lt;p&gt;A basic example project with everything in this blogpost integrated is available on &lt;a href=&quot;https://github.com/JeroenMols/MethodCountExample&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;
-]]></content>
+<p>...</p>]]></content>
  </entry>
  
  <entry>
@@ -445,128 +58,13 @@ Danny Preussler&lt;/li&gt;
    <link href="http://jeroenmols.com/blog/2016/04/08/droidconit/"/>
    <updated>2016-04-08T00:00:00+02:00</updated>
    <id>http://jeroenmols.com/blog/2016/04/08/droidconit</id>
-   <content type="html"><![CDATA[&lt;p&gt;A conference about our favorite Green little robots? In sunny Italy? With great food and a party? Yeah, I can image how you must feel in case you missed it... I on the other hand was fortunate enough to attend and speak at this awesome conference.&lt;/p&gt;
+   <content type="html"><![CDATA[<p>A conference about our favorite Green little robots? In sunny Italy? With great food and a party? Yeah, I can image how you must feel in case you missed it... I on the other hand was fortunate enough to attend and speak at this awesome conference.</p>
 
-&lt;p&gt;With over 770 attendees and four different tracks, it was obviously not possible to attend every session. But I did notice some general themes and would like to share my personal highlights with you.&lt;/p&gt;
+<p>With over 770 attendees and four different tracks, it was obviously not possible to attend every session. But I did notice some general themes and would like to share my personal highlights with you.</p>
 
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+<p><br></p>
 
-&lt;h2&gt;We are all UX&lt;/h2&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/droidconit16/wereallux.jpg&quot;&gt;&lt;img style=&quot;width: 50%&quot; src=&quot;/img/blog/droidconit16/wereallux.jpg&quot; alt=&quot;We are all UX&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;The holy grail in app development is to have an amazing user experience. While app performance and feature set are obviously important, you must also understand your users, simplify main use cases and have a delightful design.&lt;/p&gt;
-
-&lt;p&gt;Do you really think a developer or designer alone can create such a great UX? NO, off course not! They&amp;#39;ll both have to work together and synergize to really blow the users of their feet. We need more pairing between developers and designers folks!&lt;/p&gt;
-
-&lt;p&gt;The best advice I got was:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;A prototype is worth a thousand meetings.&lt;/li&gt;
-&lt;li&gt;Five people to test your prototype with is the sweet spot. It&amp;#39;s enough to notice patterns, yet not too much to be a burden.&lt;/li&gt;
-&lt;li&gt;Developers and designers should be transparent and open to learn from each other&lt;/li&gt;
-&lt;li&gt;&amp;quot;How might we...&amp;quot; is a great way to phrase problems as opportunities&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
-
-&lt;h2&gt;Optimizing layouts&lt;/h2&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/droidconit16/leanlayouts.jpg&quot;&gt;&lt;img src=&quot;/img/blog/droidconit16/leanlayouts.jpg&quot; alt=&quot;Loving lean layouts&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;Screens containing a lot of views can sometimes render slowly. Mostly caused by deeply nested view hierarchies and/or using RelativeLayouts as a root element. Using &amp;quot;heavy&amp;quot; layouts in lists or increased nesting makes these problems multiplicative instead of simply additive.&lt;/p&gt;
-
-&lt;p&gt;When running into issues, first resolve to Lint and investigate all warnings. If the problem persist, Hierarchy viewer will help you understanding what&amp;#39;s going on. Always prefer simple solutions over complex ones and if you really really have to you can go - Facebook Style - replacing views with drawables.&lt;/p&gt;
-
-&lt;p&gt;The best advice in this track was:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Rendering times in Hierarchy Viewer are not reliable&lt;/li&gt;
-&lt;li&gt;Optimize responsibly&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
-
-&lt;h2&gt;DEX diet&lt;/h2&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/droidconit16/classyshark.png&quot;&gt;&lt;img src=&quot;/img/blog/droidconit16/classyshark.png&quot; alt=&quot;ClassyShark&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;Hitting the DEX method limit or trying to improve your app security? As a real Proguard expert you created an amazing configuration and now all those problems are gone. Or are they?&lt;/p&gt;
-
-&lt;p&gt;Analyzing your own APK file is a must to verify what methods are actually stripped and what code is obfuscated. Who knows you might even find some duplicate dependencies (GSON anyone?), causing a further method count reduction. Thanksfully all of this has become a breeze thanks to tools like &lt;a href=&quot;http://www.classyshark.com/&quot;&gt;ClassyShark&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;The best advice here was:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Be restrictive using Proguard iso keeping entire packages&lt;/li&gt;
-&lt;li&gt;IDE method count != dex method count&lt;/li&gt;
-&lt;li&gt;Use &lt;a href=&quot;http://www.methodscount.com/&quot;&gt;methodscount.com&lt;/a&gt; to see how large a lib is before using it&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
-
-&lt;h2&gt;Other hot topics&lt;/h2&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/droidconit16/android_cookie.jpg&quot;&gt;&lt;img style=&quot;width: 50%&quot; src=&quot;/img/blog/droidconit16/android_cookie.jpg&quot; alt=&quot;Android cookies&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;Besides the three main themes, other topics varied from Kotlin, over library distribution to (MVP) architecture and app store optimizations. Awesome sources of inspiration, brought by even more awesome speakers.&lt;/p&gt;
-
-&lt;p&gt;My key takeaways:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Use App invites to grow your user base&lt;/li&gt;
-&lt;li&gt;If you don&amp;#39;t like testing your code, most likely customers won&amp;#39;t like testing your app either&lt;/li&gt;
-&lt;li&gt;Italian food is awesome&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
-
-&lt;h2&gt;Conference slides&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/jeroenmols/distribute-your-libraries-via-maven-even-privately&quot;&gt;Distribute your libraries via Maven, even privately&lt;/a&gt; by Jeroen Mols&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://photos.google.com/share/AF1QipMB_VOceGeOuQZ0UhBf0dKrGhgu92k8-qpXu0X5WtWUvoSqFJKRsoPzESyuhNEDRw?key=VVctWHBsVG4zZVlsRlBjVGRBWkIzT295Vk9qcWlB&quot;&gt;Think like a designer&lt;/a&gt; by Nick Butcher&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/dorvaryn/let-it-flow&quot;&gt;Let it flow&lt;/a&gt; by Benjamin Augustin&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/alosdev/perfmatters-for-android-droidcon-turin-2016&quot;&gt;#Perfmatters for Android&lt;/a&gt; by Hasan Hosgel&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://docs.google.com/presentation/d/1f05lCKSnCuzn9nJUMHN0nZ_buIVtsVnB_lrT4FR3wXo/edit#slide=id.p&quot;&gt;Android Library A-Z&lt;/a&gt; by Martin Liersch&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://blog.rafols.org/wp-content/uploads/2016_04_droidcon_it.pdf&quot;&gt;The bytecode mumbo-jumbo&lt;/a&gt; by Raimon Ràfols&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/dextor/to-65k-and-beyond&quot;&gt;To ∞ (~65K) and beyond!&lt;/a&gt; by Sebastiano Gottardo&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.slideshare.net/fabio_collini/data-binding-in-action-using-mvvm-pattern&quot;&gt;Android data binding in action using MVVM pattern&lt;/a&gt; by Fabio Collini&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/danybony/from-clockwork-to-smartwatch&quot;&gt;From Clockwork to smartwatch&lt;/a&gt; by Daniele Bonaldo&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.slideshare.net/KellyShuster/internal-android-library-management-droidcon-sf-2016&quot;&gt;Android internal library management&lt;/a&gt; by Kelly Shuster&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/jonreeve/reverse-engineering-is-not-just-for-hackers&quot;&gt;Reverse engineering is not just for hackers&lt;/a&gt; by Jon Reeve&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/anothem/how-to-talk-to-your-users&quot;&gt;How to talk to your users&lt;/a&gt; by Alex Florescu&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.slideshare.net/Aetheros/crafting-great-hypotheses-droidcon-2016&quot;&gt;Crafting Great Hypotheses&lt;/a&gt; by Hoang Huynh&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.slideshare.net/KristijanJurkovi/building-maintainable-app&quot;&gt;Building maintainable app with MVP and Dagger2&lt;/a&gt; by Kristijan Jurković&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.slideshare.net/duckma/build-an-efficient-rest-client-on-android-droidcon-it-2016-matteo-gazzurelli?ref=http://blog.duckma.com/2016/04/build-efficient-rest-client-on-android.html&quot;&gt;Build An Efficient REST Client On Android&lt;/a&gt; by Matteo Gazzurelli&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://docs.google.com/presentation/d/1DK_kOp--XXdV_BYOYWw-wWPvJ1B_i4NIclDqWQqBSw8/edit#slide=id.p&quot;&gt;Chronicles of TDD&lt;/a&gt; by Luca Falsina&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://backend4android.github.io/#/&quot;&gt;Backend 4 Android developers&lt;/a&gt; by
-Antonio Mallia &amp;amp; Nicola Corti&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.slideshare.net/AlessandroMartellucc/a-realtime-infrastructure-for-android-apps-firebase-may-be-what-you-needand-even-more&quot;&gt;A realtime infrastructure for Android apps: Firebase may be what you need..and even more!&lt;/a&gt; by
-Alessandro Martellucci&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.slideshare.net/CarloPescio/evolving-the-android-core-with-aspects&quot;&gt;Evolving the Android core with Aspects&lt;/a&gt; by Carlo Pescio&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/nibble/android-its-time-to-go-to-work&quot;&gt;Android: It&amp;#39;s time to go to work!&lt;/a&gt; by Pietro Maggi&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/joaobiriba/drive-together-not-the-same&quot;&gt;Drive together not the same&lt;/a&gt; by Giovanni Laquidara&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.slideshare.net/yoni1984/a-friend-in-need-a-js-indeed&quot;&gt;A friend in need - A JS indeed&lt;/a&gt; by Yonatan Levin&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/sangsoonam/application-architecture-for-scaled-agile-droidconit-2016&quot;&gt;Application Architecture for Scaled Agile&lt;/a&gt; by Sangsoo Nam&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/unsign3d/flux-based-clean-architecure&quot;&gt;FLUX based clean architecure&lt;/a&gt; by Luca Bruzzone&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.slideshare.net/MatteoBonifazi/engage-and-retain-users-in-the-android-world-droidcon-italy-2016?from_m_app=android&quot;&gt;Engage and retain users in android world&lt;/a&gt; by Matteo Bonifazi&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/tiwiz/bonjour-android-its-zeroconf&quot;&gt;Bonjour Android, it&amp;#39;s Zeroconf&lt;/a&gt; by Roberto Orgiu&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/lyslydia/were-all-ux&quot;&gt;We&amp;#39;re all UX!&lt;/a&gt; by Lydia Selimalhigazi and Caroline Smith&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.slideshare.net/ph0b/mastering-the-ndk-with-android-studio-and-the-gradleexperimental-plugin&quot;&gt;Mastering the NDK&lt;/a&gt; by Xavier Hallade&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://www.blueupbeacons.com/docs/WorkshopBeacons.pdf&quot;&gt;BLE beacons, Eddystone and Physical Web&lt;/a&gt; by Alessio Cucini and Samuele Forconi&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.slideshare.net/PedroVicenteGmezSnch/worldclass-testing-development-pipeline-for-android&quot;&gt;World-Class Testing Development Pipeline for Android&lt;/a&gt; by Pedro Vicente Gómez Sánchez]&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.slideshare.net/seamaster29/classshark-android-and-java-executables-browser&quot;&gt;ClassShark - Android and Java executables browser&lt;/a&gt; by Boris Farber&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
-
-&lt;h2&gt;Credits&lt;/h2&gt;
-
-&lt;p&gt;Thanks to the entire Droidcon Italy team for organizing such a great conference and to all sponsers for their support.&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/droidconit16/droidconit_team.jpg&quot;&gt;&lt;img src=&quot;/img/blog/droidconit16/droidconit_team.jpg&quot; alt=&quot;Droidcon Italy team&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
-]]></content>
+<p>...</p>]]></content>
  </entry>
  
  <entry>
@@ -574,276 +72,26 @@ Alessandro Martellucci&lt;/li&gt;
    <link href="http://jeroenmols.com/blog/2016/03/07/resourcenaming/"/>
    <updated>2016-03-07T00:00:00+01:00</updated>
    <id>http://jeroenmols.com/blog/2016/03/07/resourcenaming</id>
-   <content type="html"><![CDATA[&lt;p&gt;Do you remember the last time you had to dig into &lt;code&gt;strings.xml&lt;/code&gt; to find the right String to use? Or that you manually had to go over all drawables to find the one you needed?&lt;/p&gt;
+   <content type="html"><![CDATA[<p>Do you remember the last time you had to dig into <code>strings.xml</code> to find the right String to use? Or that you manually had to go over all drawables to find the one you needed?</p>
 
-&lt;p&gt;Whenever we start a new project, we take a lot of care in setting up our architecture, CI, build flavors,... But do you also have a strategy to name your resources?&lt;/p&gt;
+<p>Whenever we start a new project, we take a lot of care in setting up our architecture, CI, build flavors,... But do you also have a strategy to name your resources?</p>
 
-&lt;p&gt;You should! Because the lack of XML namespaces, makes managing Android resources tedious. And causes things to grow out of control easily, especially in large projects.&lt;/p&gt;
+<p>You should! Because the lack of XML namespaces, makes managing Android resources tedious. And causes things to grow out of control easily, especially in large projects.</p>
 
-&lt;p&gt;So let&amp;#39;s introduce a simple scheme that will solve your pains.&lt;/p&gt;
+<p>So let&#39;s introduce a simple scheme that will solve your pains.</p>
 
-&lt;ul&gt;
-&lt;li&gt;easy lookup of any resource (autocomplete)&lt;/li&gt;
-&lt;li&gt;logical, predictable names&lt;/li&gt;
-&lt;li&gt;clean ordering of resources&lt;/li&gt;
-&lt;li&gt;strongly typed resources&lt;/li&gt;
-&lt;/ul&gt;
+<ul>
+<li>easy lookup of any resource (autocomplete)</li>
+<li>logical, predictable names</li>
+<li>clean ordering of resources</li>
+<li>strongly typed resources</li>
+</ul>
 
-&lt;p&gt;This blogpost will explain the mechanism, its advantages, limitations and provide an easy to use cheat sheet.&lt;/p&gt;
+<p>This blogpost will explain the mechanism, its advantages, limitations and provide an easy to use cheat sheet.</p>
 
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+<p><br></p>
 
-&lt;h2&gt;Basic principle&lt;/h2&gt;
-
-&lt;p&gt;All resource names follow a simple convention.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/blog/resourcenaming/whatwheredescriptionsize.jpg&quot; alt=&quot;what_where_description_size&quot;&gt;&lt;/p&gt;
-
-&lt;p&gt;Let&amp;#39;s first describe every element briefly. After the advantages, we&amp;#39;ll see how this applies to each resource type.&lt;/p&gt;
-
-&lt;h4&gt;&amp;lt;WHAT&amp;gt;&lt;/h4&gt;
-
-&lt;p&gt;Indicate what the resource actually represents, often a standard Android view class. Limited options per resource type. &lt;/br&gt; (e.g. MainActivity -&amp;gt; &lt;code&gt;activity&lt;/code&gt;)&lt;/p&gt;
-
-&lt;h4&gt;&amp;lt;WHERE&amp;gt;&lt;/h4&gt;
-
-&lt;p&gt;Describe where it logically belongs in the app. Resources used in multiple screens use &lt;code&gt;all&lt;/code&gt;, all others use the custom part of the Android view subclass they are in. &lt;/br&gt; (e.g. MainActivity -&amp;gt; &lt;code&gt;main&lt;/code&gt;, ArticleDetailFragment -&amp;gt; &lt;code&gt;articledetail&lt;/code&gt;)&lt;/p&gt;
-
-&lt;h4&gt;&amp;lt;DESCRIPTION&amp;gt;&lt;/h4&gt;
-
-&lt;p&gt;Differentiate multiple elements in one screen. &lt;/br&gt; (e.g. &lt;code&gt;title&lt;/code&gt;)&lt;/p&gt;
-
-&lt;h4&gt;&amp;lt;SIZE&amp;gt; (optional)&lt;/h4&gt;
-
-&lt;p&gt;Either a precise size or size bucket. Optionally used for drawables and dimensions. &lt;/br&gt;  (e.g. &lt;code&gt;24dp&lt;/code&gt;, &lt;code&gt;small&lt;/code&gt;))&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/resourcenaming/resourcenaming_cheatsheet.pdf&quot;&gt;&lt;img src=&quot;/img/blog/resourcenaming/resourcenaming_cheatsheet.png&quot; alt=&quot;Resource naming cheat sheet&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;Download and print the &lt;a href=&quot;/img/blog/resourcenaming/resourcenaming_cheatsheet.pdf&quot;&gt;cheat sheet&lt;/a&gt; for easy reference.
-&lt;br&gt;&lt;br&gt;&lt;/p&gt;
-
-&lt;h2&gt;Advantages&lt;/h2&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Ordering of resources by screen&lt;/strong&gt; &lt;br&gt;
-The &lt;code&gt;WHERE&lt;/code&gt; part describes what screen a resource belongs to. Hence it is easy to get all IDs, drawables, dimensions,... for a particular screen.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Strongly typed resource IDs&lt;/strong&gt; &lt;br&gt;
-For resource IDs, the &lt;code&gt;WHAT&lt;/code&gt; describes the class name of the xml element it belongs to. This makes is easy to what to cast your &lt;code&gt;findViewById()&lt;/code&gt; calls to.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Better resource organizing&lt;/strong&gt; &lt;br&gt;
-File browsers/project navigator usually sort files alphabetically. This means layouts and drawables are grouped by their &lt;code&gt;WHAT&lt;/code&gt; (activity, fragment,..) and &lt;code&gt;WHERE&lt;/code&gt; prefix respectively. A simple Android Studio plugin/feature can now display these resources as if they were in their own folder.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;More efficient autocomplete&lt;/strong&gt; &lt;br&gt;
-Because resource names are far more predictable, using the IDE&amp;#39;s autocomplete becomes even easier. Usually entering the &lt;code&gt;WHAT&lt;/code&gt; or &lt;code&gt;WHERE&lt;/code&gt; is sufficient to narrow autocomplete down to a limited set of options.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;No more name conflicts&lt;/strong&gt; &lt;br&gt;
-Similar resources in different screens are either &lt;code&gt;all&lt;/code&gt; or have a different &lt;code&gt;WHERE&lt;/code&gt;. A fixed naming scheme avoids all naming collisions.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Cleaner resource names&lt;/strong&gt; &lt;br&gt;
-Overall all resources will be named more logical, causing a cleaner Android project.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Tools support&lt;/strong&gt; &lt;br&gt;
-This naming scheme could be easily supported by the Android Studio offering features such as: lint rules to enforce these names, refactoring support when you change a &lt;code&gt;WHAT&lt;/code&gt; or &lt;code&gt;WHERE&lt;/code&gt;, better resource visualisation in project view,...&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
-
-&lt;h2&gt;Layouts&lt;/h2&gt;
-
-&lt;p&gt;Layouts are relatively simple, as there usually are only a few layouts per screen. Therefore the rule can be simplified to:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/blog/resourcenaming/layouts.png&quot; alt=&quot;what_where.xml&quot;&gt;&lt;/p&gt;
-
-&lt;p&gt;Where &lt;code&gt;&amp;lt;WHAT&amp;gt;&lt;/code&gt; is one of the following:&lt;/p&gt;
-
-&lt;table&gt;&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Prefix&lt;/th&gt;
-&lt;th&gt;Usage&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;activity&lt;/td&gt;
-&lt;td&gt;contentview for activity&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;fragment&lt;/td&gt;
-&lt;td&gt;view for a fragment&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;view&lt;/td&gt;
-&lt;td&gt;inflated by a custom view&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;item&lt;/td&gt;
-&lt;td&gt;layout used in list/recycler/gridview&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;layout&lt;/td&gt;
-&lt;td&gt;layout reused using the include tag&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;&lt;/table&gt;
-
-&lt;p&gt;Examples:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;activity_main&lt;/strong&gt;: content view of the MainActivity&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;fragment_articledetail&lt;/strong&gt;: view for the ArticleDetailFragment&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;view_menu&lt;/strong&gt;: layout inflated by custom view class MenuView&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;item_article&lt;/strong&gt;: list item in ArticleRecyclerView&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;layout_actionbar_backbutton&lt;/strong&gt;: layout for an actionbar with a backbutton (too simple to be a customview)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
-
-&lt;h2&gt;Strings&lt;/h2&gt;
-
-&lt;p&gt;The &lt;code&gt;&amp;lt;WHAT&amp;gt;&lt;/code&gt; part for Strings is irrelevant. So either we use &lt;code&gt;&amp;lt;WHERE&amp;gt;&lt;/code&gt; to indicate where the string will be used:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/blog/resourcenaming/strings.png&quot; alt=&quot;where_description.xml&quot;&gt;&lt;/p&gt;
-
-&lt;p&gt;or &lt;code&gt;all&lt;/code&gt; if the string is reused throughout the app:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/blog/resourcenaming/strings2.png&quot; alt=&quot;all_description.xml&quot;&gt;&lt;/p&gt;
-
-&lt;p&gt;Examples:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;articledetail_title&lt;/strong&gt;: title of ArticleDetailFragment&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;feedback_explanation&lt;/strong&gt;: feedback explanation in FeedbackFragment&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;feedback_namehint&lt;/strong&gt;: hint of name field in FeedbackFragment&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;all_done&lt;/strong&gt;: generic &amp;quot;done&amp;quot; string&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;code&gt;&amp;lt;WHERE&amp;gt;&lt;/code&gt; obviously is the same for all resources in the same view.&lt;/p&gt;
-
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
-
-&lt;h2&gt;Drawables&lt;/h2&gt;
-
-&lt;p&gt;The &lt;code&gt;&amp;lt;WHAT&amp;gt;&lt;/code&gt; part for Drawables is irrelevant. So either we use &lt;code&gt;&amp;lt;WHERE&amp;gt;&lt;/code&gt; to indicate where the drawable will be used:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/blog/resourcenaming/drawables.png&quot; alt=&quot;where_description_size.xml&quot;&gt;&lt;/p&gt;
-
-&lt;p&gt;or &lt;code&gt;all&lt;/code&gt; if the drawable is reused throughout the app:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/blog/resourcenaming/drawables2.png&quot; alt=&quot;all_description_size.xml&quot;&gt;&lt;/p&gt;
-
-&lt;p&gt;Optionally you can add a &lt;code&gt;&amp;lt;SIZE&amp;gt;&lt;/code&gt; argument, which can be an actual size &amp;quot;24dp&amp;quot; or a size qualifier &amp;quot;small&amp;quot;.&lt;/p&gt;
-
-&lt;p&gt;Examples:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;articledetail_placeholder&lt;/strong&gt;: placeholder in ArticleDetailFragment&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;all_infoicon&lt;/strong&gt;: generic info icon&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;all_infoicon_large&lt;/strong&gt;: large version of generic info icon&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;all_infoicon_24dp&lt;/strong&gt;: 24dp version of generic info icon&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
-
-&lt;h2&gt;IDs&lt;/h2&gt;
-
-&lt;p&gt;For IDs, &lt;code&gt;&amp;lt;WHAT&amp;gt;&lt;/code&gt; is the class name of the xml element it belongs to. Next is the screen the ID is in, followed by an optional description to distinguish similar elements in one screen.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/blog/resourcenaming/ids.png&quot; alt=&quot;what_where_description.xml&quot;&gt;&lt;/p&gt;
-
-&lt;p&gt;Examples:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;tablayout_main&lt;/strong&gt; -&amp;gt; TabLayout in MainActivity&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;imageview_menu_profile&lt;/strong&gt; -&amp;gt; profile image in custom MenuView&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;textview_articledetail_title&lt;/strong&gt; -&amp;gt; title TextView in ArticleDetailFragment&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
-
-&lt;h2&gt;Dimensions&lt;/h2&gt;
-
-&lt;p&gt;Apps should only define a limited set of dimensions, which are constantly reused. This makes most dimensions &lt;code&gt;all&lt;/code&gt; by default.&lt;/p&gt;
-
-&lt;p&gt;Therefore you should mostly use:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/blog/resourcenaming/dimensions2.png&quot; alt=&quot;what_all_description_size.xml&quot;&gt;&lt;/p&gt;
-
-&lt;p&gt;and optionally use the screen specific variant:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/blog/resourcenaming/dimensions.png&quot; alt=&quot;what_where_description_size.xml&quot;&gt;&lt;/p&gt;
-
-&lt;p&gt;Where &lt;code&gt;&amp;lt;WHAT&amp;gt;&lt;/code&gt; is one of the following:&lt;/p&gt;
-
-&lt;table&gt;&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Prefix&lt;/th&gt;
-&lt;th&gt;Usage&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;width&lt;/td&gt;
-&lt;td&gt;width in dp&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;height&lt;/td&gt;
-&lt;td&gt;height in dp&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;size&lt;/td&gt;
-&lt;td&gt;if width == height&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;margin&lt;/td&gt;
-&lt;td&gt;margin in dp&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;padding&lt;/td&gt;
-&lt;td&gt;padding in dp&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;elevation&lt;/td&gt;
-&lt;td&gt;elevation in dp&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;keyline&lt;/td&gt;
-&lt;td&gt;absolute keyline measured from view edge in dp&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;textsize&lt;/td&gt;
-&lt;td&gt;size of text in sp&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;&lt;/table&gt;
-
-&lt;p&gt;Note that this list only contains the most used &lt;code&gt;&amp;lt;WHAT&amp;gt;&lt;/code&gt;s. Other dimensions qualifiers like: rotation, scale,... are usually only used in drawables and as such less reused.&lt;/p&gt;
-
-&lt;p&gt;Examples:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;height_toolbar&lt;/strong&gt;: height of all toolbars&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;keyline_listtext&lt;/strong&gt;: listitem text is aligned at this keyline&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;textsize_medium&lt;/strong&gt;: medium size of all text&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;size_menu_icon&lt;/strong&gt;: size of icons in menu&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;height_menu_profileimage&lt;/strong&gt;: height of profile image in menu&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
-
-&lt;h2&gt;Known limitations&lt;/h2&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Screens need to have unique names&lt;/strong&gt;&lt;br&gt;
-To avoid collisions in the &lt;code&gt;&amp;lt;WHERE&amp;gt;&lt;/code&gt; argument, View (like) classes must have unique names. Therefore you cannot have a &amp;quot;MainActivity&amp;quot; and a &amp;quot;MainFragment&amp;quot;, because the &amp;quot;Main&amp;quot; prefix would no longer uniquely identify one &lt;code&gt;&amp;lt;WHERE&amp;gt;&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Refactoring not supported&lt;/strong&gt;&lt;br&gt;
-Changing class names does not change along resource names when refactoring. So if you rename &amp;quot;MainActivity&amp;quot; to &amp;quot;ContentActivity&amp;quot;, the layout &amp;quot;activity_main&amp;quot; won&amp;#39;t be renamed to &amp;quot;activity_content&amp;quot;. Hopefully Android Studio will one day add support for this.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Not all resource types supported&lt;/strong&gt;&lt;br&gt;
-The proposed scheme currently does not yet support all resource types. For some resources this is because they are less frequently used and tend to be very varied (e.g. raw and assets). For other resources this is because they are a lot harder to generalize (e.g. themes/styles/colors/animations).&lt;/p&gt;
-
-&lt;p&gt;Your apps colors palette likely wants to reuse the terminology of your design philosophy. Animations can range from modest (fade) to very exotic. Themes and styles already have a naming scheme that allows you to implicitly inherit properties.&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
-
-&lt;h2&gt;Wrap-up&lt;/h2&gt;
-
-&lt;p&gt;That&amp;#39;s it! A clean simple and easy to use resource naming scheme. Don&amp;#39;t forget to download the &lt;a href=&quot;/img/blog/resourcenaming/resourcenaming_cheatsheet.pdf&quot;&gt;cheat sheet&lt;/a&gt; for easy reference!&lt;/p&gt;
-
-&lt;p&gt;Even though this scheme doesn&amp;#39;t (yet) cover all resource types, it does provide an easy to use solution for where most naming pain currently is. In a future blogpost I&amp;#39;ll also make a suggestion for the other ones.&lt;/p&gt;
-
-&lt;p&gt;Let me know what you think by contacting me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leaving a comment below!&lt;/p&gt;
-]]></content>
+<p>...</p>]]></content>
  </entry>
  
  <entry>
@@ -851,173 +99,18 @@ The proposed scheme currently does not yet support all resource types. For some 
    <link href="http://jeroenmols.com/blog/2016/02/05/wagongit/"/>
    <updated>2016-02-05T00:00:00+01:00</updated>
    <id>http://jeroenmols.com/blog/2016/02/05/wagongit</id>
-   <content type="html"><![CDATA[&lt;p&gt;As my previous blogposts already covered how to set up a private Maven repository, you might wonder &amp;quot;Why again a Maven blogpost?&amp;quot;. Well that&amp;#39;s a fair question and the answer is twofold:&lt;/p&gt;
+   <content type="html"><![CDATA[<p>As my previous blogposts already covered how to set up a private Maven repository, you might wonder &quot;Why again a Maven blogpost?&quot;. Well that&#39;s a fair question and the answer is twofold:</p>
 
-&lt;ol&gt;
-&lt;li&gt;Backup mechanism, to ensure you never ever loose releases.&lt;/li&gt;
-&lt;li&gt;Remote access outside of your local network (intranet).&lt;/li&gt;
-&lt;/ol&gt;
+<ol>
+<li>Backup mechanism, to ensure you never ever loose releases.</li>
+<li>Remote access outside of your local network (intranet).</li>
+</ol>
 
-&lt;p&gt;And Git implicitly solves both! :)&lt;/p&gt;
+<p>And Git implicitly solves both! :)</p>
 
-&lt;p&gt;I&amp;#39;ll demonstrate how to configure Bitbucket as a free private remote Maven repository and automate everything in one simple Gradle script.&lt;/p&gt;
+<p>I&#39;ll demonstrate how to configure Bitbucket as a free private remote Maven repository and automate everything in one simple Gradle script.</p>
 
-&lt;h2&gt;Preface&lt;/h2&gt;
-
-&lt;p&gt;While you could use any Git repository (like GitHub), I choose Bitbucket as it offers &lt;a href=&quot;https://bitbucket.org/product/pricing&quot;&gt;free private repositories&lt;/a&gt; for small teams. Furthermore it has an API which we will need for some of the wizardry later on.&lt;/p&gt;
-
-&lt;p&gt;All source code is available on &lt;a href=&quot;https://github.com/JeroenMols/WagonGitExample&quot;&gt;Github&lt;/a&gt; and can be used after some minor BitBucket configuration. You can find the &lt;a href=&quot;https://github.com/JeroenMols/GitAsMaven&quot;&gt;Gradle script&lt;/a&gt; in a separate repository.&lt;/p&gt;
-
-&lt;h2&gt;Bitbucket&lt;/h2&gt;
-
-&lt;p&gt;Without any further a do, lets get to it and start configuring BitBucket.&lt;/p&gt;
-
-&lt;p&gt;Login to Bitbucket and create a new private repository called &lt;code&gt;maven_repository&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/wagongit/createrepository.png&quot;&gt;&lt;img src=&quot;/img/blog/wagongit/createrepository.png&quot; alt=&quot;Create new BitBucket repository&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;Checkout the repository locally, create a &lt;code&gt;README.md&lt;/code&gt; file and commit that file to your local branch. Now push that branch to BitBucket, BUT make sure to push it to a remote branch called &amp;quot;releases&amp;quot;. (this is key, as the plugin we&amp;#39;ll use later on depends on this)&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/wagongit/releasebranch.png&quot;&gt;&lt;img src=&quot;/img/blog/wagongit/releasebranch.png&quot; alt=&quot;BitBucket repository with main branch releases.&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Troubleshooting releases branch&lt;/strong&gt;
-If you accidentally push your local branch to a remote called &lt;code&gt;master&lt;/code&gt;, create a new branch locally called releases, push that to a remote &lt;code&gt;releases&lt;/code&gt; and change your main branch in the BitBucket settings for that repository.&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/wagongit/configuremainbranch.png&quot;&gt;&lt;img src=&quot;/img/blog/wagongit/configuremainbranch.png&quot; alt=&quot;Change the main branch from master to releases&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;You can safely remove origin/master if you want.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2&gt;Wagon-git&lt;/h2&gt;
-
-&lt;p&gt;To upload Maven artifacts to a Git repository, we will use a Maven plugin called &lt;a href=&quot;https://synergian.github.io/wagon-git/&quot;&gt;Wagon-git&lt;/a&gt;, which can hook into the existing Gradle DSL for Maven uploads.&lt;/p&gt;
-
-&lt;p&gt;Simply add a new repository:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;repositories&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;maven&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;https://raw.github.com/synergian/wagon-git/releases&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;And configure Maven like you would normally do, but with our BitBucket repository url in a particular format:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;uploadArchives&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;repositories&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;mavenDeployer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;repository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;url:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;git:releases://git@bitbucket.org:&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;COMPANY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;/&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;REPOSITORY_NAME&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;.git&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Where &lt;code&gt;COMPANY&lt;/code&gt; is the name of your BitBucket organization and &lt;code&gt;REPOSITORY_NAME&lt;/code&gt; is &lt;code&gt;maven_repository&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Now you can simply create a new release by running the following command:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;./gradlew assembleRelease uploadArchives
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;And check BitBucket for the resulting artifacts.&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/wagongit/releasecommits.png&quot;&gt;&lt;img src=&quot;/img/blog/wagongit/releasecommits.png&quot; alt=&quot;Release commit of a Maven upload to BitBucket.&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/wagongit/releasecommitdetails.png&quot;&gt;&lt;img src=&quot;/img/blog/wagongit/releasecommitdetails.png&quot; alt=&quot;File details of a release commit.&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;h2&gt;Unique versions only&lt;/h2&gt;
-
-&lt;p&gt;As Git naturally allows you to override existing files, we will need to do something to prevent this from happening. Otherwise, you could have a v1.1.3 library, which is stable one day and full of bugs the next (because someone replaced it in the Maven repo). Not exactly what you want, right?&lt;/p&gt;
-
-&lt;p&gt;We will use the BitBucket API to verify if a particular release already exists:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;task&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lookForArtifacts&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;doLast&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
-        &lt;span class=&quot;kt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;repositoryUrl&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;https://api.bitbucket.org/1.0/repositories/&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;COMPANY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;/&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;REPOSITORY_NAME&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;/raw/releases/&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;artifactPath&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;urlExists&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;repositoryUrl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;RuntimeException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;Artifact with version &amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ARTIFACT_VERSION&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot; already exist - not executing uploadArchives&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Quite simple actually: just reverse engineer the url of a particular release artifact and the see if we get a 200 response or not.&lt;/p&gt;
-
-&lt;p&gt;Finally we ensure that we always run the previous task before running the Maven task:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;uploadArchives&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;dependsOn&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lookForArtifacts&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Running &lt;code&gt;./gradlew uploadArchives&lt;/code&gt; now successfully creates a release.&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/wagongit/checkforartifacts.png&quot;&gt;&lt;img src=&quot;/img/blog/wagongit/checkforartifacts.png&quot; alt=&quot;Check for existing artifacts before uploadArchives.&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;h2&gt;Consuming artifacts&lt;/h2&gt;
-
-&lt;p&gt;Add your Maven repository to the list of repositories in your main &lt;code&gt;build.gradle&lt;/code&gt; file:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;allprojects&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;repositories&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;jcenter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-
-        &lt;span class=&quot;n&quot;&gt;maven&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;credentials&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;username&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;USERNAME&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;password&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PASSWORD&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;https://api.bitbucket.org/1.0/repositories/jeroenmols/maven_repository/raw/releases&amp;quot;&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Note that we have to provide a &lt;code&gt;username&lt;/code&gt; and &lt;code&gt;password&lt;/code&gt; as we are connecting to a private repository.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Important&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Make sure not to put your username and password directly into the &lt;code&gt;build.gradle&lt;/code&gt; file! That would be a major security risk. Instead have a look at &lt;a href=&quot;http://localhost:4000/blog/2015/08/13/artifactory2/&quot;&gt;this blogpost&lt;/a&gt; to learn how to securely provide a username and password.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Now simply add a dependency on your library like you are used to and you&amp;#39;re ready.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;compile&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;com.jeroenmols.awesomelibrary:awesomelibrary:1.0.0&amp;#39;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h2&gt;Putting it all together&lt;/h2&gt;
-
-&lt;p&gt;To make your life a lot easier, I&amp;#39;ve created a &lt;a href=&quot;https://github.com/JeroenMols/WagonGitExample/blob/master/library/publish-bitbucket.gradle&quot;&gt;Gradle script&lt;/a&gt; that does everything for you.&lt;/p&gt;
-
-&lt;p&gt;Setting up your project is easy:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Add the following plugin to the top of the &lt;a href=&quot;https://github.com/JeroenMols/WagonGitExample/blob/master/library/build.gradle&quot;&gt;build.gradle&lt;/a&gt; file in your library folder&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;  &lt;span class=&quot;n&quot;&gt;apply&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;from:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;https://raw.githubusercontent.com/JeroenMols/GitAsMaven/master/publish-bitbucket.gradle&amp;#39;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;ol&gt;
-&lt;li&gt;Create a &lt;a href=&quot;https://github.com/JeroenMols/WagonGitExample/blob/master/library/gradle.properties&quot;&gt;gradle.properties&lt;/a&gt; file within your library folder with the following parameters:&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;  &lt;span class=&quot;n&quot;&gt;ARTIFACT_VERSION&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;version_here&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;ARTIFACT_NAME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;libraryname_here&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;ARTIFACT_PACKAGE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;packagename_here&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;ARTIFACT_PACKAGING&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;aar&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//You could also use jar&lt;/span&gt;
-
-  &lt;span class=&quot;n&quot;&gt;COMPANY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bitbucket_team_company_here&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//Username if not part of team&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;REPOSITORY_NAME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bitbucket_reponame_here&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;ol&gt;
-&lt;li&gt;Create a &lt;a href=&quot;https://github.com/JeroenMols/WagonGitExample/blob/master/gradle.properties&quot;&gt;gradle.properties&lt;/a&gt; file in the root of your project (or better in the global &lt;code&gt;.gradle&lt;/code&gt; folder on your system) with the following parameters&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;  &lt;span class=&quot;n&quot;&gt;USERNAME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;username_here&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;PASSWORD&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;password_here&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;ol&gt;
-&lt;li&gt;Run the following command to upload a version to your Maven repository.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;  ./gradlew uploadArchives
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Thats&amp;#39;s it!&lt;/p&gt;
-
-&lt;h2&gt;Wrap-up&lt;/h2&gt;
-
-&lt;p&gt;Configuring BitBucket or GitHub as a (private) Maven repository is quite easy and can be fully automated in a single Gradle script. Hopefully this blogpost has inspired many of you to start reusing more code.&lt;/p&gt;
-
-&lt;p&gt;A basic example project with everything in this blogpost integrated is available on &lt;a href=&quot;https://github.com/JeroenMols/WagonGitExample&quot;&gt;GitHub&lt;/a&gt;. Or you can also directly integrate the &lt;a href=&quot;https://github.com/JeroenMols/GitAsMaven&quot;&gt;Gradle script&lt;/a&gt; into your library.&lt;/p&gt;
-
-&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;
-]]></content>
+<p>...</p>]]></content>
  </entry>
  
  <entry>
@@ -1025,28 +118,28 @@ If you accidentally push your local branch to a remote called &lt;code&gt;master
    <link href="http://jeroenmols.com/blog/2016/01/29/yearinreview/"/>
    <updated>2016-01-29T00:00:00+01:00</updated>
    <id>http://jeroenmols.com/blog/2016/01/29/yearinreview</id>
-   <content type="html"><![CDATA[&lt;p&gt;Finally found the time to write my &lt;code&gt;year in review&lt;/code&gt;. #insomnia&lt;/p&gt;
+   <content type="html"><![CDATA[<p>Finally found the time to write my <code>year in review</code>. #insomnia</p>
 
-&lt;p&gt;2015 was a huge year for me! I even dare to say the biggest one of my life so far as I became a father of a lovely daughter Lene. Its really hard to over state how big of an impact that has on your life and how fantastic it is to see your own baby grow (and recognize parts of yourself in her). This obviously also explains my late &lt;code&gt;year in review&lt;/code&gt; post. #perfectexcuse&lt;/p&gt;
+<p>2015 was a huge year for me! I even dare to say the biggest one of my life so far as I became a father of a lovely daughter Lene. Its really hard to over state how big of an impact that has on your life and how fantastic it is to see your own baby grow (and recognize parts of yourself in her). This obviously also explains my late <code>year in review</code> post. #perfectexcuse</p>
 
-&lt;p&gt;On a technical level I also fared well and I&amp;#39;m very happy with what I&amp;#39;ve been able to accomplish:&lt;/p&gt;
+<p>On a technical level I also fared well and I&#39;m very happy with what I&#39;ve been able to accomplish:</p>
 
-&lt;ul&gt;
-&lt;li&gt;Created an library with &amp;gt;500 stars on  &lt;a href=&quot;https://github.com/JeroenMols/LandscapeVideoCamera&quot;&gt;Github&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Started my own blog and &lt;a href=&quot;http://jeroenmols.com&quot;&gt;website&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Featured blogpost in &lt;a href=&quot;http://androidweekly.net/issues/issue-165&quot;&gt;Android Weekly&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Spoke at my first conference &lt;a href=&quot;https://speakerdeck.com/jeroenmols/distributing-to-a-public-or-private-maven-repository&quot;&gt;Droidcon Paris&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Actively started using &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;twitter&lt;/a&gt; and gained &amp;gt;100 followers&lt;/li&gt;
-&lt;li&gt;Gained &amp;gt;1000 reputation on &lt;a href=&quot;https://stackoverflow.com/users/2771851/jmols&quot;&gt;stackoverflow&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Landed a new job at Philips Hue&lt;/li&gt;
-&lt;li&gt;Learned Xamarin and built a cross platform app&lt;/li&gt;
-&lt;li&gt;Wrote the worlds latest &lt;code&gt;year in review&lt;/code&gt; post&lt;/li&gt;
-&lt;/ul&gt;
+<ul>
+<li>Created an library with &gt;500 stars on  <a href="https://github.com/JeroenMols/LandscapeVideoCamera">Github</a></li>
+<li>Started my own blog and <a href="http://jeroenmols.com">website</a></li>
+<li>Featured blogpost in <a href="http://androidweekly.net/issues/issue-165">Android Weekly</a></li>
+<li>Spoke at my first conference <a href="https://speakerdeck.com/jeroenmols/distributing-to-a-public-or-private-maven-repository">Droidcon Paris</a></li>
+<li>Actively started using <a href="https://twitter.com/molsjeroen">twitter</a> and gained &gt;100 followers</li>
+<li>Gained &gt;1000 reputation on <a href="https://stackoverflow.com/users/2771851/jmols">stackoverflow</a></li>
+<li>Landed a new job at Philips Hue</li>
+<li>Learned Xamarin and built a cross platform app</li>
+<li>Wrote the worlds latest <code>year in review</code> post</li>
+</ul>
 
-&lt;p&gt;Next year will be more challenging as my daughter has become a lot more effective at grabbing my attention than my laptop. However I want to increase my efforts contributing back to the community by speaking at more conferences and writing more blogposts. Finally I also want to visit Google IO, which is about time I got there, don&amp;#39;t you agree? ;)&lt;/p&gt;
+<p>Next year will be more challenging as my daughter has become a lot more effective at grabbing my attention than my laptop. However I want to increase my efforts contributing back to the community by speaking at more conferences and writing more blogposts. Finally I also want to visit Google IO, which is about time I got there, don&#39;t you agree? ;)</p>
 
-&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;
-]]></content>
+<p>As always you can reach me <a href="https://twitter.com/molsjeroen">@molsjeroen</a> on twitter, or leave a comment below!</p>
+<p>...</p>]]></content>
  </entry>
  
  <entry>
@@ -1054,227 +147,15 @@ If you accidentally push your local branch to a remote called &lt;code&gt;master
    <link href="http://jeroenmols.com/blog/2015/11/13/traviscoveralls/"/>
    <updated>2015-11-13T00:00:00+01:00</updated>
    <id>http://jeroenmols.com/blog/2015/11/13/traviscoveralls</id>
-   <content type="html"><![CDATA[&lt;p&gt;Wouldn&amp;#39;t you love to have your open source projects built automatically by a continuous integration server? And to have a detailed code coverage report for all your unit tests? Even when someone generated a pull request? And how about having cool badges to show off all of this?&lt;/p&gt;
+   <content type="html"><![CDATA[<p>Wouldn&#39;t you love to have your open source projects built automatically by a continuous integration server? And to have a detailed code coverage report for all your unit tests? Even when someone generated a pull request? And how about having cool badges to show off all of this?</p>
 
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;https://travis-ci.org/JeroenMols/LandscapeVideoCamera&quot;&gt;&lt;img src=&quot;https://travis-ci.org/JeroenMols/LandscapeVideoCamera.svg?branch=master&quot; alt=&quot;Build Status&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://coveralls.io/github/JeroenMols/LandscapeVideoCamera?branch=master&quot;&gt;&lt;img src=&quot;https://coveralls.io/repos/JeroenMols/LandscapeVideoCamera/badge.svg?branch=master&amp;amp;service=github&quot; alt=&quot;Coverage Status&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+<p><center><a href="https://travis-ci.org/JeroenMols/LandscapeVideoCamera"><img src="https://travis-ci.org/JeroenMols/LandscapeVideoCamera.svg?branch=master" alt="Build Status"></a> <a href="https://coveralls.io/github/JeroenMols/LandscapeVideoCamera?branch=master"><img src="https://coveralls.io/repos/JeroenMols/LandscapeVideoCamera/badge.svg?branch=master&amp;service=github" alt="Coverage Status"></a></center></p>
 
-&lt;p&gt;Actually, all of this a breeze to set up, once you understand what works and what doesn&amp;#39;t. It is even completely free for open source projects!&lt;/p&gt;
+<p>Actually, all of this a breeze to set up, once you understand what works and what doesn&#39;t. It is even completely free for open source projects!</p>
 
-&lt;p&gt;In less than half an hour, this blogpost will add CI and code coverage to your projects, just like I did for my own library &lt;a href=&quot;https://github.com/JeroenMols/LandscapeVideoCamera&quot;&gt;LandscapeVideoCamera&lt;/a&gt;. While this article focusses on Android, the material presented here can quite easily be extended to a broader scope.&lt;/p&gt;
+<p>In less than half an hour, this blogpost will add CI and code coverage to your projects, just like I did for my own library <a href="https://github.com/JeroenMols/LandscapeVideoCamera">LandscapeVideoCamera</a>. While this article focusses on Android, the material presented here can quite easily be extended to a broader scope.</p>
 
-&lt;h2&gt;Preface&lt;/h2&gt;
-
-&lt;p&gt;In order to keep things simple, I created a very basic project containing a &lt;a href=&quot;https://github.com/JeroenMols/TravisCoverallsExample/blob/master/app/src/main/java/com/jeroenmols/traviscoveralls/Calculator.java&quot;&gt;Calculator class&lt;/a&gt; and some &lt;a href=&quot;https://github.com/JeroenMols/TravisCoverallsExample/blob/master/app/src/androidTest/java/com/jeroenmols/traviscoveralls/CalculatorTest.java&quot;&gt;Android tests&lt;/a&gt;. This will make things easier to understand as we&amp;#39;ll add everything step by step to this project.&lt;/p&gt;
-
-&lt;p&gt;Later on I will present a more elaborate (and usefull) example, namely my own open source library &lt;a href=&quot;https://github.com/JeroenMols/LandscapeVideoCamera&quot;&gt;LandscapeVideoCamera&lt;/a&gt;. Some time ago, I test driven refactored this project completely resulting in respectable code coverage statistics.&lt;/p&gt;
-
-&lt;h2&gt;Travis&lt;/h2&gt;
-
-&lt;h3&gt;About&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://travis-ci.org/&quot;&gt;Travis&lt;/a&gt; is a feature rich online CI service which integrates nicely with a lot of existing services. One major advantage over Jenkins is that you can put the entire CI configuration file under version control. It is completely free for open source projects, although private repositories are also supported on a subscription basis.&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/traviscoveralls/travis-workflow.png&quot;&gt;&lt;img src=&quot;/img/blog/traviscoveralls/travis-workflow.png&quot; alt=&quot;Travis workflow&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;h3&gt;Basic configuration&lt;/h3&gt;
-
-&lt;p&gt;In order to get started, go to &lt;a href=&quot;https://travis-ci.org/&quot;&gt;travis-ci.org&lt;/a&gt;, login with your GitHub account and authorize Travis to access your repositories.&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/traviscoveralls/travis-authorize.png&quot;&gt;&lt;img src=&quot;/img/blog/traviscoveralls/travis-authorize.png&quot; alt=&quot;Allow Travis to access your GitHub projects&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;Next, create a new file &lt;code&gt;.travis.yml&lt;/code&gt; into the root of your project (note that this file will be hidden on Mac OSX/Linux systems). Open the file and specify the language of your project, in our case Android:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;language&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;android&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Now Travis needs to know all dependencies in order to build the project. As such specify the build tools version and compile Android SDK version (note that this must match the &lt;code&gt;compileSdkVersion&lt;/code&gt; of your &lt;a href=&quot;https://github.com/JeroenMols/TravisCoverallsExample/blob/master/app/build.gradle&quot;&gt;&lt;code&gt;build.gradle&lt;/code&gt;&lt;/a&gt; file!). While there is an option to use the latest build tools version, I recommend to declare an explicit version as this makes your builds more reproducible. Next specify all of the Android SDK manager dependencies your project needs so Travis can install them before building the project.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;l-Scalar-Plain&quot;&gt;components&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;p-Indicator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;build-tools-22.0.1&lt;/span&gt;
-    &lt;span class=&quot;p-Indicator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;android-23&lt;/span&gt;
-    &lt;span class=&quot;p-Indicator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;extra-android-m2repository&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Note that our sample only depends on the AppCompat and design support library, hence there is only one extra defined &lt;code&gt;extra-android-m2repository&lt;/code&gt;. In case your project uses other dependencies from the Android SDK, you can easily select them from the entire &lt;a href=&quot;https://github.com/JeroenMols/TravisCoverallsExample/blob/master/misc/android_sdk_dependencies.txt&quot;&gt;dependency list&lt;/a&gt; and add an extra item.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Extra: listing Android SDK dependencies&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;To generate the above mentioned list of Android SDK components, simply run the following command on your local machine:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;android list sdk --no-ui --all --extended
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/blockquote&gt;
-
-&lt;p&gt;After, specify the exact &lt;code&gt;Gradle&lt;/code&gt; command to run, in our case &lt;code&gt;assembleDebug&lt;/code&gt;:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;p-Indicator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;./gradlew assembleDebug&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Now that we have configured everything in the &lt;code&gt;travis.yml&lt;/code&gt; file, we need to enable the project, so Travis will start listening to code changes. This can be done by going to your profile on &lt;a href=&quot;http://travis-ci.org&quot;&gt;Travis&lt;/a&gt; and flipping the appropriate slider.&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/traviscoveralls/travis-enableproject.png&quot;&gt;&lt;img src=&quot;/img/blog/traviscoveralls/travis-enableproject.png&quot; alt=&quot;Enable project in Travis&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;This will result in the project being shown on the left hand side of your dashboard, while indicating that there are no builds.&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/traviscoveralls/travis-nobuilds.png&quot;&gt;&lt;img src=&quot;/img/blog/traviscoveralls/travis-nobuilds.png&quot; alt=&quot;Travis overview with no builds, push code to origin to trigger a build.&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;Builds are automatically triggered whenever you push code to your GitHub repository or someone else creates a pull request. Therefore push some changes to GitHub and watch Travis pick them up automatically and start building your project.&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/traviscoveralls/travis-firstbuild.png&quot;&gt;&lt;img src=&quot;/img/blog/traviscoveralls/travis-firstbuild.png&quot; alt=&quot;First build in Travis&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;Congrats! You now have a fully working Continuous Integration server for your &lt;a href=&quot;https://travis-ci.org/JeroenMols/TravisCoverallsExample&quot;&gt;open source project&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3&gt;Running Android unit tests&lt;/h3&gt;
-
-&lt;p&gt;While running normal unit tests is straight forward, Android tests are a different story because they require an Android emulator to run on. And because Travis support for Android is still in &lt;a href=&quot;http://docs.travis-ci.com/user/languages/android/&quot;&gt;beta&lt;/a&gt;, there are a couple of limitations to consider:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Only &lt;code&gt;armeabi-v7a&lt;/code&gt; emulators are supported.&lt;/li&gt;
-&lt;li&gt;The Android M emulator is not yet supported.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Extra limitations of Travis Android support&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;You can &lt;em&gt;skip this if you want&lt;/em&gt;, just some extra context&lt;/p&gt;
-
-&lt;p&gt;First of all, Travis does not yet support HAXM to speed up intel emulators, so there is no speed up while using an &lt;code&gt;x86&lt;/code&gt; emulator. Even more, the latest &lt;code&gt;x86_64 Android M&lt;/code&gt; emulator requires hardware acceleration, so that one simply cannot be used on Travis! For more information see issue &lt;a href=&quot;https://github.com/travis-ci/travis-ci/issues/1419&quot;&gt;1419&lt;/a&gt; and &lt;a href=&quot;https://github.com/travis-ci/travis-ci/issues/1395&quot;&gt;1395&lt;/a&gt; or check out this &lt;a href=&quot;https://travis-ci.org/JeroenMols/LandscapeVideoCamera/builds/88619658#L693&quot;&gt;failing build&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Secondly, Travis does not yet support the latest Android M emulator, causing the built-in &lt;code&gt;android-wait-for-emulator&lt;/code&gt; script to time out while the emulator is booting. Therefore I recommend to use the &lt;code&gt;android-22&lt;/code&gt; emulator instead. For more information see this &lt;a href=&quot;https://travis-ci.org/JeroenMols/LandscapeVideoCamera/builds/88620580#L1069&quot;&gt;failing build&lt;/a&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;So you&amp;#39;ll have to accept that builds will be slow (starting emulator + running test) and that you cannot use an Android M emulator. But if these are acceptable, read on and I&amp;#39;ll explain how to set up everything for running tests.&lt;/p&gt;
-
-&lt;p&gt;First of all, define the Android version and processor architecture of the emulator by adding a new environment at the top of the &lt;code&gt;travis.yml&lt;/code&gt; file:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;l-Scalar-Plain&quot;&gt;matrix&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;p-Indicator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;ANDROID_TARGET=android-22 ANDROID_ABI=armeabi-v7a&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Then, ensure that all dependencies for the Android emulator are installed, by adding both the platform version and emulator image to the &lt;code&gt;components&lt;/code&gt; section. Note that it is important to add both, because the Android emulator will only install if the corresponding Android platform is installed (see this &lt;a href=&quot;https://travis-ci.org/JeroenMols/LandscapeVideoCamera/builds/88631850#L815&quot;&gt;failing build&lt;/a&gt;).&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;l-Scalar-Plain&quot;&gt;components&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;l-Scalar-Plain&quot;&gt;...&lt;/span&gt;
-    &lt;span class=&quot;l-Scalar-Plain&quot;&gt;- android-22&lt;/span&gt;
-    &lt;span class=&quot;l-Scalar-Plain&quot;&gt;- sys-img-armeabi-v7a-android-22&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Now we need to create a new Android emulator and start it before our build. As starting takes a really long time, Travis offers a built-in &lt;code&gt;android-wait-for-emulator&lt;/code&gt; script to facilitate this. Finally we need to unlock the emulator once started by sending a key event.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;before_script&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;p-Indicator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI&lt;/span&gt;
-    &lt;span class=&quot;p-Indicator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;emulator -avd test -no-skin -no-audio -no-window &amp;amp;&lt;/span&gt;
-    &lt;span class=&quot;p-Indicator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;android-wait-for-emulator&lt;/span&gt;
-    &lt;span class=&quot;p-Indicator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;adb shell input keyevent 82 &amp;amp;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;After all of this configuration, all we need to do is change the &lt;code&gt;Gradle&lt;/code&gt; command to run all of the tests and trigger a new build by pushing all these changes.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;p-Indicator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;./gradlew connectedAndroidTest&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3&gt;Taking things further&lt;/h3&gt;
-
-&lt;p&gt;As mentioned in the introduction, Travis is a really feature rich CI service. Therefore this section provides some tips to take things even further.&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Build notifications:&lt;/strong&gt; Travis supports sending notifications via Slack, HipChat, email,... whenever a built fails/succeeds.&lt;/p&gt;
-For more information, have a look at the &lt;a href=&quot;http://docs.travis-ci.com/user/notifications/&quot;&gt;Travis documentation&lt;/a&gt;.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;notifications&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;l-Scalar-Plain&quot;&gt;email&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;p-Indicator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;your.email@gmail.com&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Build status badge:&lt;/strong&gt; Click the build badge on your Travis homepage to generate png/markdown/... build badges.&lt;/p&gt;
-&lt;a href=&quot;https://travis-ci.org/JeroenMols/TravisCoverallsExample&quot;&gt;&lt;img src=&quot;https://travis-ci.org/JeroenMols/TravisCoverallsExample.svg?branch=master&quot; alt=&quot;Build Status&quot;&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Branch information:&lt;/strong&gt; Print which branch or pull request is being built.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;p-Indicator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;echo &amp;quot;Travis branch is $TRAVIS_BRANCH&amp;quot;&lt;/span&gt;
-    &lt;span class=&quot;p-Indicator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;echo &amp;quot;Travis branch is in pull request $TRAVIS_PULL+REQUEST&amp;quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;More options:&lt;/strong&gt; Have a look at the &lt;a href=&quot;http://docs.travis-ci.com/user/languages/android/&quot;&gt;Travis documentation&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2&gt;Coveralls&lt;/h2&gt;
-
-&lt;h3&gt;About&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://coveralls.io/&quot;&gt;Coveralls&lt;/a&gt; is a visually attractive online code coverage tool which provides detailed statistics such as line coverage and repository trends. Furthermore it allows you to show of your code coverage and encourages you to increase it. Like Travis, it is free for open source projects, but a subscription service is available for private repositories.&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/traviscoveralls/coveralls-example.png&quot;&gt;&lt;img src=&quot;/img/blog/traviscoveralls/coveralls-example.png&quot; alt=&quot;Example coveralls dashboard&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;h3&gt;Enabling Android code coverage&lt;/h3&gt;
-
-&lt;p&gt;First of all, your Android project needs to be configured to generate code coverage reports. As such, ensure that you are using at least version 0.4 of the &lt;a href=&quot;https://google.github.io/android-testing-support-library/&quot;&gt;Android testing support library&lt;/a&gt; (there was an &lt;a href=&quot;https://code.google.com/p/android/issues/detail?id=170607&quot;&gt;issue&lt;/a&gt; in version 0.3).&lt;/p&gt;
-
-&lt;p&gt;Then add the flag &lt;code&gt;testCoverageEnabled&lt;/code&gt; to the debug buildTypes in your main module&amp;#39;s &lt;code&gt;build.gradle&lt;/code&gt; file, causing a code coverage report to be generated in the &lt;code&gt;build/reports/coverage/&lt;/code&gt; folder.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;android&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
-
-  &lt;span class=&quot;n&quot;&gt;buildTypes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;debug&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;testCoverageEnabled&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;At this point, you should be able to run &lt;code&gt;gradle connectedAndroidTest&lt;/code&gt; and view an &lt;code&gt;html&lt;/code&gt; and &lt;code&gt;xml&lt;/code&gt; report in the above mentioned directory.&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/traviscoveralls/coveralls-rawcoverage.png&quot;&gt;&lt;img src=&quot;/img/blog/traviscoveralls/coveralls-rawcoverage.png&quot; alt=&quot;Basic coverage report generated by the built in Android code coverage&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;h3&gt;Basic configuration&lt;/h3&gt;
-
-&lt;p&gt;In order to get started, go to &lt;a href=&quot;https://coveralls.io/&quot;&gt;coveralls.io&lt;/a&gt;, login with your GitHub account and authorize Coveralls to access your repositories.&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/traviscoveralls/coveralls-authorize.png&quot;&gt;&lt;img src=&quot;/img/blog/traviscoveralls/coveralls-authorize.png&quot; alt=&quot;Allow Coveralls to access your GitHub projects&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;Next, we&amp;#39;ll need to configure your &lt;code&gt;build.gradle&lt;/code&gt; files to upload the coverage reports to Coveralls after each successful CI build. Therefore add a new classpath dependency to the root projects &lt;code&gt;build.gradle&lt;/code&gt; file.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;buildscript&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;classpath&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.4.0&amp;#39;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Then we can apply the &lt;code&gt;coveralls&lt;/code&gt; plugin, point it to the coverage reports directory and ensure it only runs on CI builds by adding the following to your main module&amp;#39;s &lt;code&gt;build.gradle&lt;/code&gt; file:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;apply&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;plugin:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;com.github.kt3k.coveralls&amp;#39;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;coveralls&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;jacocoReportPath&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;${buildDir}/reports/coverage/debug/report.xml&amp;quot;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;tasks&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;coveralls&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;dependsOn&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;connectedAndroidTest&amp;#39;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;onlyIf&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;CI&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Note that we also added a dependency on the &lt;code&gt;connectedAndroidTest&lt;/code&gt; task as that is the one that will actually generate the code coverage report.&lt;/p&gt;
-
-&lt;p&gt;Let&amp;#39;s now change the build task in the &lt;code&gt;travis.yml&lt;/code&gt; so it runs the &lt;code&gt;coveralls&lt;/code&gt; task after every build. While not strictly necessary to still define the &lt;code&gt;connectedAndroidTest&lt;/code&gt; task, I prefer to do so as it makes it more explicit what &lt;code&gt;Gradle&lt;/code&gt; will exactly be building.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;l-Scalar-Plain&quot;&gt;...&lt;/span&gt;
-  &lt;span class=&quot;l-Scalar-Plain&quot;&gt;- ./gradlew connectedAndroidTest coveralls&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Next we need to activate our GitHub repository in coveralls, so it picks up the output from the &lt;code&gt;Gradle&lt;/code&gt; plugin. This can easily be done by clicking &lt;code&gt;add repos&lt;/code&gt; on &lt;a href=&quot;https://coveralls.io&quot;&gt;coveralls.io&lt;/a&gt; and flipping the switch on your repository.&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/traviscoveralls/coveralls-enableproject.png&quot;&gt;&lt;img src=&quot;/img/blog/traviscoveralls/coveralls-enableproject.png&quot; alt=&quot;Enable project in Coveralls&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;This will result in the project being added to your dashboard without any builds.&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/traviscoveralls/coveralls-nobuilds.png&quot;&gt;&lt;img src=&quot;/img/blog/traviscoveralls/coveralls-nobuilds.png&quot; alt=&quot;No builds yet in Coveralls&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;Simply trigger a Travis build by pushing some changes to start seeing code coverage results online.&lt;/p&gt;
-
-&lt;p&gt;Finally you can easily add a badge to your repository by clicking the &lt;code&gt;Badge urls&lt;/code&gt; button from the green banner in the detail view.&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;https://coveralls.io/github/JeroenMols/TravisCoverallsExample?branch=master&quot;&gt;&lt;img src=&quot;https://coveralls.io/repos/JeroenMols/TravisCoverallsExample/badge.svg?branch=master&amp;amp;service=github&quot; alt=&quot;Coverage Status&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;Congratulations you know have attractive code coverage reports for &lt;a href=&quot;https://coveralls.io/github/JeroenMols/TravisCoverallsExample&quot;&gt;your repository&lt;/a&gt;!&lt;/p&gt;
-
-&lt;h2&gt;Wrap-up&lt;/h2&gt;
-
-&lt;p&gt;Adding Travis CI and Coveralls code coverage to your project is fairly straightforward once you know what works and especially what doesn&amp;#39;t work. Hopefully this blogpost was able to remove a lot of those frustrating barriers of entry.&lt;/p&gt;
-
-&lt;p&gt;A basic example project with everything in this blogpost integrated is available on &lt;a href=&quot;https://github.com/JeroenMols/TravisCoverallsExample&quot;&gt;GitHub&lt;/a&gt;. But in case you&amp;#39;re interested in a real life example, have a look at my Android library &lt;a href=&quot;https://github.com/JeroenMols/LandscapeVideoCamera&quot;&gt;LandscapeVideoCamera&lt;/a&gt;, which actually has decent code coverage statistics.&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;https://travis-ci.org/JeroenMols/LandscapeVideoCamera&quot;&gt;&lt;img src=&quot;https://travis-ci.org/JeroenMols/LandscapeVideoCamera.svg?branch=master&quot; alt=&quot;Build Status&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://coveralls.io/github/JeroenMols/LandscapeVideoCamera?branch=master&quot;&gt;&lt;img src=&quot;https://coveralls.io/repos/JeroenMols/LandscapeVideoCamera/badge.svg?branch=master&amp;amp;service=github&quot; alt=&quot;Coverage Status&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;
-]]></content>
+<p>...</p>]]></content>
  </entry>
  
  <entry>
@@ -1282,211 +163,23 @@ For more information, have a look at the &lt;a href=&quot;http://docs.travis-ci.
    <link href="http://jeroenmols.com/blog/2015/08/13/artifactory2/"/>
    <updated>2015-08-13T00:00:00+02:00</updated>
    <id>http://jeroenmols.com/blog/2015/08/13/artifactory2</id>
-   <content type="html"><![CDATA[&lt;p&gt;My previous &lt;a href=&quot;/blog/2015/08/06/artifactory/&quot;&gt;blog post&lt;/a&gt; described how to set up your own private Maven repository with Artifactory in 30 minutes. This second and final part will make things more interesting and take your setup to the next level.&lt;/p&gt;
+   <content type="html"><![CDATA[<p>My previous <a href="/blog/2015/08/06/artifactory/">blog post</a> described how to set up your own private Maven repository with Artifactory in 30 minutes. This second and final part will make things more interesting and take your setup to the next level.</p>
 
-&lt;p&gt;You will learn how to:&lt;/p&gt;
+<p>You will learn how to:</p>
 
-&lt;ul&gt;
-&lt;li&gt;handle library projects with dependencies&lt;/li&gt;
-&lt;li&gt;securely provide username and password&lt;/li&gt;
-&lt;li&gt;work with snapshot and release builds&lt;/li&gt;
-&lt;li&gt;configure custom repositories&lt;/li&gt;
-&lt;li&gt;manage user access&lt;/li&gt;
-&lt;/ul&gt;
+<ul>
+<li>handle library projects with dependencies</li>
+<li>securely provide username and password</li>
+<li>work with snapshot and release builds</li>
+<li>configure custom repositories</li>
+<li>manage user access</li>
+</ul>
 
-&lt;p&gt;All source code is &lt;a href=&quot;https://github.com/JeroenMols/ArtifactoryExample&quot;&gt;available on Github&lt;/a&gt; as usual.&lt;/p&gt;
+<p>All source code is <a href="https://github.com/JeroenMols/ArtifactoryExample">available on Github</a> as usual.</p>
 
-&lt;p&gt;Note that the material presented here can quite easily be extended to be applicable beyond Android.&lt;/p&gt;
+<p>Note that the material presented here can quite easily be extended to be applicable beyond Android.</p>
 
-&lt;h2&gt;Library projects with dependencies&lt;/h2&gt;
-
-&lt;p&gt;Imagine if your Android library project itself has dependencies. Then the application using the library wouldn&amp;#39;t be able to run unless it provides all dependencies the library requires.&lt;/p&gt;
-
-&lt;p&gt;To better understand this, consider the new &lt;a href=&quot;https://github.com/JeroenMols/ArtifactoryExample/blob/master/AwesomeAdvancedLibrary/awesomeadvancedlibrary/src/main/java/com/jeroenmols/awesomeadvancedlibrary/AwesomeConvertor.java&quot;&gt;&lt;code&gt;AwesomeAdvancedLibrary&lt;/code&gt;&lt;/a&gt; which makes use of &lt;a href=&quot;https://github.com/google/guava&quot;&gt;Guava&lt;/a&gt; to &lt;em&gt;awesomize&lt;/em&gt; a &lt;code&gt;String&lt;/code&gt;. The application using this library should be agnostic of this dependency. Hence we do not want to define two dependencies:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;compile&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;com.jeroenmols.awesomeadvancedlibrary:awesomeadvancedlibrary:1.0.0&amp;#39;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;compile&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;com.google.guava:guava:18.0&amp;#39;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Instead one &lt;code&gt;compile&lt;/code&gt; dependency should suffice to use the library.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Important note on including dependencies&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;You can &lt;em&gt;skip this if you want&lt;/em&gt;, just some extra context&lt;/p&gt;
-
-&lt;p&gt;Including dependencies in your library is not always a good idea, because this can lead to a dependency conflict while integrating. I only choose Guava to keep things simple, but it is actually a very bad example as it is a utility library. This means it&amp;#39;s quite likely that the app also needs it.&lt;/p&gt;
-
-&lt;p&gt;A better example would be a universal &lt;em&gt;analytics&lt;/em&gt; library offering a universal API to track analytics and redirecting all calls internally to one or more analytics providers. Here packaging dependencies makes sense, because the app never needs to talk to the dependency directly. It also hides implementation details, so the app doesn&amp;#39;t need to be modified when switching to a new provider.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Imagine if we would simply resort to the buildscript we had in my previous &lt;a href=&quot;/blog/2015/08/06/artifactory/&quot;&gt;blogpost&lt;/a&gt;. At compile time the &lt;code&gt;Guava&lt;/code&gt; dependency will not be included, because the would make the library unnecessarily large. Instead, the compiler will tell the library: &amp;quot;don&amp;#39;t worry about this dependency, the app will provide it for you.&amp;quot;&lt;/p&gt;
-
-&lt;p&gt;The app on the other hand wouldn&amp;#39;t have a clue which dependencies the library actually needs (how would it?) and hence the app will compile just fine. However, after starting the app and trying to access the library, the app would crash at runtime:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-Java&quot; data-lang=&quot;Java&quot;&gt;&lt;span class=&quot;mi&quot;&gt;08&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;09&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;49&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;46.096&lt;/span&gt;  &lt;span class=&quot;mi&quot;&gt;28892&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;28892&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/?&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;E&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AndroidRuntime&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;﹕&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FATAL&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;EXCEPTION:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;Process:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;jeroenmols&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;awesomeadvancedapplication&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;PID:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;28892&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;java&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;lang&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;NoClassDefFoundError&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Failed&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;resolution&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;of:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Lcom&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;google&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;common&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CharMatcher&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;at&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;jeroenmols&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;awesomeadvancedlibrary&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;AwesomeConvertor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toAwesome&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AwesomeConvertor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;java&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;11&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;To solve this, we need to ensure that the library &lt;code&gt;pom.xml&lt;/code&gt; file  contains the right dependencies by manually adding the &lt;code&gt;pom.withXml{}&lt;/code&gt; element to the &lt;code&gt;publishing task&lt;/code&gt;:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;publishing&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;publications&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;aar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MavenPublication&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;groupId&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;packageName&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;libraryVersion&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;artifactId&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;project&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;artifact&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;$buildDir/outputs/aar/${project.getName()}-release.aar&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-
-            &lt;span class=&quot;n&quot;&gt;pom&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withXml&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;kt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;asNode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;appendNode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;dependencies&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;configurations&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getByName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;_releaseCompile&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getResolvedConfiguration&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getFirstLevelModuleDependencies&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                    &lt;span class=&quot;kt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dependency&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;appendNode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;dependency&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;dependency&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;appendNode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;groupId&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;moduleGroup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;dependency&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;appendNode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;artifactId&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;moduleName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;dependency&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;appendNode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;version&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;moduleVersion&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Note that while you can similarly add other repositories in this way to the &lt;code&gt;pom.xml&lt;/code&gt;, Gradle itself &lt;a href=&quot;https://discuss.gradle.org/t/resolving-problem-when-maven-repo-contains-pom-but-not-jar/7174&quot;&gt;won&amp;#39;t look&lt;/a&gt; for repositories in that file. Therefore if you use libraries from 3rd party repositories, you still need to add those repositories to the &lt;code&gt;build.gradle&lt;/code&gt; of your app.&lt;/p&gt;
-
-&lt;h2&gt;Securely provide username and password&lt;/h2&gt;
-
-&lt;p&gt;Obviously we do not want to store a plain text username and password in any file that we check in to our version control system. So to make sure we hide those, create a &lt;code&gt;gradle.properties&lt;/code&gt; file in the root of your project and add the following content:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;artifactory_username&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;admin&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;artifactory_password&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Then in your &lt;code&gt;build.gradle&lt;/code&gt; file, refer to the properties like this:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;username&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;artifactory_username&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;password&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;artifactory_password&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;We have now obfuscated the password, so it is no longer in the &lt;code&gt;build.gradle&lt;/code&gt; file, but people can still find it in the &lt;code&gt;gradle.properties&lt;/code&gt; file under version control. To prevent this, you must do one of the following:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Don&amp;#39;t add &lt;code&gt;gradle.properties&lt;/code&gt; to your version control system. (add it to your &lt;code&gt;.gitignore&lt;/code&gt; file instead)&lt;/li&gt;
-&lt;li&gt;Move the &lt;code&gt;gradle.properties&lt;/code&gt; to the base &lt;code&gt;~/.gradle&lt;/code&gt; folder on your hard drive. I personally recommend this approach as you can never accidentally check in your username and password.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2&gt;Working with Snapshot and Release builds&lt;/h2&gt;
-
-&lt;p&gt;While the Artifactory Gradle plugin doesn&amp;#39;t have support for snapshot/release builds out of the box, it is easy to add this functionality by relying on the artifact version:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;For release builds: use &lt;a href=&quot;http://semver.org/&quot;&gt;symantic versioning&lt;/a&gt; e.g. &lt;code&gt;1.0.0&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;For Snapshot builds: use symantic versioning with &lt;code&gt;-SNAPSHOT&lt;/code&gt; suffix e.g. &lt;code&gt;1.0.0-SNAPSHOT&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Now you can direct each one to a different Artifactory repository by changing the repository key as follows:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;repoKey&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;libraryVersion&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;endsWith&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;SNAPSHOT&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;libs-snapshot-local&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;libs-release-local&amp;#39;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;On the application side you need to add two different Maven urls so you can refer to artifacts in both repositories.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;allprojects&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;repositories&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;maven&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;http://localhost:8081/artifactory/libs-release-local&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;maven&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;http://localhost:8081/artifactory/libs-snapshot-local&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Referencing artifacts is exactly the same as before, just don&amp;#39;t forget to add the &lt;code&gt;-SNAPSHOT&lt;/code&gt; suffix for snapshot artifacts.&lt;/p&gt;
-
-&lt;p&gt;Alternatively we can also create a &lt;code&gt;virtual&lt;/code&gt; repository in Artifactory which wraps around both repositories. This way the app only requires one URL, but does create a dependency on the existing Artifactory setup.&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Login to Artifactory and go to admin &amp;gt; repositories &amp;gt; virtual
-&lt;center&gt;&lt;a href=&quot;/img/blog/artifactory2/artifactory2_virtualrepo1.png&quot;&gt;&lt;img src=&quot;/img/blog/artifactory2/artifactory2_virtualrepo1.png&quot; alt=&quot;All virtual repositories can be found under admin - repositories - virtual&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/li&gt;
-&lt;li&gt;Create a new virtual maven repository which contains both &lt;code&gt;libs-release-local&lt;/code&gt; and &lt;code&gt;libs-snapshot-local&lt;/code&gt;
-&lt;center&gt;&lt;a href=&quot;/img/blog/artifactory2/artifactory2_virtualrepo2.png&quot;&gt;&lt;img src=&quot;/img/blog/artifactory2/artifactory2_virtualrepo2.png&quot; alt=&quot;Create a new virtual maven repository which contains both libs-release-local and libs-snapshot-local&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/li&gt;
-&lt;li&gt;In the top level &lt;code&gt;build.gradle&lt;/code&gt; of your application, replace the two previous URLS by the following:&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;  &lt;span class=&quot;n&quot;&gt;allprojects&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;repositories&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;maven&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;http://localhost:8081/artifactory/libs-local&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h2&gt;User access management&lt;/h2&gt;
-
-&lt;p&gt;Currently everyone can both read and write to all your repositories. This is not a good idea, especially if your server is also connected to the internet. Therefore we are going to set up two different users: one to deploy artifacts and one to consume artifacts.&lt;/p&gt;
-
-&lt;p&gt;In order to do so, go to artifactory and login as &lt;code&gt;admin&lt;/code&gt;. Now navigate to admin &amp;gt; security &amp;gt; general and make the following changes:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;set &lt;code&gt;Allow Anonymous Access&lt;/code&gt; to false -&amp;gt; ensures only known Artifactory users can consume artifacts&lt;/li&gt;
-&lt;li&gt;set &lt;code&gt;Password Encryption Policy&lt;/code&gt; to &lt;code&gt;REQUIRED&lt;/code&gt; -&amp;gt; ensures we don&amp;#39;t have to hardcode a plain text password in our &lt;code&gt;build.gradle&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;press the &lt;code&gt;encrypt&lt;/code&gt; button in the &lt;code&gt;Password Encyption&lt;/code&gt; section -&amp;gt; encrypts all passwords&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;If the app now tries to consume an artifact, it will get a &lt;code&gt;401&lt;/code&gt; error: unauthorized. You can verify this yourself by clearing the gradle cache (to force a dependency download):&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;gradle clean --refresh-dependencies
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Next, go to the &lt;code&gt;Users&lt;/code&gt; pane and add two new user: &lt;code&gt;consumer&lt;/code&gt; and &lt;code&gt;deployer&lt;/code&gt;. Make sure not to add them to any group.&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/artifactory2/artifactory2_user1.png&quot;&gt;&lt;img src=&quot;/img/blog/artifactory2/artifactory2_user1.png&quot; alt=&quot;Settings for consumer user&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/artifactory2/artifactory2_user2.png&quot;&gt;&lt;img src=&quot;/img/blog/artifactory2/artifactory2_user2.png&quot; alt=&quot;Settings for deployer user&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;Note that you probably also want to change your admin password at this stage. ;)&lt;/p&gt;
-
-&lt;p&gt;Now go to the &lt;code&gt;Permissions&lt;/code&gt; pane and add a new &lt;code&gt;Consume Libraries&lt;/code&gt; permission. Set the Selected repositories to include the snapshot and release repository, and in the &lt;code&gt;Users&lt;/code&gt; tab add the &lt;code&gt;consumer&lt;/code&gt; user with read permissions.&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/artifactory2/artifactory2_permission1.png&quot;&gt;&lt;img src=&quot;/img/blog/artifactory2/artifactory2_permission1.png&quot; alt=&quot;Settings for Consume Libraries permission&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/artifactory2/artifactory2_permission2.png&quot;&gt;&lt;img src=&quot;/img/blog/artifactory2/artifactory2_permission2.png&quot; alt=&quot;Settings for Consume Libraries permission&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;Add a second permission: &lt;code&gt;Deploy Libraries&lt;/code&gt; with the snapshot and release repository included. Here give the &lt;code&gt;deployer&lt;/code&gt; user &lt;code&gt;Deploy/Cache&lt;/code&gt; permission but not &lt;code&gt;Delete/Overwrite&lt;/code&gt; as you never want to override an existing artifact!&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/artifactory2/artifactory2_permission3.png&quot;&gt;&lt;img src=&quot;/img/blog/artifactory2/artifactory2_permission3.png&quot; alt=&quot;Settings for Deploy Libraries permission&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/artifactory2/artifactory2_permission4.png&quot;&gt;&lt;img src=&quot;/img/blog/artifactory2/artifactory2_permission4.png&quot; alt=&quot;Settings for Deploy Libraries permission&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;All we need to do now is modify the Library and Application to make use of these new users. This is easy for the Library as you can simply replace the &lt;code&gt;admin&lt;/code&gt; user with the &lt;code&gt;deploy&lt;/code&gt; user in the &lt;code&gt;gradle.properties&lt;/code&gt; file.&lt;/p&gt;
-
-&lt;p&gt;For the Application we will need to provide credentials to access the Maven repository. Here we will hard code the username and password in the top level &lt;code&gt;build.gradle&lt;/code&gt; file because team members should be able to checkout and build the code without extra configuration.&lt;/p&gt;
-
-&lt;p&gt;Therefore we will take some extra security precautions:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Use a user with read access to only a small subset of our repositories: &lt;code&gt;deploy&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Check the code into a private repository, so the hardcoded password is protected by repository password.&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Use the encrypted version of the password instead of the plain text version:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Login to artifactory as the &lt;code&gt;consumer&lt;/code&gt; user&lt;/li&gt;
-&lt;li&gt;Navigate to the user settings in the top right corner&lt;/li&gt;
-&lt;li&gt;Unlock your profile with your password&lt;/li&gt;
-&lt;li&gt;Copy the API key&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/artifactory2/artifactory2_consumer.png&quot;&gt;&lt;img src=&quot;/img/blog/artifactory2/artifactory2_consumer.png&quot; alt=&quot;Copy the API key from the consumer profile.&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Now add the user authentication to the top level &lt;code&gt;build.gradle&lt;/code&gt; file:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-Groovy&quot; data-lang=&quot;Groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;allprojects&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;repositories&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;jcenter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-        &lt;span class=&quot;c1&quot;&gt;// NOTE: configure your virtual repository and user in artifactory to make this work&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;maven&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;http://localhost:8081/artifactory/libs-local&amp;quot;&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;credentials&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;username&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;consumer&amp;#39;&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;password&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;APA52uxnRkmxeRXmJqd7haMpwgg&amp;#39;&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;And we are all set with authenticated access to our repositories.&lt;/p&gt;
-
-&lt;h2&gt;Wrap-up&lt;/h2&gt;
-
-&lt;p&gt;That&amp;#39;s a wrap to my two part blogpost about Artifactory! We made our previous repository a lot more secure, added support for dependencies and can now differentiate between release and snapshot artifacts.&lt;/p&gt;
-
-&lt;p&gt;No more excuses not to write reusable code!&lt;/p&gt;
-
-&lt;p&gt;Feel free to leave a comment and don&amp;#39;t forget to check the &lt;a href=&quot;https://github.com/JeroenMols/ArtifactoryExample&quot;&gt;full source code&lt;/a&gt; on Github.&lt;/p&gt;
-]]></content>
+<p>...</p>]]></content>
  </entry>
  
  <entry>
@@ -1494,168 +187,13 @@ For more information, have a look at the &lt;a href=&quot;http://docs.travis-ci.
    <link href="http://jeroenmols.com/blog/2015/08/06/artifactory/"/>
    <updated>2015-08-06T00:00:00+02:00</updated>
    <id>http://jeroenmols.com/blog/2015/08/06/artifactory</id>
-   <content type="html"><![CDATA[&lt;p&gt;Setting up your own Maven repository and uploading artifacts to it is quite a daunting task. As I went through this experience myself recently, I want to help others in setting up their own Maven repository via &lt;a href=&quot;http://www.jfrog.com/open-source/&quot;&gt;Artifactory&lt;/a&gt; and automate uploading artifacts using Gradle.&lt;/p&gt;
+   <content type="html"><![CDATA[<p>Setting up your own Maven repository and uploading artifacts to it is quite a daunting task. As I went through this experience myself recently, I want to help others in setting up their own Maven repository via <a href="http://www.jfrog.com/open-source/">Artifactory</a> and automate uploading artifacts using Gradle.</p>
 
-&lt;p&gt;In less than 30 minutes you will have a fully operational private Maven repository and have configured your Gradle buildscripts to upload your Android library artifacts.&lt;/p&gt;
+<p>In less than 30 minutes you will have a fully operational private Maven repository and have configured your Gradle buildscripts to upload your Android library artifacts.</p>
 
-&lt;p&gt;Note that the material presented here can quite easily be extended to be applicable in a broader scope beyond Android.&lt;/p&gt;
+<p>Note that the material presented here can quite easily be extended to be applicable in a broader scope beyond Android.</p>
 
-&lt;h2&gt;Setting up a Repository Manager&lt;/h2&gt;
-
-&lt;p&gt;First of all we need to make sure we have an actual Maven repository to upload our artifacts to. According to &lt;a href=&quot;https://maven.apache.org/repository-management.html&quot;&gt;Maven&lt;/a&gt; you should use a repository manager to do that:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Best Practice - Using a Repository Manager&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;A repository manager is a dedicated server application designed to manage repositories of binary components. The usage of a repository manager is considered an essential best practice for any significant usage of Maven.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3&gt;Why Artifactory?&lt;/h3&gt;
-
-&lt;p&gt;While there are some options available to choose from, I personally selected &lt;a href=&quot;http://www.jfrog.com/open-source/&quot;&gt;Artifactory&lt;/a&gt; because:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Clear and attractive UI&lt;/li&gt;
-&lt;li&gt;Super fast configuration&lt;/li&gt;
-&lt;li&gt;Gradle plugin&lt;/li&gt;
-&lt;li&gt;User access control&lt;/li&gt;
-&lt;li&gt;Free and open source&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;http://www.youtube.com/watch?v=aa4YBDUDWy0&quot;&gt;&lt;img src=&quot;http://img.youtube.com/vi/aa4YBDUDWy0/0.jpg&quot; alt=&quot;What is Artifactory&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;&lt;/p&gt;
-
-&lt;p&gt;For more information have a look at the &lt;a href=&quot;https://maven.apache.org/repository-management.html&quot;&gt;alternatives&lt;/a&gt;, checkout this &lt;a href=&quot;http://www.jfrog.com/blog/artifactory-vs-nexus-integration-matrix/&quot;&gt;feature comparison matrix&lt;/a&gt; or review all of the &lt;a href=&quot;https://www.jfrog.com/confluence/display/RTF/Artifactory+Comparison+Matrix&quot;&gt;Artifactory features&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3&gt;Verify you have Java SDK 8&lt;/h3&gt;
-
-&lt;p&gt;Before you get started, make sure that you have Java SDK 8 installed, or otherwise Artifactory won&amp;#39;t start. You can easily verify your Java version with &lt;code&gt;java -version&lt;/code&gt;:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;java -version
-java version &lt;span class=&quot;s2&quot;&gt;&amp;quot;1.8.0_51&amp;quot;&lt;/span&gt;
-Java&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;TM&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; SE Runtime Environment &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;build 1.8.0_51-b16&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-Java HotSpot&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;TM&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 64-Bit Server VM &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;build 25.51-b03, mixed mode&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;If it doesn&amp;#39;t output at least version &lt;code&gt;1.8.x&lt;/code&gt;, you should &lt;a href=&quot;http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html&quot;&gt;download&lt;/a&gt; and install a new Java SDK before you continue.&lt;/p&gt;
-
-&lt;p&gt;Note that the error you get if you don&amp;#39;t have Java 8 looks a bit cryptic:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;Aug 05, 2015 9:29:31 AM org.apache.catalina.core.StandardContext startInternal
-SEVERE: One or more listeners failed to start. Full details will be found in the appropriate container log file
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3&gt;Install Artifactory&lt;/h3&gt;
-
-&lt;p&gt;Thankfully this is incredibly easy to do. Just download the latest version of &lt;a href=&quot;http://www.jfrog.com/open-source/&quot;&gt;Artifactory&lt;/a&gt;, unpack the archive and run the &lt;code&gt;artifactory&lt;/code&gt; executable for your platform.&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;http://www.youtube.com/watch?v=7ZSUHgHDMmc&quot;&gt;&lt;img src=&quot;http://img.youtube.com/vi/7ZSUHgHDMmc/0.jpg&quot; alt=&quot;&amp;lt; 1min Artifactory set up&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;&lt;/p&gt;
-
-&lt;p&gt;You can easily verify your installation and start experimenting with its features by navigating to &lt;a href=&quot;http://localhost:8081/artifactory/&quot;&gt;http://localhost:8081/artifactory/&lt;/a&gt;. For now, don&amp;#39;t worry about all of the settings, we will configure what we need later on.&lt;/p&gt;
-
-&lt;h3&gt;Configuring Gradle to upload Android artifacts&lt;/h3&gt;
-
-&lt;p&gt;Let&amp;#39;s upload a very simple archive by configuring a new Gradle task for our Android library project.&lt;/p&gt;
-
-&lt;p&gt;In your top level &lt;code&gt;build.gradle&lt;/code&gt; file, add a reference to the repository of the Artifactory Gradle plugin:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;buildscript&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;classpath&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;org.jfrog.buildinfo:build-info-extractor-gradle:3.1.1&amp;quot;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Next in your library we will need to apply two new plugins: one to prepare the Maven artifacts &lt;code&gt;maven-publish&lt;/code&gt; and one to upload the archives to Artifactory &lt;code&gt;com.jfrog.artifactory&lt;/code&gt;:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;apply&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;plugin:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;com.jfrog.artifactory&amp;#39;&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;apply&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;plugin:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;maven-publish&amp;#39;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Every Maven artifact is identified by three different parameters:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;artifactId: the name of your library&lt;/li&gt;
-&lt;li&gt;groupId: usually the package name of your library&lt;/li&gt;
-&lt;li&gt;version: identifies different releases of the same artifact&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;For the last two, we will explicitly define a variable in the &lt;code&gt;build.gradle&lt;/code&gt; file.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;kt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;packageName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;com.jeroenmols.awesomelibrary&amp;#39;&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;libraryVersion&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;1.0.0&amp;#39;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;The &lt;code&gt;artifactId&lt;/code&gt; however needs to match the output filename of the &lt;code&gt;assembleRelease&lt;/code&gt; task. Therefore we either have to &lt;a href=&quot;https://stackoverflow.com/questions/26936812/renaming-modules-in-android-studio&quot;&gt;rename the library module&lt;/a&gt; or explicitly &lt;a href=&quot;https://stackoverflow.com/questions/24728591/how-to-set-name-of-aar-output-from-gradle&quot;&gt;specify the output filename&lt;/a&gt;. I personally prefer the first approach, which allows to get &lt;code&gt;artifactId&lt;/code&gt; in the following way:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;project&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// the ArtifactId&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Now we need to configure the &lt;code&gt;maven-publish&lt;/code&gt; plugin so that it knows which artifacts to publish to Artifactory. For our purpose we will refer to the &lt;code&gt;***-release.aar&lt;/code&gt; file, generated by the &lt;code&gt;assembleRelease&lt;/code&gt; task. Note that we can predict the name by taking the name of the Library project:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;publishing&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;publications&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;aar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MavenPublication&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;groupId&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;packageName&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;libraryVersion&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;artifactId&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;project&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-
-            &lt;span class=&quot;c1&quot;&gt;// Tell maven to prepare the generated &amp;quot;*.aar&amp;quot; file for publishing&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;artifact&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;$buildDir/outputs/aar/${project.getName()}-release.aar&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Finally we need to configure the &lt;code&gt;com.jfrog.artifactory&lt;/code&gt; plugin so it knows which repository to publish the artifacts to. For simplicity we will upload the artifact to the locally running Artifactory instance (&lt;a href=&quot;http://localhost:8081/artifactory&quot;&gt;http://localhost:8081/artifactory&lt;/a&gt;) and place it in the default &lt;code&gt;libs-release-local&lt;/code&gt; repository. Note that the username &lt;code&gt;admin&lt;/code&gt; and password &lt;code&gt;password&lt;/code&gt; are hardcoded in this example, but we will provide a better solution for that later.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;artifactory&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;contextUrl&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;http://localhost:8081/artifactory&amp;#39;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;publish&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;repository&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;c1&quot;&gt;// The Artifactory repository key to publish to&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;repoKey&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;libs-release-local&amp;#39;&lt;/span&gt;
-
-            &lt;span class=&quot;n&quot;&gt;username&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;admin&amp;quot;&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;password&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;password&amp;quot;&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;defaults&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;c1&quot;&gt;// Tell the Artifactory Plugin which artifacts should be published to Artifactory.&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;publications&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;aar&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;publishArtifacts&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
-
-            &lt;span class=&quot;c1&quot;&gt;// Properties to be attached to the published artifacts.&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;properties&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;qa.level&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;basic&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;dev.team&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;core&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
-            &lt;span class=&quot;c1&quot;&gt;// Publish generated POM files to Artifactory (true by default)&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;publishPom&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3&gt;Deploying artifacts&lt;/h3&gt;
-
-&lt;p&gt;Now that our Gradle buildscripts are properly configured we can easily publish artifacts to Artifactory by running the following command:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;gradle&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;assembleRelease&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;artifactoryPublish&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Notice how we first invoke &lt;code&gt;assembleRelease&lt;/code&gt; before we invoke the actual &lt;code&gt;artifactoryPublish&lt;/code&gt; task, because of the way we defined the artifacts to publish in the previous section.&lt;/p&gt;
-
-&lt;p&gt;You can very easily verify that the upload was successful by navigating to &lt;a href=&quot;http://localhost:8081&quot;&gt;localhost:8081&lt;/a&gt; and signing in with the default admin credentials.&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;a href=&quot;/img/blog/artifactory/artifactory_screenshot.png&quot;&gt;&lt;img src=&quot;/img/blog/artifactory/artifactory_screenshot.png&quot; alt=&quot;Verify a successful upload in the Artifactory control panel.&quot;&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;h3&gt;Using the artifacts&lt;/h3&gt;
-
-&lt;p&gt;To make use of the published artifacts in another project we have to add our Artifactory repository to the list of Maven repositories in your top level &lt;code&gt;build.gradle&lt;/code&gt; file:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;allprojects&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;repositories&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;maven&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;http://localhost:8081/artifactory/libs-release-local&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;After we can simply add the artifact as a dependency in the &lt;code&gt;build.gradle&lt;/code&gt; file of our main project:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;compile&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;com.jeroenmols.awesomelibrary:1.0.0&amp;#39;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h2&gt;Wrap-up&lt;/h2&gt;
-
-&lt;p&gt;Congratulations! You now have a fully working Maven repository manager with a Gradle script to generate and upload your artifacts.&lt;/p&gt;
-
-&lt;p&gt;In the next &lt;a href=&quot;/blog/2015/08/13/artifactory2/&quot;&gt;blog post&lt;/a&gt; I will zoom in on more advanced topics like:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Library projects with dependencies&lt;/li&gt;
-&lt;li&gt;Configuring your own repositories&lt;/li&gt;
-&lt;li&gt;User access management and rights&lt;/li&gt;
-&lt;li&gt;Removing hardcoded username and password from &lt;code&gt;build.gradle&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;I have also uploaded a &lt;a href=&quot;https://github.com/JeroenMols/ArtifactoryExample&quot;&gt;complete example&lt;/a&gt; on GitHub for your reference.&lt;/p&gt;
-]]></content>
+<p>...</p>]]></content>
  </entry>
  
  <entry>
@@ -1663,180 +201,15 @@ SEVERE: One or more listeners failed to start. Full details will be found in the
    <link href="http://jeroenmols.com/blog/2015/04/25/blog-creation/"/>
    <updated>2015-04-25T00:00:00+02:00</updated>
    <id>http://jeroenmols.com/blog/2015/04/25/blog-creation</id>
-   <content type="html"><![CDATA[&lt;h2&gt;Preface&lt;/h2&gt;
+   <content type="html"><![CDATA[<p>For quite some months, I&#39;ve been planning to create a website and start blogging about the things I&#39;m passionate about. Last week, I finally decided to setup a <a href="http://jeroenmols.github.io">portfolio</a> and <a href="http://jeroen.mols.github.io/blog">blog</a> using GitHub pages and Jekyll.</p>
 
-&lt;p&gt;For quite some months, I&amp;#39;ve been planning to create a website and start blogging about the things I&amp;#39;m passionate about. Last week, I finally decided to setup a &lt;a href=&quot;http://jeroenmols.github.io&quot;&gt;portfolio&lt;/a&gt; and &lt;a href=&quot;http://jeroen.mols.github.io/blog&quot;&gt;blog&lt;/a&gt; using GitHub pages and Jekyll.&lt;/p&gt;
+<p>Since I&#39;m an Android and not a web developer, the first blogging subject wasn&#39;t hard to find: challenges I came across in setting up this website and blog.</p>
 
-&lt;p&gt;Since I&amp;#39;m an Android and not a web developer, the first blogging subject wasn&amp;#39;t hard to find: challenges I came across in setting up this website and blog.&lt;/p&gt;
+<blockquote>
+<p><strong>Disclaimer:</strong> Eventually I had to use a workaround - that&#39;s why I don&#39;t build websites professionally - but I strongly believe in a <em>Just do It</em> mentality and then learn/improve as you go.</p>
+</blockquote>
 
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Disclaimer:&lt;/strong&gt; Eventually I had to use a workaround - that&amp;#39;s why I don&amp;#39;t build websites professionally - but I strongly believe in a &lt;em&gt;Just do It&lt;/em&gt; mentality and then learn/improve as you go.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2&gt;Why Jekyll&lt;/h2&gt;
-
-&lt;p&gt;Keeping it simple, I only had few requirements for my blog:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Responsive website&lt;/li&gt;
-&lt;li&gt;Easy to setup and maintain&lt;/li&gt;
-&lt;li&gt;No lock-in: able to migrate to other platforms&lt;/li&gt;
-&lt;li&gt;Support for pagination and comments&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;First thing I learned was the difference between a static (e.g. Jekyll) and dynamic website (e.g. Wordpress) via a &lt;a href=&quot;http://nilclass.com/courses/what-is-a-static-website/&quot;&gt;great presentation&lt;/a&gt; by &lt;a href=&quot;https://twitter.com/plusjade&quot;&gt;@plusjade&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;The main advantage of static websites is their loading speed because all pages are generated before they are served. Installing the generator on your local machine is simple, making it easy to test your site before deploying online. Posts are written in Markdown, so no HTML clutter nor extra tools needed. Just a text generator and Git to conveniently version all changes.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Protip:&lt;/strong&gt; One of my colleagues &lt;a href=&quot;https://twitter.com/inferis&quot;&gt;@inferis&lt;/a&gt; even gets spelling corrections via Pull request!&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;As GitHub pages natively supports Jekyll, I didn&amp;#39;t really spent much time on choosing which &lt;a href=&quot;https://staticsitegenerators.net/&quot;&gt;static site generator&lt;/a&gt; to use.&lt;/p&gt;
-
-&lt;h2&gt;Setting up&lt;/h2&gt;
-
-&lt;p&gt;Installing Jekyll was really a breeze, I just had to run &lt;code&gt;gem install Jekyll&lt;/code&gt; and then I could build my website using &lt;code&gt;jekyll build&lt;/code&gt; or test it locally using &lt;code&gt;jekyll serve&lt;/code&gt;.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; both commands will generate your website in the &lt;code&gt;_site&lt;/code&gt; folder, which you shouldn&amp;#39;t add to version control!&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Instead of making a new Jekyll site, I decided to fork two existing themes:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://hyde.getpoole.com/&quot;&gt;Hyde&lt;/a&gt;: a clean two-column theme for my Blog&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://startbootstrap.com/template-overviews/freelancer/&quot;&gt;Freelancer&lt;/a&gt;: to have a cool portfolio&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Both themes offer quite some predefined customization options via the &lt;code&gt;_config.yml&lt;/code&gt; file, but for advanced theming you can also directly edit the CSS files.&lt;/p&gt;
-
-&lt;h2&gt;Merging two Jekyll themes&lt;/h2&gt;
-
-&lt;p&gt;Where I originally only wanted to have a blog, the Freelancer theme was just too cool to ignore. Consequently merging two themes was one of the first things I had to do.&lt;/p&gt;
-
-&lt;p&gt;It seemed most convenient to have my portfolio under my main url and to include my blog under a subfolder (i.e. &lt;code&gt;jeroenmols.github.io/blog&lt;/code&gt;).&lt;/p&gt;
-
-&lt;p&gt;To do this I merged the blog theme into the portfolio (main) theme:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Add a subfolder &lt;code&gt;blog/&lt;/code&gt; with the &lt;code&gt;index.html&lt;/code&gt; of my blog.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Move all my portfolio posts and blog posts into separate folders:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;all portfolio posts went into &lt;code&gt;portfolio/_posts&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;all blog posts went into &lt;code&gt;blog/_posts&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;This allows to easily loop through all portfolio or blog posts separately:
-- &lt;code&gt;{% for post in site.categories.portfolio %}&lt;/code&gt;
-- &lt;code&gt;{% for post in site.categories.blog %}&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Move all files in &lt;code&gt;_layouts&lt;/code&gt; and &lt;code&gt;_includes&lt;/code&gt; from my blog into the corresponding folders of my portfolio theme.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Optionally you can move files into subfolders to keep things clean (&lt;code&gt;_includes/blog&lt;/code&gt;), as long as you also update all references to these files. (in &lt;code&gt;_layouts/blog.html&lt;/code&gt; I now refer to my includes as &lt;code&gt;blog/&amp;lt;original name&amp;gt;&lt;/code&gt;)&lt;/li&gt;
-&lt;li&gt;Same holds true if you have naming conflicts (for instance two layouts with the same name), you can just rename one and update all references in all files using it.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Move all other folders and files into the root of the main theme&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Merge the configurations from both &lt;code&gt;_config.yml&lt;/code&gt; files&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Again you can rename conflicting configurations (or merge duplicate ones) if you update all references.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Fix all references to not found images/css/... files in the blog theme. This is necessary because the original theme was assuming to run in the root directory, and now we moved it to a subdirectory &lt;code&gt;blog/&lt;/code&gt;.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;I found that the best way to do this is to run &lt;code&gt;jekyll build&lt;/code&gt; and have a look at the generated output in the &lt;code&gt;_site&lt;/code&gt; directory. From this you can learn what&amp;#39;s wrong and fix it.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;After this I could run &lt;code&gt;Jekyll serve&lt;/code&gt; and everything worked flawlessly!&lt;/p&gt;
-
-&lt;p&gt;...&lt;/p&gt;
-
-&lt;p&gt;Wait...&lt;/p&gt;
-
-&lt;p&gt;...&lt;/p&gt;
-
-&lt;p&gt;Why are my portfolio posts also showing up in my blog?&lt;/p&gt;
-
-&lt;p&gt;...&lt;/p&gt;
-
-&lt;p&gt;Damn you Jekyll!&lt;/p&gt;
-
-&lt;p&gt;Turns out Jekyll does not support paginating categories and hence it will lump all posts it finds together, in my case both portfolio (unwanted) and blog (wanted). Even more, there is no plugin to add this functionality either! Pretty weird, and a huge limitation if you ask me.&lt;/p&gt;
-
-&lt;p&gt;So I did what every self-respecting programmer would do: pray to the Stackoverflow and GitHub gods. And my prayers where answered by a code snippet of &lt;a href=&quot;https://github.com/benxtan&quot;&gt;benxtan&lt;/a&gt;, which I found in an issue tracker of a very old &lt;a href=&quot;https://github.com/Painted-Fox/jekyll-category-pagination/issues/6&quot;&gt;Jekyll pagination plugin&lt;/a&gt;. To enable this plugin, simply create a &lt;code&gt;_plugins&lt;/code&gt; folder and copy the code snippet into a &lt;code&gt;category_pagination.rb&lt;/code&gt; file.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: the former plugin was no longer working, because it was referring to classes that were renamed/moved classes in newer Jekyll versions.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2&gt;GitHub and Jekyll plugins&lt;/h2&gt;
-
-&lt;p&gt;My new shiny portfolio and blog were working locally, but when I pushed it to GitHub, the pagination again included both blog and portfolio posts. Turns out that GitHub doesn&amp;#39;t allow you to run custom Jekyll plugins except for a few that they have whitelisted.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://jekyllrb.com/docs/plugins/&quot;&gt;Plugins on GitHub Pages&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;GitHub Pages is powered by Jekyll. However, all Pages sites are generated using the --safe option to disable custom plugins for security reasons. Unfortunately, this means your plugins won’t work if you’re deploying to GitHub Pages.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;At this point, I am/was completely stuck, because even if Jekyll would add support for category pagination, I would still need to wait for GitHub to update their Jekyll version.&lt;/p&gt;
-
-&lt;p&gt;Only option remaining was to directly push the generated &lt;code&gt;_site&lt;/code&gt; directory into my repository and to disable the Jekyll generator on GitHub pages.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Note that this is a really suboptimal solution, because this effectively means pushing a high amount of auto-generated files to your repo, frequently. So if anyone has a better suggestion to solve the pagination issue, please let me know!&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;To make this work, there are a couple of things you need to do:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Disable Jekyll on GitHub pages by pushing an empty file with name &lt;code&gt;.nojekyll&lt;/code&gt; to the root of your repo&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Move all auto generated content from the &lt;code&gt;_site&lt;/code&gt; folder into the root of your repository, so that its &lt;code&gt;index.html&lt;/code&gt; is displayed when someone browses to your main page.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;This actually by itself imposes a new problem, namely where to put your Jekyll source code? I solved this by:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;move all source files to a subfolder &lt;code&gt;jekyll-source&lt;/code&gt; in my main repository&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;generating all static pages into &lt;code&gt;jekyll-source/_site&lt;/code&gt; using &lt;code&gt;jekyll build&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;removing all files and folders from my root directory, except for the &lt;code&gt;jekyll-source&lt;/code&gt; directory&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;copying the entire content of &lt;code&gt;jekyll-source/_site&lt;/code&gt; into my root folder&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;I know this is not a great solution, but it gets the job done, and I was able to automate all of this in a &lt;a href=&quot;https://github.com/JeroenMols/jeroenmols.github.io/blob/master/jekyll-code/release&quot;&gt;release script&lt;/a&gt; that you can run by calling &lt;code&gt;.release&lt;/code&gt; from the &lt;code&gt;jekyll-source&lt;/code&gt; folder.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: I also considered two other options:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Use a &lt;code&gt;CNAME&lt;/code&gt; file to redirect my main url into a subfolder. This does not work, as the &lt;code&gt;CNAME&lt;/code&gt; file can only be used for top-level domains.&lt;/li&gt;
-&lt;li&gt;Use a placeholder &lt;code&gt;index.html&lt;/code&gt; which redirect the main url into a subfolder.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;I didn&amp;#39;t use any of those mechanisms as that would unnecessarily complicate my website url.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2&gt;Protips&lt;/h2&gt;
-
-&lt;p&gt;If you really want to make your site look spectacular:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Site icon: add the following to the head of your &lt;code&gt;index.html&lt;/code&gt; page:
-&lt;code&gt;&amp;lt;link rel=&amp;quot;favicon-144-precomposed&amp;quot; sizes=&amp;quot;144x144&amp;quot; href=&amp;quot;&amp;lt;link_to_your_icon&amp;gt;&amp;quot;&amp;gt;&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Site toolbar/status bar color on Android: add the following to the head of your &lt;code&gt;index.html&lt;/code&gt; page: &lt;code&gt;&amp;lt;meta name=&amp;quot;theme-color&amp;quot; content=&amp;quot;&amp;lt;your_color_hex&amp;gt;&amp;quot;&amp;gt;&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2&gt;Conclusion&lt;/h2&gt;
-
-&lt;p&gt;I&amp;#39;m glad that I finally got my portfolio and blog up and running. My current solution might not be the best one in the world, but it is automated, maintainable and I can easily add blog posts in the future. Don&amp;#39;t hesitate to look at my &lt;a href=&quot;https://github.com/JeroenMols/jeroenmols.github.io&quot;&gt;GitHub repo&lt;/a&gt; for the full source code. Hopefully the code and my post can help others to setup the same in the future.&lt;/p&gt;
-
-&lt;p&gt;Would I use Jekyll again if I would start over? Probably yes.&lt;/p&gt;
-
-&lt;p&gt;The only real limitation I ran into was due to the paginator combining the posts from both my portfolio and blog. This caused me to disable Jekyll completely and push the generated site directly to GitHub pages. While this really sucked, using another static site generator would also have forced me to do this (because GitHub only supports Jekyll). Furthermore combining two themes is already quite advanced, and if you stick to just one theme Jekyll is actually very convenient to use.&lt;/p&gt;
-]]></content>
+<p>...</p>]]></content>
  </entry>
  
 
