@@ -131,6 +131,35 @@
 									</br>
 
 									
+									<div class="blogpost-overlay-header" style="background-image: url(/img/blog/cyclinggps/cyclinggps.png)">
+									<div class="blogpost-overlay-header-title">
+									  
+
+									<h1 class="blogpost-title">
+									  <a href="/blog/2016/07/21/cyclinggps/">
+									Turn Android into an awesome GPS
+									  </a>
+									</h1>
+
+									<span class="blogpost-date">21 Jul 2016</span>
+
+									
+									</div>
+									</div>
+									
+
+								</div>
+							</div>
+
+						
+						 
+					
+						
+							<div class="col-lg-6">
+								<div class="post">
+									</br>
+
+									
 									<div class="blogpost-overlay-header" style="background-image: url(/img/blog/droidconde16talk/droidcondetalk.png)">
 									<div class="blogpost-overlay-header-title">
 									  
@@ -212,32 +241,6 @@
 						
 						 
 					
-						
-							<div class="col-lg-6">
-								<div class="post">
-									</br>
-
-									
-									<div class="blogpost-overlay-header" style="background-image: url(/img/blog/droidconit16/droidconit.png)">
-									<div class="blogpost-overlay-header-title">
-									  
-
-									<h1 class="blogpost-title">
-									  <a href="/blog/2016/04/08/droidconit/">
-									Droidcon Italy recap
-									  </a>
-									</h1>
-
-									<span class="blogpost-date">08 Apr 2016</span>
-
-									
-									</div>
-									</div>
-									
-
-								</div>
-							</div>
-
 						
 						 
 					
@@ -449,7 +452,8 @@
                 <div class="col-lg-4"> -->
                     <p>Upcoming talks:
                         <ul>
-                            <li>Big Android Barbeque Europe</li>
+                            <li>Big Android Barbeque Europe - Testing made sweet with a Mockito</li>
+                            <li>Big Android Barbeque Europe - Maven library distribution</li>
                         </ul>
                     </p>
 
@@ -545,6 +549,160 @@
 
      <!-- Portfolio Modals -->
  
+    <div class="portfolio-modal modal fade" id="portfolioModal-" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>Turn Android into an awesome GPS</h2>
+                            <hr class="star-primary">
+                            <img src="img/portfolio/img/blog/cyclinggps/cyclinggps.png" class="img-responsive img-centered" alt="">
+                            <p><p>Cycling is all about exploring: visiting new places and making existing routes more fun with better streets. So there must be an app that allows to plan your route and start cycling right? Think again... there is currently no solution that offers turn by turn navigation for cyclists.</p>
+
+<p>As I had an old Android device laying around, I decided to repurpose that and convert it into a GPS that:</p>
+
+<ul>
+<li>tracks my activity</li>
+<li>imports gpx tracks created on my computer</li>
+<li>offers turn by turn navigation (screen + voice)</li>
+</ul>
+
+<p>This blogpost will detail how I use <a href="https://play.google.com/store/apps/details?id=net.osmand">OsmAnd</a> and <a href="https://play.google.com/store/apps/details?id=com.ttxapps.dropsync">Dropsync</a> to create new tracks with minimal effort. Further I&#39;ll also describe the gear I use in order to make this work.</p>
+
+<p><br></p>
+
+<h2>Gear</h2>
+
+<p><center><a href="/img/blog/cyclinggps/gear.png"><img src="/img/blog/cyclinggps/gear.png" alt="Cycling GPS gear"></a></center></p>
+
+<p>To build your own GPS, you&#39;ll need the following:</p>
+
+<ol>
+<li>Android phone - I use my Nexus 5, but any Android device will do</li>
+<li>Bicycle GPS mount - I use <a href="http://www.dx.com/p/universal-bike-bicycle-mount-cell-phones-bracket-holder-stand-black-208712#.V5DBF5O7hBc">this one</a></li>
+<li>Rainproof case - I use <a href="http://www.dx.com/p/universal-waterproof-bag-case-cover-dry-bag-for-iphone-htc-translucent-3-pcs-318004#.V5DBRpO7hBe">these</a></li>
+</ol>
+
+<p><br></p>
+
+<h2>Create tracks</h2>
+
+<p>To explore new places, you need a great tool to create cycling routes. I personally use <a href="https://www.strava.com/">Strava</a> because it has a &quot;global Heatmap&quot; and also supports &quot;segments&quot; where most people cycle. It is a great way to figure out popular cycling streets and help you plan a great route. Note that you can do all of this using a free account, but with a <a href="https://www.strava.com/premium">premium subscription</a> you will get lots more.</p>
+
+<p>To create routes, just go to &quot;My routes&quot; and select &quot;Create new route&quot;:</p>
+
+<p><center><a href="/img/blog/cyclinggps/routes.png"><img src="/img/blog/cyclinggps/routes.png" alt="Create a new route"></a></center></p>
+
+<p>The global Heatmap indicates where most people cycle:</p>
+
+<p><center><a href="/img/blog/cyclinggps/heatmap.png"><img src="/img/blog/cyclinggps/heatmap.png" alt="The global Heatmap indicates where most people cycle"></a></center></p>
+
+<p>Segments are often challenging parts to cycle, that contain a leaderboard:</p>
+
+<p><center><a href="/img/blog/cyclinggps/segments.png"><img src="/img/blog/cyclinggps/segments.png" alt="Segments are often challenging parts to cycle, that contain a leaderboard"></a></center></p>
+
+<p>Once you created a route, you can export it to a <code>gpx</code> file format. Note that it doesn&#39;t matter which GPS you choose to do the export.</p>
+
+<p><center><a href="/img/blog/cyclinggps/export.png"><img src="/img/blog/cyclinggps/export.png" alt="Tracks can be exported into a gpx file format"></a></center>
+<br></p>
+
+<h2>Configure OsmAnd</h2>
+
+<p><a href="https://play.google.com/store/apps/details?id=net.osmand">OsmAnd</a> offers both turn by turn navigation and storing maps offline. This is ideal to save bandwidth or for phones without a sim card (like mine). It is completely free to use, but there is also a <a href="https://play.google.com/store/apps/details?id=net.osmand.plus">premium version</a> if you want to support this awesome project.</p>
+
+<p>Getting it to work with <code>gpx</code> files is tricky and hence I will guide you through it.</p>
+
+<p>First of all install <a href="https://play.google.com/store/apps/details?id=net.osmand">OsmAnd</a> (or <a href="https://play.google.com/store/apps/details?id=net.osmand.plus">OsmAnd+</a>). When you open the app, press &quot;skip&quot; and don&#39;t download any maps. This is because they would end up in a private directory. Open the hamburger menu, go to &quot;Settings&quot; and open &quot;General settings&quot;.</p>
+
+<p><center><a href="/img/blog/cyclinggps/osmand1.png"><img src="/img/blog/cyclinggps/osmand1.png" alt="Skip downloading maps and go to general settings"></a></center></p>
+
+<p>Now we&#39;re going to change the directory in which OsmAnd stores all of its files. Use &quot;Data storage folder&quot;, click the &quot;edit icon&quot; and select &quot;Shared memory&quot; as the data storage folder. This will put all files in an &quot;osmand&quot; directory on the root of your internal storage. Accept the permission when promted to allow OsmAnd to create and write to that folder.</p>
+
+<p><center><a href="/img/blog/cyclinggps/osmand2.png"><img src="/img/blog/cyclinggps/osmand2.png" alt="Change the folder in which maps are downloaded to the shared folder"></a></center></p>
+
+<p>Next go ahead and download the maps for the areas in which you will be cycling. When prompted for a storage folder, again select &quot;Shared memory&quot;.</p>
+
+<p><center><a href="/img/blog/cyclinggps/osmand3.png"><img src="/img/blog/cyclinggps/osmand3.png" alt="Download the maps you need to the shared folder"></a></center></p>
+
+<p><br></p>
+
+<h2>Automatically sync tracks using Dropbox</h2>
+
+<p>Getting new tracks on your phone can be quite a hassle. Therefore we&#39;ll automate this process so you can add new tracks to your phone by only using your computer.</p>
+
+<p>First of all, create a new folder in your <a href="https://www.dropbox.com/">Dropbox</a> account called &quot;Cycling&quot;.</p>
+
+<p><center><a href="/img/blog/cyclinggps/dropbox.png"><img src="/img/blog/cyclinggps/dropbox.png" alt="Dropbox folder that will contain all tracks"></a></center></p>
+
+<p>Then install the app <a href="https://play.google.com/store/apps/details?id=com.ttxapps.dropsync">Dropsync</a> (or <a href="https://play.google.com/store/apps/details?id=com.ttxapps.dropsync.pro">Dropsync pro</a>). Next configure it so that it automatically syncs any file you put in the Dropbox folder into the correct folder on the Android phone.</p>
+
+<p>Open Dropsync, login with your Dropbox account and select &quot;let me create my own folder pair&quot;. As the local folder choose &quot;osmand/tracks&quot; and as the remote folder &quot;Cycling&quot;. Then select &quot;Download mirror&quot; as the sync method and enable sync. Save the changes and wait for the sync to complete.</p>
+
+<p><center><a href="/img/blog/cyclinggps/dropsync.png"><img src="/img/blog/cyclinggps/dropsync.png" alt="Configure Dropsync to put the GPX files in the correct folder on the Android phone"></a></center></p>
+
+<p>Now all you have to do is export a track from Strava, move it into the Dropbox folder and it will autmagically appear in OsmAnd on your GPS!</p>
+
+<p><br></p>
+
+<h2>Turn by turn navigation</h2>
+
+<p>Finally you&#39;re ready to start using your synced tracks for turn by turn navigation.</p>
+
+<p>Open OsmAnd and press the &quot;globe&quot; icon in the top left corner. Scroll down a bit and select &quot;GPX track...&quot; to choose the track you want to display. Exit the screen and start navigation by pressing the &quot;navigation&quot; icon in the bottom left corner.</p>
+
+<p><center><a href="/img/blog/cyclinggps/osmand4.png"><img src="/img/blog/cyclinggps/osmand4.png" alt="Select a track (gpx file) and start navigation"></a></center></p>
+
+<p>Enjoy your turn by turn navigation!</p>
+
+<p><center><a href="/img/blog/cyclinggps/osmand5.png"><img src="/img/blog/cyclinggps/osmand5.png" alt="Select a track (gpx file) and start navigation"></a></center></p>
+
+<p><br></p>
+
+<h2>Tips and tricks</h2>
+
+<p>I&#39;ll update this section as I discover new handy features/tricks to make the GPS even more usefull.</p>
+
+<ul>
+<li>Remove the lockscreen: go to &quot;Device Settings&quot; &gt; &quot;Security&quot; and set the &quot;Screen lock&quot; to &quot;none&quot;. This will enable you to simply press the power key to turn on your screen.</li>
+</ul>
+
+<p><br></p>
+
+<h2>Wrap-up</h2>
+
+<p>In a few very simple steps we created a complete cycling GPS solution that provides turn by turn navigation and offline maps. Creating tracks is done using Strava and export using a Dropbox folder so that they automatically appear on your GPS device.</p>
+
+<p>As always you can reach me <a href="https://twitter.com/molsjeroen">@molsjeroen</a> on twitter, or leave a comment below!</p>
+</p>
+
+                            <ul class="list-inline item-details">
+                                <li>Client:
+                                    <strong><a href=></a>
+                                    </strong>
+                                </li>
+                                <li>Date:
+                                    <strong></strong>
+                                </li>
+                                <li>Download:
+                                    <strong><a href=></a>
+                                    </strong>
+                                </li>
+                            </ul>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="portfolio-modal modal fade" id="portfolioModal-" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
