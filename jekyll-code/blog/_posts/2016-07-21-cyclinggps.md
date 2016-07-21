@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Turn Android into an awesome GPS
+title: Turn Android into an awesome cycling GPS
 published: true
 comments: true
 img: img/blog/cyclinggps/cyclinggps.png

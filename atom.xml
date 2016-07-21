@@ -7,7 +7,7 @@
  <link href="http://jeroenmols.com/"/>
  <icon>http://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog of Jeroen Mols focussed on Android development, open source and technology.</subtitle>
- <updated>2016-07-21T16:54:02+02:00</updated>
+ <updated>2016-07-21T16:58:34+02:00</updated>
  <id>http://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -18,13 +18,13 @@
 
  
  <entry>
-   <title>Turn Android into an awesome GPS</title>
+   <title>Turn Android into an awesome cycling GPS</title>
    <link href="http://jeroenmols.com/blog/2016/07/21/cyclinggps/"/>
    <updated>2016-07-21T00:00:00+02:00</updated>
    <id>http://jeroenmols.com/blog/2016/07/21/cyclinggps</id>
    <content type="html"><![CDATA[
      
-        <img src="http://jeroenmols.com/img/blog/cyclinggps/cyclinggps.png" alt="Turn Android into an awesome GPS">
+        <img src="http://jeroenmols.com/img/blog/cyclinggps/cyclinggps.png" alt="Turn Android into an awesome cycling GPS">
      
      <p>Cycling is all about exploring: visiting new places and making existing routes more fun with better streets. So there must be an app that allows to plan your route and start cycling right? Think again... there is currently no solution that offers turn by turn navigation for cyclists.</p>
 
