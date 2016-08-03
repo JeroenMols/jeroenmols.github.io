@@ -131,6 +131,35 @@
 									</br>
 
 									
+									<div class="blogpost-overlay-header" style="background-image: url(/img/blog/copyright/copyright.png)">
+									<div class="blogpost-overlay-header-title">
+									  
+
+									<h1 class="blogpost-title">
+									  <a href="/blog/2016/08/03/copyright/">
+									Why you should care about copyright
+									  </a>
+									</h1>
+
+									<span class="blogpost-date">03 Aug 2016</span>
+
+									
+									</div>
+									</div>
+									
+
+								</div>
+							</div>
+
+						
+						 
+					
+						
+							<div class="col-lg-6">
+								<div class="post">
+									</br>
+
+									
 									<div class="blogpost-overlay-header" style="background-image: url(/img/blog/cyclinggps/cyclinggps.png)">
 									<div class="blogpost-overlay-header-title">
 									  
@@ -212,32 +241,6 @@
 						
 						 
 					
-						
-							<div class="col-lg-6">
-								<div class="post">
-									</br>
-
-									
-									<div class="blogpost-overlay-header" style="background-image: url(/img/blog/methodcount/methodcount.png)">
-									<div class="blogpost-overlay-header-title">
-									  
-
-									<h1 class="blogpost-title">
-									  <a href="/blog/2016/05/06/methodcount/">
-									Efficiently reducing your method count
-									  </a>
-									</h1>
-
-									<span class="blogpost-date">06 May 2016</span>
-
-									
-									</div>
-									</div>
-									
-
-								</div>
-							</div>
-
 						
 						 
 					
@@ -549,6 +552,178 @@
 
      <!-- Portfolio Modals -->
  
+    <div class="portfolio-modal modal fade" id="portfolioModal-" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>Why you should care about copyright</h2>
+                            <hr class="star-primary">
+                            <img src="img/portfolio/img/blog/copyright/copyright.png" class="img-responsive img-centered" alt="">
+                            <p><p>As die hard Android developers, copyright notices are usually not on top of our priority list. Yet large corporations always insist to add a copyright header. Why do they do that? Should you do that for your open source libraries?</p>
+
+<p>This blog post will explain what copyright is and why it&#39;s so important. Further it&#39;ll also show how to easily add/update copyright notices to your code base.</p>
+
+<p><br></p>
+
+<h2>Intro to copyrights</h2>
+
+<p>According to wikipedia, copyright is:</p>
+
+<blockquote>
+<p>...a legal right created by the law of a country that grants the creator of an original work exclusive rights for its use and distribution</p>
+</blockquote>
+
+<p>Simplified this means that when you create something &quot;original&quot;, people cannot simply use or copy that without your explicit permission.</p>
+
+<p>This applies to art forms such as: literary works, music compositions, photographs,... and the highest art form of all: computer software!</p>
+
+<p>Hence every line of code you write is - besides a true piece of art - protected by copyright for the rest of your life. No action is needed to acquire this right, it&#39;s implicitly granted on creation.</p>
+
+<p>Now obviously this is highly simplified and there are important exceptions, most notably &quot;<a href="https://en.wikipedia.org/wiki/Right_to_quote">the right of quotation</a>&quot;. But it&#39;s fair to state that anything you blog or code in your time is falls under copyright protection.</p>
+
+<blockquote>
+<p><strong>What with the software I write for my employer?</strong><br> All copyrights explicitly belong to your employer, unless you explicitly agree to other terms in your contact.</p>
+</blockquote>
+
+<p><br></p>
+
+<h2>Licenses</h2>
+
+<p>A software license is a &quot;contract&quot; that allows others from using your code. Restrictions may apply on how &quot;it can be used&quot; and explicit terms may be imposed prior to using it.</p>
+
+<h3>Creating code</h3>
+
+<p>All code you write is by default copyright protected, even when not enforced by an explicit license. Therefore others are not allowed to use it, even if you make it <a href="https://help.github.com/articles/open-source-licensing/">publicly available</a> on GitHub!</p>
+
+<blockquote>
+<p>...the absence of a license means that the default copyright laws apply. This means that nobody else may reproduce, distribute, or create derivative works from your work.</p>
+</blockquote>
+
+<p>Therefore it is utterly important to explicitly state a license, otherwise all open source code you write is... well... useless.</p>
+
+<p>To apply a license, simply distribute a license together with your source code e.g by putting a <code>LICENSE</code> file at the root of my repository. Further it is also a good idea to add a copyright notice on top of every file to avoid any confusion.</p>
+
+<p>This is how I did it in the my library <a href="https://github.com/JeroenMols/LandscapeVideoCamera">LandscapeVideoCamera</a>.</p>
+
+<p><center><a href="/img/blog/copyright/landscapevideocameralicense.png"><img src="/img/blog/copyright/landscapevideocameralicense.png" alt="License for Landscape Video Camera"></a></center></p>
+
+<p>And at the top of every file:</p>
+
+<p><center><a href="/img/blog/copyright/landscapevideocameralicense2.png"><img src="/img/blog/copyright/landscapevideocameralicense2.png" alt="Copyright notice for Landscape Video Camera"></a></center></p>
+
+<h3>Using code</h3>
+
+<p>There is a common misconception that open source equals free to use. In reality however, even seemingly innocent open source communities will take legal action if you infringe on their license. Hence care must be taken to comply with the license of all code you use.</p>
+
+<p>Complying to a license can range from:</p>
+
+<ul>
+<li>Making all your code open source</li>
+<li>Only non commercial use</li>
+<li>Acknowledging the author</li>
+<li>...</li>
+</ul>
+
+<p>Do carefully review the license of every piece of software you use and make sure you satisfy all of its terms.</p>
+
+<p>Should that not be acceptable for your use case, you can always contact the author and request him/her to purchase the same software under an alternative license.</p>
+
+<h3>Understanding licenses</h3>
+
+<p>As you&#39;re likely not a legal ninja, you must be wondering:</p>
+
+<ul>
+<li>How do I pick the right license for my project?</li>
+<li>Given a license, where can I find its terms/restrictions?</li>
+</ul>
+
+<p>Well there is a great website explaining the ins and outs of various licenses: <a href="http://choosealicense.com/">choosealicense.com</a>.</p>
+
+<p><center><a href="http://choosealicense.com/"><img src="/img/blog/copyright/choosealicense.png" alt="Choose a license: great website to learn everything about licenses"></a></center></p>
+
+<p>Obviously if you work for a larger corporation like me, you should also involve your legal department.</p>
+
+<p><br></p>
+
+<h2>Adding/Updating licenses to your code</h2>
+
+<p>Fortunately Android studio can completely handle all hassle of adding copyright notices for you. It can even update existing notices should you decide to move to a different license or simply update the year.</p>
+
+<p>First of all go to &quot;Preferences &gt; Editor &gt; Copyright &gt; Copyright profiles&quot; and press the plus icon to add a new profile. Give it a meaningful name and fill in your copyright notice.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Copyright $today.year Jeroen Mols
+
+Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+</code></pre></div>
+<p><center><a href="/img/blog/copyright/copyrightapache.png"><img src="/img/blog/copyright/copyrightapache.png" alt="Add a new copyright profile"></a></center></p>
+
+<p>Note that you can use the flag <code>$today.year</code> to denote the current year.</p>
+
+<p>Optionally, the formatting pane allows you to tweak the copyright notice for every file type (Java, Xml, Groovy,...)</p>
+
+<p><center><a href="/img/blog/copyright/copyrightformatting.png"><img src="/img/blog/copyright/copyrightformatting.png" alt="Optionally tweak the copyright look and feel"></a></center></p>
+
+<p>Now select the &quot;default project copyright&quot; in the main Copyright pane and you&#39;re fancy new copyright will be added to every new file you create.</p>
+
+<p><center><a href="/img/blog/copyright/copyrightselect.png"><img src="/img/blog/copyright/copyrightselect.png" alt="Select your configured copyright profile"></a></center></p>
+
+<p>To update or add the notice to all your existing files, simply right click any file in the project pane and select &quot;Update copyright...&quot;.</p>
+
+<p><center><a href="/img/blog/copyright/copyrightupdate.png"><img src="/img/blog/copyright/copyrightupdate.png" alt="Update existing copyright of files"></a></center></p>
+
+<p><center><a href="/img/blog/copyright/copyrightscope.png"><img src="/img/blog/copyright/copyrightscope.png" alt="Choose what scope to apply the copyright headers to"></a></center></p>
+
+<p>That&#39;s it! You now have a one click way of ensuring your copyright notices are up to date.</p>
+
+<p><center><a href="/img/blog/copyright/copyrightdone.png"><img src="/img/blog/copyright/copyrightdone.png" alt="Copyright notice added to source code"></a></center></p>
+
+<p><br></p>
+
+<h2>Wrap-up</h2>
+
+<p>Copyright is not something to mess around with and you can face cause serious legal consequences if you don&#39;t. Even your open source projects should have a proper copyright notice. Fortunately <a href="http://choosealicense.com/">choosealicense.com</a> and Android Studio help you choose and apply the correct license.</p>
+
+<p>As always you can reach me <a href="https://twitter.com/molsjeroen">@molsjeroen</a> on twitter, or leave a comment below!</p>
+</p>
+
+                            <ul class="list-inline item-details">
+                                <li>Client:
+                                    <strong><a href=></a>
+                                    </strong>
+                                </li>
+                                <li>Date:
+                                    <strong></strong>
+                                </li>
+                                <li>Download:
+                                    <strong><a href=></a>
+                                    </strong>
+                                </li>
+                            </ul>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="portfolio-modal modal fade" id="portfolioModal-" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
