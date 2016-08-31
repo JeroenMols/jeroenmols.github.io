@@ -131,6 +131,35 @@
 									</br>
 
 									
+									<div class="blogpost-overlay-header" style="background-image: url(/img/blog/coveragecost/coveragecost.png)">
+									<div class="blogpost-overlay-header-title">
+									  
+
+									<h1 class="blogpost-title">
+									  <a href="/blog/2016/09/01/coveragecost/">
+									The hidden cost of code coverage
+									  </a>
+									</h1>
+
+									<span class="blogpost-date">01 Sep 2016</span>
+
+									
+									</div>
+									</div>
+									
+
+								</div>
+							</div>
+
+						
+						 
+					
+						
+							<div class="col-lg-6">
+								<div class="post">
+									</br>
+
+									
 									<div class="blogpost-overlay-header" style="background-image: url(/img/blog/copyright/copyright.png)">
 									<div class="blogpost-overlay-header-title">
 									  
@@ -212,32 +241,6 @@
 						
 						 
 					
-						
-							<div class="col-lg-6">
-								<div class="post">
-									</br>
-
-									
-									<div class="blogpost-overlay-header" style="background-image: url(/img/blog/droidconde16/droidconde.png)">
-									<div class="blogpost-overlay-header-title">
-									  
-
-									<h1 class="blogpost-title">
-									  <a href="/blog/2016/06/18/droidconde/">
-									Droidcon Berlin recap
-									  </a>
-									</h1>
-
-									<span class="blogpost-date">18 Jun 2016</span>
-
-									
-									</div>
-									</div>
-									
-
-								</div>
-							</div>
-
 						
 						 
 					
@@ -558,6 +561,111 @@
 
      <!-- Portfolio Modals -->
  
+    <div class="portfolio-modal modal fade" id="portfolioModal-" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>The hidden cost of code coverage</h2>
+                            <hr class="star-primary">
+                            <img src="img/portfolio/img/blog/coveragecost/coveragecost.png" class="img-responsive img-centered" alt="">
+                            <p>Code coverage is an awesome way to motivate you and your team to write more tests. But did you know that simply enabling it slows down your build significantly?
+
+This blogpost will detail why and offer an easy solution.
+
+<br>
+
+## Impact on build speed
+Profiling your Gradle build speed can easily be done using the `--profile` option:
+
+```groovy
+./gradlew clean assembleDebug --profile
+```
+
+When profiling a project recently, I noticed something surprising in the generated report:
+
+<center><a href="{{ site.blogbaseurl }}img/blog/coveragecost/buildtime.png"><img src="{{ site.blogbaseurl }}img/blog/coveragecost/buildtime.png" alt="Jacoco task takes up 14% of the build time! (report located in the `build/reports/profile` folder)"></a></center>
+
+The Jacoco task takes up almost 12 second, accounting for 14% of the build time!
+
+That's crazy! Especially because our build command isn't even running any test.
+
+Looking at our `build.gradle` file it is clear that we're not really doing anything exotic:
+
+```groovy
+buildTypes {
+    debug {
+        ...
+        testCoverageEnabled true
+    }
+}
+```
+
+Yet this still causes delays in all debug builds.
+
+<br>
+
+## The solution
+Ask yourself when do you need code coverage? At most after running unit tests, but probably only after running a CI build.
+
+Hence we're going to introduce a very simple flag `-Pcoverage` which we can add to the build command:
+
+```groovy
+./gradlew -Pcoverage clean connectedDebugAndroidTest
+```
+
+All you need to do to make this work is a small modification to your `build.gradle` file:
+
+```groovy
+buildTypes {
+    debug {
+        ...
+        testCoverageEnabled (project.hasProperty('coverage') ? true : false)
+    }
+}
+```
+
+And now code coverage will run when you add the flag and won't run when you don't add it!
+
+>
+Note that you can also add this flag to the test configuration in Android Studio if you also want to have coverage enabled while running tests locally.
+
+<br>
+
+## Wrap-up
+Code coverage is a great way to track your testing efforts. With help of a simple flag you can easily avoid it from slowing down your normal development builds.
+
+As always you can reach me [@molsjeroen](https://twitter.com/molsjeroen) on twitter, or leave a comment below!
+</p>
+
+                            <ul class="list-inline item-details">
+                                <li>Client:
+                                    <strong><a href=></a>
+                                    </strong>
+                                </li>
+                                <li>Date:
+                                    <strong></strong>
+                                </li>
+                                <li>Download:
+                                    <strong><a href=></a>
+                                    </strong>
+                                </li>
+                            </ul>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="portfolio-modal modal fade" id="portfolioModal-" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">

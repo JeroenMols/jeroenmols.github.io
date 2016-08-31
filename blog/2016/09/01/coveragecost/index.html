@@ -12,7 +12,7 @@
 
   <title>
     
-      Year in review 2015 &middot; Jeroen Mols
+      The hidden cost of code coverage &middot; Jeroen Mols
     
   </title>
 
@@ -97,32 +97,70 @@
 
 	    <div class="content container">
 	      	<div class="post">
-  <h1 class="post-title">Year in review 2015</h1>
-  <span class="post-date">29 Jan 2016</span>
+  <h1 class="post-title">The hidden cost of code coverage</h1>
+  <span class="post-date">01 Sep 2016</span>
 
   
-   <img src="/img/blog/yearinreview15/yearinreview15.png" alt="Year in review 2015">
+   <img src="/img/blog/coveragecost/coveragecost.png" alt="The hidden cost of code coverage">
   
 
-  <p>Finally found the time to write my <code>year in review</code>. #insomnia</p>
+  <p>Code coverage is an awesome way to motivate you and your team to write more tests. But did you know that simply enabling it slows down your build significantly?</p>
 
-<p>2015 was a huge year for me! I even dare to say the biggest one of my life so far as I became a father of a lovely daughter Lene. Its really hard to over state how big of an impact that has on your life and how fantastic it is to see your own baby grow (and recognize parts of yourself in her). This obviously also explains my late <code>year in review</code> post. #perfectexcuse</p>
+<p>This blogpost will detail why and offer an easy solution.</p>
 
-<p>On a technical level I also fared well and I&#39;m very happy with what I&#39;ve been able to accomplish:</p>
+<p><br></p>
 
-<ul>
-<li>Created an library with &gt;500 stars on  <a href="https://github.com/JeroenMols/LandscapeVideoCamera">Github</a></li>
-<li>Started my own blog and <a href="http://jeroenmols.com">website</a></li>
-<li>Featured blogpost in <a href="http://androidweekly.net/issues/issue-165">Android Weekly</a></li>
-<li>Spoke at my first conference <a href="https://speakerdeck.com/jeroenmols/distributing-to-a-public-or-private-maven-repository">Droidcon Paris</a></li>
-<li>Actively started using <a href="https://twitter.com/molsjeroen">twitter</a> and gained &gt;100 followers</li>
-<li>Gained &gt;1000 reputation on <a href="https://stackoverflow.com/users/2771851/jmols">stackoverflow</a></li>
-<li>Landed a new job at Philips Hue</li>
-<li>Learned Xamarin and built a cross platform app</li>
-<li>Wrote the worlds latest <code>year in review</code> post</li>
-</ul>
+<h2>Impact on build speed</h2>
 
-<p>Next year will be more challenging as my daughter has become a lot more effective at grabbing my attention than my laptop. However I want to increase my efforts contributing back to the community by speaking at more conferences and writing more blogposts. Finally I also want to visit Google IO, which is about time I got there, don&#39;t you agree? ;)</p>
+<p>Profiling your Gradle build speed can easily be done using the <code>--profile</code> option:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="o">./</span><span class="n">gradlew</span> <span class="n">clean</span> <span class="n">assembleDebug</span> <span class="o">--</span><span class="n">profile</span>
+</code></pre></div>
+<p>When profiling a project recently, I noticed something surprising in the generated report:</p>
+
+<p><center><a href="/img/blog/coveragecost/buildtime.png"><img src="/img/blog/coveragecost/buildtime.png" alt="Jacoco task takes up 14% of the build time! (report located in the `build/reports/profile` folder)"></a></center></p>
+
+<p>The Jacoco task takes up almost 12 second, accounting for 14% of the build time!</p>
+
+<p>That&#39;s crazy! Especially because our build command isn&#39;t even running any test.</p>
+
+<p>Looking at our <code>build.gradle</code> file it is clear that we&#39;re not really doing anything exotic:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">buildTypes</span> <span class="o">{</span>
+    <span class="n">debug</span> <span class="o">{</span>
+        <span class="o">...</span>
+        <span class="n">testCoverageEnabled</span> <span class="kc">true</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>Yet this still causes delays in all debug builds.</p>
+
+<p><br></p>
+
+<h2>The solution</h2>
+
+<p>Ask yourself when do you need code coverage? At most after running unit tests, but probably only after running a CI build.</p>
+
+<p>Hence we&#39;re going to introduce a very simple flag <code>-Pcoverage</code> which we can add to the build command:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="o">./</span><span class="n">gradlew</span> <span class="o">-</span><span class="n">Pcoverage</span> <span class="n">clean</span> <span class="n">connectedDebugAndroidTest</span>
+</code></pre></div>
+<p>All you need to do to make this work is a small modification to your <code>build.gradle</code> file:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">buildTypes</span> <span class="o">{</span>
+    <span class="n">debug</span> <span class="o">{</span>
+        <span class="o">...</span>
+        <span class="n">testCoverageEnabled</span> <span class="o">(</span><span class="n">project</span><span class="o">.</span><span class="na">hasProperty</span><span class="o">(</span><span class="s1">&#39;coverage&#39;</span><span class="o">)</span> <span class="o">?</span> <span class="kc">true</span> <span class="o">:</span> <span class="kc">false</span><span class="o">)</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>And now code coverage will run when you add the flag and won&#39;t run when you don&#39;t add it!</p>
+
+<blockquote>
+<p>Note that you can also add this flag to the test configuration in Android Studio if you also want to have coverage enabled while running tests locally.</p>
+</blockquote>
+
+<p><br></p>
+
+<h2>Wrap-up</h2>
+
+<p>Code coverage is a great way to track your testing efforts. With help of a simple flag you can easily avoid it from slowing down your normal development builds.</p>
 
 <p>As always you can reach me <a href="https://twitter.com/molsjeroen">@molsjeroen</a> on twitter, or leave a comment below!</p>
 
@@ -132,33 +170,33 @@
   <h2>Share on</h2>
   <ul>
     <li>
-      <a href="https://twitter.com/intent/tweet?text=Year in review 2015&url=http://jeroenmols.com/blog/2016/01/29/yearinreview/&via=molsjeroen&related=molsjeroen"
+      <a href="https://twitter.com/intent/tweet?text=The hidden cost of code coverage&url=http://jeroenmols.com/blog/2016/09/01/coveragecost/&via=molsjeroen&related=molsjeroen"
         onclick="window.open(
-              'https://twitter.com/intent/tweet?text=Year in review 2015&url=http://jeroenmols.com/blog/2016/01/29/yearinreview/&via=molsjeroen&related=molsjeroen'
+              'https://twitter.com/intent/tweet?text=The hidden cost of code coverage&url=http://jeroenmols.com/blog/2016/09/01/coveragecost/&via=molsjeroen&related=molsjeroen'
           ,'popup','width=600,height=600'); return false;" class="twitter" title="Share on Twitter" rel="nofollow" target="popup">
           <i class="fa fa-twitter"></i><span id="social-span"> Twitter</span>
       </a>
     </li>
     <li>
-      <a href="https://www.facebook.com/sharer/sharer.php?u=http://jeroenmols.com/blog/2016/01/29/yearinreview/"
+      <a href="https://www.facebook.com/sharer/sharer.php?u=http://jeroenmols.com/blog/2016/09/01/coveragecost/"
         onclick="window.open(
-              'https://www.facebook.com/sharer/sharer.php?u=http://jeroenmols.com/blog/2016/01/29/yearinreview/'
+              'https://www.facebook.com/sharer/sharer.php?u=http://jeroenmols.com/blog/2016/09/01/coveragecost/'
           ,'popup','width=600,height=600'); return false;" class="facebook" title="Share on Facebook" rel="nofollow" target="popup">
           <i class="fa fa-facebook"></i><span id="social-span"> Facebook</span></a>
       </a>
     </li>
     <li>
-      <a href="https://plus.google.com/share?url=http://jeroenmols.com/blog/2016/01/29/yearinreview/"
+      <a href="https://plus.google.com/share?url=http://jeroenmols.com/blog/2016/09/01/coveragecost/"
         onclick="window.open(
-              'https://plus.google.com/share?url=http://jeroenmols.com/blog/2016/01/29/yearinreview/'
+              'https://plus.google.com/share?url=http://jeroenmols.com/blog/2016/09/01/coveragecost/'
           ,'popup','width=600,height=600'); return false;" class="google-plus" title="Share on Google Plus" rel="nofollow" target="popup">
           <i class="fa fa-google-plus"></i><span id="social-span"> Google+</span></a>
       </a>
     </li>
     <!-- <li>
-      <a href="http://www.linkedin.com/shareArticle?mini=true&url=http://jeroenmols.com/blog/2016/01/29/yearinreview/&title=Year in review 2015&summary=&source=http://jeroenmols.com"
+      <a href="http://www.linkedin.com/shareArticle?mini=true&url=http://jeroenmols.com/blog/2016/09/01/coveragecost/&title=The hidden cost of code coverage&summary=&source=http://jeroenmols.com"
         onclick="window.open(
-              'http://www.linkedin.com/shareArticle?mini=true&url=http://jeroenmols.com/blog/2016/01/29/yearinreview/&title=Year in review 2015&summary=&source=http://jeroenmols.com'
+              'http://www.linkedin.com/shareArticle?mini=true&url=http://jeroenmols.com/blog/2016/09/01/coveragecost/&title=The hidden cost of code coverage&summary=&source=http://jeroenmols.com'
           ,'popup','width=600,height=600'); return false;" class="linkedin" title="Share on Google Plus" rel="nofollow" target="popup">
           <i class="fa fa-linkedin"></i><span id="social-span"> Linkedin</span></a>
       </a>
@@ -204,14 +242,6 @@
   <ul class="related-posts">
     
       
-        <li>
-          <h3>
-            <a href="/blog/2016/09/01/coveragecost/">
-              The hidden cost of code coverage
-              <small>01 Sep 2016</small>
-            </a>
-          </h3>
-        </li>
       
     
       
