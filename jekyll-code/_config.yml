@@ -68,7 +68,7 @@ author:
   name:           'Jeroen Mols'
   url:            https://twitter.com/molsjeroen
 
-paginate:         5
+paginate:         20
 paginate_path: "/blog/page:num/"
 
 twitter_username: molsjeroen
