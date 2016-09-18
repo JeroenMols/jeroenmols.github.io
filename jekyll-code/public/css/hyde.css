@@ -446,3 +446,15 @@ Social sharing
 		text-transform: uppercase;
 	}
 }
+
+.social-follow a {
+  padding: 6px 10px;
+  text-decoration: none !important;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #ffffff;
+  opacity: 0.8;
+  &:hover {
+    opacity: 1;
+  }
+}
