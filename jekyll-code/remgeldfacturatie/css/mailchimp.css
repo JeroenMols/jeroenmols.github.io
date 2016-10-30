@@ -10,7 +10,7 @@
 	border: 2px solid #ABB0B2;
 	color: #343434;
 	background-color: #fff;
-	padding: 1em 9em 1em 1em;
+	padding: 1em 9em 1em 1em  !important;
 	margin: 0; }
 
 /* Button Styles */
@@ -20,9 +20,9 @@
 	letter-spacing: .03em;
 	color: #fff;
 	background-color: #ff5252 !important;
-	padding: 1em 2em;
+	padding: 1em 2em  !important;
 	border: 2px solid #ff5252 !important;
-	margin: 0 0 0 -0.3em; }
+	margin: 0 0 0 -0.3em  !important; }
 
 :-webkit-input-placeholder { color: #ABB0B2 ; } /* WebKit browsers */
 :-moz-placeholder { color: #ABB0B2 ; } /* Mozilla Firefox 4 to 18 */
