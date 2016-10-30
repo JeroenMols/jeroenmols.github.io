@@ -11,7 +11,10 @@
 	color: #343434;
 	background-color: #fff;
 	padding: 1em 9em 1em 1em  !important;
-	margin: 0; }
+	margin: 0 !important;
+	-webkit-border-radius: 0px !important;
+	-moz-border-radius: 0px !important;
+	border-radius: 0px !important;}
 
 /* Button Styles */
 #mc_embed_signup .button {
@@ -22,7 +25,10 @@
 	background-color: #ff5252 !important;
 	padding: 1em 2em  !important;
 	border: 2px solid #ff5252 !important;
-	margin: 0 0 0 -0.3em  !important; }
+	margin: 0 0 0 -0.3em  !important;
+	-webkit-border-radius: 0px !important;
+	-moz-border-radius: 0px !important;
+	border-radius: 0px !important;}
 
 :-webkit-input-placeholder { color: #ABB0B2 ; } /* WebKit browsers */
 :-moz-placeholder { color: #ABB0B2 ; } /* Mozilla Firefox 4 to 18 */
