@@ -22,9 +22,9 @@
 	font-size: 1em;
 	letter-spacing: .03em;
 	color: #fff;
-	background-color: #ff5252 ;
+	background-color: #ff5252 !important;
 	padding: .7em 2em;
-	border: 2px solid #ff5252 ;
+	border: 2px solid #ff5252 !important;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
@@ -42,16 +42,16 @@
 		max-width: 100%; }
 	#mce-EMAIL {
 		padding: .7em 0 .7em 1em;
-		width: 80%;
-		margin: .5em 0 0 0; }
+		width: 80% !important;
+		margin: .5em 0 0 0 !important; }
 	.clear {
 		display: block;
 		width: 80% }
 	.button {
-		width: 85%;
-		margin: .5em 0 0 0; }
+		width: 85% !important;
+		margin: .5em 0 0 0 !important; }
 }
 
 .subscribe {
-	margin: 3em 0.5em 1em 0.5em;
+	margin: 3em 0.5em 1em 0.5em !important;
 }
