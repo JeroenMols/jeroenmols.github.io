@@ -49,7 +49,7 @@
 	.clear {
 		display: block;
 		width: 80% }
-	.button {
+	#mc_embed_signup .button {
 		width: 82% !important;
 		margin: .5em 0 0 0 !important; }
 }
