@@ -10,25 +10,19 @@
 	border: 2px solid #ABB0B2;
 	color: #343434;
 	background-color: #fff;
-	padding: .7em 9em .7em 1em;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
+	padding: 1em 9em 1em 1em;
 	margin: 0; }
 
 /* Button Styles */
-.button {
+#mc_embed_signup .button {
 	float:center;
 	font-size: 1em;
 	letter-spacing: .03em;
 	color: #fff;
 	background-color: #ff5252 !important;
-	padding: .7em 2em;
+	padding: 1em 2em;
 	border: 2px solid #ff5252 !important;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-	margin: 0; }
+	margin: 0 0 0 -0.3em; }
 
 :-webkit-input-placeholder { color: #ABB0B2 ; } /* WebKit browsers */
 :-moz-placeholder { color: #ABB0B2 ; } /* Mozilla Firefox 4 to 18 */
