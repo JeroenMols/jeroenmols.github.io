@@ -43,14 +43,14 @@
 		display: block;
 		max-width: 100%; }
 	#mce-EMAIL {
-		padding: .7em 0 .7em 1em;
+		padding: 0em 1% 0em 1% !important;
 		width: 80% !important;
-		margin: .5em 0 0 0 !important; }
+		margin: .5em 0 0.5em 0 !important; }
 	.clear {
 		display: block;
 		width: 80% }
 	.button {
-		width: 85% !important;
+		width: 82% !important;
 		margin: .5em 0 0 0 !important; }
 }
 
