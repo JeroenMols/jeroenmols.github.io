@@ -1341,10 +1341,10 @@ p.para1 {
 	.arrow_btn {
 	background: url(../images/arrow_btnh1.png) no-repeat 360px 6px;
 	}
-	.top-grid:nth-child(1)
+	/*.top-grid:nth-child(1)
 	{
 		display:none;
-	}
+	}*/
 	.top-grid {
 	width: 49%;
 	}
@@ -1574,9 +1574,9 @@ p.para1 {
 	.blog_left h3 a, .style a {
 	font-size: 1em;
 	}
-	.span_2_of_blog p.para:nth-child(2),.det_text p.para:nth-child(2) {
+	/*.span_2_of_blog p.para:nth-child(2),.det_text p.para:nth-child(2) {
 	display: none;
-	}
+	}*/
 /*****/
 	 #loginBox:before {
 	right: 80px;
