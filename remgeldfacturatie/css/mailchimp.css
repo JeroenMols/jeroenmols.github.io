@@ -6,12 +6,12 @@
 #mce-EMAIL {
 	float: center;
 	width: 30%;
-	height: 50px !important;
+	height: 55px !important;
 	font-size: 1em;
 	border: 2px solid #ABB0B2;
 	color: #343434;
 	background-color: #fff;
-	padding: 1em 9em 1em 1em  !important;
+	padding: 0em 9em 0em 1em  !important;
 	margin: 0 !important;
 	-webkit-border-radius: 0px !important;
 	-moz-border-radius: 0px !important;
@@ -20,12 +20,12 @@
 /* Button Styles */
 #mc_embed_signup .button {
 	float:center;
-	height: 50px !important;
+	height: 55px !important;
 	font-size: 1em;
 	letter-spacing: .03em;
 	color: #fff;
 	background-color: #ff5252 !important;
-	padding: 1em 2em  !important;
+	padding: 0em 2em  !important;
 	border: 2px solid #ff5252 !important;
 	margin: 0 0 0 -0.3em  !important;
 	-webkit-border-radius: 0px !important;
