@@ -1,0 +1,57 @@
+#mc_embed_signup{ width:100%; border: none; text-align: center;}
+
+.mc-field-group { display: inline-block; } /* positions input field horizontally */
+
+ /* Input Styles */
+#mce-EMAIL {
+	float: center;
+	width: 30%;
+	font-size: 1em;
+	border: 2px solid #ABB0B2;
+	color: #343434;
+	background-color: #fff;
+	padding: .7em 9em .7em 1em;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	margin: 0; }
+
+/* Button Styles */
+.button {
+	float:center;
+	font-size: 1em;
+	letter-spacing: .03em;
+	color: #fff;
+	background-color: #ff5252 ;
+	padding: .7em 2em;
+	border: 2px solid #ff5252 ;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	margin: 0; }
+
+:-webkit-input-placeholder { color: #ABB0B2 ; } /* WebKit browsers */
+:-moz-placeholder { color: #ABB0B2 ; } /* Mozilla Firefox 4 to 18 */
+::-moz-placeholder { color: #ABB0B2 ; } /* Mozilla Firefox 19+ */
+:-ms-input-placeholder { color: #ABB0B2 ; } /* Internet Explorer 10+ */
+
+/* positions input field and button underneath each other with 100% width for tablet and mobile */
+@media (max-width: 768px) {
+	.mc-field-group {
+		display: block;
+		max-width: 100%; }
+	#mce-EMAIL {
+		padding: .7em 0 .7em 1em;
+		width: 80%;
+		margin: .5em 0 0 0; }
+	.clear {
+		display: block;
+		width: 80% }
+	.button {
+		width: 85%;
+		margin: .5em 0 0 0; }
+}
+
+.subscribe {
+	margin: 3em 0.5em 1em 0.5em;
+}
