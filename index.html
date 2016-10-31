@@ -131,6 +131,35 @@
 									</br>
 
 									
+									<div class="blogpost-overlay-header" style="background-image: url(/img/blog/mockitomatchers/mockitomatchers.png)">
+									<div class="blogpost-overlay-header-title">
+									  
+
+									<h1 class="blogpost-title">
+									  <a href="/blog/2016/10/31/mockitomatchers/">
+									Extending Mockito
+									  </a>
+									</h1>
+
+									<span class="blogpost-date">31 Oct 2016</span>
+
+									
+									</div>
+									</div>
+									
+
+								</div>
+							</div>
+
+						
+						 
+					
+						
+							<div class="col-lg-6">
+								<div class="post">
+									</br>
+
+									
 									<div class="blogpost-overlay-header" style="background-image: url(/img/blog/coveragecost/coveragecost.png)">
 									<div class="blogpost-overlay-header-title">
 									  
@@ -212,32 +241,6 @@
 						
 						 
 					
-						
-							<div class="col-lg-6">
-								<div class="post">
-									</br>
-
-									
-									<div class="blogpost-overlay-header" style="background-image: url(/img/blog/droidconde16talk/droidcondetalk.png)">
-									<div class="blogpost-overlay-header-title">
-									  
-
-									<h1 class="blogpost-title">
-									  <a href="/blog/2016/06/24/droidcondetalk/">
-									Testing made sweet with a Mockito
-									  </a>
-									</h1>
-
-									<span class="blogpost-date">24 Jun 2016</span>
-
-									
-									</div>
-									</div>
-									
-
-								</div>
-							</div>
-
 						
 						 
 					
@@ -561,6 +564,135 @@
 
      <!-- Portfolio Modals -->
  
+    <div class="portfolio-modal modal fade" id="portfolioModal-" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>Extending Mockito</h2>
+                            <hr class="star-primary">
+                            <img src="img/portfolio/img/blog/mockitomatchers/mockitomatchers.png" class="img-responsive img-centered" alt="">
+                            <p><p>Due to its clean simple api, Mockito has become world&#39;s most popular Java mocking framework. After having covered <a href="https://speakerdeck.com/jeroenmols/testing-made-sweet-with-a-mockito">all of its basics</a>, it&#39;s time to spice things up and start extending Mockito.</p>
+
+<p>This blogpost will demonstrate the power of custom Mockito matchers.</p>
+
+<p><br></p>
+
+<h2>Problem sketch</h2>
+
+<p>Imagine a very simple example where a button in the UI sends a message to a User object that in its turn does the a WebService call.</p>
+
+<p><center><a href="/img/blog/mockitomatchers/architecture.png"><img src="/img/blog/mockitomatchers/architecture.png" alt="Basic architecture of our situation to test"></a></center></p>
+
+<p>We now want to verify that the User calls the <code>sendMessages()</code> method on the WebService with the appropriate arguments.</p>
+
+<p><br></p>
+
+<h2>Traditional test</h2>
+
+<p>The way to typically test such a scenario is to use an ArgumentCaptor that captures the ArrayList passed to <code>sendMessages()</code>. Next you can verify that the list contains the appropriate element.</p>
+<div class="highlight"><pre><code class="language-Java" data-lang="Java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">sendMessage</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+    <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">User</span><span class="o">(</span><span class="n">mockWebService</span><span class="o">,</span> <span class="n">USER_ID</span><span class="o">,</span> <span class="n">PASSWORD</span><span class="o">);</span>
+    <span class="n">ArgumentCaptor</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">listArgumentCaptor</span> <span class="o">=</span> <span class="n">ArgumentCaptor</span><span class="o">.</span><span class="na">forClass</span><span class="o">(</span><span class="n">List</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="n">String</span> <span class="n">expectedMessage</span> <span class="o">=</span> <span class="s">&quot;Test message&quot;</span><span class="o">;</span>
+
+    <span class="n">user</span><span class="o">.</span><span class="na">sendMessage</span><span class="o">(</span><span class="n">expectedMessage</span><span class="o">);</span>
+
+    <span class="n">verify</span><span class="o">(</span><span class="n">mockWebService</span><span class="o">).</span><span class="na">sendMessages</span><span class="o">(</span><span class="n">eq</span><span class="o">(</span><span class="n">user</span><span class="o">),</span> <span class="n">listArgumentCaptor</span><span class="o">.</span><span class="na">capture</span><span class="o">());</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">messages</span> <span class="o">=</span> <span class="n">listArgumentCaptor</span><span class="o">.</span><span class="na">getValue</span><span class="o">();</span>
+    <span class="n">String</span> <span class="n">actualMessage</span> <span class="o">=</span> <span class="n">messages</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+
+    <span class="n">assertEquals</span><span class="o">(</span><span class="n">expectedMessage</span><span class="o">,</span> <span class="n">actualMessage</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>I don&#39;t even have to begin to explain how cumbersome this is!</p>
+
+<p><br></p>
+
+<h2>Custom matcher test</h2>
+
+<p>We can dramatically simplify this by writing our own Mockito matcher and use that as an argument in our test verification.</p>
+
+<p>First we create a class called <code>ListContains</code> that implements the <code>ArgumentMatcher</code> interface. Then add a constructor that get&#39;s the expected element and implement the <code>matches()</code> method so it checks if the list contains that element.</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ListContains</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">ArgumentMatcher</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&gt;</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">T</span> <span class="n">object</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">ListContains</span><span class="o">(</span><span class="n">T</span> <span class="n">object</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">object</span> <span class="o">=</span> <span class="n">object</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">matches</span><span class="o">(</span><span class="n">List</span> <span class="n">list</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">list</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">object</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">//printed in verification errors</span>
+        <span class="k">return</span> <span class="s">&quot;[list doesn&#39;t contain object]&quot;</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>Note that <code>toString()</code> prints an error when the verification fails.</p>
+
+<p>To make the matcher syntax more intuitive you should create a new class called <code>ListMatchers</code> that provides a easy to access the matcher.</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ListMatchers</span> <span class="o">{</span>
+
+    <span class="nd">@Nullable</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">K</span><span class="o">&gt;</span> <span class="n">List</span> <span class="nf">listContains</span><span class="o">(</span><span class="n">K</span> <span class="n">object</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">argThat</span><span class="o">(</span><span class="k">new</span> <span class="n">ListContains</span><span class="o">&lt;&gt;(</span><span class="n">object</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>With this new custom matcher, we can simplify the test to:</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">customMatchers</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+    <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">User</span><span class="o">(</span><span class="n">mockWebService</span><span class="o">,</span> <span class="n">USER_ID</span><span class="o">,</span> <span class="n">PASSWORD</span><span class="o">);</span>
+    <span class="n">String</span> <span class="n">expectedMessage</span> <span class="o">=</span> <span class="s">&quot;Test message&quot;</span><span class="o">;</span>
+    <span class="n">user</span><span class="o">.</span><span class="na">sendMessage</span><span class="o">(</span><span class="n">expectedMessage</span><span class="o">);</span>
+
+    <span class="n">verify</span><span class="o">(</span><span class="n">mockWebService</span><span class="o">).</span><span class="na">sendMessages</span><span class="o">(</span><span class="n">listContains</span><span class="o">(</span><span class="n">expectedMessage</span><span class="o">));</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>Pretty neat isn&#39;t it?</p>
+
+<p><br></p>
+
+<h2>Wrap-up</h2>
+
+<p>Custom matchers are a great way to simplify unit tests. In my <a href="https://github.com/jeroenmols/mockitoexample">Mockito sample project</a> you can learn more about how to use Mockito and find other custom matcher examples.</p>
+
+<p>As always you can reach me <a href="https://twitter.com/molsjeroen">@molsjeroen</a> on twitter, or leave a comment below!</p>
+</p>
+
+                            <ul class="list-inline item-details">
+                                <li>Client:
+                                    <strong><a href=></a>
+                                    </strong>
+                                </li>
+                                <li>Date:
+                                    <strong></strong>
+                                </li>
+                                <li>Download:
+                                    <strong><a href=></a>
+                                    </strong>
+                                </li>
+                            </ul>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="portfolio-modal modal fade" id="portfolioModal-" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">

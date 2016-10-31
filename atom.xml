@@ -7,7 +7,7 @@
  <link href="http://jeroenmols.com/"/>
  <icon>http://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog of Jeroen Mols focussed on Android development, open source and technology.</subtitle>
- <updated>2016-10-30T17:19:02+01:00</updated>
+ <updated>2016-10-31T22:47:40+01:00</updated>
  <id>http://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,26 @@
  <webfeeds:cover image="http://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>http://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>Extending Mockito</title>
+   <link href="http://jeroenmols.com/blog/2016/10/31/mockitomatchers/"/>
+   <updated>2016-10-31T00:00:00+01:00</updated>
+   <id>http://jeroenmols.com/blog/2016/10/31/mockitomatchers</id>
+   <content type="html"><![CDATA[
+     
+        <img src="http://jeroenmols.com/img/blog/mockitomatchers/mockitomatchers.png" alt="Extending Mockito">
+     
+     <p>Due to its clean simple api, Mockito has become world&#39;s most popular Java mocking framework. After having covered <a href="https://speakerdeck.com/jeroenmols/testing-made-sweet-with-a-mockito">all of its basics</a>, it&#39;s time to spice things up and start extending Mockito.</p>
+
+<p>This blogpost will demonstrate the power of custom Mockito matchers.</p>
+
+
+
+
+     <a href="http://jeroenmols.com/blog/2016/10/31/mockitomatchers/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>The hidden cost of code coverage</title>
