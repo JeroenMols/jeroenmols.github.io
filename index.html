@@ -665,6 +665,20 @@
 
 <p><br></p>
 
+<h2>Library</h2>
+
+<p>After a great suggestion from Eugen Martynov, I&#39;ve decided to create a <a href="https://github.com/JeroenMols/MockitoCollectionMatchers">library for all of these collection matchers</a> on Github.</p>
+
+<p>All you have to do is add Jitpack to your main <code>build.gradle</code> file:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">repositories</span> <span class="o">{</span>
+    <span class="n">maven</span> <span class="o">{</span> <span class="n">url</span> <span class="s2">&quot;https://jitpack.io&quot;</span> <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>And add a dependency on the library in your project <code>build.gradle</code> file:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">testCompile</span> <span class="s1">&#39;com.github.JeroenMols:MockitoCollectionMatchers:0.0.1&#39;</span>
+</code></pre></div>
+<p>This is very much a work in progress, so expect more matchers to come soon!</p>
+
 <h2>Wrap-up</h2>
 
 <p>Custom matchers are a great way to simplify unit tests. In my <a href="https://github.com/jeroenmols/mockitoexample">Mockito sample project</a> you can learn more about how to use Mockito and find other custom matcher examples.</p>
