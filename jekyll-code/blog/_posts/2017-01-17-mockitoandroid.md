@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Using Mockito on Android
+title: Using Mockito 2.x on Android
 published: true
 comments: true
 img: img/blog/mockitoandroid/mockitoandroid.png

@@ -7,7 +7,7 @@
  <link href="http://jeroenmols.com/"/>
  <icon>http://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog of Jeroen Mols focussed on Android development, open source and technology.</subtitle>
- <updated>2017-01-17T22:25:02+01:00</updated>
+ <updated>2017-01-17T22:45:16+01:00</updated>
  <id>http://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -18,13 +18,13 @@
 
  
  <entry>
-   <title>Using Mockito on Android</title>
+   <title>Using Mockito 2.x on Android</title>
    <link href="http://jeroenmols.com/blog/2017/01/17/mockitoandroid/"/>
    <updated>2017-01-17T00:00:00+01:00</updated>
    <id>http://jeroenmols.com/blog/2017/01/17/mockitoandroid</id>
    <content type="html"><![CDATA[
      
-        <img src="http://jeroenmols.com/img/blog/mockitoandroid/mockitoandroid.png" alt="Using Mockito on Android">
+        <img src="http://jeroenmols.com/img/blog/mockitoandroid/mockitoandroid.png" alt="Using Mockito 2.x on Android">
      
      <p>The Mockito team is on fire lately! Not only did they add support to mock final classes and methods, but now they allow running Mockito directly onto an actual Android device.</p>
 
