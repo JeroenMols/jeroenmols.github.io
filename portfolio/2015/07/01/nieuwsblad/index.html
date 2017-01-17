@@ -131,6 +131,35 @@
 									</br>
 
 									
+									<div class="blogpost-overlay-header" style="background-image: url(/img/blog/mockitoandroid/mockitoandroid.png)">
+									<div class="blogpost-overlay-header-title">
+									  
+
+									<h1 class="blogpost-title">
+									  <a href="/blog/2017/01/17/mockitoandroid/">
+									Using Mockito on Android
+									  </a>
+									</h1>
+
+									<span class="blogpost-date">17 Jan 2017</span>
+
+									
+									</div>
+									</div>
+									
+
+								</div>
+							</div>
+
+						
+						 
+					
+						
+							<div class="col-lg-6">
+								<div class="post">
+									</br>
+
+									
 									<div class="blogpost-overlay-header" style="background-image: url(/img/blog/yearinreview16/yearinreview16.png)">
 									<div class="blogpost-overlay-header-title">
 									  
@@ -212,32 +241,6 @@
 						
 						 
 					
-						
-							<div class="col-lg-6">
-								<div class="post">
-									</br>
-
-									
-									<div class="blogpost-overlay-header" style="background-image: url(/img/blog/copyright/copyright.png)">
-									<div class="blogpost-overlay-header-title">
-									  
-
-									<h1 class="blogpost-title">
-									  <a href="/blog/2016/08/03/copyright/">
-									Why you should care about copyright
-									  </a>
-									</h1>
-
-									<span class="blogpost-date">03 Aug 2016</span>
-
-									
-									</div>
-									</div>
-									
-
-								</div>
-							</div>
-
 						
 						 
 					
@@ -568,6 +571,105 @@
 
      <!-- Portfolio Modals -->
  
+    <div class="portfolio-modal modal fade" id="portfolioModal-" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>Using Mockito on Android</h2>
+                            <hr class="star-primary">
+                            <img src="img/portfolio/img/blog/mockitoandroid/mockitoandroid.png" class="img-responsive img-centered" alt="">
+                            <p>The Mockito team is on fire lately! Not only did they add support to mock final classes and methods, but now they allow running Mockito directly onto an actual Android device.
+
+Time to get convert our Mockito 1.x projects to 2.x!
+
+<br>
+
+## History
+It has always been possible to run Mockito on Android devices and emulators. This however required using a tool called `Dexmaker` to help Mockito generate classes in the Android virtual machine.
+
+While this approach worked fine, there was one big caveat: `Dexmaker` wasn't actively maintained. Consequently it was only compatible with Mockito 1.x so you couldn't use the new stuff while running tests on an Android device.
+
+Further this extra dependency made your `build.gradle` look like this:
+
+```groovy
+dependencies {
+    ...
+
+    testCompile 'org.mockito:mockito-core:2.6.3'
+
+    androidTestCompile 'org.mockito:mockito-core:1.10.19'
+    androidTestCompile 'com.crittercism.dexmaker:dexmaker:1.4'
+    androidTestCompile 'com.crittercism.dexmaker:dexmaker-dx:1.4'
+    androidTestCompile 'com.crittercism.dexmaker:dexmaker-mockito:1.4'
+}
+```
+
+Notice the 2.x version for the unit tests and the 1.x version for the instrumentation tests.
+
+Fortunately, Mockito 2.6.0 changed that:
+
+<center><blockquote class="twitter-tweet" data-lang="nl"><p lang="en" dir="ltr">We have just released Mockito 2.6 with native support for Android. On Android, just use the mockito-android dependency. Test code stays!</p>&mdash; Rafael Winterhalter (@rafaelcodes) <a href="https://twitter.com/rafaelcodes/status/819525418231496705">12 januari 2017</a></blockquote></center>
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<br>
+
+## Mockito 2.6.0+
+The latest release added a new artifact `mockito-android` next to the existing `mockito-core` artifact.
+
+So to convert your existing instrumentation tests, just remove the `Dexmaker` dependencies and replace the `mockito-core` dependency with its `mockito-android` equivalent:
+
+```groovy
+dependencies {
+    ...
+
+    testCompile 'org.mockito:mockito-core:2.6.3'
+
+    androidTestCompile 'org.mockito:mockito-android:2.6.3'
+}
+```
+
+Simple, elegant and future proof!
+
+Finally, please be aware that Mockito 2.x has some [behavior changes](https://github.com/mockito/mockito/wiki/What%27s-new-in-Mockito-2#incompatible). The one you're most likely going to run into while migrating is that `anyX()` and `any(SomeType.class)` matchers now reject null values.
+
+<br>
+
+## Wrap-up
+Finally Mockito has first class support for Android instrumentation tests! I've also updated my [Mockito sample project](https://github.com/jeroenmols/mockitoexample) where you can see how it works and learn more about how to use Mockito.
+
+As always you can reach me [@molsjeroen](https://twitter.com/molsjeroen) on twitter, or leave a comment below!
+</p>
+
+                            <ul class="list-inline item-details">
+                                <li>Client:
+                                    <strong><a href=></a>
+                                    </strong>
+                                </li>
+                                <li>Date:
+                                    <strong></strong>
+                                </li>
+                                <li>Download:
+                                    <strong><a href=></a>
+                                    </strong>
+                                </li>
+                            </ul>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="portfolio-modal modal fade" id="portfolioModal-" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">

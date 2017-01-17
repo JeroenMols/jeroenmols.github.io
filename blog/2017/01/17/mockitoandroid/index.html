@@ -12,7 +12,7 @@
 
   <title>
     
-      Testing made sweet with a Mockito &middot; Jeroen Mols
+      Using Mockito on Android &middot; Jeroen Mols
     
   </title>
 
@@ -97,69 +97,71 @@
 
 	    <div class="content container">
 	      	<div class="post">
-  <h1 class="post-title">Testing made sweet with a Mockito</h1>
-  <span class="post-date">24 Jun 2016</span>
+  <h1 class="post-title">Using Mockito on Android</h1>
+  <span class="post-date">17 Jan 2017</span>
 
   
-   <img src="/img/blog/droidconde16talk/droidcondetalk.png" alt="Testing made sweet with a Mockito">
+   <img src="/img/blog/mockitoandroid/mockitoandroid.png" alt="Using Mockito on Android">
   
 
-  <p>At Droidcon Berlin 2016 I had a great time talking about testing using the <a href="http://mockito.org/">Mockito</a> framework. While the talk wasn&#39;t recorded unfortunately, the great folks at <a href="https://voicerepublic.com/series/droidcon-berlin-2016">Voice Republic</a> recorded an audio version which you can listen to as a podcast or together with the slides.</p>
+  <p>The Mockito team is on fire lately! Not only did they add support to mock final classes and methods, but now they allow running Mockito directly onto an actual Android device.</p>
+
+<p>Time to get convert our Mockito 1.x projects to 2.x!</p>
 
 <p><br></p>
 
-<h2>Talk</h2>
+<h2>History</h2>
 
-<script async class="speakerdeck-embed" data-id="061ea326e4b24a3aa961440fd699c481" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+<p>It has always been possible to run Mockito on Android devices and emulators. This however required using a tool called <code>Dexmaker</code> to help Mockito generate classes in the Android virtual machine.</p>
 
-<iframe width="100%" height="32%" src="https://voicerepublic.com/embed/talks/testing-made-sweet-with-a-mockito" frameborder="0" scrolling="no" allowfullscreen></iframe>
+<p>While this approach worked fine, there was one big caveat: <code>Dexmaker</code> wasn&#39;t actively maintained. Consequently it was only compatible with Mockito 1.x so you couldn&#39;t use the new stuff while running tests on an Android device.</p>
 
-<p>The past year has been huge for Android testing: Testing support lib, fast JVM unit tests,... Having such great tools means writing tests is a breeze! All your apps currently have &gt;80% code coverage, right? Yay! Or wait... is it really? Is all your common Android logic (networking, databases,...) tested? Do you isolate parts of your code base to keep your tests small? And what about providing relevant testing data?</p>
+<p>Further this extra dependency made your <code>build.gradle</code> look like this:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">dependencies</span> <span class="o">{</span>
+    <span class="o">...</span>
 
-<p>In order to achieve this, you need to make use of mocks and stubs. And that&#39;s exactly what this talk will be about: What is a mock? What&#39;s the difference between a mock and a stub? Are mocks the only way to provide relevant data for your unit tests? What do I do with all the final classes/methods in the Android SDK? How do I architect my app to make it easier to test? ...</p>
+    <span class="n">testCompile</span> <span class="s1">&#39;org.mockito:mockito-core:2.6.3&#39;</span>
 
-<p>After having adopted TDD as my main development workflow for almost a year now, I feel comfortable saying everything can be tested. Its just a matter of having someone experience show you how.</p>
+    <span class="n">androidTestCompile</span> <span class="s1">&#39;org.mockito:mockito-core:1.10.19&#39;</span>
+    <span class="n">androidTestCompile</span> <span class="s1">&#39;com.crittercism.dexmaker:dexmaker:1.4&#39;</span>
+    <span class="n">androidTestCompile</span> <span class="s1">&#39;com.crittercism.dexmaker:dexmaker-dx:1.4&#39;</span>
+    <span class="n">androidTestCompile</span> <span class="s1">&#39;com.crittercism.dexmaker:dexmaker-mockito:1.4&#39;</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>Notice the 2.x version for the unit tests and the 1.x version for the instrumentation tests.</p>
 
-<p><br></p>
+<p>Fortunately, Mockito 2.6.0 changed that:</p>
 
-<h2>Code</h2>
+<p><center><blockquote class="twitter-tweet" data-lang="nl"><p lang="en" dir="ltr">We have just released Mockito 2.6 with native support for Android. On Android, just use the mockito-android dependency. Test code stays!</p>&mdash; Rafael Winterhalter (@rafaelcodes) <a href="https://twitter.com/rafaelcodes/status/819525418231496705">12 januari 2017</a></blockquote></center></p>
 
-<p>A fully working sample project with all principles is available <a href="https://github.com/JeroenMols/MockitoExample">on Github</a>.</p>
-
-<ul>
-<li><a href="https://github.com/JeroenMols/MockitoExample/blob/master/app/build.gradle">build.gradle</a> file indicating how to configure Mockito
-
-<ul>
-<li>testCompile: for tests run on your computer in a JVM (src/test folder)</li>
-<li>androidTestCompile: for tests run on an Android device (src/androidTest folder)</li>
-</ul></li>
-<li><a href="https://github.com/JeroenMols/MockitoExample/blob/master/app/src/test/java/com/jeroenmols/mockitoexample/UserTest.java">UserTest</a> class demonstrating Mockito usage
-
-<ul>
-<li>TLDR: JVM unit tests with mockito are easy to read and write</li>
-</ul></li>
-<li><a href="https://github.com/JeroenMols/MockitoExample/blob/master/app/src/androidTest/java/com/jeroenmols/mockitoexample/UserTestAndroid.java">UserTestAndroid</a> class demonstrating Mockito usage on Android device
-
-<ul>
-<li>TLDR: Mockito can be used on Android, but need to use V1 and dexmaker</li>
-</ul></li>
-<li><a href="https://github.com/JeroenMols/MockitoExample/blob/master/app/src/main/java/com/jeroenmols/mockitoexample/HandlerWrapper.java">HandlerWrapper</a> class indicating how to test final methods
-
-<ul>
-<li>TLDR: Wrap final or statics methods with a different non static/final method</li>
-</ul></li>
-<li><a href="https://github.com/JeroenMols/MockitoExample/blob/master/app/src/test/java/com/jeroenmols/mockitoexample/TestUserData.java">TestUserData</a> class indicating how to provide testing data for POJO objects
-
-<ul>
-<li>TLDR: Override all methods with default values instead of creating a mock and stubbing them out</li>
-</ul></li>
-</ul>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <p><br></p>
 
-<h2>Audience</h2>
+<h2>Mockito 2.6.0+</h2>
 
-<p><center><a href="/img/blog/droidconde16talk/audience.jpg"><img src="/img/blog/droidconde16talk/audience.jpg" alt="Quite some people interested in my talk"></a></center></p>
+<p>The latest release added a new artifact <code>mockito-android</code> next to the existing <code>mockito-core</code> artifact.</p>
+
+<p>So to convert your existing instrumentation tests, just remove the <code>Dexmaker</code> dependencies and replace the <code>mockito-core</code> dependency with its <code>mockito-android</code> equivalent:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">dependencies</span> <span class="o">{</span>
+    <span class="o">...</span>
+
+    <span class="n">testCompile</span> <span class="s1">&#39;org.mockito:mockito-core:2.6.3&#39;</span>
+
+    <span class="n">androidTestCompile</span> <span class="s1">&#39;org.mockito:mockito-android:2.6.3&#39;</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>Simple, elegant and future proof!</p>
+
+<p>Finally, please be aware that Mockito 2.x has some <a href="https://github.com/mockito/mockito/wiki/What%27s-new-in-Mockito-2#incompatible">behavior changes</a>. The one you&#39;re most likely going to run into while migrating is that <code>anyX()</code> and <code>any(SomeType.class)</code> matchers now reject null values.</p>
+
+<p><br></p>
+
+<h2>Wrap-up</h2>
+
+<p>Finally Mockito has first class support for Android instrumentation tests! I&#39;ve also updated my <a href="https://github.com/jeroenmols/mockitoexample">Mockito sample project</a> where you can see how it works and learn more about how to use Mockito.</p>
+
+<p>As always you can reach me <a href="https://twitter.com/molsjeroen">@molsjeroen</a> on twitter, or leave a comment below!</p>
 
 
   <div class="social-follow">
@@ -174,33 +176,33 @@
   <h2>Share on</h2>
   <ul>
     <li>
-      <a href="https://twitter.com/intent/tweet?text=Testing made sweet with a Mockito&url=http://jeroenmols.com/blog/2016/06/24/droidcondetalk/&via=molsjeroen&related=molsjeroen&hashtags=androiddev"
+      <a href="https://twitter.com/intent/tweet?text=Using Mockito on Android&url=http://jeroenmols.com/blog/2017/01/17/mockitoandroid/&via=molsjeroen&related=molsjeroen&hashtags=androiddev"
         onclick="window.open(
-              'https://twitter.com/intent/tweet?text=Testing made sweet with a Mockito&url=http://jeroenmols.com/blog/2016/06/24/droidcondetalk/&via=molsjeroen&related=molsjeroen&hashtags=androiddev'
+              'https://twitter.com/intent/tweet?text=Using Mockito on Android&url=http://jeroenmols.com/blog/2017/01/17/mockitoandroid/&via=molsjeroen&related=molsjeroen&hashtags=androiddev'
           ,'popup','width=600,height=600'); return false;" class="twitter" title="Share on Twitter" rel="nofollow" target="popup">
           <i class="fa fa-twitter"></i><span id="social-span"> Twitter</span>
       </a>
     </li>
     <li>
-      <a href="https://www.facebook.com/sharer/sharer.php?u=http://jeroenmols.com/blog/2016/06/24/droidcondetalk/"
+      <a href="https://www.facebook.com/sharer/sharer.php?u=http://jeroenmols.com/blog/2017/01/17/mockitoandroid/"
         onclick="window.open(
-              'https://www.facebook.com/sharer/sharer.php?u=http://jeroenmols.com/blog/2016/06/24/droidcondetalk/'
+              'https://www.facebook.com/sharer/sharer.php?u=http://jeroenmols.com/blog/2017/01/17/mockitoandroid/'
           ,'popup','width=600,height=600'); return false;" class="facebook" title="Share on Facebook" rel="nofollow" target="popup">
           <i class="fa fa-facebook"></i><span id="social-span"> Facebook</span></a>
       </a>
     </li>
     <li>
-      <a href="https://plus.google.com/share?url=http://jeroenmols.com/blog/2016/06/24/droidcondetalk/"
+      <a href="https://plus.google.com/share?url=http://jeroenmols.com/blog/2017/01/17/mockitoandroid/"
         onclick="window.open(
-              'https://plus.google.com/share?url=http://jeroenmols.com/blog/2016/06/24/droidcondetalk/'
+              'https://plus.google.com/share?url=http://jeroenmols.com/blog/2017/01/17/mockitoandroid/'
           ,'popup','width=600,height=600'); return false;" class="google-plus" title="Share on Google Plus" rel="nofollow" target="popup">
           <i class="fa fa-google-plus"></i><span id="social-span"> Google+</span></a>
       </a>
     </li>
     <!-- <li>
-      <a href="http://www.linkedin.com/shareArticle?mini=true&url=http://jeroenmols.com/blog/2016/06/24/droidcondetalk/&title=Testing made sweet with a Mockito&summary=&source=http://jeroenmols.com"
+      <a href="http://www.linkedin.com/shareArticle?mini=true&url=http://jeroenmols.com/blog/2017/01/17/mockitoandroid/&title=Using Mockito on Android&summary=&source=http://jeroenmols.com"
         onclick="window.open(
-              'http://www.linkedin.com/shareArticle?mini=true&url=http://jeroenmols.com/blog/2016/06/24/droidcondetalk/&title=Testing made sweet with a Mockito&summary=&source=http://jeroenmols.com'
+              'http://www.linkedin.com/shareArticle?mini=true&url=http://jeroenmols.com/blog/2017/01/17/mockitoandroid/&title=Using Mockito on Android&summary=&source=http://jeroenmols.com'
           ,'popup','width=600,height=600'); return false;" class="linkedin" title="Share on Google Plus" rel="nofollow" target="popup">
           <i class="fa fa-linkedin"></i><span id="social-span"> Linkedin</span></a>
       </a>
@@ -246,14 +248,6 @@
   <ul class="related-posts">
     
       
-        <li>
-          <h3>
-            <a href="/blog/2017/01/17/mockitoandroid/">
-              Using Mockito on Android
-              <small>17 Jan 2017</small>
-            </a>
-          </h3>
-        </li>
       
     
       

@@ -7,7 +7,7 @@
  <link href="http://jeroenmols.com/"/>
  <icon>http://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog of Jeroen Mols focussed on Android development, open source and technology.</subtitle>
- <updated>2017-01-09T04:57:20+01:00</updated>
+ <updated>2017-01-17T22:25:02+01:00</updated>
  <id>http://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,26 @@
  <webfeeds:cover image="http://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>http://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>Using Mockito on Android</title>
+   <link href="http://jeroenmols.com/blog/2017/01/17/mockitoandroid/"/>
+   <updated>2017-01-17T00:00:00+01:00</updated>
+   <id>http://jeroenmols.com/blog/2017/01/17/mockitoandroid</id>
+   <content type="html"><![CDATA[
+     
+        <img src="http://jeroenmols.com/img/blog/mockitoandroid/mockitoandroid.png" alt="Using Mockito on Android">
+     
+     <p>The Mockito team is on fire lately! Not only did they add support to mock final classes and methods, but now they allow running Mockito directly onto an actual Android device.</p>
+
+<p>Time to get convert our Mockito 1.x projects to 2.x!</p>
+
+
+
+
+     <a href="http://jeroenmols.com/blog/2017/01/17/mockitoandroid/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>Year in review 2016</title>
