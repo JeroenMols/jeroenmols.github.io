@@ -7,7 +7,7 @@ img: img/blog/mockitoandroid/mockitoandroid.png
 ---
 The Mockito team is on fire lately! Not only did they add support to mock final classes and methods, but now they allow running Mockito directly onto an actual Android device.
 
-Time to get convert our Mockito 1.x projects to 2.x!
+Time to convert our Mockito 1.x projects to 2.x!
 
 <br>
 

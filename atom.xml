@@ -7,7 +7,7 @@
  <link href="http://jeroenmols.com/"/>
  <icon>http://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog of Jeroen Mols focussed on Android development, open source and technology.</subtitle>
- <updated>2017-01-17T22:45:16+01:00</updated>
+ <updated>2017-01-23T16:09:23+01:00</updated>
  <id>http://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -28,7 +28,7 @@
      
      <p>The Mockito team is on fire lately! Not only did they add support to mock final classes and methods, but now they allow running Mockito directly onto an actual Android device.</p>
 
-<p>Time to get convert our Mockito 1.x projects to 2.x!</p>
+<p>Time to convert our Mockito 1.x projects to 2.x!</p>
 
 
 
