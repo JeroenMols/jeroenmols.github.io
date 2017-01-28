@@ -7,7 +7,7 @@ layout: blog
   <span class="post-date">{{ page.date | date_to_string }}</span>
 
   {% if page.img %}
-   <img src="{{ site.blogbaseurl }}{{ page.img }}" alt="{{ page.title }}">
+   <img src="{{ site.blogbaseurl }}{{ page.img }}" alt="{{ page.title }}" title="{{ page.imgcredit }}">
   {% endif %}
 
   {{ content }}

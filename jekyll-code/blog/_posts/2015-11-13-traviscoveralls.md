@@ -4,6 +4,7 @@ title: Level up GitHub builds with CI and code coverage
 published: true
 comments: true
 img: img/blog/traviscoveralls/traviscoveralls.png
+imgcredit: Travis logo (https://travis-ci.com) and Coveralls mascot from careers page (https://coveralls.io/)
 ---
 
 Wouldn't you love to have your open source projects built automatically by a continuous integration server? And to have a detailed code coverage report for all your unit tests? Even when someone generated a pull request? And how about having cool badges to show off all of this?

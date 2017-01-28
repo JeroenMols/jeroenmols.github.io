@@ -4,6 +4,7 @@ title: The hidden cost of code coverage
 published: true
 comments: true
 img: img/blog/coveragecost/coveragecost.png
+imgcredit: Photo by Steve Buissinne, https://creativecommons.org/publicdomain/zero/1.0/deed.en, cropped
 ---
 Code coverage is an awesome way to motivate you and your team to write more tests. But did you know that simply enabling it slows down your build significantly?
 

@@ -4,6 +4,7 @@ title: Using Mockito 2.x on Android
 published: true
 comments: true
 img: img/blog/mockitoandroid/mockitoandroid.png
+imgcredit: Android logo by Google, https://creativecommons.org/licenses/by/3.0/, cropped. Mockito logo, https://github.com/mockito/mockito, unmodified.
 ---
 The Mockito team is on fire lately! Not only did they add support to mock final classes and methods, but now they allow running Mockito directly onto an actual Android device.
 

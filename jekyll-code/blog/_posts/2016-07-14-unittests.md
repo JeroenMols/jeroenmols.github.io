@@ -49,4 +49,6 @@ This means you'll have to:
 ## Wrap-up
 //TODO
 
+FIND THE IMAGE CREDITS!!!!!!
+
 As always you can reach me [@molsjeroen](https://twitter.com/molsjeroen) on twitter, or leave a comment below!

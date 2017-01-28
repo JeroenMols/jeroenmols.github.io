@@ -4,6 +4,7 @@ title: How I created my blog
 published: true
 comments: true
 img: img/blog/jekyll.png
+imgcredit: Image by Jekyll, https://choosealicense.com/licenses/cc-by-4.0/, cropped
 ---
 For quite some months, I've been planning to create a website and start blogging about the things I'm passionate about. Last week, I finally decided to setup a [portfolio](http://jeroenmols.github.io) and [blog](http://jeroen.mols.github.io/blog) using GitHub pages and Jekyll.
 
