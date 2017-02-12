@@ -5,7 +5,7 @@
     <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Het nieuwsblad</title>
+    <title>BrickEffect</title>
 
     <meta name="twitter:site" content="@molsjeroen">
     <meta property="og:type" content="article">
@@ -21,7 +21,7 @@
 
     <meta name="viewport" content="width=device-width">
     <meta name="description" content="Portfolio of Jeroen Mols, the Android developer you should hire.">
-    <link rel="canonical" href="http://jeroenmols.com/portfolio/2015/07/01/nieuwsblad/">
+    <link rel="canonical" href="http://jeroenmols.com/portfolio/2016/05/18/brickeffect/">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
 
     <!-- Custom CSS & Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
@@ -1689,216 +1689,225 @@ Thanks to the entire Droidcon Berlin team for organizing such a great conference
                             <h2>Efficiently reducing your method count</h2>
                             <hr class="star-primary">
                             <img src="img/portfolio/img/blog/methodcount/methodcount.png" class="img-responsive img-centered" alt="">
-                            <p>As green field projects are a rare breed, chances are that you've inherited a legacy code base. If you're as lucky as me, that code base has over 65k methods causing the build times to be boringly slow.
+                            <p><p>As green field projects are a rare breed, chances are that you&#39;ve inherited a legacy code base. If you&#39;re as lucky as me, that code base has over 65k methods causing the build times to be boringly slow.</p>
 
-Today I would like to show how you can visualize your current method count and understand what libraries are eating up the largest part of that. Next it's time to reduce said method count and remove that nasty multidex solution once and for all.
+<p>Today I would like to show how you can visualize your current method count and understand what libraries are eating up the largest part of that. Next it&#39;s time to reduce said method count and remove that nasty multidex solution once and for all.</p>
 
-<br>
+<p><br></p>
 
-## Visualizing method count
-The easiest and most attractive way (imho) to visualize the method count is by using the [Dexcount Gradle Plugin](https://github.com/KeepSafe/dexcount-gradle-plugin). Applying it to your project is as easy as adding a classpath dependency to your root `build.gradle` and applying the plugin to your App `build.gradle`.
+<h2>Visualizing method count</h2>
 
-```groovy
-// root build.gradle file
-buildscript {
-    repositories {
-        jcenter() // or mavenCentral()
-    }
+<p>The easiest and most attractive way (imho) to visualize the method count is by using the <a href="https://github.com/KeepSafe/dexcount-gradle-plugin">Dexcount Gradle Plugin</a>. Applying it to your project is as easy as adding a classpath dependency to your root <code>build.gradle</code> and applying the plugin to your App <code>build.gradle</code>.</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="c1">// root build.gradle file</span>
+<span class="n">buildscript</span> <span class="o">{</span>
+    <span class="n">repositories</span> <span class="o">{</span>
+        <span class="n">jcenter</span><span class="o">()</span> <span class="c1">// or mavenCentral()</span>
+    <span class="o">}</span>
 
-    dependencies {
-        classpath 'com.getkeepsafe.dexcount:dexcount-gradle-plugin:0.5.0'
-    }
-}
-```
+    <span class="n">dependencies</span> <span class="o">{</span>
+        <span class="n">classpath</span> <span class="s1">&#39;com.getkeepsafe.dexcount:dexcount-gradle-plugin:0.5.0&#39;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="c1">// app build.gradle file (apply AFTER Android plugin)</span>
+<span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">&#39;com.getkeepsafe.dexcount&#39;</span>
+</code></pre></div>
+<p>Running a normal project build <code>./gradlew assembleDebug</code> will now print out the current method count in the console:</p>
 
-```groovy
-// app build.gradle file (apply AFTER Android plugin)
-apply plugin: 'com.getkeepsafe.dexcount'
-```
+<p><center><a href="/img/blog/methodcount/methodcount_output.png"><img src="/img/blog/methodcount/methodcount_output.png" alt="Method count output of template project with full Google Play Services"></a></center></p>
 
-Running a normal project build `./gradlew assembleDebug` will now print out the current method count in the console:
+<p>and generate an interactive graphical report in the outputs folder <code>build/outputs/dexcount/debugChart</code>:</p>
 
-<center><a href="{{ site.blogbaseurl }}img/blog/methodcount/methodcount_output.png"><img src="{{ site.blogbaseurl }}img/blog/methodcount/methodcount_output.png" alt="Method count output of template project with full Google Play Services"></a></center>
+<p><center><a href="/img/blog/methodcount/dexcount-googleplayservices/debugChart/index.html"><img src="/img/blog/methodcount/methodcount_graphic.gif" alt="Method count graphical output of template project with full Google Play Services"></a></center></p>
 
-and generate an interactive graphical report in the outputs folder `build/outputs/dexcount/debugChart`:
+<p>Click the graphic above to interact with it.</p>
 
-<center><a href="{{ site.blogbaseurl }}img/blog/methodcount/dexcount-googleplayservices/debugChart/index.html"><img src="{{ site.blogbaseurl }}img/blog/methodcount/methodcount_graphic.gif" alt="Method count graphical output of template project with full Google Play Services"></a></center>
+<p>Using the graphical representation of the method count for all packages in your app, it becomes really easy to find which libraries are consuming your precious method count. Some of the usual suspects are big monolithic libraries like <a href="https://github.com/google/guava">Guava</a> and the non-split-up <a href="https://developers.google.com/android/guides/overview#the_google_play_services_client_library">Google play services</a>. In the next section will see what we can do about these.</p>
 
-Click the graphic above to interact with it.
+<p><br></p>
 
-Using the graphical representation of the method count for all packages in your app, it becomes really easy to find which libraries are consuming your precious method count. Some of the usual suspects are big monolithic libraries like [Guava](https://github.com/google/guava) and the non-split-up [Google play services](https://developers.google.com/android/guides/overview#the_google_play_services_client_library). In the next section will see what we can do about these.
+<h2>Reducing method count</h2>
 
-<br>
+<h3>Choosing the right libraries</h3>
 
-## Reducing method count
+<p>Normally I recommend never to optimize unless you have a problem. But with method counts, I really advice you to consider the method count before you start using a library for two reasons:</p>
 
-### Choosing the right libraries
-Normally I recommend never to optimize unless you have a problem. But with method counts, I really advice you to consider the method count before you start using a library for two reasons:
+<ol>
+<li>Replacing libraries in existing apps can be very challenging, if not almost impossible.</li>
+<li>Many developers are using huge libraries just to do simple things. (<code>Strings.isNullOrEmpty()</code> anyone?) Note that you don&#39;t need to use a library for everything!</li>
+</ol>
 
-1. Replacing libraries in existing apps can be very challenging, if not almost impossible.
-2. Many developers are using huge libraries just to do simple things. (`Strings.isNullOrEmpty()` anyone?) Note that you don't need to use a library for everything!
+<p>Fortunately there is a great website <a href="http://www.methodscount.com/">methodscount.com</a> that tells you the method count of a library before you start using it. This can really be helpful to avoid using &quot;large libraries&quot; which only add limited benefit to your app.</p>
 
-Fortunately there is a great website [methodscount.com](http://www.methodscount.com/) that tells you the method count of a library before you start using it. This can really be helpful to avoid using "large libraries" which only add limited benefit to your app.
+<h3>Replacing existing libraries</h3>
 
-### Replacing existing libraries
-Often there are multiple libraries accomplishing the same goals. Take for instance image loading:
+<p>Often there are multiple libraries accomplishing the same goals. Take for instance image loading:</p>
 
-| Library | Method count|
-|---------|-------------|
-| Picasso 2.5.2| 849 |
-| Universal Image Loader 1.9.5| 1206 |
-| Glide 3.7.0| 2879 |
-| Fresco 0.9.0| 12984 |
+<table><thead>
+<tr>
+<th>Library</th>
+<th>Method count</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Picasso 2.5.2</td>
+<td>849</td>
+</tr>
+<tr>
+<td>Universal Image Loader 1.9.5</td>
+<td>1206</td>
+</tr>
+<tr>
+<td>Glide 3.7.0</td>
+<td>2879</td>
+</tr>
+<tr>
+<td>Fresco 0.9.0</td>
+<td>12984</td>
+</tr>
+</tbody></table>
 
-Each of these libraries have their own benefits and features, so choose wisely and balance the features you are going to use versus the method count impact it will have.
+<p>Each of these libraries have their own benefits and features, so choose wisely and balance the features you are going to use versus the method count impact it will have.</p>
 
-That being said, replacing libraries in existing projects can be incredibly hard and may not even be feasible on the short term. Later I'll suggest an alternative solution to reduce method count in existing libraries.
+<p>That being said, replacing libraries in existing projects can be incredibly hard and may not even be feasible on the short term. Later I&#39;ll suggest an alternative solution to reduce method count in existing libraries.</p>
 
-### Running Proguard
-Proguard is a great tool to strip out unused code from your app, but you typically only run it for release builds to save precious build time. If that's not really an issue for you, by all means you can also enable Proguard for debug builds:
+<h3>Running Proguard</h3>
 
-```groovy
-buildTypes {
-    debug {
-        minifyEnabled true
-        proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-    }
-}
-```
+<p>Proguard is a great tool to strip out unused code from your app, but you typically only run it for release builds to save precious build time. If that&#39;s not really an issue for you, by all means you can also enable Proguard for debug builds:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">buildTypes</span> <span class="o">{</span>
+    <span class="n">debug</span> <span class="o">{</span>
+        <span class="n">minifyEnabled</span> <span class="kc">true</span>
+        <span class="n">proguardFiles</span> <span class="nf">getDefaultProguardFile</span><span class="o">(</span><span class="s1">&#39;proguard-android.txt&#39;</span><span class="o">),</span> <span class="s1">&#39;proguard-rules.pro&#39;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+<h3>Reducing library size</h3>
 
-### Reducing library size
-If it's not feasible to replace an existing library or to run Proguard all the time, then it becomes really interesting. Because if Proguard can strip out code during a release build, why not use it ahead of time to create a modified version of a library with fewer methods?
+<p>If it&#39;s not feasible to replace an existing library or to run Proguard all the time, then it becomes really interesting. Because if Proguard can strip out code during a release build, why not use it ahead of time to create a modified version of a library with fewer methods?</p>
 
-Well this is possible, but you'll have to manually specify which parts of the library you are going to use! This is because Proguard doesn't have a context during library stripping of what methods your application will be needing and what not.
+<p>Well this is possible, but you&#39;ll have to manually specify which parts of the library you are going to use! This is because Proguard doesn&#39;t have a context during library stripping of what methods your application will be needing and what not.</p>
 
-Let's reproduce one of the projects I recently started working on as an example. Guava was used throughout the app extensively, making it very hard/risky to remove. But because of the huge method count we were constantly flirting with the 65k method limit and had to enable multidex.
+<p>Let&#39;s reproduce one of the projects I recently started working on as an example. Guava was used throughout the app extensively, making it very hard/risky to remove. But because of the huge method count we were constantly flirting with the 65k method limit and had to enable multidex.</p>
 
-<center><a href="{{ site.blogbaseurl }}img/blog/methodcount/dexcount-guava/debugChart/index.html"><img src="{{ site.blogbaseurl }}img/blog/methodcount/methodcount_graphic_guava.gif" alt="Method count graphical output of sample project with Guava"></a></center>
+<p><center><a href="/img/blog/methodcount/dexcount-guava/debugChart/index.html"><img src="/img/blog/methodcount/methodcount_graphic_guava.gif" alt="Method count graphical output of sample project with Guava"></a></center></p>
 
-First of all you need to know what parts of the library the app was actually using. This can easily be done by running the following command in your `src` folder.
+<p>First of all you need to know what parts of the library the app was actually using. This can easily be done by running the following command in your <code>src</code> folder.</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">grep -roh . -e <span class="s1">&#39;com.google.common.*&#39;</span> <span class="p">|</span> sort <span class="p">|</span> uniq
+</code></pre></div>
+<p>This simply looks for all import statements starting with the library prefix (for Guava that is <code>com.google.common</code>), removes all clutter from the grep output, sorts it and takes all unique references.</p>
 
-```bash
-grep -roh . -e 'com.google.common.*' | sort | uniq
-```
+<p><center><a href="/img/blog/methodcount/grep_output.png"><img src="/img/blog/methodcount/grep_output.png" alt="Grep output for references to Guava in an existing project"></a></center></p>
 
-This simply looks for all import statements starting with the library prefix (for Guava that is `com.google.common`), removes all clutter from the grep output, sorts it and takes all unique references.
+<p>Next we&#39;ll create a simple Proguard configuration that keeps all top level packages, without any obfuscation or optimizations.</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="o">-</span><span class="n">dontoptimize</span>
+<span class="o">-</span><span class="n">dontobfuscate</span>
 
-<center><a href="{{ site.blogbaseurl }}img/blog/methodcount/grep_output.png"><img src="{{ site.blogbaseurl }}img/blog/methodcount/grep_output.png" alt="Grep output for references to Guava in an existing project"></a></center>
+<span class="o">-</span><span class="n">keep</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">base</span><span class="o">.**</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="o">*;</span>
+<span class="o">}</span>
 
-Next we'll create a simple Proguard configuration that keeps all top level packages, without any obfuscation or optimizations.
+<span class="o">-</span><span class="n">keep</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">collect</span><span class="o">.**</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="o">*;</span>
+<span class="o">}</span>
 
-```java
--dontoptimize
--dontobfuscate
+<span class="o">-</span><span class="n">keep</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">primitives</span><span class="o">.**</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="o">*;</span>
+<span class="o">}</span>
 
--keep public class com.google.common.base.** {
-    public *;
-}
+<span class="o">-</span><span class="n">keep</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">util</span><span class="o">.**</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="o">*;</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>Now we&#39;ll use a little Gradle script that takes a library as an input, runs Proguard on it an creates a new library as an output. If you&#39;re interested I advice you look at the <a href="https://github.com/JeroenMols/MethodCountExample/blob/master/shrink_lib/build.gradle">source code</a>, which is based on a script by <a href="https://github.com/ligi/shrinkGuava">@mr_ligi</a>. This Gradle script outputs a shrinked library version, which can be copied to the libs folder of your project.</p>
 
--keep public class com.google.common.collect.** {
-    public *;
-}
+<p>Looking at our example, this simple process saved us 4000 methods and we are only just above the dex method limit.</p>
 
--keep public class com.google.common.primitives.** {
-    public *;
-}
+<p><center><a href="/img/blog/methodcount/dexcount-packageshrink/debugChart/index.html"><img src="/img/blog/methodcount/methodcount_graphic_packageshrink.gif" alt="Method count graphical output of sample project with stripped out Guava"></a></center></p>
 
--keep public class com.google.common.util.** {
-    public *;
-}
-```
+<p>Back to the drawing board, because this isn&#39;t nearly enough! Turns out the <code>collect</code> package by itself has over 8000 methods, so I decided to just keep certain classes instead of the entire package.</p>
 
-Now we'll use a little Gradle script that takes a library as an input, runs Proguard on it an creates a new library as an output. If you're interested I advice you look at the [source code](https://github.com/JeroenMols/MethodCountExample/blob/master/shrink_lib/build.gradle), which is based on a script by [@mr_ligi](https://github.com/ligi/shrinkGuava). This Gradle script outputs a shrinked library version, which can be copied to the libs folder of your project.
+<p>This more aggressive approach will most likely cause some compile errors when you try to use the library in your app, so I had to iterate and add some extra classes until all of those were solved. The resulting Proguard configuration looks like this:</p>
+<div class="highlight"><pre><code class="language-Java" data-lang="Java"><span class="o">-</span><span class="n">dontoptimize</span>
+<span class="o">-</span><span class="n">dontobfuscate</span>
 
-Looking at our example, this simple process saved us 4000 methods and we are only just above the dex method limit.
+<span class="o">-</span><span class="n">keep</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">base</span><span class="o">.**</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="o">*;</span>
+<span class="o">}</span>
 
-<center><a href="{{ site.blogbaseurl }}img/blog/methodcount/dexcount-packageshrink/debugChart/index.html"><img src="{{ site.blogbaseurl }}img/blog/methodcount/methodcount_graphic_packageshrink.gif" alt="Method count graphical output of sample project with stripped out Guava"></a></center>
+<span class="o">-</span><span class="n">keep</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">collect</span><span class="o">.</span><span class="na">Sets</span>
+<span class="o">-</span><span class="n">keepclassmembers</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">collect</span><span class="o">.</span><span class="na">Sets</span><span class="o">**</span> <span class="o">{</span>
+ <span class="o">*;</span>
+ <span class="o">}</span>
 
-Back to the drawing board, because this isn't nearly enough! Turns out the `collect` package by itself has over 8000 methods, so I decided to just keep certain classes instead of the entire package.
+ <span class="o">-</span><span class="n">keep</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">collect</span><span class="o">.</span><span class="na">Collections2</span>
+ <span class="o">-</span><span class="n">keepclassmembers</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">collect</span><span class="o">.</span><span class="na">Collections2</span><span class="o">**</span> <span class="o">{</span>
+  <span class="o">*;</span>
+  <span class="o">}</span>
 
-This more aggressive approach will most likely cause some compile errors when you try to use the library in your app, so I had to iterate and add some extra classes until all of those were solved. The resulting Proguard configuration looks like this:
+<span class="o">-</span><span class="n">keep</span> <span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">collect</span><span class="o">.</span><span class="na">Lists</span>
+<span class="o">-</span><span class="n">keepclassmembers</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">collect</span><span class="o">.</span><span class="na">Lists</span><span class="o">**</span> <span class="o">{</span>
+ <span class="o">*;</span>
+ <span class="o">}</span>
 
-```Java
--dontoptimize
--dontobfuscate
+<span class="o">-</span><span class="n">keep</span> <span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">collect</span><span class="o">.</span><span class="na">Iterables</span>
+<span class="o">-</span><span class="n">keepclassmembers</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">collect</span><span class="o">.</span><span class="na">Iterables</span><span class="o">**</span> <span class="o">{</span>
+ <span class="o">*;</span>
+ <span class="o">}</span>
 
--keep public class com.google.common.base.** {
-    public *;
-}
+<span class="o">-</span><span class="n">keep</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">collect</span><span class="o">.</span><span class="na">ImmutableList</span><span class="o">.**</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="o">*;</span>
+<span class="o">}</span>
 
--keep public class com.google.common.collect.Sets
--keepclassmembers class com.google.common.collect.Sets** {
- *;
- }
+<span class="o">-</span><span class="n">keep</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">io</span><span class="o">.</span><span class="na">CharStreams</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="o">*;</span>
+<span class="o">}</span>
 
- -keep public class com.google.common.collect.Collections2
- -keepclassmembers class com.google.common.collect.Collections2** {
-  *;
-  }
+<span class="o">-</span><span class="n">keep</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">collect</span><span class="o">.</span><span class="na">HashMultiset</span>
+<span class="o">-</span><span class="n">keepclassmembers</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">collect</span><span class="o">.</span><span class="na">HashMultiset</span><span class="o">**</span> <span class="o">{</span>
+ <span class="o">*;</span>
+ <span class="o">}</span>
 
--keep public final class com.google.common.collect.Lists
--keepclassmembers class com.google.common.collect.Lists** {
- *;
- }
+<span class="o">-</span><span class="n">keep</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">collect</span><span class="o">.</span><span class="na">HashBiMap</span>
+<span class="o">-</span><span class="n">keepclassmembers</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">collect</span><span class="o">.</span><span class="na">HashBiMap</span><span class="o">**</span> <span class="o">{</span>
+ <span class="o">*;</span>
+ <span class="o">}</span>
 
--keep public final class com.google.common.collect.Iterables
--keepclassmembers class com.google.common.collect.Iterables** {
- *;
- }
+<span class="o">-</span><span class="n">keep</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">javax</span><span class="o">.</span><span class="na">annotation</span><span class="o">.</span><span class="na">Nullable</span><span class="o">.**</span> <span class="o">{</span>
+     <span class="kd">public</span> <span class="o">*;</span>
+ <span class="o">}</span>
 
--keep public class com.google.common.collect.ImmutableList.** {
-    public *;
-}
+<span class="o">-</span><span class="n">keep</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">util</span><span class="o">.**</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="o">*;</span>
+<span class="o">}</span>
 
--keep public class com.google.common.io.CharStreams {
-    public *;
-}
+<span class="o">-</span><span class="n">keep</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">primitives</span><span class="o">.**</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="o">*;</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>Resulting in an extra decrease of almost 4500 methods, which brings the total removed methods to 8500!</p>
 
--keep public class com.google.common.collect.HashMultiset
--keepclassmembers class com.google.common.collect.HashMultiset** {
- *;
- }
+<p><center><a href="/img/blog/methodcount/dexcount-agressiveshrink/debugChart/index.html"><img src="/img/blog/methodcount/methodcount_graphic_agressiveshrink.gif" alt="Method count graphical output of sample project with aggressively stripped out Guava"></a></center></p>
 
--keep public class com.google.common.collect.HashBiMap
--keepclassmembers class com.google.common.collect.HashBiMap** {
- *;
- }
+<p>Further our build times have not only improved because we no longer need multidexing, but also because the compiler now has less code to process.</p>
 
--keep public class javax.annotation.Nullable.** {
-     public *;
- }
+<p>Obviously your mileage will vary depending on what library you choose. For low coupled, highly cohesive libraries (like Guava), this technique works really well, but for other libraries it might not.</p>
 
--keep public class com.google.common.util.** {
-    public *;
-}
+<blockquote>
+<p><strong>Disclaimer</strong></p>
 
--keep public class com.google.common.primitives.** {
-    public *;
-}
-```
+<p>The technique presented above should be used with caution! Because instead of relying on Proguard to strip out what&#39;s not needed, we&#39;re now doing that manually, which is more error prone.</p>
+</blockquote>
 
-Resulting in an extra decrease of almost 4500 methods, which brings the total removed methods to 8500!
+<p><br></p>
 
-<center><a href="{{ site.blogbaseurl }}img/blog/methodcount/dexcount-agressiveshrink/debugChart/index.html"><img src="{{ site.blogbaseurl }}img/blog/methodcount/methodcount_graphic_agressiveshrink.gif" alt="Method count graphical output of sample project with aggressively stripped out Guava"></a></center>
+<h2>Wrap-up</h2>
 
-Further our build times have not only improved because we no longer need multidexing, but also because the compiler now has less code to process.
+<p>Hitting the 65k method limit is a real pain, but choosing wisely what libraries you use can already bring you a long way. Fortunately there are great tools like the <a href="https://github.com/KeepSafe/dexcount-gradle-plugin">Dexcount Gradle Plugin</a> and <a href="http://www.methodscount.com/">methodscount.com</a> to help with these decisions.</p>
 
-Obviously your mileage will vary depending on what library you choose. For low coupled, highly cohesive libraries (like Guava), this technique works really well, but for other libraries it might not.
+<p>For existing projects, always try to replace existing large method libraries with alternatives. If this is not feasible and you feel comfortably using Proguard, you can use the latter to preprocess and shrink existing libraries.</p>
 
-> **Disclaimer**
+<p>A basic example project with everything in this blogpost integrated is available on <a href="https://github.com/JeroenMols/MethodCountExample">GitHub</a>.</p>
 
-> The technique presented above should be used with caution! Because instead of relying on Proguard to strip out what's not needed, we're now doing that manually, which is more error prone.
-
-<br>
-
-## Wrap-up
-Hitting the 65k method limit is a real pain, but choosing wisely what libraries you use can already bring you a long way. Fortunately there are great tools like the [Dexcount Gradle Plugin](https://github.com/KeepSafe/dexcount-gradle-plugin) and [methodscount.com](http://www.methodscount.com/) to help with these decisions.
-
-For existing projects, always try to replace existing large method libraries with alternatives. If this is not feasible and you feel comfortably using Proguard, you can use the latter to preprocess and shrink existing libraries.
-
-A basic example project with everything in this blogpost integrated is available on [GitHub](https://github.com/JeroenMols/MethodCountExample).
-
-As always you can reach me [@molsjeroen](https://twitter.com/molsjeroen) on twitter, or leave a comment below!
+<p>As always you can reach me <a href="https://twitter.com/molsjeroen">@molsjeroen</a> on twitter, or leave a comment below!</p>
 </p>
 
                             <ul class="list-inline item-details">
@@ -1937,112 +1946,127 @@ As always you can reach me [@molsjeroen](https://twitter.com/molsjeroen) on twit
                             <h2>Droidcon Italy recap</h2>
                             <hr class="star-primary">
                             <img src="img/portfolio/img/blog/droidconit16/droidconit.png" class="img-responsive img-centered" alt="">
-                            <p>A conference about our favorite Green little robots? In sunny Italy? With great food and a party? Yeah, I can image how you must feel in case you missed it... I on the other hand was fortunate enough to attend and speak at this awesome conference.
+                            <p><p>A conference about our favorite Green little robots? In sunny Italy? With great food and a party? Yeah, I can image how you must feel in case you missed it... I on the other hand was fortunate enough to attend and speak at this awesome conference.</p>
 
-With over 770 attendees and four different tracks, it was obviously not possible to attend every session. But I did notice some general themes and would like to share my personal highlights with you.
+<p>With over 770 attendees and four different tracks, it was obviously not possible to attend every session. But I did notice some general themes and would like to share my personal highlights with you.</p>
 
-<br>
+<p><br></p>
 
-## We are all UX
-<center><a href="{{ site.blogbaseurl }}img/blog/droidconit16/wereallux.jpg"><img style="width: 50%" src="{{ site.blogbaseurl }}img/blog/droidconit16/wereallux.jpg" alt="We are all UX"></a></center>
+<h2>We are all UX</h2>
 
-The holy grail in app development is to have an amazing user experience. While app performance and feature set are obviously important, you must also understand your users, simplify main use cases and have a delightful design.
+<p><center><a href="/img/blog/droidconit16/wereallux.jpg"><img style="width: 50%" src="/img/blog/droidconit16/wereallux.jpg" alt="We are all UX"></a></center></p>
 
-Do you really think a developer or designer alone can create such a great UX? NO, off course not! They'll both have to work together and synergize to really blow the users of their feet. We need more pairing between developers and designers folks!
+<p>The holy grail in app development is to have an amazing user experience. While app performance and feature set are obviously important, you must also understand your users, simplify main use cases and have a delightful design.</p>
 
-The best advice I got was:
+<p>Do you really think a developer or designer alone can create such a great UX? NO, off course not! They&#39;ll both have to work together and synergize to really blow the users of their feet. We need more pairing between developers and designers folks!</p>
 
-- A prototype is worth a thousand meetings.
-- Five people to test your prototype with is the sweet spot. It's enough to notice patterns, yet not too much to be a burden.
-- Developers and designers should be transparent and open to learn from each other
-- "How might we..." is a great way to phrase problems as opportunities
+<p>The best advice I got was:</p>
 
-<br>
+<ul>
+<li>A prototype is worth a thousand meetings.</li>
+<li>Five people to test your prototype with is the sweet spot. It&#39;s enough to notice patterns, yet not too much to be a burden.</li>
+<li>Developers and designers should be transparent and open to learn from each other</li>
+<li>&quot;How might we...&quot; is a great way to phrase problems as opportunities</li>
+</ul>
 
-## Optimizing layouts
-<center><a href="{{ site.blogbaseurl }}img/blog/droidconit16/leanlayouts.jpg"><img src="{{ site.blogbaseurl }}img/blog/droidconit16/leanlayouts.jpg" alt="Loving lean layouts"></a></center>
+<p><br></p>
 
-Screens containing a lot of views can sometimes render slowly. Mostly caused by deeply nested view hierarchies and/or using RelativeLayouts as a root element. Using "heavy" layouts in lists or increased nesting makes these problems multiplicative instead of simply additive.
+<h2>Optimizing layouts</h2>
 
-When running into issues, first resolve to Lint and investigate all warnings. If the problem persist, Hierarchy viewer will help you understanding what's going on. Always prefer simple solutions over complex ones and if you really really have to you can go - Facebook Style - replacing views with drawables.
+<p><center><a href="/img/blog/droidconit16/leanlayouts.jpg"><img src="/img/blog/droidconit16/leanlayouts.jpg" alt="Loving lean layouts"></a></center></p>
 
-The best advice in this track was:
+<p>Screens containing a lot of views can sometimes render slowly. Mostly caused by deeply nested view hierarchies and/or using RelativeLayouts as a root element. Using &quot;heavy&quot; layouts in lists or increased nesting makes these problems multiplicative instead of simply additive.</p>
 
-- Rendering times in Hierarchy Viewer are not reliable
-- Optimize responsibly
+<p>When running into issues, first resolve to Lint and investigate all warnings. If the problem persist, Hierarchy viewer will help you understanding what&#39;s going on. Always prefer simple solutions over complex ones and if you really really have to you can go - Facebook Style - replacing views with drawables.</p>
 
-<br>
+<p>The best advice in this track was:</p>
 
-## DEX diet
-<center><a href="{{ site.blogbaseurl }}img/blog/droidconit16/classyshark.png"><img src="{{ site.blogbaseurl }}img/blog/droidconit16/classyshark.png" alt="ClassyShark"></a></center>
+<ul>
+<li>Rendering times in Hierarchy Viewer are not reliable</li>
+<li>Optimize responsibly</li>
+</ul>
 
-Hitting the DEX method limit or trying to improve your app security? As a real Proguard expert you created an amazing configuration and now all those problems are gone. Or are they?
+<p><br></p>
 
-Analyzing your own APK file is a must to verify what methods are actually stripped and what code is obfuscated. Who knows you might even find some duplicate dependencies (GSON anyone?), causing a further method count reduction. Thanksfully all of this has become a breeze thanks to tools like [ClassyShark](http://www.classyshark.com/).
+<h2>DEX diet</h2>
 
-The best advice here was:
+<p><center><a href="/img/blog/droidconit16/classyshark.png"><img src="/img/blog/droidconit16/classyshark.png" alt="ClassyShark"></a></center></p>
 
-- Be restrictive using Proguard iso keeping entire packages
-- IDE method count != dex method count
-- Use [methodscount.com](http://www.methodscount.com/) to see how large a lib is before using it
+<p>Hitting the DEX method limit or trying to improve your app security? As a real Proguard expert you created an amazing configuration and now all those problems are gone. Or are they?</p>
 
-<br>
+<p>Analyzing your own APK file is a must to verify what methods are actually stripped and what code is obfuscated. Who knows you might even find some duplicate dependencies (GSON anyone?), causing a further method count reduction. Thanksfully all of this has become a breeze thanks to tools like <a href="http://www.classyshark.com/">ClassyShark</a>.</p>
 
-## Other hot topics
-<center><a href="{{ site.blogbaseurl }}img/blog/droidconit16/android_cookie.jpg"><img style="width: 50%" src="{{ site.blogbaseurl }}img/blog/droidconit16/android_cookie.jpg" alt="Android cookies"></a></center>
+<p>The best advice here was:</p>
 
-Besides the three main themes, other topics varied from Kotlin, over library distribution to (MVP) architecture and app store optimizations. Awesome sources of inspiration, brought by even more awesome speakers.
+<ul>
+<li>Be restrictive using Proguard iso keeping entire packages</li>
+<li>IDE method count != dex method count</li>
+<li>Use <a href="http://www.methodscount.com/">methodscount.com</a> to see how large a lib is before using it</li>
+</ul>
 
-My key takeaways:
+<p><br></p>
 
-- Use App invites to grow your user base
-- If you don't like testing your code, most likely customers won't like testing your app either
-- Italian food is awesome
+<h2>Other hot topics</h2>
 
-<br>
+<p><center><a href="/img/blog/droidconit16/android_cookie.jpg"><img style="width: 50%" src="/img/blog/droidconit16/android_cookie.jpg" alt="Android cookies"></a></center></p>
 
-## Conference slides
+<p>Besides the three main themes, other topics varied from Kotlin, over library distribution to (MVP) architecture and app store optimizations. Awesome sources of inspiration, brought by even more awesome speakers.</p>
 
-- [Distribute your libraries via Maven, even privately](https://speakerdeck.com/jeroenmols/distribute-your-libraries-via-maven-even-privately) by Jeroen Mols
-- [Think like a designer](https://photos.google.com/share/AF1QipMB_VOceGeOuQZ0UhBf0dKrGhgu92k8-qpXu0X5WtWUvoSqFJKRsoPzESyuhNEDRw?key=VVctWHBsVG4zZVlsRlBjVGRBWkIzT295Vk9qcWlB) by Nick Butcher
-- [Let it flow](https://speakerdeck.com/dorvaryn/let-it-flow) by Benjamin Augustin
-- [#Perfmatters for Android](https://speakerdeck.com/alosdev/perfmatters-for-android-droidcon-turin-2016) by Hasan Hosgel
-- [Android Library A-Z](https://docs.google.com/presentation/d/1f05lCKSnCuzn9nJUMHN0nZ_buIVtsVnB_lrT4FR3wXo/edit#slide=id.p) by Martin Liersch
-- [The bytecode mumbo-jumbo](http://blog.rafols.org/wp-content/uploads/2016_04_droidcon_it.pdf) by Raimon Ràfols
-- [To ∞ (~65K) and beyond!](https://speakerdeck.com/dextor/to-65k-and-beyond) by Sebastiano Gottardo
-- [Android data binding in action using MVVM pattern](http://www.slideshare.net/fabio_collini/data-binding-in-action-using-mvvm-pattern) by Fabio Collini
-- [From Clockwork to smartwatch](https://speakerdeck.com/danybony/from-clockwork-to-smartwatch) by Daniele Bonaldo
-- [Android internal library management](http://www.slideshare.net/KellyShuster/internal-android-library-management-droidcon-sf-2016) by Kelly Shuster
-- [Reverse engineering is not just for hackers](https://speakerdeck.com/jonreeve/reverse-engineering-is-not-just-for-hackers) by Jon Reeve
-- [How to talk to your users](https://speakerdeck.com/anothem/how-to-talk-to-your-users) by Alex Florescu
-- [Crafting Great Hypotheses](http://www.slideshare.net/Aetheros/crafting-great-hypotheses-droidcon-2016) by Hoang Huynh
-- [Building maintainable app with MVP and Dagger2](http://www.slideshare.net/KristijanJurkovi/building-maintainable-app) by Kristijan Jurković
-- [Build An Efficient REST Client On Android](http://www.slideshare.net/duckma/build-an-efficient-rest-client-on-android-droidcon-it-2016-matteo-gazzurelli?ref=http://blog.duckma.com/2016/04/build-efficient-rest-client-on-android.html) by Matteo Gazzurelli
-- [Chronicles of TDD](https://docs.google.com/presentation/d/1DK_kOp--XXdV_BYOYWw-wWPvJ1B_i4NIclDqWQqBSw8/edit#slide=id.p) by Luca Falsina
-- [Backend 4 Android developers](https://backend4android.github.io/#/) by
-Antonio Mallia & Nicola Corti
-- [A realtime infrastructure for Android apps: Firebase may be what you need..and even more!](http://www.slideshare.net/AlessandroMartellucc/a-realtime-infrastructure-for-android-apps-firebase-may-be-what-you-needand-even-more) by
-Alessandro Martellucci
-- [Evolving the Android core with Aspects](http://www.slideshare.net/CarloPescio/evolving-the-android-core-with-aspects) by Carlo Pescio
-- [Android: It's time to go to work!](https://speakerdeck.com/nibble/android-its-time-to-go-to-work) by Pietro Maggi
-- [Drive together not the same](https://speakerdeck.com/joaobiriba/drive-together-not-the-same) by Giovanni Laquidara
-- [A friend in need - A JS indeed](http://www.slideshare.net/yoni1984/a-friend-in-need-a-js-indeed) by Yonatan Levin
-- [Application Architecture for Scaled Agile](https://speakerdeck.com/sangsoonam/application-architecture-for-scaled-agile-droidconit-2016) by Sangsoo Nam
-- [FLUX based clean architecure](https://speakerdeck.com/unsign3d/flux-based-clean-architecure) by Luca Bruzzone
-- [Engage and retain users in android world](http://www.slideshare.net/MatteoBonifazi/engage-and-retain-users-in-the-android-world-droidcon-italy-2016?from_m_app=android) by Matteo Bonifazi
-- [Bonjour Android, it's Zeroconf](https://speakerdeck.com/tiwiz/bonjour-android-its-zeroconf) by Roberto Orgiu
-- [We're all UX!](https://speakerdeck.com/lyslydia/were-all-ux) by Lydia Selimalhigazi and Caroline Smith
-- [Mastering the NDK](http://www.slideshare.net/ph0b/mastering-the-ndk-with-android-studio-and-the-gradleexperimental-plugin) by Xavier Hallade
-- [BLE beacons, Eddystone and Physical Web](https://www.blueupbeacons.com/docs/WorkshopBeacons.pdf) by Alessio Cucini and Samuele Forconi
-- [World-Class Testing Development Pipeline for Android](http://www.slideshare.net/PedroVicenteGmezSnch/worldclass-testing-development-pipeline-for-android) by Pedro Vicente Gómez Sánchez]
-- [ClassShark - Android and Java executables browser](http://www.slideshare.net/seamaster29/classshark-android-and-java-executables-browser) by Boris Farber
+<p>My key takeaways:</p>
 
-<br>
+<ul>
+<li>Use App invites to grow your user base</li>
+<li>If you don&#39;t like testing your code, most likely customers won&#39;t like testing your app either</li>
+<li>Italian food is awesome</li>
+</ul>
 
-## Credits
-Thanks to the entire Droidcon Italy team for organizing such a great conference and to all sponsers for their support.
+<p><br></p>
 
-<center><a href="{{ site.blogbaseurl }}img/blog/droidconit16/droidconit_team.jpg"><img src="{{ site.blogbaseurl }}img/blog/droidconit16/droidconit_team.jpg" alt="Droidcon Italy team"></a></center>
+<h2>Conference slides</h2>
+
+<ul>
+<li><a href="https://speakerdeck.com/jeroenmols/distribute-your-libraries-via-maven-even-privately">Distribute your libraries via Maven, even privately</a> by Jeroen Mols</li>
+<li><a href="https://photos.google.com/share/AF1QipMB_VOceGeOuQZ0UhBf0dKrGhgu92k8-qpXu0X5WtWUvoSqFJKRsoPzESyuhNEDRw?key=VVctWHBsVG4zZVlsRlBjVGRBWkIzT295Vk9qcWlB">Think like a designer</a> by Nick Butcher</li>
+<li><a href="https://speakerdeck.com/dorvaryn/let-it-flow">Let it flow</a> by Benjamin Augustin</li>
+<li><a href="https://speakerdeck.com/alosdev/perfmatters-for-android-droidcon-turin-2016">#Perfmatters for Android</a> by Hasan Hosgel</li>
+<li><a href="https://docs.google.com/presentation/d/1f05lCKSnCuzn9nJUMHN0nZ_buIVtsVnB_lrT4FR3wXo/edit#slide=id.p">Android Library A-Z</a> by Martin Liersch</li>
+<li><a href="http://blog.rafols.org/wp-content/uploads/2016_04_droidcon_it.pdf">The bytecode mumbo-jumbo</a> by Raimon Ràfols</li>
+<li><a href="https://speakerdeck.com/dextor/to-65k-and-beyond">To ∞ (~65K) and beyond!</a> by Sebastiano Gottardo</li>
+<li><a href="http://www.slideshare.net/fabio_collini/data-binding-in-action-using-mvvm-pattern">Android data binding in action using MVVM pattern</a> by Fabio Collini</li>
+<li><a href="https://speakerdeck.com/danybony/from-clockwork-to-smartwatch">From Clockwork to smartwatch</a> by Daniele Bonaldo</li>
+<li><a href="http://www.slideshare.net/KellyShuster/internal-android-library-management-droidcon-sf-2016">Android internal library management</a> by Kelly Shuster</li>
+<li><a href="https://speakerdeck.com/jonreeve/reverse-engineering-is-not-just-for-hackers">Reverse engineering is not just for hackers</a> by Jon Reeve</li>
+<li><a href="https://speakerdeck.com/anothem/how-to-talk-to-your-users">How to talk to your users</a> by Alex Florescu</li>
+<li><a href="http://www.slideshare.net/Aetheros/crafting-great-hypotheses-droidcon-2016">Crafting Great Hypotheses</a> by Hoang Huynh</li>
+<li><a href="http://www.slideshare.net/KristijanJurkovi/building-maintainable-app">Building maintainable app with MVP and Dagger2</a> by Kristijan Jurković</li>
+<li><a href="http://www.slideshare.net/duckma/build-an-efficient-rest-client-on-android-droidcon-it-2016-matteo-gazzurelli?ref=http://blog.duckma.com/2016/04/build-efficient-rest-client-on-android.html">Build An Efficient REST Client On Android</a> by Matteo Gazzurelli</li>
+<li><a href="https://docs.google.com/presentation/d/1DK_kOp--XXdV_BYOYWw-wWPvJ1B_i4NIclDqWQqBSw8/edit#slide=id.p">Chronicles of TDD</a> by Luca Falsina</li>
+<li><a href="https://backend4android.github.io/#/">Backend 4 Android developers</a> by
+Antonio Mallia &amp; Nicola Corti</li>
+<li><a href="http://www.slideshare.net/AlessandroMartellucc/a-realtime-infrastructure-for-android-apps-firebase-may-be-what-you-needand-even-more">A realtime infrastructure for Android apps: Firebase may be what you need..and even more!</a> by
+Alessandro Martellucci</li>
+<li><a href="http://www.slideshare.net/CarloPescio/evolving-the-android-core-with-aspects">Evolving the Android core with Aspects</a> by Carlo Pescio</li>
+<li><a href="https://speakerdeck.com/nibble/android-its-time-to-go-to-work">Android: It&#39;s time to go to work!</a> by Pietro Maggi</li>
+<li><a href="https://speakerdeck.com/joaobiriba/drive-together-not-the-same">Drive together not the same</a> by Giovanni Laquidara</li>
+<li><a href="http://www.slideshare.net/yoni1984/a-friend-in-need-a-js-indeed">A friend in need - A JS indeed</a> by Yonatan Levin</li>
+<li><a href="https://speakerdeck.com/sangsoonam/application-architecture-for-scaled-agile-droidconit-2016">Application Architecture for Scaled Agile</a> by Sangsoo Nam</li>
+<li><a href="https://speakerdeck.com/unsign3d/flux-based-clean-architecure">FLUX based clean architecure</a> by Luca Bruzzone</li>
+<li><a href="http://www.slideshare.net/MatteoBonifazi/engage-and-retain-users-in-the-android-world-droidcon-italy-2016?from_m_app=android">Engage and retain users in android world</a> by Matteo Bonifazi</li>
+<li><a href="https://speakerdeck.com/tiwiz/bonjour-android-its-zeroconf">Bonjour Android, it&#39;s Zeroconf</a> by Roberto Orgiu</li>
+<li><a href="https://speakerdeck.com/lyslydia/were-all-ux">We&#39;re all UX!</a> by Lydia Selimalhigazi and Caroline Smith</li>
+<li><a href="http://www.slideshare.net/ph0b/mastering-the-ndk-with-android-studio-and-the-gradleexperimental-plugin">Mastering the NDK</a> by Xavier Hallade</li>
+<li><a href="https://www.blueupbeacons.com/docs/WorkshopBeacons.pdf">BLE beacons, Eddystone and Physical Web</a> by Alessio Cucini and Samuele Forconi</li>
+<li><a href="http://www.slideshare.net/PedroVicenteGmezSnch/worldclass-testing-development-pipeline-for-android">World-Class Testing Development Pipeline for Android</a> by Pedro Vicente Gómez Sánchez]</li>
+<li><a href="http://www.slideshare.net/seamaster29/classshark-android-and-java-executables-browser">ClassShark - Android and Java executables browser</a> by Boris Farber</li>
+</ul>
+
+<p><br></p>
+
+<h2>Credits</h2>
+
+<p>Thanks to the entire Droidcon Italy team for organizing such a great conference and to all sponsers for their support.</p>
+
+<p><center><a href="/img/blog/droidconit16/droidconit_team.jpg"><img src="/img/blog/droidconit16/droidconit_team.jpg" alt="Droidcon Italy team"></a></center></p>
 </p>
 
                             <ul class="list-inline item-details">
@@ -2081,200 +2105,275 @@ Thanks to the entire Droidcon Italy team for organizing such a great conference 
                             <h2>A successful XML naming convention</h2>
                             <hr class="star-primary">
                             <img src="img/portfolio/img/blog/resourcenaming/resourcenaming.png" class="img-responsive img-centered" alt="">
-                            <p>Do you remember the last time you had to dig into `strings.xml` to find the right String to use? Or that you manually had to go over all drawables to find the one you needed?
+                            <p><p>Do you remember the last time you had to dig into <code>strings.xml</code> to find the right String to use? Or that you manually had to go over all drawables to find the one you needed?</p>
 
-Whenever we start a new project, we take a lot of care in setting up our architecture, CI, build flavors,... But do you also have a strategy to name your resources?
+<p>Whenever we start a new project, we take a lot of care in setting up our architecture, CI, build flavors,... But do you also have a strategy to name your resources?</p>
 
-You should! Because the lack of XML namespaces, makes managing Android resources tedious. And causes things to grow out of control easily, especially in large projects.
+<p>You should! Because the lack of XML namespaces, makes managing Android resources tedious. And causes things to grow out of control easily, especially in large projects.</p>
 
-So let's introduce a simple scheme that will solve your pains.
+<p>So let&#39;s introduce a simple scheme that will solve your pains.</p>
 
-- easy lookup of any resource (autocomplete)
-- logical, predictable names
-- clean ordering of resources
-- strongly typed resources
+<ul>
+<li>easy lookup of any resource (autocomplete)</li>
+<li>logical, predictable names</li>
+<li>clean ordering of resources</li>
+<li>strongly typed resources</li>
+</ul>
 
-This blogpost will explain the mechanism, its advantages, limitations and provide an easy to use cheat sheet.
+<p>This blogpost will explain the mechanism, its advantages, limitations and provide an easy to use cheat sheet.</p>
 
-<br>
+<p><br></p>
 
-## Basic principle
-All resource names follow a simple convention.
+<h2>Basic principle</h2>
 
-<img src="{{ site.blogbaseurl }}img/blog/resourcenaming/whatwheredescriptionsize.jpg" alt="what_where_description_size">
+<p>All resource names follow a simple convention.</p>
 
-Let's first describe every element briefly. After the advantages, we'll see how this applies to each resource type.
+<p><img src="/img/blog/resourcenaming/whatwheredescriptionsize.jpg" alt="what_where_description_size"></p>
 
-#### &lt;WHAT&gt;
-Indicate what the resource actually represents, often a standard Android view class. Limited options per resource type. </br> (e.g. MainActivity -> `activity`)
+<p>Let&#39;s first describe every element briefly. After the advantages, we&#39;ll see how this applies to each resource type.</p>
 
-#### &lt;WHERE&gt;
-Describe where it logically belongs in the app. Resources used in multiple screens use `all`, all others use the custom part of the Android view subclass they are in. </br> (e.g. MainActivity -> `main`, ArticleDetailFragment -> `articledetail`)
+<h4>&lt;WHAT&gt;</h4>
 
-#### &lt;DESCRIPTION&gt;
-Differentiate multiple elements in one screen. </br> (e.g. `title`)
+<p>Indicate what the resource actually represents, often a standard Android view class. Limited options per resource type. </br> (e.g. MainActivity -&gt; <code>activity</code>)</p>
 
-#### &lt;SIZE&gt; (optional)
-Either a precise size or size bucket. Optionally used for drawables and dimensions. </br>  (e.g. `24dp`, `small`))
+<h4>&lt;WHERE&gt;</h4>
 
-<center><a href="{{ site.blogbaseurl }}img/blog/resourcenaming/resourcenaming_cheatsheet.pdf"><img src="{{ site.blogbaseurl }}img/blog/resourcenaming/resourcenaming_cheatsheet.png" alt="Resource naming cheat sheet"></a></center>
+<p>Describe where it logically belongs in the app. Resources used in multiple screens use <code>all</code>, all others use the custom part of the Android view subclass they are in. </br> (e.g. MainActivity -&gt; <code>main</code>, ArticleDetailFragment -&gt; <code>articledetail</code>)</p>
 
-Download and print the <a href="{{ site.blogbaseurl }}img/blog/resourcenaming/resourcenaming_cheatsheet.pdf">cheat sheet</a> for easy reference.
-<br><br>
+<h4>&lt;DESCRIPTION&gt;</h4>
 
-## Advantages
+<p>Differentiate multiple elements in one screen. </br> (e.g. <code>title</code>)</p>
 
-1. **Ordering of resources by screen** <br>
-  The `WHERE` part describes what screen a resource belongs to. Hence it is easy to get all IDs, drawables, dimensions,... for a particular screen.
-2. **Strongly typed resource IDs** <br>
-  For resource IDs, the `WHAT` describes the class name of the xml element it belongs to. This makes is easy to what to cast your `findViewById()` calls to.
-3. **Better resource organizing** <br>
-  File browsers/project navigator usually sort files alphabetically. This means layouts and drawables are grouped by their `WHAT` (activity, fragment,..) and `WHERE` prefix respectively. A simple Android Studio plugin/feature can now display these resources as if they were in their own folder.
-4. **More efficient autocomplete** <br>
-  Because resource names are far more predictable, using the IDE's autocomplete becomes even easier. Usually entering the `WHAT` or `WHERE` is sufficient to narrow autocomplete down to a limited set of options.
-5. **No more name conflicts** <br>
-  Similar resources in different screens are either `all` or have a different `WHERE`. A fixed naming scheme avoids all naming collisions.
-6. **Cleaner resource names** <br>
-  Overall all resources will be named more logical, causing a cleaner Android project.
-7. **Tools support** <br>
-  This naming scheme could be easily supported by the Android Studio offering features such as: lint rules to enforce these names, refactoring support when you change a `WHAT` or `WHERE`, better resource visualisation in project view,...
+<h4>&lt;SIZE&gt; (optional)</h4>
 
-<br>
+<p>Either a precise size or size bucket. Optionally used for drawables and dimensions. </br>  (e.g. <code>24dp</code>, <code>small</code>))</p>
 
-## Layouts
-Layouts are relatively simple, as there usually are only a few layouts per screen. Therefore the rule can be simplified to:
+<p><center><a href="/img/blog/resourcenaming/resourcenaming_cheatsheet.pdf"><img src="/img/blog/resourcenaming/resourcenaming_cheatsheet.png" alt="Resource naming cheat sheet"></a></center></p>
 
-<img src="{{ site.blogbaseurl }}img/blog/resourcenaming/layouts.png" alt="what_where.xml">
+<p>Download and print the <a href="/img/blog/resourcenaming/resourcenaming_cheatsheet.pdf">cheat sheet</a> for easy reference.
+<br><br></p>
 
-Where `<WHAT>` is one of the following:
+<h2>Advantages</h2>
 
-| Prefix    | Usage                     |
-| --------- | ----------------------    |
-| activity  | contentview for activity  |
-| fragment  | view for a fragment       |
-| view      | inflated by a custom view |
-| item      | layout used in list/recycler/gridview |
-| layout   | layout reused using the include tag   |
+<ol>
+<li><strong>Ordering of resources by screen</strong> <br>
+The <code>WHERE</code> part describes what screen a resource belongs to. Hence it is easy to get all IDs, drawables, dimensions,... for a particular screen.</li>
+<li><strong>Strongly typed resource IDs</strong> <br>
+For resource IDs, the <code>WHAT</code> describes the class name of the xml element it belongs to. This makes is easy to what to cast your <code>findViewById()</code> calls to.</li>
+<li><strong>Better resource organizing</strong> <br>
+File browsers/project navigator usually sort files alphabetically. This means layouts and drawables are grouped by their <code>WHAT</code> (activity, fragment,..) and <code>WHERE</code> prefix respectively. A simple Android Studio plugin/feature can now display these resources as if they were in their own folder.</li>
+<li><strong>More efficient autocomplete</strong> <br>
+Because resource names are far more predictable, using the IDE&#39;s autocomplete becomes even easier. Usually entering the <code>WHAT</code> or <code>WHERE</code> is sufficient to narrow autocomplete down to a limited set of options.</li>
+<li><strong>No more name conflicts</strong> <br>
+Similar resources in different screens are either <code>all</code> or have a different <code>WHERE</code>. A fixed naming scheme avoids all naming collisions.</li>
+<li><strong>Cleaner resource names</strong> <br>
+Overall all resources will be named more logical, causing a cleaner Android project.</li>
+<li><strong>Tools support</strong> <br>
+This naming scheme could be easily supported by the Android Studio offering features such as: lint rules to enforce these names, refactoring support when you change a <code>WHAT</code> or <code>WHERE</code>, better resource visualisation in project view,...</li>
+</ol>
 
-Examples:
+<p><br></p>
 
-- **activity_main**: content view of the MainActivity
-- **fragment_articledetail**: view for the ArticleDetailFragment
-- **view_menu**: layout inflated by custom view class MenuView
-- **item_article**: list item in ArticleRecyclerView
-- **layout_actionbar_backbutton**: layout for an actionbar with a backbutton (too simple to be a customview)
+<h2>Layouts</h2>
 
-<br>
+<p>Layouts are relatively simple, as there usually are only a few layouts per screen. Therefore the rule can be simplified to:</p>
 
-## Strings
-The `<WHAT>` part for Strings is irrelevant. So either we use `<WHERE>` to indicate where the string will be used:
+<p><img src="/img/blog/resourcenaming/layouts.png" alt="what_where.xml"></p>
 
-<img src="{{ site.blogbaseurl }}img/blog/resourcenaming/strings.png" alt="where_description.xml">
+<p>Where <code>&lt;WHAT&gt;</code> is one of the following:</p>
 
-or `all` if the string is reused throughout the app:
+<table><thead>
+<tr>
+<th>Prefix</th>
+<th>Usage</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>activity</td>
+<td>contentview for activity</td>
+</tr>
+<tr>
+<td>fragment</td>
+<td>view for a fragment</td>
+</tr>
+<tr>
+<td>view</td>
+<td>inflated by a custom view</td>
+</tr>
+<tr>
+<td>item</td>
+<td>layout used in list/recycler/gridview</td>
+</tr>
+<tr>
+<td>layout</td>
+<td>layout reused using the include tag</td>
+</tr>
+</tbody></table>
 
-<img src="{{ site.blogbaseurl }}img/blog/resourcenaming/strings2.png" alt="all_description.xml">
+<p>Examples:</p>
 
-Examples:
+<ul>
+<li><strong>activity_main</strong>: content view of the MainActivity</li>
+<li><strong>fragment_articledetail</strong>: view for the ArticleDetailFragment</li>
+<li><strong>view_menu</strong>: layout inflated by custom view class MenuView</li>
+<li><strong>item_article</strong>: list item in ArticleRecyclerView</li>
+<li><strong>layout_actionbar_backbutton</strong>: layout for an actionbar with a backbutton (too simple to be a customview)</li>
+</ul>
 
-- **articledetail_title**: title of ArticleDetailFragment
-- **feedback_explanation**: feedback explanation in FeedbackFragment
-- **feedback_namehint**: hint of name field in FeedbackFragment
-- **all_done**: generic "done" string
+<p><br></p>
 
-`<WHERE>` obviously is the same for all resources in the same view.
+<h2>Strings</h2>
 
-<br>
+<p>The <code>&lt;WHAT&gt;</code> part for Strings is irrelevant. So either we use <code>&lt;WHERE&gt;</code> to indicate where the string will be used:</p>
 
-## Drawables
-The `<WHAT>` part for Drawables is irrelevant. So either we use `<WHERE>` to indicate where the drawable will be used:
+<p><img src="/img/blog/resourcenaming/strings.png" alt="where_description.xml"></p>
 
-<img src="{{ site.blogbaseurl }}img/blog/resourcenaming/drawables.png" alt="where_description_size.xml">
+<p>or <code>all</code> if the string is reused throughout the app:</p>
 
-or `all` if the drawable is reused throughout the app:
+<p><img src="/img/blog/resourcenaming/strings2.png" alt="all_description.xml"></p>
 
-<img src="{{ site.blogbaseurl }}img/blog/resourcenaming/drawables2.png" alt="all_description_size.xml">
+<p>Examples:</p>
 
-Optionally you can add a `<SIZE>` argument, which can be an actual size "24dp" or a size qualifier "small".
+<ul>
+<li><strong>articledetail_title</strong>: title of ArticleDetailFragment</li>
+<li><strong>feedback_explanation</strong>: feedback explanation in FeedbackFragment</li>
+<li><strong>feedback_namehint</strong>: hint of name field in FeedbackFragment</li>
+<li><strong>all_done</strong>: generic &quot;done&quot; string</li>
+</ul>
 
-Examples:
+<p><code>&lt;WHERE&gt;</code> obviously is the same for all resources in the same view.</p>
 
-- **articledetail_placeholder**: placeholder in ArticleDetailFragment
-- **all_infoicon**: generic info icon
-- **all_infoicon_large**: large version of generic info icon
-- **all_infoicon_24dp**: 24dp version of generic info icon
+<p><br></p>
 
-<br>
+<h2>Drawables</h2>
 
-## IDs
-For IDs, `<WHAT>` is the class name of the xml element it belongs to. Next is the screen the ID is in, followed by an optional description to distinguish similar elements in one screen.
+<p>The <code>&lt;WHAT&gt;</code> part for Drawables is irrelevant. So either we use <code>&lt;WHERE&gt;</code> to indicate where the drawable will be used:</p>
 
-<img src="{{ site.blogbaseurl }}img/blog/resourcenaming/ids.png" alt="what_where_description.xml">
+<p><img src="/img/blog/resourcenaming/drawables.png" alt="where_description_size.xml"></p>
 
-Examples:
+<p>or <code>all</code> if the drawable is reused throughout the app:</p>
 
-- **tablayout_main** -> TabLayout in MainActivity
-- **imageview_menu_profile** -> profile image in custom MenuView
-- **textview_articledetail_title** -> title TextView in ArticleDetailFragment
+<p><img src="/img/blog/resourcenaming/drawables2.png" alt="all_description_size.xml"></p>
 
-<br>
+<p>Optionally you can add a <code>&lt;SIZE&gt;</code> argument, which can be an actual size &quot;24dp&quot; or a size qualifier &quot;small&quot;.</p>
 
-## Dimensions
-Apps should only define a limited set of dimensions, which are constantly reused. This makes most dimensions `all` by default.
+<p>Examples:</p>
 
-Therefore you should mostly use:
+<ul>
+<li><strong>articledetail_placeholder</strong>: placeholder in ArticleDetailFragment</li>
+<li><strong>all_infoicon</strong>: generic info icon</li>
+<li><strong>all_infoicon_large</strong>: large version of generic info icon</li>
+<li><strong>all_infoicon_24dp</strong>: 24dp version of generic info icon</li>
+</ul>
 
-<img src="{{ site.blogbaseurl }}img/blog/resourcenaming/dimensions2.png" alt="what_all_description_size.xml">
+<p><br></p>
 
-and optionally use the screen specific variant:
+<h2>IDs</h2>
 
-<img src="{{ site.blogbaseurl }}img/blog/resourcenaming/dimensions.png" alt="what_where_description_size.xml">
+<p>For IDs, <code>&lt;WHAT&gt;</code> is the class name of the xml element it belongs to. Next is the screen the ID is in, followed by an optional description to distinguish similar elements in one screen.</p>
 
-Where `<WHAT>` is one of the following:
+<p><img src="/img/blog/resourcenaming/ids.png" alt="what_where_description.xml"></p>
 
-| Prefix    | Usage                     |
-| --------- | ----------------------    |
-| width     | width in dp               |
-| height    | height in dp              |
-| size      | if width == height        |
-| margin    | margin in dp              |
-| padding   | padding in dp             |
-| elevation | elevation in dp             |
-| keyline   | absolute keyline measured from view edge in dp |
-| textsize  | size of text in sp        |
+<p>Examples:</p>
 
-Note that this list only contains the most used `<WHAT>`s. Other dimensions qualifiers like: rotation, scale,... are usually only used in drawables and as such less reused.
+<ul>
+<li><strong>tablayout_main</strong> -&gt; TabLayout in MainActivity</li>
+<li><strong>imageview_menu_profile</strong> -&gt; profile image in custom MenuView</li>
+<li><strong>textview_articledetail_title</strong> -&gt; title TextView in ArticleDetailFragment</li>
+</ul>
 
-Examples:
+<p><br></p>
 
-- **height_toolbar**: height of all toolbars
-- **keyline_listtext**: listitem text is aligned at this keyline
-- **textsize_medium**: medium size of all text
-- **size_menu_icon**: size of icons in menu
-- **height_menu_profileimage**: height of profile image in menu
+<h2>Dimensions</h2>
 
-<br>
+<p>Apps should only define a limited set of dimensions, which are constantly reused. This makes most dimensions <code>all</code> by default.</p>
 
-## Known limitations
-1. **Screens need to have unique names**<br>
-To avoid collisions in the `<WHERE>` argument, View (like) classes must have unique names. Therefore you cannot have a "MainActivity" and a "MainFragment", because the "Main" prefix would no longer uniquely identify one `<WHERE>`.
+<p>Therefore you should mostly use:</p>
 
-2. **Refactoring not supported**<br>
-Changing class names does not change along resource names when refactoring. So if you rename "MainActivity" to "ContentActivity", the layout "activity_main" won't be renamed to "activity_content". Hopefully Android Studio will one day add support for this.
+<p><img src="/img/blog/resourcenaming/dimensions2.png" alt="what_all_description_size.xml"></p>
 
-3. **Not all resource types supported**<br>
-The proposed scheme currently does not yet support all resource types. For some resources this is because they are less frequently used and tend to be very varied (e.g. raw and assets). For other resources this is because they are a lot harder to generalize (e.g. themes/styles/colors/animations).
+<p>and optionally use the screen specific variant:</p>
 
-    Your apps colors palette likely wants to reuse the terminology of your design philosophy. Animations can range from modest (fade) to very exotic. Themes and styles already have a naming scheme that allows you to implicitly inherit properties.
+<p><img src="/img/blog/resourcenaming/dimensions.png" alt="what_where_description_size.xml"></p>
 
-<br>
+<p>Where <code>&lt;WHAT&gt;</code> is one of the following:</p>
 
-## Wrap-up
-That's it! A clean simple and easy to use resource naming scheme. Don't forget to download the <a href="{{ site.blogbaseurl }}img/blog/resourcenaming/resourcenaming_cheatsheet.pdf">cheat sheet</a> for easy reference!
+<table><thead>
+<tr>
+<th>Prefix</th>
+<th>Usage</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>width</td>
+<td>width in dp</td>
+</tr>
+<tr>
+<td>height</td>
+<td>height in dp</td>
+</tr>
+<tr>
+<td>size</td>
+<td>if width == height</td>
+</tr>
+<tr>
+<td>margin</td>
+<td>margin in dp</td>
+</tr>
+<tr>
+<td>padding</td>
+<td>padding in dp</td>
+</tr>
+<tr>
+<td>elevation</td>
+<td>elevation in dp</td>
+</tr>
+<tr>
+<td>keyline</td>
+<td>absolute keyline measured from view edge in dp</td>
+</tr>
+<tr>
+<td>textsize</td>
+<td>size of text in sp</td>
+</tr>
+</tbody></table>
 
-Even though this scheme doesn't (yet) cover all resource types, it does provide an easy to use solution for where most naming pain currently is. In a future blogpost I'll also make a suggestion for the other ones.
+<p>Note that this list only contains the most used <code>&lt;WHAT&gt;</code>s. Other dimensions qualifiers like: rotation, scale,... are usually only used in drawables and as such less reused.</p>
 
-Let me know what you think by contacting me [@molsjeroen](https://twitter.com/molsjeroen) on twitter, or leaving a comment below!
+<p>Examples:</p>
+
+<ul>
+<li><strong>height_toolbar</strong>: height of all toolbars</li>
+<li><strong>keyline_listtext</strong>: listitem text is aligned at this keyline</li>
+<li><strong>textsize_medium</strong>: medium size of all text</li>
+<li><strong>size_menu_icon</strong>: size of icons in menu</li>
+<li><strong>height_menu_profileimage</strong>: height of profile image in menu</li>
+</ul>
+
+<p><br></p>
+
+<h2>Known limitations</h2>
+
+<ol>
+<li><p><strong>Screens need to have unique names</strong><br>
+To avoid collisions in the <code>&lt;WHERE&gt;</code> argument, View (like) classes must have unique names. Therefore you cannot have a &quot;MainActivity&quot; and a &quot;MainFragment&quot;, because the &quot;Main&quot; prefix would no longer uniquely identify one <code>&lt;WHERE&gt;</code>.</p></li>
+<li><p><strong>Refactoring not supported</strong><br>
+Changing class names does not change along resource names when refactoring. So if you rename &quot;MainActivity&quot; to &quot;ContentActivity&quot;, the layout &quot;activity_main&quot; won&#39;t be renamed to &quot;activity_content&quot;. Hopefully Android Studio will one day add support for this.</p></li>
+<li><p><strong>Not all resource types supported</strong><br>
+The proposed scheme currently does not yet support all resource types. For some resources this is because they are less frequently used and tend to be very varied (e.g. raw and assets). For other resources this is because they are a lot harder to generalize (e.g. themes/styles/colors/animations).</p>
+
+<p>Your apps colors palette likely wants to reuse the terminology of your design philosophy. Animations can range from modest (fade) to very exotic. Themes and styles already have a naming scheme that allows you to implicitly inherit properties.</p></li>
+</ol>
+
+<p><br></p>
+
+<h2>Wrap-up</h2>
+
+<p>That&#39;s it! A clean simple and easy to use resource naming scheme. Don&#39;t forget to download the <a href="/img/blog/resourcenaming/resourcenaming_cheatsheet.pdf">cheat sheet</a> for easy reference!</p>
+
+<p>Even though this scheme doesn&#39;t (yet) cover all resource types, it does provide an easy to use solution for where most naming pain currently is. In a future blogpost I&#39;ll also make a suggestion for the other ones.</p>
+
+<p>Let me know what you think by contacting me <a href="https://twitter.com/molsjeroen">@molsjeroen</a> on twitter, or leaving a comment below!</p>
 </p>
 
                             <ul class="list-inline item-details">
@@ -2313,184 +2412,172 @@ Let me know what you think by contacting me [@molsjeroen](https://twitter.com/mo
                             <h2>Git as a secure private Maven repository</h2>
                             <hr class="star-primary">
                             <img src="img/portfolio/img/blog/wagongit/wagongit.png" class="img-responsive img-centered" alt="">
-                            <p>As my previous blogposts already covered how to set up a private Maven repository, you might wonder "Why again a Maven blogpost?". Well that's a fair question and the answer is twofold:
+                            <p><p>As my previous blogposts already covered how to set up a private Maven repository, you might wonder &quot;Why again a Maven blogpost?&quot;. Well that&#39;s a fair question and the answer is twofold:</p>
 
-1. Backup mechanism, to ensure you never ever loose releases.
-2. Remote access outside of your local network (intranet).
+<ol>
+<li>Backup mechanism, to ensure you never ever loose releases.</li>
+<li>Remote access outside of your local network (intranet).</li>
+</ol>
 
-And Git implicitly solves both! :)
+<p>And Git implicitly solves both! :)</p>
 
-I'll demonstrate how to configure Bitbucket as a free private remote Maven repository and automate everything in one simple Gradle script.
+<p>I&#39;ll demonstrate how to configure Bitbucket as a free private remote Maven repository and automate everything in one simple Gradle script.</p>
 
-## Preface
-While you could use any Git repository (like GitHub), I choose Bitbucket as it offers [free private repositories](https://bitbucket.org/product/pricing) for small teams. Furthermore it has an API which we will need for some of the wizardry later on.
+<h2>Preface</h2>
 
-All source code is available on [Github](https://github.com/JeroenMols/WagonGitExample) and can be used after some minor BitBucket configuration. You can find the [Gradle script](https://github.com/JeroenMols/GitAsMaven) in a separate repository.
+<p>While you could use any Git repository (like GitHub), I choose Bitbucket as it offers <a href="https://bitbucket.org/product/pricing">free private repositories</a> for small teams. Furthermore it has an API which we will need for some of the wizardry later on.</p>
 
-## Bitbucket
-Without any further a do, lets get to it and start configuring BitBucket.
+<p>All source code is available on <a href="https://github.com/JeroenMols/WagonGitExample">Github</a> and can be used after some minor BitBucket configuration. You can find the <a href="https://github.com/JeroenMols/GitAsMaven">Gradle script</a> in a separate repository.</p>
 
-Login to Bitbucket and create a new private repository called `maven_repository`.
+<h2>Bitbucket</h2>
 
-<center><a href="{{ site.blogbaseurl }}img/blog/wagongit/createrepository.png"><img src="{{ site.blogbaseurl }}img/blog/wagongit/createrepository.png" alt="Create new BitBucket repository"></a></center>
+<p>Without any further a do, lets get to it and start configuring BitBucket.</p>
 
-Checkout the repository locally, create a `README.md` file and commit that file to your local branch. Now push that branch to BitBucket, BUT make sure to push it to a remote branch called "releases". (this is key, as the plugin we'll use later on depends on this)
+<p>Login to Bitbucket and create a new private repository called <code>maven_repository</code>.</p>
 
-<center><a href="{{ site.blogbaseurl }}img/blog/wagongit/releasebranch.png"><img src="{{ site.blogbaseurl }}img/blog/wagongit/releasebranch.png" alt="BitBucket repository with main branch releases."></a></center>
+<p><center><a href="/img/blog/wagongit/createrepository.png"><img src="/img/blog/wagongit/createrepository.png" alt="Create new BitBucket repository"></a></center></p>
 
-> **Troubleshooting releases branch**
-> If you accidentally push your local branch to a remote called `master`, create a new branch locally called releases, push that to a remote `releases` and change your main branch in the BitBucket settings for that repository.
->
-> <center><a href="{{ site.blogbaseurl }}img/blog/wagongit/configuremainbranch.png"><img src="{{ site.blogbaseurl }}img/blog/wagongit/configuremainbranch.png" alt="Change the main branch from master to releases"></a></center>
->
-> You can safely remove origin/master if you want.
+<p>Checkout the repository locally, create a <code>README.md</code> file and commit that file to your local branch. Now push that branch to BitBucket, BUT make sure to push it to a remote branch called &quot;releases&quot;. (this is key, as the plugin we&#39;ll use later on depends on this)</p>
 
-## Wagon-git
-To upload Maven artifacts to a Git repository, we will use a Maven plugin called [Wagon-git](https://synergian.github.io/wagon-git/), which can hook into the existing Gradle DSL for Maven uploads.
+<p><center><a href="/img/blog/wagongit/releasebranch.png"><img src="/img/blog/wagongit/releasebranch.png" alt="BitBucket repository with main branch releases."></a></center></p>
 
-Simply add a new repository:
+<blockquote>
+<p><strong>Troubleshooting releases branch</strong>
+If you accidentally push your local branch to a remote called <code>master</code>, create a new branch locally called releases, push that to a remote <code>releases</code> and change your main branch in the BitBucket settings for that repository.</p>
 
-```groovy
-repositories {
-    maven { url "https://raw.github.com/synergian/wagon-git/releases" }
-}
-```
+<p><center><a href="/img/blog/wagongit/configuremainbranch.png"><img src="/img/blog/wagongit/configuremainbranch.png" alt="Change the main branch from master to releases"></a></center></p>
 
-And configure Maven like you would normally do, but with our BitBucket repository url in a particular format:
+<p>You can safely remove origin/master if you want.</p>
+</blockquote>
 
-```groovy
-uploadArchives {
-    repositories.mavenDeployer {
-        ...
-        repository(url: 'git:releases://git@bitbucket.org:' + COMPANY + '/' + REPOSITORY_NAME + '.git')
-        ...
-    }
-}
-```
+<h2>Wagon-git</h2>
 
-Where `COMPANY` is the name of your BitBucket organization and `REPOSITORY_NAME` is `maven_repository`.
+<p>To upload Maven artifacts to a Git repository, we will use a Maven plugin called <a href="https://synergian.github.io/wagon-git/">Wagon-git</a>, which can hook into the existing Gradle DSL for Maven uploads.</p>
 
-Now you can simply create a new release by running the following command:
+<p>Simply add a new repository:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">repositories</span> <span class="o">{</span>
+    <span class="n">maven</span> <span class="o">{</span> <span class="n">url</span> <span class="s2">&quot;https://raw.github.com/synergian/wagon-git/releases&quot;</span> <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>And configure Maven like you would normally do, but with our BitBucket repository url in a particular format:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">uploadArchives</span> <span class="o">{</span>
+    <span class="n">repositories</span><span class="o">.</span><span class="na">mavenDeployer</span> <span class="o">{</span>
+        <span class="o">...</span>
+        <span class="n">repository</span><span class="o">(</span><span class="nl">url:</span> <span class="s1">&#39;git:releases://git@bitbucket.org:&#39;</span> <span class="o">+</span> <span class="n">COMPANY</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">REPOSITORY_NAME</span> <span class="o">+</span> <span class="s1">&#39;.git&#39;</span><span class="o">)</span>
+        <span class="o">...</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>Where <code>COMPANY</code> is the name of your BitBucket organization and <code>REPOSITORY_NAME</code> is <code>maven_repository</code>.</p>
 
-```bash
-./gradlew assembleRelease uploadArchives
-```
+<p>Now you can simply create a new release by running the following command:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">./gradlew assembleRelease uploadArchives
+</code></pre></div>
+<p>And check BitBucket for the resulting artifacts.</p>
 
-And check BitBucket for the resulting artifacts.
+<p><center><a href="/img/blog/wagongit/releasecommits.png"><img src="/img/blog/wagongit/releasecommits.png" alt="Release commit of a Maven upload to BitBucket."></a></center></p>
 
-<center><a href="{{ site.blogbaseurl }}img/blog/wagongit/releasecommits.png"><img src="{{ site.blogbaseurl }}img/blog/wagongit/releasecommits.png" alt="Release commit of a Maven upload to BitBucket."></a></center>
+<p><center><a href="/img/blog/wagongit/releasecommitdetails.png"><img src="/img/blog/wagongit/releasecommitdetails.png" alt="File details of a release commit."></a></center></p>
 
-<center><a href="{{ site.blogbaseurl }}img/blog/wagongit/releasecommitdetails.png"><img src="{{ site.blogbaseurl }}img/blog/wagongit/releasecommitdetails.png" alt="File details of a release commit."></a></center>
+<h2>Unique versions only</h2>
 
-## Unique versions only
-As Git naturally allows you to override existing files, we will need to do something to prevent this from happening. Otherwise, you could have a v1.1.3 library, which is stable one day and full of bugs the next (because someone replaced it in the Maven repo). Not exactly what you want, right?
+<p>As Git naturally allows you to override existing files, we will need to do something to prevent this from happening. Otherwise, you could have a v1.1.3 library, which is stable one day and full of bugs the next (because someone replaced it in the Maven repo). Not exactly what you want, right?</p>
 
-We will use the BitBucket API to verify if a particular release already exists:
+<p>We will use the BitBucket API to verify if a particular release already exists:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">task</span> <span class="n">lookForArtifacts</span> <span class="o">{</span>
+    <span class="n">doLast</span> <span class="o">{</span>
+        <span class="o">...</span>
+        <span class="kt">def</span> <span class="n">repositoryUrl</span> <span class="o">=</span> <span class="s1">&#39;https://api.bitbucket.org/1.0/repositories/&#39;</span> <span class="o">+</span> <span class="n">COMPANY</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">REPOSITORY_NAME</span> <span class="o">+</span> <span class="s1">&#39;/raw/releases/&#39;</span> <span class="o">+</span> <span class="n">artifactPath</span>
+        <span class="o">...</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">urlExists</span><span class="o">(</span><span class="n">repositoryUrl</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">RuntimeException</span><span class="o">(</span><span class="s2">&quot;Artifact with version &quot;</span> <span class="o">+</span> <span class="n">ARTIFACT_VERSION</span> <span class="o">+</span> <span class="s2">&quot; already exist - not executing uploadArchives&quot;</span><span class="o">)</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="kc">true</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>Quite simple actually: just reverse engineer the url of a particular release artifact and the see if we get a 200 response or not.</p>
 
-```groovy
-task lookForArtifacts {
-    doLast {
-        ...
-        def repositoryUrl = 'https://api.bitbucket.org/1.0/repositories/' + COMPANY + '/' + REPOSITORY_NAME + '/raw/releases/' + artifactPath
-        ...
-        if (urlExists(repositoryUrl)) {
-            throw new RuntimeException("Artifact with version " + ARTIFACT_VERSION + " already exist - not executing uploadArchives")
-        }
-        return true
-    }
-}
-```
+<p>Finally we ensure that we always run the previous task before running the Maven task:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">uploadArchives</span><span class="o">.</span><span class="na">dependsOn</span> <span class="n">lookForArtifacts</span>
+</code></pre></div>
+<p>Running <code>./gradlew uploadArchives</code> now successfully creates a release.</p>
 
-Quite simple actually: just reverse engineer the url of a particular release artifact and the see if we get a 200 response or not.
+<p><center><a href="/img/blog/wagongit/checkforartifacts.png"><img src="/img/blog/wagongit/checkforartifacts.png" alt="Check for existing artifacts before uploadArchives."></a></center></p>
 
-Finally we ensure that we always run the previous task before running the Maven task:
+<h2>Consuming artifacts</h2>
 
-```groovy
-uploadArchives.dependsOn lookForArtifacts
-```
+<p>Add your Maven repository to the list of repositories in your main <code>build.gradle</code> file:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">allprojects</span> <span class="o">{</span>
+    <span class="n">repositories</span> <span class="o">{</span>
+        <span class="n">jcenter</span><span class="o">()</span>
 
-Running `./gradlew uploadArchives` now successfully creates a release.
+        <span class="n">maven</span> <span class="o">{</span>
+            <span class="n">credentials</span> <span class="o">{</span>
+                <span class="n">username</span> <span class="n">USERNAME</span>
+                <span class="n">password</span> <span class="n">PASSWORD</span>
+            <span class="o">}</span>
+            <span class="n">url</span> <span class="s2">&quot;https://api.bitbucket.org/1.0/repositories/jeroenmols/maven_repository/raw/releases&quot;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>Note that we have to provide a <code>username</code> and <code>password</code> as we are connecting to a private repository.</p>
 
-<center><a href="{{ site.blogbaseurl }}img/blog/wagongit/checkforartifacts.png"><img src="{{ site.blogbaseurl }}img/blog/wagongit/checkforartifacts.png" alt="Check for existing artifacts before uploadArchives."></a></center>
+<blockquote>
+<p><strong>Important</strong></p>
 
-## Consuming artifacts
-Add your Maven repository to the list of repositories in your main `build.gradle` file:
+<p>Make sure not to put your username and password directly into the <code>build.gradle</code> file! That would be a major security risk. Instead have a look at <a href="http://jeroenmols.com/blog/2015/08/13/artifactory2/">this blogpost</a> to learn how to securely provide a username and password.</p>
+</blockquote>
 
-```groovy
-allprojects {
-    repositories {
-        jcenter()
+<p>Now simply add a dependency on your library like you are used to and you&#39;re ready.</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">dependencies</span> <span class="o">{</span>
+    <span class="o">...</span>
+    <span class="n">compile</span> <span class="s1">&#39;com.jeroenmols.awesomelibrary:awesomelibrary:1.0.0&#39;</span>
+<span class="o">}</span>
+</code></pre></div>
+<h2>Putting it all together</h2>
 
-        maven {
-            credentials {
-                username USERNAME
-                password PASSWORD
-            }
-            url "https://api.bitbucket.org/1.0/repositories/jeroenmols/maven_repository/raw/releases"
-        }
-    }
-}
-```
+<p>To make your life a lot easier, I&#39;ve created a <a href="https://github.com/JeroenMols/WagonGitExample/blob/master/library/publish-bitbucket.gradle">Gradle script</a> that does everything for you.</p>
 
-Note that we have to provide a `username` and `password` as we are connecting to a private repository.
+<p>Setting up your project is easy:</p>
 
-> **Important**
->
-> Make sure not to put your username and password directly into the `build.gradle` file! That would be a major security risk. Instead have a look at [this blogpost](http://jeroenmols.com/blog/2015/08/13/artifactory2/) to learn how to securely provide a username and password.
+<ol>
+<li>Add the following plugin to the top of the <a href="https://github.com/JeroenMols/WagonGitExample/blob/master/library/build.gradle">build.gradle</a> file in your library folder</li>
+</ol>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy">  <span class="n">apply</span> <span class="nl">from:</span> <span class="s1">&#39;https://raw.githubusercontent.com/JeroenMols/GitAsMaven/master/publish-bitbucket.gradle&#39;</span>
+</code></pre></div>
+<ol>
+<li>Create a <a href="https://github.com/JeroenMols/WagonGitExample/blob/master/library/gradle.properties">gradle.properties</a> file within your library folder with the following parameters:</li>
+</ol>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy">  <span class="n">ARTIFACT_VERSION</span><span class="o">=&lt;</span><span class="n">version_here</span><span class="o">&gt;</span>
+  <span class="n">ARTIFACT_NAME</span><span class="o">=&lt;</span><span class="n">libraryname_here</span><span class="o">&gt;</span>
+  <span class="n">ARTIFACT_PACKAGE</span><span class="o">=&lt;</span><span class="n">packagename_here</span><span class="o">&gt;</span>
+  <span class="n">ARTIFACT_PACKAGING</span><span class="o">=</span><span class="n">aar</span> <span class="c1">//You could also use jar</span>
 
-Now simply add a dependency on your library like you are used to and you're ready.
+  <span class="n">COMPANY</span><span class="o">=&lt;</span><span class="n">bitbucket_team_company_here</span><span class="o">&gt;</span> <span class="c1">//Username if not part of team</span>
+  <span class="n">REPOSITORY_NAME</span><span class="o">=&lt;</span><span class="n">bitbucket_reponame_here</span><span class="o">&gt;</span>
+</code></pre></div>
+<ol>
+<li>Create a <a href="https://github.com/JeroenMols/WagonGitExample/blob/master/gradle.properties">gradle.properties</a> file in the root of your project (or better in the global <code>.gradle</code> folder on your system) with the following parameters</li>
+</ol>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy">  <span class="n">USERNAME</span><span class="o">=&lt;</span><span class="n">username_here</span><span class="o">&gt;</span>
+  <span class="n">PASSWORD</span><span class="o">=&lt;</span><span class="n">password_here</span><span class="o">&gt;</span>
+</code></pre></div>
+<ol>
+<li>Run the following command to upload a version to your Maven repository.</li>
+</ol>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">  ./gradlew uploadArchives
+</code></pre></div>
+<p>Thats&#39;s it!</p>
 
-```groovy
-dependencies {
-    ...
-    compile 'com.jeroenmols.awesomelibrary:awesomelibrary:1.0.0'
-}
-```
+<h2>Wrap-up</h2>
 
-## Putting it all together
-To make your life a lot easier, I've created a [Gradle script](https://github.com/JeroenMols/WagonGitExample/blob/master/library/publish-bitbucket.gradle) that does everything for you.
+<p>Configuring BitBucket or GitHub as a (private) Maven repository is quite easy and can be fully automated in a single Gradle script. Hopefully this blogpost has inspired many of you to start reusing more code.</p>
 
-Setting up your project is easy:
+<p>A basic example project with everything in this blogpost integrated is available on <a href="https://github.com/JeroenMols/WagonGitExample">GitHub</a>. Or you can also directly integrate the <a href="https://github.com/JeroenMols/GitAsMaven">Gradle script</a> into your library.</p>
 
-1. Add the following plugin to the top of the [build.gradle](https://github.com/JeroenMols/WagonGitExample/blob/master/library/build.gradle) file in your library folder
-
-  ```groovy
-  apply from: 'https://raw.githubusercontent.com/JeroenMols/GitAsMaven/master/publish-bitbucket.gradle'
-  ```
-
-2. Create a [gradle.properties](https://github.com/JeroenMols/WagonGitExample/blob/master/library/gradle.properties) file within your library folder with the following parameters:
-
-  ```groovy
-  ARTIFACT_VERSION=<version_here>
-  ARTIFACT_NAME=<libraryname_here>
-  ARTIFACT_PACKAGE=<packagename_here>
-  ARTIFACT_PACKAGING=aar //You could also use jar
-
-  COMPANY=<bitbucket_team_company_here> //Username if not part of team
-  REPOSITORY_NAME=<bitbucket_reponame_here>
-  ```
-
-3. Create a [gradle.properties](https://github.com/JeroenMols/WagonGitExample/blob/master/gradle.properties) file in the root of your project (or better in the global `.gradle` folder on your system) with the following parameters
-
-  ```groovy
-  USERNAME=<username_here>
-  PASSWORD=<password_here>
-  ```
-
-4. Run the following command to upload a version to your Maven repository.
-
-  ```bash
-  ./gradlew uploadArchives
-  ```
-
-Thats's it!
-
-## Wrap-up
-Configuring BitBucket or GitHub as a (private) Maven repository is quite easy and can be fully automated in a single Gradle script. Hopefully this blogpost has inspired many of you to start reusing more code.
-
-A basic example project with everything in this blogpost integrated is available on [GitHub](https://github.com/JeroenMols/WagonGitExample). Or you can also directly integrate the [Gradle script](https://github.com/JeroenMols/GitAsMaven) into your library.
-
-As always you can reach me [@molsjeroen](https://twitter.com/molsjeroen) on twitter, or leave a comment below!
+<p>As always you can reach me <a href="https://twitter.com/molsjeroen">@molsjeroen</a> on twitter, or leave a comment below!</p>
 </p>
 
                             <ul class="list-inline item-details">
@@ -2529,25 +2616,27 @@ As always you can reach me [@molsjeroen](https://twitter.com/molsjeroen) on twit
                             <h2>Year in review 2015</h2>
                             <hr class="star-primary">
                             <img src="img/portfolio/img/blog/yearinreview15/yearinreview15.png" class="img-responsive img-centered" alt="">
-                            <p>Finally found the time to write my `year in review`. #insomnia
+                            <p><p>Finally found the time to write my <code>year in review</code>. #insomnia</p>
 
-2015 was a huge year for me! I even dare to say the biggest one of my life so far as I became a father of a lovely daughter Lene. Its really hard to over state how big of an impact that has on your life and how fantastic it is to see your own baby grow (and recognize parts of yourself in her). This obviously also explains my late `year in review` post. #perfectexcuse
+<p>2015 was a huge year for me! I even dare to say the biggest one of my life so far as I became a father of a lovely daughter Lene. Its really hard to over state how big of an impact that has on your life and how fantastic it is to see your own baby grow (and recognize parts of yourself in her). This obviously also explains my late <code>year in review</code> post. #perfectexcuse</p>
 
-On a technical level I also fared well and I'm very happy with what I've been able to accomplish:
+<p>On a technical level I also fared well and I&#39;m very happy with what I&#39;ve been able to accomplish:</p>
 
-- Created an library with >500 stars on  [Github](https://github.com/JeroenMols/LandscapeVideoCamera)
-- Started my own blog and [website](http://jeroenmols.com)
-- Featured blogpost in [Android Weekly](http://androidweekly.net/issues/issue-165)
-- Spoke at my first conference [Droidcon Paris](https://speakerdeck.com/jeroenmols/distributing-to-a-public-or-private-maven-repository)
-- Actively started using [twitter](https://twitter.com/molsjeroen) and gained >100 followers
-- Gained >1000 reputation on [stackoverflow](https://stackoverflow.com/users/2771851/jmols)
-- Landed a new job at Philips Hue
-- Learned Xamarin and built a cross platform app
-- Wrote the worlds latest `year in review` post
+<ul>
+<li>Created an library with &gt;500 stars on  <a href="https://github.com/JeroenMols/LandscapeVideoCamera">Github</a></li>
+<li>Started my own blog and <a href="http://jeroenmols.com">website</a></li>
+<li>Featured blogpost in <a href="http://androidweekly.net/issues/issue-165">Android Weekly</a></li>
+<li>Spoke at my first conference <a href="https://speakerdeck.com/jeroenmols/distributing-to-a-public-or-private-maven-repository">Droidcon Paris</a></li>
+<li>Actively started using <a href="https://twitter.com/molsjeroen">twitter</a> and gained &gt;100 followers</li>
+<li>Gained &gt;1000 reputation on <a href="https://stackoverflow.com/users/2771851/jmols">stackoverflow</a></li>
+<li>Landed a new job at Philips Hue</li>
+<li>Learned Xamarin and built a cross platform app</li>
+<li>Wrote the worlds latest <code>year in review</code> post</li>
+</ul>
 
-Next year will be more challenging as my daughter has become a lot more effective at grabbing my attention than my laptop. However I want to increase my efforts contributing back to the community by speaking at more conferences and writing more blogposts. Finally I also want to visit Google IO, which is about time I got there, don't you agree? ;)
+<p>Next year will be more challenging as my daughter has become a lot more effective at grabbing my attention than my laptop. However I want to increase my efforts contributing back to the community by speaking at more conferences and writing more blogposts. Finally I also want to visit Google IO, which is about time I got there, don&#39;t you agree? ;)</p>
 
-As always you can reach me [@molsjeroen](https://twitter.com/molsjeroen) on twitter, or leave a comment below!
+<p>As always you can reach me <a href="https://twitter.com/molsjeroen">@molsjeroen</a> on twitter, or leave a comment below!</p>
 </p>
 
                             <ul class="list-inline item-details">
@@ -2586,250 +2675,226 @@ As always you can reach me [@molsjeroen](https://twitter.com/molsjeroen) on twit
                             <h2>Level up GitHub builds with CI and code coverage</h2>
                             <hr class="star-primary">
                             <img src="img/portfolio/img/blog/traviscoveralls/traviscoveralls.png" class="img-responsive img-centered" alt="">
-                            <p>Wouldn't you love to have your open source projects built automatically by a continuous integration server? And to have a detailed code coverage report for all your unit tests? Even when someone generated a pull request? And how about having cool badges to show off all of this?
+                            <p><p>Wouldn&#39;t you love to have your open source projects built automatically by a continuous integration server? And to have a detailed code coverage report for all your unit tests? Even when someone generated a pull request? And how about having cool badges to show off all of this?</p>
 
-<center>[![Build Status](https://travis-ci.org/JeroenMols/LandscapeVideoCamera.svg?branch=master)](https://travis-ci.org/JeroenMols/LandscapeVideoCamera) [![Coverage Status](https://coveralls.io/repos/JeroenMols/LandscapeVideoCamera/badge.svg?branch=master&service=github)](https://coveralls.io/github/JeroenMols/LandscapeVideoCamera?branch=master)</center>
+<p><center><a href="https://travis-ci.org/JeroenMols/LandscapeVideoCamera"><img src="https://travis-ci.org/JeroenMols/LandscapeVideoCamera.svg?branch=master" alt="Build Status"></a> <a href="https://coveralls.io/github/JeroenMols/LandscapeVideoCamera?branch=master"><img src="https://coveralls.io/repos/JeroenMols/LandscapeVideoCamera/badge.svg?branch=master&amp;service=github" alt="Coverage Status"></a></center></p>
 
-Actually, all of this a breeze to set up, once you understand what works and what doesn't. It is even completely free for open source projects!
+<p>Actually, all of this a breeze to set up, once you understand what works and what doesn&#39;t. It is even completely free for open source projects!</p>
 
-In less than half an hour, this blogpost will add CI and code coverage to your projects, just like I did for my own library [LandscapeVideoCamera](https://github.com/JeroenMols/LandscapeVideoCamera). While this article focusses on Android, the material presented here can quite easily be extended to a broader scope.
+<p>In less than half an hour, this blogpost will add CI and code coverage to your projects, just like I did for my own library <a href="https://github.com/JeroenMols/LandscapeVideoCamera">LandscapeVideoCamera</a>. While this article focusses on Android, the material presented here can quite easily be extended to a broader scope.</p>
 
-## Preface
-In order to keep things simple, I created a very basic project containing a [Calculator class](https://github.com/JeroenMols/TravisCoverallsExample/blob/master/app/src/main/java/com/jeroenmols/traviscoveralls/Calculator.java) and some [Android tests](https://github.com/JeroenMols/TravisCoverallsExample/blob/master/app/src/androidTest/java/com/jeroenmols/traviscoveralls/CalculatorTest.java). This will make things easier to understand as we'll add everything step by step to this project.
+<h2>Preface</h2>
 
-Later on I will present a more elaborate (and usefull) example, namely my own open source library [LandscapeVideoCamera](https://github.com/JeroenMols/LandscapeVideoCamera). Some time ago, I test driven refactored this project completely resulting in respectable code coverage statistics.
+<p>In order to keep things simple, I created a very basic project containing a <a href="https://github.com/JeroenMols/TravisCoverallsExample/blob/master/app/src/main/java/com/jeroenmols/traviscoveralls/Calculator.java">Calculator class</a> and some <a href="https://github.com/JeroenMols/TravisCoverallsExample/blob/master/app/src/androidTest/java/com/jeroenmols/traviscoveralls/CalculatorTest.java">Android tests</a>. This will make things easier to understand as we&#39;ll add everything step by step to this project.</p>
 
-## Travis
-### About
-[Travis](https://travis-ci.org/) is a feature rich online CI service which integrates nicely with a lot of existing services. One major advantage over Jenkins is that you can put the entire CI configuration file under version control. It is completely free for open source projects, although private repositories are also supported on a subscription basis.
+<p>Later on I will present a more elaborate (and usefull) example, namely my own open source library <a href="https://github.com/JeroenMols/LandscapeVideoCamera">LandscapeVideoCamera</a>. Some time ago, I test driven refactored this project completely resulting in respectable code coverage statistics.</p>
 
-<center><a href="{{ site.blogbaseurl }}img/blog/traviscoveralls/travis-workflow.png"><img src="{{ site.blogbaseurl }}img/blog/traviscoveralls/travis-workflow.png" alt="Travis workflow"></a></center>
+<h2>Travis</h2>
 
-### Basic configuration
-In order to get started, go to [travis-ci.org](https://travis-ci.org/), login with your GitHub account and authorize Travis to access your repositories.
+<h3>About</h3>
 
-<center><a href="{{ site.blogbaseurl }}img/blog/traviscoveralls/travis-authorize.png"><img src="{{ site.blogbaseurl }}img/blog/traviscoveralls/travis-authorize.png" alt="Allow Travis to access your GitHub projects"></a></center>
+<p><a href="https://travis-ci.org/">Travis</a> is a feature rich online CI service which integrates nicely with a lot of existing services. One major advantage over Jenkins is that you can put the entire CI configuration file under version control. It is completely free for open source projects, although private repositories are also supported on a subscription basis.</p>
 
-Next, create a new file `.travis.yml` into the root of your project (note that this file will be hidden on Mac OSX/Linux systems). Open the file and specify the language of your project, in our case Android:
+<p><center><a href="/img/blog/traviscoveralls/travis-workflow.png"><img src="/img/blog/traviscoveralls/travis-workflow.png" alt="Travis workflow"></a></center></p>
 
-```yaml
-language: android
-```
+<h3>Basic configuration</h3>
 
-Now Travis needs to know all dependencies in order to build the project. As such specify the build tools version and compile Android SDK version (note that this must match the `compileSdkVersion` of your [`build.gradle`](https://github.com/JeroenMols/TravisCoverallsExample/blob/master/app/build.gradle) file!). While there is an option to use the latest build tools version, I recommend to declare an explicit version as this makes your builds more reproducible. Next specify all of the Android SDK manager dependencies your project needs so Travis can install them before building the project.
+<p>In order to get started, go to <a href="https://travis-ci.org/">travis-ci.org</a>, login with your GitHub account and authorize Travis to access your repositories.</p>
 
-```yaml
-android:
-  components:
-    - build-tools-22.0.1
-    - android-23
-    - extra-android-m2repository
-```
+<p><center><a href="/img/blog/traviscoveralls/travis-authorize.png"><img src="/img/blog/traviscoveralls/travis-authorize.png" alt="Allow Travis to access your GitHub projects"></a></center></p>
 
-Note that our sample only depends on the AppCompat and design support library, hence there is only one extra defined `extra-android-m2repository`. In case your project uses other dependencies from the Android SDK, you can easily select them from the entire [dependency list](https://github.com/JeroenMols/TravisCoverallsExample/blob/master/misc/android_sdk_dependencies.txt) and add an extra item.
+<p>Next, create a new file <code>.travis.yml</code> into the root of your project (note that this file will be hidden on Mac OSX/Linux systems). Open the file and specify the language of your project, in our case Android:</p>
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">language</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">android</span>
+</code></pre></div>
+<p>Now Travis needs to know all dependencies in order to build the project. As such specify the build tools version and compile Android SDK version (note that this must match the <code>compileSdkVersion</code> of your <a href="https://github.com/JeroenMols/TravisCoverallsExample/blob/master/app/build.gradle"><code>build.gradle</code></a> file!). While there is an option to use the latest build tools version, I recommend to declare an explicit version as this makes your builds more reproducible. Next specify all of the Android SDK manager dependencies your project needs so Travis can install them before building the project.</p>
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">android</span><span class="p-Indicator">:</span>
+  <span class="l-Scalar-Plain">components</span><span class="p-Indicator">:</span>
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">build-tools-22.0.1</span>
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">android-23</span>
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">extra-android-m2repository</span>
+</code></pre></div>
+<p>Note that our sample only depends on the AppCompat and design support library, hence there is only one extra defined <code>extra-android-m2repository</code>. In case your project uses other dependencies from the Android SDK, you can easily select them from the entire <a href="https://github.com/JeroenMols/TravisCoverallsExample/blob/master/misc/android_sdk_dependencies.txt">dependency list</a> and add an extra item.</p>
 
-> **Extra: listing Android SDK dependencies**
->
-> To generate the above mentioned list of Android SDK components, simply run the following command on your local machine:
->
->```bash
->android list sdk --no-ui --all --extended
->```
+<blockquote>
+<p><strong>Extra: listing Android SDK dependencies</strong></p>
 
-After, specify the exact `Gradle` command to run, in our case `assembleDebug`:
+<p>To generate the above mentioned list of Android SDK components, simply run the following command on your local machine:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">android list sdk --no-ui --all --extended
+</code></pre></div></blockquote>
 
-```yaml
-script:
-    - ./gradlew assembleDebug
-```
+<p>After, specify the exact <code>Gradle</code> command to run, in our case <code>assembleDebug</code>:</p>
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">script</span><span class="p-Indicator">:</span>
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">./gradlew assembleDebug</span>
+</code></pre></div>
+<p>Now that we have configured everything in the <code>travis.yml</code> file, we need to enable the project, so Travis will start listening to code changes. This can be done by going to your profile on <a href="http://travis-ci.org">Travis</a> and flipping the appropriate slider.</p>
 
-Now that we have configured everything in the `travis.yml` file, we need to enable the project, so Travis will start listening to code changes. This can be done by going to your profile on [Travis](http://travis-ci.org) and flipping the appropriate slider.
+<p><center><a href="/img/blog/traviscoveralls/travis-enableproject.png"><img src="/img/blog/traviscoveralls/travis-enableproject.png" alt="Enable project in Travis"></a></center></p>
 
-<center><a href="{{ site.blogbaseurl }}img/blog/traviscoveralls/travis-enableproject.png"><img src="{{ site.blogbaseurl }}img/blog/traviscoveralls/travis-enableproject.png" alt="Enable project in Travis"></a></center>
+<p>This will result in the project being shown on the left hand side of your dashboard, while indicating that there are no builds.</p>
 
-This will result in the project being shown on the left hand side of your dashboard, while indicating that there are no builds.
+<p><center><a href="/img/blog/traviscoveralls/travis-nobuilds.png"><img src="/img/blog/traviscoveralls/travis-nobuilds.png" alt="Travis overview with no builds, push code to origin to trigger a build."></a></center></p>
 
-<center><a href="{{ site.blogbaseurl }}img/blog/traviscoveralls/travis-nobuilds.png"><img src="{{ site.blogbaseurl }}img/blog/traviscoveralls/travis-nobuilds.png" alt="Travis overview with no builds, push code to origin to trigger a build."></a></center>
+<p>Builds are automatically triggered whenever you push code to your GitHub repository or someone else creates a pull request. Therefore push some changes to GitHub and watch Travis pick them up automatically and start building your project.</p>
 
-Builds are automatically triggered whenever you push code to your GitHub repository or someone else creates a pull request. Therefore push some changes to GitHub and watch Travis pick them up automatically and start building your project.
+<p><center><a href="/img/blog/traviscoveralls/travis-firstbuild.png"><img src="/img/blog/traviscoveralls/travis-firstbuild.png" alt="First build in Travis"></a></center></p>
 
-<center><a href="{{ site.blogbaseurl }}img/blog/traviscoveralls/travis-firstbuild.png"><img src="{{ site.blogbaseurl }}img/blog/traviscoveralls/travis-firstbuild.png" alt="First build in Travis"></a></center>
+<p>Congrats! You now have a fully working Continuous Integration server for your <a href="https://travis-ci.org/JeroenMols/TravisCoverallsExample">open source project</a>.</p>
 
-Congrats! You now have a fully working Continuous Integration server for your [open source project](https://travis-ci.org/JeroenMols/TravisCoverallsExample).
+<h3>Running Android unit tests</h3>
 
-### Running Android unit tests
-While running normal unit tests is straight forward, Android tests are a different story because they require an Android emulator to run on. And because Travis support for Android is still in [beta](http://docs.travis-ci.com/user/languages/android/), there are a couple of limitations to consider:
+<p>While running normal unit tests is straight forward, Android tests are a different story because they require an Android emulator to run on. And because Travis support for Android is still in <a href="http://docs.travis-ci.com/user/languages/android/">beta</a>, there are a couple of limitations to consider:</p>
 
-1. Only `armeabi-v7a` emulators are supported.
-2. The Android M emulator is not yet supported.
+<ol>
+<li>Only <code>armeabi-v7a</code> emulators are supported.</li>
+<li>The Android M emulator is not yet supported.</li>
+</ol>
 
-> **Extra limitations of Travis Android support**
->
-> You can *skip this if you want*, just some extra context
->
-> First of all, Travis does not yet support HAXM to speed up intel emulators, so there is no speed up while using an `x86` emulator. Even more, the latest `x86_64 Android M` emulator requires hardware acceleration, so that one simply cannot be used on Travis! For more information see issue [1419](https://github.com/travis-ci/travis-ci/issues/1419) and [1395](https://github.com/travis-ci/travis-ci/issues/1395) or check out this [failing build](https://travis-ci.org/JeroenMols/LandscapeVideoCamera/builds/88619658#L693).
->
-> Secondly, Travis does not yet support the latest Android M emulator, causing the built-in `android-wait-for-emulator` script to time out while the emulator is booting. Therefore I recommend to use the `android-22` emulator instead. For more information see this [failing build](https://travis-ci.org/JeroenMols/LandscapeVideoCamera/builds/88620580#L1069).
+<blockquote>
+<p><strong>Extra limitations of Travis Android support</strong></p>
 
-So you'll have to accept that builds will be slow (starting emulator + running test) and that you cannot use an Android M emulator. But if these are acceptable, read on and I'll explain how to set up everything for running tests.
+<p>You can <em>skip this if you want</em>, just some extra context</p>
 
-First of all, define the Android version and processor architecture of the emulator by adding a new environment at the top of the `travis.yml` file:
+<p>First of all, Travis does not yet support HAXM to speed up intel emulators, so there is no speed up while using an <code>x86</code> emulator. Even more, the latest <code>x86_64 Android M</code> emulator requires hardware acceleration, so that one simply cannot be used on Travis! For more information see issue <a href="https://github.com/travis-ci/travis-ci/issues/1419">1419</a> and <a href="https://github.com/travis-ci/travis-ci/issues/1395">1395</a> or check out this <a href="https://travis-ci.org/JeroenMols/LandscapeVideoCamera/builds/88619658#L693">failing build</a>.</p>
 
-```yaml
-env:
-  matrix:
-    - ANDROID_TARGET=android-22 ANDROID_ABI=armeabi-v7a
-```
+<p>Secondly, Travis does not yet support the latest Android M emulator, causing the built-in <code>android-wait-for-emulator</code> script to time out while the emulator is booting. Therefore I recommend to use the <code>android-22</code> emulator instead. For more information see this <a href="https://travis-ci.org/JeroenMols/LandscapeVideoCamera/builds/88620580#L1069">failing build</a>.</p>
+</blockquote>
 
-Then, ensure that all dependencies for the Android emulator are installed, by adding both the platform version and emulator image to the `components` section. Note that it is important to add both, because the Android emulator will only install if the corresponding Android platform is installed (see this [failing build](https://travis-ci.org/JeroenMols/LandscapeVideoCamera/builds/88631850#L815)).
+<p>So you&#39;ll have to accept that builds will be slow (starting emulator + running test) and that you cannot use an Android M emulator. But if these are acceptable, read on and I&#39;ll explain how to set up everything for running tests.</p>
 
-```yaml
-android:
-  components:
-    ...
-    - android-22
-    - sys-img-armeabi-v7a-android-22
-```
+<p>First of all, define the Android version and processor architecture of the emulator by adding a new environment at the top of the <code>travis.yml</code> file:</p>
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">env</span><span class="p-Indicator">:</span>
+  <span class="l-Scalar-Plain">matrix</span><span class="p-Indicator">:</span>
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">ANDROID_TARGET=android-22 ANDROID_ABI=armeabi-v7a</span>
+</code></pre></div>
+<p>Then, ensure that all dependencies for the Android emulator are installed, by adding both the platform version and emulator image to the <code>components</code> section. Note that it is important to add both, because the Android emulator will only install if the corresponding Android platform is installed (see this <a href="https://travis-ci.org/JeroenMols/LandscapeVideoCamera/builds/88631850#L815">failing build</a>).</p>
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">android</span><span class="p-Indicator">:</span>
+  <span class="l-Scalar-Plain">components</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">...</span>
+    <span class="l-Scalar-Plain">- android-22</span>
+    <span class="l-Scalar-Plain">- sys-img-armeabi-v7a-android-22</span>
+</code></pre></div>
+<p>Now we need to create a new Android emulator and start it before our build. As starting takes a really long time, Travis offers a built-in <code>android-wait-for-emulator</code> script to facilitate this. Finally we need to unlock the emulator once started by sending a key event.</p>
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">before_script</span><span class="p-Indicator">:</span>
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI</span>
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">emulator -avd test -no-skin -no-audio -no-window &amp;</span>
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">android-wait-for-emulator</span>
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">adb shell input keyevent 82 &amp;</span>
+</code></pre></div>
+<p>After all of this configuration, all we need to do is change the <code>Gradle</code> command to run all of the tests and trigger a new build by pushing all these changes.</p>
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">script</span><span class="p-Indicator">:</span>
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">./gradlew connectedAndroidTest</span>
+</code></pre></div>
+<h3>Taking things further</h3>
+
+<p>As mentioned in the introduction, Travis is a really feature rich CI service. Therefore this section provides some tips to take things even further.</p>
+
+<ol>
+<li><strong>Build notifications:</strong> Travis supports sending notifications via Slack, HipChat, email,... whenever a built fails/succeeds.</p>
+For more information, have a look at the <a href="http://docs.travis-ci.com/user/notifications/">Travis documentation</a>.</li>
+</ol>
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">notifications</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">email</span><span class="p-Indicator">:</span>
+      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">your.email@gmail.com</span>
+</code></pre></div>
+<ul>
+<li><p><strong>Build status badge:</strong> Click the build badge on your Travis homepage to generate png/markdown/... build badges.</p>
+<a href="https://travis-ci.org/JeroenMols/TravisCoverallsExample"><img src="https://travis-ci.org/JeroenMols/TravisCoverallsExample.svg?branch=master" alt="Build Status"></a></p></li>
+<li><p><strong>Branch information:</strong> Print which branch or pull request is being built.</p></li>
+</ul>
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">script</span><span class="p-Indicator">:</span>
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">echo &quot;Travis branch is $TRAVIS_BRANCH&quot;</span>
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">echo &quot;Travis branch is in pull request $TRAVIS_PULL+REQUEST&quot;</span>
+</code></pre></div>
+<ul>
+<li><strong>More options:</strong> Have a look at the <a href="http://docs.travis-ci.com/user/languages/android/">Travis documentation</a>.</li>
+</ul>
 
-Now we need to create a new Android emulator and start it before our build. As starting takes a really long time, Travis offers a built-in `android-wait-for-emulator` script to facilitate this. Finally we need to unlock the emulator once started by sending a key event.
+<h2>Coveralls</h2>
 
-```yaml
-before_script:
-    - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
-    - emulator -avd test -no-skin -no-audio -no-window &
-    - android-wait-for-emulator
-    - adb shell input keyevent 82 &
-```
+<h3>About</h3>
 
-After all of this configuration, all we need to do is change the `Gradle` command to run all of the tests and trigger a new build by pushing all these changes.
+<p><a href="https://coveralls.io/">Coveralls</a> is a visually attractive online code coverage tool which provides detailed statistics such as line coverage and repository trends. Furthermore it allows you to show of your code coverage and encourages you to increase it. Like Travis, it is free for open source projects, but a subscription service is available for private repositories.</p>
 
-```yaml
-script:
-    - ./gradlew connectedAndroidTest
-```
+<p><center><a href="/img/blog/traviscoveralls/coveralls-example.png"><img src="/img/blog/traviscoveralls/coveralls-example.png" alt="Example coveralls dashboard"></a></center></p>
 
-### Taking things further
-As mentioned in the introduction, Travis is a really feature rich CI service. Therefore this section provides some tips to take things even further.
+<h3>Enabling Android code coverage</h3>
 
-1. **Build notifications:** Travis supports sending notifications via Slack, HipChat, email,... whenever a built fails/succeeds.</p>
-For more information, have a look at the [Travis documentation](http://docs.travis-ci.com/user/notifications/).
+<p>First of all, your Android project needs to be configured to generate code coverage reports. As such, ensure that you are using at least version 0.4 of the <a href="https://google.github.io/android-testing-support-library/">Android testing support library</a> (there was an <a href="https://code.google.com/p/android/issues/detail?id=170607">issue</a> in version 0.3).</p>
 
-```yaml
-notifications:
-    email:
-      - your.email@gmail.com
-```
+<p>Then add the flag <code>testCoverageEnabled</code> to the debug buildTypes in your main module&#39;s <code>build.gradle</code> file, causing a code coverage report to be generated in the <code>build/reports/coverage/</code> folder.</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">android</span> <span class="o">{</span>
+  <span class="o">...</span>
 
-- **Build status badge:** Click the build badge on your Travis homepage to generate png/markdown/... build badges.</p>
-[![Build Status](https://travis-ci.org/JeroenMols/TravisCoverallsExample.svg?branch=master)](https://travis-ci.org/JeroenMols/TravisCoverallsExample)
+  <span class="n">buildTypes</span> <span class="o">{</span>
+        <span class="n">debug</span> <span class="o">{</span>
+            <span class="n">testCoverageEnabled</span> <span class="kc">true</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>At this point, you should be able to run <code>gradle connectedAndroidTest</code> and view an <code>html</code> and <code>xml</code> report in the above mentioned directory.</p>
 
-- **Branch information:** Print which branch or pull request is being built.
+<p><center><a href="/img/blog/traviscoveralls/coveralls-rawcoverage.png"><img src="/img/blog/traviscoveralls/coveralls-rawcoverage.png" alt="Basic coverage report generated by the built in Android code coverage"></a></center></p>
 
-```yaml
-script:
-    - echo "Travis branch is $TRAVIS_BRANCH"
-    - echo "Travis branch is in pull request $TRAVIS_PULL+REQUEST"
-```
+<h3>Basic configuration</h3>
 
-- **More options:** Have a look at the [Travis documentation](http://docs.travis-ci.com/user/languages/android/).
+<p>In order to get started, go to <a href="https://coveralls.io/">coveralls.io</a>, login with your GitHub account and authorize Coveralls to access your repositories.</p>
 
-## Coveralls
-### About
-[Coveralls](https://coveralls.io/) is a visually attractive online code coverage tool which provides detailed statistics such as line coverage and repository trends. Furthermore it allows you to show of your code coverage and encourages you to increase it. Like Travis, it is free for open source projects, but a subscription service is available for private repositories.
+<p><center><a href="/img/blog/traviscoveralls/coveralls-authorize.png"><img src="/img/blog/traviscoveralls/coveralls-authorize.png" alt="Allow Coveralls to access your GitHub projects"></a></center></p>
 
-<center><a href="{{ site.blogbaseurl }}img/blog/traviscoveralls/coveralls-example.png"><img src="{{ site.blogbaseurl }}img/blog/traviscoveralls/coveralls-example.png" alt="Example coveralls dashboard"></a></center>
+<p>Next, we&#39;ll need to configure your <code>build.gradle</code> files to upload the coverage reports to Coveralls after each successful CI build. Therefore add a new classpath dependency to the root projects <code>build.gradle</code> file.</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">buildscript</span> <span class="o">{</span>
+    <span class="o">...</span>
 
-### Enabling Android code coverage
-First of all, your Android project needs to be configured to generate code coverage reports. As such, ensure that you are using at least version 0.4 of the [Android testing support library](https://google.github.io/android-testing-support-library/) (there was an [issue](https://code.google.com/p/android/issues/detail?id=170607) in version 0.3).
+    <span class="n">dependencies</span> <span class="o">{</span>
+        <span class="o">...</span>
+        <span class="n">classpath</span> <span class="s1">&#39;org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.4.0&#39;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>Then we can apply the <code>coveralls</code> plugin, point it to the coverage reports directory and ensure it only runs on CI builds by adding the following to your main module&#39;s <code>build.gradle</code> file:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">&#39;com.github.kt3k.coveralls&#39;</span>
+</code></pre></div><div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">coveralls</span> <span class="o">{</span>
+    <span class="n">jacocoReportPath</span> <span class="o">=</span> <span class="s2">&quot;${buildDir}/reports/coverage/debug/report.xml&quot;</span>
+<span class="o">}</span>
 
-Then add the flag `testCoverageEnabled` to the debug buildTypes in your main module's `build.gradle` file, causing a code coverage report to be generated in the `build/reports/coverage/` folder.
+<span class="n">tasks</span><span class="o">.</span><span class="na">coveralls</span> <span class="o">{</span>
+    <span class="n">dependsOn</span> <span class="s1">&#39;connectedAndroidTest&#39;</span>
+    <span class="n">onlyIf</span> <span class="o">{</span> <span class="n">System</span><span class="o">.</span><span class="na">env</span><span class="o">.</span><span class="s1">&#39;CI&#39;</span> <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>Note that we also added a dependency on the <code>connectedAndroidTest</code> task as that is the one that will actually generate the code coverage report.</p>
 
-```groovy
-android {
-  ...
+<p>Let&#39;s now change the build task in the <code>travis.yml</code> so it runs the <code>coveralls</code> task after every build. While not strictly necessary to still define the <code>connectedAndroidTest</code> task, I prefer to do so as it makes it more explicit what <code>Gradle</code> will exactly be building.</p>
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">script</span><span class="p-Indicator">:</span>
+  <span class="l-Scalar-Plain">...</span>
+  <span class="l-Scalar-Plain">- ./gradlew connectedAndroidTest coveralls</span>
+</code></pre></div>
+<p>Next we need to activate our GitHub repository in coveralls, so it picks up the output from the <code>Gradle</code> plugin. This can easily be done by clicking <code>add repos</code> on <a href="https://coveralls.io">coveralls.io</a> and flipping the switch on your repository.</p>
 
-  buildTypes {
-        debug {
-            testCoverageEnabled true
-        }
-    }
-}
-```
+<p><center><a href="/img/blog/traviscoveralls/coveralls-enableproject.png"><img src="/img/blog/traviscoveralls/coveralls-enableproject.png" alt="Enable project in Coveralls"></a></center></p>
 
-At this point, you should be able to run `gradle connectedAndroidTest` and view an `html` and `xml` report in the above mentioned directory.
+<p>This will result in the project being added to your dashboard without any builds.</p>
 
-<center><a href="{{ site.blogbaseurl }}img/blog/traviscoveralls/coveralls-rawcoverage.png"><img src="{{ site.blogbaseurl }}img/blog/traviscoveralls/coveralls-rawcoverage.png" alt="Basic coverage report generated by the built in Android code coverage"></a></center>
+<p><center><a href="/img/blog/traviscoveralls/coveralls-nobuilds.png"><img src="/img/blog/traviscoveralls/coveralls-nobuilds.png" alt="No builds yet in Coveralls"></a></center></p>
 
-### Basic configuration
-In order to get started, go to [coveralls.io](https://coveralls.io/), login with your GitHub account and authorize Coveralls to access your repositories.
+<p>Simply trigger a Travis build by pushing some changes to start seeing code coverage results online.</p>
 
-<center><a href="{{ site.blogbaseurl }}img/blog/traviscoveralls/coveralls-authorize.png"><img src="{{ site.blogbaseurl }}img/blog/traviscoveralls/coveralls-authorize.png" alt="Allow Coveralls to access your GitHub projects"></a></center>
+<p>Finally you can easily add a badge to your repository by clicking the <code>Badge urls</code> button from the green banner in the detail view.</p>
 
-Next, we'll need to configure your `build.gradle` files to upload the coverage reports to Coveralls after each successful CI build. Therefore add a new classpath dependency to the root projects `build.gradle` file.
+<p><center><a href="https://coveralls.io/github/JeroenMols/TravisCoverallsExample?branch=master"><img src="https://coveralls.io/repos/JeroenMols/TravisCoverallsExample/badge.svg?branch=master&amp;service=github" alt="Coverage Status"></a></center></p>
 
-```groovy
-buildscript {
-    ...
+<p>Congratulations you know have attractive code coverage reports for <a href="https://coveralls.io/github/JeroenMols/TravisCoverallsExample">your repository</a>!</p>
 
-    dependencies {
-        ...
-        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.4.0'
-    }
-}
-```
+<h2>Wrap-up</h2>
 
-Then we can apply the `coveralls` plugin, point it to the coverage reports directory and ensure it only runs on CI builds by adding the following to your main module's `build.gradle` file:
+<p>Adding Travis CI and Coveralls code coverage to your project is fairly straightforward once you know what works and especially what doesn&#39;t work. Hopefully this blogpost was able to remove a lot of those frustrating barriers of entry.</p>
 
-```groovy
-apply plugin: 'com.github.kt3k.coveralls'
-```
+<p>A basic example project with everything in this blogpost integrated is available on <a href="https://github.com/JeroenMols/TravisCoverallsExample">GitHub</a>. But in case you&#39;re interested in a real life example, have a look at my Android library <a href="https://github.com/JeroenMols/LandscapeVideoCamera">LandscapeVideoCamera</a>, which actually has decent code coverage statistics.</p>
 
-```groovy
-coveralls {
-    jacocoReportPath = "${buildDir}/reports/coverage/debug/report.xml"
-}
+<p><center><a href="https://travis-ci.org/JeroenMols/LandscapeVideoCamera"><img src="https://travis-ci.org/JeroenMols/LandscapeVideoCamera.svg?branch=master" alt="Build Status"></a> <a href="https://coveralls.io/github/JeroenMols/LandscapeVideoCamera?branch=master"><img src="https://coveralls.io/repos/JeroenMols/LandscapeVideoCamera/badge.svg?branch=master&amp;service=github" alt="Coverage Status"></a></center></p>
 
-tasks.coveralls {
-    dependsOn 'connectedAndroidTest'
-    onlyIf { System.env.'CI' }
-}
-```
-
-Note that we also added a dependency on the `connectedAndroidTest` task as that is the one that will actually generate the code coverage report.
-
-Let's now change the build task in the `travis.yml` so it runs the `coveralls` task after every build. While not strictly necessary to still define the `connectedAndroidTest` task, I prefer to do so as it makes it more explicit what `Gradle` will exactly be building.
-
-```yaml
-script:
-  ...
-  - ./gradlew connectedAndroidTest coveralls
-
-```
-
-Next we need to activate our GitHub repository in coveralls, so it picks up the output from the `Gradle` plugin. This can easily be done by clicking `add repos` on [coveralls.io](https://coveralls.io) and flipping the switch on your repository.
-
-<center><a href="{{ site.blogbaseurl }}img/blog/traviscoveralls/coveralls-enableproject.png"><img src="{{ site.blogbaseurl }}img/blog/traviscoveralls/coveralls-enableproject.png" alt="Enable project in Coveralls"></a></center>
-
-This will result in the project being added to your dashboard without any builds.
-
-<center><a href="{{ site.blogbaseurl }}img/blog/traviscoveralls/coveralls-nobuilds.png"><img src="{{ site.blogbaseurl }}img/blog/traviscoveralls/coveralls-nobuilds.png" alt="No builds yet in Coveralls"></a></center>
-
-Simply trigger a Travis build by pushing some changes to start seeing code coverage results online.
-
-Finally you can easily add a badge to your repository by clicking the `Badge urls` button from the green banner in the detail view.
-
-<center>[![Coverage Status](https://coveralls.io/repos/JeroenMols/TravisCoverallsExample/badge.svg?branch=master&service=github)](https://coveralls.io/github/JeroenMols/TravisCoverallsExample?branch=master)</center>
-
-Congratulations you know have attractive code coverage reports for [your repository](https://coveralls.io/github/JeroenMols/TravisCoverallsExample)!
-
-## Wrap-up
-Adding Travis CI and Coveralls code coverage to your project is fairly straightforward once you know what works and especially what doesn't work. Hopefully this blogpost was able to remove a lot of those frustrating barriers of entry.
-
-A basic example project with everything in this blogpost integrated is available on [GitHub](https://github.com/JeroenMols/TravisCoverallsExample). But in case you're interested in a real life example, have a look at my Android library [LandscapeVideoCamera](https://github.com/JeroenMols/LandscapeVideoCamera), which actually has decent code coverage statistics.
-
-<center>[![Build Status](https://travis-ci.org/JeroenMols/LandscapeVideoCamera.svg?branch=master)](https://travis-ci.org/JeroenMols/LandscapeVideoCamera) [![Coverage Status](https://coveralls.io/repos/JeroenMols/LandscapeVideoCamera/badge.svg?branch=master&service=github)](https://coveralls.io/github/JeroenMols/LandscapeVideoCamera?branch=master)</center>
-
-As always you can reach me [@molsjeroen](https://twitter.com/molsjeroen) on twitter, or leave a comment below!
+<p>As always you can reach me <a href="https://twitter.com/molsjeroen">@molsjeroen</a> on twitter, or leave a comment below!</p>
 </p>
 
                             <ul class="list-inline item-details">
@@ -2868,219 +2933,210 @@ As always you can reach me [@molsjeroen](https://twitter.com/molsjeroen) on twit
                             <h2>Getting the most out of Artifactory</h2>
                             <hr class="star-primary">
                             <img src="img/portfolio/img/blog/artifactory2/artifactory2.png" class="img-responsive img-centered" alt="">
-                            <p>My previous [blog post]({% post_url 2015-08-06-artifactory %}) described how to set up your own private Maven repository with Artifactory in 30 minutes. This second and final part will make things more interesting and take your setup to the next level.
+                            <p><p>My previous <a href="/blog/2015/08/06/artifactory/">blog post</a> described how to set up your own private Maven repository with Artifactory in 30 minutes. This second and final part will make things more interesting and take your setup to the next level.</p>
 
-You will learn how to:
+<p>You will learn how to:</p>
 
-- handle library projects with dependencies
-- securely provide username and password
-- work with snapshot and release builds
-- configure custom repositories
-- manage user access
+<ul>
+<li>handle library projects with dependencies</li>
+<li>securely provide username and password</li>
+<li>work with snapshot and release builds</li>
+<li>configure custom repositories</li>
+<li>manage user access</li>
+</ul>
 
-All source code is [available on Github](https://github.com/JeroenMols/ArtifactoryExample) as usual.
+<p>All source code is <a href="https://github.com/JeroenMols/ArtifactoryExample">available on Github</a> as usual.</p>
 
-Note that the material presented here can quite easily be extended to be applicable beyond Android.
+<p>Note that the material presented here can quite easily be extended to be applicable beyond Android.</p>
 
-## Library projects with dependencies
-Imagine if your Android library project itself has dependencies. Then the application using the library wouldn't be able to run unless it provides all dependencies the library requires.
+<h2>Library projects with dependencies</h2>
 
-To better understand this, consider the new [`AwesomeAdvancedLibrary`](https://github.com/JeroenMols/ArtifactoryExample/blob/master/AwesomeAdvancedLibrary/awesomeadvancedlibrary/src/main/java/com/jeroenmols/awesomeadvancedlibrary/AwesomeConvertor.java) which makes use of [Guava](https://github.com/google/guava) to *awesomize* a `String`. The application using this library should be agnostic of this dependency. Hence we do not want to define two dependencies:
+<p>Imagine if your Android library project itself has dependencies. Then the application using the library wouldn&#39;t be able to run unless it provides all dependencies the library requires.</p>
 
-```groovy
-dependencies {
-    compile 'com.jeroenmols.awesomeadvancedlibrary:awesomeadvancedlibrary:1.0.0'
-    compile 'com.google.guava:guava:18.0'
-}
-```
+<p>To better understand this, consider the new <a href="https://github.com/JeroenMols/ArtifactoryExample/blob/master/AwesomeAdvancedLibrary/awesomeadvancedlibrary/src/main/java/com/jeroenmols/awesomeadvancedlibrary/AwesomeConvertor.java"><code>AwesomeAdvancedLibrary</code></a> which makes use of <a href="https://github.com/google/guava">Guava</a> to <em>awesomize</em> a <code>String</code>. The application using this library should be agnostic of this dependency. Hence we do not want to define two dependencies:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">dependencies</span> <span class="o">{</span>
+    <span class="n">compile</span> <span class="s1">&#39;com.jeroenmols.awesomeadvancedlibrary:awesomeadvancedlibrary:1.0.0&#39;</span>
+    <span class="n">compile</span> <span class="s1">&#39;com.google.guava:guava:18.0&#39;</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>Instead one <code>compile</code> dependency should suffice to use the library.</p>
 
+<blockquote>
+<p><strong>Important note on including dependencies</strong></p>
 
-Instead one `compile` dependency should suffice to use the library.
+<p>You can <em>skip this if you want</em>, just some extra context</p>
 
-> **Important note on including dependencies**
->
-> You can *skip this if you want*, just some extra context
->
->Including dependencies in your library is not always a good idea, because this can lead to a dependency conflict while integrating. I only choose Guava to keep things simple, but it is actually a very bad example as it is a utility library. This means it's quite likely that the app also needs it.
->
-> A better example would be a universal *analytics* library offering a universal API to track analytics and redirecting all calls internally to one or more analytics providers. Here packaging dependencies makes sense, because the app never needs to talk to the dependency directly. It also hides implementation details, so the app doesn't need to be modified when switching to a new provider.
+<p>Including dependencies in your library is not always a good idea, because this can lead to a dependency conflict while integrating. I only choose Guava to keep things simple, but it is actually a very bad example as it is a utility library. This means it&#39;s quite likely that the app also needs it.</p>
 
-Imagine if we would simply resort to the buildscript we had in my previous [blogpost]({% post_url 2015-08-06-artifactory %}). At compile time the `Guava` dependency will not be included, because the would make the library unnecessarily large. Instead, the compiler will tell the library: "don't worry about this dependency, the app will provide it for you."
+<p>A better example would be a universal <em>analytics</em> library offering a universal API to track analytics and redirecting all calls internally to one or more analytics providers. Here packaging dependencies makes sense, because the app never needs to talk to the dependency directly. It also hides implementation details, so the app doesn&#39;t need to be modified when switching to a new provider.</p>
+</blockquote>
 
-The app on the other hand wouldn't have a clue which dependencies the library actually needs (how would it?) and hence the app will compile just fine. However, after starting the app and trying to access the library, the app would crash at runtime:
+<p>Imagine if we would simply resort to the buildscript we had in my previous <a href="/blog/2015/08/06/artifactory/">blogpost</a>. At compile time the <code>Guava</code> dependency will not be included, because the would make the library unnecessarily large. Instead, the compiler will tell the library: &quot;don&#39;t worry about this dependency, the app will provide it for you.&quot;</p>
 
-```Java
-08-09 20:49:46.096  28892-28892/? E/AndroidRuntime﹕ FATAL EXCEPTION: main
-Process: com.jeroenmols.awesomeadvancedapplication, PID: 28892
-java.lang.NoClassDefFoundError: Failed resolution of: Lcom/google/common/base/CharMatcher;
-    at com.jeroenmols.awesomeadvancedlibrary.AwesomeConvertor.toAwesome(AwesomeConvertor.java:11)
-```
+<p>The app on the other hand wouldn&#39;t have a clue which dependencies the library actually needs (how would it?) and hence the app will compile just fine. However, after starting the app and trying to access the library, the app would crash at runtime:</p>
+<div class="highlight"><pre><code class="language-Java" data-lang="Java"><span class="mi">08</span><span class="o">-</span><span class="mi">09</span> <span class="mi">20</span><span class="o">:</span><span class="mi">49</span><span class="o">:</span><span class="mf">46.096</span>  <span class="mi">28892</span><span class="o">-</span><span class="mi">28892</span><span class="o">/?</span> <span class="n">E</span><span class="o">/</span><span class="n">AndroidRuntime</span><span class="err">﹕</span> <span class="n">FATAL</span> <span class="nl">EXCEPTION:</span> <span class="n">main</span>
+<span class="nl">Process:</span> <span class="n">com</span><span class="o">.</span><span class="na">jeroenmols</span><span class="o">.</span><span class="na">awesomeadvancedapplication</span><span class="o">,</span> <span class="nl">PID:</span> <span class="mi">28892</span>
+<span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">NoClassDefFoundError</span><span class="o">:</span> <span class="n">Failed</span> <span class="n">resolution</span> <span class="nl">of:</span> <span class="n">Lcom</span><span class="o">/</span><span class="n">google</span><span class="o">/</span><span class="n">common</span><span class="o">/</span><span class="n">base</span><span class="o">/</span><span class="n">CharMatcher</span><span class="o">;</span>
+    <span class="n">at</span> <span class="n">com</span><span class="o">.</span><span class="na">jeroenmols</span><span class="o">.</span><span class="na">awesomeadvancedlibrary</span><span class="o">.</span><span class="na">AwesomeConvertor</span><span class="o">.</span><span class="na">toAwesome</span><span class="o">(</span><span class="n">AwesomeConvertor</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">11</span><span class="o">)</span>
+</code></pre></div>
+<p>To solve this, we need to ensure that the library <code>pom.xml</code> file  contains the right dependencies by manually adding the <code>pom.withXml{}</code> element to the <code>publishing task</code>:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">publishing</span> <span class="o">{</span>
+    <span class="n">publications</span> <span class="o">{</span>
+        <span class="n">aar</span><span class="o">(</span><span class="n">MavenPublication</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">groupId</span> <span class="n">packageName</span>
+            <span class="n">version</span> <span class="o">=</span> <span class="n">libraryVersion</span>
+            <span class="n">artifactId</span> <span class="n">project</span><span class="o">.</span><span class="na">getName</span><span class="o">()</span>
+            <span class="n">artifact</span><span class="o">(</span><span class="s2">&quot;$buildDir/outputs/aar/${project.getName()}-release.aar&quot;</span><span class="o">)</span>
 
-To solve this, we need to ensure that the library `pom.xml` file  contains the right dependencies by manually adding the `pom.withXml{}` element to the `publishing task`:
+            <span class="n">pom</span><span class="o">.</span><span class="na">withXml</span> <span class="o">{</span>
+                <span class="kt">def</span> <span class="n">dependencies</span> <span class="o">=</span> <span class="n">asNode</span><span class="o">().</span><span class="na">appendNode</span><span class="o">(</span><span class="s1">&#39;dependencies&#39;</span><span class="o">)</span>
+                <span class="n">configurations</span><span class="o">.</span><span class="na">getByName</span><span class="o">(</span><span class="s2">&quot;_releaseCompile&quot;</span><span class="o">).</span><span class="na">getResolvedConfiguration</span><span class="o">().</span><span class="na">getFirstLevelModuleDependencies</span><span class="o">().</span><span class="na">each</span> <span class="o">{</span>
+                    <span class="kt">def</span> <span class="n">dependency</span> <span class="o">=</span> <span class="n">dependencies</span><span class="o">.</span><span class="na">appendNode</span><span class="o">(</span><span class="s1">&#39;dependency&#39;</span><span class="o">)</span>
+                    <span class="n">dependency</span><span class="o">.</span><span class="na">appendNode</span><span class="o">(</span><span class="s1">&#39;groupId&#39;</span><span class="o">,</span> <span class="n">it</span><span class="o">.</span><span class="na">moduleGroup</span><span class="o">)</span>
+                    <span class="n">dependency</span><span class="o">.</span><span class="na">appendNode</span><span class="o">(</span><span class="s1">&#39;artifactId&#39;</span><span class="o">,</span> <span class="n">it</span><span class="o">.</span><span class="na">moduleName</span><span class="o">)</span>
+                    <span class="n">dependency</span><span class="o">.</span><span class="na">appendNode</span><span class="o">(</span><span class="s1">&#39;version&#39;</span><span class="o">,</span> <span class="n">it</span><span class="o">.</span><span class="na">moduleVersion</span><span class="o">)</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>Note that while you can similarly add other repositories in this way to the <code>pom.xml</code>, Gradle itself <a href="https://discuss.gradle.org/t/resolving-problem-when-maven-repo-contains-pom-but-not-jar/7174">won&#39;t look</a> for repositories in that file. Therefore if you use libraries from 3rd party repositories, you still need to add those repositories to the <code>build.gradle</code> of your app.</p>
 
-```groovy
-publishing {
-    publications {
-        aar(MavenPublication) {
-            groupId packageName
-            version = libraryVersion
-            artifactId project.getName()
-            artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
+<h2>Securely provide username and password</h2>
 
-            pom.withXml {
-                def dependencies = asNode().appendNode('dependencies')
-                configurations.getByName("_releaseCompile").getResolvedConfiguration().getFirstLevelModuleDependencies().each {
-                    def dependency = dependencies.appendNode('dependency')
-                    dependency.appendNode('groupId', it.moduleGroup)
-                    dependency.appendNode('artifactId', it.moduleName)
-                    dependency.appendNode('version', it.moduleVersion)
-                }
-            }
-        }
-    }
-}
-```
+<p>Obviously we do not want to store a plain text username and password in any file that we check in to our version control system. So to make sure we hide those, create a <code>gradle.properties</code> file in the root of your project and add the following content:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">artifactory_username</span><span class="o">=</span><span class="n">admin</span>
+<span class="n">artifactory_password</span><span class="o">=</span><span class="n">password</span>
+</code></pre></div>
+<p>Then in your <code>build.gradle</code> file, refer to the properties like this:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">username</span> <span class="o">=</span> <span class="n">artifactory_username</span>
+<span class="n">password</span> <span class="o">=</span> <span class="n">artifactory_password</span>
+</code></pre></div>
+<p>We have now obfuscated the password, so it is no longer in the <code>build.gradle</code> file, but people can still find it in the <code>gradle.properties</code> file under version control. To prevent this, you must do one of the following:</p>
 
-Note that while you can similarly add other repositories in this way to the `pom.xml`, Gradle itself [won't look](https://discuss.gradle.org/t/resolving-problem-when-maven-repo-contains-pom-but-not-jar/7174) for repositories in that file. Therefore if you use libraries from 3rd party repositories, you still need to add those repositories to the `build.gradle` of your app.
+<ul>
+<li>Don&#39;t add <code>gradle.properties</code> to your version control system. (add it to your <code>.gitignore</code> file instead)</li>
+<li>Move the <code>gradle.properties</code> to the base <code>~/.gradle</code> folder on your hard drive. I personally recommend this approach as you can never accidentally check in your username and password.</li>
+</ul>
 
-## Securely provide username and password
-Obviously we do not want to store a plain text username and password in any file that we check in to our version control system. So to make sure we hide those, create a `gradle.properties` file in the root of your project and add the following content:
+<h2>Working with Snapshot and Release builds</h2>
 
-```groovy
-artifactory_username=admin
-artifactory_password=password
-```
+<p>While the Artifactory Gradle plugin doesn&#39;t have support for snapshot/release builds out of the box, it is easy to add this functionality by relying on the artifact version:</p>
 
-Then in your `build.gradle` file, refer to the properties like this:
+<ul>
+<li>For release builds: use <a href="http://semver.org/">symantic versioning</a> e.g. <code>1.0.0</code></li>
+<li>For Snapshot builds: use symantic versioning with <code>-SNAPSHOT</code> suffix e.g. <code>1.0.0-SNAPSHOT</code></li>
+</ul>
 
-```groovy
-username = artifactory_username
-password = artifactory_password
-```
+<p>Now you can direct each one to a different Artifactory repository by changing the repository key as follows:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">repoKey</span> <span class="o">=</span> <span class="n">libraryVersion</span><span class="o">.</span><span class="na">endsWith</span><span class="o">(</span><span class="s1">&#39;SNAPSHOT&#39;</span><span class="o">)</span> <span class="o">?</span> <span class="s1">&#39;libs-snapshot-local&#39;</span> <span class="o">:</span> <span class="s1">&#39;libs-release-local&#39;</span>
+</code></pre></div>
+<p>On the application side you need to add two different Maven urls so you can refer to artifacts in both repositories.</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">allprojects</span> <span class="o">{</span>
+    <span class="n">repositories</span> <span class="o">{</span>
+      <span class="n">maven</span> <span class="o">{</span> <span class="n">url</span> <span class="s2">&quot;http://localhost:8081/artifactory/libs-release-local&quot;</span> <span class="o">}</span>
+      <span class="n">maven</span> <span class="o">{</span> <span class="n">url</span> <span class="s2">&quot;http://localhost:8081/artifactory/libs-snapshot-local&quot;</span> <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>Referencing artifacts is exactly the same as before, just don&#39;t forget to add the <code>-SNAPSHOT</code> suffix for snapshot artifacts.</p>
 
-We have now obfuscated the password, so it is no longer in the `build.gradle` file, but people can still find it in the `gradle.properties` file under version control. To prevent this, you must do one of the following:
+<p>Alternatively we can also create a <code>virtual</code> repository in Artifactory which wraps around both repositories. This way the app only requires one URL, but does create a dependency on the existing Artifactory setup.</p>
 
-- Don't add `gradle.properties` to your version control system. (add it to your `.gitignore` file instead)
-- Move the `gradle.properties` to the base `~/.gradle` folder on your hard drive. I personally recommend this approach as you can never accidentally check in your username and password.
+<ol>
+<li>Login to Artifactory and go to admin &gt; repositories &gt; virtual
+<center><a href="/img/blog/artifactory2/artifactory2_virtualrepo1.png"><img src="/img/blog/artifactory2/artifactory2_virtualrepo1.png" alt="All virtual repositories can be found under admin - repositories - virtual"></a></center></li>
+<li>Create a new virtual maven repository which contains both <code>libs-release-local</code> and <code>libs-snapshot-local</code>
+<center><a href="/img/blog/artifactory2/artifactory2_virtualrepo2.png"><img src="/img/blog/artifactory2/artifactory2_virtualrepo2.png" alt="Create a new virtual maven repository which contains both libs-release-local and libs-snapshot-local"></a></center></li>
+<li>In the top level <code>build.gradle</code> of your application, replace the two previous URLS by the following:</li>
+</ol>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy">  <span class="n">allprojects</span> <span class="o">{</span>
+      <span class="n">repositories</span> <span class="o">{</span>
+        <span class="n">maven</span> <span class="o">{</span> <span class="n">url</span> <span class="s2">&quot;http://localhost:8081/artifactory/libs-local&quot;</span> <span class="o">}</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre></div>
+<h2>User access management</h2>
 
-## Working with Snapshot and Release builds
-While the Artifactory Gradle plugin doesn't have support for snapshot/release builds out of the box, it is easy to add this functionality by relying on the artifact version:
+<p>Currently everyone can both read and write to all your repositories. This is not a good idea, especially if your server is also connected to the internet. Therefore we are going to set up two different users: one to deploy artifacts and one to consume artifacts.</p>
 
-- For release builds: use [symantic versioning](http://semver.org/) e.g. `1.0.0`
-- For Snapshot builds: use symantic versioning with `-SNAPSHOT` suffix e.g. `1.0.0-SNAPSHOT`
+<p>In order to do so, go to artifactory and login as <code>admin</code>. Now navigate to admin &gt; security &gt; general and make the following changes:</p>
 
-Now you can direct each one to a different Artifactory repository by changing the repository key as follows:
+<ul>
+<li>set <code>Allow Anonymous Access</code> to false -&gt; ensures only known Artifactory users can consume artifacts</li>
+<li>set <code>Password Encryption Policy</code> to <code>REQUIRED</code> -&gt; ensures we don&#39;t have to hardcode a plain text password in our <code>build.gradle</code>.</li>
+<li>press the <code>encrypt</code> button in the <code>Password Encyption</code> section -&gt; encrypts all passwords</li>
+</ul>
 
-```groovy
-repoKey = libraryVersion.endsWith('SNAPSHOT') ? 'libs-snapshot-local' : 'libs-release-local'
- ```
+<p>If the app now tries to consume an artifact, it will get a <code>401</code> error: unauthorized. You can verify this yourself by clearing the gradle cache (to force a dependency download):</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">gradle clean --refresh-dependencies
+</code></pre></div>
+<p>Next, go to the <code>Users</code> pane and add two new user: <code>consumer</code> and <code>deployer</code>. Make sure not to add them to any group.</p>
 
-On the application side you need to add two different Maven urls so you can refer to artifacts in both repositories.
+<p><center><a href="/img/blog/artifactory2/artifactory2_user1.png"><img src="/img/blog/artifactory2/artifactory2_user1.png" alt="Settings for consumer user"></a></center></p>
 
-```groovy
-allprojects {
-    repositories {
-      maven { url "http://localhost:8081/artifactory/libs-release-local" }
-      maven { url "http://localhost:8081/artifactory/libs-snapshot-local" }
-    }
-}
-```
+<p><center><a href="/img/blog/artifactory2/artifactory2_user2.png"><img src="/img/blog/artifactory2/artifactory2_user2.png" alt="Settings for deployer user"></a></center></p>
 
-Referencing artifacts is exactly the same as before, just don't forget to add the `-SNAPSHOT` suffix for snapshot artifacts.
+<p>Note that you probably also want to change your admin password at this stage. ;)</p>
 
-Alternatively we can also create a `virtual` repository in Artifactory which wraps around both repositories. This way the app only requires one URL, but does create a dependency on the existing Artifactory setup.
+<p>Now go to the <code>Permissions</code> pane and add a new <code>Consume Libraries</code> permission. Set the Selected repositories to include the snapshot and release repository, and in the <code>Users</code> tab add the <code>consumer</code> user with read permissions.</p>
 
-1. Login to Artifactory and go to admin > repositories > virtual
-  <center><a href="{{ site.blogbaseurl }}img/blog/artifactory2/artifactory2_virtualrepo1.png"><img src="{{ site.blogbaseurl }}img/blog/artifactory2/artifactory2_virtualrepo1.png" alt="All virtual repositories can be found under admin - repositories - virtual"></a></center>
-2. Create a new virtual maven repository which contains both `libs-release-local` and `libs-snapshot-local`
-  <center><a href="{{ site.blogbaseurl }}img/blog/artifactory2/artifactory2_virtualrepo2.png"><img src="{{ site.blogbaseurl }}img/blog/artifactory2/artifactory2_virtualrepo2.png" alt="Create a new virtual maven repository which contains both libs-release-local and libs-snapshot-local"></a></center>
-3. In the top level `build.gradle` of your application, replace the two previous URLS by the following:
+<p><center><a href="/img/blog/artifactory2/artifactory2_permission1.png"><img src="/img/blog/artifactory2/artifactory2_permission1.png" alt="Settings for Consume Libraries permission"></a></center></p>
 
-  ```groovy
-  allprojects {
-      repositories {
-        maven { url "http://localhost:8081/artifactory/libs-local" }
-      }
-  }
-  ```
+<p><center><a href="/img/blog/artifactory2/artifactory2_permission2.png"><img src="/img/blog/artifactory2/artifactory2_permission2.png" alt="Settings for Consume Libraries permission"></a></center></p>
 
-## User access management
-Currently everyone can both read and write to all your repositories. This is not a good idea, especially if your server is also connected to the internet. Therefore we are going to set up two different users: one to deploy artifacts and one to consume artifacts.
+<p>Add a second permission: <code>Deploy Libraries</code> with the snapshot and release repository included. Here give the <code>deployer</code> user <code>Deploy/Cache</code> permission but not <code>Delete/Overwrite</code> as you never want to override an existing artifact!</p>
 
-In order to do so, go to artifactory and login as `admin`. Now navigate to admin > security > general and make the following changes:
+<p><center><a href="/img/blog/artifactory2/artifactory2_permission3.png"><img src="/img/blog/artifactory2/artifactory2_permission3.png" alt="Settings for Deploy Libraries permission"></a></center></p>
 
-- set `Allow Anonymous Access` to false -> ensures only known Artifactory users can consume artifacts
-- set `Password Encryption Policy` to `REQUIRED` -> ensures we don't have to hardcode a plain text password in our `build.gradle`.
-- press the `encrypt` button in the `Password Encyption` section -> encrypts all passwords
+<p><center><a href="/img/blog/artifactory2/artifactory2_permission4.png"><img src="/img/blog/artifactory2/artifactory2_permission4.png" alt="Settings for Deploy Libraries permission"></a></center></p>
 
-If the app now tries to consume an artifact, it will get a `401` error: unauthorized. You can verify this yourself by clearing the gradle cache (to force a dependency download):
+<p>All we need to do now is modify the Library and Application to make use of these new users. This is easy for the Library as you can simply replace the <code>admin</code> user with the <code>deploy</code> user in the <code>gradle.properties</code> file.</p>
 
-```bash
-gradle clean --refresh-dependencies
-```
+<p>For the Application we will need to provide credentials to access the Maven repository. Here we will hard code the username and password in the top level <code>build.gradle</code> file because team members should be able to checkout and build the code without extra configuration.</p>
 
-Next, go to the `Users` pane and add two new user: `consumer` and `deployer`. Make sure not to add them to any group.
+<p>Therefore we will take some extra security precautions:</p>
 
-  <center><a href="{{ site.blogbaseurl }}img/blog/artifactory2/artifactory2_user1.png"><img src="{{ site.blogbaseurl }}img/blog/artifactory2/artifactory2_user1.png" alt="Settings for consumer user"></a></center>
+<ul>
+<li>Use a user with read access to only a small subset of our repositories: <code>deploy</code>.</li>
+<li>Check the code into a private repository, so the hardcoded password is protected by repository password.</li>
+<li><p>Use the encrypted version of the password instead of the plain text version:</p>
 
-  <center><a href="{{ site.blogbaseurl }}img/blog/artifactory2/artifactory2_user2.png"><img src="{{ site.blogbaseurl }}img/blog/artifactory2/artifactory2_user2.png" alt="Settings for deployer user"></a></center>
+<ul>
+<li>Login to artifactory as the <code>consumer</code> user</li>
+<li>Navigate to the user settings in the top right corner</li>
+<li>Unlock your profile with your password</li>
+<li>Copy the API key</li>
+</ul>
 
-Note that you probably also want to change your admin password at this stage. ;)
+<p><center><a href="/img/blog/artifactory2/artifactory2_consumer.png"><img src="/img/blog/artifactory2/artifactory2_consumer.png" alt="Copy the API key from the consumer profile."></a></center></p></li>
+</ul>
 
-Now go to the `Permissions` pane and add a new `Consume Libraries` permission. Set the Selected repositories to include the snapshot and release repository, and in the `Users` tab add the `consumer` user with read permissions.
+<p>Now add the user authentication to the top level <code>build.gradle</code> file:</p>
+<div class="highlight"><pre><code class="language-Groovy" data-lang="Groovy"><span class="n">allprojects</span> <span class="o">{</span>
+    <span class="n">repositories</span> <span class="o">{</span>
+        <span class="n">jcenter</span><span class="o">()</span>
+        <span class="c1">// NOTE: configure your virtual repository and user in artifactory to make this work</span>
+        <span class="n">maven</span> <span class="o">{</span>
+            <span class="n">url</span> <span class="s2">&quot;http://localhost:8081/artifactory/libs-local&quot;</span>
+            <span class="n">credentials</span> <span class="o">{</span>
+                <span class="n">username</span> <span class="s1">&#39;consumer&#39;</span>
+                <span class="n">password</span> <span class="s1">&#39;APA52uxnRkmxeRXmJqd7haMpwgg&#39;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>And we are all set with authenticated access to our repositories.</p>
 
-  <center><a href="{{ site.blogbaseurl }}img/blog/artifactory2/artifactory2_permission1.png"><img src="{{ site.blogbaseurl }}img/blog/artifactory2/artifactory2_permission1.png" alt="Settings for Consume Libraries permission"></a></center>
+<h2>Wrap-up</h2>
 
-  <center><a href="{{ site.blogbaseurl }}img/blog/artifactory2/artifactory2_permission2.png"><img src="{{ site.blogbaseurl }}img/blog/artifactory2/artifactory2_permission2.png" alt="Settings for Consume Libraries permission"></a></center>
+<p>That&#39;s a wrap to my two part blogpost about Artifactory! We made our previous repository a lot more secure, added support for dependencies and can now differentiate between release and snapshot artifacts.</p>
 
-Add a second permission: `Deploy Libraries` with the snapshot and release repository included. Here give the `deployer` user `Deploy/Cache` permission but not `Delete/Overwrite` as you never want to override an existing artifact!
+<p>No more excuses not to write reusable code!</p>
 
-  <center><a href="{{ site.blogbaseurl }}img/blog/artifactory2/artifactory2_permission3.png"><img src="{{ site.blogbaseurl }}img/blog/artifactory2/artifactory2_permission3.png" alt="Settings for Deploy Libraries permission"></a></center>
-
-  <center><a href="{{ site.blogbaseurl }}img/blog/artifactory2/artifactory2_permission4.png"><img src="{{ site.blogbaseurl }}img/blog/artifactory2/artifactory2_permission4.png" alt="Settings for Deploy Libraries permission"></a></center>
-
-All we need to do now is modify the Library and Application to make use of these new users. This is easy for the Library as you can simply replace the `admin` user with the `deploy` user in the `gradle.properties` file.
-
-For the Application we will need to provide credentials to access the Maven repository. Here we will hard code the username and password in the top level `build.gradle` file because team members should be able to checkout and build the code without extra configuration.
-
-Therefore we will take some extra security precautions:
-
-- Use a user with read access to only a small subset of our repositories: `deploy`.
-- Check the code into a private repository, so the hardcoded password is protected by repository password.
-- Use the encrypted version of the password instead of the plain text version:
-  - Login to artifactory as the `consumer` user
-  - Navigate to the user settings in the top right corner
-  - Unlock your profile with your password
-  - Copy the API key
-
-    <center><a href="{{ site.blogbaseurl }}img/blog/artifactory2/artifactory2_consumer.png"><img src="{{ site.blogbaseurl }}img/blog/artifactory2/artifactory2_consumer.png" alt="Copy the API key from the consumer profile."></a></center>
-
-Now add the user authentication to the top level `build.gradle` file:
-
-```Groovy
-allprojects {
-    repositories {
-        jcenter()
-        // NOTE: configure your virtual repository and user in artifactory to make this work
-        maven {
-            url "http://localhost:8081/artifactory/libs-local"
-            credentials {
-                username 'consumer'
-                password 'APA52uxnRkmxeRXmJqd7haMpwgg'
-            }
-        }
-    }
-}
-```
-
-And we are all set with authenticated access to our repositories.
-
-## Wrap-up
-That's a wrap to my two part blogpost about Artifactory! We made our previous repository a lot more secure, added support for dependencies and can now differentiate between release and snapshot artifacts.
-
-No more excuses not to write reusable code!
-
-Feel free to leave a comment and don't forget to check the [full source code](https://github.com/JeroenMols/ArtifactoryExample) on Github.
+<p>Feel free to leave a comment and don&#39;t forget to check the <a href="https://github.com/JeroenMols/ArtifactoryExample">full source code</a> on Github.</p>
 </p>
 
                             <ul class="list-inline item-details">
@@ -3119,185 +3175,167 @@ Feel free to leave a comment and don't forget to check the [full source code](ht
                             <h2>A private Maven repository for Android in 30 min</h2>
                             <hr class="star-primary">
                             <img src="img/portfolio/img/blog/artifactory/artifactory.png" class="img-responsive img-centered" alt="">
-                            <p>Setting up your own Maven repository and uploading artifacts to it is quite a daunting task. As I went through this experience myself recently, I want to help others in setting up their own Maven repository via [Artifactory](http://www.jfrog.com/open-source/) and automate uploading artifacts using Gradle.
+                            <p><p>Setting up your own Maven repository and uploading artifacts to it is quite a daunting task. As I went through this experience myself recently, I want to help others in setting up their own Maven repository via <a href="http://www.jfrog.com/open-source/">Artifactory</a> and automate uploading artifacts using Gradle.</p>
 
-In less than 30 minutes you will have a fully operational private Maven repository and have configured your Gradle buildscripts to upload your Android library artifacts.
+<p>In less than 30 minutes you will have a fully operational private Maven repository and have configured your Gradle buildscripts to upload your Android library artifacts.</p>
 
-Note that the material presented here can quite easily be extended to be applicable in a broader scope beyond Android.
+<p>Note that the material presented here can quite easily be extended to be applicable in a broader scope beyond Android.</p>
 
-## Setting up a Repository Manager
-First of all we need to make sure we have an actual Maven repository to upload our artifacts to. According to [Maven](https://maven.apache.org/repository-management.html) you should use a repository manager to do that:
+<h2>Setting up a Repository Manager</h2>
 
-> **Best Practice - Using a Repository Manager**
+<p>First of all we need to make sure we have an actual Maven repository to upload our artifacts to. According to <a href="https://maven.apache.org/repository-management.html">Maven</a> you should use a repository manager to do that:</p>
 
-> A repository manager is a dedicated server application designed to manage repositories of binary components. The usage of a repository manager is considered an essential best practice for any significant usage of Maven.
+<blockquote>
+<p><strong>Best Practice - Using a Repository Manager</strong></p>
 
-### Why Artifactory?
+<p>A repository manager is a dedicated server application designed to manage repositories of binary components. The usage of a repository manager is considered an essential best practice for any significant usage of Maven.</p>
+</blockquote>
 
-While there are some options available to choose from, I personally selected [Artifactory](http://www.jfrog.com/open-source/) because:
+<h3>Why Artifactory?</h3>
 
-- Clear and attractive UI
-- Super fast configuration
-- Gradle plugin
-- User access control
-- Free and open source
+<p>While there are some options available to choose from, I personally selected <a href="http://www.jfrog.com/open-source/">Artifactory</a> because:</p>
 
-<center>[![What is Artifactory](http://img.youtube.com/vi/aa4YBDUDWy0/0.jpg)](http://www.youtube.com/watch?v=aa4YBDUDWy0)</center></p>
+<ul>
+<li>Clear and attractive UI</li>
+<li>Super fast configuration</li>
+<li>Gradle plugin</li>
+<li>User access control</li>
+<li>Free and open source</li>
+</ul>
 
-For more information have a look at the [alternatives](https://maven.apache.org/repository-management.html), checkout this [feature comparison matrix](http://www.jfrog.com/blog/artifactory-vs-nexus-integration-matrix/) or review all of the [Artifactory features](https://www.jfrog.com/confluence/display/RTF/Artifactory+Comparison+Matrix).
+<p><center><a href="http://www.youtube.com/watch?v=aa4YBDUDWy0"><img src="http://img.youtube.com/vi/aa4YBDUDWy0/0.jpg" alt="What is Artifactory"></a></center></p></p>
 
-### Verify you have Java SDK 8
-Before you get started, make sure that you have Java SDK 8 installed, or otherwise Artifactory won't start. You can easily verify your Java version with `java -version`:
+<p>For more information have a look at the <a href="https://maven.apache.org/repository-management.html">alternatives</a>, checkout this <a href="http://www.jfrog.com/blog/artifactory-vs-nexus-integration-matrix/">feature comparison matrix</a> or review all of the <a href="https://www.jfrog.com/confluence/display/RTF/Artifactory+Comparison+Matrix">Artifactory features</a>.</p>
 
-```bash
-$ java -version
-java version "1.8.0_51"
-Java(TM) SE Runtime Environment (build 1.8.0_51-b16)
-Java HotSpot(TM) 64-Bit Server VM (build 25.51-b03, mixed mode)
-```
+<h3>Verify you have Java SDK 8</h3>
 
-If it doesn't output at least version `1.8.x`, you should [download](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) and install a new Java SDK before you continue.
+<p>Before you get started, make sure that you have Java SDK 8 installed, or otherwise Artifactory won&#39;t start. You can easily verify your Java version with <code>java -version</code>:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>java -version
+java version <span class="s2">&quot;1.8.0_51&quot;</span>
+Java<span class="o">(</span>TM<span class="o">)</span> SE Runtime Environment <span class="o">(</span>build 1.8.0_51-b16<span class="o">)</span>
+Java HotSpot<span class="o">(</span>TM<span class="o">)</span> 64-Bit Server VM <span class="o">(</span>build 25.51-b03, mixed mode<span class="o">)</span>
+</code></pre></div>
+<p>If it doesn&#39;t output at least version <code>1.8.x</code>, you should <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">download</a> and install a new Java SDK before you continue.</p>
 
-Note that the error you get if you don't have Java 8 looks a bit cryptic:
-
-```
-Aug 05, 2015 9:29:31 AM org.apache.catalina.core.StandardContext startInternal
+<p>Note that the error you get if you don&#39;t have Java 8 looks a bit cryptic:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Aug 05, 2015 9:29:31 AM org.apache.catalina.core.StandardContext startInternal
 SEVERE: One or more listeners failed to start. Full details will be found in the appropriate container log file
-```
+</code></pre></div>
+<h3>Install Artifactory</h3>
 
-### Install Artifactory
-Thankfully this is incredibly easy to do. Just download the latest version of [Artifactory](http://www.jfrog.com/open-source/), unpack the archive and run the `artifactory` executable for your platform.
+<p>Thankfully this is incredibly easy to do. Just download the latest version of <a href="http://www.jfrog.com/open-source/">Artifactory</a>, unpack the archive and run the <code>artifactory</code> executable for your platform.</p>
 
-<center>[![< 1min Artifactory set up](http://img.youtube.com/vi/7ZSUHgHDMmc/0.jpg)](http://www.youtube.com/watch?v=7ZSUHgHDMmc)</center></p>
+<p><center><a href="http://www.youtube.com/watch?v=7ZSUHgHDMmc"><img src="http://img.youtube.com/vi/7ZSUHgHDMmc/0.jpg" alt="&lt; 1min Artifactory set up"></a></center></p></p>
 
-You can easily verify your installation and start experimenting with its features by navigating to [http://localhost:8081/artifactory/](http://localhost:8081/artifactory/). For now, don't worry about all of the settings, we will configure what we need later on.
+<p>You can easily verify your installation and start experimenting with its features by navigating to <a href="http://localhost:8081/artifactory/">http://localhost:8081/artifactory/</a>. For now, don&#39;t worry about all of the settings, we will configure what we need later on.</p>
 
-### Configuring Gradle to upload Android artifacts
-Let's upload a very simple archive by configuring a new Gradle task for our Android library project.
+<h3>Configuring Gradle to upload Android artifacts</h3>
 
-In your top level `build.gradle` file, add a reference to the repository of the Artifactory Gradle plugin:
+<p>Let&#39;s upload a very simple archive by configuring a new Gradle task for our Android library project.</p>
 
-```groovy
-buildscript {
-    dependencies {
-        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:3.1.1"
-    }
-}
-```
+<p>In your top level <code>build.gradle</code> file, add a reference to the repository of the Artifactory Gradle plugin:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">buildscript</span> <span class="o">{</span>
+    <span class="n">dependencies</span> <span class="o">{</span>
+        <span class="n">classpath</span> <span class="s2">&quot;org.jfrog.buildinfo:build-info-extractor-gradle:3.1.1&quot;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>Next in your library we will need to apply two new plugins: one to prepare the Maven artifacts <code>maven-publish</code> and one to upload the archives to Artifactory <code>com.jfrog.artifactory</code>:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">&#39;com.jfrog.artifactory&#39;</span>
+<span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">&#39;maven-publish&#39;</span>
+</code></pre></div>
+<p>Every Maven artifact is identified by three different parameters:</p>
 
-Next in your library we will need to apply two new plugins: one to prepare the Maven artifacts `maven-publish` and one to upload the archives to Artifactory ` com.jfrog.artifactory`:
+<ul>
+<li>artifactId: the name of your library</li>
+<li>groupId: usually the package name of your library</li>
+<li>version: identifies different releases of the same artifact</li>
+</ul>
 
-```groovy
-apply plugin: 'com.jfrog.artifactory'
-apply plugin: 'maven-publish'
-```
+<p>For the last two, we will explicitly define a variable in the <code>build.gradle</code> file.</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="kt">def</span> <span class="n">packageName</span> <span class="o">=</span> <span class="s1">&#39;com.jeroenmols.awesomelibrary&#39;</span>
+<span class="kt">def</span> <span class="n">libraryVersion</span> <span class="o">=</span> <span class="s1">&#39;1.0.0&#39;</span>
+</code></pre></div>
+<p>The <code>artifactId</code> however needs to match the output filename of the <code>assembleRelease</code> task. Therefore we either have to <a href="https://stackoverflow.com/questions/26936812/renaming-modules-in-android-studio">rename the library module</a> or explicitly <a href="https://stackoverflow.com/questions/24728591/how-to-set-name-of-aar-output-from-gradle">specify the output filename</a>. I personally prefer the first approach, which allows to get <code>artifactId</code> in the following way:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">project</span><span class="o">.</span><span class="na">getName</span><span class="o">()</span> <span class="c1">// the ArtifactId</span>
+</code></pre></div>
+<p>Now we need to configure the <code>maven-publish</code> plugin so that it knows which artifacts to publish to Artifactory. For our purpose we will refer to the <code>***-release.aar</code> file, generated by the <code>assembleRelease</code> task. Note that we can predict the name by taking the name of the Library project:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">publishing</span> <span class="o">{</span>
+    <span class="n">publications</span> <span class="o">{</span>
+        <span class="n">aar</span><span class="o">(</span><span class="n">MavenPublication</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">groupId</span> <span class="n">packageName</span>
+            <span class="n">version</span> <span class="o">=</span> <span class="n">libraryVersion</span>
+            <span class="n">artifactId</span> <span class="n">project</span><span class="o">.</span><span class="na">getName</span><span class="o">()</span>
 
-Every Maven artifact is identified by three different parameters:
+            <span class="c1">// Tell maven to prepare the generated &quot;*.aar&quot; file for publishing</span>
+            <span class="n">artifact</span><span class="o">(</span><span class="s2">&quot;$buildDir/outputs/aar/${project.getName()}-release.aar&quot;</span><span class="o">)</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>Finally we need to configure the <code>com.jfrog.artifactory</code> plugin so it knows which repository to publish the artifacts to. For simplicity we will upload the artifact to the locally running Artifactory instance (<a href="http://localhost:8081/artifactory">http://localhost:8081/artifactory</a>) and place it in the default <code>libs-release-local</code> repository. Note that the username <code>admin</code> and password <code>password</code> are hardcoded in this example, but we will provide a better solution for that later.</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">artifactory</span> <span class="o">{</span>
+    <span class="n">contextUrl</span> <span class="o">=</span> <span class="s1">&#39;http://localhost:8081/artifactory&#39;</span>
+    <span class="n">publish</span> <span class="o">{</span>
+        <span class="n">repository</span> <span class="o">{</span>
+            <span class="c1">// The Artifactory repository key to publish to</span>
+            <span class="n">repoKey</span> <span class="o">=</span> <span class="s1">&#39;libs-release-local&#39;</span>
 
-- artifactId: the name of your library
-- groupId: usually the package name of your library
-- version: identifies different releases of the same artifact
+            <span class="n">username</span> <span class="o">=</span> <span class="s2">&quot;admin&quot;</span>
+            <span class="n">password</span> <span class="o">=</span> <span class="s2">&quot;password&quot;</span>
+        <span class="o">}</span>
+        <span class="n">defaults</span> <span class="o">{</span>
+            <span class="c1">// Tell the Artifactory Plugin which artifacts should be published to Artifactory.</span>
+            <span class="n">publications</span><span class="o">(</span><span class="s1">&#39;aar&#39;</span><span class="o">)</span>
+            <span class="n">publishArtifacts</span> <span class="o">=</span> <span class="kc">true</span>
 
-For the last two, we will explicitly define a variable in the `build.gradle` file.
+            <span class="c1">// Properties to be attached to the published artifacts.</span>
+            <span class="n">properties</span> <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;qa.level&#39;</span><span class="o">:</span> <span class="s1">&#39;basic&#39;</span><span class="o">,</span> <span class="s1">&#39;dev.team&#39;</span><span class="o">:</span> <span class="s1">&#39;core&#39;</span><span class="o">]</span>
+            <span class="c1">// Publish generated POM files to Artifactory (true by default)</span>
+            <span class="n">publishPom</span> <span class="o">=</span> <span class="kc">true</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+<h3>Deploying artifacts</h3>
 
-```groovy
-def packageName = 'com.jeroenmols.awesomelibrary'
-def libraryVersion = '1.0.0'
-```
+<p>Now that our Gradle buildscripts are properly configured we can easily publish artifacts to Artifactory by running the following command:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">gradle</span> <span class="n">assembleRelease</span> <span class="n">artifactoryPublish</span>
+</code></pre></div>
+<p>Notice how we first invoke <code>assembleRelease</code> before we invoke the actual <code>artifactoryPublish</code> task, because of the way we defined the artifacts to publish in the previous section.</p>
 
-The `artifactId` however needs to match the output filename of the `assembleRelease` task. Therefore we either have to [rename the library module](https://stackoverflow.com/questions/26936812/renaming-modules-in-android-studio) or explicitly [specify the output filename](https://stackoverflow.com/questions/24728591/how-to-set-name-of-aar-output-from-gradle). I personally prefer the first approach, which allows to get `artifactId` in the following way:
+<p>You can very easily verify that the upload was successful by navigating to <a href="http://localhost:8081">localhost:8081</a> and signing in with the default admin credentials.</p>
 
-```groovy
-project.getName() // the ArtifactId
-```
+<p><center><a href="/img/blog/artifactory/artifactory_screenshot.png"><img src="/img/blog/artifactory/artifactory_screenshot.png" alt="Verify a successful upload in the Artifactory control panel."></a></center></p>
 
-Now we need to configure the `maven-publish` plugin so that it knows which artifacts to publish to Artifactory. For our purpose we will refer to the `***-release.aar` file, generated by the `assembleRelease` task. Note that we can predict the name by taking the name of the Library project:
+<h3>Using the artifacts</h3>
 
-```groovy
-publishing {
-    publications {
-        aar(MavenPublication) {
-            groupId packageName
-            version = libraryVersion
-            artifactId project.getName()
+<p>To make use of the published artifacts in another project we have to add our Artifactory repository to the list of Maven repositories in your top level <code>build.gradle</code> file:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">allprojects</span> <span class="o">{</span>
+    <span class="n">repositories</span> <span class="o">{</span>
+        <span class="n">maven</span> <span class="o">{</span> <span class="n">url</span> <span class="s2">&quot;http://localhost:8081/artifactory/libs-release-local&quot;</span> <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>After we can simply add the artifact as a dependency in the <code>build.gradle</code> file of our main project:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">dependencies</span> <span class="o">{</span>
+    <span class="n">compile</span> <span class="s1">&#39;com.jeroenmols.awesomelibrary:1.0.0&#39;</span>
+<span class="o">}</span>
+</code></pre></div>
+<h2>Wrap-up</h2>
 
-            // Tell maven to prepare the generated "*.aar" file for publishing
-            artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
-      }
-    }
-}
-```
+<p>Congratulations! You now have a fully working Maven repository manager with a Gradle script to generate and upload your artifacts.</p>
 
-Finally we need to configure the `com.jfrog.artifactory` plugin so it knows which repository to publish the artifacts to. For simplicity we will upload the artifact to the locally running Artifactory instance ([http://localhost:8081/artifactory](http://localhost:8081/artifactory)) and place it in the default `libs-release-local` repository. Note that the username `admin` and password `password` are hardcoded in this example, but we will provide a better solution for that later.
+<p>In the next <a href="/blog/2015/08/13/artifactory2/">blog post</a> I will zoom in on more advanced topics like:</p>
 
-```groovy
-artifactory {
-    contextUrl = 'http://localhost:8081/artifactory'
-    publish {
-        repository {
-            // The Artifactory repository key to publish to
-            repoKey = 'libs-release-local'
+<ul>
+<li>Library projects with dependencies</li>
+<li>Configuring your own repositories</li>
+<li>User access management and rights</li>
+<li>Removing hardcoded username and password from <code>build.gradle</code></li>
+</ul>
 
-            username = "admin"
-            password = "password"
-        }
-        defaults {
-            // Tell the Artifactory Plugin which artifacts should be published to Artifactory.
-            publications('aar')
-            publishArtifacts = true
-
-            // Properties to be attached to the published artifacts.
-            properties = ['qa.level': 'basic', 'dev.team': 'core']
-            // Publish generated POM files to Artifactory (true by default)
-            publishPom = true
-        }
-    }
-}
-```
-
-### Deploying artifacts
-Now that our Gradle buildscripts are properly configured we can easily publish artifacts to Artifactory by running the following command:
-
-```groovy
-gradle assembleRelease artifactoryPublish
-```
-
-Notice how we first invoke `assembleRelease` before we invoke the actual `artifactoryPublish` task, because of the way we defined the artifacts to publish in the previous section.
-
-You can very easily verify that the upload was successful by navigating to [localhost:8081](http://localhost:8081) and signing in with the default admin credentials.
-
-<center><a href="{{ site.blogbaseurl }}img/blog/artifactory/artifactory_screenshot.png"><img src="{{ site.blogbaseurl }}img/blog/artifactory/artifactory_screenshot.png" alt="Verify a successful upload in the Artifactory control panel."></a></center>
-
-### Using the artifacts
-To make use of the published artifacts in another project we have to add our Artifactory repository to the list of Maven repositories in your top level `build.gradle` file:
-
-```groovy
-allprojects {
-    repositories {
-        maven { url "http://localhost:8081/artifactory/libs-release-local" }
-    }
-}
-```
-
-After we can simply add the artifact as a dependency in the `build.gradle` file of our main project:
-
-```groovy
-dependencies {
-    compile 'com.jeroenmols.awesomelibrary:1.0.0'
-}
-```
-
-## Wrap-up
-Congratulations! You now have a fully working Maven repository manager with a Gradle script to generate and upload your artifacts.
-
-In the next [blog post]({% post_url 2015-08-13-artifactory2 %}) I will zoom in on more advanced topics like:
-
-- Library projects with dependencies
-- Configuring your own repositories
-- User access management and rights
-- Removing hardcoded username and password from `build.gradle`
-
-I have also uploaded a [complete example](https://github.com/JeroenMols/ArtifactoryExample) on GitHub for your reference.
+<p>I have also uploaded a <a href="https://github.com/JeroenMols/ArtifactoryExample">complete example</a> on GitHub for your reference.</p>
 </p>
 
                             <ul class="list-inline item-details">

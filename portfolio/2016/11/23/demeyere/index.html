@@ -5,7 +5,7 @@
     <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Jeroen Mols</title>
+    <title>Demeyere inventory</title>
 
     <meta name="twitter:site" content="@molsjeroen">
     <meta property="og:type" content="article">
@@ -21,7 +21,7 @@
 
     <meta name="viewport" content="width=device-width">
     <meta name="description" content="Portfolio of Jeroen Mols, the Android developer you should hire.">
-    <link rel="canonical" href="http://jeroenmols.com/">
+    <link rel="canonical" href="http://jeroenmols.com/portfolio/2016/11/23/demeyere/">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
 
     <!-- Custom CSS & Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
@@ -619,64 +619,67 @@
                             <h2>Using Mockito 2.x on Android</h2>
                             <hr class="star-primary">
                             <img src="img/portfolio/img/blog/mockitoandroid/mockitoandroid.png" class="img-responsive img-centered" alt="">
-                            <p><p>The Mockito team is on fire lately! Not only did they add support to mock final classes and methods, but now they allow running Mockito directly onto an actual Android device.</p>
+                            <p>The Mockito team is on fire lately! Not only did they add support to mock final classes and methods, but now they allow running Mockito directly onto an actual Android device.
 
-<p>Time to convert our Mockito 1.x projects to 2.x!</p>
+Time to convert our Mockito 1.x projects to 2.x!
 
-<p><br></p>
+<br>
 
-<h2>History</h2>
+## History
+It has always been possible to run Mockito on Android devices and emulators. This however required using a tool called `Dexmaker` to help Mockito generate classes in the Android virtual machine.
 
-<p>It has always been possible to run Mockito on Android devices and emulators. This however required using a tool called <code>Dexmaker</code> to help Mockito generate classes in the Android virtual machine.</p>
+While this approach worked fine, there was one big caveat: `Dexmaker` wasn't actively maintained. Consequently it was only compatible with Mockito 1.x so you couldn't use the new stuff while running tests on an Android device.
 
-<p>While this approach worked fine, there was one big caveat: <code>Dexmaker</code> wasn&#39;t actively maintained. Consequently it was only compatible with Mockito 1.x so you couldn&#39;t use the new stuff while running tests on an Android device.</p>
+Further this extra dependency made your `build.gradle` look like this:
 
-<p>Further this extra dependency made your <code>build.gradle</code> look like this:</p>
-<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">dependencies</span> <span class="o">{</span>
-    <span class="o">...</span>
+```groovy
+dependencies {
+    ...
 
-    <span class="n">testCompile</span> <span class="s1">&#39;org.mockito:mockito-core:2.6.3&#39;</span>
+    testCompile 'org.mockito:mockito-core:2.6.3'
 
-    <span class="n">androidTestCompile</span> <span class="s1">&#39;org.mockito:mockito-core:1.10.19&#39;</span>
-    <span class="n">androidTestCompile</span> <span class="s1">&#39;com.crittercism.dexmaker:dexmaker:1.4&#39;</span>
-    <span class="n">androidTestCompile</span> <span class="s1">&#39;com.crittercism.dexmaker:dexmaker-dx:1.4&#39;</span>
-    <span class="n">androidTestCompile</span> <span class="s1">&#39;com.crittercism.dexmaker:dexmaker-mockito:1.4&#39;</span>
-<span class="o">}</span>
-</code></pre></div>
-<p>Notice the 2.x version for the unit tests and the 1.x version for the instrumentation tests.</p>
+    androidTestCompile 'org.mockito:mockito-core:1.10.19'
+    androidTestCompile 'com.crittercism.dexmaker:dexmaker:1.4'
+    androidTestCompile 'com.crittercism.dexmaker:dexmaker-dx:1.4'
+    androidTestCompile 'com.crittercism.dexmaker:dexmaker-mockito:1.4'
+}
+```
 
-<p>Fortunately, Mockito 2.6.0 changed that:</p>
+Notice the 2.x version for the unit tests and the 1.x version for the instrumentation tests.
 
-<p><center><blockquote class="twitter-tweet" data-lang="nl"><p lang="en" dir="ltr">We have just released Mockito 2.6 with native support for Android. On Android, just use the mockito-android dependency. Test code stays!</p>&mdash; Rafael Winterhalter (@rafaelcodes) <a href="https://twitter.com/rafaelcodes/status/819525418231496705">12 januari 2017</a></blockquote></center></p>
+Fortunately, Mockito 2.6.0 changed that:
+
+<center><blockquote class="twitter-tweet" data-lang="nl"><p lang="en" dir="ltr">We have just released Mockito 2.6 with native support for Android. On Android, just use the mockito-android dependency. Test code stays!</p>&mdash; Rafael Winterhalter (@rafaelcodes) <a href="https://twitter.com/rafaelcodes/status/819525418231496705">12 januari 2017</a></blockquote></center>
 
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-<p><br></p>
+<br>
 
-<h2>Mockito 2.6.0+</h2>
+## Mockito 2.6.0+
+The latest release added a new artifact `mockito-android` next to the existing `mockito-core` artifact.
 
-<p>The latest release added a new artifact <code>mockito-android</code> next to the existing <code>mockito-core</code> artifact.</p>
+So to convert your existing instrumentation tests, just remove the `Dexmaker` dependencies and replace the `mockito-core` dependency with its `mockito-android` equivalent:
 
-<p>So to convert your existing instrumentation tests, just remove the <code>Dexmaker</code> dependencies and replace the <code>mockito-core</code> dependency with its <code>mockito-android</code> equivalent:</p>
-<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">dependencies</span> <span class="o">{</span>
-    <span class="o">...</span>
+```groovy
+dependencies {
+    ...
 
-    <span class="n">testCompile</span> <span class="s1">&#39;org.mockito:mockito-core:2.6.3&#39;</span>
+    testCompile 'org.mockito:mockito-core:2.6.3'
 
-    <span class="n">androidTestCompile</span> <span class="s1">&#39;org.mockito:mockito-android:2.6.3&#39;</span>
-<span class="o">}</span>
-</code></pre></div>
-<p>Simple, elegant and future proof!</p>
+    androidTestCompile 'org.mockito:mockito-android:2.6.3'
+}
+```
 
-<p>Finally, please be aware that Mockito 2.x has some <a href="https://github.com/mockito/mockito/wiki/What%27s-new-in-Mockito-2#incompatible">behavior changes</a>. The one you&#39;re most likely going to run into while migrating is that <code>anyX()</code> and <code>any(SomeType.class)</code> matchers now reject null values.</p>
+Simple, elegant and future proof!
 
-<p><br></p>
+Finally, please be aware that Mockito 2.x has some [behavior changes](https://github.com/mockito/mockito/wiki/What%27s-new-in-Mockito-2#incompatible). The one you're most likely going to run into while migrating is that `anyX()` and `any(SomeType.class)` matchers now reject null values.
 
-<h2>Wrap-up</h2>
+<br>
 
-<p>Finally Mockito has first class support for Android instrumentation tests! I&#39;ve also updated my <a href="https://github.com/jeroenmols/mockitoexample">Mockito sample project</a> where you can see how it works and learn more about how to use Mockito.</p>
+## Wrap-up
+Finally Mockito has first class support for Android instrumentation tests! I've also updated my [Mockito sample project](https://github.com/jeroenmols/mockitoexample) where you can see how it works and learn more about how to use Mockito.
 
-<p>As always you can reach me <a href="https://twitter.com/molsjeroen">@molsjeroen</a> on twitter, or leave a comment below!</p>
+As always you can reach me [@molsjeroen](https://twitter.com/molsjeroen) on twitter, or leave a comment below!
 </p>
 
                             <ul class="list-inline item-details">
@@ -715,34 +718,32 @@
                             <h2>Year in review 2016</h2>
                             <hr class="star-primary">
                             <img src="img/portfolio/img/blog/yearinreview16/yearinreview16.png" class="img-responsive img-centered" alt="">
-                            <p><p>It&#39;s that time of the year again to do a little personal retrospective.</p>
+                            <p>It's that time of the year again to do a little personal retrospective.
 
-<p>2016 passed by so quickly! I had a fantastic time playing around with (and taking care of) my wife and daughter. It&#39;s really astonishing to see how much a baby can learn and grow in a year.</p>
+2016 passed by so quickly! I had a fantastic time playing around with (and taking care of) my wife and daughter. It's really astonishing to see how much a baby can learn and grow in a year.
 
-<p>Being a father also helps putting things into perspective and rediscover the little pleasures in live. For example, there is literally no better cure for stress than coming home, being greeted by a happy smile and laying down on the floor playing with your own kid. :)</p>
+Being a father also helps putting things into perspective and rediscover the little pleasures in live. For example, there is literally no better cure for stress than coming home, being greeted by a happy smile and laying down on the floor playing with your own kid. :)
 
-<p>Besides that, I actually found more time than expected to grow technically. As such I:</p>
+Besides that, I actually found more time than expected to grow technically. As such I:
 
-<ul>
-<li>Wrote <a href="http://jeroenmols.com/blog/">11 blogposts</a>, almost meeting my goal of 1 per month</li>
-<li>Got featured in <a href="http://androidweekly.net/search?keyword=jeroen+mols&amp;commit=Search">Android weekly</a> a whopping 9 times</li>
-<li>Appeared on <a href="https://www.youtube.com/watch?v=TxFaWXkBo2E">Android dialogs</a></li>
-<li>Spoke at 5 big conferences + 1 local meetup</li>
-<li>Grew my <a href="https://twitter.com/molsjeroen">twitter</a> followers to more than 750</li>
-<li>Gathered over 1000 stars on <a href="http://github-awards.com/users/search?login=jeroenmols">Github</a></li>
-<li>Gained &gt;2000 reputation on <a href="https://stackoverflow.com/users/2771851/jmols">stackoverflow</a></li>
-<li>Built a new Github library <a href="https://github.com/JeroenMols/MockitoCollectionMatchers">MockitoCollectionMatchers</a></li>
-<li>Visited Google IO (finally!)</li>
-<li>Built 2 green field side projects!</li>
-<li>Made plans for building a house</li>
-<li>Taught my daughter how to fist bump and say Yolo #awesomedad</li>
-</ul>
+- Wrote [11 blogposts](http://jeroenmols.com/blog/), almost meeting my goal of 1 per month
+- Got featured in [Android weekly](http://androidweekly.net/search?keyword=jeroen+mols&commit=Search) a whopping 9 times
+- Appeared on [Android dialogs](https://www.youtube.com/watch?v=TxFaWXkBo2E)
+- Spoke at 5 big conferences + 1 local meetup
+- Grew my [twitter](https://twitter.com/molsjeroen) followers to more than 750
+- Gathered over 1000 stars on [Github](http://github-awards.com/users/search?login=jeroenmols)
+- Gained >2000 reputation on [stackoverflow](https://stackoverflow.com/users/2771851/jmols)
+- Built a new Github library [MockitoCollectionMatchers](https://github.com/JeroenMols/MockitoCollectionMatchers)
+- Visited Google IO (finally!)
+- Built 2 green field side projects!
+- Made plans for building a house
+- Taught my daughter how to fist bump and say Yolo #awesomedad
 
-<p><center><a href="/img/blog/yearinreview16/house.png"><img src="/img/blog/yearinreview16/house.png" alt="Render of our house"></a></center></p>
+<center><a href="{{ site.blogbaseurl }}img/blog/yearinreview16/house.png"><img src="{{ site.blogbaseurl }}img/blog/yearinreview16/house.png" alt="Render of our house"></a></center>
 
-<p>Next year construction of our dream house will start, so time will once again be a scarce resource. And since I don&#39;t want to give in on quality time with my daughter, I&#39;ll just try to keep up my current blogging and speaking efforts. However, it would be really cool if I could speak at a conference outside Europe!</p>
+Next year construction of our dream house will start, so time will once again be a scarce resource. And since I don't want to give in on quality time with my daughter, I'll just try to keep up my current blogging and speaking efforts. However, it would be really cool if I could speak at a conference outside Europe!
 
-<p>As always you can reach me <a href="https://twitter.com/molsjeroen">@molsjeroen</a> on twitter, or leave a comment below!</p>
+As always you can reach me [@molsjeroen](https://twitter.com/molsjeroen) on twitter, or leave a comment below!
 </p>
 
                             <ul class="list-inline item-details">
