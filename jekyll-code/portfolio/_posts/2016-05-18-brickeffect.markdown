@@ -3,7 +3,7 @@ layout: portfolio
 modal-id: brickeffect
 date: 2016-05-18
 title: BrickEffect
-img: BrickEffect_poster.jpg
+img: Brickeffect_poster.jpg
 alt: image-alt
 project-date: May 2016
 client: Jeroen Mols
