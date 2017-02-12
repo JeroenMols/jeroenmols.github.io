@@ -6,7 +6,7 @@ title: LandscapeVideoCamera
 img: LandscapeVideoCamera_poster.jpg
 alt: image-alt
 project-date: December 2014
-client: JMols Mobile
+client: Jeroen Mols
 clienturl: https://github.com/JeroenMols/LandscapeVideoCamera
 appstore: Google Play
 appstoreurl: https://play.google.com/store/apps/details?id=com.jmolsmobile.landscapevideocapture_sample

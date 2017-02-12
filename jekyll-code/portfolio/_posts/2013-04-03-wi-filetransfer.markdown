@@ -6,7 +6,7 @@ title: Wi-FileTransfer
 img: WiFileTransfer_poster.jpg
 alt: image-alt
 project-date: November 2012
-client: JMols Mobile
+client: Jeroen Mols
 clienturl: http://wi-filetransfer.blogspot.be/
 appstore: Google Play
 appstoreurl: https://play.google.com/store/apps/details?id=com.jmols.wi_filetransfer
