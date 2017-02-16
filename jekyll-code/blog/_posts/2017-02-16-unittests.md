@@ -8,7 +8,7 @@ imgcredit: Alberto G., https://creativecommons.org/licenses/by/2.0/, cropped
 ---
 If you can code, you can also write unit tests. Writing awesome tests on the other hand is a different story. Don't fool yourself: Unit testing code is production code that you will need to maintain, refactor and build upon for years to come.
 
-This blogpost aims at providing three very simple rules that will significantly ramp up your testing game. They will reduce test code maintenance and increase the feedback/value you get from a failing test.
+This blogpost aims at providing three very simple rules that will significantly ramp up your testing game. Every rule is followed by pragmatic tips so you can easily start implementing.
 
 <br>
 

@@ -7,7 +7,7 @@
  <link href="http://jeroenmols.com/"/>
  <icon>http://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog of Jeroen Mols focussed on Android development, open source and technology.</subtitle>
- <updated>2017-02-16T23:03:57+01:00</updated>
+ <updated>2017-02-16T23:09:57+01:00</updated>
  <id>http://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -28,7 +28,7 @@
      
      <p>If you can code, you can also write unit tests. Writing awesome tests on the other hand is a different story. Don&#39;t fool yourself: Unit testing code is production code that you will need to maintain, refactor and build upon for years to come.</p>
 
-<p>This blogpost aims at providing three very simple rules that will significantly ramp up your testing game. They will reduce test code maintenance and increase the feedback/value you get from a failing test.</p>
+<p>This blogpost aims at providing three very simple rules that will significantly ramp up your testing game. Every rule is followed by pragmatic tips so you can easily start implementing.</p>
 
 
 
