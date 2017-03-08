@@ -7,7 +7,7 @@
  <link href="http://jeroenmols.com/"/>
  <icon>http://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog of Jeroen Mols focussed on Android development, open source and technology.</subtitle>
- <updated>2017-02-16T23:09:57+01:00</updated>
+ <updated>2017-03-08T23:38:31+01:00</updated>
  <id>http://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,26 @@
  <webfeeds:cover image="http://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>http://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>Why your app should crash</title>
+   <link href="http://jeroenmols.com/blog/2017/03/08/appcrash/"/>
+   <updated>2017-03-08T00:00:00+01:00</updated>
+   <id>http://jeroenmols.com/blog/2017/03/08/appcrash</id>
+   <content type="html"><![CDATA[
+     
+        <img src="http://jeroenmols.com/img/blog/appcrash/appcrash.png" alt="Why your app should crash">
+     
+     <p>Too many times I&#39;ve seen developers trying to avoid crashes at all cost. But are unhandled exceptions really that bad? And are null checks really the answer?</p>
+
+<p>Actually, sometimes you want your app to crash. Find out why in this blogpost.</p>
+
+
+
+
+     <a href="http://jeroenmols.com/blog/2017/03/08/appcrash/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>Write awesome unit tests</title>

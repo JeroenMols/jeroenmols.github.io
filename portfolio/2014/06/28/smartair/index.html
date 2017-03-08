@@ -131,6 +131,35 @@
 									</br>
 
 									
+									<div class="blogpost-overlay-header" style="background-image: url(/img/blog/appcrash/appcrash.png)">
+									<div class="blogpost-overlay-header-title">
+									  
+
+									<h1 class="blogpost-title">
+									  <a href="/blog/2017/03/08/appcrash/">
+									Why your app should crash
+									  </a>
+									</h1>
+
+									<span class="blogpost-date">08 Mar 2017</span>
+
+									
+									</div>
+									</div>
+									
+
+								</div>
+							</div>
+
+						
+						 
+					
+						
+							<div class="col-lg-6">
+								<div class="post">
+									</br>
+
+									
 									<div class="blogpost-overlay-header" style="background-image: url(/img/blog/unittests/unittests.png)">
 									<div class="blogpost-overlay-header-title">
 									  
@@ -212,32 +241,6 @@
 						
 						 
 					
-						
-							<div class="col-lg-6">
-								<div class="post">
-									</br>
-
-									
-									<div class="blogpost-overlay-header" style="background-image: url(/img/blog/mockitomatchers/mockitomatchers.png)">
-									<div class="blogpost-overlay-header-title">
-									  
-
-									<h1 class="blogpost-title">
-									  <a href="/blog/2016/10/31/mockitomatchers/">
-									Extending Mockito
-									  </a>
-									</h1>
-
-									<span class="blogpost-date">31 Oct 2016</span>
-
-									
-									</div>
-									</div>
-									
-
-								</div>
-							</div>
-
 						
 						 
 					
@@ -503,6 +506,7 @@
                 <div class="col-lg-4"> -->
                     <p>Upcoming talks:
                         <ul>
+                            <li>Android Makers FR - The ART of organizing resources</li>
                             <li>Devoxx UK - Deep into the IoT trenches: how to build a connected product</li>
                         </ul>
                     </p>
@@ -607,6 +611,155 @@
 
      <!-- Portfolio Modals -->
  
+    <div class="portfolio-modal modal fade" id="portfolioModal-" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>Why your app should crash</h2>
+                            <hr class="star-primary">
+                            <img src="img/portfolio/img/blog/appcrash/appcrash.png" class="img-responsive img-centered" alt="">
+                            <p>Too many times I've seen developers trying to avoid crashes at all cost. But are unhandled exceptions really that bad? And are null checks really the answer?
+
+Actually, sometimes you want your app to crash. Find out why in this blogpost.
+
+<br>
+
+## Prologue
+In this post I focus on null checks for simplicity, but this can easily be generalized to any other edge case.
+
+<br>
+
+## The null check architecture
+Let's say we have a simple application that shows a list of sports player:
+
+```java
+public void showPlayers(List<Player> soccerPlayers) {
+  // some awesome code here
+}
+```
+
+In a happy scenario, this will work, but what happens if the list is null?
+
+Obviously can add an infamous null check:
+
+```java
+public void showPlayers(List<Player> soccerPlayers) {
+  if (soccerPlayers == null) return;
+
+  // some awesome code here
+}
+```
+
+All settled!
+
+Oh wait... the list can also be empty:
+
+```java
+public void showPlayers(List<Player> soccerPlayers) {
+  if (soccerPlayers == null || soccerPlayers.isEmpty()) return;
+
+  // some awesome code here
+}
+```
+
+And what about the five layers of architecture `soccerPlayers` gets passed through below the UI? Should we also duplicate our checks in each of those layers in those?
+
+Before you know it you'll have null checks everywhere!
+
+<br>
+
+## The null check problem
+Obviously, null checks clutter your code significantly.
+
+But that's not the only problem! Because once you're used to using them, you'll use them everywhere!
+
+```java
+public void showPlayers(List<Player> soccerPlayers) {
+  if (soccerPlayers == null) return;
+
+  if (myRecyclerView == null) return;
+
+  if (myRecyclerView.getAdapter() == null) return;
+
+  // some awesome code here
+}
+```
+
+Even when you don't need them, you'll still add them!
+
+Let that sink in for a second...
+
+What is the exact problem here?
+
+> An "innocent" null check can easily mask a bigger, more fundamental issue
+
+Should `soccerPlayers` actually ever be null there in the first place? Or is it the responsibility of the lower levels of your app to return an empty list instead?
+
+And what should happen when the `soccerPlayers` is actually null? Surely showing the user a completely blank screen by doing a `return`, right?
+
+The latter actually means that your app will stop working "silently" in production without you having any way of detecting that!
+
+<br>
+
+## Crashes to the rescue
+> If an app gets into a state it wasn't designed for, it should crash. There is no general way of handling that.
+
+Methods shouldn't check their inputs for every possible scenario that can theoretically occur. Instead, you should carefully consider what the input can actually be and only prepare for that.
+
+If your app gets in a state you didn't design it for, wouldn't that be something you would like to know ASAP?
+
+Well in come our beloved exceptions!
+
+Unhandled exceptions are great because they:
+
+- notify you immediately by crashing the app
+- highlight the problem instead of dying silently
+- have a trace to pinpoint the problem
+- are automatically backed up to your crashreporting
+
+This obviously doens't mean that your app should crash for your users! All I'm saying is that if there is a problem in my app, I'd rather know about it by getting a crash report instead of not knowing.
+
+Crash or not, for the end user it's the same: their app is broken.
+
+And be reassured, you won't start bothering users with more crashes! Before rolling out to production you still have several safety nets: developer testing, Q&A department, beta testing, staged rolout,...
+
+<br>
+
+## Wrap-up
+Instead of being afraid of crashes, you should embrace them to find errors in your apps fasters. Crashes not only make errors immediately visible, they also offer a convenient way of debugging them via the stacktrace.
+
+As always you can reach me [@molsjeroen](https://twitter.com/molsjeroen) on twitter, or leave a comment below!
+</p>
+
+                            <ul class="list-inline item-details">
+                                <li>Client:
+                                    <strong><a href=></a>
+                                    </strong>
+                                </li>
+                                <li>Date:
+                                    <strong></strong>
+                                </li>
+                                <li>Download:
+                                    <strong><a href=></a>
+                                    </strong>
+                                </li>
+                            </ul>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="portfolio-modal modal fade" id="portfolioModal-" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
