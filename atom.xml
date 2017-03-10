@@ -7,7 +7,7 @@
  <link href="http://jeroenmols.com/"/>
  <icon>http://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog of Jeroen Mols focussed on Android development, open source and technology.</subtitle>
- <updated>2017-03-10T08:20:36+01:00</updated>
+ <updated>2017-03-10T15:02:56+01:00</updated>
  <id>http://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -28,7 +28,7 @@
      
      <p>Too many times I&#39;ve seen developers trying to avoid crashes at all cost. But are unhandled exceptions really that bad? And are null checks really the answer?</p>
 
-<p>Actually, sometimes you want your app to crash. Find out why in this blogpost.</p>
+<p>Actually, sometimes you want your app to crash. This post will explain why and give some practical tips.</p>
 
 
 

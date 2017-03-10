@@ -106,7 +106,7 @@
 
   <p>Too many times I&#39;ve seen developers trying to avoid crashes at all cost. But are unhandled exceptions really that bad? And are null checks really the answer?</p>
 
-<p>Actually, sometimes you want your app to crash. Find out why in this blogpost.</p>
+<p>Actually, sometimes you want your app to crash. This post will explain why and give some practical tips.</p>
 
 <p><br></p>
 
@@ -221,7 +221,7 @@
 <ol>
 <li>Always design your app to be robust against any input outside of your control: responses from webservices, data entered in UI, incoming intents,...</li>
 <li>Ensure data integrity at the point of entry in your app. This way invalid data (null, empty,...) cannot occur anywhere else in your app and you don&#39;t have to check for it.</li>
-<li>If your unsure a certain error situation can occur somewhere, assume it won&#39;t! During testing you&#39;ll find out (<code>RuntimeException</code>) if you&#39;re right.</li>
+<li>If you&#39;re unsure a certain error situation can occur somewhere, assume it won&#39;t! During testing you&#39;ll find out (<code>RuntimeException</code>) if you&#39;re right.</li>
 <li>If a certain method cannot be called in production, can only be called once,... throw an IllegalStateException.</li>
 <li>Always test thoroughly before shipping to all your users. You&#39;ll catch the feared &quot;crashes&quot; before your users do.</li>
 </ol>
