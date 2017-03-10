@@ -207,6 +207,25 @@
 
 <p>And be reassured, you won&#39;t start bothering users with more crashes! Before rolling out to production you still have several safety nets: developer testing, QA department, beta testing, staged rollout,...</p>
 
+<p>So even with this strategy, you can still get to 99,9% crash free users.</p>
+
+<p><center><blockquote class="twitter-tweet" data-conversation="none" data-lang="nl"><p lang="en" dir="ltr"><a href="https://twitter.com/molsjeroen">@molsjeroen</a> <a href="https://twitter.com/Jan_Joris">@Jan_Joris</a> we have maybe 100s of throw new IllegalStateException in our code base and our crash-free rate is 99.9%</p>&mdash; Said Tahsin Dane (@tasomaniac) <a href="https://twitter.com/tasomaniac/status/839943184729923586">9 maart 2017</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></center></p>
+
+<p><br></p>
+
+<h2>Practical tips</h2>
+
+<p>To clarify this approach and to help you kickstart implementing it:</p>
+
+<ol>
+<li>Always design your app to be robust against any input outside of your control: responses from webservices, data entered in UI, incoming intents,...</li>
+<li>Ensure data integrity at the point of entry in your app. This way invalid data (null, empty,...) cannot occur anywhere else in your app and you don&#39;t have to check for it.</li>
+<li>If your unsure a certain error situation can occur somewhere, assume it won&#39;t! During testing you&#39;ll find out (<code>RuntimeException</code>) if you&#39;re right.</li>
+<li>If a certain method cannot be called in production, can only be called once,... throw an IllegalStateException.</li>
+<li>Always test thoroughly before shipping to all your users. You&#39;ll catch the feared &quot;crashes&quot; before your users do.</li>
+</ol>
+
 <p><br></p>
 
 <h2>Wrap-up</h2>
