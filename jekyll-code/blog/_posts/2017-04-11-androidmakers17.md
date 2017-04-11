@@ -80,7 +80,7 @@ Section in development...
 - [Taking care of your UI tests](https://speakerdeck.com/florianmski/taking-care-of-your-ui-tests) by Florian Mierzejewski
 - [Dependency Injection in Android - Best Practices](https://www.slideshare.net/VasiliyZukanov/dependency-injection-in-android-74836565?trk=v-feed) by Vasiliy Zukanov
 - [Toothpick: a fresh approach to Dependency Injection on Android](https://speakerdeck.com/stephanenicolas/toothpick-a-fresh-approach-to-dependency-injection-di-on-android) by Stéphane Nicolas and Daniel Molinero Reguera
-- [Streamlining Payments on Mobile](https://twitter.com/Mathieu_Calba/status/851776433601040385) by Mathieu Calba
+- [Streamlining Payments on Mobile](https://speakerdeck.com/mathieu_calba/streamlining-payments-on-mobile) by Mathieu Calba
 - [Heat the Neurons of Your Smartphone with Deep Learning](https://speakerdeck.com/jinqian/heat-the-neurons-of-your-smartphone-with-deep-learning) by Qian Jin and Yoann Benoit
 - [Testable Android Architecture](https://speakerdeck.com/ecgreb/testable-android-architecture-android-makers-france) by Chuck Greb
 - [Develop your next app with kotlin](https://www.slideshare.net/arnaudgiuliani) by Arnaud Giuliani

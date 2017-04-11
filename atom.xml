@@ -7,7 +7,7 @@
  <link href="http://jeroenmols.com/"/>
  <icon>http://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog of Jeroen Mols focussed on Android development, open source and technology.</subtitle>
- <updated>2017-04-06T08:40:25+02:00</updated>
+ <updated>2017-04-11T23:03:33+02:00</updated>
  <id>http://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,26 @@
  <webfeeds:cover image="http://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>http://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>Android Makers FR recap</title>
+   <link href="http://jeroenmols.com/blog/2017/04/11/androidmakers17/"/>
+   <updated>2017-04-11T00:00:00+02:00</updated>
+   <id>http://jeroenmols.com/blog/2017/04/11/androidmakers17</id>
+   <content type="html"><![CDATA[
+     
+        <img src="http://jeroenmols.com/img/blog/androidmakers17/androidmakers.png" alt="Android Makers FR recap">
+     
+     <p>After organizing Droidcon Paris for several year, the organizers decided to move on and experiment with a new format. This didn&#39;t just result in a well organized conference, but also in a fresh new vibe whilst still feeling familiar.</p>
+
+<p>In this post I&#39;d like to share some general themes, my personal highlights and all of the slides I could gather from socials.</p>
+
+
+
+
+     <a href="http://jeroenmols.com/blog/2017/04/11/androidmakers17/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>Why your app should crash</title>

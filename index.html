@@ -131,6 +131,35 @@
 									</br>
 
 									
+									<div class="blogpost-overlay-header" style="background-image: url(/img/blog/androidmakers17/androidmakers.png)">
+									<div class="blogpost-overlay-header-title">
+									  
+
+									<h1 class="blogpost-title">
+									  <a href="/blog/2017/04/11/androidmakers17/">
+									Android Makers FR recap
+									  </a>
+									</h1>
+
+									<span class="blogpost-date">11 Apr 2017</span>
+
+									
+									</div>
+									</div>
+									
+
+								</div>
+							</div>
+
+						
+						 
+					
+						
+							<div class="col-lg-6">
+								<div class="post">
+									</br>
+
+									
 									<div class="blogpost-overlay-header" style="background-image: url(/img/blog/appcrash/appcrash.png)">
 									<div class="blogpost-overlay-header-title">
 									  
@@ -212,32 +241,6 @@
 						
 						 
 					
-						
-							<div class="col-lg-6">
-								<div class="post">
-									</br>
-
-									
-									<div class="blogpost-overlay-header" style="background-image: url(/img/blog/yearinreview16/yearinreview16.png)">
-									<div class="blogpost-overlay-header-title">
-									  
-
-									<h1 class="blogpost-title">
-									  <a href="/blog/2017/01/09/yearinreview/">
-									Year in review 2016
-									  </a>
-									</h1>
-
-									<span class="blogpost-date">09 Jan 2017</span>
-
-									
-									</div>
-									</div>
-									
-
-								</div>
-							</div>
-
 						
 						 
 					
@@ -613,6 +616,149 @@
 
      <!-- Portfolio Modals -->
  
+    <div class="portfolio-modal modal fade" id="portfolioModal-" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>Android Makers FR recap</h2>
+                            <hr class="star-primary">
+                            <img src="img/portfolio/img/blog/androidmakers17/androidmakers.png" class="img-responsive img-centered" alt="">
+                            <p><p>After organizing Droidcon Paris for several year, the organizers decided to move on and experiment with a new format. This didn&#39;t just result in a well organized conference, but also in a fresh new vibe whilst still feeling familiar.</p>
+
+<p>In this post I&#39;d like to share some general themes, my personal highlights and all of the slides I could gather from socials.</p>
+
+<p><br></p>
+
+<h2>Details matter</h2>
+
+<p><center><a href="/img/blog/androidmakers17/launchscreen.png"><img src="/img/blog/androidmakers17/launchscreen.png" alt="Make sure your app doesn't launch with a blank screen"></a></center></p>
+
+<p>Building a world class app doesn&#39;t just require good engineering practices, but you literally have to handle details on every front.</p>
+
+<p>My key takeaways:</p>
+
+<ul>
+<li>Never share a file directly via an intent, always copy it first</li>
+<li>Prefer <code>https://</code> as the scheme for direct links</li>
+<li>Learn and optimize your app launch time:</br><code>adb shell am start -W &lt;packagename&gt;/. &lt;activityname&gt;</code></li>
+<li>Hard-coded encryption keys can be easily found in byte code:</br> grep for <code>Ljavax/crypto</code></li>
+<li>API design is basically designing future regrets</li>
+</ul>
+
+<p><br></p>
+
+<h2>Productivity</h2>
+
+<p><center><a href="/img/blog/androidmakers17/testingpyramid.png"><img src="/img/blog/androidmakers17/testingpyramid.png" alt="The Android testing pyramid"></a></center></p>
+
+<p>As projects get more complex, it becomes crucial (for your own sanity) to have the right engineering practices in place. Try and leverage your continuous integration to automatically build, test and statically analyze your pull requests before merging.</p>
+
+<p>My key takeaways:</p>
+
+<ul>
+<li>Testability must be taken into account from project start</li>
+<li>Many git conflicts can be resolved automatically with proper tooling</li>
+<li>Use pre launch reports before going to production</li>
+<li>Naming things is hard, yet super important</li>
+</ul>
+
+<p></br></p>
+
+<h2>Programming languages</h2>
+
+<p>Challenging the traditional way of app development has gotten a new spark thanks to Kotlin and the rise of other cross platform tools. There is definitely no silver bullet yet, but it&#39;s good to see the community stay open minded.</p>
+
+<p>My key takeaways:</p>
+
+<ul>
+<li>Every Android developer hates WebViews</li>
+<li>With incremental builds, Kotlin compiles as fast as Java</li>
+<li>React native is JavaScript rendered to a native UI</br>(not ready for primetime yet, wait for 1.0 version)</li>
+<li>Any Android dev can develop for Android Things (runs Activities!)</li>
+</ul>
+
+<p></br></p>
+
+<h2>Organizer recap</h2>
+
+<p>Relive the conference through the organizers eyes, they did a great job at summarizing each day. Clicking each moment will expand more details.</p>
+
+<p><a class="twitter-moment" href="https://twitter.com/i/moments/851372466341629952?limit=3">Android Makers 2017 - Day 1</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+
+<p></br></p>
+
+<p><a class="twitter-moment" href="https://twitter.com/i/moments/851650664644194304?limit=3">Android Makers - Day 2</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+
+<p></br></p>
+
+<h2>Conference slides</h2>
+
+<p>While the conference organizers will publish all slides very soon, I can image that quite a few people are already looking for a sneak preview. Hence I bundled everything I could already gather from socials.</p>
+
+<p>Section in development...</p>
+
+<ul>
+<li><a href="https://speakerdeck.com/jeroenmols/the-art-of-organizing-resources">The ART of organizing resources</a> by Jeroen Mols</li>
+<li><a href="https://speakerdeck.com/malmstein/remote-and-lonely">Remote, lonely and productive</a> by David González</li>
+<li><a href="https://speakerdeck.com/cyrilmottier/launch-screens-from-a-tap-to-your-app">Launch Screens: From a Tap to Your App</a> by Ciryl Mottier</li>
+<li><a href="https://speakerdeck.com/jeremiemartinez/the-evolution-of-android-notification">The evolution of Android notification</a> by Jeremie Martinez</li>
+<li><a href="https://speakerdeck.com/tysmith/deep-android-integrations">Deep Android Integrations</a> by Ty Smith</li>
+<li><a href="https://speakerdeck.com/baresse/develop-a-weather-app-with-kotlin-androidmakers-17">Develop a weather app with Kotlin</a> by Laurent Baresse</li>
+<li><a href="https://speakerdeck.com/xgouchet/merge-like-its-2099-androidmakers-2017">Merge like it&#39;s 2099</a> by Xavier Gouchet</li>
+<li><a href="https://speakerdeck.com/dwursteisen/rxjava-est-mort-vive-rxjava-2">RxJava est mort, vive RxJava 2</a> by David Wursteisen</li>
+<li><a href="https://speakerdeck.com/florianmski/taking-care-of-your-ui-tests">Taking care of your UI tests</a> by Florian Mierzejewski</li>
+<li><a href="https://www.slideshare.net/VasiliyZukanov/dependency-injection-in-android-74836565?trk=v-feed">Dependency Injection in Android - Best Practices</a> by Vasiliy Zukanov</li>
+<li><a href="https://speakerdeck.com/stephanenicolas/toothpick-a-fresh-approach-to-dependency-injection-di-on-android">Toothpick: a fresh approach to Dependency Injection on Android</a> by Stéphane Nicolas and Daniel Molinero Reguera</li>
+<li><a href="https://speakerdeck.com/mathieu_calba/streamlining-payments-on-mobile">Streamlining Payments on Mobile</a> by Mathieu Calba</li>
+<li><a href="https://speakerdeck.com/jinqian/heat-the-neurons-of-your-smartphone-with-deep-learning">Heat the Neurons of Your Smartphone with Deep Learning</a> by Qian Jin and Yoann Benoit</li>
+<li><a href="https://speakerdeck.com/ecgreb/testable-android-architecture-android-makers-france">Testable Android Architecture</a> by Chuck Greb</li>
+<li><a href="https://www.slideshare.net/arnaudgiuliani">Develop your next app with kotlin</a> by Arnaud Giuliani</li>
+<li><a href="https://speakerdeck.com/smarkovik/make-or-break">Make or brake… using Gradle</a> by Stanojko Markovik</li>
+<li><a href="https://speakerdeck.com/renaudboulard/getting-the-most-of-android-obfuscation-tools">Getting the most of Android obfuscation tools</a> by Renaud Boulard</li>
+<li><a href="https://speakerdeck.com/elainedb/intro-to-google-assistant-and-actions-on-google">Intro to Google Assistant and Actions on Google</a> by Elaine Dias Batista and Wajdi Ben Rabah</li>
+<li><a href="https://speakerdeck.com/elainedb/actions-on-google-workshop">Actions on Google workshop</a> by Elaine Dias Batista and Wajdi Ben Rabah</li>
+<li><a href="https://speakerdeck.com/perfectslayer/le-root-un-inconnu-chez-soi">Le root : un inconnu chez soi?</a> by Bruce Bujon</li>
+<li><a href="https://speakerdeck.com/oleur/exoplayer-player-multimedia-pour-les-applications-et-la-realite-virtuelle">ExoPlayer, player multimédia pour vos applications et la réalité virtuelle</a> by Julien Salvi</li>
+</ul>
+
+<p><br></p>
+
+<h2>Credits</h2>
+
+<p><center><a href="/img/blog/androidmakers17/team.jpg"><img src="/img/blog/androidmakers17/team.jpg" alt="The awesome Android makers organizing team"></a></center></p>
+
+<p>Thanks to the entire Android Makers team for organizing a great conference and to all sponsors for supporting. Hope to see you all next year!</p>
+</p>
+
+                            <ul class="list-inline item-details">
+                                <li>Client:
+                                    <strong><a href=></a>
+                                    </strong>
+                                </li>
+                                <li>Date:
+                                    <strong></strong>
+                                </li>
+                                <li>Download:
+                                    <strong><a href=></a>
+                                    </strong>
+                                </li>
+                            </ul>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="portfolio-modal modal fade" id="portfolioModal-" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
