@@ -19,9 +19,9 @@ Building a world class app doesn't just require good engineering practices, but 
 
 My key takeaways:
 
+- Learn and optimize your app launch time:</br>`adb shell am start -W <packagename>/. <activityname>`
 - Never share a file directly via an intent, always copy it first
 - Prefer `https://` as the scheme for direct links
-- Learn and optimize your app launch time:</br>`adb shell am start -W <packagename>/. <activityname>`
 - Hard-coded encryption keys can be easily found in byte code:</br> grep for `Ljavax/crypto`
 - API design is basically designing future regrets
 
@@ -71,7 +71,7 @@ Section in development...
 
 - [The ART of organizing resources](https://speakerdeck.com/jeroenmols/the-art-of-organizing-resources) by Jeroen Mols
 - [Remote, lonely and productive](https://speakerdeck.com/malmstein/remote-and-lonely) by David González
-- [Launch Screens: From a Tap to Your App](https://speakerdeck.com/cyrilmottier/launch-screens-from-a-tap-to-your-app) by Ciryl Mottier
+- [Launch Screens: From a Tap to Your App](https://speakerdeck.com/cyrilmottier/launch-screens-from-a-tap-to-your-app) by Cyril Mottier
 - [The evolution of Android notification](https://speakerdeck.com/jeremiemartinez/the-evolution-of-android-notification) by Jeremie Martinez
 - [Deep Android Integrations](https://speakerdeck.com/tysmith/deep-android-integrations) by Ty Smith
 - [Develop a weather app with Kotlin](https://speakerdeck.com/baresse/develop-a-weather-app-with-kotlin-androidmakers-17) by Laurent Baresse
@@ -88,8 +88,10 @@ Section in development...
 - [Getting the most of Android obfuscation tools](https://speakerdeck.com/renaudboulard/getting-the-most-of-android-obfuscation-tools) by Renaud Boulard
 - [Intro to Google Assistant and Actions on Google](https://speakerdeck.com/elainedb/intro-to-google-assistant-and-actions-on-google) by Elaine Dias Batista and Wajdi Ben Rabah
 - [Actions on Google workshop](https://speakerdeck.com/elainedb/actions-on-google-workshop) by Elaine Dias Batista and Wajdi Ben Rabah
+- [Getting the most of Android obfuscation tools](https://speakerdeck.com/renaudboulard/getting-the-most-of-android-obfuscation-tools) by Renaud Boulard
 - [Le root : un inconnu chez soi?](https://speakerdeck.com/perfectslayer/le-root-un-inconnu-chez-soi) by Bruce Bujon
 - [ExoPlayer, player multimédia pour vos applications et la réalité virtuelle](https://speakerdeck.com/oleur/exoplayer-player-multimedia-pour-les-applications-et-la-realite-virtuelle) by Julien Salvi
+- [Le design mobile c’est pas facile](https://www.slideshare.net/aerilys/le-design-mobile-cest-pas-facile-74910698) by Quentin Sallat
 
 <br>
 
