@@ -88,7 +88,6 @@ Section in development...
 - [Getting the most of Android obfuscation tools](https://speakerdeck.com/renaudboulard/getting-the-most-of-android-obfuscation-tools) by Renaud Boulard
 - [Intro to Google Assistant and Actions on Google](https://speakerdeck.com/elainedb/intro-to-google-assistant-and-actions-on-google) by Elaine Dias Batista and Wajdi Ben Rabah
 - [Actions on Google workshop](https://speakerdeck.com/elainedb/actions-on-google-workshop) by Elaine Dias Batista and Wajdi Ben Rabah
-- [Getting the most of Android obfuscation tools](https://speakerdeck.com/renaudboulard/getting-the-most-of-android-obfuscation-tools) by Renaud Boulard
 - [Le root : un inconnu chez soi?](https://speakerdeck.com/perfectslayer/le-root-un-inconnu-chez-soi) by Bruce Bujon
 - [ExoPlayer, player multimédia pour vos applications et la réalité virtuelle](https://speakerdeck.com/oleur/exoplayer-player-multimedia-pour-les-applications-et-la-realite-virtuelle) by Julien Salvi
 - [Le design mobile c’est pas facile](https://www.slideshare.net/aerilys/le-design-mobile-cest-pas-facile-74910698) by Quentin Sallat
