@@ -14,7 +14,7 @@ title_separator          : "-"
 name                     : "Jeroen Mols"
 description              : "Blog and portfolio of Jeroen Mols, the Android developer you should hire."
 url                      : "http://jeroenmols.com"
-baseurl                  : / # the subpath of your site, e.g. "/blog"
+baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 # breadcrumbs            : false # true, false (default)
