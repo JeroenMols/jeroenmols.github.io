@@ -1,47 +1,47 @@
 ---
 layout: splash
 title:  "Portfolio of Jeroen Mols"
-permalink: /portfolio/
+permalink: /
 date:   2017-04-15 14:45:52 +0200
 gallery:
-  - url: /assets/images/posters/RemgeldFacturatie_poster.jpg
-    image_path: /assets/images/posters/RemgeldFacturatie_poster.jpg
+  - url: /img/portfolio/RemgeldFacturatie_poster.jpg
+    image_path: /img/portfolio/RemgeldFacturatie_poster.jpg
     alt: "placeholder image 1"
-  - url: /assets/images/posters/Demeyere_poster.jpg
-    image_path: /assets/images/posters/Demeyere_poster.jpg
+  - url: /img/portfolio/Demeyere_poster.jpg
+    image_path: /img/portfolio/Demeyere_poster.jpg
     alt: "placeholder image 1"
-  - url: /assets/images/posters/Brickeffect_poster.jpg
-    image_path: /assets/images/posters/Brickeffect_poster.jpg
+  - url: /img/portfolio/Brickeffect_poster.jpg
+    image_path: /img/portfolio/Brickeffect_poster.jpg
     alt: "placeholder image 1"
-  - url: /assets/images/posters/Nieuwsblad_poster.jpg
-    image_path: /assets/images/posters/Nieuwsblad_poster.jpg
+  - url: /img/portfolio/Nieuwsblad_poster.jpg
+    image_path: /img/portfolio/Nieuwsblad_poster.jpg
     alt: "placeholder image 2"
-  - url: /assets/images/posters/LandscapeVideoCamera_poster.jpg
-    image_path: /assets/images/posters/LandscapeVideoCamera_poster.jpg
+  - url: /img/portfolio/LandscapeVideoCamera_poster.jpg
+    image_path: /img/portfolio/LandscapeVideoCamera_poster.jpg
     alt: "placeholder image 2"
-  - url: /assets/images/posters/SaecoAvanti_poster.jpg
-    image_path: /assets/images/posters/SaecoAvanti_poster.jpg
+  - url: /img/portfolio/SaecoAvanti_poster.jpg
+    image_path: /img/portfolio/SaecoAvanti_poster.jpg
     alt: "placeholder image 2"
-  - url: /assets/images/posters/HuePos_poster.jpg
-    image_path: /assets/images/posters/HuePos_poster.jpg
+  - url: /img/portfolio/HuePos_poster.jpg
+    image_path: /img/portfolio/HuePos_poster.jpg
     alt: "placeholder image 2"
-  - url: /assets/images/posters/SmartAir_poster.jpg
-    image_path: /assets/images/posters/SmartAir_poster.jpg
+  - url: /img/portfolio/SmartAir_poster.jpg
+    image_path: /img/portfolio/SmartAir_poster.jpg
     alt: "placeholder image 2"
-  - url: /assets/images/posters/eventapp_poster.jpg
-    image_path: /assets/images/posters/eventapp_poster.jpg
+  - url: /img/portfolio/eventapp_poster.jpg
+    image_path: /img/portfolio/eventapp_poster.jpg
     alt: "placeholder image 2"
-  - url: /assets/images/posters/Tomorrowland_poster.jpg
-    image_path: /assets/images/posters/Tomorrowland_poster.jpg
+  - url: /img/portfolio/Tomorrowland_poster.jpg
+    image_path: /img/portfolio/Tomorrowland_poster.jpg
     alt: "placeholder image 2"
-  - url: /assets/images/posters/AirStudio_poster.jpg
-    image_path: /assets/images/posters/AirStudio_poster.jpg
+  - url: /img/portfolio/AirStudio_poster.jpg
+    image_path: /img/portfolio/AirStudio_poster.jpg
     alt: "placeholder image 2"
-  - url: /assets/images/posters/WiFileTransfer_poster.jpg
-    image_path: /assets/images/posters/WiFileTransfer_poster.jpg
+  - url: /img/portfolio/WiFileTransfer_poster.jpg
+    image_path: /img/portfolio/WiFileTransfer_poster.jpg
     alt: "placeholder image 2"
-  - url: /assets/images/posters/Videodagboek_onepager.jpg
-    image_path: /assets/images/posters/Videodagboek_onepager.jpg
+  - url: /img/portfolio/Videodagboek_onepager.jpg
+    image_path: /img/portfolio/Videodagboek_onepager.jpg
     alt: "placeholder image 3"
 ---
 {% include gallery caption="Portfolio of Jeroen Mols" %}
