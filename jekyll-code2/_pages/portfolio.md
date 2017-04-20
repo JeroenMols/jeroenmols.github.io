@@ -1,7 +1,7 @@
 ---
 layout: splash
 title:  "Portfolio of Jeroen Mols"
-permalink: /
+permalink: /portfolio/
 date:   2017-04-15 14:45:52 +0200
 gallery:
   - url: /img/portfolio/RemgeldFacturatie_poster.jpg
