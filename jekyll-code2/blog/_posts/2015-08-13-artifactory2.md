@@ -5,7 +5,7 @@ img: img/blog/artifactory2/artifactory2.png
 imgcredit: Screenshot of Artifactory start up, https://www.jfrog.com
 ---
 
-My previous [blog post]({% post_url 2015-08-06-artifactory %}) described how to set up your own private Maven repository with Artifactory in 30 minutes. This second and final part will make things more interesting and take your setup to the next level.
+My previous [blog post]({{ site.baseurl }}{% link blog/_posts/2015-08-06-artifactory.md %}) described how to set up your own private Maven repository with Artifactory in 30 minutes. This second and final part will make things more interesting and take your setup to the next level.
 
 You will learn how to:
 
@@ -42,7 +42,7 @@ Instead one `compile` dependency should suffice to use the library.
 >
 > A better example would be a universal *analytics* library offering a universal API to track analytics and redirecting all calls internally to one or more analytics providers. Here packaging dependencies makes sense, because the app never needs to talk to the dependency directly. It also hides implementation details, so the app doesn't need to be modified when switching to a new provider.
 
-Imagine if we would simply resort to the buildscript we had in my previous [blogpost]({% post_url 2015-08-06-artifactory %}). At compile time the `Guava` dependency will not be included, because the would make the library unnecessarily large. Instead, the compiler will tell the library: "don't worry about this dependency, the app will provide it for you."
+Imagine if we would simply resort to the buildscript we had in my previous [blogpost]({{ site.baseurl }}{% link blog/_posts/2015-08-06-artifactory.md %}). At compile time the `Guava` dependency will not be included, because the would make the library unnecessarily large. Instead, the compiler will tell the library: "don't worry about this dependency, the app will provide it for you."
 
 The app on the other hand wouldn't have a clue which dependencies the library actually needs (how would it?) and hence the app will compile just fine. However, after starting the app and trying to access the library, the app would crash at runtime:
 
