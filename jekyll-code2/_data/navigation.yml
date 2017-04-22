@@ -4,10 +4,10 @@ main:
     url: /blog/
   - title: "Portfolio"
     url: /portfolio/
-  - title: "Search"
-    url: /search/
   - title: "Speaking"
     url: /speaking/
+  # - title: "Search"
+  #   url: /search/
   # - title: "Sample Posts"
   #   url: /year-archive/
   # - title: "Sample Collections"
