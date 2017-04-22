@@ -174,8 +174,8 @@ sass:
 
 # Outputting
 permalink: /:categories/:year/:month/:day/:title/
-paginate: 5 # amount of posts to show
-paginate_path: /page:num/
+paginate: 10 # amount of posts to show
+paginate_path: /blog/page:num/
 timezone: Europe/Brussels
 
 
