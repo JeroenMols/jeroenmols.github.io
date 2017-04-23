@@ -2,8 +2,6 @@
 main:
   - title: "Blog"
     url: /blog/
-  - title: "Portfolio"
-    url: /portfolio/
   - title: "Speaking"
     url: /speaking/
   # - title: "Search"
