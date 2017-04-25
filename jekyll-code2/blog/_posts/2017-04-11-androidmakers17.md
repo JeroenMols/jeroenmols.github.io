@@ -8,25 +8,21 @@ After organizing Droidcon Paris for several year, the organizers decided to move
 
 In this post I'd like to share some general themes, my personal highlights and all of the slides I could gather from socials.
 
-<br>
-
 ## Details matter
-<center><a href="{{ site.blogbaseurl }}img/blog/androidmakers17/launchscreen.png"><img src="{{ site.blogbaseurl }}img/blog/androidmakers17/launchscreen.png" alt="Make sure your app doesn't launch with a blank screen"></a></center>
+![Make sure your app doesn't launch with a blank screen]({{ site.url }}{{ site.baseurl }}/img/blog/androidmakers17/launchscreen.png){: .align-center}
 
 Building a world class app doesn't just require good engineering practices, but you literally have to handle details on every front.
 
 My key takeaways:
 
-- Learn and optimize your app launch time:</br>`adb shell am start -W <packagename>/. <activityname>`
+- Learn and optimize your app launch time:`adb shell am start -W <packagename>/. <activityname>`
 - Never share a file directly via an intent, always copy it first
 - Prefer `https://` as the scheme for direct links
-- Hard-coded encryption keys can be easily found in byte code:</br> grep for `Ljavax/crypto`
+- Hard-coded encryption keys can be easily found in byte code: grep for `Ljavax/crypto`
 - API design is basically designing future regrets
 
-<br>
-
 ## Productivity
-<center><a href="{{ site.blogbaseurl }}img/blog/androidmakers17/testingpyramid.png"><img src="{{ site.blogbaseurl }}img/blog/androidmakers17/testingpyramid.png" alt="The Android testing pyramid"></a></center>
+![The Android testing pyramid]({{ site.url }}{{ site.baseurl }}/img/blog/androidmakers17/testingpyramid.png){: .align-center}
 
 As projects get more complex, it becomes crucial (for your own sanity) to have the right engineering practices in place. Try and leverage your continuous integration to automatically build, test and statically analyze your pull requests before merging.
 
@@ -37,8 +33,6 @@ My key takeaways:
 - Use pre launch reports before going to production
 - Naming things is hard, yet super important
 
-</br>
-
 ## Programming languages
 Challenging the traditional way of app development has gotten a new spark thanks to Kotlin and the rise of other cross platform tools. There is definitely no silver bullet yet, but it's good to see the community stay open minded.
 
@@ -46,21 +40,15 @@ My key takeaways:
 
 - Every Android developer hates WebViews
 - With incremental builds, Kotlin compiles as fast as Java
-- React native is JavaScript rendered to a native UI</br>(not ready for primetime yet, wait for 1.0 version)
+- React native is JavaScript rendered to a native UI(not ready for primetime yet, wait for 1.0 version)
 - Any Android dev can develop for Android Things (runs Activities!)
-
-</br>
 
 ## Organizer recap
 Relive the conference through the organizers eyes, they did a great job at summarizing each day. Clicking each moment will expand more details.
 
 <a class="twitter-moment" href="https://twitter.com/i/moments/851372466341629952?limit=3">Android Makers 2017 - Day 1</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-</br>
-
 <a class="twitter-moment" href="https://twitter.com/i/moments/851650664644194304?limit=3">Android Makers - Day 2</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-</br>
 
 ## Conference slides
 While the conference organizers will publish all slides very soon, I can image that quite a few people are already looking for a sneak preview. Hence I bundled everything I could already gather from socials.
@@ -93,9 +81,7 @@ While the conference organizers will publish all slides very soon, I can image t
 - [ExoPlayer, player multimédia pour vos applications et la réalité virtuelle](https://speakerdeck.com/oleur/exoplayer-player-multimedia-pour-les-applications-et-la-realite-virtuelle) by Julien Salvi
 - [Le design mobile c’est pas facile](https://www.slideshare.net/aerilys/le-design-mobile-cest-pas-facile-74910698) by Quentin Sallat
 
-<br>
-
 ## Credits
-<center><a href="{{ site.blogbaseurl }}img/blog/androidmakers17/team.jpg"><img src="{{ site.blogbaseurl }}img/blog/androidmakers17/team.jpg" alt="The awesome Android makers organizing team"></a></center>
+![The awesome Android makers organizing team]({{ site.url }}{{ site.baseurl }}/img/blog/androidmakers17/team.jpg){: .align-center}
 
 Thanks to the entire Android Makers team for organizing a great conference and to all sponsors for supporting. Hope to see you all next year!
