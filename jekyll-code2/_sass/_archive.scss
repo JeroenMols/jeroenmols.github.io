@@ -60,15 +60,22 @@
   }
 }
 
-.archive__item-teaser {
+.archive__item-teaser, .archive__item-teaser-overlay {
   border-radius: $border-radius;
   overflow: hidden;
-  img {
-    width: 100%;
-    margin-top: -50px;
-  }
   display: inline-block;
-  max-height: 215px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  min-height: 400px;
+  width: 100%;
+  z-index: -1;
+}
+
+.archive__item-teaser-overlay {
+  position: absolute;
+  top: 0;
+  z-index: 10;
 }
 
 .archive__item:hover {
