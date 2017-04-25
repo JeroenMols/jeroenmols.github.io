@@ -8,16 +8,13 @@ Due to its clean simple api, Mockito has become world's most popular Java mockin
 
 This blogpost will demonstrate the power of custom Mockito matchers.
 
-<br>
-
 ## Problem sketch
 Imagine a very simple example where a button in the UI sends a message to a User object that in its turn does the a WebService call.
 
-<center><a href="{{ site.blogbaseurl }}img/blog/mockitomatchers/architecture.png"><img src="{{ site.blogbaseurl }}img/blog/mockitomatchers/architecture.png" alt="Basic architecture of our situation to test"></a></center>
+![Basic architecture of our situation to test]({{ site.url }}{{ site.baseurl }}/img/blog/mockitomatchers/architecture.png){: .align-center}
 
 We now want to verify that the User calls the `sendMessages()` method on the WebService with the appropriate arguments.
 
-<br>
 
 ## Traditional test
 The way to typically test such a scenario is to use an ArgumentCaptor that captures the ArrayList passed to `sendMessages()`. Next you can verify that the list contains the appropriate element.
@@ -41,7 +38,6 @@ public void sendMessage() throws Exception {
 
 I don't even have to begin to explain how cumbersome this is!
 
-<br>
 
 ## Custom matcher test
 We can dramatically simplify this by writing our own Mockito matcher and use that as an argument in our test verification.
@@ -97,7 +93,6 @@ public void customMatchers() throws Exception {
 
 Pretty neat isn't it?
 
-<br>
 
 ## Library
 After a great suggestion from Eugen Martynov, I've decided to create a [library for all of these collection matchers](https://github.com/JeroenMols/MockitoCollectionMatchers) on Github.
@@ -118,7 +113,6 @@ testCompile 'com.github.JeroenMols:MockitoCollectionMatchers:0.0.1'
 
 This is very much a work in progress, so expect more matchers to come soon!
 
-<br>
 
 ## Wrap-up
 Custom matchers are a great way to simplify unit tests. In my [Mockito sample project](https://github.com/jeroenmols/mockitoexample) you can learn more about how to use Mockito and find other custom matcher examples.
