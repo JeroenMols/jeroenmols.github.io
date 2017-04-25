@@ -21,11 +21,11 @@
 }
 
 .archive__subtitle {
-  margin: 1.414em 0 0;
+  margin: 0 0 0 0;
   padding-bottom: 0.5em;
-  font-size: $type-size-5;
-  color: mix(#fff, $gray, 25%);
-  border-bottom: 1px solid $border-color;
+  font-size: $type-size-6;
+  color: #DDDDDD;
+  font-style: normal;
 
   + .list__item .archive__item-title {
     margin-top: 0em;
@@ -36,10 +36,21 @@
   margin-bottom: 0.25em;
   margin-top: 0em;
   font-family: $sans-serif-narrow;
+  color: white;
 
   a + a {
     opacity: 0.5;
   }
+}
+
+.archive__item_titlecontainer {
+  border-radius: $border-radius;
+  position: absolute;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.35);
+  padding: 1rem 1rem 1rem 1rem;
+  margin-bottom: 8px;
+  width:100%;
 }
 
 /* remove border*/
@@ -67,7 +78,7 @@
   background-size: cover;
   background-position: center;
   position: relative;
-  min-height: 400px;
+  min-height: 240px;
   width: 100%;
   z-index: -1;
 }
@@ -84,7 +95,8 @@
   }
 
   .archive__item-title {
-    text-decoration: underline;
+    color: #CCC;
+    text-decoration: none;
   }
 }
 
