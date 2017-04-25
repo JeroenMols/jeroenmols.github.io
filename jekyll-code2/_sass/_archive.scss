@@ -64,7 +64,10 @@
   overflow: hidden;
   img {
     width: 100%;
+    margin-top: -50px;
   }
+  display: inline-block;
+  height: 215px;
 }
 
 .archive__item:hover {
