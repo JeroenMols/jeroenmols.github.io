@@ -252,3 +252,4 @@ defaults:
       comments: true
       share: true
       related: true
+      ads: true
