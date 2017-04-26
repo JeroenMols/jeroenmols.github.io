@@ -74,7 +74,7 @@ Then install the app [Dropsync](https://play.google.com/store/apps/details?id=co
 
 Open Dropsync, login with your Dropbox account and select "let me create my own folder pair". As the local folder choose "osmand/tracks" and as the remote folder "Cycling". Then select "Download mirror" as the sync method and enable sync. Save the changes and wait for the sync to complete.
 
-<center><a href="{{ site.blogbaseurl }}img/blog/cyclinggps/dropsync.png"><img src="{{ site.blogbaseurl }}img/blog/cyclinggps/dropsync.png" alt="Configure Dropsync to put the GPX files in the correct folder on the Android phone"></a></center>
+[![Configure Dropsync to put the GPX files in the correct folder on the Android phone]({{ site.url }}{{ site.baseurl }}/img/blog/cyclinggps/dropsync.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/cyclinggps/dropsync.png)
 
 Now all you have to do is export a track from Strava, move it into the Dropbox folder and it will autmagically appear in OsmAnd on your GPS!
 
