@@ -1,0 +1,821 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2017-04-26T23:23:07+02:00</updated><id>http://jeroenmols.com/</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Android Makers FR recap</title><link href="http://jeroenmols.com/blog/2017/04/11/androidmakers17/" rel="alternate" type="text/html" title="Android Makers FR recap" /><published>2017-04-11T00:00:00+02:00</published><updated>2017-04-11T00:00:00+02:00</updated><id>http://jeroenmols.com/blog/2017/04/11/androidmakers17</id><content type="html" xml:base="http://jeroenmols.com/blog/2017/04/11/androidmakers17/">&lt;p&gt;After organizing Droidcon Paris for several year, the organizers decided to move on and experiment with a new format. This didn’t just result in a well organized conference, but also in a fresh new vibe whilst still feeling familiar.&lt;/p&gt;
+
+&lt;p&gt;In this post I’d like to share some general themes, my personal highlights and all of the slides I could gather from socials.&lt;/p&gt;
+
+&lt;h2 id=&quot;details-matter&quot;&gt;Details matter&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/androidmakers17/launchscreen.png&quot; alt=&quot;Make sure your app doesn't launch with a blank screen&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Building a world class app doesn’t just require good engineering practices, but you literally have to handle details on every front.&lt;/p&gt;
+
+&lt;p&gt;My key takeaways:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Learn and optimize your app launch time:&lt;code class=&quot;highlighter-rouge&quot;&gt;adb shell am start -W &amp;lt;packagename&amp;gt;/. &amp;lt;activityname&amp;gt;&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Never share a file directly via an intent, always copy it first&lt;/li&gt;
+  &lt;li&gt;Prefer &lt;code class=&quot;highlighter-rouge&quot;&gt;https://&lt;/code&gt; as the scheme for direct links&lt;/li&gt;
+  &lt;li&gt;Hard-coded encryption keys can be easily found in byte code: grep for &lt;code class=&quot;highlighter-rouge&quot;&gt;Ljavax/crypto&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;API design is basically designing future regrets&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;productivity&quot;&gt;Productivity&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/androidmakers17/testingpyramid.png&quot; alt=&quot;The Android testing pyramid&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;As projects get more complex, it becomes crucial (for your own sanity) to have the right engineering practices in place. Try and leverage your continuous integration to automatically build, test and statically analyze your pull requests before merging.&lt;/p&gt;
+
+&lt;p&gt;My key takeaways:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Testability must be taken into account from project start&lt;/li&gt;
+  &lt;li&gt;Many git conflicts can be resolved automatically with proper tooling&lt;/li&gt;
+  &lt;li&gt;Use pre launch reports before going to production&lt;/li&gt;
+  &lt;li&gt;Naming things is hard, yet super important&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;programming-languages&quot;&gt;Programming languages&lt;/h2&gt;
+&lt;p&gt;Challenging the traditional way of app development has gotten a new spark thanks to Kotlin and the rise of other cross platform tools. There is definitely no silver bullet yet, but it’s good to see the community stay open minded.&lt;/p&gt;
+
+&lt;p&gt;My key takeaways:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Every Android developer hates WebViews&lt;/li&gt;
+  &lt;li&gt;With incremental builds, Kotlin compiles as fast as Java&lt;/li&gt;
+  &lt;li&gt;React native is JavaScript rendered to a native UI(not ready for primetime yet, wait for 1.0 version)&lt;/li&gt;
+  &lt;li&gt;Any Android dev can develop for Android Things (runs Activities!)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;organizer-recap&quot;&gt;Organizer recap&lt;/h2&gt;
+&lt;p&gt;Relive the conference through the organizers eyes, they did a great job at summarizing each day. Clicking each moment will expand more details.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&quot;twitter-moment&quot; href=&quot;https://twitter.com/i/moments/851372466341629952?limit=3&quot;&gt;Android Makers 2017 - Day 1&lt;/a&gt; &lt;script async=&quot;&quot; src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&quot;twitter-moment&quot; href=&quot;https://twitter.com/i/moments/851650664644194304?limit=3&quot;&gt;Android Makers - Day 2&lt;/a&gt; &lt;script async=&quot;&quot; src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;conference-slides&quot;&gt;Conference slides&lt;/h2&gt;
+&lt;p&gt;While the conference organizers will publish all slides very soon, I can image that quite a few people are already looking for a sneak preview. Hence I bundled everything I could already gather from socials.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/jeroenmols/the-art-of-organizing-resources&quot;&gt;The ART of organizing resources&lt;/a&gt; by Jeroen Mols&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/malmstein/remote-and-lonely&quot;&gt;Remote, lonely and productive&lt;/a&gt; by David González&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/cyrilmottier/launch-screens-from-a-tap-to-your-app&quot;&gt;Launch Screens: From a Tap to Your App&lt;/a&gt; by Cyril Mottier&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/jeremiemartinez/the-evolution-of-android-notification&quot;&gt;The evolution of Android notification&lt;/a&gt; by Jeremie Martinez&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/tysmith/deep-android-integrations&quot;&gt;Deep Android Integrations&lt;/a&gt; by Ty Smith&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/camaelon/android-design-tools-new-features-and-tools-for-rapid-ui-development&quot;&gt;Android Design Tools : New features and tools for rapid UI development&lt;/a&gt; by Nicolas Roard&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/baresse/develop-a-weather-app-with-kotlin-androidmakers-17&quot;&gt;Develop a weather app with Kotlin&lt;/a&gt; by Laurent Baresse&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/xgouchet/merge-like-its-2099-androidmakers-2017&quot;&gt;Merge like it’s 2099&lt;/a&gt; by Xavier Gouchet&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/dwursteisen/rxjava-est-mort-vive-rxjava-2&quot;&gt;RxJava est mort, vive RxJava 2&lt;/a&gt; by David Wursteisen&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/florianmski/taking-care-of-your-ui-tests&quot;&gt;Taking care of your UI tests&lt;/a&gt; by Florian Mierzejewski&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.slideshare.net/VasiliyZukanov/dependency-injection-in-android-74836565?trk=v-feed&quot;&gt;Dependency Injection in Android - Best Practices&lt;/a&gt; by Vasiliy Zukanov&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/stephanenicolas/toothpick-a-fresh-approach-to-dependency-injection-di-on-android&quot;&gt;Toothpick: a fresh approach to Dependency Injection on Android&lt;/a&gt; by Stéphane Nicolas and Daniel Molinero Reguera&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/mathieu_calba/streamlining-payments-on-mobile&quot;&gt;Streamlining Payments on Mobile&lt;/a&gt; by Mathieu Calba&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/jinqian/heat-the-neurons-of-your-smartphone-with-deep-learning&quot;&gt;Heat the Neurons of Your Smartphone with Deep Learning&lt;/a&gt; by Qian Jin and Yoann Benoit&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/ecgreb/testable-android-architecture-android-makers-france&quot;&gt;Testable Android Architecture&lt;/a&gt; by Chuck Greb&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.slideshare.net/arnaudgiuliani&quot;&gt;Develop your next app with kotlin&lt;/a&gt; by Arnaud Giuliani&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/smarkovik/make-or-break&quot;&gt;Make or brake… using Gradle&lt;/a&gt; by Stanojko Markovik&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/renaudboulard/getting-the-most-of-android-obfuscation-tools&quot;&gt;Getting the most of Android obfuscation tools&lt;/a&gt; by Renaud Boulard&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/elainedb/intro-to-google-assistant-and-actions-on-google&quot;&gt;Intro to Google Assistant and Actions on Google&lt;/a&gt; by Elaine Dias Batista and Wajdi Ben Rabah&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/elainedb/actions-on-google-workshop&quot;&gt;Actions on Google workshop&lt;/a&gt; by Elaine Dias Batista and Wajdi Ben Rabah&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.google.com/presentation/d/1Ehc6B78kWnX23W1SZvUtpP42LMsSJwdEvD0WIkgACmk/edit#slide=id.p&quot;&gt;Modern Android: How to ditch Activities &amp;amp; Fragments&lt;/a&gt; by Fabien Devos&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/rpradal/kotlin-in-the-real-world&quot;&gt;Kotlin in the real world&lt;/a&gt; by Rémi Pradal&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.slideshare.net/OCTOTechnology/one-year-of-clean-architecture-the-good-the-bad-and-the-bob&quot;&gt;One Year of Clean Architecture - The Good, The Bad and The Bob&lt;/a&gt; by Gabriel Adgeg and Dorian Lamande&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.slideshare.net/ophilippot/iotception-energy-measurement-of-android-things-on-raspberry-pi-3-with-arduino-uno&quot;&gt;IotCeption - Energy Measurement of Android Things on Raspberry PI 3 with Arduino Uno&lt;/a&gt; by Olivier Philippot&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/perfectslayer/le-root-un-inconnu-chez-soi&quot;&gt;Le root : un inconnu chez soi?&lt;/a&gt; by Bruce Bujon&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/oleur/exoplayer-player-multimedia-pour-les-applications-et-la-realite-virtuelle&quot;&gt;ExoPlayer, player multimédia pour vos applications et la réalité virtuelle&lt;/a&gt; by Julien Salvi&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.slideshare.net/aerilys/le-design-mobile-cest-pas-facile-74910698&quot;&gt;Le design mobile c’est pas facile&lt;/a&gt; by Quentin Sallat&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;credits&quot;&gt;Credits&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/androidmakers17/team.jpg&quot; alt=&quot;The awesome Android makers organizing team&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Thanks to the entire Android Makers team for organizing a great conference and to all sponsors for supporting. Hope to see you all next year!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><summary type="html">After organizing Droidcon Paris for several year, the organizers decided to move on and experiment with a new format. This didn’t just result in a well organized conference, but also in a fresh new vibe whilst still feeling familiar.</summary></entry><entry><title type="html">Why your app should crash</title><link href="http://jeroenmols.com/blog/2017/03/08/appcrash/" rel="alternate" type="text/html" title="Why your app should crash" /><published>2017-03-08T00:00:00+01:00</published><updated>2017-03-08T00:00:00+01:00</updated><id>http://jeroenmols.com/blog/2017/03/08/appcrash</id><content type="html" xml:base="http://jeroenmols.com/blog/2017/03/08/appcrash/">&lt;p&gt;Too many times I’ve seen developers trying to avoid crashes at all cost. But are unhandled exceptions really that bad? And are null checks really the answer?&lt;/p&gt;
+
+&lt;p&gt;Actually, sometimes you want your app to crash. This post will explain why and give some practical tips.&lt;/p&gt;
+
+&lt;h2 id=&quot;prologue&quot;&gt;Prologue&lt;/h2&gt;
+&lt;p&gt;In this post I focus on null checks for simplicity, but this can easily be generalized to any other edge case.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-null-check-architecture&quot;&gt;The null check architecture&lt;/h2&gt;
+&lt;p&gt;Let’s say we have a simple application that shows a list of sports player:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;showPlayers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Player&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;soccerPlayers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// some awesome code here&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;In a happy scenario, this will work, but what happens if the list is null?&lt;/p&gt;
+
+&lt;p&gt;Obviously can add an infamous null check:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;showPlayers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Player&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;soccerPlayers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;soccerPlayers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;// some awesome code here&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;All settled!&lt;/p&gt;
+
+&lt;p&gt;Oh wait… the list can also be empty:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;showPlayers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Player&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;soccerPlayers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;soccerPlayers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;soccerPlayers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isEmpty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;// some awesome code here&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;And what about the five layers of architecture &lt;code class=&quot;highlighter-rouge&quot;&gt;soccerPlayers&lt;/code&gt; gets passed through below the UI? Should we also duplicate our checks in each of those layers in those?&lt;/p&gt;
+
+&lt;p&gt;Before you know it you’ll have null checks everywhere!&lt;/p&gt;
+
+&lt;h2 id=&quot;the-null-check-problem&quot;&gt;The null check problem&lt;/h2&gt;
+&lt;p&gt;Obviously, null checks clutter your code significantly.&lt;/p&gt;
+
+&lt;p&gt;But that’s not the only problem! Because once you’re used to using them, you’ll use them everywhere!&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;showPlayers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Player&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;soccerPlayers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;soccerPlayers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;myRecyclerView&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;myRecyclerView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getAdapter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;// some awesome code here&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Even when you don’t need them, you’ll still add them!&lt;/p&gt;
+
+&lt;p&gt;Let that sink in for a second…&lt;/p&gt;
+
+&lt;p&gt;What is the exact problem here?&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;An “innocent” null check can easily mask a bigger, more fundamental issue&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Should &lt;code class=&quot;highlighter-rouge&quot;&gt;soccerPlayers&lt;/code&gt; actually ever be null there in the first place? Or is it the responsibility of the lower levels of your app to return an empty list instead?&lt;/p&gt;
+
+&lt;p&gt;And what should happen when the &lt;code class=&quot;highlighter-rouge&quot;&gt;soccerPlayers&lt;/code&gt; is actually null? Surely showing the user a completely blank screen by doing a &lt;code class=&quot;highlighter-rouge&quot;&gt;return&lt;/code&gt;, right?&lt;/p&gt;
+
+&lt;p&gt;The latter actually means that your app will stop working “silently” in production without you having any way of detecting that!&lt;/p&gt;
+
+&lt;h2 id=&quot;crashes-to-the-rescue&quot;&gt;Crashes to the rescue&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;If an app gets into a state it wasn’t designed for, it should crash. There is no general way of handling that.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Methods shouldn’t check their inputs for every possible scenario that can theoretically occur. Instead, you should carefully consider what the input can actually be and only prepare for that.&lt;/p&gt;
+
+&lt;p&gt;If your app gets in a state you didn’t design it for, wouldn’t that be something you would like to know ASAP?&lt;/p&gt;
+
+&lt;p&gt;Well in come our beloved exceptions!&lt;/p&gt;
+
+&lt;p&gt;Unhandled exceptions are great because they:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;notify you immediately by crashing the app&lt;/li&gt;
+  &lt;li&gt;highlight the problem instead of dying silently&lt;/li&gt;
+  &lt;li&gt;have a trace to pinpoint the problem&lt;/li&gt;
+  &lt;li&gt;are automatically backed up to your crashreporting&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This obviously doens’t mean that your app should crash for your users! All I’m saying is that if there is a problem in my app, I’d rather know about it by getting a crash report instead of not knowing.&lt;/p&gt;
+
+&lt;p&gt;Crash or not, for the end user it’s the same: their app is broken.&lt;/p&gt;
+
+&lt;p&gt;And be reassured, you won’t start bothering users with more crashes! Before rolling out to production you still have several safety nets: developer testing, QA department, beta testing, staged rollout,…&lt;/p&gt;
+
+&lt;p&gt;So even with this strategy, you can still get to 99,9% crash free users.&lt;/p&gt;
+
+&lt;center&gt;&lt;blockquote class=&quot;twitter-tweet&quot; data-conversation=&quot;none&quot; data-lang=&quot;nl&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;&lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; &lt;a href=&quot;https://twitter.com/Jan_Joris&quot;&gt;@Jan_Joris&lt;/a&gt; we have maybe 100s of throw new IllegalStateException in our code base and our crash-free rate is 99.9%&lt;/p&gt;&amp;mdash; Said Tahsin Dane (@tasomaniac) &lt;a href=&quot;https://twitter.com/tasomaniac/status/839943184729923586&quot;&gt;9 maart 2017&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async=&quot;&quot; src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/center&gt;
+
+&lt;h2 id=&quot;practical-tips&quot;&gt;Practical tips&lt;/h2&gt;
+&lt;p&gt;To clarify this approach and to help you kickstart implementing it:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Always design your app to be robust against any input outside of your control: responses from webservices, data entered in UI, incoming intents,…&lt;/li&gt;
+  &lt;li&gt;Ensure data integrity at the point of entry in your app. This way invalid data (null, empty,…) cannot occur anywhere else in your app and you don’t have to check for it.&lt;/li&gt;
+  &lt;li&gt;If you’re unsure a certain error situation can occur somewhere, assume it won’t! During testing you’ll find out (&lt;code class=&quot;highlighter-rouge&quot;&gt;RuntimeException&lt;/code&gt;) if you’re right.&lt;/li&gt;
+  &lt;li&gt;If a certain method cannot be called in production, can only be called once,… throw an IllegalStateException.&lt;/li&gt;
+  &lt;li&gt;Always test thoroughly before shipping to all your users. You’ll catch the feared “crashes” before your users do.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
+&lt;p&gt;Instead of being afraid of crashes, you should embrace them to find errors in your apps fasters. Crashes not only make errors immediately visible, they also offer a convenient way of debugging them via the stacktrace.&lt;/p&gt;
+
+&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><summary type="html">Too many times I’ve seen developers trying to avoid crashes at all cost. But are unhandled exceptions really that bad? And are null checks really the answer?</summary></entry><entry><title type="html">Write awesome unit tests</title><link href="http://jeroenmols.com/blog/2017/02/16/unittests/" rel="alternate" type="text/html" title="Write awesome unit tests" /><published>2017-02-16T00:00:00+01:00</published><updated>2017-02-16T00:00:00+01:00</updated><id>http://jeroenmols.com/blog/2017/02/16/unittests</id><content type="html" xml:base="http://jeroenmols.com/blog/2017/02/16/unittests/">&lt;p&gt;If you can code, you can also write unit tests. Writing awesome tests on the other hand is a different story. Don’t fool yourself: Unit testing code is production code that you will need to maintain, refactor and build upon for years to come.&lt;/p&gt;
+
+&lt;p&gt;This blogpost aims at providing three very simple rules that will significantly ramp up your testing game. Every rule is followed by pragmatic tips so you can easily start implementing.&lt;/p&gt;
+
+&lt;h2 id=&quot;1-run-ludicrously-fast&quot;&gt;1. Run ludicrously fast&lt;/h2&gt;
+&lt;p&gt;The only reason you write unit tests is to run them. This has two benefits:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;confirm that something is working properly&lt;/li&gt;
+  &lt;li&gt;detect when something stopped working&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;In summary, tests are your safety net, the main weapon against regression. They make sure bugs remain fixed and allow you to refactor your code.&lt;/p&gt;
+
+&lt;p&gt;There is one caveat however: for tests to do their job, you need to run them!&lt;/p&gt;
+
+&lt;p&gt;Every time they run, they give you feedback about the code. And the shorter you can get your feedback loop, the sooner you’ll notice bugs and the easier (=cheaper) it will be to fix. That means you don’t just want to run them before every release, nor on a daily basis, but literally after every change you make.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The more you run your test, the more value you’ll get from them.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Now the less time you have to wait for your tests to run, the more often you’re going to run them. Consequently for you to run your tests often, they need to run fast… ludicrously fast.&lt;/p&gt;
+
+&lt;p&gt;Not in one minute, not even in 10 seconds, but your entire test suite should pass in less than a second!&lt;/p&gt;
+
+&lt;p&gt;This means you’ll have to:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;run your tests on a JVM instead of on a device&lt;/li&gt;
+  &lt;li&gt;only test isolated pieces of business logic&lt;/li&gt;
+  &lt;li&gt;don’t include UI, database or network tests in your main test suite&lt;/li&gt;
+  &lt;li&gt;don’t use wait/sleep statements in tests&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;2-small-and-focussed-tests&quot;&gt;2. Small and focussed tests&lt;/h2&gt;
+&lt;p&gt;Always write your tests with failures in mind. This means explicitly designing your tests to catch bugs in your apps.&lt;/p&gt;
+
+&lt;p&gt;Given a bug, would you prefer:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;one bug -&amp;gt; multiple tests fail&lt;/li&gt;
+  &lt;li&gt;one bug -&amp;gt; exactly one test fails&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Bingo, the second one, because that simplifies debugging. In case of a failing test you just look at the test name to see what went wrong.&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Test&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;logInShouldFailWithWrongPassword&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// Test code&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;For every bug, exactly one test must fail. The root cause of failure should be described by the test name.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This forces you to only check for one thing per test and will lead to smaller tests that are easier to understand, easier to explain and easier to maintain.&lt;/p&gt;
+
+&lt;p&gt;That’s why a good test should be small (=few lines of code) and focussed (=only test for one thing), just like any other method in our codebase.&lt;/p&gt;
+
+&lt;p&gt;This means you’ll have to:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;write tests with only one single assert/verify statement&lt;/li&gt;
+  &lt;li&gt;have more small tests instead of fewer big ones&lt;/li&gt;
+  &lt;li&gt;clearly describe the cause of failure in test names&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;3-100-reliable&quot;&gt;3. 100% reliable&lt;/h2&gt;
+&lt;p&gt;Tests are your safety net, so whenever that tells you something is wrong… you’ll have to take it seriously. That means dropping everything to go and fix that failing test.&lt;/p&gt;
+
+&lt;p&gt;Obviously that’s quite frustrating as you’re eager to build a feature and suddenly you have to start fire fighting somewhere else.&lt;/p&gt;
+
+&lt;p&gt;Now imagine analyzing the problem for a couple of hours, not finding anything wrong, rerunning the tests (out of desperation) and every test suddenly passes…&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The most frustrating thing for a developer is waisting time on random errors that are fixed by a clean or IDE restart&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;And if more tests behave the same way… you’ll loose trust in your entire test suite. You stop taking failures seriously and stop having the benefits from your test suit altogether.&lt;/p&gt;
+
+&lt;p&gt;That’s why all your test need to be 100% reliable and only fail when there is actually a problem.&lt;/p&gt;
+
+&lt;p&gt;This means you’ll have to:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;run your tests on a JVM (connection to device can break)&lt;/li&gt;
+  &lt;li&gt;mock network communication during tests&lt;/li&gt;
+  &lt;li&gt;move UI/integration tests out of your unit test suite&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
+&lt;p&gt;The more you run your unit tests, the more value you’ll get from them. Awesome unit tests facilitate exactly that by being fast, focussed and super reliable.&lt;/p&gt;
+
+&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><summary type="html">If you can code, you can also write unit tests. Writing awesome tests on the other hand is a different story. Don’t fool yourself: Unit testing code is production code that you will need to maintain, refactor and build upon for years to come.</summary></entry><entry><title type="html">Using Mockito 2.x on Android</title><link href="http://jeroenmols.com/blog/2017/01/17/mockitoandroid/" rel="alternate" type="text/html" title="Using Mockito 2.x on Android" /><published>2017-01-17T00:00:00+01:00</published><updated>2017-01-17T00:00:00+01:00</updated><id>http://jeroenmols.com/blog/2017/01/17/mockitoandroid</id><content type="html" xml:base="http://jeroenmols.com/blog/2017/01/17/mockitoandroid/">&lt;p&gt;The Mockito team is on fire lately! Not only did they add support to mock final classes and methods, but now they allow running Mockito directly onto an actual Android device.&lt;/p&gt;
+
+&lt;p&gt;Time to convert our Mockito 1.x projects to 2.x!&lt;/p&gt;
+
+&lt;h2 id=&quot;history&quot;&gt;History&lt;/h2&gt;
+&lt;p&gt;It has always been possible to run Mockito on Android devices and emulators. This however required using a tool called &lt;code class=&quot;highlighter-rouge&quot;&gt;Dexmaker&lt;/code&gt; to help Mockito generate classes in the Android virtual machine.&lt;/p&gt;
+
+&lt;p&gt;While this approach worked fine, there was one big caveat: &lt;code class=&quot;highlighter-rouge&quot;&gt;Dexmaker&lt;/code&gt; wasn’t actively maintained. Consequently it was only compatible with Mockito 1.x so you couldn’t use the new stuff while running tests on an Android device.&lt;/p&gt;
+
+&lt;p&gt;Further this extra dependency made your &lt;code class=&quot;highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; look like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;testCompile&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'org.mockito:mockito-core:2.6.3'&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;androidTestCompile&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'org.mockito:mockito-core:1.10.19'&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;androidTestCompile&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'com.crittercism.dexmaker:dexmaker:1.4'&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;androidTestCompile&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'com.crittercism.dexmaker:dexmaker-dx:1.4'&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;androidTestCompile&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'com.crittercism.dexmaker:dexmaker-mockito:1.4'&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Notice the 2.x version for the unit tests and the 1.x version for the instrumentation tests.&lt;/p&gt;
+
+&lt;p&gt;Fortunately, Mockito 2.6.0 changed that:&lt;/p&gt;
+
+&lt;center&gt;&lt;blockquote class=&quot;twitter-tweet&quot; data-lang=&quot;nl&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;We have just released Mockito 2.6 with native support for Android. On Android, just use the mockito-android dependency. Test code stays!&lt;/p&gt;&amp;mdash; Rafael Winterhalter (@rafaelcodes) &lt;a href=&quot;https://twitter.com/rafaelcodes/status/819525418231496705&quot;&gt;12 januari 2017&lt;/a&gt;&lt;/blockquote&gt;&lt;/center&gt;
+
+&lt;script async=&quot;&quot; src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+
+&lt;h2 id=&quot;mockito-260&quot;&gt;Mockito 2.6.0+&lt;/h2&gt;
+&lt;p&gt;The latest release added a new artifact &lt;code class=&quot;highlighter-rouge&quot;&gt;mockito-android&lt;/code&gt; next to the existing &lt;code class=&quot;highlighter-rouge&quot;&gt;mockito-core&lt;/code&gt; artifact.&lt;/p&gt;
+
+&lt;p&gt;So to convert your existing instrumentation tests, just remove the &lt;code class=&quot;highlighter-rouge&quot;&gt;Dexmaker&lt;/code&gt; dependencies and replace the &lt;code class=&quot;highlighter-rouge&quot;&gt;mockito-core&lt;/code&gt; dependency with its &lt;code class=&quot;highlighter-rouge&quot;&gt;mockito-android&lt;/code&gt; equivalent:&lt;/p&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;testCompile&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'org.mockito:mockito-core:2.6.3'&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;androidTestCompile&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'org.mockito:mockito-android:2.6.3'&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Simple, elegant and future proof!&lt;/p&gt;
+
+&lt;p&gt;Finally, please be aware that Mockito 2.x has some &lt;a href=&quot;https://github.com/mockito/mockito/wiki/What%27s-new-in-Mockito-2#incompatible&quot;&gt;behavior changes&lt;/a&gt;. The one you’re most likely going to run into while migrating is that &lt;code class=&quot;highlighter-rouge&quot;&gt;anyX()&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;any(SomeType.class)&lt;/code&gt; matchers now reject null values.&lt;/p&gt;
+
+&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
+&lt;p&gt;Finally Mockito has first class support for Android instrumentation tests! I’ve also updated my &lt;a href=&quot;https://github.com/jeroenmols/mockitoexample&quot;&gt;Mockito sample project&lt;/a&gt; where you can see how it works and learn more about how to use Mockito.&lt;/p&gt;
+
+&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><summary type="html">The Mockito team is on fire lately! Not only did they add support to mock final classes and methods, but now they allow running Mockito directly onto an actual Android device.</summary></entry><entry><title type="html">Year in review 2016</title><link href="http://jeroenmols.com/blog/2017/01/09/yearinreview/" rel="alternate" type="text/html" title="Year in review 2016" /><published>2017-01-09T00:00:00+01:00</published><updated>2017-01-09T00:00:00+01:00</updated><id>http://jeroenmols.com/blog/2017/01/09/yearinreview</id><content type="html" xml:base="http://jeroenmols.com/blog/2017/01/09/yearinreview/">&lt;p&gt;It’s that time of the year again to do a little personal retrospective.&lt;/p&gt;
+
+&lt;p&gt;2016 passed by so quickly! I had a fantastic time playing around with (and taking care of) my wife and daughter. It’s really astonishing to see how much a baby can learn and grow in a year.&lt;/p&gt;
+
+&lt;p&gt;Being a father also helps putting things into perspective and rediscover the little pleasures in live. For example, there is literally no better cure for stress than coming home, being greeted by a happy smile and laying down on the floor playing with your own kid. :)&lt;/p&gt;
+
+&lt;p&gt;Besides that, I actually found more time than expected to grow technically. As such I:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Wrote &lt;a href=&quot;http://jeroenmols.com/blog/&quot;&gt;11 blogposts&lt;/a&gt;, almost meeting my goal of 1 per month&lt;/li&gt;
+  &lt;li&gt;Got featured in &lt;a href=&quot;http://androidweekly.net/search?keyword=jeroen+mols&amp;amp;commit=Search&quot;&gt;Android weekly&lt;/a&gt; a whopping 9 times&lt;/li&gt;
+  &lt;li&gt;Appeared on &lt;a href=&quot;https://www.youtube.com/watch?v=TxFaWXkBo2E&quot;&gt;Android dialogs&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Spoke at 5 big conferences + 1 local meetup&lt;/li&gt;
+  &lt;li&gt;Grew my &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;twitter&lt;/a&gt; followers to more than 750&lt;/li&gt;
+  &lt;li&gt;Gathered over 1000 stars on &lt;a href=&quot;http://github-awards.com/users/search?login=jeroenmols&quot;&gt;Github&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Gained &amp;gt;2000 reputation on &lt;a href=&quot;https://stackoverflow.com/users/2771851/jmols&quot;&gt;stackoverflow&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Built a new Github library &lt;a href=&quot;https://github.com/JeroenMols/MockitoCollectionMatchers&quot;&gt;MockitoCollectionMatchers&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Visited Google IO (finally!)&lt;/li&gt;
+  &lt;li&gt;Built 2 green field side projects!&lt;/li&gt;
+  &lt;li&gt;Made plans for building a house&lt;/li&gt;
+  &lt;li&gt;Taught my daughter how to fist bump and say Yolo #awesomedad&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/yearinreview16/house.png&quot; alt=&quot;Render of our house&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Next year construction of our dream house will start, so time will once again be a scarce resource. And since I don’t want to give in on quality time with my daughter, I’ll just try to keep up my current blogging and speaking efforts. However, it would be really cool if I could speak at a conference outside Europe!&lt;/p&gt;
+
+&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><summary type="html">It’s that time of the year again to do a little personal retrospective.</summary></entry><entry><title type="html">Extending Mockito</title><link href="http://jeroenmols.com/blog/2016/10/31/mockitomatchers/" rel="alternate" type="text/html" title="Extending Mockito" /><published>2016-10-31T00:00:00+01:00</published><updated>2016-10-31T00:00:00+01:00</updated><id>http://jeroenmols.com/blog/2016/10/31/mockitomatchers</id><content type="html" xml:base="http://jeroenmols.com/blog/2016/10/31/mockitomatchers/">&lt;p&gt;Due to its clean simple api, Mockito has become world’s most popular Java mocking framework. After having covered &lt;a href=&quot;https://speakerdeck.com/jeroenmols/testing-made-sweet-with-a-mockito&quot;&gt;all of its basics&lt;/a&gt;, it’s time to spice things up and start extending Mockito.&lt;/p&gt;
+
+&lt;p&gt;This blogpost will demonstrate the power of custom Mockito matchers.&lt;/p&gt;
+
+&lt;h2 id=&quot;problem-sketch&quot;&gt;Problem sketch&lt;/h2&gt;
+&lt;p&gt;Imagine a very simple example where a button in the UI sends a message to a User object that in its turn does the a WebService call.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/mockitomatchers/architecture.png&quot; alt=&quot;Basic architecture of our situation to test&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We now want to verify that the User calls the &lt;code class=&quot;highlighter-rouge&quot;&gt;sendMessages()&lt;/code&gt; method on the WebService with the appropriate arguments.&lt;/p&gt;
+
+&lt;h2 id=&quot;traditional-test&quot;&gt;Traditional test&lt;/h2&gt;
+&lt;p&gt;The way to typically test such a scenario is to use an ArgumentCaptor that captures the ArrayList passed to &lt;code class=&quot;highlighter-rouge&quot;&gt;sendMessages()&lt;/code&gt;. Next you can verify that the list contains the appropriate element.&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Test&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;sendMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mockWebService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;USER_ID&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PASSWORD&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ArgumentCaptor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;listArgumentCaptor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ArgumentCaptor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;forClass&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expectedMessage&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Test message&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sendMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;expectedMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;verify&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mockWebService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sendMessages&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;eq&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;listArgumentCaptor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;capture&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;listArgumentCaptor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getValue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;actualMessage&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;assertEquals&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;expectedMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;actualMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;I don’t even have to begin to explain how cumbersome this is!&lt;/p&gt;
+
+&lt;h2 id=&quot;custom-matcher-test&quot;&gt;Custom matcher test&lt;/h2&gt;
+&lt;p&gt;We can dramatically simplify this by writing our own Mockito matcher and use that as an argument in our test verification.&lt;/p&gt;
+
+&lt;p&gt;First we create a class called &lt;code class=&quot;highlighter-rouge&quot;&gt;ListContains&lt;/code&gt; that implements the &lt;code class=&quot;highlighter-rouge&quot;&gt;ArgumentMatcher&lt;/code&gt; interface. Then add a constructor that get’s the expected element and implement the &lt;code class=&quot;highlighter-rouge&quot;&gt;matches()&lt;/code&gt; method so it checks if the list contains that element.&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ListContains&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ArgumentMatcher&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;T&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ListContains&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;matches&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;List&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;contains&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;//printed in verification errors&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;[list doesn't contain object]&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Note that &lt;code class=&quot;highlighter-rouge&quot;&gt;toString()&lt;/code&gt; prints an error when the verification fails.&lt;/p&gt;
+
+&lt;p&gt;To make the matcher syntax more intuitive you should create a new class called &lt;code class=&quot;highlighter-rouge&quot;&gt;ListMatchers&lt;/code&gt; that provides a easy to access the matcher.&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ListMatchers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Nullable&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;K&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;List&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;listContains&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;K&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;argThat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ListContains&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;With this new custom matcher, we can simplify the test to:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Test&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;customMatchers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mockWebService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;USER_ID&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PASSWORD&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expectedMessage&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Test message&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sendMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;expectedMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;verify&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mockWebService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sendMessages&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;listContains&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;expectedMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Pretty neat isn’t it?&lt;/p&gt;
+
+&lt;h2 id=&quot;library&quot;&gt;Library&lt;/h2&gt;
+&lt;p&gt;After a great suggestion from Eugen Martynov, I’ve decided to create a &lt;a href=&quot;https://github.com/JeroenMols/MockitoCollectionMatchers&quot;&gt;library for all of these collection matchers&lt;/a&gt; on Github.&lt;/p&gt;
+
+&lt;p&gt;All you have to do is add Jitpack to your main &lt;code class=&quot;highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; file:&lt;/p&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;repositories&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;maven&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;https://jitpack.io&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;And add a dependency on the library in your project &lt;code class=&quot;highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; file:&lt;/p&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;testCompile&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'com.github.JeroenMols:MockitoCollectionMatchers:0.0.1'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This is very much a work in progress, so expect more matchers to come soon!&lt;/p&gt;
+
+&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
+&lt;p&gt;Custom matchers are a great way to simplify unit tests. In my &lt;a href=&quot;https://github.com/jeroenmols/mockitoexample&quot;&gt;Mockito sample project&lt;/a&gt; you can learn more about how to use Mockito and find other custom matcher examples.&lt;/p&gt;
+
+&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><summary type="html">Due to its clean simple api, Mockito has become world’s most popular Java mocking framework. After having covered all of its basics, it’s time to spice things up and start extending Mockito.</summary></entry><entry><title type="html">The hidden cost of code coverage</title><link href="http://jeroenmols.com/blog/2016/09/01/coveragecost/" rel="alternate" type="text/html" title="The hidden cost of code coverage" /><published>2016-09-01T00:00:00+02:00</published><updated>2016-09-01T00:00:00+02:00</updated><id>http://jeroenmols.com/blog/2016/09/01/coveragecost</id><content type="html" xml:base="http://jeroenmols.com/blog/2016/09/01/coveragecost/">&lt;p&gt;Code coverage is an awesome way to motivate you and your team to write more tests. But did you know that simply enabling it slows down your build significantly?&lt;/p&gt;
+
+&lt;p&gt;This blogpost will detail why and offer an easy solution.&lt;/p&gt;
+
+&lt;h2 id=&quot;impact-on-build-speed&quot;&gt;Impact on build speed&lt;/h2&gt;
+&lt;p&gt;Profiling your Gradle build speed can easily be done using the &lt;code class=&quot;highlighter-rouge&quot;&gt;--profile&lt;/code&gt; option:&lt;/p&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;./&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gradlew&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;clean&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;assembleDebug&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;profile&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;When profiling a project recently, I noticed something surprising in the generated report:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/coveragecost/buildtime.png&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/coveragecost/buildtime.png&quot; alt=&quot;Jacoco task takes up 14% of the build time! (report located in the `build/reports/profile` folder)&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The Jacoco task takes up almost 12 second, accounting for 14% of the build time!&lt;/p&gt;
+
+&lt;p&gt;That’s crazy! Especially because our build command isn’t even running any test.&lt;/p&gt;
+
+&lt;p&gt;Looking at our &lt;code class=&quot;highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; file it is clear that we’re not really doing anything exotic:&lt;/p&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;buildTypes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;debug&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;testCoverageEnabled&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Yet this still causes delays in all debug builds.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-solution&quot;&gt;The solution&lt;/h2&gt;
+&lt;p&gt;Ask yourself when do you need code coverage? At most after running unit tests, but probably only after running a CI build.&lt;/p&gt;
+
+&lt;p&gt;Hence we’re going to introduce a very simple flag &lt;code class=&quot;highlighter-rouge&quot;&gt;-Pcoverage&lt;/code&gt; which we can add to the build command:&lt;/p&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;./&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gradlew&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Pcoverage&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;clean&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;connectedDebugAndroidTest&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;All you need to do to make this work is a small modification to your &lt;code class=&quot;highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; file:&lt;/p&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;buildTypes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;debug&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;testCoverageEnabled&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;project&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;hasProperty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'coverage'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;And now code coverage will run when you add the flag and won’t run when you don’t add it!&lt;/p&gt;
+
+&lt;blockquote&gt;
+
+  &lt;p&gt;Note that you can also add this flag to the test configuration in Android Studio if you also want to have coverage enabled while running tests locally.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
+&lt;p&gt;Code coverage is a great way to track your testing efforts. With help of a simple flag you can easily avoid it from slowing down your normal development builds.&lt;/p&gt;
+
+&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><summary type="html">Code coverage is an awesome way to motivate you and your team to write more tests. But did you know that simply enabling it slows down your build significantly?</summary></entry><entry><title type="html">Why you should care about copyright</title><link href="http://jeroenmols.com/blog/2016/08/03/copyright/" rel="alternate" type="text/html" title="Why you should care about copyright" /><published>2016-08-03T00:00:00+02:00</published><updated>2016-08-03T00:00:00+02:00</updated><id>http://jeroenmols.com/blog/2016/08/03/copyright</id><content type="html" xml:base="http://jeroenmols.com/blog/2016/08/03/copyright/">&lt;p&gt;As die hard Android developers, copyright notices are usually not on top of our priority list. Yet large corporations always insist to add a copyright header. Why do they do that? Should you do that for your open source libraries?&lt;/p&gt;
+
+&lt;p&gt;This blog post will explain what copyright is and why it’s so important. Further it’ll also show how to easily add/update copyright notices to your code base.&lt;/p&gt;
+
+&lt;h2 id=&quot;intro-to-copyrights&quot;&gt;Intro to copyrights&lt;/h2&gt;
+&lt;p&gt;According to wikipedia, copyright is:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;…a legal right created by the law of a country that grants the creator of an original work exclusive rights for its use and distribution&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Simplified this means that when you create something “original”, people cannot simply use or copy that without your explicit permission.&lt;/p&gt;
+
+&lt;p&gt;This applies to art forms such as: literary works, music compositions, photographs,… and the highest art form of all: computer software!&lt;/p&gt;
+
+&lt;p&gt;Hence every line of code you write is - besides a true piece of art - protected by copyright for the rest of your life. No action is needed to acquire this right, it’s implicitly granted on creation.&lt;/p&gt;
+
+&lt;p&gt;Now obviously this is highly simplified and there are important exceptions, most notably “&lt;a href=&quot;https://en.wikipedia.org/wiki/Right_to_quote&quot;&gt;the right of quotation&lt;/a&gt;”. But it’s fair to state that anything you blog or code in your time is falls under copyright protection.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;What with the software I write for my employer?&lt;/strong&gt;&lt;br /&gt; All copyrights explicitly belong to your employer, unless you explicitly agree to other terms in your contact.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;licenses&quot;&gt;Licenses&lt;/h2&gt;
+&lt;p&gt;A software license is a “contract” that allows others from using your code. Restrictions may apply on how “it can be used” and explicit terms may be imposed prior to using it.&lt;/p&gt;
+
+&lt;h3 id=&quot;creating-code&quot;&gt;Creating code&lt;/h3&gt;
+&lt;p&gt;All code you write is by default copyright protected, even when not enforced by an explicit license. Therefore others are not allowed to use it, even if you make it &lt;a href=&quot;https://help.github.com/articles/open-source-licensing/&quot;&gt;publicly available&lt;/a&gt; on GitHub!&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;…the absence of a license means that the default copyright laws apply. This means that nobody else may reproduce, distribute, or create derivative works from your work.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Therefore it is utterly important to explicitly state a license, otherwise all open source code you write is… well… useless.&lt;/p&gt;
+
+&lt;p&gt;To apply a license, simply distribute a license together with your source code e.g by putting a &lt;code class=&quot;highlighter-rouge&quot;&gt;LICENSE&lt;/code&gt; file at the root of my repository. Further it is also a good idea to add a copyright notice on top of every file to avoid any confusion.&lt;/p&gt;
+
+&lt;p&gt;This is how I did it in the my library &lt;a href=&quot;https://github.com/JeroenMols/LandscapeVideoCamera&quot;&gt;LandscapeVideoCamera&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/copyright/landscapevideocameralicense.png&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/copyright/landscapevideocameralicense.png&quot; alt=&quot;License for Landscape Video Camera&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;And at the top of every file:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/copyright/landscapevideocameralicense2.png&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/copyright/landscapevideocameralicense2.png&quot; alt=&quot;Copyright notice for Landscape Video Camera&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;using-code&quot;&gt;Using code&lt;/h3&gt;
+&lt;p&gt;There is a common misconception that open source equals free to use. In reality however, even seemingly innocent open source communities will take legal action if you infringe on their license. Hence care must be taken to comply with the license of all code you use.&lt;/p&gt;
+
+&lt;p&gt;Complying to a license can range from:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Making all your code open source&lt;/li&gt;
+  &lt;li&gt;Only non commercial use&lt;/li&gt;
+  &lt;li&gt;Acknowledging the author&lt;/li&gt;
+  &lt;li&gt;…&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Do carefully review the license of every piece of software you use and make sure you satisfy all of its terms.&lt;/p&gt;
+
+&lt;p&gt;Should that not be acceptable for your use case, you can always contact the author and request him/her to purchase the same software under an alternative license.&lt;/p&gt;
+
+&lt;h3 id=&quot;understanding-licenses&quot;&gt;Understanding licenses&lt;/h3&gt;
+&lt;p&gt;As you’re likely not a legal ninja, you must be wondering:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;How do I pick the right license for my project?&lt;/li&gt;
+  &lt;li&gt;Given a license, where can I find its terms/restrictions?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Well there is a great website explaining the ins and outs of various licenses: &lt;a href=&quot;http://choosealicense.com/&quot;&gt;choosealicense.com&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://choosealicense.com/&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/copyright/choosealicense.png&quot; alt=&quot;Choose a license: great website to learn everything about licenses&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Obviously if you work for a larger corporation like me, you should also involve your legal department.&lt;/p&gt;
+
+&lt;h2 id=&quot;addingupdating-licenses-to-your-code&quot;&gt;Adding/Updating licenses to your code&lt;/h2&gt;
+&lt;p&gt;Fortunately Android studio can completely handle all hassle of adding copyright notices for you. It can even update existing notices should you decide to move to a different license or simply update the year.&lt;/p&gt;
+
+&lt;p&gt;First of all go to “Preferences &amp;gt; Editor &amp;gt; Copyright &amp;gt; Copyright profiles” and press the plus icon to add a new profile. Give it a meaningful name and fill in your copyright notice.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Copyright $today.year Jeroen Mols
+
+Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/copyright/copyrightapache.png&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/copyright/copyrightapache.png&quot; alt=&quot;Add a new copyright profile&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Note that you can use the flag &lt;code class=&quot;highlighter-rouge&quot;&gt;$today.year&lt;/code&gt; to denote the current year.&lt;/p&gt;
+
+&lt;p&gt;Optionally, the formatting pane allows you to tweak the copyright notice for every file type (Java, Xml, Groovy,…)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/copyright/copyrightformatting.png&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/copyright/copyrightformatting.png&quot; alt=&quot;Optionally tweak the copyright look and feel&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Now select the “default project copyright” in the main Copyright pane and you’re fancy new copyright will be added to every new file you create.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/copyright/copyrightselect.png&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/copyright/copyrightselect.png&quot; alt=&quot;Select your configured copyright profile&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;To update or add the notice to all your existing files, simply right click any file in the project pane and select “Update copyright…”.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/copyright/copyrightupdate.png&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/copyright/copyrightupdate.png&quot; alt=&quot;Update existing copyright of files&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/copyright/copyrightscope.png&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/copyright/copyrightscope.png&quot; alt=&quot;Choose what scope to apply the copyright headers to&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;That’s it! You now have a one click way of ensuring your copyright notices are up to date.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/copyright/copyrightdone.png&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/copyright/copyrightdone.png&quot; alt=&quot;Copyright notice added to source code&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
+&lt;p&gt;Copyright is not something to mess around with and you can face cause serious legal consequences if you don’t. Even your open source projects should have a proper copyright notice. Fortunately &lt;a href=&quot;http://choosealicense.com/&quot;&gt;choosealicense.com&lt;/a&gt; and Android Studio help you choose and apply the correct license.&lt;/p&gt;
+
+&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><summary type="html">As die hard Android developers, copyright notices are usually not on top of our priority list. Yet large corporations always insist to add a copyright header. Why do they do that? Should you do that for your open source libraries?</summary></entry><entry><title type="html">Turn Android into an awesome cycling GPS</title><link href="http://jeroenmols.com/blog/2016/07/21/cyclinggps/" rel="alternate" type="text/html" title="Turn Android into an awesome cycling GPS" /><published>2016-07-21T00:00:00+02:00</published><updated>2016-07-21T00:00:00+02:00</updated><id>http://jeroenmols.com/blog/2016/07/21/cyclinggps</id><content type="html" xml:base="http://jeroenmols.com/blog/2016/07/21/cyclinggps/">&lt;p&gt;Cycling is all about exploring: visiting new places and making existing routes more fun with better streets. So there must be an app that allows to plan your route and start cycling right? Think again… there is currently no solution that offers turn by turn navigation for cyclists.&lt;/p&gt;
+
+&lt;p&gt;As I had an old Android device laying around, I decided to repurpose that and convert it into a GPS that:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;tracks my activity&lt;/li&gt;
+  &lt;li&gt;imports gpx tracks created on my computer&lt;/li&gt;
+  &lt;li&gt;offers turn by turn navigation (screen + voice)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This blogpost will detail how I use &lt;a href=&quot;https://play.google.com/store/apps/details?id=net.osmand&quot;&gt;OsmAnd&lt;/a&gt; and &lt;a href=&quot;https://play.google.com/store/apps/details?id=com.ttxapps.dropsync&quot;&gt;Dropsync&lt;/a&gt; to create new tracks with minimal effort. Further I’ll also describe the gear I use in order to make this work.&lt;/p&gt;
+
+&lt;h2 id=&quot;gear&quot;&gt;Gear&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/cyclinggps/gear.png&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/cyclinggps/gear.png&quot; alt=&quot;Cycling GPS gear&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;To build your own GPS, you’ll need the following:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Android phone - I use my Nexus 5, but any Android device will do&lt;/li&gt;
+  &lt;li&gt;Bicycle GPS mount - I use &lt;a href=&quot;http://www.dx.com/p/universal-bike-bicycle-mount-cell-phones-bracket-holder-stand-black-208712#.V5DBF5O7hBc&quot;&gt;this one&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Rainproof case - I use &lt;a href=&quot;http://www.dx.com/p/universal-waterproof-bag-case-cover-dry-bag-for-iphone-htc-translucent-3-pcs-318004#.V5DBRpO7hBe&quot;&gt;these&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;create-tracks&quot;&gt;Create tracks&lt;/h2&gt;
+&lt;p&gt;To explore new places, you need a great tool to create cycling routes. I personally use &lt;a href=&quot;https://www.strava.com/&quot;&gt;Strava&lt;/a&gt; because it has a “global Heatmap” and also supports “segments” where most people cycle. It is a great way to figure out popular cycling streets and help you plan a great route. Note that you can do all of this using a free account, but with a &lt;a href=&quot;https://www.strava.com/premium&quot;&gt;premium subscription&lt;/a&gt; you will get lots more.&lt;/p&gt;
+
+&lt;p&gt;To create routes, just go to “My routes” and select “Create new route”:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/cyclinggps/routes.png&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/cyclinggps/routes.png&quot; alt=&quot;Create a new route&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The global Heatmap indicates where most people cycle:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/cyclinggps/heatmap.png&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/cyclinggps/heatmap.png&quot; alt=&quot;The global Heatmap indicates where most people cycle&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Segments are often challenging parts to cycle, that contain a leaderboard:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/cyclinggps/segments.png&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/cyclinggps/segments.png&quot; alt=&quot;Segments are often challenging parts to cycle, that contain a leaderboard&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Once you created a route, you can export it to a &lt;code class=&quot;highlighter-rouge&quot;&gt;gpx&lt;/code&gt; file format. Note that it doesn’t matter which GPS you choose to do the export.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/cyclinggps/export.png&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/cyclinggps/export.png&quot; alt=&quot;Tracks can be exported into a gpx file format&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;configure-osmand&quot;&gt;Configure OsmAnd&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://play.google.com/store/apps/details?id=net.osmand&quot;&gt;OsmAnd&lt;/a&gt; offers both turn by turn navigation and storing maps offline. This is ideal to save bandwidth or for phones without a sim card (like mine). It is completely free to use, but there is also a &lt;a href=&quot;https://play.google.com/store/apps/details?id=net.osmand.plus&quot;&gt;premium version&lt;/a&gt; if you want to support this awesome project.&lt;/p&gt;
+
+&lt;p&gt;Getting it to work with &lt;code class=&quot;highlighter-rouge&quot;&gt;gpx&lt;/code&gt; files is tricky and hence I will guide you through it.&lt;/p&gt;
+
+&lt;p&gt;First of all install &lt;a href=&quot;https://play.google.com/store/apps/details?id=net.osmand&quot;&gt;OsmAnd&lt;/a&gt; (or &lt;a href=&quot;https://play.google.com/store/apps/details?id=net.osmand.plus&quot;&gt;OsmAnd+&lt;/a&gt;). When you open the app, press “skip” and don’t download any maps. This is because they would end up in a private directory. Open the hamburger menu, go to “Settings” and open “General settings”.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/cyclinggps/osmand1.png&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/cyclinggps/osmand1.png&quot; alt=&quot;Skip downloading maps and go to general settings&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Now we’re going to change the directory in which OsmAnd stores all of its files. Use “Data storage folder”, click the “edit icon” and select “Shared memory” as the data storage folder. This will put all files in an “osmand” directory on the root of your internal storage. Accept the permission when promted to allow OsmAnd to create and write to that folder.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/cyclinggps/osmand2.png&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/cyclinggps/osmand2.png&quot; alt=&quot;Change the folder in which maps are downloaded to the shared folder&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Next go ahead and download the maps for the areas in which you will be cycling. When prompted for a storage folder, again select “Shared memory”.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/cyclinggps/osmand3.png&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/cyclinggps/osmand3.png&quot; alt=&quot;Download the maps you need to the shared folder&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;automatically-sync-tracks-using-dropbox&quot;&gt;Automatically sync tracks using Dropbox&lt;/h2&gt;
+&lt;p&gt;Getting new tracks on your phone can be quite a hassle. Therefore we’ll automate this process so you can add new tracks to your phone by only using your computer.&lt;/p&gt;
+
+&lt;p&gt;First of all, create a new folder in your &lt;a href=&quot;https://www.dropbox.com/&quot;&gt;Dropbox&lt;/a&gt; account called “Cycling”.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/cyclinggps/dropbox.png&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/cyclinggps/dropbox.png&quot; alt=&quot;Dropbox folder that will contain all tracks&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Then install the app &lt;a href=&quot;https://play.google.com/store/apps/details?id=com.ttxapps.dropsync&quot;&gt;Dropsync&lt;/a&gt; (or &lt;a href=&quot;https://play.google.com/store/apps/details?id=com.ttxapps.dropsync.pro&quot;&gt;Dropsync pro&lt;/a&gt;). Next configure it so that it automatically syncs any file you put in the Dropbox folder into the correct folder on the Android phone.&lt;/p&gt;
+
+&lt;p&gt;Open Dropsync, login with your Dropbox account and select “let me create my own folder pair”. As the local folder choose “osmand/tracks” and as the remote folder “Cycling”. Then select “Download mirror” as the sync method and enable sync. Save the changes and wait for the sync to complete.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/cyclinggps/dropsync.png&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/cyclinggps/dropsync.png&quot; alt=&quot;Configure Dropsync to put the GPX files in the correct folder on the Android phone&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Now all you have to do is export a track from Strava, move it into the Dropbox folder and it will autmagically appear in OsmAnd on your GPS!&lt;/p&gt;
+
+&lt;h2 id=&quot;turn-by-turn-navigation&quot;&gt;Turn by turn navigation&lt;/h2&gt;
+&lt;p&gt;Finally you’re ready to start using your synced tracks for turn by turn navigation.&lt;/p&gt;
+
+&lt;p&gt;Open OsmAnd and press the “globe” icon in the top left corner. Scroll down a bit and select “GPX track…” to choose the track you want to display. Exit the screen and start navigation by pressing the “navigation” icon in the bottom left corner.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/cyclinggps/osmand4.png&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/cyclinggps/osmand4.png&quot; alt=&quot;Select a track (gpx file) and start navigation&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Enjoy your turn by turn navigation!&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/cyclinggps/osmand5.png&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/cyclinggps/osmand5.png&quot; alt=&quot;Select a track (gpx file) and start navigation&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;tips-and-tricks&quot;&gt;Tips and tricks&lt;/h2&gt;
+&lt;p&gt;I’ll update this section as I discover new handy features/tricks to make the GPS even more usefull.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Remove the lockscreen: go to “Device Settings” &amp;gt; “Security” and set the “Screen lock” to “none”. This will enable you to simply press the power key to turn on your screen.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
+&lt;p&gt;In a few very simple steps we created a complete cycling GPS solution that provides turn by turn navigation and offline maps. Creating tracks is done using Strava and export using a Dropbox folder so that they automatically appear on your GPS device.&lt;/p&gt;
+
+&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><summary type="html">Cycling is all about exploring: visiting new places and making existing routes more fun with better streets. So there must be an app that allows to plan your route and start cycling right? Think again… there is currently no solution that offers turn by turn navigation for cyclists.</summary></entry><entry><title type="html">Testing made sweet with a Mockito</title><link href="http://jeroenmols.com/blog/2016/06/24/droidcondetalk/" rel="alternate" type="text/html" title="Testing made sweet with a Mockito" /><published>2016-06-24T00:00:00+02:00</published><updated>2016-06-24T00:00:00+02:00</updated><id>http://jeroenmols.com/blog/2016/06/24/droidcondetalk</id><content type="html" xml:base="http://jeroenmols.com/blog/2016/06/24/droidcondetalk/">&lt;p&gt;At Droidcon Berlin 2016 I had a great time talking about testing using the &lt;a href=&quot;http://mockito.org/&quot;&gt;Mockito&lt;/a&gt; framework. While the talk wasn’t recorded unfortunately, the great folks at &lt;a href=&quot;https://voicerepublic.com/series/droidcon-berlin-2016&quot;&gt;Voice Republic&lt;/a&gt; recorded an audio version which you can listen to as a podcast or together with the slides.&lt;/p&gt;
+
+&lt;h2 id=&quot;talk&quot;&gt;Talk&lt;/h2&gt;
+&lt;script async=&quot;&quot; class=&quot;speakerdeck-embed&quot; data-id=&quot;061ea326e4b24a3aa961440fd699c481&quot; data-ratio=&quot;1.77777777777778&quot; src=&quot;//speakerdeck.com/assets/embed.js&quot;&gt;&lt;/script&gt;
+
+&lt;iframe width=&quot;100%&quot; height=&quot;32%&quot; src=&quot;https://voicerepublic.com/embed/talks/testing-made-sweet-with-a-mockito&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;The past year has been huge for Android testing: Testing support lib, fast JVM unit tests,… Having such great tools means writing tests is a breeze! All your apps currently have &amp;gt;80% code coverage, right? Yay! Or wait… is it really? Is all your common Android logic (networking, databases,…) tested? Do you isolate parts of your code base to keep your tests small? And what about providing relevant testing data?&lt;/p&gt;
+
+&lt;p&gt;In order to achieve this, you need to make use of mocks and stubs. And that’s exactly what this talk will be about: What is a mock? What’s the difference between a mock and a stub? Are mocks the only way to provide relevant data for your unit tests? What do I do with all the final classes/methods in the Android SDK? How do I architect my app to make it easier to test? …&lt;/p&gt;
+
+&lt;p&gt;After having adopted TDD as my main development workflow for almost a year now, I feel comfortable saying everything can be tested. Its just a matter of having someone experience show you how.&lt;/p&gt;
+
+&lt;h2 id=&quot;code&quot;&gt;Code&lt;/h2&gt;
+&lt;p&gt;A fully working sample project with all principles is available &lt;a href=&quot;https://github.com/JeroenMols/MockitoExample&quot;&gt;on Github&lt;/a&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/JeroenMols/MockitoExample/blob/master/app/build.gradle&quot;&gt;build.gradle&lt;/a&gt; file indicating how to configure Mockito
+    &lt;ul&gt;
+      &lt;li&gt;testCompile: for tests run on your computer in a JVM (src/test folder)&lt;/li&gt;
+      &lt;li&gt;androidTestCompile: for tests run on an Android device (src/androidTest folder)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/JeroenMols/MockitoExample/blob/master/app/src/test/java/com/jeroenmols/mockitoexample/UserTest.java&quot;&gt;UserTest&lt;/a&gt; class demonstrating Mockito usage
+    &lt;ul&gt;
+      &lt;li&gt;TLDR: JVM unit tests with mockito are easy to read and write&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/JeroenMols/MockitoExample/blob/master/app/src/androidTest/java/com/jeroenmols/mockitoexample/UserTestAndroid.java&quot;&gt;UserTestAndroid&lt;/a&gt; class demonstrating Mockito usage on Android device
+    &lt;ul&gt;
+      &lt;li&gt;TLDR: Mockito can be used on Android, but need to use V1 and dexmaker&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/JeroenMols/MockitoExample/blob/master/app/src/main/java/com/jeroenmols/mockitoexample/HandlerWrapper.java&quot;&gt;HandlerWrapper&lt;/a&gt; class indicating how to test final methods
+    &lt;ul&gt;
+      &lt;li&gt;TLDR: Wrap final or statics methods with a different non static/final method&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/JeroenMols/MockitoExample/blob/master/app/src/test/java/com/jeroenmols/mockitoexample/TestUserData.java&quot;&gt;TestUserData&lt;/a&gt; class indicating how to provide testing data for POJO objects
+    &lt;ul&gt;
+      &lt;li&gt;TLDR: Override all methods with default values instead of creating a mock and stubbing them out&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;audience&quot;&gt;Audience&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/droidconde16talk/audience.jpg&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/droidconde16talk/audience.jpg&quot; alt=&quot;Quite some people interested in my talk&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><summary type="html">At Droidcon Berlin 2016 I had a great time talking about testing using the Mockito framework. While the talk wasn’t recorded unfortunately, the great folks at Voice Republic recorded an audio version which you can listen to as a podcast or together with the slides.</summary></entry></feed>

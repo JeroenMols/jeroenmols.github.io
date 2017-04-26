@@ -1,219 +1,436 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.2.2 by Michael Rose
+  Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
 
-	<meta name="theme-color" content="#2c3e50">
-  	<head>
-  <link href="http://gmpg.org/xfn/11" rel="profile">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<!-- begin SEO -->
 
-  <!-- Enable responsiveness on mobile devices-->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>
+
+
+
+
+
+
+
+<title>The hidden cost of code coverage - Jeroen Mols</title>
+
+
+
+
+<meta name="description" content="Code coverage is an awesome way to motivate you and your team to write more tests. But did you know that simply enabling it slows down your build significantly?">
+
+
+
+
+<meta name="author" content="Jeroen Mols">
+
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="Jeroen Mols">
+<meta property="og:title" content="The hidden cost of code coverage">
+
+
+  <link rel="canonical" href="http://jeroenmols.com/blog/2016/09/01/coveragecost/">
+  <meta property="og:url" content="http://jeroenmols.com/blog/2016/09/01/coveragecost/">
+
+
+
+  <meta property="og:description" content="Code coverage is an awesome way to motivate you and your team to write more tests. But did you know that simply enabling it slows down your build significantly?">
+
+
+
+  <meta name="twitter:site" content="@molsjeroen">
+  <meta name="twitter:title" content="The hidden cost of code coverage">
+  <meta name="twitter:description" content="Code coverage is an awesome way to motivate you and your team to write more tests. But did you know that simply enabling it slows down your build significantly?">
+  <meta name="twitter:url" content="http://jeroenmols.com/blog/2016/09/01/coveragecost/">
+
+  
+    <meta name="twitter:card" content="summary">
     
-      The hidden cost of code coverage &middot; Jeroen Mols
-    
-  </title>
+  
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="/public/css/poole.css">
-  <link rel="stylesheet" href="/public/css/syntax.css">
-  <link rel="stylesheet" href="/public/css/hyde.css">
-  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  
+    <meta name="twitter:creator" content="@Jeroen Mols">
+  
 
-  <!-- Fonts -->
-  <link rel="stylesheet" href="/css/font-awesome/css/font-awesome.min.css">
-  <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
 
-  <!-- Icons -->
-  <link rel="favicon-144-precomposed" sizes="144x144" href="http://jeroenmols.com/favicon-144-precomposed.png">
-                                 <link rel="shortcut icon" href="http://jeroenmols.com/favicon.ico">
 
-  <!-- RSS -->
-  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
-</head>
+  
 
-  	<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
 
-  ga('create', 'UA-63356566-1', 'auto');
-  ga('send', 'pageview');
 
+
+
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2016-09-01T00:00:00+02:00">
+
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "Jeroen Mols",
+      "url" : "http://jeroenmols.com",
+      "sameAs" : ["https://twitter.com/molsjeroen","https://www.linkedin.com/in/jeroenmols/","https://plus.google.com/+JeroenMols","https://github.com/JeroenMols","https://speakerdeck.com/jeroenmols","https://stackoverflow.com/users/2771851/jmols"]
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="atom.xml" type="application/atom+xml" rel="alternate" title="Jeroen Mols Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
 </script>
 
-  	<body class="theme-base-custom">
-	    <div class="sidebar">
-  <div class="container sidebar-sticky">
-    <div class="sidebar-about sidebar-title">
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://jeroenmols.com/assets/css/main.css">
 
-      <img class="img-responsive" src="/img/profile_round.png" alt="">
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
 
-      <h1>
-        <a class="sidebar-link" href="/blog">
-          Jeroen Mols
-        </a>
-      </h1>
+<meta http-equiv="cleartype" content="on">
+    <!-- start custom head snippets -->
 
-      <ul class="list-inline">
-        
-          <li>
-              <a href="https://twitter.com/molsjeroen" class="btn-social btn-outline" target="blank"><i class="fa fa-fw fa-twitter"></i></a>
-          </li>
-        
-          <li>
-              <a href="https://stackoverflow.com/users/2771851/jmols" class="btn-social btn-outline" target="blank"><i class="fa fa-fw fa-stack-overflow"></i></a>
-          </li>
-        
-          <li>
-              <a href="https://github.com/JeroenMols" class="btn-social btn-outline" target="blank"><i class="fa fa-fw fa-github"></i></a>
-          </li>
-        
-          <li>
-              <a href="https://be.linkedin.com/pub/jeroen-mols/25/a62/995" class="btn-social btn-outline" target="blank"><i class="fa fa-fw fa-linkedin"></i></a>
-          </li>
-        
-          <li>
-              <a href="https://speakerdeck.com/jeroenmols" class="btn-social btn-outline" target="blank"><i class="fa fa-fw fa-file-pdf-o"></i></a>
-          </li>
-        
-          <li>
-              <a href="https://feeds.feedburner.com/JeroenMols" class="btn-social btn-outline" target="blank"><i class="fa fa-fw fa-rss"></i></a>
-          </li>
-        
-      </ul>
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
 
-      <p class="sidebar-subtitle">Android developer with a great <a class="sidebar-link" href="/">portfolio</a>.</p>
-    </div>
+<!-- end custom head snippets -->
+  </head>
 
-    <div class="copyright">
-      <p>Copyright &copy; Jeroen Mols 2017</p>
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    <meta name="theme-color" content="#2c3e50">
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="http://jeroenmols.com/">Jeroen Mols</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item"><a href="http://jeroenmols.com/blog/">Blog</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://jeroenmols.com/speaking/">Speaking</a></li>
+          
+        </ul>
+        <button><div class="navicon"></div></button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
     </div>
   </div>
 </div>
 
-	    <div class="content container">
-	      	<div class="post">
-  <h1 class="post-title">The hidden cost of code coverage</h1>
-  <span class="post-date">01 Sep 2016</span>
+
+    
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+<div itemscope itemtype="http://schema.org/Person">
 
   
-   <img src="/img/blog/coveragecost/coveragecost.png" alt="The hidden cost of code coverage" title="Photo by Steve Buissinne, https://creativecommons.org/publicdomain/zero/1.0/deed.en, cropped">
+    <div class="author__avatar">
+      
+        <img src="http://jeroenmols.com/img/profile.jpg" class="author__avatar" alt="Jeroen Mols" itemprop="image">
+      
+    </div>
   
 
-  <p>Code coverage is an awesome way to motivate you and your team to write more tests. But did you know that simply enabling it slows down your build significantly?</p>
+  <div class="author__content">
+    <h3 class="author__name" itemprop="name">Jeroen Mols</h3>
+    
+      <p class="author__bio" itemprop="description">
+        Lead Android developer at Philips Hue
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
+          <i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> <span itemprop="name">Mol, Belgium</span>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://twitter.com/@molsjeroen" itemprop="sameAs">
+            <i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+          </a>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="https://plus.google.com/+JeroenMols" itemprop="sameAs">
+            <i class="fa fa-fw fa-google-plus-square" aria-hidden="true"></i> Google+
+          </a>
+        </li>
+      
+
+      
+        <li>
+          <a href="https://www.linkedin.com/in/jeroenmols" itemprop="sameAs">
+            <i class="fa fa-fw fa-linkedin-square" aria-hidden="true"></i> LinkedIn
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/JeroenMols" itemprop="sameAs">
+            <i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+
+      
+        <li>
+          <a href="https://www.stackoverflow.com/users/2771851/jmols" itemprop="sameAs">
+            <i class="fa fa-fw fa-stack-overflow" aria-hidden="true"></i> Stackoverflow
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs">
+      <i class="fa fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="The hidden cost of code coverage">
+    <meta itemprop="description" content="Code coverage is an awesome way to motivate you and your team to write more tests. But did you know that simply enabling it slows down your build significantly?">
+    <meta itemprop="datePublished" content="September 01, 2016">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">The hidden cost of code coverage
+</h1>
+          <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  01 Sep 2016</p>
+          <img src="/img/blog/coveragecost/coveragecost.png" alt="The hidden cost of code coverage" title="Photo by Steve Buissinne, https://creativecommons.org/publicdomain/zero/1.0/deed.en, cropped">
+          
+            <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        <p>Code coverage is an awesome way to motivate you and your team to write more tests. But did you know that simply enabling it slows down your build significantly?</p>
 
 <p>This blogpost will detail why and offer an easy solution.</p>
 
-<p><br></p>
+<h2 id="impact-on-build-speed">Impact on build speed</h2>
+<p>Profiling your Gradle build speed can easily be done using the <code class="highlighter-rouge">--profile</code> option:</p>
 
-<h2>Impact on build speed</h2>
+<div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="o">./</span><span class="n">gradlew</span> <span class="n">clean</span> <span class="n">assembleDebug</span> <span class="o">--</span><span class="n">profile</span>
+</code></pre>
+</div>
 
-<p>Profiling your Gradle build speed can easily be done using the <code>--profile</code> option:</p>
-<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="o">./</span><span class="n">gradlew</span> <span class="n">clean</span> <span class="n">assembleDebug</span> <span class="o">--</span><span class="n">profile</span>
-</code></pre></div>
 <p>When profiling a project recently, I noticed something surprising in the generated report:</p>
 
-<p><center><a href="/img/blog/coveragecost/buildtime.png"><img src="/img/blog/coveragecost/buildtime.png" alt="Jacoco task takes up 14% of the build time! (report located in the `build/reports/profile` folder)"></a></center></p>
+<p><a href="http://jeroenmols.com/img/blog/coveragecost/buildtime.png"><img src="http://jeroenmols.com/img/blog/coveragecost/buildtime.png" alt="Jacoco task takes up 14% of the build time! (report located in the `build/reports/profile` folder)" class="align-center" /></a></p>
 
 <p>The Jacoco task takes up almost 12 second, accounting for 14% of the build time!</p>
 
-<p>That&#39;s crazy! Especially because our build command isn&#39;t even running any test.</p>
+<p>That’s crazy! Especially because our build command isn’t even running any test.</p>
 
-<p>Looking at our <code>build.gradle</code> file it is clear that we&#39;re not really doing anything exotic:</p>
-<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">buildTypes</span> <span class="o">{</span>
+<p>Looking at our <code class="highlighter-rouge">build.gradle</code> file it is clear that we’re not really doing anything exotic:</p>
+
+<div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="n">buildTypes</span> <span class="o">{</span>
     <span class="n">debug</span> <span class="o">{</span>
         <span class="o">...</span>
         <span class="n">testCoverageEnabled</span> <span class="kc">true</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+</div>
+
 <p>Yet this still causes delays in all debug builds.</p>
 
-<p><br></p>
-
-<h2>The solution</h2>
-
+<h2 id="the-solution">The solution</h2>
 <p>Ask yourself when do you need code coverage? At most after running unit tests, but probably only after running a CI build.</p>
 
-<p>Hence we&#39;re going to introduce a very simple flag <code>-Pcoverage</code> which we can add to the build command:</p>
-<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="o">./</span><span class="n">gradlew</span> <span class="o">-</span><span class="n">Pcoverage</span> <span class="n">clean</span> <span class="n">connectedDebugAndroidTest</span>
-</code></pre></div>
-<p>All you need to do to make this work is a small modification to your <code>build.gradle</code> file:</p>
-<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">buildTypes</span> <span class="o">{</span>
+<p>Hence we’re going to introduce a very simple flag <code class="highlighter-rouge">-Pcoverage</code> which we can add to the build command:</p>
+
+<div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="o">./</span><span class="n">gradlew</span> <span class="o">-</span><span class="n">Pcoverage</span> <span class="n">clean</span> <span class="n">connectedDebugAndroidTest</span>
+</code></pre>
+</div>
+
+<p>All you need to do to make this work is a small modification to your <code class="highlighter-rouge">build.gradle</code> file:</p>
+
+<div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="n">buildTypes</span> <span class="o">{</span>
     <span class="n">debug</span> <span class="o">{</span>
         <span class="o">...</span>
-        <span class="n">testCoverageEnabled</span> <span class="o">(</span><span class="n">project</span><span class="o">.</span><span class="na">hasProperty</span><span class="o">(</span><span class="s1">&#39;coverage&#39;</span><span class="o">)</span> <span class="o">?</span> <span class="kc">true</span> <span class="o">:</span> <span class="kc">false</span><span class="o">)</span>
+        <span class="n">testCoverageEnabled</span> <span class="o">(</span><span class="n">project</span><span class="o">.</span><span class="na">hasProperty</span><span class="o">(</span><span class="s1">'coverage'</span><span class="o">)</span> <span class="o">?</span> <span class="kc">true</span> <span class="o">:</span> <span class="kc">false</span><span class="o">)</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div>
-<p>And now code coverage will run when you add the flag and won&#39;t run when you don&#39;t add it!</p>
+</code></pre>
+</div>
+
+<p>And now code coverage will run when you add the flag and won’t run when you don’t add it!</p>
 
 <blockquote>
-<p>Note that you can also add this flag to the test configuration in Android Studio if you also want to have coverage enabled while running tests locally.</p>
+
+  <p>Note that you can also add this flag to the test configuration in Android Studio if you also want to have coverage enabled while running tests locally.</p>
 </blockquote>
 
-<p><br></p>
-
-<h2>Wrap-up</h2>
-
+<h2 id="wrap-up">Wrap-up</h2>
 <p>Code coverage is a great way to track your testing efforts. With help of a simple flag you can easily avoid it from slowing down your normal development builds.</p>
 
 <p>As always you can reach me <a href="https://twitter.com/molsjeroen">@molsjeroen</a> on twitter, or leave a comment below!</p>
 
+        
+      </section>
 
-  <div class="social-follow">
-    <a href="https://twitter.com/intent/user?screen_name=molsjeroen" rel="nofollow" class="twitter">
-      <i class="fa fa-twitter"></i><span id="social-span"> Follow @molsjeroen</span>
-    </a>
-</div>
-
-</div>
-
-<div class="social-share">
-  <h2>Share on</h2>
-  <ul>
-    <li>
-      <a href="https://twitter.com/intent/tweet?text=The hidden cost of code coverage&url=http://jeroenmols.com/blog/2016/09/01/coveragecost/&via=molsjeroen&related=molsjeroen&hashtags=androiddev"
-        onclick="window.open(
-              'https://twitter.com/intent/tweet?text=The hidden cost of code coverage&url=http://jeroenmols.com/blog/2016/09/01/coveragecost/&via=molsjeroen&related=molsjeroen&hashtags=androiddev'
-          ,'popup','width=600,height=600'); return false;" class="twitter" title="Share on Twitter" rel="nofollow" target="popup">
-          <i class="fa fa-twitter"></i><span id="social-span"> Twitter</span>
-      </a>
-    </li>
-    <li>
-      <a href="https://www.facebook.com/sharer/sharer.php?u=http://jeroenmols.com/blog/2016/09/01/coveragecost/"
-        onclick="window.open(
-              'https://www.facebook.com/sharer/sharer.php?u=http://jeroenmols.com/blog/2016/09/01/coveragecost/'
-          ,'popup','width=600,height=600'); return false;" class="facebook" title="Share on Facebook" rel="nofollow" target="popup">
-          <i class="fa fa-facebook"></i><span id="social-span"> Facebook</span></a>
-      </a>
-    </li>
-    <li>
-      <a href="https://plus.google.com/share?url=http://jeroenmols.com/blog/2016/09/01/coveragecost/"
-        onclick="window.open(
-              'https://plus.google.com/share?url=http://jeroenmols.com/blog/2016/09/01/coveragecost/'
-          ,'popup','width=600,height=600'); return false;" class="google-plus" title="Share on Google Plus" rel="nofollow" target="popup">
-          <i class="fa fa-google-plus"></i><span id="social-span"> Google+</span></a>
-      </a>
-    </li>
-    <!-- <li>
-      <a href="http://www.linkedin.com/shareArticle?mini=true&url=http://jeroenmols.com/blog/2016/09/01/coveragecost/&title=The hidden cost of code coverage&summary=&source=http://jeroenmols.com"
-        onclick="window.open(
-              'http://www.linkedin.com/shareArticle?mini=true&url=http://jeroenmols.com/blog/2016/09/01/coveragecost/&title=The hidden cost of code coverage&summary=&source=http://jeroenmols.com'
-          ,'popup','width=600,height=600'); return false;" class="linkedin" title="Share on Google Plus" rel="nofollow" target="popup">
-          <i class="fa fa-linkedin"></i><span id="social-span"> Linkedin</span></a>
-      </a>
-    </li> -->
-  </ul>
-</br></br>
-</div><!-- /.social-share -->
+      <footer class="page__meta">
+        
+        
 
 
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="http://jeroenmols.com/categories/#blog" class="page__taxonomy-item" rel="tag">blog</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2016-09-01T00:00:00+02:00">September 01, 2016</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=The hidden cost of code coverage http://jeroenmols.com/blog/2016/09/01/coveragecost/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http://jeroenmols.com/blog/2016/09/01/coveragecost/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://plus.google.com/share?url=http://jeroenmols.com/blog/2016/09/01/coveragecost/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://jeroenmols.com/blog/2016/09/01/coveragecost/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- bottom-blog-responsive -->
 <ins class="adsbygoogle"
      style="display:block"
@@ -225,65 +442,111 @@
 </script>
 
 
-
-<h2>Comments</h2>
-<section class="post-comments">
-  <div id="disqus_thread"></div>
-  <script type="text/javascript">
-      /* * * CONFIGURATION VARIABLES * * */
-      var disqus_shortname = 'jeroenmols';
-
-      /* * * DON'T EDIT BELOW THIS LINE * * */
-      (function() {
-          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-  </script>
-  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-</section>
-
-
-<div class="related">
-  <h2>Related Posts</h2>
-  <ul class="related-posts">
+      
+  <nav class="pagination">
     
-      
-        <li>
-          <h3>
-            <a href="/blog/2017/04/11/androidmakers17/">
-              Android Makers FR recap
-              <small>11 Apr 2017</small>
-            </a>
-          </h3>
-        </li>
-      
+      <a href="http://jeroenmols.com/blog/2016/08/03/copyright/" class="pagination--pager" title="Why you should care about copyright
+">Previous</a>
     
-      
-        <li>
-          <h3>
-            <a href="/blog/2017/03/08/appcrash/">
-              Why your app should crash
-              <small>08 Mar 2017</small>
-            </a>
-          </h3>
-        </li>
-      
     
-      
-        <li>
-          <h3>
-            <a href="/blog/2017/02/16/unittests/">
-              Write awesome unit tests
-              <small>16 Feb 2017</small>
-            </a>
-          </h3>
-        </li>
-      
+      <a href="http://jeroenmols.com/blog/2016/10/31/mockitomatchers/" class="pagination--pager" title="Extending Mockito
+">Next</a>
     
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+    <h4 class="page__comments-title">Leave a Comment</h4>
+    <section id="disqus_thread"></section>
+  
+</div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+      <li><a href="https://twitter.com/molsjeroen"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+    
+    
+    
+      <li><a href="http://github.com/JeroenMols"><i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    <li><a href="atom.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
   </ul>
 </div>
 
-	    </div>
-  	</body>
+<div class="page__footer-copyright">&copy; 2017 Jeroen Mols. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+      </footer>
+    </div>
+
+    <script src="http://jeroenmols.com/assets/js/main.min.js"></script>
+
+
+
+
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-63356566-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+
+
+  
+  <script type="text/javascript">
+  	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  	var disqus_shortname = 'jeroenmols';
+
+  	/* * * DON'T EDIT BELOW THIS LINE * * */
+  	(function() {
+  		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  	})();
+
+  	/* * * DON'T EDIT BELOW THIS LINE * * */
+  	(function () {
+  		var s = document.createElement('script'); s.async = true;
+  		s.type = 'text/javascript';
+  		s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  		(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+  	}());
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+
+
+  </body>
 </html>

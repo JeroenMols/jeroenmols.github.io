@@ -1,206 +1,432 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.2.2 by Michael Rose
+  Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
 
-	<meta name="theme-color" content="#2c3e50">
-  	<head>
-  <link href="http://gmpg.org/xfn/11" rel="profile">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<!-- begin SEO -->
 
-  <!-- Enable responsiveness on mobile devices-->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>
+
+
+
+
+
+
+
+<title>Git as a secure private Maven repository - Jeroen Mols</title>
+
+
+
+
+<meta name="description" content="As my previous blogposts already covered how to set up a private Maven repository, you might wonder “Why again a Maven blogpost?”. Well that’s a fair question and the answer is twofold:">
+
+
+
+
+<meta name="author" content="Jeroen Mols">
+
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="Jeroen Mols">
+<meta property="og:title" content="Git as a secure private Maven repository">
+
+
+  <link rel="canonical" href="http://jeroenmols.com/blog/2016/02/05/wagongit/">
+  <meta property="og:url" content="http://jeroenmols.com/blog/2016/02/05/wagongit/">
+
+
+
+  <meta property="og:description" content="As my previous blogposts already covered how to set up a private Maven repository, you might wonder “Why again a Maven blogpost?”. Well that’s a fair question and the answer is twofold:">
+
+
+
+  <meta name="twitter:site" content="@molsjeroen">
+  <meta name="twitter:title" content="Git as a secure private Maven repository">
+  <meta name="twitter:description" content="As my previous blogposts already covered how to set up a private Maven repository, you might wonder “Why again a Maven blogpost?”. Well that’s a fair question and the answer is twofold:">
+  <meta name="twitter:url" content="http://jeroenmols.com/blog/2016/02/05/wagongit/">
+
+  
+    <meta name="twitter:card" content="summary">
     
-      Git as a secure private Maven repository &middot; Jeroen Mols
-    
-  </title>
+  
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="/public/css/poole.css">
-  <link rel="stylesheet" href="/public/css/syntax.css">
-  <link rel="stylesheet" href="/public/css/hyde.css">
-  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  
+    <meta name="twitter:creator" content="@Jeroen Mols">
+  
 
-  <!-- Fonts -->
-  <link rel="stylesheet" href="/css/font-awesome/css/font-awesome.min.css">
-  <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
 
-  <!-- Icons -->
-  <link rel="favicon-144-precomposed" sizes="144x144" href="http://jeroenmols.com/favicon-144-precomposed.png">
-                                 <link rel="shortcut icon" href="http://jeroenmols.com/favicon.ico">
 
-  <!-- RSS -->
-  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
-</head>
+  
 
-  	<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
 
-  ga('create', 'UA-63356566-1', 'auto');
-  ga('send', 'pageview');
 
+
+
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2016-02-05T00:00:00+01:00">
+
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "Jeroen Mols",
+      "url" : "http://jeroenmols.com",
+      "sameAs" : ["https://twitter.com/molsjeroen","https://www.linkedin.com/in/jeroenmols/","https://plus.google.com/+JeroenMols","https://github.com/JeroenMols","https://speakerdeck.com/jeroenmols","https://stackoverflow.com/users/2771851/jmols"]
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="atom.xml" type="application/atom+xml" rel="alternate" title="Jeroen Mols Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
 </script>
 
-  	<body class="theme-base-custom">
-	    <div class="sidebar">
-  <div class="container sidebar-sticky">
-    <div class="sidebar-about sidebar-title">
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://jeroenmols.com/assets/css/main.css">
 
-      <img class="img-responsive" src="/img/profile_round.png" alt="">
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
 
-      <h1>
-        <a class="sidebar-link" href="/blog">
-          Jeroen Mols
-        </a>
-      </h1>
+<meta http-equiv="cleartype" content="on">
+    <!-- start custom head snippets -->
 
-      <ul class="list-inline">
-        
-          <li>
-              <a href="https://twitter.com/molsjeroen" class="btn-social btn-outline" target="blank"><i class="fa fa-fw fa-twitter"></i></a>
-          </li>
-        
-          <li>
-              <a href="https://stackoverflow.com/users/2771851/jmols" class="btn-social btn-outline" target="blank"><i class="fa fa-fw fa-stack-overflow"></i></a>
-          </li>
-        
-          <li>
-              <a href="https://github.com/JeroenMols" class="btn-social btn-outline" target="blank"><i class="fa fa-fw fa-github"></i></a>
-          </li>
-        
-          <li>
-              <a href="https://be.linkedin.com/pub/jeroen-mols/25/a62/995" class="btn-social btn-outline" target="blank"><i class="fa fa-fw fa-linkedin"></i></a>
-          </li>
-        
-          <li>
-              <a href="https://speakerdeck.com/jeroenmols" class="btn-social btn-outline" target="blank"><i class="fa fa-fw fa-file-pdf-o"></i></a>
-          </li>
-        
-          <li>
-              <a href="https://feeds.feedburner.com/JeroenMols" class="btn-social btn-outline" target="blank"><i class="fa fa-fw fa-rss"></i></a>
-          </li>
-        
-      </ul>
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
 
-      <p class="sidebar-subtitle">Android developer with a great <a class="sidebar-link" href="/">portfolio</a>.</p>
-    </div>
+<!-- end custom head snippets -->
+  </head>
 
-    <div class="copyright">
-      <p>Copyright &copy; Jeroen Mols 2017</p>
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    <meta name="theme-color" content="#2c3e50">
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="http://jeroenmols.com/">Jeroen Mols</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item"><a href="http://jeroenmols.com/blog/">Blog</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://jeroenmols.com/speaking/">Speaking</a></li>
+          
+        </ul>
+        <button><div class="navicon"></div></button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
     </div>
   </div>
 </div>
 
-	    <div class="content container">
-	      	<div class="post">
-  <h1 class="post-title">Git as a secure private Maven repository</h1>
-  <span class="post-date">05 Feb 2016</span>
+
+    
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+<div itemscope itemtype="http://schema.org/Person">
 
   
-   <img src="/img/blog/wagongit/wagongit.png" alt="Git as a secure private Maven repository" title="Screenshot by Jeroen Mols">
+    <div class="author__avatar">
+      
+        <img src="http://jeroenmols.com/img/profile.jpg" class="author__avatar" alt="Jeroen Mols" itemprop="image">
+      
+    </div>
   
 
-  <p>As my previous blogposts already covered how to set up a private Maven repository, you might wonder &quot;Why again a Maven blogpost?&quot;. Well that&#39;s a fair question and the answer is twofold:</p>
+  <div class="author__content">
+    <h3 class="author__name" itemprop="name">Jeroen Mols</h3>
+    
+      <p class="author__bio" itemprop="description">
+        Lead Android developer at Philips Hue
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
+          <i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> <span itemprop="name">Mol, Belgium</span>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://twitter.com/@molsjeroen" itemprop="sameAs">
+            <i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+          </a>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="https://plus.google.com/+JeroenMols" itemprop="sameAs">
+            <i class="fa fa-fw fa-google-plus-square" aria-hidden="true"></i> Google+
+          </a>
+        </li>
+      
+
+      
+        <li>
+          <a href="https://www.linkedin.com/in/jeroenmols" itemprop="sameAs">
+            <i class="fa fa-fw fa-linkedin-square" aria-hidden="true"></i> LinkedIn
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/JeroenMols" itemprop="sameAs">
+            <i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+
+      
+        <li>
+          <a href="https://www.stackoverflow.com/users/2771851/jmols" itemprop="sameAs">
+            <i class="fa fa-fw fa-stack-overflow" aria-hidden="true"></i> Stackoverflow
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs">
+      <i class="fa fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Git as a secure private Maven repository">
+    <meta itemprop="description" content="As my previous blogposts already covered how to set up a private Maven repository, you might wonder “Why again a Maven blogpost?”. Well that’s a fair question and the answer is twofold:">
+    <meta itemprop="datePublished" content="February 05, 2016">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Git as a secure private Maven repository
+</h1>
+          <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  05 Feb 2016</p>
+          <img src="/img/blog/wagongit/wagongit.png" alt="Git as a secure private Maven repository" title="Screenshot by Jeroen Mols">
+          
+            <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        <p>As my previous blogposts already covered how to set up a private Maven repository, you might wonder “Why again a Maven blogpost?”. Well that’s a fair question and the answer is twofold:</p>
 
 <ol>
-<li>Backup mechanism, to ensure you never ever loose releases.</li>
-<li>Remote access outside of your local network (intranet).</li>
+  <li>Backup mechanism, to ensure you never ever loose releases.</li>
+  <li>Remote access outside of your local network (intranet).</li>
 </ol>
 
 <p>And Git implicitly solves both! :)</p>
 
-<p>I&#39;ll demonstrate how to configure Bitbucket as a free private remote Maven repository and automate everything in one simple Gradle script.</p>
+<p>I’ll demonstrate how to configure Bitbucket as a free private remote Maven repository and automate everything in one simple Gradle script.</p>
 
-<h2>Preface</h2>
-
+<h2 id="preface">Preface</h2>
 <p>While you could use any Git repository (like GitHub), I choose Bitbucket as it offers <a href="https://bitbucket.org/product/pricing">free private repositories</a> for small teams. Furthermore it has an API which we will need for some of the wizardry later on.</p>
 
 <p>All source code is available on <a href="https://github.com/JeroenMols/WagonGitExample">Github</a> and can be used after some minor BitBucket configuration. You can find the <a href="https://github.com/JeroenMols/GitAsMaven">Gradle script</a> in a separate repository.</p>
 
-<h2>Bitbucket</h2>
-
+<h2 id="bitbucket">Bitbucket</h2>
 <p>Without any further a do, lets get to it and start configuring BitBucket.</p>
 
-<p>Login to Bitbucket and create a new private repository called <code>maven_repository</code>.</p>
+<p>Login to Bitbucket and create a new private repository called <code class="highlighter-rouge">maven_repository</code>.</p>
 
-<p><center><a href="/img/blog/wagongit/createrepository.png"><img src="/img/blog/wagongit/createrepository.png" alt="Create new BitBucket repository"></a></center></p>
+<p><a href="http://jeroenmols.com/img/blog/wagongit/createrepository.png"><img src="http://jeroenmols.com/img/blog/wagongit/createrepository.png" alt="Create new BitBucket repository" class="align-center" /></a></p>
 
-<p>Checkout the repository locally, create a <code>README.md</code> file and commit that file to your local branch. Now push that branch to BitBucket, BUT make sure to push it to a remote branch called &quot;releases&quot;. (this is key, as the plugin we&#39;ll use later on depends on this)</p>
+<p>Checkout the repository locally, create a <code class="highlighter-rouge">README.md</code> file and commit that file to your local branch. Now push that branch to BitBucket, BUT make sure to push it to a remote branch called “releases”. (this is key, as the plugin we’ll use later on depends on this)</p>
 
-<p><center><a href="/img/blog/wagongit/releasebranch.png"><img src="/img/blog/wagongit/releasebranch.png" alt="BitBucket repository with main branch releases."></a></center></p>
+<p><a href="http://jeroenmols.com/img/blog/wagongit/releasebranch.png"><img src="http://jeroenmols.com/img/blog/wagongit/releasebranch.png" alt="BitBucket repository with main branch releases." class="align-center" /></a></p>
 
 <blockquote>
-<p><strong>Troubleshooting releases branch</strong>
-If you accidentally push your local branch to a remote called <code>master</code>, create a new branch locally called releases, push that to a remote <code>releases</code> and change your main branch in the BitBucket settings for that repository.</p>
+  <p><strong>Troubleshooting releases branch</strong>
+If you accidentally push your local branch to a remote called <code class="highlighter-rouge">master</code>, create a new branch locally called releases, push that to a remote <code class="highlighter-rouge">releases</code> and change your main branch in the BitBucket settings for that repository.</p>
 
-<p><center><a href="/img/blog/wagongit/configuremainbranch.png"><img src="/img/blog/wagongit/configuremainbranch.png" alt="Change the main branch from master to releases"></a></center></p>
+  <p><a href="http://jeroenmols.com/img/blog/wagongit/configuremainbranch.png"><img src="http://jeroenmols.com/img/blog/wagongit/configuremainbranch.png" alt="Change the main branch from master to releases" class="align-center" /></a></p>
 
-<p>You can safely remove origin/master if you want.</p>
+  <p>You can safely remove origin/master if you want.</p>
 </blockquote>
 
-<h2>Wagon-git</h2>
-
+<h2 id="wagon-git">Wagon-git</h2>
 <p>To upload Maven artifacts to a Git repository, we will use a Maven plugin called <a href="https://synergian.github.io/wagon-git/">Wagon-git</a>, which can hook into the existing Gradle DSL for Maven uploads.</p>
 
 <p>Simply add a new repository:</p>
-<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">repositories</span> <span class="o">{</span>
-    <span class="n">maven</span> <span class="o">{</span> <span class="n">url</span> <span class="s2">&quot;https://raw.github.com/synergian/wagon-git/releases&quot;</span> <span class="o">}</span>
+
+<div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="n">repositories</span> <span class="o">{</span>
+    <span class="n">maven</span> <span class="o">{</span> <span class="n">url</span> <span class="s2">"https://raw.github.com/synergian/wagon-git/releases"</span> <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+</div>
+
 <p>And configure Maven like you would normally do, but with our BitBucket repository url in a particular format:</p>
-<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">uploadArchives</span> <span class="o">{</span>
+
+<div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="n">uploadArchives</span> <span class="o">{</span>
     <span class="n">repositories</span><span class="o">.</span><span class="na">mavenDeployer</span> <span class="o">{</span>
         <span class="o">...</span>
-        <span class="n">repository</span><span class="o">(</span><span class="nl">url:</span> <span class="s1">&#39;git:releases://git@bitbucket.org:&#39;</span> <span class="o">+</span> <span class="n">COMPANY</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">REPOSITORY_NAME</span> <span class="o">+</span> <span class="s1">&#39;.git&#39;</span><span class="o">)</span>
+        <span class="n">repository</span><span class="o">(</span><span class="nl">url:</span> <span class="s1">'git:releases://git@bitbucket.org:'</span> <span class="o">+</span> <span class="n">COMPANY</span> <span class="o">+</span> <span class="s1">'/'</span> <span class="o">+</span> <span class="n">REPOSITORY_NAME</span> <span class="o">+</span> <span class="s1">'.git'</span><span class="o">)</span>
         <span class="o">...</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div>
-<p>Where <code>COMPANY</code> is the name of your BitBucket organization and <code>REPOSITORY_NAME</code> is <code>maven_repository</code>.</p>
+</code></pre>
+</div>
+
+<p>Where <code class="highlighter-rouge">COMPANY</code> is the name of your BitBucket organization and <code class="highlighter-rouge">REPOSITORY_NAME</code> is <code class="highlighter-rouge">maven_repository</code>.</p>
 
 <p>Now you can simply create a new release by running the following command:</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">./gradlew assembleRelease uploadArchives
-</code></pre></div>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>./gradlew assembleRelease uploadArchives
+</code></pre>
+</div>
+
 <p>And check BitBucket for the resulting artifacts.</p>
 
-<p><center><a href="/img/blog/wagongit/releasecommits.png"><img src="/img/blog/wagongit/releasecommits.png" alt="Release commit of a Maven upload to BitBucket."></a></center></p>
+<p><a href="http://jeroenmols.com/img/blog/wagongit/releasecommits.png"><img src="http://jeroenmols.com/img/blog/wagongit/releasecommits.png" alt="Release commit of a Maven upload to BitBucket." class="align-center" /></a></p>
 
-<p><center><a href="/img/blog/wagongit/releasecommitdetails.png"><img src="/img/blog/wagongit/releasecommitdetails.png" alt="File details of a release commit."></a></center></p>
+<p><a href="http://jeroenmols.com/img/blog/wagongit/releasecommitdetails.png"><img src="http://jeroenmols.com/img/blog/wagongit/releasecommitdetails.png" alt="File details of a release commit." class="align-center" /></a></p>
 
-<h2>Unique versions only</h2>
-
+<h2 id="unique-versions-only">Unique versions only</h2>
 <p>As Git naturally allows you to override existing files, we will need to do something to prevent this from happening. Otherwise, you could have a v1.1.3 library, which is stable one day and full of bugs the next (because someone replaced it in the Maven repo). Not exactly what you want, right?</p>
 
 <p>We will use the BitBucket API to verify if a particular release already exists:</p>
-<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">task</span> <span class="n">lookForArtifacts</span> <span class="o">{</span>
+
+<div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="n">task</span> <span class="n">lookForArtifacts</span> <span class="o">{</span>
     <span class="n">doLast</span> <span class="o">{</span>
         <span class="o">...</span>
-        <span class="kt">def</span> <span class="n">repositoryUrl</span> <span class="o">=</span> <span class="s1">&#39;https://api.bitbucket.org/1.0/repositories/&#39;</span> <span class="o">+</span> <span class="n">COMPANY</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">REPOSITORY_NAME</span> <span class="o">+</span> <span class="s1">&#39;/raw/releases/&#39;</span> <span class="o">+</span> <span class="n">artifactPath</span>
+        <span class="kt">def</span> <span class="n">repositoryUrl</span> <span class="o">=</span> <span class="s1">'https://api.bitbucket.org/1.0/repositories/'</span> <span class="o">+</span> <span class="n">COMPANY</span> <span class="o">+</span> <span class="s1">'/'</span> <span class="o">+</span> <span class="n">REPOSITORY_NAME</span> <span class="o">+</span> <span class="s1">'/raw/releases/'</span> <span class="o">+</span> <span class="n">artifactPath</span>
         <span class="o">...</span>
         <span class="k">if</span> <span class="o">(</span><span class="n">urlExists</span><span class="o">(</span><span class="n">repositoryUrl</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="nf">RuntimeException</span><span class="o">(</span><span class="s2">&quot;Artifact with version &quot;</span> <span class="o">+</span> <span class="n">ARTIFACT_VERSION</span> <span class="o">+</span> <span class="s2">&quot; already exist - not executing uploadArchives&quot;</span><span class="o">)</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">RuntimeException</span><span class="o">(</span><span class="s2">"Artifact with version "</span> <span class="o">+</span> <span class="n">ARTIFACT_VERSION</span> <span class="o">+</span> <span class="s2">" already exist - not executing uploadArchives"</span><span class="o">)</span>
         <span class="o">}</span>
         <span class="k">return</span> <span class="kc">true</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+</div>
+
 <p>Quite simple actually: just reverse engineer the url of a particular release artifact and the see if we get a 200 response or not.</p>
 
 <p>Finally we ensure that we always run the previous task before running the Maven task:</p>
-<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">uploadArchives</span><span class="o">.</span><span class="na">dependsOn</span> <span class="n">lookForArtifacts</span>
-</code></pre></div>
-<p>Running <code>./gradlew uploadArchives</code> now successfully creates a release.</p>
 
-<p><center><a href="/img/blog/wagongit/checkforartifacts.png"><img src="/img/blog/wagongit/checkforartifacts.png" alt="Check for existing artifacts before uploadArchives."></a></center></p>
+<div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="n">uploadArchives</span><span class="o">.</span><span class="na">dependsOn</span> <span class="n">lookForArtifacts</span>
+</code></pre>
+</div>
 
-<h2>Consuming artifacts</h2>
+<p>Running <code class="highlighter-rouge">./gradlew uploadArchives</code> now successfully creates a release.</p>
 
-<p>Add your Maven repository to the list of repositories in your main <code>build.gradle</code> file:</p>
-<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">allprojects</span> <span class="o">{</span>
+<p><a href="http://jeroenmols.com/img/blog/wagongit/checkforartifacts.png"><img src="http://jeroenmols.com/img/blog/wagongit/checkforartifacts.png" alt="Check for existing artifacts before uploadArchives." class="align-center" /></a></p>
+
+<h2 id="consuming-artifacts">Consuming artifacts</h2>
+<p>Add your Maven repository to the list of repositories in your main <code class="highlighter-rouge">build.gradle</code> file:</p>
+
+<div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="n">allprojects</span> <span class="o">{</span>
     <span class="n">repositories</span> <span class="o">{</span>
         <span class="n">jcenter</span><span class="o">()</span>
 
@@ -209,118 +435,131 @@ If you accidentally push your local branch to a remote called <code>master</code
                 <span class="n">username</span> <span class="n">USERNAME</span>
                 <span class="n">password</span> <span class="n">PASSWORD</span>
             <span class="o">}</span>
-            <span class="n">url</span> <span class="s2">&quot;https://api.bitbucket.org/1.0/repositories/jeroenmols/maven_repository/raw/releases&quot;</span>
+            <span class="n">url</span> <span class="s2">"https://api.bitbucket.org/1.0/repositories/jeroenmols/maven_repository/raw/releases"</span>
         <span class="o">}</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div>
-<p>Note that we have to provide a <code>username</code> and <code>password</code> as we are connecting to a private repository.</p>
+</code></pre>
+</div>
+
+<p>Note that we have to provide a <code class="highlighter-rouge">username</code> and <code class="highlighter-rouge">password</code> as we are connecting to a private repository.</p>
 
 <blockquote>
-<p><strong>Important</strong></p>
+  <p><strong>Important</strong></p>
 
-<p>Make sure not to put your username and password directly into the <code>build.gradle</code> file! That would be a major security risk. Instead have a look at <a href="http://jeroenmols.com/blog/2015/08/13/artifactory2/">this blogpost</a> to learn how to securely provide a username and password.</p>
+  <p>Make sure not to put your username and password directly into the <code class="highlighter-rouge">build.gradle</code> file! That would be a major security risk. Instead have a look at <a href="http://jeroenmols.com/blog/2015/08/13/artifactory2/">this blogpost</a> to learn how to securely provide a username and password.</p>
 </blockquote>
 
-<p>Now simply add a dependency on your library like you are used to and you&#39;re ready.</p>
-<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">dependencies</span> <span class="o">{</span>
-    <span class="o">...</span>
-    <span class="n">compile</span> <span class="s1">&#39;com.jeroenmols.awesomelibrary:awesomelibrary:1.0.0&#39;</span>
-<span class="o">}</span>
-</code></pre></div>
-<h2>Putting it all together</h2>
+<p>Now simply add a dependency on your library like you are used to and you’re ready.</p>
 
-<p>To make your life a lot easier, I&#39;ve created a <a href="https://github.com/JeroenMols/WagonGitExample/blob/master/library/publish-bitbucket.gradle">Gradle script</a> that does everything for you.</p>
+<div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="n">dependencies</span> <span class="o">{</span>
+    <span class="o">...</span>
+    <span class="n">compile</span> <span class="s1">'com.jeroenmols.awesomelibrary:awesomelibrary:1.0.0'</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<h2 id="putting-it-all-together">Putting it all together</h2>
+<p>To make your life a lot easier, I’ve created a <a href="https://github.com/JeroenMols/WagonGitExample/blob/master/library/publish-bitbucket.gradle">Gradle script</a> that does everything for you.</p>
 
 <p>Setting up your project is easy:</p>
 
 <ol>
-<li>Add the following plugin to the top of the <a href="https://github.com/JeroenMols/WagonGitExample/blob/master/library/build.gradle">build.gradle</a> file in your library folder</li>
+  <li>Add the following plugin to the top of the <a href="https://github.com/JeroenMols/WagonGitExample/blob/master/library/build.gradle">build.gradle</a> file in your library folder</li>
 </ol>
-<div class="highlight"><pre><code class="language-groovy" data-lang="groovy">  <span class="n">apply</span> <span class="nl">from:</span> <span class="s1">&#39;https://raw.githubusercontent.com/JeroenMols/GitAsMaven/master/publish-bitbucket.gradle&#39;</span>
-</code></pre></div>
+
+<div class="language-groovy highlighter-rouge"><pre class="highlight"><code>  <span class="n">apply</span> <span class="nl">from:</span> <span class="s1">'https://raw.githubusercontent.com/JeroenMols/GitAsMaven/master/publish-bitbucket.gradle'</span>
+</code></pre>
+</div>
+
 <ol>
-<li>Create a <a href="https://github.com/JeroenMols/WagonGitExample/blob/master/library/gradle.properties">gradle.properties</a> file within your library folder with the following parameters:</li>
+  <li>Create a <a href="https://github.com/JeroenMols/WagonGitExample/blob/master/library/gradle.properties">gradle.properties</a> file within your library folder with the following parameters:</li>
 </ol>
-<div class="highlight"><pre><code class="language-groovy" data-lang="groovy">  <span class="n">ARTIFACT_VERSION</span><span class="o">=&lt;</span><span class="n">version_here</span><span class="o">&gt;</span>
+
+<div class="language-groovy highlighter-rouge"><pre class="highlight"><code>  <span class="n">ARTIFACT_VERSION</span><span class="o">=&lt;</span><span class="n">version_here</span><span class="o">&gt;</span>
   <span class="n">ARTIFACT_NAME</span><span class="o">=&lt;</span><span class="n">libraryname_here</span><span class="o">&gt;</span>
   <span class="n">ARTIFACT_PACKAGE</span><span class="o">=&lt;</span><span class="n">packagename_here</span><span class="o">&gt;</span>
   <span class="n">ARTIFACT_PACKAGING</span><span class="o">=</span><span class="n">aar</span> <span class="c1">//You could also use jar</span>
 
   <span class="n">COMPANY</span><span class="o">=&lt;</span><span class="n">bitbucket_team_company_here</span><span class="o">&gt;</span> <span class="c1">//Username if not part of team</span>
   <span class="n">REPOSITORY_NAME</span><span class="o">=&lt;</span><span class="n">bitbucket_reponame_here</span><span class="o">&gt;</span>
-</code></pre></div>
+</code></pre>
+</div>
+
 <ol>
-<li>Create a <a href="https://github.com/JeroenMols/WagonGitExample/blob/master/gradle.properties">gradle.properties</a> file in the root of your project (or better in the global <code>.gradle</code> folder on your system) with the following parameters</li>
+  <li>Create a <a href="https://github.com/JeroenMols/WagonGitExample/blob/master/gradle.properties">gradle.properties</a> file in the root of your project (or better in the global <code class="highlighter-rouge">.gradle</code> folder on your system) with the following parameters</li>
 </ol>
-<div class="highlight"><pre><code class="language-groovy" data-lang="groovy">  <span class="n">USERNAME</span><span class="o">=&lt;</span><span class="n">username_here</span><span class="o">&gt;</span>
+
+<div class="language-groovy highlighter-rouge"><pre class="highlight"><code>  <span class="n">USERNAME</span><span class="o">=&lt;</span><span class="n">username_here</span><span class="o">&gt;</span>
   <span class="n">PASSWORD</span><span class="o">=&lt;</span><span class="n">password_here</span><span class="o">&gt;</span>
-</code></pre></div>
+</code></pre>
+</div>
+
 <ol>
-<li>Run the following command to upload a version to your Maven repository.</li>
+  <li>Run the following command to upload a version to your Maven repository.</li>
 </ol>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">  ./gradlew uploadArchives
-</code></pre></div>
-<p>Thats&#39;s it!</p>
 
-<h2>Wrap-up</h2>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>  ./gradlew uploadArchives
+</code></pre>
+</div>
 
+<p>Thats’s it!</p>
+
+<h2 id="wrap-up">Wrap-up</h2>
 <p>Configuring BitBucket or GitHub as a (private) Maven repository is quite easy and can be fully automated in a single Gradle script. Hopefully this blogpost has inspired many of you to start reusing more code.</p>
 
 <p>A basic example project with everything in this blogpost integrated is available on <a href="https://github.com/JeroenMols/WagonGitExample">GitHub</a>. Or you can also directly integrate the <a href="https://github.com/JeroenMols/GitAsMaven">Gradle script</a> into your library.</p>
 
 <p>As always you can reach me <a href="https://twitter.com/molsjeroen">@molsjeroen</a> on twitter, or leave a comment below!</p>
 
+        
+      </section>
 
-  <div class="social-follow">
-    <a href="https://twitter.com/intent/user?screen_name=molsjeroen" rel="nofollow" class="twitter">
-      <i class="fa fa-twitter"></i><span id="social-span"> Follow @molsjeroen</span>
-    </a>
-</div>
-
-</div>
-
-<div class="social-share">
-  <h2>Share on</h2>
-  <ul>
-    <li>
-      <a href="https://twitter.com/intent/tweet?text=Git as a secure private Maven repository&url=http://jeroenmols.com/blog/2016/02/05/wagongit/&via=molsjeroen&related=molsjeroen&hashtags=androiddev"
-        onclick="window.open(
-              'https://twitter.com/intent/tweet?text=Git as a secure private Maven repository&url=http://jeroenmols.com/blog/2016/02/05/wagongit/&via=molsjeroen&related=molsjeroen&hashtags=androiddev'
-          ,'popup','width=600,height=600'); return false;" class="twitter" title="Share on Twitter" rel="nofollow" target="popup">
-          <i class="fa fa-twitter"></i><span id="social-span"> Twitter</span>
-      </a>
-    </li>
-    <li>
-      <a href="https://www.facebook.com/sharer/sharer.php?u=http://jeroenmols.com/blog/2016/02/05/wagongit/"
-        onclick="window.open(
-              'https://www.facebook.com/sharer/sharer.php?u=http://jeroenmols.com/blog/2016/02/05/wagongit/'
-          ,'popup','width=600,height=600'); return false;" class="facebook" title="Share on Facebook" rel="nofollow" target="popup">
-          <i class="fa fa-facebook"></i><span id="social-span"> Facebook</span></a>
-      </a>
-    </li>
-    <li>
-      <a href="https://plus.google.com/share?url=http://jeroenmols.com/blog/2016/02/05/wagongit/"
-        onclick="window.open(
-              'https://plus.google.com/share?url=http://jeroenmols.com/blog/2016/02/05/wagongit/'
-          ,'popup','width=600,height=600'); return false;" class="google-plus" title="Share on Google Plus" rel="nofollow" target="popup">
-          <i class="fa fa-google-plus"></i><span id="social-span"> Google+</span></a>
-      </a>
-    </li>
-    <!-- <li>
-      <a href="http://www.linkedin.com/shareArticle?mini=true&url=http://jeroenmols.com/blog/2016/02/05/wagongit/&title=Git as a secure private Maven repository&summary=&source=http://jeroenmols.com"
-        onclick="window.open(
-              'http://www.linkedin.com/shareArticle?mini=true&url=http://jeroenmols.com/blog/2016/02/05/wagongit/&title=Git as a secure private Maven repository&summary=&source=http://jeroenmols.com'
-          ,'popup','width=600,height=600'); return false;" class="linkedin" title="Share on Google Plus" rel="nofollow" target="popup">
-          <i class="fa fa-linkedin"></i><span id="social-span"> Linkedin</span></a>
-      </a>
-    </li> -->
-  </ul>
-</br></br>
-</div><!-- /.social-share -->
+      <footer class="page__meta">
+        
+        
 
 
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="http://jeroenmols.com/categories/#blog" class="page__taxonomy-item" rel="tag">blog</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2016-02-05T00:00:00+01:00">February 05, 2016</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=Git as a secure private Maven repository http://jeroenmols.com/blog/2016/02/05/wagongit/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http://jeroenmols.com/blog/2016/02/05/wagongit/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://plus.google.com/share?url=http://jeroenmols.com/blog/2016/02/05/wagongit/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://jeroenmols.com/blog/2016/02/05/wagongit/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- bottom-blog-responsive -->
 <ins class="adsbygoogle"
      style="display:block"
@@ -332,65 +571,111 @@ If you accidentally push your local branch to a remote called <code>master</code
 </script>
 
 
-
-<h2>Comments</h2>
-<section class="post-comments">
-  <div id="disqus_thread"></div>
-  <script type="text/javascript">
-      /* * * CONFIGURATION VARIABLES * * */
-      var disqus_shortname = 'jeroenmols';
-
-      /* * * DON'T EDIT BELOW THIS LINE * * */
-      (function() {
-          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-  </script>
-  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-</section>
-
-
-<div class="related">
-  <h2>Related Posts</h2>
-  <ul class="related-posts">
+      
+  <nav class="pagination">
     
-      
-        <li>
-          <h3>
-            <a href="/blog/2017/04/11/androidmakers17/">
-              Android Makers FR recap
-              <small>11 Apr 2017</small>
-            </a>
-          </h3>
-        </li>
-      
+      <a href="http://jeroenmols.com/blog/2016/01/29/yearinreview/" class="pagination--pager" title="Year in review 2015
+">Previous</a>
     
-      
-        <li>
-          <h3>
-            <a href="/blog/2017/03/08/appcrash/">
-              Why your app should crash
-              <small>08 Mar 2017</small>
-            </a>
-          </h3>
-        </li>
-      
     
-      
-        <li>
-          <h3>
-            <a href="/blog/2017/02/16/unittests/">
-              Write awesome unit tests
-              <small>16 Feb 2017</small>
-            </a>
-          </h3>
-        </li>
-      
+      <a href="http://jeroenmols.com/blog/2016/03/07/resourcenaming/" class="pagination--pager" title="A successful XML naming convention
+">Next</a>
     
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+    <h4 class="page__comments-title">Leave a Comment</h4>
+    <section id="disqus_thread"></section>
+  
+</div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+      <li><a href="https://twitter.com/molsjeroen"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+    
+    
+    
+      <li><a href="http://github.com/JeroenMols"><i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    <li><a href="atom.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
   </ul>
 </div>
 
-	    </div>
-  	</body>
+<div class="page__footer-copyright">&copy; 2017 Jeroen Mols. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+      </footer>
+    </div>
+
+    <script src="http://jeroenmols.com/assets/js/main.min.js"></script>
+
+
+
+
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-63356566-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+
+
+  
+  <script type="text/javascript">
+  	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  	var disqus_shortname = 'jeroenmols';
+
+  	/* * * DON'T EDIT BELOW THIS LINE * * */
+  	(function() {
+  		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  	})();
+
+  	/* * * DON'T EDIT BELOW THIS LINE * * */
+  	(function () {
+  		var s = document.createElement('script'); s.async = true;
+  		s.type = 'text/javascript';
+  		s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  		(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+  	}());
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+
+
+  </body>
 </html>

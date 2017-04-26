@@ -6,8 +6,8 @@
  <link href="http://jeroenmols.com/atom.xml" rel="self"/>
  <link href="http://jeroenmols.com/"/>
  <icon>http://jeroenmols.com/img/profile.jpg</icon>
- <subtitle>Blog of Jeroen Mols focussed on Android development, open source and technology.</subtitle>
- <updated>2017-04-21T23:34:22+02:00</updated>
+ <subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle>
+ <updated>2017-04-26T23:23:07+02:00</updated>
  <id>http://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -26,11 +26,9 @@
      
         <img src="http://jeroenmols.com/img/blog/androidmakers17/androidmakers.png" alt="Android Makers FR recap">
      
-     <p>After organizing Droidcon Paris for several year, the organizers decided to move on and experiment with a new format. This didn&#39;t just result in a well organized conference, but also in a fresh new vibe whilst still feeling familiar.</p>
+     <p>After organizing Droidcon Paris for several year, the organizers decided to move on and experiment with a new format. This didn’t just result in a well organized conference, but also in a fresh new vibe whilst still feeling familiar.</p>
 
-<p>In this post I&#39;d like to share some general themes, my personal highlights and all of the slides I could gather from socials.</p>
-
-
+<p>In this post I’d like to share some general themes, my personal highlights and all of the slides I could gather from socials.</p>
 
 
      <a href="http://jeroenmols.com/blog/2017/04/11/androidmakers17/">Continue reading</p>]]>
@@ -46,11 +44,9 @@
      
         <img src="http://jeroenmols.com/img/blog/appcrash/appcrash.png" alt="Why your app should crash">
      
-     <p>Too many times I&#39;ve seen developers trying to avoid crashes at all cost. But are unhandled exceptions really that bad? And are null checks really the answer?</p>
+     <p>Too many times I’ve seen developers trying to avoid crashes at all cost. But are unhandled exceptions really that bad? And are null checks really the answer?</p>
 
 <p>Actually, sometimes you want your app to crash. This post will explain why and give some practical tips.</p>
-
-
 
 
      <a href="http://jeroenmols.com/blog/2017/03/08/appcrash/">Continue reading</p>]]>
@@ -66,11 +62,9 @@
      
         <img src="http://jeroenmols.com/img/blog/unittests/unittests.png" alt="Write awesome unit tests">
      
-     <p>If you can code, you can also write unit tests. Writing awesome tests on the other hand is a different story. Don&#39;t fool yourself: Unit testing code is production code that you will need to maintain, refactor and build upon for years to come.</p>
+     <p>If you can code, you can also write unit tests. Writing awesome tests on the other hand is a different story. Don’t fool yourself: Unit testing code is production code that you will need to maintain, refactor and build upon for years to come.</p>
 
 <p>This blogpost aims at providing three very simple rules that will significantly ramp up your testing game. Every rule is followed by pragmatic tips so you can easily start implementing.</p>
-
-
 
 
      <a href="http://jeroenmols.com/blog/2017/02/16/unittests/">Continue reading</p>]]>
@@ -91,8 +85,6 @@
 <p>Time to convert our Mockito 1.x projects to 2.x!</p>
 
 
-
-
      <a href="http://jeroenmols.com/blog/2017/01/17/mockitoandroid/">Continue reading</p>]]>
    </content>
  </entry>
@@ -106,32 +98,32 @@
      
         <img src="http://jeroenmols.com/img/blog/yearinreview16/yearinreview16.png" alt="Year in review 2016">
      
-     <p>It&#39;s that time of the year again to do a little personal retrospective.</p>
+     <p>It’s that time of the year again to do a little personal retrospective.</p>
 
-<p>2016 passed by so quickly! I had a fantastic time playing around with (and taking care of) my wife and daughter. It&#39;s really astonishing to see how much a baby can learn and grow in a year.</p>
+<p>2016 passed by so quickly! I had a fantastic time playing around with (and taking care of) my wife and daughter. It’s really astonishing to see how much a baby can learn and grow in a year.</p>
 
 <p>Being a father also helps putting things into perspective and rediscover the little pleasures in live. For example, there is literally no better cure for stress than coming home, being greeted by a happy smile and laying down on the floor playing with your own kid. :)</p>
 
 <p>Besides that, I actually found more time than expected to grow technically. As such I:</p>
 
 <ul>
-<li>Wrote <a href="http://jeroenmols.com/blog/">11 blogposts</a>, almost meeting my goal of 1 per month</li>
-<li>Got featured in <a href="http://androidweekly.net/search?keyword=jeroen+mols&amp;commit=Search">Android weekly</a> a whopping 9 times</li>
-<li>Appeared on <a href="https://www.youtube.com/watch?v=TxFaWXkBo2E">Android dialogs</a></li>
-<li>Spoke at 5 big conferences + 1 local meetup</li>
-<li>Grew my <a href="https://twitter.com/molsjeroen">twitter</a> followers to more than 750</li>
-<li>Gathered over 1000 stars on <a href="http://github-awards.com/users/search?login=jeroenmols">Github</a></li>
-<li>Gained &gt;2000 reputation on <a href="https://stackoverflow.com/users/2771851/jmols">stackoverflow</a></li>
-<li>Built a new Github library <a href="https://github.com/JeroenMols/MockitoCollectionMatchers">MockitoCollectionMatchers</a></li>
-<li>Visited Google IO (finally!)</li>
-<li>Built 2 green field side projects!</li>
-<li>Made plans for building a house</li>
-<li>Taught my daughter how to fist bump and say Yolo #awesomedad</li>
+  <li>Wrote <a href="http://jeroenmols.com/blog/">11 blogposts</a>, almost meeting my goal of 1 per month</li>
+  <li>Got featured in <a href="http://androidweekly.net/search?keyword=jeroen+mols&amp;commit=Search">Android weekly</a> a whopping 9 times</li>
+  <li>Appeared on <a href="https://www.youtube.com/watch?v=TxFaWXkBo2E">Android dialogs</a></li>
+  <li>Spoke at 5 big conferences + 1 local meetup</li>
+  <li>Grew my <a href="https://twitter.com/molsjeroen">twitter</a> followers to more than 750</li>
+  <li>Gathered over 1000 stars on <a href="http://github-awards.com/users/search?login=jeroenmols">Github</a></li>
+  <li>Gained &gt;2000 reputation on <a href="https://stackoverflow.com/users/2771851/jmols">stackoverflow</a></li>
+  <li>Built a new Github library <a href="https://github.com/JeroenMols/MockitoCollectionMatchers">MockitoCollectionMatchers</a></li>
+  <li>Visited Google IO (finally!)</li>
+  <li>Built 2 green field side projects!</li>
+  <li>Made plans for building a house</li>
+  <li>Taught my daughter how to fist bump and say Yolo #awesomedad</li>
 </ul>
 
-<p><center><a href="/img/blog/yearinreview16/house.png"><img src="/img/blog/yearinreview16/house.png" alt="Render of our house"></a></center></p>
+<p><img src="http://jeroenmols.com/img/blog/yearinreview16/house.png" alt="Render of our house" class="align-center" /></p>
 
-<p>Next year construction of our dream house will start, so time will once again be a scarce resource. And since I don&#39;t want to give in on quality time with my daughter, I&#39;ll just try to keep up my current blogging and speaking efforts. However, it would be really cool if I could speak at a conference outside Europe!</p>
+<p>Next year construction of our dream house will start, so time will once again be a scarce resource. And since I don’t want to give in on quality time with my daughter, I’ll just try to keep up my current blogging and speaking efforts. However, it would be really cool if I could speak at a conference outside Europe!</p>
 
 <p>As always you can reach me <a href="https://twitter.com/molsjeroen">@molsjeroen</a> on twitter, or leave a comment below!</p>
 
@@ -148,11 +140,9 @@
      
         <img src="http://jeroenmols.com/img/blog/mockitomatchers/mockitomatchers.png" alt="Extending Mockito">
      
-     <p>Due to its clean simple api, Mockito has become world&#39;s most popular Java mocking framework. After having covered <a href="https://speakerdeck.com/jeroenmols/testing-made-sweet-with-a-mockito">all of its basics</a>, it&#39;s time to spice things up and start extending Mockito.</p>
+     <p>Due to its clean simple api, Mockito has become world’s most popular Java mocking framework. After having covered <a href="https://speakerdeck.com/jeroenmols/testing-made-sweet-with-a-mockito">all of its basics</a>, it’s time to spice things up and start extending Mockito.</p>
 
 <p>This blogpost will demonstrate the power of custom Mockito matchers.</p>
-
-
 
 
      <a href="http://jeroenmols.com/blog/2016/10/31/mockitomatchers/">Continue reading</p>]]>
@@ -173,8 +163,6 @@
 <p>This blogpost will detail why and offer an easy solution.</p>
 
 
-
-
      <a href="http://jeroenmols.com/blog/2016/09/01/coveragecost/">Continue reading</p>]]>
    </content>
  </entry>
@@ -190,9 +178,7 @@
      
      <p>As die hard Android developers, copyright notices are usually not on top of our priority list. Yet large corporations always insist to add a copyright header. Why do they do that? Should you do that for your open source libraries?</p>
 
-<p>This blog post will explain what copyright is and why it&#39;s so important. Further it&#39;ll also show how to easily add/update copyright notices to your code base.</p>
-
-
+<p>This blog post will explain what copyright is and why it’s so important. Further it’ll also show how to easily add/update copyright notices to your code base.</p>
 
 
      <a href="http://jeroenmols.com/blog/2016/08/03/copyright/">Continue reading</p>]]>
@@ -208,19 +194,17 @@
      
         <img src="http://jeroenmols.com/img/blog/cyclinggps/cyclinggps.png" alt="Turn Android into an awesome cycling GPS">
      
-     <p>Cycling is all about exploring: visiting new places and making existing routes more fun with better streets. So there must be an app that allows to plan your route and start cycling right? Think again... there is currently no solution that offers turn by turn navigation for cyclists.</p>
+     <p>Cycling is all about exploring: visiting new places and making existing routes more fun with better streets. So there must be an app that allows to plan your route and start cycling right? Think again… there is currently no solution that offers turn by turn navigation for cyclists.</p>
 
 <p>As I had an old Android device laying around, I decided to repurpose that and convert it into a GPS that:</p>
 
 <ul>
-<li>tracks my activity</li>
-<li>imports gpx tracks created on my computer</li>
-<li>offers turn by turn navigation (screen + voice)</li>
+  <li>tracks my activity</li>
+  <li>imports gpx tracks created on my computer</li>
+  <li>offers turn by turn navigation (screen + voice)</li>
 </ul>
 
-<p>This blogpost will detail how I use <a href="https://play.google.com/store/apps/details?id=net.osmand">OsmAnd</a> and <a href="https://play.google.com/store/apps/details?id=com.ttxapps.dropsync">Dropsync</a> to create new tracks with minimal effort. Further I&#39;ll also describe the gear I use in order to make this work.</p>
-
-
+<p>This blogpost will detail how I use <a href="https://play.google.com/store/apps/details?id=net.osmand">OsmAnd</a> and <a href="https://play.google.com/store/apps/details?id=com.ttxapps.dropsync">Dropsync</a> to create new tracks with minimal effort. Further I’ll also describe the gear I use in order to make this work.</p>
 
 
      <a href="http://jeroenmols.com/blog/2016/07/21/cyclinggps/">Continue reading</p>]]>
@@ -236,9 +220,7 @@
      
         <img src="http://jeroenmols.com/img/blog/droidconde16talk/droidcondetalk.png" alt="Testing made sweet with a Mockito">
      
-     <p>At Droidcon Berlin 2016 I had a great time talking about testing using the <a href="http://mockito.org/">Mockito</a> framework. While the talk wasn&#39;t recorded unfortunately, the great folks at <a href="https://voicerepublic.com/series/droidcon-berlin-2016">Voice Republic</a> recorded an audio version which you can listen to as a podcast or together with the slides.</p>
-
-
+     <p>At Droidcon Berlin 2016 I had a great time talking about testing using the <a href="http://mockito.org/">Mockito</a> framework. While the talk wasn’t recorded unfortunately, the great folks at <a href="https://voicerepublic.com/series/droidcon-berlin-2016">Voice Republic</a> recorded an audio version which you can listen to as a podcast or together with the slides.</p>
 
 
      <a href="http://jeroenmols.com/blog/2016/06/24/droidcondetalk/">Continue reading</p>]]>
@@ -254,11 +236,9 @@
      
         <img src="http://jeroenmols.com/img/blog/droidconde16/droidconde.png" alt="Droidcon Berlin recap">
      
-     <p>Having founded the entire Droidcon franchise in 2009, Droidcon Berlin is a magical conference to be at. Not only do they have an awesome lineup of speakers (including yours truly). But they also organize great after hour events. Further they&#39;re the first conference ever where I didn&#39;t have any Wi-Fi issues (looking at you #io16).</p>
+     <p>Having founded the entire Droidcon franchise in 2009, Droidcon Berlin is a magical conference to be at. Not only do they have an awesome lineup of speakers (including yours truly). But they also organize great after hour events. Further they’re the first conference ever where I didn’t have any Wi-Fi issues (looking at you #io16).</p>
 
 <p>As there were four different tracks, it was obviously not possible to attend every session. But I did notice some general themes and would like to share my personal highlights with you.</p>
-
-
 
 
      <a href="http://jeroenmols.com/blog/2016/06/18/droidconde/">Continue reading</p>]]>
@@ -274,11 +254,9 @@
      
         <img src="http://jeroenmols.com/img/blog/methodcount/methodcount.png" alt="Efficiently reducing your method count">
      
-     <p>As green field projects are a rare breed, chances are that you&#39;ve inherited a legacy code base. If you&#39;re as lucky as me, that code base has over 65k methods causing the build times to be boringly slow.</p>
+     <p>As green field projects are a rare breed, chances are that you’ve inherited a legacy code base. If you’re as lucky as me, that code base has over 65k methods causing the build times to be boringly slow.</p>
 
-<p>Today I would like to show how you can visualize your current method count and understand what libraries are eating up the largest part of that. Next it&#39;s time to reduce said method count and remove that nasty multidex solution once and for all.</p>
-
-
+<p>Today I would like to show how you can visualize your current method count and understand what libraries are eating up the largest part of that. Next it’s time to reduce said method count and remove that nasty multidex solution once and for all.</p>
 
 
      <a href="http://jeroenmols.com/blog/2016/05/06/methodcount/">Continue reading</p>]]>
@@ -294,11 +272,9 @@
      
         <img src="http://jeroenmols.com/img/blog/droidconit16/droidconit.png" alt="Droidcon Italy recap">
      
-     <p>A conference about our favorite Green little robots? In sunny Italy? With great food and a party? Yeah, I can image how you must feel in case you missed it... I on the other hand was fortunate enough to attend and speak at this awesome conference.</p>
+     <p>A conference about our favorite Green little robots? In sunny Italy? With great food and a party? Yeah, I can image how you must feel in case you missed it… I on the other hand was fortunate enough to attend and speak at this awesome conference.</p>
 
 <p>With over 770 attendees and four different tracks, it was obviously not possible to attend every session. But I did notice some general themes and would like to share my personal highlights with you.</p>
-
-
 
 
      <a href="http://jeroenmols.com/blog/2016/04/08/droidconit/">Continue reading</p>]]>
@@ -314,24 +290,22 @@
      
         <img src="http://jeroenmols.com/img/blog/resourcenaming/resourcenaming.png" alt="A successful XML naming convention">
      
-     <p>Do you remember the last time you had to dig into <code>strings.xml</code> to find the right String to use? Or that you manually had to go over all drawables to find the one you needed?</p>
+     <p>Do you remember the last time you had to dig into <code class="highlighter-rouge">strings.xml</code> to find the right String to use? Or that you manually had to go over all drawables to find the one you needed?</p>
 
-<p>Whenever we start a new project, we take a lot of care in setting up our architecture, CI, build flavors,... But do you also have a strategy to name your resources?</p>
+<p>Whenever we start a new project, we take a lot of care in setting up our architecture, CI, build flavors,… But do you also have a strategy to name your resources?</p>
 
 <p>You should! Because the lack of XML namespaces, makes managing Android resources tedious. And causes things to grow out of control easily, especially in large projects.</p>
 
-<p>So let&#39;s introduce a simple scheme that will solve your pains.</p>
+<p>So let’s introduce a simple scheme that will solve your pains.</p>
 
 <ul>
-<li>easy lookup of any resource (autocomplete)</li>
-<li>logical, predictable names</li>
-<li>clean ordering of resources</li>
-<li>strongly typed resources</li>
+  <li>easy lookup of any resource (autocomplete)</li>
+  <li>logical, predictable names</li>
+  <li>clean ordering of resources</li>
+  <li>strongly typed resources</li>
 </ul>
 
 <p>This blogpost will explain the mechanism, its advantages, limitations and provide an easy to use cheat sheet.</p>
-
-
 
 
      <a href="http://jeroenmols.com/blog/2016/03/07/resourcenaming/">Continue reading</p>]]>
@@ -347,16 +321,16 @@
      
         <img src="http://jeroenmols.com/img/blog/wagongit/wagongit.png" alt="Git as a secure private Maven repository">
      
-     <p>As my previous blogposts already covered how to set up a private Maven repository, you might wonder &quot;Why again a Maven blogpost?&quot;. Well that&#39;s a fair question and the answer is twofold:</p>
+     <p>As my previous blogposts already covered how to set up a private Maven repository, you might wonder “Why again a Maven blogpost?”. Well that’s a fair question and the answer is twofold:</p>
 
 <ol>
-<li>Backup mechanism, to ensure you never ever loose releases.</li>
-<li>Remote access outside of your local network (intranet).</li>
+  <li>Backup mechanism, to ensure you never ever loose releases.</li>
+  <li>Remote access outside of your local network (intranet).</li>
 </ol>
 
 <p>And Git implicitly solves both! :)</p>
 
-<p>I&#39;ll demonstrate how to configure Bitbucket as a free private remote Maven repository and automate everything in one simple Gradle script.</p>
+<p>I’ll demonstrate how to configure Bitbucket as a free private remote Maven repository and automate everything in one simple Gradle script.</p>
 
 
      <a href="http://jeroenmols.com/blog/2016/02/05/wagongit/">Continue reading</p>]]>
@@ -372,25 +346,25 @@
      
         <img src="http://jeroenmols.com/img/blog/yearinreview15/yearinreview15.png" alt="Year in review 2015">
      
-     <p>Finally found the time to write my <code>year in review</code>. #insomnia</p>
+     <p>Finally found the time to write my <code class="highlighter-rouge">year in review</code>. #insomnia</p>
 
-<p>2015 was a huge year for me! I even dare to say the biggest one of my life so far as I became a father of a lovely daughter Lene. Its really hard to over state how big of an impact that has on your life and how fantastic it is to see your own baby grow (and recognize parts of yourself in her). This obviously also explains my late <code>year in review</code> post. #perfectexcuse</p>
+<p>2015 was a huge year for me! I even dare to say the biggest one of my life so far as I became a father of a lovely daughter Lene. Its really hard to over state how big of an impact that has on your life and how fantastic it is to see your own baby grow (and recognize parts of yourself in her). This obviously also explains my late <code class="highlighter-rouge">year in review</code> post. #perfectexcuse</p>
 
-<p>On a technical level I also fared well and I&#39;m very happy with what I&#39;ve been able to accomplish:</p>
+<p>On a technical level I also fared well and I’m very happy with what I’ve been able to accomplish:</p>
 
 <ul>
-<li>Created an library with &gt;500 stars on  <a href="https://github.com/JeroenMols/LandscapeVideoCamera">Github</a></li>
-<li>Started my own blog and <a href="http://jeroenmols.com">website</a></li>
-<li>Featured blogpost in <a href="http://androidweekly.net/issues/issue-165">Android Weekly</a></li>
-<li>Spoke at my first conference <a href="https://speakerdeck.com/jeroenmols/distributing-to-a-public-or-private-maven-repository">Droidcon Paris</a></li>
-<li>Actively started using <a href="https://twitter.com/molsjeroen">twitter</a> and gained &gt;100 followers</li>
-<li>Gained &gt;1000 reputation on <a href="https://stackoverflow.com/users/2771851/jmols">stackoverflow</a></li>
-<li>Landed a new job at Philips Hue</li>
-<li>Learned Xamarin and built a cross platform app</li>
-<li>Wrote the worlds latest <code>year in review</code> post</li>
+  <li>Created an library with &gt;500 stars on  <a href="https://github.com/JeroenMols/LandscapeVideoCamera">Github</a></li>
+  <li>Started my own blog and <a href="http://jeroenmols.com">website</a></li>
+  <li>Featured blogpost in <a href="http://androidweekly.net/issues/issue-165">Android Weekly</a></li>
+  <li>Spoke at my first conference <a href="https://speakerdeck.com/jeroenmols/distributing-to-a-public-or-private-maven-repository">Droidcon Paris</a></li>
+  <li>Actively started using <a href="https://twitter.com/molsjeroen">twitter</a> and gained &gt;100 followers</li>
+  <li>Gained &gt;1000 reputation on <a href="https://stackoverflow.com/users/2771851/jmols">stackoverflow</a></li>
+  <li>Landed a new job at Philips Hue</li>
+  <li>Learned Xamarin and built a cross platform app</li>
+  <li>Wrote the worlds latest <code class="highlighter-rouge">year in review</code> post</li>
 </ul>
 
-<p>Next year will be more challenging as my daughter has become a lot more effective at grabbing my attention than my laptop. However I want to increase my efforts contributing back to the community by speaking at more conferences and writing more blogposts. Finally I also want to visit Google IO, which is about time I got there, don&#39;t you agree? ;)</p>
+<p>Next year will be more challenging as my daughter has become a lot more effective at grabbing my attention than my laptop. However I want to increase my efforts contributing back to the community by speaking at more conferences and writing more blogposts. Finally I also want to visit Google IO, which is about time I got there, don’t you agree? ;)</p>
 
 <p>As always you can reach me <a href="https://twitter.com/molsjeroen">@molsjeroen</a> on twitter, or leave a comment below!</p>
 
@@ -407,11 +381,11 @@
      
         <img src="http://jeroenmols.com/img/blog/traviscoveralls/traviscoveralls.png" alt="Level up GitHub builds with CI and code coverage">
      
-     <p>Wouldn&#39;t you love to have your open source projects built automatically by a continuous integration server? And to have a detailed code coverage report for all your unit tests? Even when someone generated a pull request? And how about having cool badges to show off all of this?</p>
+     <p>Wouldn’t you love to have your open source projects built automatically by a continuous integration server? And to have a detailed code coverage report for all your unit tests? Even when someone generated a pull request? And how about having cool badges to show off all of this?</p>
 
-<p><center><a href="https://travis-ci.org/JeroenMols/LandscapeVideoCamera"><img src="https://travis-ci.org/JeroenMols/LandscapeVideoCamera.svg?branch=master" alt="Build Status"></a> <a href="https://coveralls.io/github/JeroenMols/LandscapeVideoCamera?branch=master"><img src="https://coveralls.io/repos/JeroenMols/LandscapeVideoCamera/badge.svg?branch=master&amp;service=github" alt="Coverage Status"></a></center></p>
+<p><a href="https://travis-ci.org/JeroenMols/LandscapeVideoCamera"><img src="https://travis-ci.org/JeroenMols/LandscapeVideoCamera.svg?branch=master" alt="Build Status" /></a>    <a href="https://coveralls.io/github/JeroenMols/LandscapeVideoCamera?branch=master"><img src="https://coveralls.io/repos/JeroenMols/LandscapeVideoCamera/badge.svg?branch=master&amp;service=github" alt="Coverage Status" /></a></p>
 
-<p>Actually, all of this a breeze to set up, once you understand what works and what doesn&#39;t. It is even completely free for open source projects!</p>
+<p>Actually, all of this a breeze to set up, once you understand what works and what doesn’t. It is even completely free for open source projects!</p>
 
 <p>In less than half an hour, this blogpost will add CI and code coverage to your projects, just like I did for my own library <a href="https://github.com/JeroenMols/LandscapeVideoCamera">LandscapeVideoCamera</a>. While this article focusses on Android, the material presented here can quite easily be extended to a broader scope.</p>
 
@@ -434,11 +408,11 @@
 <p>You will learn how to:</p>
 
 <ul>
-<li>handle library projects with dependencies</li>
-<li>securely provide username and password</li>
-<li>work with snapshot and release builds</li>
-<li>configure custom repositories</li>
-<li>manage user access</li>
+  <li>handle library projects with dependencies</li>
+  <li>securely provide username and password</li>
+  <li>work with snapshot and release builds</li>
+  <li>configure custom repositories</li>
+  <li>manage user access</li>
 </ul>
 
 <p>All source code is <a href="https://github.com/JeroenMols/ArtifactoryExample">available on Github</a> as usual.</p>
@@ -479,12 +453,12 @@
      
         <img src="http://jeroenmols.com/img/blog/jekyll.png" alt="How I created my blog">
      
-     <p>For quite some months, I&#39;ve been planning to create a website and start blogging about the things I&#39;m passionate about. Last week, I finally decided to setup a <a href="http://jeroenmols.github.io">portfolio</a> and <a href="http://jeroen.mols.github.io/blog">blog</a> using GitHub pages and Jekyll.</p>
+     <p>For quite some months, I’ve been planning to create a website and start blogging about the things I’m passionate about. Last week, I finally decided to setup a <a href="http://jeroenmols.github.io">portfolio</a> and <a href="http://jeroen.mols.github.io/blog">blog</a> using GitHub pages and Jekyll.</p>
 
-<p>Since I&#39;m an Android and not a web developer, the first blogging subject wasn&#39;t hard to find: challenges I came across in setting up this website and blog.</p>
+<p>Since I’m an Android and not a web developer, the first blogging subject wasn’t hard to find: challenges I came across in setting up this website and blog.</p>
 
 <blockquote>
-<p><strong>Disclaimer:</strong> Eventually I had to use a workaround - that&#39;s why I don&#39;t build websites professionally - but I strongly believe in a <em>Just do It</em> mentality and then learn/improve as you go.</p>
+  <p><strong>Disclaimer:</strong> Eventually I had to use a workaround - that’s why I don’t build websites professionally - but I strongly believe in a <em>Just do It</em> mentality and then learn/improve as you go.</p>
 </blockquote>
 
 
