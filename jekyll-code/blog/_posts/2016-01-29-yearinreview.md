@@ -1,8 +1,6 @@
 ---
-layout: post
 title: Year in review 2015
 published: true
-comments: true
 img: img/blog/yearinreview15/yearinreview15.png
 imgcredit: Screenshot of Droidcon France video, https://www.youtube.com/watch?v=chlEInu88vw&t=19s
 ---

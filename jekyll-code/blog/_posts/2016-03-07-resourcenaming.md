@@ -1,8 +1,6 @@
 ---
-layout: post
 title: A successful XML naming convention
 published: true
-comments: true
 img: img/blog/resourcenaming/resourcenaming.png
 imgcredit: Android logo by Google, https://creativecommons.org/licenses/by/3.0/, cropped
 ---
@@ -21,31 +19,29 @@ So let's introduce a simple scheme that will solve your pains.
 
 This blogpost will explain the mechanism, its advantages, limitations and provide an easy to use cheat sheet.
 
-<br>
 
 ## Basic principle
 All resource names follow a simple convention.
 
-<img src="{{ site.blogbaseurl }}img/blog/resourcenaming/whatwheredescriptionsize.jpg" alt="what_where_description_size">
+![what_where_description_size]({{ site.url }}{{ site.baseurl }}/img/blog/resourcenaming/whatwheredescriptionsize.jpg){: .align-center}
 
 Let's first describe every element briefly. After the advantages, we'll see how this applies to each resource type.
 
-#### &lt;WHAT&gt;
-Indicate what the resource actually represents, often a standard Android view class. Limited options per resource type. </br> (e.g. MainActivity -> `activity`)
+### &lt;WHAT&gt;
+Indicate what the resource actually represents, often a standard Android view class. Limited options per resource type. <br> (e.g. MainActivity -> `activity`)
 
-#### &lt;WHERE&gt;
-Describe where it logically belongs in the app. Resources used in multiple screens use `all`, all others use the custom part of the Android view subclass they are in. </br> (e.g. MainActivity -> `main`, ArticleDetailFragment -> `articledetail`)
+### &lt;WHERE&gt;
+Describe where it logically belongs in the app. Resources used in multiple screens use `all`, all others use the custom part of the Android view subclass they are in. <br> (e.g. MainActivity -> `main`, ArticleDetailFragment -> `articledetail`)
 
-#### &lt;DESCRIPTION&gt;
-Differentiate multiple elements in one screen. </br> (e.g. `title`)
+### &lt;DESCRIPTION&gt;
+Differentiate multiple elements in one screen. <br> (e.g. `title`)
 
-#### &lt;SIZE&gt; (optional)
-Either a precise size or size bucket. Optionally used for drawables and dimensions. </br>  (e.g. `24dp`, `small`))
+### &lt;SIZE&gt; (optional)
+Either a precise size or size bucket. Optionally used for drawables and dimensions. <br>  (e.g. `24dp`, `small`))
 
-<center><a href="{{ site.blogbaseurl }}img/blog/resourcenaming/resourcenaming_cheatsheet.pdf"><img src="{{ site.blogbaseurl }}img/blog/resourcenaming/resourcenaming_cheatsheet.png" alt="Resource naming cheat sheet"></a></center>
+[![Resource naming cheat sheet]({{ site.url }}{{ site.baseurl }}/img/blog/resourcenaming/resourcenaming_cheatsheet.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/resourcenaming/resourcenaming_cheatsheet.pdf)
 
-Download and print the <a href="{{ site.blogbaseurl }}img/blog/resourcenaming/resourcenaming_cheatsheet.pdf">cheat sheet</a> for easy reference.
-<br><br>
+Download and print the [cheat sheet]({{ site.url }}{{ site.baseurl }}/img/blog/resourcenaming/resourcenaming_cheatsheet.pdf) for easy reference.
 
 ## Advantages
 
@@ -64,12 +60,11 @@ Download and print the <a href="{{ site.blogbaseurl }}img/blog/resourcenaming/re
 7. **Tools support** <br>
   This naming scheme could be easily supported by the Android Studio offering features such as: lint rules to enforce these names, refactoring support when you change a `WHAT` or `WHERE`, better resource visualisation in project view,...
 
-<br>
 
 ## Layouts
 Layouts are relatively simple, as there usually are only a few layouts per screen. Therefore the rule can be simplified to:
 
-<img src="{{ site.blogbaseurl }}img/blog/resourcenaming/layouts.png" alt="what_where.xml">
+![what_where.xml]({{ site.url }}{{ site.baseurl }}/img/blog/resourcenaming/layouts.png){: .align-center}
 
 Where `<WHAT>` is one of the following:
 
@@ -89,16 +84,15 @@ Examples:
 - **item_article**: list item in ArticleRecyclerView
 - **layout_actionbar_backbutton**: layout for an actionbar with a backbutton (too simple to be a customview)
 
-<br>
 
 ## Strings
 The `<WHAT>` part for Strings is irrelevant. So either we use `<WHERE>` to indicate where the string will be used:
 
-<img src="{{ site.blogbaseurl }}img/blog/resourcenaming/strings.png" alt="where_description.xml">
+![where_description.xml]({{ site.url }}{{ site.baseurl }}/img/blog/resourcenaming/strings.png){: .align-center}
 
 or `all` if the string is reused throughout the app:
 
-<img src="{{ site.blogbaseurl }}img/blog/resourcenaming/strings2.png" alt="all_description.xml">
+![all_description.xml]({{ site.url }}{{ site.baseurl }}/img/blog/resourcenaming/strings2.png){: .align-center}
 
 Examples:
 
@@ -109,16 +103,15 @@ Examples:
 
 `<WHERE>` obviously is the same for all resources in the same view.
 
-<br>
 
 ## Drawables
 The `<WHAT>` part for Drawables is irrelevant. So either we use `<WHERE>` to indicate where the drawable will be used:
 
-<img src="{{ site.blogbaseurl }}img/blog/resourcenaming/drawables.png" alt="where_description_size.xml">
+![where_description_size.xml]({{ site.url }}{{ site.baseurl }}/img/blog/resourcenaming/drawables.png){: .align-center}
 
 or `all` if the drawable is reused throughout the app:
 
-<img src="{{ site.blogbaseurl }}img/blog/resourcenaming/drawables2.png" alt="all_description_size.xml">
+![all_description_size.xml]({{ site.url }}{{ site.baseurl }}/img/blog/resourcenaming/drawables2.png){: .align-center}
 
 Optionally you can add a `<SIZE>` argument, which can be an actual size "24dp" or a size qualifier "small".
 
@@ -129,12 +122,11 @@ Examples:
 - **all_infoicon_large**: large version of generic info icon
 - **all_infoicon_24dp**: 24dp version of generic info icon
 
-<br>
 
 ## IDs
 For IDs, `<WHAT>` is the class name of the xml element it belongs to. Next is the screen the ID is in, followed by an optional description to distinguish similar elements in one screen.
 
-<img src="{{ site.blogbaseurl }}img/blog/resourcenaming/ids.png" alt="what_where_description.xml">
+![what_where_description.xml]({{ site.url }}{{ site.baseurl }}/img/blog/resourcenaming/ids.png){: .align-center}
 
 Examples:
 
@@ -142,18 +134,17 @@ Examples:
 - **imageview_menu_profile** -> profile image in custom MenuView
 - **textview_articledetail_title** -> title TextView in ArticleDetailFragment
 
-<br>
 
 ## Dimensions
 Apps should only define a limited set of dimensions, which are constantly reused. This makes most dimensions `all` by default.
 
 Therefore you should mostly use:
 
-<img src="{{ site.blogbaseurl }}img/blog/resourcenaming/dimensions2.png" alt="what_all_description_size.xml">
+![what_all_description_size.xml]({{ site.url }}{{ site.baseurl }}/img/blog/resourcenaming/dimensions2.png){: .align-center}
 
 and optionally use the screen specific variant:
 
-<img src="{{ site.blogbaseurl }}img/blog/resourcenaming/dimensions.png" alt="what_where_description_size.xml">
+![what_where_description_size.xml]({{ site.url }}{{ site.baseurl }}/img/blog/resourcenaming/dimensions.png){: .align-center}
 
 Where `<WHAT>` is one of the following:
 
@@ -178,7 +169,6 @@ Examples:
 - **size_menu_icon**: size of icons in menu
 - **height_menu_profileimage**: height of profile image in menu
 
-<br>
 
 ## Known limitations
 1. **Screens need to have unique names**<br>
@@ -192,10 +182,9 @@ The proposed scheme currently does not yet support all resource types. For some 
 
     Your apps colors palette likely wants to reuse the terminology of your design philosophy. Animations can range from modest (fade) to very exotic. Themes and styles already have a naming scheme that allows you to implicitly inherit properties.
 
-<br>
 
 ## Wrap-up
-That's it! A clean simple and easy to use resource naming scheme. Don't forget to download the <a href="{{ site.blogbaseurl }}img/blog/resourcenaming/resourcenaming_cheatsheet.pdf">cheat sheet</a> for easy reference!
+That's it! A clean simple and easy to use resource naming scheme. Don't forget to download the [cheat sheet]({{ site.url }}{{ site.baseurl }}/img/blog/resourcenaming/resourcenaming_cheatsheet.pdf) for easy reference!
 
 Even though this scheme doesn't (yet) cover all resource types, it does provide an easy to use solution for where most naming pain currently is. In a future blogpost I'll also make a suggestion for the other ones.
 

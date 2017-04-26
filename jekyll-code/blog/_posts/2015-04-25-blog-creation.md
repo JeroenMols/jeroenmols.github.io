@@ -1,8 +1,6 @@
 ---
-layout: post
 title: How I created my blog
 published: true
-comments: true
 img: img/blog/jekyll.png
 imgcredit: Image by Jekyll, https://choosealicense.com/licenses/cc-by-4.0/, cropped
 ---
