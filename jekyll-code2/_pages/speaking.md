@@ -11,14 +11,17 @@ I'm always eager to share my technical knowledge with fellow developers. Don't h
 
 Upcoming talks:
 
-- Android Makers FR - The ART of organizing resources
-- Dutch Android User Group - Testing made sweet with a Mockito
 - Devoxx UK - Deep into the IoT trenches: how to build a connected product
 - GDG Brussels - Testing made sweet with a Mockito
 
+2017:
+
+- Dutch Android User Group - [Testing made sweet with a Mockito](https://speakerdeck.com/jeroenmols/testing-made-sweet-with-a-mockito-1)
+- Android Makers FR - [The ART of organizing resources](https://speakerdeck.com/jeroenmols/the-art-of-organizing-resources)
+
 2016:
 
-- Devoxx - [Testing made sweet with a Mockito](https://www.youtube.com/watch?v=DJDBl0vURD4)
+- Devoxx - [Testing made sweet with a Mockito](https://speakerdeck.com/jeroenmols/testing-made-sweet-with-a-mockito-1)
 - Android dialogs - [Connected products](https://www.youtube.com/watch?v=TxFaWXkBo2E)
 - Big Android Barbeque Europe - [Testing made sweet with a Mockito](https://speakerdeck.com/jeroenmols/testing-made-sweet-with-a-mockito)
 - Big Android Barbeque Europe - [Maven library distribution](https://speakerdeck.com/jeroenmols/distribute-your-libraries-via-maven-even-privately)
