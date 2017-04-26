@@ -1,74 +1,254 @@
-# Site settings
-title: Jeroen Mols
-email: jmols.mobile@gmail.com
-url: https://jeroenmols.github.io
-description: "Portfolio of Jeroen Mols, the Android developer you should hire."
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your entire site, values
+# which you are expected to set up once and rarely need to edit after that.
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# `jekyll serve`. If you change this file, please restart the server process.
 
-# Contact form: comment the line below if you want to stick with the default PHP contact form
-contact: static
+theme: minimal-mistakes-jekyll
 
-# Color settings (hex-codes without the leading hash-tag)
-color:
-  primary: d28445 #80B3FF    Note: also change in hyde.css (theme-base-custom, btn-outline) and main.css (#portfolio .portfolio-item .portfolio-link .caption)
-  secondary: 2c3e50 #FD6E8A
-  secondary-dark: 233140 #A2122F
+# Site Settings
+locale                   : "en"
+title                    : "Jeroen Mols"
+title_separator          : "-"
+name                     : "Jeroen Mols"
+description              : "Blog and portfolio of Jeroen Mols, the Android developer you should hire."
+url                      : "http://jeroenmols.com"
+baseurl                  : # the subpath of your site, e.g. "/blog"
+repository               : "JeroenMols/jeroenmols.github.io"
+teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
+# breadcrumbs            : false # true, false (default)
+words_per_minute         : 200
+comments:
+  provider               : "disqus" # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "custom"
+  disqus:
+    shortname            : "jeroenmols"
+  discourse:
+    server               : # https://meta.discourse.org/t/embedding-discourse-comments-via-javascript/31963 , e.g.: meta.discourse.org
+  facebook:
+    # https://developers.facebook.com/docs/plugins/comments
+    appid                :
+    num_posts            : # 5 (default)
+    colorscheme          : # "light" (default), "dark"
+staticman:
+  allowedFields          : ['name', 'email', 'url', 'message']
+  branch                 : "master"
+  commitMessage          : "New comment."
+  filename               : comment-{@timestamp}
+  format                 : "yml"
+  moderation             : true
+  path                   : "docs/_data/comments/{options.slug}" # "/_data/comments/{options.slug}" (default)
+  requiredFields         : ['name', 'email', 'message']
+  transforms:
+    email                : "md5"
+  generatedFields:
+    date:
+      type               : "date"
+      options:
+        format           : "iso8601" # "iso8601" (default), "timestamp-seconds", "timestamp-milliseconds"
+atom_feed:
+  path                   : atom.xml # blank (default) uses feed.xml
 
-# Footer settings
-footer:
-  copyright: Jeroen Mols
-  location: Location
-  social: Around the Web
-  credits: Credits
+# SEO Related
+google_site_verification :
+bing_site_verification   :
+alexa_site_verification  :
+yandex_site_verification :
 
-# Social networks usernames (many more available: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.)
+# Social Sharing
+twitter:
+  username               : "molsjeroen"
+facebook:
+  username               :
+  app_id                 :
+  publisher              :
+og_image                 : # Open Graph/Twitter default site image
+# For specifying social profiles
+# - https://developers.google.com/structured-data/customize/social-profiles
 social:
-  - title: twitter
-    url: https://twitter.com/molsjeroen
-  - title: stack-overflow
-    url: https://stackoverflow.com/users/2771851/jmols
-  - title: github
-    url: https://github.com/JeroenMols
-  - title: linkedin
-    url: https://be.linkedin.com/pub/jeroen-mols/25/a62/995
-  - title: file-pdf-o
-    url: https://speakerdeck.com/jeroenmols
-  - title: rss
-    url: https://feeds.feedburner.com/JeroenMols
+  type                   : "Person" # Person or Organization (defaults to Person)
+  name                   : # If the user or organization name differs from the site's name
+  links: # An array of links to social media profiles
+    - "https://twitter.com/molsjeroen"
+    - "https://www.linkedin.com/in/jeroenmols/"
+    - "https://plus.google.com/+JeroenMols"
+    - "https://github.com/JeroenMols"
+    - "https://speakerdeck.com/jeroenmols"
+    - "https://stackoverflow.com/users/2771851/jmols"
+
+# Analytics
+analytics:
+  provider               : "google" # false (default), "google", "google-universal", "custom"
+  google:
+    tracking_id          : "UA-63356566-1"
 
 
-# Postal address (add as many lines as necessary)
-address:
-  - line: Mol
-  - line: Antwerp
-  - line: Belgium
-
-# Credits content
-credits: 'This website is based on the free Bootstrap <a href="http://startbootstrap.com/template-overviews/freelancer/">Freelancer theme</a>.</br> The blog is based on <a href="http://hyde.getpoole.com"/>Hyde</a>'
-
-# Build settings
-markdown: Redcarpet
-highlighter:      pygments
-
-redcarpet:
-  extensions: ["autolink", "strikethrough", "superscript", "footnotes", "tables", "no_intra_emphasis"]
-
-# Permalinks
-permalink:        pretty
-relative_permalinks: true
-
-# Setup
-blogtitle:            Jeroen Mols
-blogtagline:          'Blog of Jeroen Mols focussed on Android development, open source and technology.'
-blogdescription:      'Android developer with a great <a class="sidebar-link" href="/">portfolio</a>.'
-url:                  http://jeroenmols.com
-blogbaseurl:          /
-blogurlpart:          blog
-
+# Site Author
 author:
-  name:           'Jeroen Mols'
-  url:            https://twitter.com/molsjeroen
+  name             : "Jeroen Mols"
+  avatar           : "/img/profile.jpg"
+  bio              : "Lead Android developer at Philips Hue"
+  location         : "Mol, Belgium"
+  email            :
+  uri              :
+  bitbucket        :
+  codepen          :
+  dribbble         :
+  flickr           :
+  facebook         :
+  foursquare       :
+  github           : "JeroenMols"
+  google_plus      : "JeroenMols"
+  keybase          :
+  instagram        :
+  lastfm           :
+  linkedin         : "jeroenmols"
+  pinterest        :
+  soundcloud       :
+  stackoverflow    : "2771851/jmols"
+  steam            :
+  tumblr           :
+  twitter          : "@molsjeroen"
+  vine             :
+  weibo            :
+  xing             :
+  youtube          : # "https://youtube.com/c/MichaelRoseDesign"
 
-paginate:         20
-paginate_path: "/blog/page:num/"
 
-twitter_username: molsjeroen
+# Reading Files
+include:
+  - .htaccess
+  - _pages
+exclude:
+  - "*.sublime-project"
+  - "*.sublime-workspace"
+  - vendor
+  - .asset-cache
+  - .bundle
+  - .jekyll-assets-cache
+  - .sass-cache
+  - assets/js/plugins
+  - assets/js/_main.js
+  - assets/js/vendor
+  - Capfile
+  - CHANGELOG
+  - config
+  - Gemfile
+  - Gruntfile.js
+  - gulpfile.js
+  - LICENSE
+  - log
+  - node_modules
+  - package.json
+  - Rakefile
+  - README
+  - tmp
+  - /docs # ignore Minimal Mistakes /docs
+  - /test # ignore Minimal Mistakes /test
+keep_files:
+  - .git
+  - .svn
+encoding: "utf-8"
+markdown_ext: "markdown,mkdown,mkdn,mkd,md"
+
+
+# Conversion
+markdown: kramdown
+highlighter: rouge
+lsi: false
+excerpt_separator: "\n\n"
+incremental: false
+
+
+# Markdown Processing
+kramdown:
+  input: GFM
+  hard_wrap: false
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
+  enable_coderay: false
+
+
+# Sass/SCSS
+sass:
+  sass_dir: _sass
+  style: compressed # http://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
+
+
+# Outputting
+permalink: /:categories/:year/:month/:day/:title/
+paginate: 10 # amount of posts to show
+paginate_path: /blog/page:num/
+timezone: Europe/Brussels
+
+
+# Plugins
+gems:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jemoji
+
+# mimic GitHub Pages with --safe
+whitelist:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jemoji
+
+
+# Archives
+#  Type
+#  - GitHub Pages compatible archive pages built with Liquid ~> type: liquid (default)
+#  - Jekyll Archives plugin archive pages ~> type: jekyll-archives
+#  Path (examples)
+#  - Archive page should exist at path when using Liquid method or you can
+#    expect broken links (especially with breadcrumbs enabled)
+#  - <base_path>/tags/my-awesome-tag/index.html ~> path: /tags/
+#  - <base_path/categories/my-awesome-category/index.html ~> path: /categories/
+#  - <base_path/my-awesome-category/index.html ~> path: /
+category_archive:
+  type: liquid
+  path: /categories/
+tag_archive:
+  type: liquid
+  path: /tags/
+# https://github.com/jekyll/jekyll-archives
+# jekyll-archives:
+#   enabled:
+#     - categories
+#     - tags
+#   layouts:
+#     category: archive-taxonomy
+#     tag: archive-taxonomy
+#   permalinks:
+#     category: /categories/:name/
+#     tag: /tags/:name/
+
+
+# HTML Compression
+# - http://jch.penibelst.de/
+compress_html:
+  clippings: all
+  ignore:
+    envs: development
+
+
+# Defaults
+defaults:
+  # _posts
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: true
+      share: true
+      related: true

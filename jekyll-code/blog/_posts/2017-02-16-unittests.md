@@ -1,8 +1,6 @@
 ---
-layout: post
 title: Write awesome unit tests
 published: true
-comments: true
 img: img/blog/unittests/unittests.png
 imgcredit: Alberto G., https://creativecommons.org/licenses/by/2.0/, cropped
 ---
@@ -10,7 +8,6 @@ If you can code, you can also write unit tests. Writing awesome tests on the oth
 
 This blogpost aims at providing three very simple rules that will significantly ramp up your testing game. Every rule is followed by pragmatic tips so you can easily start implementing.
 
-<br>
 
 ## 1. Run ludicrously fast
 The only reason you write unit tests is to run them. This has two benefits:
@@ -37,7 +34,6 @@ This means you'll have to:
 - don't include UI, database or network tests in your main test suite
 - don't use wait/sleep statements in tests
 
-<br>
 
 ## 2. Small and focussed tests
 Always write your tests with failures in mind. This means explicitly designing your tests to catch bugs in your apps.
@@ -68,7 +64,6 @@ This means you'll have to:
 - have more small tests instead of fewer big ones
 - clearly describe the cause of failure in test names
 
-<br>
 
 ## 3. 100% reliable
 Tests are your safety net, so whenever that tells you something is wrong... you'll have to take it seriously. That means dropping everything to go and fix that failing test.
@@ -89,7 +84,6 @@ This means you'll have to:
 - mock network communication during tests
 - move UI/integration tests out of your unit test suite
 
-<br>
 
 ## Wrap-up
 The more you run your unit tests, the more value you'll get from them. Awesome unit tests facilitate exactly that by being fast, focussed and super reliable.

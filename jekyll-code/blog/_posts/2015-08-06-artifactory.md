@@ -1,8 +1,6 @@
 ---
-layout: post
 title: A private Maven repository for Android in 30 min
 published: true
-comments: true
 img: img/blog/artifactory/artifactory.png
 imgcredit: Image by JFrog, https://www.jfrog.com/wp-content/uploads/2014/05/artifactory_overview_diagram.jpg, cropped
 ---
@@ -30,7 +28,7 @@ While there are some options available to choose from, I personally selected [Ar
 - User access control
 - Free and open source
 
-<center>[![What is Artifactory](http://img.youtube.com/vi/aa4YBDUDWy0/0.jpg)](http://www.youtube.com/watch?v=aa4YBDUDWy0)</center></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/aa4YBDUDWy0" frameborder="0" allowfullscreen></iframe><br>
 
 For more information have a look at the [alternatives](https://maven.apache.org/repository-management.html), checkout this [feature comparison matrix](http://www.jfrog.com/blog/artifactory-vs-nexus-integration-matrix/) or review all of the [Artifactory features](https://www.jfrog.com/confluence/display/RTF/Artifactory+Comparison+Matrix).
 
@@ -56,7 +54,7 @@ SEVERE: One or more listeners failed to start. Full details will be found in the
 ### Install Artifactory
 Thankfully this is incredibly easy to do. Just download the latest version of [Artifactory](http://www.jfrog.com/open-source/), unpack the archive and run the `artifactory` executable for your platform.
 
-<center>[![< 1min Artifactory set up](http://img.youtube.com/vi/7ZSUHgHDMmc/0.jpg)](http://www.youtube.com/watch?v=7ZSUHgHDMmc)</center></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/mztbo8WwqRc" frameborder="0" allowfullscreen></iframe><br>
 
 You can easily verify your installation and start experimenting with its features by navigating to [http://localhost:8081/artifactory/](http://localhost:8081/artifactory/). For now, don't worry about all of the settings, we will configure what we need later on.
 
@@ -154,7 +152,7 @@ Notice how we first invoke `assembleRelease` before we invoke the actual `artifa
 
 You can very easily verify that the upload was successful by navigating to [localhost:8081](http://localhost:8081) and signing in with the default admin credentials.
 
-<center><a href="{{ site.blogbaseurl }}img/blog/artifactory/artifactory_screenshot.png"><img src="{{ site.blogbaseurl }}img/blog/artifactory/artifactory_screenshot.png" alt="Verify a successful upload in the Artifactory control panel."></a></center>
+[![Verify a successful upload in the Artifactory control panel.]({{ site.url }}{{ site.baseurl }}/img/blog/artifactory/artifactory_screenshot.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/artifactory/artifactory_screenshot.png)
 
 ### Using the artifacts
 To make use of the published artifacts in another project we have to add our Artifactory repository to the list of Maven repositories in your top level `build.gradle` file:
@@ -178,7 +176,7 @@ dependencies {
 ## Wrap-up
 Congratulations! You now have a fully working Maven repository manager with a Gradle script to generate and upload your artifacts.
 
-In the next [blog post]({% post_url 2015-08-13-artifactory2 %}) I will zoom in on more advanced topics like:
+In the next [blog post]({{ site.baseurl }}{% link blog/_posts/2015-08-13-artifactory2.md %}) I will zoom in on more advanced topics like:
 
 - Library projects with dependencies
 - Configuring your own repositories

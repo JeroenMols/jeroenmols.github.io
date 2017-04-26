@@ -1,15 +1,13 @@
 ---
-layout: post
 title: Level up GitHub builds with CI and code coverage
 published: true
-comments: true
 img: img/blog/traviscoveralls/traviscoveralls.png
 imgcredit: Travis logo (https://travis-ci.com) and Coveralls mascot from careers page (https://coveralls.io/)
 ---
 
 Wouldn't you love to have your open source projects built automatically by a continuous integration server? And to have a detailed code coverage report for all your unit tests? Even when someone generated a pull request? And how about having cool badges to show off all of this?
 
-<center>[![Build Status](https://travis-ci.org/JeroenMols/LandscapeVideoCamera.svg?branch=master)](https://travis-ci.org/JeroenMols/LandscapeVideoCamera) [![Coverage Status](https://coveralls.io/repos/JeroenMols/LandscapeVideoCamera/badge.svg?branch=master&service=github)](https://coveralls.io/github/JeroenMols/LandscapeVideoCamera?branch=master)</center>
+[![Build Status](https://travis-ci.org/JeroenMols/LandscapeVideoCamera.svg?branch=master)](https://travis-ci.org/JeroenMols/LandscapeVideoCamera)    [![Coverage Status](https://coveralls.io/repos/JeroenMols/LandscapeVideoCamera/badge.svg?branch=master&service=github)](https://coveralls.io/github/JeroenMols/LandscapeVideoCamera?branch=master)
 
 Actually, all of this a breeze to set up, once you understand what works and what doesn't. It is even completely free for open source projects!
 
@@ -24,12 +22,12 @@ Later on I will present a more elaborate (and usefull) example, namely my own op
 ### About
 [Travis](https://travis-ci.org/) is a feature rich online CI service which integrates nicely with a lot of existing services. One major advantage over Jenkins is that you can put the entire CI configuration file under version control. It is completely free for open source projects, although private repositories are also supported on a subscription basis.
 
-<center><a href="{{ site.blogbaseurl }}img/blog/traviscoveralls/travis-workflow.png"><img src="{{ site.blogbaseurl }}img/blog/traviscoveralls/travis-workflow.png" alt="Travis workflow"></a></center>
+[![Travis workflow]({{ site.url }}{{ site.baseurl }}/img/blog/traviscoveralls/travis-workflow.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/traviscoveralls/travis-workflow.png)
 
 ### Basic configuration
 In order to get started, go to [travis-ci.org](https://travis-ci.org/), login with your GitHub account and authorize Travis to access your repositories.
 
-<center><a href="{{ site.blogbaseurl }}img/blog/traviscoveralls/travis-authorize.png"><img src="{{ site.blogbaseurl }}img/blog/traviscoveralls/travis-authorize.png" alt="Allow Travis to access your GitHub projects"></a></center>
+[![Allow Travis to access your GitHub projects]({{ site.url }}{{ site.baseurl }}/img/blog/traviscoveralls/travis-authorize.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/traviscoveralls/travis-authorize.png)
 
 Next, create a new file `.travis.yml` into the root of your project (note that this file will be hidden on Mac OSX/Linux systems). Open the file and specify the language of your project, in our case Android:
 
@@ -66,15 +64,15 @@ script:
 
 Now that we have configured everything in the `travis.yml` file, we need to enable the project, so Travis will start listening to code changes. This can be done by going to your profile on [Travis](http://travis-ci.org) and flipping the appropriate slider.
 
-<center><a href="{{ site.blogbaseurl }}img/blog/traviscoveralls/travis-enableproject.png"><img src="{{ site.blogbaseurl }}img/blog/traviscoveralls/travis-enableproject.png" alt="Enable project in Travis"></a></center>
+[![Enable project in Travis]({{ site.url }}{{ site.baseurl }}/img/blog/traviscoveralls/travis-enableproject.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/traviscoveralls/travis-enableproject.png)
 
 This will result in the project being shown on the left hand side of your dashboard, while indicating that there are no builds.
 
-<center><a href="{{ site.blogbaseurl }}img/blog/traviscoveralls/travis-nobuilds.png"><img src="{{ site.blogbaseurl }}img/blog/traviscoveralls/travis-nobuilds.png" alt="Travis overview with no builds, push code to origin to trigger a build."></a></center>
+[![Travis overview with no builds, push code to origin to trigger a build.]({{ site.url }}{{ site.baseurl }}/img/blog/traviscoveralls/travis-nobuilds.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/traviscoveralls/travis-nobuilds.png)
 
 Builds are automatically triggered whenever you push code to your GitHub repository or someone else creates a pull request. Therefore push some changes to GitHub and watch Travis pick them up automatically and start building your project.
 
-<center><a href="{{ site.blogbaseurl }}img/blog/traviscoveralls/travis-firstbuild.png"><img src="{{ site.blogbaseurl }}img/blog/traviscoveralls/travis-firstbuild.png" alt="First build in Travis"></a></center>
+[![First build in Travis]({{ site.url }}{{ site.baseurl }}/img/blog/traviscoveralls/travis-firstbuild.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/traviscoveralls/travis-firstbuild.png)
 
 Congrats! You now have a fully working Continuous Integration server for your [open source project](https://travis-ci.org/JeroenMols/TravisCoverallsExample).
 
@@ -132,7 +130,7 @@ script:
 ### Taking things further
 As mentioned in the introduction, Travis is a really feature rich CI service. Therefore this section provides some tips to take things even further.
 
-1. **Build notifications:** Travis supports sending notifications via Slack, HipChat, email,... whenever a built fails/succeeds.</p>
+1. **Build notifications:** Travis supports sending notifications via Slack, HipChat, email,... whenever a built fails/succeeds.<br>
 For more information, have a look at the [Travis documentation](http://docs.travis-ci.com/user/notifications/).
 
 ```yaml
@@ -141,7 +139,7 @@ notifications:
       - your.email@gmail.com
 ```
 
-- **Build status badge:** Click the build badge on your Travis homepage to generate png/markdown/... build badges.</p>
+- **Build status badge:** Click the build badge on your Travis homepage to generate png/markdown/... build badges.<br>
 [![Build Status](https://travis-ci.org/JeroenMols/TravisCoverallsExample.svg?branch=master)](https://travis-ci.org/JeroenMols/TravisCoverallsExample)
 
 - **Branch information:** Print which branch or pull request is being built.
@@ -158,7 +156,7 @@ script:
 ### About
 [Coveralls](https://coveralls.io/) is a visually attractive online code coverage tool which provides detailed statistics such as line coverage and repository trends. Furthermore it allows you to show of your code coverage and encourages you to increase it. Like Travis, it is free for open source projects, but a subscription service is available for private repositories.
 
-<center><a href="{{ site.blogbaseurl }}img/blog/traviscoveralls/coveralls-example.png"><img src="{{ site.blogbaseurl }}img/blog/traviscoveralls/coveralls-example.png" alt="Example coveralls dashboard"></a></center>
+[![Example coveralls dashboard]({{ site.url }}{{ site.baseurl }}/img/blog/traviscoveralls/coveralls-example.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/traviscoveralls/coveralls-example.png)
 
 ### Enabling Android code coverage
 First of all, your Android project needs to be configured to generate code coverage reports. As such, ensure that you are using at least version 0.4 of the [Android testing support library](https://google.github.io/android-testing-support-library/) (there was an [issue](https://code.google.com/p/android/issues/detail?id=170607) in version 0.3).
@@ -179,12 +177,12 @@ android {
 
 At this point, you should be able to run `gradle connectedAndroidTest` and view an `html` and `xml` report in the above mentioned directory.
 
-<center><a href="{{ site.blogbaseurl }}img/blog/traviscoveralls/coveralls-rawcoverage.png"><img src="{{ site.blogbaseurl }}img/blog/traviscoveralls/coveralls-rawcoverage.png" alt="Basic coverage report generated by the built in Android code coverage"></a></center>
+[![Basic coverage report generated by the built in Android code coverage]({{ site.url }}{{ site.baseurl }}/img/blog/traviscoveralls/coveralls-rawcoverage.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/traviscoveralls/coveralls-rawcoverage.png)
 
 ### Basic configuration
 In order to get started, go to [coveralls.io](https://coveralls.io/), login with your GitHub account and authorize Coveralls to access your repositories.
 
-<center><a href="{{ site.blogbaseurl }}img/blog/traviscoveralls/coveralls-authorize.png"><img src="{{ site.blogbaseurl }}img/blog/traviscoveralls/coveralls-authorize.png" alt="Allow Coveralls to access your GitHub projects"></a></center>
+[![Allow Coveralls to access your GitHub projects]({{ site.url }}{{ site.baseurl }}/img/blog/traviscoveralls/coveralls-authorize.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/traviscoveralls/coveralls-authorize.png)
 
 Next, we'll need to configure your `build.gradle` files to upload the coverage reports to Coveralls after each successful CI build. Therefore add a new classpath dependency to the root projects `build.gradle` file.
 
@@ -229,17 +227,17 @@ script:
 
 Next we need to activate our GitHub repository in coveralls, so it picks up the output from the `Gradle` plugin. This can easily be done by clicking `add repos` on [coveralls.io](https://coveralls.io) and flipping the switch on your repository.
 
-<center><a href="{{ site.blogbaseurl }}img/blog/traviscoveralls/coveralls-enableproject.png"><img src="{{ site.blogbaseurl }}img/blog/traviscoveralls/coveralls-enableproject.png" alt="Enable project in Coveralls"></a></center>
+[![Enable project in Coveralls]({{ site.url }}{{ site.baseurl }}/img/blog/traviscoveralls/coveralls-enableproject.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/traviscoveralls/coveralls-enableproject.png)
 
 This will result in the project being added to your dashboard without any builds.
 
-<center><a href="{{ site.blogbaseurl }}img/blog/traviscoveralls/coveralls-nobuilds.png"><img src="{{ site.blogbaseurl }}img/blog/traviscoveralls/coveralls-nobuilds.png" alt="No builds yet in Coveralls"></a></center>
+[![No builds yet in Coveralls]({{ site.url }}{{ site.baseurl }}/img/blog/traviscoveralls/coveralls-nobuilds.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/traviscoveralls/coveralls-nobuilds.png)
 
 Simply trigger a Travis build by pushing some changes to start seeing code coverage results online.
 
 Finally you can easily add a badge to your repository by clicking the `Badge urls` button from the green banner in the detail view.
 
-<center>[![Coverage Status](https://coveralls.io/repos/JeroenMols/TravisCoverallsExample/badge.svg?branch=master&service=github)](https://coveralls.io/github/JeroenMols/TravisCoverallsExample?branch=master)</center>
+[![Coverage Status](https://coveralls.io/repos/JeroenMols/TravisCoverallsExample/badge.svg?branch=master&service=github)](https://coveralls.io/github/JeroenMols/TravisCoverallsExample?branch=master)
 
 Congratulations you know have attractive code coverage reports for [your repository](https://coveralls.io/github/JeroenMols/TravisCoverallsExample)!
 
@@ -248,6 +246,6 @@ Adding Travis CI and Coveralls code coverage to your project is fairly straightf
 
 A basic example project with everything in this blogpost integrated is available on [GitHub](https://github.com/JeroenMols/TravisCoverallsExample). But in case you're interested in a real life example, have a look at my Android library [LandscapeVideoCamera](https://github.com/JeroenMols/LandscapeVideoCamera), which actually has decent code coverage statistics.
 
-<center>[![Build Status](https://travis-ci.org/JeroenMols/LandscapeVideoCamera.svg?branch=master)](https://travis-ci.org/JeroenMols/LandscapeVideoCamera) [![Coverage Status](https://coveralls.io/repos/JeroenMols/LandscapeVideoCamera/badge.svg?branch=master&service=github)](https://coveralls.io/github/JeroenMols/LandscapeVideoCamera?branch=master)</center>
+[![Build Status](https://travis-ci.org/JeroenMols/LandscapeVideoCamera.svg?branch=master)](https://travis-ci.org/JeroenMols/LandscapeVideoCamera)   [![Coverage Status](https://coveralls.io/repos/JeroenMols/LandscapeVideoCamera/badge.svg?branch=master&service=github)](https://coveralls.io/github/JeroenMols/LandscapeVideoCamera?branch=master)
 
 As always you can reach me [@molsjeroen](https://twitter.com/molsjeroen) on twitter, or leave a comment below!

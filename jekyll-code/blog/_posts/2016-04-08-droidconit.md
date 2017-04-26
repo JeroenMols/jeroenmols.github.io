@@ -1,8 +1,6 @@
 ---
-layout: post
 title: Droidcon Italy recap
 published: true
-comments: true
 img: img/blog/droidconit16/droidconit.png
 imgcredit: Droidcon Italy logo, http://it.droidcon.com/2015/, modified background
 ---
@@ -10,10 +8,9 @@ A conference about our favorite Green little robots? In sunny Italy? With great 
 
 With over 770 attendees and four different tracks, it was obviously not possible to attend every session. But I did notice some general themes and would like to share my personal highlights with you.
 
-<br>
 
 ## We are all UX
-<center><a href="{{ site.blogbaseurl }}img/blog/droidconit16/wereallux.jpg"><img style="width: 50%" src="{{ site.blogbaseurl }}img/blog/droidconit16/wereallux.jpg" alt="We are all UX"></a></center>
+<center><img style="width: 50%" src="{{ site.url }}{{ site.baseurl }}/img/blog/droidconit16/wereallux.jpg" alt="We are all UX"></center>
 
 The holy grail in app development is to have an amazing user experience. While app performance and feature set are obviously important, you must also understand your users, simplify main use cases and have a delightful design.
 
@@ -26,10 +23,9 @@ The best advice I got was:
 - Developers and designers should be transparent and open to learn from each other
 - "How might we..." is a great way to phrase problems as opportunities
 
-<br>
 
 ## Optimizing layouts
-<center><a href="{{ site.blogbaseurl }}img/blog/droidconit16/leanlayouts.jpg"><img src="{{ site.blogbaseurl }}img/blog/droidconit16/leanlayouts.jpg" alt="Loving lean layouts"></a></center>
+![Loving lean layouts]({{ site.url }}{{ site.baseurl }}/img/blog/droidconit16/leanlayouts.jpg){: .align-center}
 
 Screens containing a lot of views can sometimes render slowly. Mostly caused by deeply nested view hierarchies and/or using RelativeLayouts as a root element. Using "heavy" layouts in lists or increased nesting makes these problems multiplicative instead of simply additive.
 
@@ -40,10 +36,9 @@ The best advice in this track was:
 - Rendering times in Hierarchy Viewer are not reliable
 - Optimize responsibly
 
-<br>
 
 ## DEX diet
-<center><a href="{{ site.blogbaseurl }}img/blog/droidconit16/classyshark.png"><img src="{{ site.blogbaseurl }}img/blog/droidconit16/classyshark.png" alt="ClassyShark"></a></center>
+![ClassyShark]({{ site.url }}{{ site.baseurl }}/img/blog/droidconit16/classyshark.png){: .align-center}
 
 Hitting the DEX method limit or trying to improve your app security? As a real Proguard expert you created an amazing configuration and now all those problems are gone. Or are they?
 
@@ -55,10 +50,9 @@ The best advice here was:
 - IDE method count != dex method count
 - Use [methodscount.com](http://www.methodscount.com/) to see how large a lib is before using it
 
-<br>
 
 ## Other hot topics
-<center><a href="{{ site.blogbaseurl }}img/blog/droidconit16/android_cookie.jpg"><img style="width: 50%" src="{{ site.blogbaseurl }}img/blog/droidconit16/android_cookie.jpg" alt="Android cookies"></a></center>
+<center><img style="width: 50%" src="{{ site.url }}{{ site.baseurl }}/img/blog/droidconit16/android_cookie.jpg" alt="Android cookies"></center>
 
 Besides the three main themes, other topics varied from Kotlin, over library distribution to (MVP) architecture and app store optimizations. Awesome sources of inspiration, brought by even more awesome speakers.
 
@@ -68,7 +62,6 @@ My key takeaways:
 - If you don't like testing your code, most likely customers won't like testing your app either
 - Italian food is awesome
 
-<br>
 
 ## Conference slides
 
@@ -106,9 +99,8 @@ Alessandro Martellucci
 - [World-Class Testing Development Pipeline for Android](http://www.slideshare.net/PedroVicenteGmezSnch/worldclass-testing-development-pipeline-for-android) by Pedro Vicente Gómez Sánchez]
 - [ClassShark - Android and Java executables browser](http://www.slideshare.net/seamaster29/classshark-android-and-java-executables-browser) by Boris Farber
 
-<br>
 
 ## Credits
 Thanks to the entire Droidcon Italy team for organizing such a great conference and to all sponsers for their support.
 
-<center><a href="{{ site.blogbaseurl }}img/blog/droidconit16/droidconit_team.jpg"><img src="{{ site.blogbaseurl }}img/blog/droidconit16/droidconit_team.jpg" alt="Droidcon Italy team"></a></center>
+![Droidcon Italy team]({{ site.url }}{{ site.baseurl }}/img/blog/droidconit16/droidconit_team.jpg){: .align-center}
