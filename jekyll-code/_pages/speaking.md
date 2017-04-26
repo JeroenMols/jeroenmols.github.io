@@ -2,7 +2,6 @@
 layout: single
 title:  "Speaking experience"
 permalink: /speaking/
-date:   2017-04-15 14:45:52 +0200
 author_profile: true
 header:
   image: img/speaking.jpg
