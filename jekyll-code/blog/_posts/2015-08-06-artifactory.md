@@ -1,8 +1,9 @@
 ---
 title: A private Maven repository for Android in 30 min
 published: true
-img: img/blog/artifactory/artifactory.png
-imgcredit: Image by JFrog, https://www.jfrog.com/wp-content/uploads/2014/05/artifactory_overview_diagram.jpg, cropped
+header:
+  image: img/blog/artifactory/artifactory.png
+  imgcredit: Image by JFrog, https://www.jfrog.com/wp-content/uploads/2014/05/artifactory_overview_diagram.jpg, cropped
 ---
 
 Setting up your own Maven repository and uploading artifacts to it is quite a daunting task. As I went through this experience myself recently, I want to help others in setting up their own Maven repository via [Artifactory](http://www.jfrog.com/open-source/) and automate uploading artifacts using Gradle.

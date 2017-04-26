@@ -1,8 +1,9 @@
 ---
 title: Droidcon Italy recap
 published: true
-img: img/blog/droidconit16/droidconit.png
-imgcredit: Droidcon Italy logo, http://it.droidcon.com/2015/, modified background
+header:
+  image: img/blog/droidconit16/droidconit.png
+  imgcredit: Droidcon Italy logo, http://it.droidcon.com/2015/, modified background
 ---
 A conference about our favorite Green little robots? In sunny Italy? With great food and a party? Yeah, I can image how you must feel in case you missed it... I on the other hand was fortunate enough to attend and speak at this awesome conference.
 

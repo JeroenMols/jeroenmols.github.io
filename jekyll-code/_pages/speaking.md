@@ -5,6 +5,7 @@ permalink: /speaking/
 author_profile: true
 header:
   image: img/speaking.jpg
+  hero: true
 ---
 I'm always eager to share my technical knowledge with fellow developers. Don't hesitate to <a href="https://twitter.com/molsjeroen" target="blank">contact me on Twitter</a> if you would like me to speak at your event!
 

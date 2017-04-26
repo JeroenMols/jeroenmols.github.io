@@ -1,8 +1,9 @@
 ---
 title: A successful XML naming convention
 published: true
-img: img/blog/resourcenaming/resourcenaming.png
-imgcredit: Android logo by Google, https://creativecommons.org/licenses/by/3.0/, cropped
+header:
+  image: img/blog/resourcenaming/resourcenaming.png
+  imgcredit: Android logo by Google, https://creativecommons.org/licenses/by/3.0/, cropped
 ---
 Do you remember the last time you had to dig into `strings.xml` to find the right String to use? Or that you manually had to go over all drawables to find the one you needed?
 
