@@ -152,7 +152,7 @@ Notice how we first invoke `assembleRelease` before we invoke the actual `artifa
 
 You can very easily verify that the upload was successful by navigating to [localhost:8081](http://localhost:8081) and signing in with the default admin credentials.
 
-<center><a href="{{ site.blogbaseurl }}/img/blog/artifactory/artifactory_screenshot.png"><img src="{{ site.blogbaseurl }}/img/blog/artifactory/artifactory_screenshot.png" alt="Verify a successful upload in the Artifactory control panel."></a></center>
+[![Verify a successful upload in the Artifactory control panel.]({{ site.url }}{{ site.baseurl }}/img/blog/artifactory/artifactory_screenshot.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/artifactory/artifactory_screenshot.png)
 
 ### Using the artifacts
 To make use of the published artifacts in another project we have to add our Artifactory repository to the list of Maven repositories in your top level `build.gradle` file:

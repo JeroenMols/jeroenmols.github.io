@@ -46,7 +46,7 @@ Imagine if we would simply resort to the buildscript we had in my previous [blog
 
 The app on the other hand wouldn't have a clue which dependencies the library actually needs (how would it?) and hence the app will compile just fine. However, after starting the app and trying to access the library, the app would crash at runtime:
 
-```Java
+```java
 08-09 20:49:46.096  28892-28892/? E/AndroidRuntime﹕ FATAL EXCEPTION: main
 Process: com.jeroenmols.awesomeadvancedapplication, PID: 28892
 java.lang.NoClassDefFoundError: Failed resolution of: Lcom/google/common/base/CharMatcher;
@@ -128,9 +128,9 @@ Referencing artifacts is exactly the same as before, just don't forget to add th
 Alternatively we can also create a `virtual` repository in Artifactory which wraps around both repositories. This way the app only requires one URL, but does create a dependency on the existing Artifactory setup.
 
 1. Login to Artifactory and go to admin > repositories > virtual
-  <center><a href="{{ site.blogbaseurl }}img/blog/artifactory2/artifactory2_virtualrepo1.png"><img src="{{ site.blogbaseurl }}img/blog/artifactory2/artifactory2_virtualrepo1.png" alt="All virtual repositories can be found under admin - repositories - virtual"></a></center>
+  [![All virtual repositories can be found under admin - repositories - virtual]({{ site.url }}{{ site.baseurl }}/img/blog/artifactory2/artifactory2_virtualrepo1.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/artifactory2/artifactory2_virtualrepo1.png)
 2. Create a new virtual maven repository which contains both `libs-release-local` and `libs-snapshot-local`
-  <center><a href="{{ site.blogbaseurl }}img/blog/artifactory2/artifactory2_virtualrepo2.png"><img src="{{ site.blogbaseurl }}img/blog/artifactory2/artifactory2_virtualrepo2.png" alt="Create a new virtual maven repository which contains both libs-release-local and libs-snapshot-local"></a></center>
+  [![Create a new virtual maven repository which contains both libs-release-local and libs-snapshot-local]({{ site.url }}{{ site.baseurl }}/img/blog/artifactory2/artifactory2_virtualrepo2.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/artifactory2/artifactory2_virtualrepo2.png)
 3. In the top level `build.gradle` of your application, replace the two previous URLS by the following:
 
   ```groovy
@@ -158,23 +158,23 @@ gradle clean --refresh-dependencies
 
 Next, go to the `Users` pane and add two new user: `consumer` and `deployer`. Make sure not to add them to any group.
 
-  <center><a href="{{ site.blogbaseurl }}img/blog/artifactory2/artifactory2_user1.png"><img src="{{ site.blogbaseurl }}img/blog/artifactory2/artifactory2_user1.png" alt="Settings for consumer user"></a></center>
+  [![Settings for consumer user]({{ site.url }}{{ site.baseurl }}/img/blog/artifactory2/artifactory2_user1.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/artifactory2/artifactory2_user1.png)
 
-  <center><a href="{{ site.blogbaseurl }}img/blog/artifactory2/artifactory2_user2.png"><img src="{{ site.blogbaseurl }}img/blog/artifactory2/artifactory2_user2.png" alt="Settings for deployer user"></a></center>
+  [![Settings for deployer user]({{ site.url }}{{ site.baseurl }}/img/blog/artifactory2/artifactory2_user2.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/artifactory2/artifactory2_user2.png)
 
 Note that you probably also want to change your admin password at this stage. ;)
 
 Now go to the `Permissions` pane and add a new `Consume Libraries` permission. Set the Selected repositories to include the snapshot and release repository, and in the `Users` tab add the `consumer` user with read permissions.
 
-  <center><a href="{{ site.blogbaseurl }}img/blog/artifactory2/artifactory2_permission1.png"><img src="{{ site.blogbaseurl }}img/blog/artifactory2/artifactory2_permission1.png" alt="Settings for Consume Libraries permission"></a></center>
+  [![Settings for Consume Libraries permission]({{ site.url }}{{ site.baseurl }}/img/blog/artifactory2/artifactory2_permission1.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/artifactory2/artifactory2_permission1.png)
 
-  <center><a href="{{ site.blogbaseurl }}img/blog/artifactory2/artifactory2_permission2.png"><img src="{{ site.blogbaseurl }}img/blog/artifactory2/artifactory2_permission2.png" alt="Settings for Consume Libraries permission"></a></center>
+  [![Settings for Consume Libraries permission]({{ site.url }}{{ site.baseurl }}/img/blog/artifactory2/artifactory2_permission2.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/artifactory2/artifactory2_permission2.png)
 
 Add a second permission: `Deploy Libraries` with the snapshot and release repository included. Here give the `deployer` user `Deploy/Cache` permission but not `Delete/Overwrite` as you never want to override an existing artifact!
 
-  <center><a href="{{ site.blogbaseurl }}img/blog/artifactory2/artifactory2_permission3.png"><img src="{{ site.blogbaseurl }}img/blog/artifactory2/artifactory2_permission3.png" alt="Settings for Deploy Libraries permission"></a></center>
+  [![Settings for Deploy Libraries permission]({{ site.url }}{{ site.baseurl }}/img/blog/artifactory2/artifactory2_permission3.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/artifactory2/artifactory2_permission3.png)
 
-  <center><a href="{{ site.blogbaseurl }}img/blog/artifactory2/artifactory2_permission4.png"><img src="{{ site.blogbaseurl }}img/blog/artifactory2/artifactory2_permission4.png" alt="Settings for Deploy Libraries permission"></a></center>
+  [![Settings for Deploy Libraries permission]({{ site.url }}{{ site.baseurl }}/img/blog/artifactory2/artifactory2_permission4.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/artifactory2/artifactory2_permission4.png)
 
 All we need to do now is modify the Library and Application to make use of these new users. This is easy for the Library as you can simply replace the `admin` user with the `deploy` user in the `gradle.properties` file.
 
@@ -190,11 +190,11 @@ Therefore we will take some extra security precautions:
   - Unlock your profile with your password
   - Copy the API key
 
-    <center><a href="{{ site.blogbaseurl }}img/blog/artifactory2/artifactory2_consumer.png"><img src="{{ site.blogbaseurl }}img/blog/artifactory2/artifactory2_consumer.png" alt="Copy the API key from the consumer profile."></a></center>
+    [![Copy the API key from the consumer profile.]({{ site.url }}{{ site.baseurl }}/img/blog/artifactory2/artifactory2_consumer.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/artifactory2/artifactory2_consumer.png)
 
 Now add the user authentication to the top level `build.gradle` file:
 
-```Groovy
+```groovy
 allprojects {
     repositories {
         jcenter()

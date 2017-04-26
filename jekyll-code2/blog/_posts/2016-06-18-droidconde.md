@@ -8,7 +8,6 @@ Having founded the entire Droidcon franchise in 2009, Droidcon Berlin is a magic
 
 As there were four different tracks, it was obviously not possible to attend every session. But I did notice some general themes and would like to share my personal highlights with you.
 
-<br>
 
 ## Architecture
 While Android is maturing as a platform, developers are also professionalizing their applications. Every growing apps mean that testability, maintenance and refactoring is only increasing in importance.
@@ -20,11 +19,9 @@ My key takeaways:
 - Don't be dogmatic
 - Users don't care about your architecture
 
-<br>
 
 ## IoT
-
-<center><a href="{{ site.blogbaseurl }}img/blog/droidconde16/iotcoffee.jpg"><img src="{{ site.blogbaseurl }}img/blog/droidconde16/iotcoffee.jpg" alt="Philips Hue Coffee"></a></center>
+![Philips Hue Coffee]({{ site.url }}{{ site.baseurl }}/img/blog/droidconde16/iotcoffee.jpg){: .align-center}
 
 Interest in IoT products is steadily increasing, but as a developer it is still not easy to create IoT apps. Properly handling things like Bluetooth LE keeps on being plagued by device specific issues. And seemingly simple problems like properly handling a user sign in are still extremely complex.
 
@@ -34,11 +31,9 @@ My key takeaways:
 - Handle all bluetooth LE callbacks on separate HandlerThread
 - Firebase can handle all sign in complexity for you
 
-<br>
 
 ## Designing for the next billion
-
-<center><a href="{{ site.blogbaseurl }}img/blog/droidconde16/nextbillion.jpg"><img src="{{ site.blogbaseurl }}img/blog/droidconde16/nextbillion.jpg" alt="Philips Hue Coffee"></a></center>
+![Designing for the next billion]({{ site.url }}{{ site.baseurl }}/img/blog/droidconde16/nextbillion.jpg){: .align-center}
 
 Where we used to be educated that "a developer phone is not a user phone", this message is now morphing towards people in emerging markets. Designing for such markets doesn't only require functional changes like developing for offline first, but it even requires you to completely think your UX.
 
@@ -48,12 +43,9 @@ My key takeaways:
 - battery life is even more precious in emerging countries
 - understandable UX when smartphone is your first computer
 
-<br>
 
 ## Other hot topics
-
-<center><a href="{{ site.blogbaseurl }}img/blog/droidconde16/alphastates.jpg"><img src="{{ site.blogbaseurl }}img/blog/droidconde16/alphastates.jpg" alt="You can use alpha values for button states in XML"></a></center>
-
+![You can use alpha values for button states in XML]({{ site.url }}{{ site.baseurl }}/img/blog/droidconde16/alphastates.jpg){: .align-center}
 
 Besides these, also a lot of attention was spent on testing and tooling. There were great talks about styling, theming and creating custom views. And many sessions also dived deeper into optimizing your apps performance. Bit unfortunate that there weren't any more talks on the new Android N features.
 
@@ -64,11 +56,9 @@ My key takeaways:
 - Tests should be fast, focussed and reliable
 - It maybe worth to convert an existing app to RXJava, but keep it contained to particular layers. (e.g. Webservice)
 
-<br>
 
 ## Sketchnoting
-
-<center><a href="{{ site.blogbaseurl }}img/blog/droidconde16/sketchnoting.jpg"><img src="{{ site.blogbaseurl }}img/blog/droidconde16/sketchnoting.jpg" alt="Corey Leigh Latislaw creating a sketch note"></a></center>
+![Corey Leigh Latislaw creating a sketch note]({{ site.url }}{{ site.baseurl }}/img/blog/droidconde16/sketchnoting.jpg){: .align-center}
 
 Sketch notes are really awesome! In this, creative people summarize a talk into a very cool one pager. This doesn't only look great, but it's also by far the easiest way to get a high level view of a talk.
 
@@ -84,7 +74,6 @@ Just a sample:
 
 Thanks for both of them for creating such great summaries.
 
-<br>
 
 ## Conference slides
 While the conference organizers will publish all slides very soon, I can image that quite a few people are already looking for a sneak preview. Hence I bundled everything I could already gather from socials.
@@ -116,7 +105,6 @@ Danny Preussler
 - [We're all UX!](https://speakerdeck.com/lyslydia/were-all-ux) by Lydia Selimalhigazi and Caroline Smith
 - [10 ways to analyse runtime failure using Classy Shark](http://www.slideshare.net/seamaster29/classshark-android-and-java-executables-browser) by Boris Farber
 
-<br>
 
 ## Credits
-Thanks to the entire Droidcon Berlin team for organizing such a great conference and to all sponsers for their support. Keep up the awesome job!
+Thanks to the entire Droidcon Berlin team for organizing such a great conference and to all sponsors for their support. Keep up the awesome job!
