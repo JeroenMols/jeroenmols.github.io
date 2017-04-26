@@ -19,7 +19,7 @@ We now want to verify that the User calls the `sendMessages()` method on the Web
 ## Traditional test
 The way to typically test such a scenario is to use an ArgumentCaptor that captures the ArrayList passed to `sendMessages()`. Next you can verify that the list contains the appropriate element.
 
-```Java
+```java
 @Test
 public void sendMessage() throws Exception {
     User user = new User(mockWebService, USER_ID, PASSWORD);
