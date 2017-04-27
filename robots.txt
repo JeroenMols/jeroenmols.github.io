@@ -1,1 +1,1 @@
-Sitemap: http://jeroenmols.com/sitemap.xml
+Sitemap: https://jeroenmols.com/sitemap.xml

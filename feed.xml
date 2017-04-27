@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2017-04-27T00:45:23+02:00</updated><id>http://jeroenmols.com/</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Android Makers FR recap</title><link href="http://jeroenmols.com/blog/2017/04/11/androidmakers17/" rel="alternate" type="text/html" title="Android Makers FR recap" /><published>2017-04-11T00:00:00+02:00</published><updated>2017-04-11T00:00:00+02:00</updated><id>http://jeroenmols.com/blog/2017/04/11/androidmakers17</id><content type="html" xml:base="http://jeroenmols.com/blog/2017/04/11/androidmakers17/">&lt;p&gt;After organizing Droidcon Paris for several year, the organizers decided to move on and experiment with a new format. This didn’t just result in a well organized conference, but also in a fresh new vibe whilst still feeling familiar.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2017-04-27T20:57:28+02:00</updated><id>https://jeroenmols.com/</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Android Makers FR recap</title><link href="https://jeroenmols.com/blog/2017/04/11/androidmakers17/" rel="alternate" type="text/html" title="Android Makers FR recap" /><published>2017-04-11T00:00:00+02:00</published><updated>2017-04-11T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2017/04/11/androidmakers17</id><content type="html" xml:base="https://jeroenmols.com/blog/2017/04/11/androidmakers17/">&lt;p&gt;After organizing Droidcon Paris for several year, the organizers decided to move on and experiment with a new format. This didn’t just result in a well organized conference, but also in a fresh new vibe whilst still feeling familiar.&lt;/p&gt;
 
 &lt;p&gt;In this post I’d like to share some general themes, my personal highlights and all of the slides I could gather from socials.&lt;/p&gt;
 
 &lt;h2 id=&quot;details-matter&quot;&gt;Details matter&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/androidmakers17/launchscreen.png&quot; alt=&quot;Make sure your app doesn't launch with a blank screen&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/androidmakers17/launchscreen.png&quot; alt=&quot;Make sure your app doesn't launch with a blank screen&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Building a world class app doesn’t just require good engineering practices, but you literally have to handle details on every front.&lt;/p&gt;
 
@@ -18,7 +18,7 @@
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;productivity&quot;&gt;Productivity&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/androidmakers17/testingpyramid.png&quot; alt=&quot;The Android testing pyramid&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/androidmakers17/testingpyramid.png&quot; alt=&quot;The Android testing pyramid&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;As projects get more complex, it becomes crucial (for your own sanity) to have the right engineering practices in place. Try and leverage your continuous integration to automatically build, test and statically analyze your pull requests before merging.&lt;/p&gt;
 
@@ -84,9 +84,9 @@
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;credits&quot;&gt;Credits&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/androidmakers17/team.jpg&quot; alt=&quot;The awesome Android makers organizing team&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/androidmakers17/team.jpg&quot; alt=&quot;The awesome Android makers organizing team&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Thanks to the entire Android Makers team for organizing a great conference and to all sponsors for supporting. Hope to see you all next year!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><summary type="html">After organizing Droidcon Paris for several year, the organizers decided to move on and experiment with a new format. This didn’t just result in a well organized conference, but also in a fresh new vibe whilst still feeling familiar.</summary></entry><entry><title type="html">Why your app should crash</title><link href="http://jeroenmols.com/blog/2017/03/08/appcrash/" rel="alternate" type="text/html" title="Why your app should crash" /><published>2017-03-08T00:00:00+01:00</published><updated>2017-03-08T00:00:00+01:00</updated><id>http://jeroenmols.com/blog/2017/03/08/appcrash</id><content type="html" xml:base="http://jeroenmols.com/blog/2017/03/08/appcrash/">&lt;p&gt;Too many times I’ve seen developers trying to avoid crashes at all cost. But are unhandled exceptions really that bad? And are null checks really the answer?&lt;/p&gt;
+&lt;p&gt;Thanks to the entire Android Makers team for organizing a great conference and to all sponsors for supporting. Hope to see you all next year!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><summary type="html">After organizing Droidcon Paris for several year, the organizers decided to move on and experiment with a new format. This didn’t just result in a well organized conference, but also in a fresh new vibe whilst still feeling familiar.</summary></entry><entry><title type="html">Why your app should crash</title><link href="https://jeroenmols.com/blog/2017/03/08/appcrash/" rel="alternate" type="text/html" title="Why your app should crash" /><published>2017-03-08T00:00:00+01:00</published><updated>2017-03-08T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2017/03/08/appcrash</id><content type="html" xml:base="https://jeroenmols.com/blog/2017/03/08/appcrash/">&lt;p&gt;Too many times I’ve seen developers trying to avoid crashes at all cost. But are unhandled exceptions really that bad? And are null checks really the answer?&lt;/p&gt;
 
 &lt;p&gt;Actually, sometimes you want your app to crash. This post will explain why and give some practical tips.&lt;/p&gt;
 
@@ -208,7 +208,7 @@
 &lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
 &lt;p&gt;Instead of being afraid of crashes, you should embrace them to find errors in your apps fasters. Crashes not only make errors immediately visible, they also offer a convenient way of debugging them via the stacktrace.&lt;/p&gt;
 
-&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><summary type="html">Too many times I’ve seen developers trying to avoid crashes at all cost. But are unhandled exceptions really that bad? And are null checks really the answer?</summary></entry><entry><title type="html">Write awesome unit tests</title><link href="http://jeroenmols.com/blog/2017/02/16/unittests/" rel="alternate" type="text/html" title="Write awesome unit tests" /><published>2017-02-16T00:00:00+01:00</published><updated>2017-02-16T00:00:00+01:00</updated><id>http://jeroenmols.com/blog/2017/02/16/unittests</id><content type="html" xml:base="http://jeroenmols.com/blog/2017/02/16/unittests/">&lt;p&gt;If you can code, you can also write unit tests. Writing awesome tests on the other hand is a different story. Don’t fool yourself: Unit testing code is production code that you will need to maintain, refactor and build upon for years to come.&lt;/p&gt;
+&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><summary type="html">Too many times I’ve seen developers trying to avoid crashes at all cost. But are unhandled exceptions really that bad? And are null checks really the answer?</summary></entry><entry><title type="html">Write awesome unit tests</title><link href="https://jeroenmols.com/blog/2017/02/16/unittests/" rel="alternate" type="text/html" title="Write awesome unit tests" /><published>2017-02-16T00:00:00+01:00</published><updated>2017-02-16T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2017/02/16/unittests</id><content type="html" xml:base="https://jeroenmols.com/blog/2017/02/16/unittests/">&lt;p&gt;If you can code, you can also write unit tests. Writing awesome tests on the other hand is a different story. Don’t fool yourself: Unit testing code is production code that you will need to maintain, refactor and build upon for years to come.&lt;/p&gt;
 
 &lt;p&gt;This blogpost aims at providing three very simple rules that will significantly ramp up your testing game. Every rule is followed by pragmatic tips so you can easily start implementing.&lt;/p&gt;
 
@@ -304,7 +304,7 @@
 &lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
 &lt;p&gt;The more you run your unit tests, the more value you’ll get from them. Awesome unit tests facilitate exactly that by being fast, focussed and super reliable.&lt;/p&gt;
 
-&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><summary type="html">If you can code, you can also write unit tests. Writing awesome tests on the other hand is a different story. Don’t fool yourself: Unit testing code is production code that you will need to maintain, refactor and build upon for years to come.</summary></entry><entry><title type="html">Using Mockito 2.x on Android</title><link href="http://jeroenmols.com/blog/2017/01/17/mockitoandroid/" rel="alternate" type="text/html" title="Using Mockito 2.x on Android" /><published>2017-01-17T00:00:00+01:00</published><updated>2017-01-17T00:00:00+01:00</updated><id>http://jeroenmols.com/blog/2017/01/17/mockitoandroid</id><content type="html" xml:base="http://jeroenmols.com/blog/2017/01/17/mockitoandroid/">&lt;p&gt;The Mockito team is on fire lately! Not only did they add support to mock final classes and methods, but now they allow running Mockito directly onto an actual Android device.&lt;/p&gt;
+&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><summary type="html">If you can code, you can also write unit tests. Writing awesome tests on the other hand is a different story. Don’t fool yourself: Unit testing code is production code that you will need to maintain, refactor and build upon for years to come.</summary></entry><entry><title type="html">Using Mockito 2.x on Android</title><link href="https://jeroenmols.com/blog/2017/01/17/mockitoandroid/" rel="alternate" type="text/html" title="Using Mockito 2.x on Android" /><published>2017-01-17T00:00:00+01:00</published><updated>2017-01-17T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2017/01/17/mockitoandroid</id><content type="html" xml:base="https://jeroenmols.com/blog/2017/01/17/mockitoandroid/">&lt;p&gt;The Mockito team is on fire lately! Not only did they add support to mock final classes and methods, but now they allow running Mockito directly onto an actual Android device.&lt;/p&gt;
 
 &lt;p&gt;Time to convert our Mockito 1.x projects to 2.x!&lt;/p&gt;
 
@@ -358,7 +358,7 @@
 &lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
 &lt;p&gt;Finally Mockito has first class support for Android instrumentation tests! I’ve also updated my &lt;a href=&quot;https://github.com/jeroenmols/mockitoexample&quot;&gt;Mockito sample project&lt;/a&gt; where you can see how it works and learn more about how to use Mockito.&lt;/p&gt;
 
-&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><summary type="html">The Mockito team is on fire lately! Not only did they add support to mock final classes and methods, but now they allow running Mockito directly onto an actual Android device.</summary></entry><entry><title type="html">Year in review 2016</title><link href="http://jeroenmols.com/blog/2017/01/09/yearinreview/" rel="alternate" type="text/html" title="Year in review 2016" /><published>2017-01-09T00:00:00+01:00</published><updated>2017-01-09T00:00:00+01:00</updated><id>http://jeroenmols.com/blog/2017/01/09/yearinreview</id><content type="html" xml:base="http://jeroenmols.com/blog/2017/01/09/yearinreview/">&lt;p&gt;It’s that time of the year again to do a little personal retrospective.&lt;/p&gt;
+&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><summary type="html">The Mockito team is on fire lately! Not only did they add support to mock final classes and methods, but now they allow running Mockito directly onto an actual Android device.</summary></entry><entry><title type="html">Year in review 2016</title><link href="https://jeroenmols.com/blog/2017/01/09/yearinreview/" rel="alternate" type="text/html" title="Year in review 2016" /><published>2017-01-09T00:00:00+01:00</published><updated>2017-01-09T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2017/01/09/yearinreview</id><content type="html" xml:base="https://jeroenmols.com/blog/2017/01/09/yearinreview/">&lt;p&gt;It’s that time of the year again to do a little personal retrospective.&lt;/p&gt;
 
 &lt;p&gt;2016 passed by so quickly! I had a fantastic time playing around with (and taking care of) my wife and daughter. It’s really astonishing to see how much a baby can learn and grow in a year.&lt;/p&gt;
 
@@ -381,18 +381,18 @@
   &lt;li&gt;Taught my daughter how to fist bump and say Yolo #awesomedad&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/yearinreview16/house.png&quot; alt=&quot;Render of our house&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/yearinreview16/house.png&quot; alt=&quot;Render of our house&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Next year construction of our dream house will start, so time will once again be a scarce resource. And since I don’t want to give in on quality time with my daughter, I’ll just try to keep up my current blogging and speaking efforts. However, it would be really cool if I could speak at a conference outside Europe!&lt;/p&gt;
 
-&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><summary type="html">It’s that time of the year again to do a little personal retrospective.</summary></entry><entry><title type="html">Extending Mockito</title><link href="http://jeroenmols.com/blog/2016/10/31/mockitomatchers/" rel="alternate" type="text/html" title="Extending Mockito" /><published>2016-10-31T00:00:00+01:00</published><updated>2016-10-31T00:00:00+01:00</updated><id>http://jeroenmols.com/blog/2016/10/31/mockitomatchers</id><content type="html" xml:base="http://jeroenmols.com/blog/2016/10/31/mockitomatchers/">&lt;p&gt;Due to its clean simple api, Mockito has become world’s most popular Java mocking framework. After having covered &lt;a href=&quot;https://speakerdeck.com/jeroenmols/testing-made-sweet-with-a-mockito&quot;&gt;all of its basics&lt;/a&gt;, it’s time to spice things up and start extending Mockito.&lt;/p&gt;
+&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><summary type="html">It’s that time of the year again to do a little personal retrospective.</summary></entry><entry><title type="html">Extending Mockito</title><link href="https://jeroenmols.com/blog/2016/10/31/mockitomatchers/" rel="alternate" type="text/html" title="Extending Mockito" /><published>2016-10-31T00:00:00+01:00</published><updated>2016-10-31T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2016/10/31/mockitomatchers</id><content type="html" xml:base="https://jeroenmols.com/blog/2016/10/31/mockitomatchers/">&lt;p&gt;Due to its clean simple api, Mockito has become world’s most popular Java mocking framework. After having covered &lt;a href=&quot;https://speakerdeck.com/jeroenmols/testing-made-sweet-with-a-mockito&quot;&gt;all of its basics&lt;/a&gt;, it’s time to spice things up and start extending Mockito.&lt;/p&gt;
 
 &lt;p&gt;This blogpost will demonstrate the power of custom Mockito matchers.&lt;/p&gt;
 
 &lt;h2 id=&quot;problem-sketch&quot;&gt;Problem sketch&lt;/h2&gt;
 &lt;p&gt;Imagine a very simple example where a button in the UI sends a message to a User object that in its turn does the a WebService call.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/mockitomatchers/architecture.png&quot; alt=&quot;Basic architecture of our situation to test&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/mockitomatchers/architecture.png&quot; alt=&quot;Basic architecture of our situation to test&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;We now want to verify that the User calls the &lt;code class=&quot;highlighter-rouge&quot;&gt;sendMessages()&lt;/code&gt; method on the WebService with the appropriate arguments.&lt;/p&gt;
 
@@ -494,7 +494,7 @@
 &lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
 &lt;p&gt;Custom matchers are a great way to simplify unit tests. In my &lt;a href=&quot;https://github.com/jeroenmols/mockitoexample&quot;&gt;Mockito sample project&lt;/a&gt; you can learn more about how to use Mockito and find other custom matcher examples.&lt;/p&gt;
 
-&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><summary type="html">Due to its clean simple api, Mockito has become world’s most popular Java mocking framework. After having covered all of its basics, it’s time to spice things up and start extending Mockito.</summary></entry><entry><title type="html">The hidden cost of code coverage</title><link href="http://jeroenmols.com/blog/2016/09/01/coveragecost/" rel="alternate" type="text/html" title="The hidden cost of code coverage" /><published>2016-09-01T00:00:00+02:00</published><updated>2016-09-01T00:00:00+02:00</updated><id>http://jeroenmols.com/blog/2016/09/01/coveragecost</id><content type="html" xml:base="http://jeroenmols.com/blog/2016/09/01/coveragecost/">&lt;p&gt;Code coverage is an awesome way to motivate you and your team to write more tests. But did you know that simply enabling it slows down your build significantly?&lt;/p&gt;
+&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><summary type="html">Due to its clean simple api, Mockito has become world’s most popular Java mocking framework. After having covered all of its basics, it’s time to spice things up and start extending Mockito.</summary></entry><entry><title type="html">The hidden cost of code coverage</title><link href="https://jeroenmols.com/blog/2016/09/01/coveragecost/" rel="alternate" type="text/html" title="The hidden cost of code coverage" /><published>2016-09-01T00:00:00+02:00</published><updated>2016-09-01T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2016/09/01/coveragecost</id><content type="html" xml:base="https://jeroenmols.com/blog/2016/09/01/coveragecost/">&lt;p&gt;Code coverage is an awesome way to motivate you and your team to write more tests. But did you know that simply enabling it slows down your build significantly?&lt;/p&gt;
 
 &lt;p&gt;This blogpost will detail why and offer an easy solution.&lt;/p&gt;
 
@@ -507,7 +507,7 @@
 
 &lt;p&gt;When profiling a project recently, I noticed something surprising in the generated report:&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/coveragecost/buildtime.png&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/coveragecost/buildtime.png&quot; alt=&quot;Jacoco task takes up 14% of the build time! (report located in the `build/reports/profile` folder)&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/coveragecost/buildtime.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/coveragecost/buildtime.png&quot; alt=&quot;Jacoco task takes up 14% of the build time! (report located in the `build/reports/profile` folder)&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;The Jacoco task takes up almost 12 second, accounting for 14% of the build time!&lt;/p&gt;
 
@@ -556,7 +556,7 @@
 &lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
 &lt;p&gt;Code coverage is a great way to track your testing efforts. With help of a simple flag you can easily avoid it from slowing down your normal development builds.&lt;/p&gt;
 
-&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><summary type="html">Code coverage is an awesome way to motivate you and your team to write more tests. But did you know that simply enabling it slows down your build significantly?</summary></entry><entry><title type="html">Why you should care about copyright</title><link href="http://jeroenmols.com/blog/2016/08/03/copyright/" rel="alternate" type="text/html" title="Why you should care about copyright" /><published>2016-08-03T00:00:00+02:00</published><updated>2016-08-03T00:00:00+02:00</updated><id>http://jeroenmols.com/blog/2016/08/03/copyright</id><content type="html" xml:base="http://jeroenmols.com/blog/2016/08/03/copyright/">&lt;p&gt;As die hard Android developers, copyright notices are usually not on top of our priority list. Yet large corporations always insist to add a copyright header. Why do they do that? Should you do that for your open source libraries?&lt;/p&gt;
+&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><summary type="html">Code coverage is an awesome way to motivate you and your team to write more tests. But did you know that simply enabling it slows down your build significantly?</summary></entry><entry><title type="html">Why you should care about copyright</title><link href="https://jeroenmols.com/blog/2016/08/03/copyright/" rel="alternate" type="text/html" title="Why you should care about copyright" /><published>2016-08-03T00:00:00+02:00</published><updated>2016-08-03T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2016/08/03/copyright</id><content type="html" xml:base="https://jeroenmols.com/blog/2016/08/03/copyright/">&lt;p&gt;As die hard Android developers, copyright notices are usually not on top of our priority list. Yet large corporations always insist to add a copyright header. Why do they do that? Should you do that for your open source libraries?&lt;/p&gt;
 
 &lt;p&gt;This blog post will explain what copyright is and why it’s so important. Further it’ll also show how to easily add/update copyright notices to your code base.&lt;/p&gt;
 
@@ -595,11 +595,11 @@
 
 &lt;p&gt;This is how I did it in the my library &lt;a href=&quot;https://github.com/JeroenMols/LandscapeVideoCamera&quot;&gt;LandscapeVideoCamera&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/copyright/landscapevideocameralicense.png&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/copyright/landscapevideocameralicense.png&quot; alt=&quot;License for Landscape Video Camera&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/copyright/landscapevideocameralicense.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/copyright/landscapevideocameralicense.png&quot; alt=&quot;License for Landscape Video Camera&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;And at the top of every file:&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/copyright/landscapevideocameralicense2.png&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/copyright/landscapevideocameralicense2.png&quot; alt=&quot;Copyright notice for Landscape Video Camera&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/copyright/landscapevideocameralicense2.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/copyright/landscapevideocameralicense2.png&quot; alt=&quot;Copyright notice for Landscape Video Camera&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;using-code&quot;&gt;Using code&lt;/h3&gt;
 &lt;p&gt;There is a common misconception that open source equals free to use. In reality however, even seemingly innocent open source communities will take legal action if you infringe on their license. Hence care must be taken to comply with the license of all code you use.&lt;/p&gt;
@@ -627,7 +627,7 @@
 
 &lt;p&gt;Well there is a great website explaining the ins and outs of various licenses: &lt;a href=&quot;http://choosealicense.com/&quot;&gt;choosealicense.com&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://choosealicense.com/&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/copyright/choosealicense.png&quot; alt=&quot;Choose a license: great website to learn everything about licenses&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://choosealicense.com/&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/copyright/choosealicense.png&quot; alt=&quot;Choose a license: great website to learn everything about licenses&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Obviously if you work for a larger corporation like me, you should also involve your legal department.&lt;/p&gt;
 
@@ -652,32 +652,32 @@ limitations under the License.
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/copyright/copyrightapache.png&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/copyright/copyrightapache.png&quot; alt=&quot;Add a new copyright profile&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/copyright/copyrightapache.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/copyright/copyrightapache.png&quot; alt=&quot;Add a new copyright profile&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Note that you can use the flag &lt;code class=&quot;highlighter-rouge&quot;&gt;$today.year&lt;/code&gt; to denote the current year.&lt;/p&gt;
 
 &lt;p&gt;Optionally, the formatting pane allows you to tweak the copyright notice for every file type (Java, Xml, Groovy,…)&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/copyright/copyrightformatting.png&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/copyright/copyrightformatting.png&quot; alt=&quot;Optionally tweak the copyright look and feel&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/copyright/copyrightformatting.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/copyright/copyrightformatting.png&quot; alt=&quot;Optionally tweak the copyright look and feel&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Now select the “default project copyright” in the main Copyright pane and you’re fancy new copyright will be added to every new file you create.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/copyright/copyrightselect.png&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/copyright/copyrightselect.png&quot; alt=&quot;Select your configured copyright profile&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/copyright/copyrightselect.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/copyright/copyrightselect.png&quot; alt=&quot;Select your configured copyright profile&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;To update or add the notice to all your existing files, simply right click any file in the project pane and select “Update copyright…”.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/copyright/copyrightupdate.png&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/copyright/copyrightupdate.png&quot; alt=&quot;Update existing copyright of files&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/copyright/copyrightupdate.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/copyright/copyrightupdate.png&quot; alt=&quot;Update existing copyright of files&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/copyright/copyrightscope.png&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/copyright/copyrightscope.png&quot; alt=&quot;Choose what scope to apply the copyright headers to&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/copyright/copyrightscope.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/copyright/copyrightscope.png&quot; alt=&quot;Choose what scope to apply the copyright headers to&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;That’s it! You now have a one click way of ensuring your copyright notices are up to date.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/copyright/copyrightdone.png&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/copyright/copyrightdone.png&quot; alt=&quot;Copyright notice added to source code&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/copyright/copyrightdone.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/copyright/copyrightdone.png&quot; alt=&quot;Copyright notice added to source code&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
 &lt;p&gt;Copyright is not something to mess around with and you can face cause serious legal consequences if you don’t. Even your open source projects should have a proper copyright notice. Fortunately &lt;a href=&quot;http://choosealicense.com/&quot;&gt;choosealicense.com&lt;/a&gt; and Android Studio help you choose and apply the correct license.&lt;/p&gt;
 
-&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><summary type="html">As die hard Android developers, copyright notices are usually not on top of our priority list. Yet large corporations always insist to add a copyright header. Why do they do that? Should you do that for your open source libraries?</summary></entry><entry><title type="html">Turn Android into an awesome cycling GPS</title><link href="http://jeroenmols.com/blog/2016/07/21/cyclinggps/" rel="alternate" type="text/html" title="Turn Android into an awesome cycling GPS" /><published>2016-07-21T00:00:00+02:00</published><updated>2016-07-21T00:00:00+02:00</updated><id>http://jeroenmols.com/blog/2016/07/21/cyclinggps</id><content type="html" xml:base="http://jeroenmols.com/blog/2016/07/21/cyclinggps/">&lt;p&gt;Cycling is all about exploring: visiting new places and making existing routes more fun with better streets. So there must be an app that allows to plan your route and start cycling right? Think again… there is currently no solution that offers turn by turn navigation for cyclists.&lt;/p&gt;
+&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><summary type="html">As die hard Android developers, copyright notices are usually not on top of our priority list. Yet large corporations always insist to add a copyright header. Why do they do that? Should you do that for your open source libraries?</summary></entry><entry><title type="html">Turn Android into an awesome cycling GPS</title><link href="https://jeroenmols.com/blog/2016/07/21/cyclinggps/" rel="alternate" type="text/html" title="Turn Android into an awesome cycling GPS" /><published>2016-07-21T00:00:00+02:00</published><updated>2016-07-21T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2016/07/21/cyclinggps</id><content type="html" xml:base="https://jeroenmols.com/blog/2016/07/21/cyclinggps/">&lt;p&gt;Cycling is all about exploring: visiting new places and making existing routes more fun with better streets. So there must be an app that allows to plan your route and start cycling right? Think again… there is currently no solution that offers turn by turn navigation for cyclists.&lt;/p&gt;
 
 &lt;p&gt;As I had an old Android device laying around, I decided to repurpose that and convert it into a GPS that:&lt;/p&gt;
 
@@ -690,7 +690,7 @@ limitations under the License.
 &lt;p&gt;This blogpost will detail how I use &lt;a href=&quot;https://play.google.com/store/apps/details?id=net.osmand&quot;&gt;OsmAnd&lt;/a&gt; and &lt;a href=&quot;https://play.google.com/store/apps/details?id=com.ttxapps.dropsync&quot;&gt;Dropsync&lt;/a&gt; to create new tracks with minimal effort. Further I’ll also describe the gear I use in order to make this work.&lt;/p&gt;
 
 &lt;h2 id=&quot;gear&quot;&gt;Gear&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/cyclinggps/gear.png&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/cyclinggps/gear.png&quot; alt=&quot;Cycling GPS gear&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/cyclinggps/gear.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/cyclinggps/gear.png&quot; alt=&quot;Cycling GPS gear&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;To build your own GPS, you’ll need the following:&lt;/p&gt;
 
@@ -705,19 +705,19 @@ limitations under the License.
 
 &lt;p&gt;To create routes, just go to “My routes” and select “Create new route”:&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/cyclinggps/routes.png&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/cyclinggps/routes.png&quot; alt=&quot;Create a new route&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/cyclinggps/routes.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/cyclinggps/routes.png&quot; alt=&quot;Create a new route&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;The global Heatmap indicates where most people cycle:&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/cyclinggps/heatmap.png&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/cyclinggps/heatmap.png&quot; alt=&quot;The global Heatmap indicates where most people cycle&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/cyclinggps/heatmap.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/cyclinggps/heatmap.png&quot; alt=&quot;The global Heatmap indicates where most people cycle&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Segments are often challenging parts to cycle, that contain a leaderboard:&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/cyclinggps/segments.png&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/cyclinggps/segments.png&quot; alt=&quot;Segments are often challenging parts to cycle, that contain a leaderboard&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/cyclinggps/segments.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/cyclinggps/segments.png&quot; alt=&quot;Segments are often challenging parts to cycle, that contain a leaderboard&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Once you created a route, you can export it to a &lt;code class=&quot;highlighter-rouge&quot;&gt;gpx&lt;/code&gt; file format. Note that it doesn’t matter which GPS you choose to do the export.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/cyclinggps/export.png&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/cyclinggps/export.png&quot; alt=&quot;Tracks can be exported into a gpx file format&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/cyclinggps/export.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/cyclinggps/export.png&quot; alt=&quot;Tracks can be exported into a gpx file format&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;configure-osmand&quot;&gt;Configure OsmAnd&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&quot;https://play.google.com/store/apps/details?id=net.osmand&quot;&gt;OsmAnd&lt;/a&gt; offers both turn by turn navigation and storing maps offline. This is ideal to save bandwidth or for phones without a sim card (like mine). It is completely free to use, but there is also a &lt;a href=&quot;https://play.google.com/store/apps/details?id=net.osmand.plus&quot;&gt;premium version&lt;/a&gt; if you want to support this awesome project.&lt;/p&gt;
@@ -726,28 +726,28 @@ limitations under the License.
 
 &lt;p&gt;First of all install &lt;a href=&quot;https://play.google.com/store/apps/details?id=net.osmand&quot;&gt;OsmAnd&lt;/a&gt; (or &lt;a href=&quot;https://play.google.com/store/apps/details?id=net.osmand.plus&quot;&gt;OsmAnd+&lt;/a&gt;). When you open the app, press “skip” and don’t download any maps. This is because they would end up in a private directory. Open the hamburger menu, go to “Settings” and open “General settings”.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/cyclinggps/osmand1.png&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/cyclinggps/osmand1.png&quot; alt=&quot;Skip downloading maps and go to general settings&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/cyclinggps/osmand1.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/cyclinggps/osmand1.png&quot; alt=&quot;Skip downloading maps and go to general settings&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Now we’re going to change the directory in which OsmAnd stores all of its files. Use “Data storage folder”, click the “edit icon” and select “Shared memory” as the data storage folder. This will put all files in an “osmand” directory on the root of your internal storage. Accept the permission when promted to allow OsmAnd to create and write to that folder.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/cyclinggps/osmand2.png&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/cyclinggps/osmand2.png&quot; alt=&quot;Change the folder in which maps are downloaded to the shared folder&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/cyclinggps/osmand2.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/cyclinggps/osmand2.png&quot; alt=&quot;Change the folder in which maps are downloaded to the shared folder&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Next go ahead and download the maps for the areas in which you will be cycling. When prompted for a storage folder, again select “Shared memory”.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/cyclinggps/osmand3.png&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/cyclinggps/osmand3.png&quot; alt=&quot;Download the maps you need to the shared folder&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/cyclinggps/osmand3.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/cyclinggps/osmand3.png&quot; alt=&quot;Download the maps you need to the shared folder&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;automatically-sync-tracks-using-dropbox&quot;&gt;Automatically sync tracks using Dropbox&lt;/h2&gt;
 &lt;p&gt;Getting new tracks on your phone can be quite a hassle. Therefore we’ll automate this process so you can add new tracks to your phone by only using your computer.&lt;/p&gt;
 
 &lt;p&gt;First of all, create a new folder in your &lt;a href=&quot;https://www.dropbox.com/&quot;&gt;Dropbox&lt;/a&gt; account called “Cycling”.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/cyclinggps/dropbox.png&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/cyclinggps/dropbox.png&quot; alt=&quot;Dropbox folder that will contain all tracks&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/cyclinggps/dropbox.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/cyclinggps/dropbox.png&quot; alt=&quot;Dropbox folder that will contain all tracks&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Then install the app &lt;a href=&quot;https://play.google.com/store/apps/details?id=com.ttxapps.dropsync&quot;&gt;Dropsync&lt;/a&gt; (or &lt;a href=&quot;https://play.google.com/store/apps/details?id=com.ttxapps.dropsync.pro&quot;&gt;Dropsync pro&lt;/a&gt;). Next configure it so that it automatically syncs any file you put in the Dropbox folder into the correct folder on the Android phone.&lt;/p&gt;
 
 &lt;p&gt;Open Dropsync, login with your Dropbox account and select “let me create my own folder pair”. As the local folder choose “osmand/tracks” and as the remote folder “Cycling”. Then select “Download mirror” as the sync method and enable sync. Save the changes and wait for the sync to complete.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/cyclinggps/dropsync.png&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/cyclinggps/dropsync.png&quot; alt=&quot;Configure Dropsync to put the GPX files in the correct folder on the Android phone&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/cyclinggps/dropsync.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/cyclinggps/dropsync.png&quot; alt=&quot;Configure Dropsync to put the GPX files in the correct folder on the Android phone&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Now all you have to do is export a track from Strava, move it into the Dropbox folder and it will autmagically appear in OsmAnd on your GPS!&lt;/p&gt;
 
@@ -756,11 +756,11 @@ limitations under the License.
 
 &lt;p&gt;Open OsmAnd and press the “globe” icon in the top left corner. Scroll down a bit and select “GPX track…” to choose the track you want to display. Exit the screen and start navigation by pressing the “navigation” icon in the bottom left corner.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/cyclinggps/osmand4.png&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/cyclinggps/osmand4.png&quot; alt=&quot;Select a track (gpx file) and start navigation&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/cyclinggps/osmand4.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/cyclinggps/osmand4.png&quot; alt=&quot;Select a track (gpx file) and start navigation&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Enjoy your turn by turn navigation!&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/cyclinggps/osmand5.png&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/cyclinggps/osmand5.png&quot; alt=&quot;Select a track (gpx file) and start navigation&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/cyclinggps/osmand5.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/cyclinggps/osmand5.png&quot; alt=&quot;Select a track (gpx file) and start navigation&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;tips-and-tricks&quot;&gt;Tips and tricks&lt;/h2&gt;
 &lt;p&gt;I’ll update this section as I discover new handy features/tricks to make the GPS even more usefull.&lt;/p&gt;
@@ -772,7 +772,7 @@ limitations under the License.
 &lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
 &lt;p&gt;In a few very simple steps we created a complete cycling GPS solution that provides turn by turn navigation and offline maps. Creating tracks is done using Strava and export using a Dropbox folder so that they automatically appear on your GPS device.&lt;/p&gt;
 
-&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><summary type="html">Cycling is all about exploring: visiting new places and making existing routes more fun with better streets. So there must be an app that allows to plan your route and start cycling right? Think again… there is currently no solution that offers turn by turn navigation for cyclists.</summary></entry><entry><title type="html">Testing made sweet with a Mockito</title><link href="http://jeroenmols.com/blog/2016/06/24/droidcondetalk/" rel="alternate" type="text/html" title="Testing made sweet with a Mockito" /><published>2016-06-24T00:00:00+02:00</published><updated>2016-06-24T00:00:00+02:00</updated><id>http://jeroenmols.com/blog/2016/06/24/droidcondetalk</id><content type="html" xml:base="http://jeroenmols.com/blog/2016/06/24/droidcondetalk/">&lt;p&gt;At Droidcon Berlin 2016 I had a great time talking about testing using the &lt;a href=&quot;http://mockito.org/&quot;&gt;Mockito&lt;/a&gt; framework. While the talk wasn’t recorded unfortunately, the great folks at &lt;a href=&quot;https://voicerepublic.com/series/droidcon-berlin-2016&quot;&gt;Voice Republic&lt;/a&gt; recorded an audio version which you can listen to as a podcast or together with the slides.&lt;/p&gt;
+&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><summary type="html">Cycling is all about exploring: visiting new places and making existing routes more fun with better streets. So there must be an app that allows to plan your route and start cycling right? Think again… there is currently no solution that offers turn by turn navigation for cyclists.</summary></entry><entry><title type="html">Testing made sweet with a Mockito</title><link href="https://jeroenmols.com/blog/2016/06/24/droidcondetalk/" rel="alternate" type="text/html" title="Testing made sweet with a Mockito" /><published>2016-06-24T00:00:00+02:00</published><updated>2016-06-24T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2016/06/24/droidcondetalk</id><content type="html" xml:base="https://jeroenmols.com/blog/2016/06/24/droidcondetalk/">&lt;p&gt;At Droidcon Berlin 2016 I had a great time talking about testing using the &lt;a href=&quot;http://mockito.org/&quot;&gt;Mockito&lt;/a&gt; framework. While the talk wasn’t recorded unfortunately, the great folks at &lt;a href=&quot;https://voicerepublic.com/series/droidcon-berlin-2016&quot;&gt;Voice Republic&lt;/a&gt; recorded an audio version which you can listen to as a podcast or together with the slides.&lt;/p&gt;
 
 &lt;h2 id=&quot;talk&quot;&gt;Talk&lt;/h2&gt;
 &lt;script async=&quot;&quot; class=&quot;speakerdeck-embed&quot; data-id=&quot;061ea326e4b24a3aa961440fd699c481&quot; data-ratio=&quot;1.77777777777778&quot; src=&quot;//speakerdeck.com/assets/embed.js&quot;&gt;&lt;/script&gt;
@@ -818,4 +818,4 @@ limitations under the License.
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;audience&quot;&gt;Audience&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;http://jeroenmols.com/img/blog/droidconde16talk/audience.jpg&quot;&gt;&lt;img src=&quot;http://jeroenmols.com/img/blog/droidconde16talk/audience.jpg&quot; alt=&quot;Quite some people interested in my talk&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><summary type="html">At Droidcon Berlin 2016 I had a great time talking about testing using the Mockito framework. While the talk wasn’t recorded unfortunately, the great folks at Voice Republic recorded an audio version which you can listen to as a podcast or together with the slides.</summary></entry></feed>
+&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/droidconde16talk/audience.jpg&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/droidconde16talk/audience.jpg&quot; alt=&quot;Quite some people interested in my talk&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><summary type="html">At Droidcon Berlin 2016 I had a great time talking about testing using the Mockito framework. While the talk wasn’t recorded unfortunately, the great folks at Voice Republic recorded an audio version which you can listen to as a podcast or together with the slides.</summary></entry></feed>

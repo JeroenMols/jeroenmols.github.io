@@ -36,8 +36,8 @@
 <meta property="og:title" content="Git as a secure private Maven repository">
 
 
-  <link rel="canonical" href="http://jeroenmols.com/blog/2016/02/05/wagongit/">
-  <meta property="og:url" content="http://jeroenmols.com/blog/2016/02/05/wagongit/">
+  <link rel="canonical" href="https://jeroenmols.com/blog/2016/02/05/wagongit/">
+  <meta property="og:url" content="https://jeroenmols.com/blog/2016/02/05/wagongit/">
 
 
 
@@ -48,11 +48,11 @@
   <meta name="twitter:site" content="@molsjeroen">
   <meta name="twitter:title" content="Git as a secure private Maven repository">
   <meta name="twitter:description" content="As my previous blogposts already covered how to set up a private Maven repository, you might wonder “Why again a Maven blogpost?”. Well that’s a fair question and the answer is twofold:">
-  <meta name="twitter:url" content="http://jeroenmols.com/blog/2016/02/05/wagongit/">
+  <meta name="twitter:url" content="https://jeroenmols.com/blog/2016/02/05/wagongit/">
 
   
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="http://jeroenmols.com/img/blog/wagongit/wagongit.png">
+    <meta name="twitter:image" content="https://jeroenmols.com/img/blog/wagongit/wagongit.png">
   
 
   
@@ -67,7 +67,7 @@
 
 
 
-  <meta property="og:image" content="http://jeroenmols.com/img/blog/wagongit/wagongit.png">
+  <meta property="og:image" content="https://jeroenmols.com/img/blog/wagongit/wagongit.png">
 
 
 
@@ -86,7 +86,7 @@
       "@context" : "http://schema.org",
       "@type" : "Person",
       "name" : "Jeroen Mols",
-      "url" : "http://jeroenmols.com",
+      "url" : "https://jeroenmols.com",
       "sameAs" : ["https://twitter.com/molsjeroen","https://www.linkedin.com/in/jeroenmols/","https://plus.google.com/+JeroenMols","https://github.com/JeroenMols","https://speakerdeck.com/jeroenmols","https://stackoverflow.com/users/2771851/jmols"]
     }
   </script>
@@ -111,7 +111,7 @@
 </script>
 
 <!-- For all browsers -->
-<link rel="stylesheet" href="http://jeroenmols.com/assets/css/main.css">
+<link rel="stylesheet" href="https://jeroenmols.com/assets/css/main.css">
 
 <!--[if lte IE 9]>
   <style>
@@ -147,14 +147,14 @@
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
-        <a class="site-title" href="http://jeroenmols.com/">Jeroen Mols</a>
+        <a class="site-title" href="https://jeroenmols.com/">Jeroen Mols</a>
         <ul class="visible-links">
           
             
-            <li class="masthead__menu-item"><a href="http://jeroenmols.com/blog/">Blog</a></li>
+            <li class="masthead__menu-item"><a href="https://jeroenmols.com/blog/">Blog</a></li>
           
             
-            <li class="masthead__menu-item"><a href="http://jeroenmols.com/speaking/">Speaking</a></li>
+            <li class="masthead__menu-item"><a href="https://jeroenmols.com/speaking/">Speaking</a></li>
           
         </ul>
         <button><div class="navicon"></div></button>
@@ -179,7 +179,7 @@
   
     <div class="author__avatar">
       
-        <img src="http://jeroenmols.com/img/profile.jpg" class="author__avatar" alt="Jeroen Mols" itemprop="image">
+        <img src="https://jeroenmols.com/img/profile.jpg" class="author__avatar" alt="Jeroen Mols" itemprop="image">
       
     </div>
   
@@ -309,7 +309,7 @@
           <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  05 Feb 2016</p>
 
           
-            <img src="http://jeroenmols.com/img/blog/wagongit/wagongit.png" alt="Git as a secure private Maven repository" title="Screenshot by Jeroen Mols">
+            <img src="https://jeroenmols.com/img/blog/wagongit/wagongit.png" alt="Git as a secure private Maven repository" title="Screenshot by Jeroen Mols">
           
 
           
@@ -346,17 +346,17 @@
 
 <p>Login to Bitbucket and create a new private repository called <code class="highlighter-rouge">maven_repository</code>.</p>
 
-<p><a href="http://jeroenmols.com/img/blog/wagongit/createrepository.png"><img src="http://jeroenmols.com/img/blog/wagongit/createrepository.png" alt="Create new BitBucket repository" class="align-center" /></a></p>
+<p><a href="https://jeroenmols.com/img/blog/wagongit/createrepository.png"><img src="https://jeroenmols.com/img/blog/wagongit/createrepository.png" alt="Create new BitBucket repository" class="align-center" /></a></p>
 
 <p>Checkout the repository locally, create a <code class="highlighter-rouge">README.md</code> file and commit that file to your local branch. Now push that branch to BitBucket, BUT make sure to push it to a remote branch called “releases”. (this is key, as the plugin we’ll use later on depends on this)</p>
 
-<p><a href="http://jeroenmols.com/img/blog/wagongit/releasebranch.png"><img src="http://jeroenmols.com/img/blog/wagongit/releasebranch.png" alt="BitBucket repository with main branch releases." class="align-center" /></a></p>
+<p><a href="https://jeroenmols.com/img/blog/wagongit/releasebranch.png"><img src="https://jeroenmols.com/img/blog/wagongit/releasebranch.png" alt="BitBucket repository with main branch releases." class="align-center" /></a></p>
 
 <blockquote>
   <p><strong>Troubleshooting releases branch</strong>
 If you accidentally push your local branch to a remote called <code class="highlighter-rouge">master</code>, create a new branch locally called releases, push that to a remote <code class="highlighter-rouge">releases</code> and change your main branch in the BitBucket settings for that repository.</p>
 
-  <p><a href="http://jeroenmols.com/img/blog/wagongit/configuremainbranch.png"><img src="http://jeroenmols.com/img/blog/wagongit/configuremainbranch.png" alt="Change the main branch from master to releases" class="align-center" /></a></p>
+  <p><a href="https://jeroenmols.com/img/blog/wagongit/configuremainbranch.png"><img src="https://jeroenmols.com/img/blog/wagongit/configuremainbranch.png" alt="Change the main branch from master to releases" class="align-center" /></a></p>
 
   <p>You can safely remove origin/master if you want.</p>
 </blockquote>
@@ -394,9 +394,9 @@ If you accidentally push your local branch to a remote called <code class="highl
 
 <p>And check BitBucket for the resulting artifacts.</p>
 
-<p><a href="http://jeroenmols.com/img/blog/wagongit/releasecommits.png"><img src="http://jeroenmols.com/img/blog/wagongit/releasecommits.png" alt="Release commit of a Maven upload to BitBucket." class="align-center" /></a></p>
+<p><a href="https://jeroenmols.com/img/blog/wagongit/releasecommits.png"><img src="https://jeroenmols.com/img/blog/wagongit/releasecommits.png" alt="Release commit of a Maven upload to BitBucket." class="align-center" /></a></p>
 
-<p><a href="http://jeroenmols.com/img/blog/wagongit/releasecommitdetails.png"><img src="http://jeroenmols.com/img/blog/wagongit/releasecommitdetails.png" alt="File details of a release commit." class="align-center" /></a></p>
+<p><a href="https://jeroenmols.com/img/blog/wagongit/releasecommitdetails.png"><img src="https://jeroenmols.com/img/blog/wagongit/releasecommitdetails.png" alt="File details of a release commit." class="align-center" /></a></p>
 
 <h2 id="unique-versions-only">Unique versions only</h2>
 <p>As Git naturally allows you to override existing files, we will need to do something to prevent this from happening. Otherwise, you could have a v1.1.3 library, which is stable one day and full of bugs the next (because someone replaced it in the Maven repo). Not exactly what you want, right?</p>
@@ -427,7 +427,7 @@ If you accidentally push your local branch to a remote called <code class="highl
 
 <p>Running <code class="highlighter-rouge">./gradlew uploadArchives</code> now successfully creates a release.</p>
 
-<p><a href="http://jeroenmols.com/img/blog/wagongit/checkforartifacts.png"><img src="http://jeroenmols.com/img/blog/wagongit/checkforartifacts.png" alt="Check for existing artifacts before uploadArchives." class="align-center" /></a></p>
+<p><a href="https://jeroenmols.com/img/blog/wagongit/checkforartifacts.png"><img src="https://jeroenmols.com/img/blog/wagongit/checkforartifacts.png" alt="Check for existing artifacts before uploadArchives." class="align-center" /></a></p>
 
 <h2 id="consuming-artifacts">Consuming artifacts</h2>
 <p>Add your Maven repository to the list of repositories in your main <code class="highlighter-rouge">build.gradle</code> file:</p>
@@ -539,7 +539,7 @@ If you accidentally push your local branch to a remote called <code class="highl
     
       
       
-      <a href="http://jeroenmols.com/categories/#blog" class="page__taxonomy-item" rel="tag">blog</a>
+      <a href="https://jeroenmols.com/categories/#blog" class="page__taxonomy-item" rel="tag">blog</a>
     
     </span>
   </p>
@@ -555,13 +555,13 @@ If you accidentally push your local branch to a remote called <code class="highl
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=Git as a secure private Maven repository http://jeroenmols.com/blog/2016/02/05/wagongit/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=Git as a secure private Maven repository https://jeroenmols.com/blog/2016/02/05/wagongit/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http://jeroenmols.com/blog/2016/02/05/wagongit/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https://jeroenmols.com/blog/2016/02/05/wagongit/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://plus.google.com/share?url=http://jeroenmols.com/blog/2016/02/05/wagongit/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+  <a href="https://plus.google.com/share?url=https://jeroenmols.com/blog/2016/02/05/wagongit/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://jeroenmols.com/blog/2016/02/05/wagongit/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://jeroenmols.com/blog/2016/02/05/wagongit/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
@@ -582,11 +582,11 @@ If you accidentally push your local branch to a remote called <code class="highl
       
   <nav class="pagination">
     
-      <a href="http://jeroenmols.com/blog/2016/01/29/yearinreview/" class="pagination--pager" title="Year in review 2015
+      <a href="https://jeroenmols.com/blog/2016/01/29/yearinreview/" class="pagination--pager" title="Year in review 2015
 ">Previous</a>
     
     
-      <a href="http://jeroenmols.com/blog/2016/03/07/resourcenaming/" class="pagination--pager" title="A successful XML naming convention
+      <a href="https://jeroenmols.com/blog/2016/03/07/resourcenaming/" class="pagination--pager" title="A successful XML naming convention
 ">Next</a>
     
   </nav>
@@ -636,7 +636,7 @@ If you accidentally push your local branch to a remote called <code class="highl
       </footer>
     </div>
 
-    <script src="http://jeroenmols.com/assets/js/main.min.js"></script>
+    <script src="https://jeroenmols.com/assets/js/main.min.js"></script>
 
 
 

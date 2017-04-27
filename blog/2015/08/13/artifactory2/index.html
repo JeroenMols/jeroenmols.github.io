@@ -36,8 +36,8 @@
 <meta property="og:title" content="Getting the most out of Artifactory">
 
 
-  <link rel="canonical" href="http://jeroenmols.com/blog/2015/08/13/artifactory2/">
-  <meta property="og:url" content="http://jeroenmols.com/blog/2015/08/13/artifactory2/">
+  <link rel="canonical" href="https://jeroenmols.com/blog/2015/08/13/artifactory2/">
+  <meta property="og:url" content="https://jeroenmols.com/blog/2015/08/13/artifactory2/">
 
 
 
@@ -48,11 +48,11 @@
   <meta name="twitter:site" content="@molsjeroen">
   <meta name="twitter:title" content="Getting the most out of Artifactory">
   <meta name="twitter:description" content="My previous blog post described how to set up your own private Maven repository with Artifactory in 30 minutes. This second and final part will make things more interesting and take your setup to the next level.">
-  <meta name="twitter:url" content="http://jeroenmols.com/blog/2015/08/13/artifactory2/">
+  <meta name="twitter:url" content="https://jeroenmols.com/blog/2015/08/13/artifactory2/">
 
   
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="http://jeroenmols.com/img/blog/artifactory2/artifactory2.png">
+    <meta name="twitter:image" content="https://jeroenmols.com/img/blog/artifactory2/artifactory2.png">
   
 
   
@@ -67,7 +67,7 @@
 
 
 
-  <meta property="og:image" content="http://jeroenmols.com/img/blog/artifactory2/artifactory2.png">
+  <meta property="og:image" content="https://jeroenmols.com/img/blog/artifactory2/artifactory2.png">
 
 
 
@@ -86,7 +86,7 @@
       "@context" : "http://schema.org",
       "@type" : "Person",
       "name" : "Jeroen Mols",
-      "url" : "http://jeroenmols.com",
+      "url" : "https://jeroenmols.com",
       "sameAs" : ["https://twitter.com/molsjeroen","https://www.linkedin.com/in/jeroenmols/","https://plus.google.com/+JeroenMols","https://github.com/JeroenMols","https://speakerdeck.com/jeroenmols","https://stackoverflow.com/users/2771851/jmols"]
     }
   </script>
@@ -111,7 +111,7 @@
 </script>
 
 <!-- For all browsers -->
-<link rel="stylesheet" href="http://jeroenmols.com/assets/css/main.css">
+<link rel="stylesheet" href="https://jeroenmols.com/assets/css/main.css">
 
 <!--[if lte IE 9]>
   <style>
@@ -147,14 +147,14 @@
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
-        <a class="site-title" href="http://jeroenmols.com/">Jeroen Mols</a>
+        <a class="site-title" href="https://jeroenmols.com/">Jeroen Mols</a>
         <ul class="visible-links">
           
             
-            <li class="masthead__menu-item"><a href="http://jeroenmols.com/blog/">Blog</a></li>
+            <li class="masthead__menu-item"><a href="https://jeroenmols.com/blog/">Blog</a></li>
           
             
-            <li class="masthead__menu-item"><a href="http://jeroenmols.com/speaking/">Speaking</a></li>
+            <li class="masthead__menu-item"><a href="https://jeroenmols.com/speaking/">Speaking</a></li>
           
         </ul>
         <button><div class="navicon"></div></button>
@@ -179,7 +179,7 @@
   
     <div class="author__avatar">
       
-        <img src="http://jeroenmols.com/img/profile.jpg" class="author__avatar" alt="Jeroen Mols" itemprop="image">
+        <img src="https://jeroenmols.com/img/profile.jpg" class="author__avatar" alt="Jeroen Mols" itemprop="image">
       
     </div>
   
@@ -309,7 +309,7 @@
           <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  13 Aug 2015</p>
 
           
-            <img src="http://jeroenmols.com/img/blog/artifactory2/artifactory2.png" alt="Getting the most out of Artifactory" title="Screenshot of Artifactory start up, https://www.jfrog.com">
+            <img src="https://jeroenmols.com/img/blog/artifactory2/artifactory2.png" alt="Getting the most out of Artifactory" title="Screenshot of Artifactory start up, https://www.jfrog.com">
           
 
           
@@ -456,9 +456,9 @@
 
 <ol>
   <li>Login to Artifactory and go to admin &gt; repositories &gt; virtual
-  <a href="http://jeroenmols.com/img/blog/artifactory2/artifactory2_virtualrepo1.png"><img src="http://jeroenmols.com/img/blog/artifactory2/artifactory2_virtualrepo1.png" alt="All virtual repositories can be found under admin - repositories - virtual" class="align-center" /></a></li>
+  <a href="https://jeroenmols.com/img/blog/artifactory2/artifactory2_virtualrepo1.png"><img src="https://jeroenmols.com/img/blog/artifactory2/artifactory2_virtualrepo1.png" alt="All virtual repositories can be found under admin - repositories - virtual" class="align-center" /></a></li>
   <li>Create a new virtual maven repository which contains both <code class="highlighter-rouge">libs-release-local</code> and <code class="highlighter-rouge">libs-snapshot-local</code>
-  <a href="http://jeroenmols.com/img/blog/artifactory2/artifactory2_virtualrepo2.png"><img src="http://jeroenmols.com/img/blog/artifactory2/artifactory2_virtualrepo2.png" alt="Create a new virtual maven repository which contains both libs-release-local and libs-snapshot-local" class="align-center" /></a></li>
+  <a href="https://jeroenmols.com/img/blog/artifactory2/artifactory2_virtualrepo2.png"><img src="https://jeroenmols.com/img/blog/artifactory2/artifactory2_virtualrepo2.png" alt="Create a new virtual maven repository which contains both libs-release-local and libs-snapshot-local" class="align-center" /></a></li>
   <li>In the top level <code class="highlighter-rouge">build.gradle</code> of your application, replace the two previous URLS by the following:</li>
 </ol>
 
@@ -489,23 +489,23 @@
 
 <p>Next, go to the <code class="highlighter-rouge">Users</code> pane and add two new user: <code class="highlighter-rouge">consumer</code> and <code class="highlighter-rouge">deployer</code>. Make sure not to add them to any group.</p>
 
-<p><a href="http://jeroenmols.com/img/blog/artifactory2/artifactory2_user1.png"><img src="http://jeroenmols.com/img/blog/artifactory2/artifactory2_user1.png" alt="Settings for consumer user" class="align-center" /></a></p>
+<p><a href="https://jeroenmols.com/img/blog/artifactory2/artifactory2_user1.png"><img src="https://jeroenmols.com/img/blog/artifactory2/artifactory2_user1.png" alt="Settings for consumer user" class="align-center" /></a></p>
 
-<p><a href="http://jeroenmols.com/img/blog/artifactory2/artifactory2_user2.png"><img src="http://jeroenmols.com/img/blog/artifactory2/artifactory2_user2.png" alt="Settings for deployer user" class="align-center" /></a></p>
+<p><a href="https://jeroenmols.com/img/blog/artifactory2/artifactory2_user2.png"><img src="https://jeroenmols.com/img/blog/artifactory2/artifactory2_user2.png" alt="Settings for deployer user" class="align-center" /></a></p>
 
 <p>Note that you probably also want to change your admin password at this stage. ;)</p>
 
 <p>Now go to the <code class="highlighter-rouge">Permissions</code> pane and add a new <code class="highlighter-rouge">Consume Libraries</code> permission. Set the Selected repositories to include the snapshot and release repository, and in the <code class="highlighter-rouge">Users</code> tab add the <code class="highlighter-rouge">consumer</code> user with read permissions.</p>
 
-<p><a href="http://jeroenmols.com/img/blog/artifactory2/artifactory2_permission1.png"><img src="http://jeroenmols.com/img/blog/artifactory2/artifactory2_permission1.png" alt="Settings for Consume Libraries permission" class="align-center" /></a></p>
+<p><a href="https://jeroenmols.com/img/blog/artifactory2/artifactory2_permission1.png"><img src="https://jeroenmols.com/img/blog/artifactory2/artifactory2_permission1.png" alt="Settings for Consume Libraries permission" class="align-center" /></a></p>
 
-<p><a href="http://jeroenmols.com/img/blog/artifactory2/artifactory2_permission2.png"><img src="http://jeroenmols.com/img/blog/artifactory2/artifactory2_permission2.png" alt="Settings for Consume Libraries permission" class="align-center" /></a></p>
+<p><a href="https://jeroenmols.com/img/blog/artifactory2/artifactory2_permission2.png"><img src="https://jeroenmols.com/img/blog/artifactory2/artifactory2_permission2.png" alt="Settings for Consume Libraries permission" class="align-center" /></a></p>
 
 <p>Add a second permission: <code class="highlighter-rouge">Deploy Libraries</code> with the snapshot and release repository included. Here give the <code class="highlighter-rouge">deployer</code> user <code class="highlighter-rouge">Deploy/Cache</code> permission but not <code class="highlighter-rouge">Delete/Overwrite</code> as you never want to override an existing artifact!</p>
 
-<p><a href="http://jeroenmols.com/img/blog/artifactory2/artifactory2_permission3.png"><img src="http://jeroenmols.com/img/blog/artifactory2/artifactory2_permission3.png" alt="Settings for Deploy Libraries permission" class="align-center" /></a></p>
+<p><a href="https://jeroenmols.com/img/blog/artifactory2/artifactory2_permission3.png"><img src="https://jeroenmols.com/img/blog/artifactory2/artifactory2_permission3.png" alt="Settings for Deploy Libraries permission" class="align-center" /></a></p>
 
-<p><a href="http://jeroenmols.com/img/blog/artifactory2/artifactory2_permission4.png"><img src="http://jeroenmols.com/img/blog/artifactory2/artifactory2_permission4.png" alt="Settings for Deploy Libraries permission" class="align-center" /></a></p>
+<p><a href="https://jeroenmols.com/img/blog/artifactory2/artifactory2_permission4.png"><img src="https://jeroenmols.com/img/blog/artifactory2/artifactory2_permission4.png" alt="Settings for Deploy Libraries permission" class="align-center" /></a></p>
 
 <p>All we need to do now is modify the Library and Application to make use of these new users. This is easy for the Library as you can simply replace the <code class="highlighter-rouge">admin</code> user with the <code class="highlighter-rouge">deploy</code> user in the <code class="highlighter-rouge">gradle.properties</code> file.</p>
 
@@ -524,7 +524,7 @@
       <li>
         <p>Copy the API key</p>
 
-        <p><a href="http://jeroenmols.com/img/blog/artifactory2/artifactory2_consumer.png"><img src="http://jeroenmols.com/img/blog/artifactory2/artifactory2_consumer.png" alt="Copy the API key from the consumer profile." class="align-center" /></a></p>
+        <p><a href="https://jeroenmols.com/img/blog/artifactory2/artifactory2_consumer.png"><img src="https://jeroenmols.com/img/blog/artifactory2/artifactory2_consumer.png" alt="Copy the API key from the consumer profile." class="align-center" /></a></p>
       </li>
     </ul>
   </li>
@@ -578,7 +578,7 @@
     
       
       
-      <a href="http://jeroenmols.com/categories/#blog" class="page__taxonomy-item" rel="tag">blog</a>
+      <a href="https://jeroenmols.com/categories/#blog" class="page__taxonomy-item" rel="tag">blog</a>
     
     </span>
   </p>
@@ -594,13 +594,13 @@
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=Getting the most out of Artifactory http://jeroenmols.com/blog/2015/08/13/artifactory2/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=Getting the most out of Artifactory https://jeroenmols.com/blog/2015/08/13/artifactory2/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http://jeroenmols.com/blog/2015/08/13/artifactory2/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https://jeroenmols.com/blog/2015/08/13/artifactory2/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://plus.google.com/share?url=http://jeroenmols.com/blog/2015/08/13/artifactory2/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+  <a href="https://plus.google.com/share?url=https://jeroenmols.com/blog/2015/08/13/artifactory2/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://jeroenmols.com/blog/2015/08/13/artifactory2/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://jeroenmols.com/blog/2015/08/13/artifactory2/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
@@ -621,11 +621,11 @@
       
   <nav class="pagination">
     
-      <a href="http://jeroenmols.com/blog/2015/08/06/artifactory/" class="pagination--pager" title="A private Maven repository for Android in 30 min
+      <a href="https://jeroenmols.com/blog/2015/08/06/artifactory/" class="pagination--pager" title="A private Maven repository for Android in 30 min
 ">Previous</a>
     
     
-      <a href="http://jeroenmols.com/blog/2015/11/13/traviscoveralls/" class="pagination--pager" title="Level up GitHub builds with CI and code coverage
+      <a href="https://jeroenmols.com/blog/2015/11/13/traviscoveralls/" class="pagination--pager" title="Level up GitHub builds with CI and code coverage
 ">Next</a>
     
   </nav>
@@ -675,7 +675,7 @@
       </footer>
     </div>
 
-    <script src="http://jeroenmols.com/assets/js/main.min.js"></script>
+    <script src="https://jeroenmols.com/assets/js/main.min.js"></script>
 
 
 

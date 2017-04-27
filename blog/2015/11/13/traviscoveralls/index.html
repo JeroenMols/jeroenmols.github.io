@@ -36,8 +36,8 @@
 <meta property="og:title" content="Level up GitHub builds with CI and code coverage">
 
 
-  <link rel="canonical" href="http://jeroenmols.com/blog/2015/11/13/traviscoveralls/">
-  <meta property="og:url" content="http://jeroenmols.com/blog/2015/11/13/traviscoveralls/">
+  <link rel="canonical" href="https://jeroenmols.com/blog/2015/11/13/traviscoveralls/">
+  <meta property="og:url" content="https://jeroenmols.com/blog/2015/11/13/traviscoveralls/">
 
 
 
@@ -48,11 +48,11 @@
   <meta name="twitter:site" content="@molsjeroen">
   <meta name="twitter:title" content="Level up GitHub builds with CI and code coverage">
   <meta name="twitter:description" content="Wouldn’t you love to have your open source projects built automatically by a continuous integration server? And to have a detailed code coverage report for all your unit tests? Even when someone generated a pull request? And how about having cool badges to show off all of this?">
-  <meta name="twitter:url" content="http://jeroenmols.com/blog/2015/11/13/traviscoveralls/">
+  <meta name="twitter:url" content="https://jeroenmols.com/blog/2015/11/13/traviscoveralls/">
 
   
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="http://jeroenmols.com/img/blog/traviscoveralls/traviscoveralls.png">
+    <meta name="twitter:image" content="https://jeroenmols.com/img/blog/traviscoveralls/traviscoveralls.png">
   
 
   
@@ -67,7 +67,7 @@
 
 
 
-  <meta property="og:image" content="http://jeroenmols.com/img/blog/traviscoveralls/traviscoveralls.png">
+  <meta property="og:image" content="https://jeroenmols.com/img/blog/traviscoveralls/traviscoveralls.png">
 
 
 
@@ -86,7 +86,7 @@
       "@context" : "http://schema.org",
       "@type" : "Person",
       "name" : "Jeroen Mols",
-      "url" : "http://jeroenmols.com",
+      "url" : "https://jeroenmols.com",
       "sameAs" : ["https://twitter.com/molsjeroen","https://www.linkedin.com/in/jeroenmols/","https://plus.google.com/+JeroenMols","https://github.com/JeroenMols","https://speakerdeck.com/jeroenmols","https://stackoverflow.com/users/2771851/jmols"]
     }
   </script>
@@ -111,7 +111,7 @@
 </script>
 
 <!-- For all browsers -->
-<link rel="stylesheet" href="http://jeroenmols.com/assets/css/main.css">
+<link rel="stylesheet" href="https://jeroenmols.com/assets/css/main.css">
 
 <!--[if lte IE 9]>
   <style>
@@ -147,14 +147,14 @@
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
-        <a class="site-title" href="http://jeroenmols.com/">Jeroen Mols</a>
+        <a class="site-title" href="https://jeroenmols.com/">Jeroen Mols</a>
         <ul class="visible-links">
           
             
-            <li class="masthead__menu-item"><a href="http://jeroenmols.com/blog/">Blog</a></li>
+            <li class="masthead__menu-item"><a href="https://jeroenmols.com/blog/">Blog</a></li>
           
             
-            <li class="masthead__menu-item"><a href="http://jeroenmols.com/speaking/">Speaking</a></li>
+            <li class="masthead__menu-item"><a href="https://jeroenmols.com/speaking/">Speaking</a></li>
           
         </ul>
         <button><div class="navicon"></div></button>
@@ -179,7 +179,7 @@
   
     <div class="author__avatar">
       
-        <img src="http://jeroenmols.com/img/profile.jpg" class="author__avatar" alt="Jeroen Mols" itemprop="image">
+        <img src="https://jeroenmols.com/img/profile.jpg" class="author__avatar" alt="Jeroen Mols" itemprop="image">
       
     </div>
   
@@ -309,7 +309,7 @@
           <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  13 Nov 2015</p>
 
           
-            <img src="http://jeroenmols.com/img/blog/traviscoveralls/traviscoveralls.png" alt="Level up GitHub builds with CI and code coverage" title="Travis logo (https://travis-ci.com) and Coveralls mascot from careers page (https://coveralls.io/)">
+            <img src="https://jeroenmols.com/img/blog/traviscoveralls/traviscoveralls.png" alt="Level up GitHub builds with CI and code coverage" title="Travis logo (https://travis-ci.com) and Coveralls mascot from careers page (https://coveralls.io/)">
           
 
           
@@ -342,12 +342,12 @@
 <h3 id="about">About</h3>
 <p><a href="https://travis-ci.org/">Travis</a> is a feature rich online CI service which integrates nicely with a lot of existing services. One major advantage over Jenkins is that you can put the entire CI configuration file under version control. It is completely free for open source projects, although private repositories are also supported on a subscription basis.</p>
 
-<p><a href="http://jeroenmols.com/img/blog/traviscoveralls/travis-workflow.png"><img src="http://jeroenmols.com/img/blog/traviscoveralls/travis-workflow.png" alt="Travis workflow" class="align-center" /></a></p>
+<p><a href="https://jeroenmols.com/img/blog/traviscoveralls/travis-workflow.png"><img src="https://jeroenmols.com/img/blog/traviscoveralls/travis-workflow.png" alt="Travis workflow" class="align-center" /></a></p>
 
 <h3 id="basic-configuration">Basic configuration</h3>
 <p>In order to get started, go to <a href="https://travis-ci.org/">travis-ci.org</a>, login with your GitHub account and authorize Travis to access your repositories.</p>
 
-<p><a href="http://jeroenmols.com/img/blog/traviscoveralls/travis-authorize.png"><img src="http://jeroenmols.com/img/blog/traviscoveralls/travis-authorize.png" alt="Allow Travis to access your GitHub projects" class="align-center" /></a></p>
+<p><a href="https://jeroenmols.com/img/blog/traviscoveralls/travis-authorize.png"><img src="https://jeroenmols.com/img/blog/traviscoveralls/travis-authorize.png" alt="Allow Travis to access your GitHub projects" class="align-center" /></a></p>
 
 <p>Next, create a new file <code class="highlighter-rouge">.travis.yml</code> into the root of your project (note that this file will be hidden on Mac OSX/Linux systems). Open the file and specify the language of your project, in our case Android:</p>
 
@@ -386,15 +386,15 @@
 
 <p>Now that we have configured everything in the <code class="highlighter-rouge">travis.yml</code> file, we need to enable the project, so Travis will start listening to code changes. This can be done by going to your profile on <a href="http://travis-ci.org">Travis</a> and flipping the appropriate slider.</p>
 
-<p><a href="http://jeroenmols.com/img/blog/traviscoveralls/travis-enableproject.png"><img src="http://jeroenmols.com/img/blog/traviscoveralls/travis-enableproject.png" alt="Enable project in Travis" class="align-center" /></a></p>
+<p><a href="https://jeroenmols.com/img/blog/traviscoveralls/travis-enableproject.png"><img src="https://jeroenmols.com/img/blog/traviscoveralls/travis-enableproject.png" alt="Enable project in Travis" class="align-center" /></a></p>
 
 <p>This will result in the project being shown on the left hand side of your dashboard, while indicating that there are no builds.</p>
 
-<p><a href="http://jeroenmols.com/img/blog/traviscoveralls/travis-nobuilds.png"><img src="http://jeroenmols.com/img/blog/traviscoveralls/travis-nobuilds.png" alt="Travis overview with no builds, push code to origin to trigger a build." class="align-center" /></a></p>
+<p><a href="https://jeroenmols.com/img/blog/traviscoveralls/travis-nobuilds.png"><img src="https://jeroenmols.com/img/blog/traviscoveralls/travis-nobuilds.png" alt="Travis overview with no builds, push code to origin to trigger a build." class="align-center" /></a></p>
 
 <p>Builds are automatically triggered whenever you push code to your GitHub repository or someone else creates a pull request. Therefore push some changes to GitHub and watch Travis pick them up automatically and start building your project.</p>
 
-<p><a href="http://jeroenmols.com/img/blog/traviscoveralls/travis-firstbuild.png"><img src="http://jeroenmols.com/img/blog/traviscoveralls/travis-firstbuild.png" alt="First build in Travis" class="align-center" /></a></p>
+<p><a href="https://jeroenmols.com/img/blog/traviscoveralls/travis-firstbuild.png"><img src="https://jeroenmols.com/img/blog/traviscoveralls/travis-firstbuild.png" alt="First build in Travis" class="align-center" /></a></p>
 
 <p>Congrats! You now have a fully working Continuous Integration server for your <a href="https://travis-ci.org/JeroenMols/TravisCoverallsExample">open source project</a>.</p>
 
@@ -491,7 +491,7 @@ For more information, have a look at the <a href="http://docs.travis-ci.com/user
 <h3 id="about-1">About</h3>
 <p><a href="https://coveralls.io/">Coveralls</a> is a visually attractive online code coverage tool which provides detailed statistics such as line coverage and repository trends. Furthermore it allows you to show of your code coverage and encourages you to increase it. Like Travis, it is free for open source projects, but a subscription service is available for private repositories.</p>
 
-<p><a href="http://jeroenmols.com/img/blog/traviscoveralls/coveralls-example.png"><img src="http://jeroenmols.com/img/blog/traviscoveralls/coveralls-example.png" alt="Example coveralls dashboard" class="align-center" /></a></p>
+<p><a href="https://jeroenmols.com/img/blog/traviscoveralls/coveralls-example.png"><img src="https://jeroenmols.com/img/blog/traviscoveralls/coveralls-example.png" alt="Example coveralls dashboard" class="align-center" /></a></p>
 
 <h3 id="enabling-android-code-coverage">Enabling Android code coverage</h3>
 <p>First of all, your Android project needs to be configured to generate code coverage reports. As such, ensure that you are using at least version 0.4 of the <a href="https://google.github.io/android-testing-support-library/">Android testing support library</a> (there was an <a href="https://code.google.com/p/android/issues/detail?id=170607">issue</a> in version 0.3).</p>
@@ -512,12 +512,12 @@ For more information, have a look at the <a href="http://docs.travis-ci.com/user
 
 <p>At this point, you should be able to run <code class="highlighter-rouge">gradle connectedAndroidTest</code> and view an <code class="highlighter-rouge">html</code> and <code class="highlighter-rouge">xml</code> report in the above mentioned directory.</p>
 
-<p><a href="http://jeroenmols.com/img/blog/traviscoveralls/coveralls-rawcoverage.png"><img src="http://jeroenmols.com/img/blog/traviscoveralls/coveralls-rawcoverage.png" alt="Basic coverage report generated by the built in Android code coverage" class="align-center" /></a></p>
+<p><a href="https://jeroenmols.com/img/blog/traviscoveralls/coveralls-rawcoverage.png"><img src="https://jeroenmols.com/img/blog/traviscoveralls/coveralls-rawcoverage.png" alt="Basic coverage report generated by the built in Android code coverage" class="align-center" /></a></p>
 
 <h3 id="basic-configuration-1">Basic configuration</h3>
 <p>In order to get started, go to <a href="https://coveralls.io/">coveralls.io</a>, login with your GitHub account and authorize Coveralls to access your repositories.</p>
 
-<p><a href="http://jeroenmols.com/img/blog/traviscoveralls/coveralls-authorize.png"><img src="http://jeroenmols.com/img/blog/traviscoveralls/coveralls-authorize.png" alt="Allow Coveralls to access your GitHub projects" class="align-center" /></a></p>
+<p><a href="https://jeroenmols.com/img/blog/traviscoveralls/coveralls-authorize.png"><img src="https://jeroenmols.com/img/blog/traviscoveralls/coveralls-authorize.png" alt="Allow Coveralls to access your GitHub projects" class="align-center" /></a></p>
 
 <p>Next, we’ll need to configure your <code class="highlighter-rouge">build.gradle</code> files to upload the coverage reports to Coveralls after each successful CI build. Therefore add a new classpath dependency to the root projects <code class="highlighter-rouge">build.gradle</code> file.</p>
 
@@ -562,11 +562,11 @@ For more information, have a look at the <a href="http://docs.travis-ci.com/user
 
 <p>Next we need to activate our GitHub repository in coveralls, so it picks up the output from the <code class="highlighter-rouge">Gradle</code> plugin. This can easily be done by clicking <code class="highlighter-rouge">add repos</code> on <a href="https://coveralls.io">coveralls.io</a> and flipping the switch on your repository.</p>
 
-<p><a href="http://jeroenmols.com/img/blog/traviscoveralls/coveralls-enableproject.png"><img src="http://jeroenmols.com/img/blog/traviscoveralls/coveralls-enableproject.png" alt="Enable project in Coveralls" class="align-center" /></a></p>
+<p><a href="https://jeroenmols.com/img/blog/traviscoveralls/coveralls-enableproject.png"><img src="https://jeroenmols.com/img/blog/traviscoveralls/coveralls-enableproject.png" alt="Enable project in Coveralls" class="align-center" /></a></p>
 
 <p>This will result in the project being added to your dashboard without any builds.</p>
 
-<p><a href="http://jeroenmols.com/img/blog/traviscoveralls/coveralls-nobuilds.png"><img src="http://jeroenmols.com/img/blog/traviscoveralls/coveralls-nobuilds.png" alt="No builds yet in Coveralls" class="align-center" /></a></p>
+<p><a href="https://jeroenmols.com/img/blog/traviscoveralls/coveralls-nobuilds.png"><img src="https://jeroenmols.com/img/blog/traviscoveralls/coveralls-nobuilds.png" alt="No builds yet in Coveralls" class="align-center" /></a></p>
 
 <p>Simply trigger a Travis build by pushing some changes to start seeing code coverage results online.</p>
 
@@ -606,7 +606,7 @@ For more information, have a look at the <a href="http://docs.travis-ci.com/user
     
       
       
-      <a href="http://jeroenmols.com/categories/#blog" class="page__taxonomy-item" rel="tag">blog</a>
+      <a href="https://jeroenmols.com/categories/#blog" class="page__taxonomy-item" rel="tag">blog</a>
     
     </span>
   </p>
@@ -622,13 +622,13 @@ For more information, have a look at the <a href="http://docs.travis-ci.com/user
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=Level up GitHub builds with CI and code coverage http://jeroenmols.com/blog/2015/11/13/traviscoveralls/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=Level up GitHub builds with CI and code coverage https://jeroenmols.com/blog/2015/11/13/traviscoveralls/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http://jeroenmols.com/blog/2015/11/13/traviscoveralls/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https://jeroenmols.com/blog/2015/11/13/traviscoveralls/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://plus.google.com/share?url=http://jeroenmols.com/blog/2015/11/13/traviscoveralls/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+  <a href="https://plus.google.com/share?url=https://jeroenmols.com/blog/2015/11/13/traviscoveralls/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://jeroenmols.com/blog/2015/11/13/traviscoveralls/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://jeroenmols.com/blog/2015/11/13/traviscoveralls/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
@@ -649,11 +649,11 @@ For more information, have a look at the <a href="http://docs.travis-ci.com/user
       
   <nav class="pagination">
     
-      <a href="http://jeroenmols.com/blog/2015/08/13/artifactory2/" class="pagination--pager" title="Getting the most out of Artifactory
+      <a href="https://jeroenmols.com/blog/2015/08/13/artifactory2/" class="pagination--pager" title="Getting the most out of Artifactory
 ">Previous</a>
     
     
-      <a href="http://jeroenmols.com/blog/2016/01/29/yearinreview/" class="pagination--pager" title="Year in review 2015
+      <a href="https://jeroenmols.com/blog/2016/01/29/yearinreview/" class="pagination--pager" title="Year in review 2015
 ">Next</a>
     
   </nav>
@@ -703,7 +703,7 @@ For more information, have a look at the <a href="http://docs.travis-ci.com/user
       </footer>
     </div>
 
-    <script src="http://jeroenmols.com/assets/js/main.min.js"></script>
+    <script src="https://jeroenmols.com/assets/js/main.min.js"></script>
 
 
 
