@@ -10,7 +10,7 @@ echo "### Deploying website"
 cd ..
 git add .
 git reset -- jekyll-code/*
-git commit * -m "new website release"
+git commit -m "new website release"
 git push
 cd -
 echo ""
