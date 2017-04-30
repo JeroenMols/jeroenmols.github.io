@@ -2,10 +2,10 @@
 
 # Commit all files in root (not jekyll-code) to git and push the changes.
 # Purge the Cloudfare cache so everyone gets the changes instantly.
-# Remark: create a file called "secret" with CLOUDFAREAPIKEY="<key here>"
+# Remark: create a file called "_secret" with CLOUDFAREAPIKEY="<key here>"
 
 echo ""
-source secret
+source _secret
 echo "### Deploying website"
 cd ..
 git add .
