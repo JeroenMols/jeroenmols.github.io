@@ -1,4 +1,162 @@
-<!doctype html> <!-- Minimal Mistakes Jekyll Theme 4.2.2 by Michael Rose Copyright 2017 Michael Rose - mademistakes.com | @mmistakes Free for personal and commercial use under the MIT license https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt --><html lang="en" class="no-js"><meta charset="utf-8"><title>Efficiently reducing your method count - Jeroen Mols</title><meta name="description" content="As green field projects are a rare breed, chances are that you’ve inherited a legacy code base. If you’re as lucky as me, that code base has over 65k methods causing the build times to be boringly slow."><meta name="author" content="Jeroen Mols"><meta property="og:locale" content="en"><meta property="og:site_name" content="Jeroen Mols"><meta property="og:title" content="Efficiently reducing your method count"><link rel="canonical" href="https://jeroenmols.com/blog/2016/05/06/methodcount/"><meta property="og:url" content="https://jeroenmols.com/blog/2016/05/06/methodcount/"><meta property="og:description" content="As green field projects are a rare breed, chances are that you’ve inherited a legacy code base. If you’re as lucky as me, that code base has over 65k methods causing the build times to be boringly slow."><meta name="twitter:site" content="@molsjeroen"><meta name="twitter:title" content="Efficiently reducing your method count"><meta name="twitter:description" content="As green field projects are a rare breed, chances are that you’ve inherited a legacy code base. If you’re as lucky as me, that code base has over 65k methods causing the build times to be boringly slow."><meta name="twitter:url" content="https://jeroenmols.com/blog/2016/05/06/methodcount/"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://jeroenmols.com/img/blog/methodcount/methodcount.png"><meta name="twitter:creator" content="@Jeroen Mols"><meta property="og:image" content="https://jeroenmols.com/img/blog/methodcount/methodcount.png"><meta property="og:type" content="article"><meta property="article:published_time" content="2016-05-06T00:00:00+02:00"> <script type="application/ld+json"> { "@context" : "http://schema.org", "@type" : "Person", "name" : "Jeroen Mols", "url" : "https://jeroenmols.com", "sameAs" : ["https://twitter.com/molsjeroen","https://www.linkedin.com/in/jeroenmols/","https://plus.google.com/+JeroenMols","https://github.com/JeroenMols","https://speakerdeck.com/jeroenmols","https://stackoverflow.com/users/2771851/jmols"] } </script><link href="atom.xml" type="application/atom+xml" rel="alternate" title="Jeroen Mols Feed"><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width, initial-scale=1.0"> <script> document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js '; </script><link rel="stylesheet" href="https://jeroenmols.com/assets/css/main.css"> <!--[if lte IE 9]><style> /* old IE unsupported flexbox fixes */ .greedy-nav .site-title { padding-right: 3em; } .greedy-nav button { position: absolute; top: 0; right: 0; height: 100%; }</style><![endif]--><meta http-equiv="cleartype" content="on"><body class="layout--single"> <!--[if lt IE 9]><div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div><![endif]--><meta name="theme-color" content="#2c3e50"><div class="masthead"><div class="masthead__inner-wrap"><div class="masthead__menu"><nav id="site-nav" class="greedy-nav"> <a class="site-title" href="https://jeroenmols.com/">Jeroen Mols</a><ul class="visible-links"><li class="masthead__menu-item"><a href="https://jeroenmols.com/blog/">Blog</a><li class="masthead__menu-item"><a href="https://jeroenmols.com/speaking/">Speaking</a></ul><button><div class="navicon"></div></button><ul class="hidden-links hidden"></ul></nav></div></div></div><div id="main" role="main"><div class="sidebar sticky"><div itemscope itemtype="http://schema.org/Person"><div class="author__avatar"> <img src="https://jeroenmols.com/img/profile.jpg" class="author__avatar" alt="Jeroen Mols" itemprop="image"></div><div class="author__content"><h3 class="author__name" itemprop="name">Jeroen Mols</h3><p class="author__bio" itemprop="description"> Lead Android developer at Philips Hue</div><div class="author__urls-wrapper"> <button class="btn btn--inverse">Follow</button><ul class="author__urls social-icons"><li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place"> <i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> <span itemprop="name">Mol, Belgium</span><li> <a href="https://twitter.com/@molsjeroen" itemprop="sameAs"> <i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter </a><li> <a href="https://plus.google.com/+JeroenMols" itemprop="sameAs"> <i class="fa fa-fw fa-google-plus-square" aria-hidden="true"></i> Google+ </a><li> <a href="https://www.linkedin.com/in/jeroenmols" itemprop="sameAs"> <i class="fa fa-fw fa-linkedin-square" aria-hidden="true"></i> LinkedIn </a><li> <a href="https://github.com/JeroenMols" itemprop="sameAs"> <i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub </a><li> <a href="https://www.stackoverflow.com/users/2771851/jmols" itemprop="sameAs"> <i class="fa fa-fw fa-stack-overflow" aria-hidden="true"></i> Stackoverflow </a> <!--<li> <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs"> <i class="fa fa-fw" aria-hidden="true"></i> Custom Social Profile Link </a> --></ul></div></div></div><article class="page" itemscope itemtype="http://schema.org/CreativeWork"><meta itemprop="headline" content="Efficiently reducing your method count"><meta itemprop="description" content="As green field projects are a rare breed, chances are that you’ve inherited a legacy code base. If you’re as lucky as me, that code base has over 65k methods causing the build times to be boringly slow."><meta itemprop="datePublished" content="May 06, 2016"><div class="page__inner-wrap"><header><h1 class="page__title" itemprop="headline">Efficiently reducing your method count</h1><p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> 06 May 2016 <img src="https://jeroenmols.com/img/blog/methodcount/methodcount.png" alt="Efficiently reducing your method count" title="Image by Mutual mobile, https://mutualmobile.com, added method counts"><p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 6 minute read</header><section class="page__content" itemprop="text"><p>As green field projects are a rare breed, chances are that you’ve inherited a legacy code base. If you’re as lucky as me, that code base has over 65k methods causing the build times to be boringly slow.<p>Today I would like to show how you can visualize your current method count and understand what libraries are eating up the largest part of that. Next it’s time to reduce said method count and remove that nasty multidex solution once and for all.<h2 id="visualizing-method-count">Visualizing method count</h2><p>The easiest and most attractive way (imho) to visualize the method count is by using the <a href="https://github.com/KeepSafe/dexcount-gradle-plugin">Dexcount Gradle Plugin</a>. Applying it to your project is as easy as adding a classpath dependency to your root <code class="highlighter-rouge">build.gradle</code> and applying the plugin to your App <code class="highlighter-rouge">build.gradle</code>.<div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="c1">// root build.gradle file</span>
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.2.2 by Michael Rose
+  Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+ <head>
+   <meta charset="utf-8">
+<title>Efficiently reducing your method count - Jeroen Mols</title>
+<meta name="description" content="As green field projects are a rare breed, chances are that you’ve inherited a legacy code base. If you’re as lucky as me, that code base has over 65k methods causing the build times to be boringly slow.">
+<meta name="author" content="Jeroen Mols">
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="Jeroen Mols">
+<meta property="og:title" content="Efficiently reducing your method count">
+<link rel="canonical" href="https://jeroenmols.com/blog/2016/05/06/methodcount/">
+ <meta property="og:url" content="https://jeroenmols.com/blog/2016/05/06/methodcount/">
+ <meta property="og:description" content="As green field projects are a rare breed, chances are that you’ve inherited a legacy code base. If you’re as lucky as me, that code base has over 65k methods causing the build times to be boringly slow.">
+ <meta name="twitter:site" content="@molsjeroen">
+ <meta name="twitter:title" content="Efficiently reducing your method count">
+ <meta name="twitter:description" content="As green field projects are a rare breed, chances are that you’ve inherited a legacy code base. If you’re as lucky as me, that code base has over 65k methods causing the build times to be boringly slow.">
+ <meta name="twitter:url" content="https://jeroenmols.com/blog/2016/05/06/methodcount/">
+   <meta name="twitter:card" content="summary_large_image">
+   <meta name="twitter:image" content="https://jeroenmols.com/img/blog/methodcount/methodcount.png">
+   <meta name="twitter:creator" content="@Jeroen Mols">
+ <meta property="og:image" content="https://jeroenmols.com/img/blog/methodcount/methodcount.png">
+ <meta property="og:type" content="article">
+ <meta property="article:published_time" content="2016-05-06T00:00:00+02:00">
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "Jeroen Mols",
+      "url" : "https://jeroenmols.com",
+      "sameAs" : ["https://twitter.com/molsjeroen","https://www.linkedin.com/in/jeroenmols/","https://plus.google.com/+JeroenMols","https://github.com/JeroenMols","https://speakerdeck.com/jeroenmols","https://stackoverflow.com/users/2771851/jmols"]
+    }
+  </script>
+<link href="atom.xml" type="application/atom+xml" rel="alternate" title="Jeroen Mols Feed">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+<link rel="stylesheet" href="https://jeroenmols.com/assets/css/main.css">
+<!--[if lte IE 9]>
+ <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+ </style>
+<![endif]-->
+<meta http-equiv="cleartype" content="on">
+ </head>
+ <body class="layout--single">
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+   <meta name="theme-color" content="#2c3e50">
+<div class="masthead">
+ <div class="masthead__inner-wrap">
+   <div class="masthead__menu">
+     <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="https://jeroenmols.com/">Jeroen Mols</a>
+       <ul class="visible-links">
+           <li class="masthead__menu-item"><a href="https://jeroenmols.com/blog/">Blog</a></li>
+           <li class="masthead__menu-item"><a href="https://jeroenmols.com/speaking/">Speaking</a></li>
+       </ul>
+        <button><div class="navicon"></div></button>
+       <ul class="hidden-links hidden"></ul>
+     </nav>
+   </div>
+ </div>
+</div>
+<div id="main" role="main">
+ <div class="sidebar sticky">
+<div itemscope itemtype="http://schema.org/Person">
+   <div class="author__avatar">
+        <img src="https://jeroenmols.com/img/profile.jpg" class="author__avatar" alt="Jeroen Mols" itemprop="image">
+   </div>
+ <div class="author__content">
+   <h3 class="author__name" itemprop="name">Jeroen Mols</h3>
+     <p class="author__bio" itemprop="description">
+        Lead Android developer at Philips Hue
+     </p>
+ </div>
+ <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+   <ul class="author__urls social-icons">
+       <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
+          <i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> <span itemprop="name">Mol, Belgium</span>
+       </li>
+       <li>
+          <a href="https://twitter.com/@molsjeroen" itemprop="sameAs">
+            <i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+          </a>
+       </li>
+       <li>
+          <a href="https://plus.google.com/+JeroenMols" itemprop="sameAs">
+            <i class="fa fa-fw fa-google-plus-square" aria-hidden="true"></i> Google+
+          </a>
+       </li>
+       <li>
+          <a href="https://www.linkedin.com/in/jeroenmols" itemprop="sameAs">
+            <i class="fa fa-fw fa-linkedin-square" aria-hidden="true"></i> LinkedIn
+          </a>
+       </li>
+       <li>
+          <a href="https://github.com/JeroenMols" itemprop="sameAs">
+            <i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+       </li>
+       <li>
+          <a href="https://www.stackoverflow.com/users/2771851/jmols" itemprop="sameAs">
+            <i class="fa fa-fw fa-stack-overflow" aria-hidden="true"></i> Stackoverflow
+          </a>
+       </li>
+      <!--
+ <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs">
+      <i class="fa fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+ </li>
+-->
+   </ul>
+ </div>
+</div>
+ </div>
+ <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+   <meta itemprop="headline" content="Efficiently reducing your method count">
+   <meta itemprop="description" content="As green field projects are a rare breed, chances are that you’ve inherited a legacy code base. If you’re as lucky as me, that code base has over 65k methods causing the build times to be boringly slow.">
+   <meta itemprop="datePublished" content="May 06, 2016">
+   <div class="page__inner-wrap">
+      <header>
+         <h1 class="page__title" itemprop="headline">Efficiently reducing your method count
+</h1>
+         <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  06 May 2016</p>
+            <img src="https://jeroenmols.com/img/blog/methodcount/methodcount.png" alt="Efficiently reducing your method count" title="Image by Mutual mobile, https://mutualmobile.com, added method counts">
+           <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+  6 minute read
+</p>
+       </header>
+     <section class="page__content" itemprop="text">
+       <p>As green field projects are a rare breed, chances are that you’ve inherited a legacy code base. If you’re as lucky as me, that code base has over 65k methods causing the build times to be boringly slow.</p>
+
+<p>Today I would like to show how you can visualize your current method count and understand what libraries are eating up the largest part of that. Next it’s time to reduce said method count and remove that nasty multidex solution once and for all.</p>
+
+<h2 id="visualizing-method-count">Visualizing method count</h2>
+<p>The easiest and most attractive way (imho) to visualize the method count is by using the <a href="https://github.com/KeepSafe/dexcount-gradle-plugin">Dexcount Gradle Plugin</a>. Applying it to your project is as easy as adding a classpath dependency to your root <code class="highlighter-rouge">build.gradle</code> and applying the plugin to your App <code class="highlighter-rouge">build.gradle</code>.</p>
+
+<div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="c1">// root build.gradle file</span>
 <span class="n">buildscript</span> <span class="o">{</span>
     <span class="n">repositories</span> <span class="o">{</span>
         <span class="n">jcenter</span><span class="o">()</span> <span class="c1">// or mavenCentral()</span>
@@ -8,16 +166,106 @@
         <span class="n">classpath</span> <span class="s1">'com.getkeepsafe.dexcount:dexcount-gradle-plugin:0.5.0'</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div><div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="c1">// app build.gradle file (apply AFTER Android plugin)</span>
+</code></pre>
+</div>
+
+<div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="c1">// app build.gradle file (apply AFTER Android plugin)</span>
 <span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">'com.getkeepsafe.dexcount'</span>
-</code></pre></div><p>Running a normal project build <code class="highlighter-rouge">./gradlew assembleDebug</code> will now print out the current method count in the console:<p><a href="https://jeroenmols.com/img/blog/methodcount/methodcount_output.png"><img src="https://jeroenmols.com/img/blog/methodcount/methodcount_output.png" alt="Method count output of template project with full Google Play Services" class="align-center" /></a><p>and generate an interactive graphical report in the outputs folder <code class="highlighter-rouge">build/outputs/dexcount/debugChart</code>:<p><a href="https://jeroenmols.com/img/blog/methodcount/dexcount-googleplayservices/debugChart/index.html"><img src="https://jeroenmols.com/img/blog/methodcount/methodcount_graphic.gif" alt="Method count graphical output of template project with full Google Play Services" class="align-center" /></a><p>Click the graphic above to interact with it.<p>Using the graphical representation of the method count for all packages in your app, it becomes really easy to find which libraries are consuming your precious method count. Some of the usual suspects are big monolithic libraries like <a href="https://github.com/google/guava">Guava</a> and the non-split-up <a href="https://developers.google.com/android/guides/overview#the_google_play_services_client_library">Google play services</a>. In the next section will see what we can do about these.<h2 id="reducing-method-count">Reducing method count</h2><h3 id="choosing-the-right-libraries">Choosing the right libraries</h3><p>Normally I recommend never to optimize unless you have a problem. But with method counts, I really advice you to consider the method count before you start using a library for two reasons:<ol><li>Replacing libraries in existing apps can be very challenging, if not almost impossible.<li>Many developers are using huge libraries just to do simple things. (<code class="highlighter-rouge">Strings.isNullOrEmpty()</code> anyone?) Note that you don’t need to use a library for everything!</ol><p>Fortunately there is a great website <a href="http://www.methodscount.com/">methodscount.com</a> that tells you the method count of a library before you start using it. This can really be helpful to avoid using “large libraries” which only add limited benefit to your app.<h3 id="replacing-existing-libraries">Replacing existing libraries</h3><p>Often there are multiple libraries accomplishing the same goals. Take for instance image loading:<table><thead><tr><th>Library<th>Method count<tbody><tr><td>Picasso 2.5.2<td>849<tr><td>Universal Image Loader 1.9.5<td>1206<tr><td>Glide 3.7.0<td>2879<tr><td>Fresco 0.9.0<td>12984</table><p>Each of these libraries have their own benefits and features, so choose wisely and balance the features you are going to use versus the method count impact it will have.<p>That being said, replacing libraries in existing projects can be incredibly hard and may not even be feasible on the short term. Later I’ll suggest an alternative solution to reduce method count in existing libraries.<h3 id="running-proguard">Running Proguard</h3><p>Proguard is a great tool to strip out unused code from your app, but you typically only run it for release builds to save precious build time. If that’s not really an issue for you, by all means you can also enable Proguard for debug builds:<div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="n">buildTypes</span> <span class="o">{</span>
+</code></pre>
+</div>
+
+<p>Running a normal project build <code class="highlighter-rouge">./gradlew assembleDebug</code> will now print out the current method count in the console:</p>
+
+<p><a href="https://jeroenmols.com/img/blog/methodcount/methodcount_output.png"><img src="https://jeroenmols.com/img/blog/methodcount/methodcount_output.png" alt="Method count output of template project with full Google Play Services" class="align-center" /></a></p>
+
+<p>and generate an interactive graphical report in the outputs folder <code class="highlighter-rouge">build/outputs/dexcount/debugChart</code>:</p>
+
+<p><a href="https://jeroenmols.com/img/blog/methodcount/dexcount-googleplayservices/debugChart/index.html"><img src="https://jeroenmols.com/img/blog/methodcount/methodcount_graphic.gif" alt="Method count graphical output of template project with full Google Play Services" class="align-center" /></a></p>
+
+<p>Click the graphic above to interact with it.</p>
+
+<p>Using the graphical representation of the method count for all packages in your app, it becomes really easy to find which libraries are consuming your precious method count. Some of the usual suspects are big monolithic libraries like <a href="https://github.com/google/guava">Guava</a> and the non-split-up <a href="https://developers.google.com/android/guides/overview#the_google_play_services_client_library">Google play services</a>. In the next section will see what we can do about these.</p>
+
+<h2 id="reducing-method-count">Reducing method count</h2>
+
+<h3 id="choosing-the-right-libraries">Choosing the right libraries</h3>
+<p>Normally I recommend never to optimize unless you have a problem. But with method counts, I really advice you to consider the method count before you start using a library for two reasons:</p>
+
+<ol>
+ <li>Replacing libraries in existing apps can be very challenging, if not almost impossible.</li>
+ <li>Many developers are using huge libraries just to do simple things. (<code class="highlighter-rouge">Strings.isNullOrEmpty()</code> anyone?) Note that you don’t need to use a library for everything!</li>
+</ol>
+
+<p>Fortunately there is a great website <a href="http://www.methodscount.com/">methodscount.com</a> that tells you the method count of a library before you start using it. This can really be helpful to avoid using “large libraries” which only add limited benefit to your app.</p>
+
+<h3 id="replacing-existing-libraries">Replacing existing libraries</h3>
+<p>Often there are multiple libraries accomplishing the same goals. Take for instance image loading:</p>
+
+<table>
+<thead>
+   <tr>
+     <th>Library</th>
+     <th>Method count</th>
+   </tr>
+ </thead>
+ <tbody>
+   <tr>
+     <td>Picasso 2.5.2</td>
+     <td>849</td>
+   </tr>
+   <tr>
+     <td>Universal Image Loader 1.9.5</td>
+     <td>1206</td>
+   </tr>
+   <tr>
+     <td>Glide 3.7.0</td>
+     <td>2879</td>
+   </tr>
+   <tr>
+     <td>Fresco 0.9.0</td>
+     <td>12984</td>
+   </tr>
+ </tbody>
+</table>
+
+<p>Each of these libraries have their own benefits and features, so choose wisely and balance the features you are going to use versus the method count impact it will have.</p>
+
+<p>That being said, replacing libraries in existing projects can be incredibly hard and may not even be feasible on the short term. Later I’ll suggest an alternative solution to reduce method count in existing libraries.</p>
+
+<h3 id="running-proguard">Running Proguard</h3>
+<p>Proguard is a great tool to strip out unused code from your app, but you typically only run it for release builds to save precious build time. If that’s not really an issue for you, by all means you can also enable Proguard for debug builds:</p>
+
+<div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="n">buildTypes</span> <span class="o">{</span>
     <span class="n">debug</span> <span class="o">{</span>
         <span class="n">minifyEnabled</span> <span class="kc">true</span>
         <span class="n">proguardFiles</span> <span class="nf">getDefaultProguardFile</span><span class="o">(</span><span class="s1">'proguard-android.txt'</span><span class="o">),</span> <span class="s1">'proguard-rules.pro'</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div><h3 id="reducing-library-size">Reducing library size</h3><p>If it’s not feasible to replace an existing library or to run Proguard all the time, then it becomes really interesting. Because if Proguard can strip out code during a release build, why not use it ahead of time to create a modified version of a library with fewer methods?<p>Well this is possible, but you’ll have to manually specify which parts of the library you are going to use! This is because Proguard doesn’t have a context during library stripping of what methods your application will be needing and what not.<p>Let’s reproduce one of the projects I recently started working on as an example. Guava was used throughout the app extensively, making it very hard/risky to remove. But because of the huge method count we were constantly flirting with the 65k method limit and had to enable multidex.<p><a href="https://jeroenmols.com/img/blog/methodcount/dexcount-guava/debugChart/index.html"><img src="https://jeroenmols.com/img/blog/methodcount/methodcount_graphic_guava.gif" alt="Method count graphical output of sample project with Guava" class="align-center" /></a><p>First of all you need to know what parts of the library the app was actually using. This can easily be done by running the following command in your <code class="highlighter-rouge">src</code> folder.<div class="language-bash highlighter-rouge"><pre class="highlight"><code>grep -roh . -e <span class="s1">'com.google.common.*'</span> | sort | uniq
-</code></pre></div><p>This simply looks for all import statements starting with the library prefix (for Guava that is <code class="highlighter-rouge">com.google.common</code>), removes all clutter from the grep output, sorts it and takes all unique references.<p><a href="https://jeroenmols.com/img/blog/methodcount/grep_output.png"><img src="https://jeroenmols.com/img/blog/methodcount/grep_output.png" alt="Grep output for references to Guava in an existing project" class="align-center" /></a><p>Next we’ll create a simple Proguard configuration that keeps all top level packages, without any obfuscation or optimizations.<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="o">-</span><span class="n">dontoptimize</span>
+</code></pre>
+</div>
+
+<h3 id="reducing-library-size">Reducing library size</h3>
+<p>If it’s not feasible to replace an existing library or to run Proguard all the time, then it becomes really interesting. Because if Proguard can strip out code during a release build, why not use it ahead of time to create a modified version of a library with fewer methods?</p>
+
+<p>Well this is possible, but you’ll have to manually specify which parts of the library you are going to use! This is because Proguard doesn’t have a context during library stripping of what methods your application will be needing and what not.</p>
+
+<p>Let’s reproduce one of the projects I recently started working on as an example. Guava was used throughout the app extensively, making it very hard/risky to remove. But because of the huge method count we were constantly flirting with the 65k method limit and had to enable multidex.</p>
+
+<p><a href="https://jeroenmols.com/img/blog/methodcount/dexcount-guava/debugChart/index.html"><img src="https://jeroenmols.com/img/blog/methodcount/methodcount_graphic_guava.gif" alt="Method count graphical output of sample project with Guava" class="align-center" /></a></p>
+
+<p>First of all you need to know what parts of the library the app was actually using. This can easily be done by running the following command in your <code class="highlighter-rouge">src</code> folder.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>grep -roh . -e <span class="s1">'com.google.common.*'</span> | sort | uniq
+</code></pre>
+</div>
+
+<p>This simply looks for all import statements starting with the library prefix (for Guava that is <code class="highlighter-rouge">com.google.common</code>), removes all clutter from the grep output, sorts it and takes all unique references.</p>
+
+<p><a href="https://jeroenmols.com/img/blog/methodcount/grep_output.png"><img src="https://jeroenmols.com/img/blog/methodcount/grep_output.png" alt="Grep output for references to Guava in an existing project" class="align-center" /></a></p>
+
+<p>Next we’ll create a simple Proguard configuration that keeps all top level packages, without any obfuscation or optimizations.</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="o">-</span><span class="n">dontoptimize</span>
 <span class="o">-</span><span class="n">dontobfuscate</span>
 
 <span class="o">-</span><span class="n">keep</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">base</span><span class="o">.**</span> <span class="o">{</span>
@@ -35,7 +283,20 @@
 <span class="o">-</span><span class="n">keep</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">util</span><span class="o">.**</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="o">*;</span>
 <span class="o">}</span>
-</code></pre></div><p>Now we’ll use a little Gradle script that takes a library as an input, runs Proguard on it an creates a new library as an output. If you’re interested I advice you look at the <a href="https://github.com/JeroenMols/MethodCountExample/blob/master/shrink_lib/build.gradle">source code</a>, which is based on a script by <a href="https://github.com/ligi/shrinkGuava">@mr_ligi</a>. This Gradle script outputs a shrinked library version, which can be copied to the libs folder of your project.<p>Looking at our example, this simple process saved us 4000 methods and we are only just above the dex method limit.<p><a href="https://jeroenmols.com/img/blog/methodcount/dexcount-packageshrink/debugChart/index.html"><img src="https://jeroenmols.com/img/blog/methodcount/methodcount_graphic_packageshrink.gif" alt="Method count graphical output of sample project with stripped out Guava" class="align-center" /></a><p>Back to the drawing board, because this isn’t nearly enough! Turns out the <code class="highlighter-rouge">collect</code> package by itself has over 8000 methods, so I decided to just keep certain classes instead of the entire package.<p>This more aggressive approach will most likely cause some compile errors when you try to use the library in your app, so I had to iterate and add some extra classes until all of those were solved. The resulting Proguard configuration looks like this:<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="o">-</span><span class="n">dontoptimize</span>
+</code></pre>
+</div>
+
+<p>Now we’ll use a little Gradle script that takes a library as an input, runs Proguard on it an creates a new library as an output. If you’re interested I advice you look at the <a href="https://github.com/JeroenMols/MethodCountExample/blob/master/shrink_lib/build.gradle">source code</a>, which is based on a script by <a href="https://github.com/ligi/shrinkGuava">@mr_ligi</a>. This Gradle script outputs a shrinked library version, which can be copied to the libs folder of your project.</p>
+
+<p>Looking at our example, this simple process saved us 4000 methods and we are only just above the dex method limit.</p>
+
+<p><a href="https://jeroenmols.com/img/blog/methodcount/dexcount-packageshrink/debugChart/index.html"><img src="https://jeroenmols.com/img/blog/methodcount/methodcount_graphic_packageshrink.gif" alt="Method count graphical output of sample project with stripped out Guava" class="align-center" /></a></p>
+
+<p>Back to the drawing board, because this isn’t nearly enough! Turns out the <code class="highlighter-rouge">collect</code> package by itself has over 8000 methods, so I decided to just keep certain classes instead of the entire package.</p>
+
+<p>This more aggressive approach will most likely cause some compile errors when you try to use the library in your app, so I had to iterate and add some extra classes until all of those were solved. The resulting Proguard configuration looks like this:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="o">-</span><span class="n">dontoptimize</span>
 <span class="o">-</span><span class="n">dontobfuscate</span>
 
 <span class="o">-</span><span class="n">keep</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">base</span><span class="o">.**</span> <span class="o">{</span>
@@ -91,4 +352,118 @@
 <span class="o">-</span><span class="n">keep</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">primitives</span><span class="o">.**</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="o">*;</span>
 <span class="o">}</span>
-</code></pre></div><p>Resulting in an extra decrease of almost 4500 methods, which brings the total removed methods to 8500!<p><a href="https://jeroenmols.com/img/blog/methodcount/dexcount-agressiveshrink/debugChart/index.html"><img src="https://jeroenmols.com/img/blog/methodcount/methodcount_graphic_agressiveshrink.gif" alt="Method count graphical output of sample project with aggressively stripped out Guava" class="align-center" /></a><p>Further our build times have not only improved because we no longer need multidexing, but also because the compiler now has less code to process.<p>Obviously your mileage will vary depending on what library you choose. For low coupled, highly cohesive libraries (like Guava), this technique works really well, but for other libraries it might not.<blockquote><p><strong>Disclaimer</strong></blockquote><blockquote><p>The technique presented above should be used with caution! Because instead of relying on Proguard to strip out what’s not needed, we’re now doing that manually, which is more error prone.</blockquote><h2 id="wrap-up">Wrap-up</h2><p>Hitting the 65k method limit is a real pain, but choosing wisely what libraries you use can already bring you a long way. Fortunately there are great tools like the <a href="https://github.com/KeepSafe/dexcount-gradle-plugin">Dexcount Gradle Plugin</a> and <a href="http://www.methodscount.com/">methodscount.com</a> to help with these decisions.<p>For existing projects, always try to replace existing large method libraries with alternatives. If this is not feasible and you feel comfortably using Proguard, you can use the latter to preprocess and shrink existing libraries.<p>A basic example project with everything in this blogpost integrated is available on <a href="https://github.com/JeroenMols/MethodCountExample">GitHub</a>.<p>As always you can reach me <a href="https://twitter.com/molsjeroen">@molsjeroen</a> on twitter, or leave a comment below!</section><footer class="page__meta"><p class="page__taxonomy"> <strong><i class="fa fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong> <span itemprop="keywords"> <a href="https://jeroenmols.com/categories/#blog" class="page__taxonomy-item" rel="tag">blog</a> </span><p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2016-05-06T00:00:00+02:00">May 06, 2016</time></footer><section class="page__share"><h4 class="page__share-title">Share on</h4><a href="https://twitter.com/intent/tweet?via=molsjeroen&text=Efficiently reducing your method count https://jeroenmols.com/blog/2016/05/06/methodcount/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a> <a href="https://www.facebook.com/sharer/sharer.php?u=https://jeroenmols.com/blog/2016/05/06/methodcount/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a> <a href="https://plus.google.com/share?url=https://jeroenmols.com/blog/2016/05/06/methodcount/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a> <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://jeroenmols.com/blog/2016/05/06/methodcount/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a></section><section class="page__share"> <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9854541518226004" data-ad-slot="4086741379" data-ad-format="auto"></ins> <script> (adsbygoogle = window.adsbygoogle || []).push({}); </script></section><nav class="pagination"> <a href="https://jeroenmols.com/blog/2016/04/08/droidconit/" class="pagination--pager" title="Droidcon Italy recap ">Previous</a> <a href="https://jeroenmols.com/blog/2016/06/18/droidconde/" class="pagination--pager" title="Droidcon Berlin recap ">Next</a></nav></div><div class="page__comments"><h4 class="page__comments-title">Leave a Comment</h4><section id="disqus_thread"></section></div></article></div><div class="page__footer"><footer><div class="page__footer-follow"><ul class="social-icons"><li><strong>Follow:</strong><li><a href="https://twitter.com/molsjeroen"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a><li><a href="http://github.com/JeroenMols"><i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub</a><li><a href="atom.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></ul></div><div class="page__footer-copyright">&copy; 2017 Jeroen Mols. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div></footer></div><script src="https://jeroenmols.com/assets/js/main.min.js"></script> <script type="text/javascript"> var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-63356566-1']); _gaq.push(['_trackPageview']); (function() { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })(); </script> <script type="text/javascript"> /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */ var disqus_shortname = 'jeroenmols'; /* * * DON'T EDIT BELOW THIS LINE * * */ (function() { var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true; dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js'; (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq); })(); /* * * DON'T EDIT BELOW THIS LINE * * */ (function () { var s = document.createElement('script'); s.async = true; s.type = 'text/javascript'; s.src = '//' + disqus_shortname + '.disqus.com/count.js'; (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s); }()); </script> <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</code></pre>
+</div>
+
+<p>Resulting in an extra decrease of almost 4500 methods, which brings the total removed methods to 8500!</p>
+
+<p><a href="https://jeroenmols.com/img/blog/methodcount/dexcount-agressiveshrink/debugChart/index.html"><img src="https://jeroenmols.com/img/blog/methodcount/methodcount_graphic_agressiveshrink.gif" alt="Method count graphical output of sample project with aggressively stripped out Guava" class="align-center" /></a></p>
+
+<p>Further our build times have not only improved because we no longer need multidexing, but also because the compiler now has less code to process.</p>
+
+<p>Obviously your mileage will vary depending on what library you choose. For low coupled, highly cohesive libraries (like Guava), this technique works really well, but for other libraries it might not.</p>
+
+<blockquote>
+ <p><strong>Disclaimer</strong></p>
+</blockquote>
+
+<blockquote>
+ <p>The technique presented above should be used with caution! Because instead of relying on Proguard to strip out what’s not needed, we’re now doing that manually, which is more error prone.</p>
+</blockquote>
+
+<h2 id="wrap-up">Wrap-up</h2>
+<p>Hitting the 65k method limit is a real pain, but choosing wisely what libraries you use can already bring you a long way. Fortunately there are great tools like the <a href="https://github.com/KeepSafe/dexcount-gradle-plugin">Dexcount Gradle Plugin</a> and <a href="http://www.methodscount.com/">methodscount.com</a> to help with these decisions.</p>
+
+<p>For existing projects, always try to replace existing large method libraries with alternatives. If this is not feasible and you feel comfortably using Proguard, you can use the latter to preprocess and shrink existing libraries.</p>
+
+<p>A basic example project with everything in this blogpost integrated is available on <a href="https://github.com/JeroenMols/MethodCountExample">GitHub</a>.</p>
+
+<p>As always you can reach me <a href="https://twitter.com/molsjeroen">@molsjeroen</a> on twitter, or leave a comment below!</p>
+
+     </section>
+     <footer class="page__meta">
+ <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+      <a href="https://jeroenmols.com/categories/#blog" class="page__taxonomy-item" rel="tag">blog</a>
+    </span>
+ </p>
+         <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2016-05-06T00:00:00+02:00">May 06, 2016</time></p>
+     </footer>
+     <section class="page__share">
+   <h4 class="page__share-title">Share on</h4>
+  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=Efficiently reducing your method count https://jeroenmols.com/blog/2016/05/06/methodcount/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https://jeroenmols.com/blog/2016/05/06/methodcount/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://plus.google.com/share?url=https://jeroenmols.com/blog/2016/05/06/methodcount/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://jeroenmols.com/blog/2016/05/06/methodcount/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+     <section class="page__share">
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-9854541518226004"
+       data-ad-slot="4086741379"
+       data-ad-format="auto"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</section>
+
+ <nav class="pagination">
+      <a href="https://jeroenmols.com/blog/2016/04/08/droidconit/" class="pagination--pager" title="Droidcon Italy recap
+">Previous</a>
+      <a href="https://jeroenmols.com/blog/2016/06/18/droidconde/" class="pagination--pager" title="Droidcon Berlin recap
+">Next</a>
+ </nav>
+   </div>
+     <div class="page__comments">
+   <h4 class="page__comments-title">Leave a Comment</h4>
+   <section id="disqus_thread"></section>
+</div>
+ </article>
+</div>
+   <div class="page__footer">
+     <footer>
+       <div class="page__footer-follow">
+ <ul class="social-icons">
+     <li><strong>Follow:</strong></li>
+     <li><a href="https://twitter.com/molsjeroen"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+     <li><a href="http://github.com/JeroenMols"><i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+   <li><a href="atom.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+ </ul>
+</div>
+<div class="page__footer-copyright">&copy; 2017 Jeroen Mols. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+     </footer>
+   </div>
+    <script src="https://jeroenmols.com/assets/js/main.min.js"></script>
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-63356566-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+  <script type="text/javascript">
+  	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  	var disqus_shortname = 'jeroenmols';
+  	/* * * DON'T EDIT BELOW THIS LINE * * */
+  	(function() {
+  		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  	})();
+  	/* * * DON'T EDIT BELOW THIS LINE * * */
+  	(function () {
+  		var s = document.createElement('script'); s.async = true;
+  		s.type = 'text/javascript';
+  		s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  		(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+  	}());
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+ </body>
+</html>

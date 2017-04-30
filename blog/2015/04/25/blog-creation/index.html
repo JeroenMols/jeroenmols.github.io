@@ -1,1 +1,426 @@
-<!doctype html> <!-- Minimal Mistakes Jekyll Theme 4.2.2 by Michael Rose Copyright 2017 Michael Rose - mademistakes.com | @mmistakes Free for personal and commercial use under the MIT license https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt --><html lang="en" class="no-js"><meta charset="utf-8"><title>How I created my blog - Jeroen Mols</title><meta name="description" content="For quite some months, I’ve been planning to create a website and start blogging about the things I’m passionate about. Last week, I finally decided to setup a portfolio and blog using GitHub pages and Jekyll."><meta name="author" content="Jeroen Mols"><meta property="og:locale" content="en"><meta property="og:site_name" content="Jeroen Mols"><meta property="og:title" content="How I created my blog"><link rel="canonical" href="https://jeroenmols.com/blog/2015/04/25/blog-creation/"><meta property="og:url" content="https://jeroenmols.com/blog/2015/04/25/blog-creation/"><meta property="og:description" content="For quite some months, I’ve been planning to create a website and start blogging about the things I’m passionate about. Last week, I finally decided to setup a portfolio and blog using GitHub pages and Jekyll."><meta name="twitter:site" content="@molsjeroen"><meta name="twitter:title" content="How I created my blog"><meta name="twitter:description" content="For quite some months, I’ve been planning to create a website and start blogging about the things I’m passionate about. Last week, I finally decided to setup a portfolio and blog using GitHub pages and Jekyll."><meta name="twitter:url" content="https://jeroenmols.com/blog/2015/04/25/blog-creation/"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://jeroenmols.com/img/blog/jekyll.png"><meta name="twitter:creator" content="@Jeroen Mols"><meta property="og:image" content="https://jeroenmols.com/img/blog/jekyll.png"><meta property="og:type" content="article"><meta property="article:published_time" content="2015-04-25T00:00:00+02:00"> <script type="application/ld+json"> { "@context" : "http://schema.org", "@type" : "Person", "name" : "Jeroen Mols", "url" : "https://jeroenmols.com", "sameAs" : ["https://twitter.com/molsjeroen","https://www.linkedin.com/in/jeroenmols/","https://plus.google.com/+JeroenMols","https://github.com/JeroenMols","https://speakerdeck.com/jeroenmols","https://stackoverflow.com/users/2771851/jmols"] } </script><link href="atom.xml" type="application/atom+xml" rel="alternate" title="Jeroen Mols Feed"><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width, initial-scale=1.0"> <script> document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js '; </script><link rel="stylesheet" href="https://jeroenmols.com/assets/css/main.css"> <!--[if lte IE 9]><style> /* old IE unsupported flexbox fixes */ .greedy-nav .site-title { padding-right: 3em; } .greedy-nav button { position: absolute; top: 0; right: 0; height: 100%; }</style><![endif]--><meta http-equiv="cleartype" content="on"><body class="layout--single"> <!--[if lt IE 9]><div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div><![endif]--><meta name="theme-color" content="#2c3e50"><div class="masthead"><div class="masthead__inner-wrap"><div class="masthead__menu"><nav id="site-nav" class="greedy-nav"> <a class="site-title" href="https://jeroenmols.com/">Jeroen Mols</a><ul class="visible-links"><li class="masthead__menu-item"><a href="https://jeroenmols.com/blog/">Blog</a><li class="masthead__menu-item"><a href="https://jeroenmols.com/speaking/">Speaking</a></ul><button><div class="navicon"></div></button><ul class="hidden-links hidden"></ul></nav></div></div></div><div id="main" role="main"><div class="sidebar sticky"><div itemscope itemtype="http://schema.org/Person"><div class="author__avatar"> <img src="https://jeroenmols.com/img/profile.jpg" class="author__avatar" alt="Jeroen Mols" itemprop="image"></div><div class="author__content"><h3 class="author__name" itemprop="name">Jeroen Mols</h3><p class="author__bio" itemprop="description"> Lead Android developer at Philips Hue</div><div class="author__urls-wrapper"> <button class="btn btn--inverse">Follow</button><ul class="author__urls social-icons"><li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place"> <i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> <span itemprop="name">Mol, Belgium</span><li> <a href="https://twitter.com/@molsjeroen" itemprop="sameAs"> <i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter </a><li> <a href="https://plus.google.com/+JeroenMols" itemprop="sameAs"> <i class="fa fa-fw fa-google-plus-square" aria-hidden="true"></i> Google+ </a><li> <a href="https://www.linkedin.com/in/jeroenmols" itemprop="sameAs"> <i class="fa fa-fw fa-linkedin-square" aria-hidden="true"></i> LinkedIn </a><li> <a href="https://github.com/JeroenMols" itemprop="sameAs"> <i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub </a><li> <a href="https://www.stackoverflow.com/users/2771851/jmols" itemprop="sameAs"> <i class="fa fa-fw fa-stack-overflow" aria-hidden="true"></i> Stackoverflow </a> <!--<li> <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs"> <i class="fa fa-fw" aria-hidden="true"></i> Custom Social Profile Link </a> --></ul></div></div></div><article class="page" itemscope itemtype="http://schema.org/CreativeWork"><meta itemprop="headline" content="How I created my blog"><meta itemprop="description" content="For quite some months, I’ve been planning to create a website and start blogging about the things I’m passionate about. Last week, I finally decided to setup a portfolio and blog using GitHub pages and Jekyll."><meta itemprop="datePublished" content="April 25, 2015"><div class="page__inner-wrap"><header><h1 class="page__title" itemprop="headline">How I created my blog</h1><p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> 25 Apr 2015 <img src="https://jeroenmols.com/img/blog/jekyll.png" alt="How I created my blog" title="Image by Jekyll, https://choosealicense.com/licenses/cc-by-4.0/, cropped"><p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 7 minute read</header><section class="page__content" itemprop="text"><p>For quite some months, I’ve been planning to create a website and start blogging about the things I’m passionate about. Last week, I finally decided to setup a <a href="http://jeroenmols.github.io">portfolio</a> and <a href="http://jeroen.mols.github.io/blog">blog</a> using GitHub pages and Jekyll.<p>Since I’m an Android and not a web developer, the first blogging subject wasn’t hard to find: challenges I came across in setting up this website and blog.<blockquote><p><strong>Disclaimer:</strong> Eventually I had to use a workaround - that’s why I don’t build websites professionally - but I strongly believe in a <em>Just do It</em> mentality and then learn/improve as you go.</blockquote><h2 id="why-jekyll">Why Jekyll</h2><p>Keeping it simple, I only had few requirements for my blog:<ul><li>Responsive website<li>Easy to setup and maintain<li>No lock-in: able to migrate to other platforms<li>Support for pagination and comments</ul><p>First thing I learned was the difference between a static (e.g. Jekyll) and dynamic website (e.g. Wordpress) via a <a href="http://nilclass.com/courses/what-is-a-static-website/">great presentation</a> by <a href="https://twitter.com/plusjade">@plusjade</a>.<p>The main advantage of static websites is their loading speed because all pages are generated before they are served. Installing the generator on your local machine is simple, making it easy to test your site before deploying online. Posts are written in Markdown, so no HTML clutter nor extra tools needed. Just a text generator and Git to conveniently version all changes.<blockquote><p><strong>Protip:</strong> One of my colleagues <a href="https://twitter.com/inferis">@inferis</a> even gets spelling corrections via Pull request!</blockquote><p>As GitHub pages natively supports Jekyll, I didn’t really spent much time on choosing which <a href="https://staticsitegenerators.net/">static site generator</a> to use.<h2 id="setting-up">Setting up</h2><p>Installing Jekyll was really a breeze, I just had to run <code class="highlighter-rouge">gem install Jekyll</code> and then I could build my website using <code class="highlighter-rouge">jekyll build</code> or test it locally using <code class="highlighter-rouge">jekyll serve</code>.<blockquote><p><strong>Note:</strong> both commands will generate your website in the <code class="highlighter-rouge">_site</code> folder, which you shouldn’t add to version control!</blockquote><p>Instead of making a new Jekyll site, I decided to fork two existing themes:<ul><li><a href="http://hyde.getpoole.com/">Hyde</a>: a clean two-column theme for my Blog<li><a href="http://startbootstrap.com/template-overviews/freelancer/">Freelancer</a>: to have a cool portfolio</ul><p>Both themes offer quite some predefined customization options via the <code class="highlighter-rouge">_config.yml</code> file, but for advanced theming you can also directly edit the CSS files.<h2 id="merging-two-jekyll-themes">Merging two Jekyll themes</h2><p>Where I originally only wanted to have a blog, the Freelancer theme was just too cool to ignore. Consequently merging two themes was one of the first things I had to do.<p>It seemed most convenient to have my portfolio under my main url and to include my blog under a subfolder (i.e. <code class="highlighter-rouge">jeroenmols.github.io/blog</code>).<p>To do this I merged the blog theme into the portfolio (main) theme:<ul><li><p>Add a subfolder <code class="highlighter-rouge">blog/</code> with the <code class="highlighter-rouge">index.html</code> of my blog.<li>Move all my portfolio posts and blog posts into separate folders:<ul><li>all portfolio posts went into <code class="highlighter-rouge">portfolio/_posts</code><li>all blog posts went into <code class="highlighter-rouge">blog/_posts</code></ul><p>This allows to easily loop through all portfolio or blog posts separately:<ul><li><code class="highlighter-rouge"><span class="p">{</span><span class="err">%</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">post</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">site.categories.portfolio</span><span class="w"> </span><span class="err">%</span><span class="p">}</span></code><li><code class="highlighter-rouge"><span class="p">{</span><span class="err">%</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">post</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">site.categories.blog</span><span class="w"> </span><span class="err">%</span><span class="p">}</span></code></ul><li>Move all files in <code class="highlighter-rouge">_layouts</code> and <code class="highlighter-rouge">_includes</code> from my blog into the corresponding folders of my portfolio theme.<ul><li>Optionally you can move files into subfolders to keep things clean (<code class="highlighter-rouge">_includes/blog</code>), as long as you also update all references to these files. (in <code class="highlighter-rouge">_layouts/blog.html</code> I now refer to my includes as <code class="highlighter-rouge">blog/&lt;original name&gt;</code>)<li>Same holds true if you have naming conflicts (for instance two layouts with the same name), you can just rename one and update all references in all files using it.</ul><li><p>Move all other folders and files into the root of the main theme<li>Merge the configurations from both <code class="highlighter-rouge">_config.yml</code> files<ul><li>Again you can rename conflicting configurations (or merge duplicate ones) if you update all references.</ul><li>Fix all references to not found images/css/… files in the blog theme. This is necessary because the original theme was assuming to run in the root directory, and now we moved it to a subdirectory <code class="highlighter-rouge">blog/</code>.<ul><li>I found that the best way to do this is to run <code class="highlighter-rouge">jekyll build</code> and have a look at the generated output in the <code class="highlighter-rouge">_site</code> directory. From this you can learn what’s wrong and fix it.</ul></ul><p>After this I could run <code class="highlighter-rouge">Jekyll serve</code> and everything worked flawlessly!<p>…<p>Wait…<p>…<p>Why are my portfolio posts also showing up in my blog?<p>…<p>Damn you Jekyll!<p>Turns out Jekyll does not support paginating categories and hence it will lump all posts it finds together, in my case both portfolio (unwanted) and blog (wanted). Even more, there is no plugin to add this functionality either! Pretty weird, and a huge limitation if you ask me.<p>So I did what every self-respecting programmer would do: pray to the Stackoverflow and GitHub gods. And my prayers where answered by a code snippet of <a href="https://github.com/benxtan">benxtan</a>, which I found in an issue tracker of a very old <a href="https://github.com/Painted-Fox/jekyll-category-pagination/issues/6">Jekyll pagination plugin</a>. To enable this plugin, simply create a <code class="highlighter-rouge">_plugins</code> folder and copy the code snippet into a <code class="highlighter-rouge">category_pagination.rb</code> file.<blockquote><p><strong>Note</strong>: the former plugin was no longer working, because it was referring to classes that were renamed/moved classes in newer Jekyll versions.</blockquote><h2 id="github-and-jekyll-plugins">GitHub and Jekyll plugins</h2><p>My new shiny portfolio and blog were working locally, but when I pushed it to GitHub, the pagination again included both blog and portfolio posts. Turns out that GitHub doesn’t allow you to run custom Jekyll plugins except for a few that they have whitelisted.<blockquote><p><strong><a href="http://jekyllrb.com/docs/plugins/">Plugins on GitHub Pages</a></strong><p>GitHub Pages is powered by Jekyll. However, all Pages sites are generated using the –safe option to disable custom plugins for security reasons. Unfortunately, this means your plugins won’t work if you’re deploying to GitHub Pages.</blockquote><p>At this point, I am/was completely stuck, because even if Jekyll would add support for category pagination, I would still need to wait for GitHub to update their Jekyll version.<p>Only option remaining was to directly push the generated <code class="highlighter-rouge">_site</code> directory into my repository and to disable the Jekyll generator on GitHub pages.<blockquote><p>Note that this is a really suboptimal solution, because this effectively means pushing a high amount of auto-generated files to your repo, frequently. So if anyone has a better suggestion to solve the pagination issue, please let me know!</blockquote><p>To make this work, there are a couple of things you need to do:<ul><li><p>Disable Jekyll on GitHub pages by pushing an empty file with name <code class="highlighter-rouge">.nojekyll</code> to the root of your repo<li><p>Move all auto generated content from the <code class="highlighter-rouge">_site</code> folder into the root of your repository, so that its <code class="highlighter-rouge">index.html</code> is displayed when someone browses to your main page.</ul><p>This actually by itself imposes a new problem, namely where to put your Jekyll source code? I solved this by:<ul><li><p>move all source files to a subfolder <code class="highlighter-rouge">jekyll-source</code> in my main repository<li><p>generating all static pages into <code class="highlighter-rouge">jekyll-source/_site</code> using <code class="highlighter-rouge">jekyll build</code><li><p>removing all files and folders from my root directory, except for the <code class="highlighter-rouge">jekyll-source</code> directory<li><p>copying the entire content of <code class="highlighter-rouge">jekyll-source/_site</code> into my root folder</ul><p>I know this is not a great solution, but it gets the job done, and I was able to automate all of this in a <a href="https://github.com/JeroenMols/jeroenmols.github.io/blob/master/jekyll-code/release">release script</a> that you can run by calling <code class="highlighter-rouge">.release</code> from the <code class="highlighter-rouge">jekyll-source</code> folder.<blockquote><p><strong>Note</strong>: I also considered two other options:<ul><li>Use a <code class="highlighter-rouge">CNAME</code> file to redirect my main url into a subfolder. This does not work, as the <code class="highlighter-rouge">CNAME</code> file can only be used for top-level domains.<li>Use a placeholder <code class="highlighter-rouge">index.html</code> which redirect the main url into a subfolder.</ul><p>I didn’t use any of those mechanisms as that would unnecessarily complicate my website url.</blockquote><h2 id="protips">Protips</h2><p>If you really want to make your site look spectacular:<ul><li><p>Site icon: add the following to the head of your <code class="highlighter-rouge">index.html</code> page: <code class="highlighter-rouge">&lt;link rel="favicon-144-precomposed" sizes="144x144" href="&lt;link_to_your_icon&gt;"&gt;</code><li><p>Site toolbar/status bar color on Android: add the following to the head of your <code class="highlighter-rouge">index.html</code> page: <code class="highlighter-rouge">&lt;meta name="theme-color" content="&lt;your_color_hex&gt;"&gt;</code></ul><h2 id="conclusion">Conclusion</h2><p>I’m glad that I finally got my portfolio and blog up and running. My current solution might not be the best one in the world, but it is automated, maintainable and I can easily add blog posts in the future. Don’t hesitate to look at my <a href="https://github.com/JeroenMols/jeroenmols.github.io">GitHub repo</a> for the full source code. Hopefully the code and my post can help others to setup the same in the future.<p>Would I use Jekyll again if I would start over? Probably yes.<p>The only real limitation I ran into was due to the paginator combining the posts from both my portfolio and blog. This caused me to disable Jekyll completely and push the generated site directly to GitHub pages. While this really sucked, using another static site generator would also have forced me to do this (because GitHub only supports Jekyll). Furthermore combining two themes is already quite advanced, and if you stick to just one theme Jekyll is actually very convenient to use.</section><footer class="page__meta"><p class="page__taxonomy"> <strong><i class="fa fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong> <span itemprop="keywords"> <a href="https://jeroenmols.com/categories/#blog" class="page__taxonomy-item" rel="tag">blog</a> </span><p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2015-04-25T00:00:00+02:00">April 25, 2015</time></footer><section class="page__share"><h4 class="page__share-title">Share on</h4><a href="https://twitter.com/intent/tweet?via=molsjeroen&text=How I created my blog https://jeroenmols.com/blog/2015/04/25/blog-creation/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a> <a href="https://www.facebook.com/sharer/sharer.php?u=https://jeroenmols.com/blog/2015/04/25/blog-creation/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a> <a href="https://plus.google.com/share?url=https://jeroenmols.com/blog/2015/04/25/blog-creation/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a> <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://jeroenmols.com/blog/2015/04/25/blog-creation/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a></section><section class="page__share"> <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9854541518226004" data-ad-slot="4086741379" data-ad-format="auto"></ins> <script> (adsbygoogle = window.adsbygoogle || []).push({}); </script></section><nav class="pagination"> <a href="#" class="pagination--pager disabled">Previous</a> <a href="https://jeroenmols.com/blog/2015/08/06/artifactory/" class="pagination--pager" title="A private Maven repository for Android in 30 min ">Next</a></nav></div><div class="page__comments"><h4 class="page__comments-title">Leave a Comment</h4><section id="disqus_thread"></section></div></article></div><div class="page__footer"><footer><div class="page__footer-follow"><ul class="social-icons"><li><strong>Follow:</strong><li><a href="https://twitter.com/molsjeroen"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a><li><a href="http://github.com/JeroenMols"><i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub</a><li><a href="atom.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></ul></div><div class="page__footer-copyright">&copy; 2017 Jeroen Mols. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div></footer></div><script src="https://jeroenmols.com/assets/js/main.min.js"></script> <script type="text/javascript"> var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-63356566-1']); _gaq.push(['_trackPageview']); (function() { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })(); </script> <script type="text/javascript"> /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */ var disqus_shortname = 'jeroenmols'; /* * * DON'T EDIT BELOW THIS LINE * * */ (function() { var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true; dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js'; (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq); })(); /* * * DON'T EDIT BELOW THIS LINE * * */ (function () { var s = document.createElement('script'); s.async = true; s.type = 'text/javascript'; s.src = '//' + disqus_shortname + '.disqus.com/count.js'; (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s); }()); </script> <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.2.2 by Michael Rose
+  Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+ <head>
+   <meta charset="utf-8">
+<title>How I created my blog - Jeroen Mols</title>
+<meta name="description" content="For quite some months, I’ve been planning to create a website and start blogging about the things I’m passionate about. Last week, I finally decided to setup a portfolio and blog using GitHub pages and Jekyll.">
+<meta name="author" content="Jeroen Mols">
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="Jeroen Mols">
+<meta property="og:title" content="How I created my blog">
+<link rel="canonical" href="https://jeroenmols.com/blog/2015/04/25/blog-creation/">
+ <meta property="og:url" content="https://jeroenmols.com/blog/2015/04/25/blog-creation/">
+ <meta property="og:description" content="For quite some months, I’ve been planning to create a website and start blogging about the things I’m passionate about. Last week, I finally decided to setup a portfolio and blog using GitHub pages and Jekyll.">
+ <meta name="twitter:site" content="@molsjeroen">
+ <meta name="twitter:title" content="How I created my blog">
+ <meta name="twitter:description" content="For quite some months, I’ve been planning to create a website and start blogging about the things I’m passionate about. Last week, I finally decided to setup a portfolio and blog using GitHub pages and Jekyll.">
+ <meta name="twitter:url" content="https://jeroenmols.com/blog/2015/04/25/blog-creation/">
+   <meta name="twitter:card" content="summary_large_image">
+   <meta name="twitter:image" content="https://jeroenmols.com/img/blog/jekyll.png">
+   <meta name="twitter:creator" content="@Jeroen Mols">
+ <meta property="og:image" content="https://jeroenmols.com/img/blog/jekyll.png">
+ <meta property="og:type" content="article">
+ <meta property="article:published_time" content="2015-04-25T00:00:00+02:00">
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "Jeroen Mols",
+      "url" : "https://jeroenmols.com",
+      "sameAs" : ["https://twitter.com/molsjeroen","https://www.linkedin.com/in/jeroenmols/","https://plus.google.com/+JeroenMols","https://github.com/JeroenMols","https://speakerdeck.com/jeroenmols","https://stackoverflow.com/users/2771851/jmols"]
+    }
+  </script>
+<link href="atom.xml" type="application/atom+xml" rel="alternate" title="Jeroen Mols Feed">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+<link rel="stylesheet" href="https://jeroenmols.com/assets/css/main.css">
+<!--[if lte IE 9]>
+ <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+ </style>
+<![endif]-->
+<meta http-equiv="cleartype" content="on">
+ </head>
+ <body class="layout--single">
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+   <meta name="theme-color" content="#2c3e50">
+<div class="masthead">
+ <div class="masthead__inner-wrap">
+   <div class="masthead__menu">
+     <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="https://jeroenmols.com/">Jeroen Mols</a>
+       <ul class="visible-links">
+           <li class="masthead__menu-item"><a href="https://jeroenmols.com/blog/">Blog</a></li>
+           <li class="masthead__menu-item"><a href="https://jeroenmols.com/speaking/">Speaking</a></li>
+       </ul>
+        <button><div class="navicon"></div></button>
+       <ul class="hidden-links hidden"></ul>
+     </nav>
+   </div>
+ </div>
+</div>
+<div id="main" role="main">
+ <div class="sidebar sticky">
+<div itemscope itemtype="http://schema.org/Person">
+   <div class="author__avatar">
+        <img src="https://jeroenmols.com/img/profile.jpg" class="author__avatar" alt="Jeroen Mols" itemprop="image">
+   </div>
+ <div class="author__content">
+   <h3 class="author__name" itemprop="name">Jeroen Mols</h3>
+     <p class="author__bio" itemprop="description">
+        Lead Android developer at Philips Hue
+     </p>
+ </div>
+ <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+   <ul class="author__urls social-icons">
+       <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
+          <i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> <span itemprop="name">Mol, Belgium</span>
+       </li>
+       <li>
+          <a href="https://twitter.com/@molsjeroen" itemprop="sameAs">
+            <i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+          </a>
+       </li>
+       <li>
+          <a href="https://plus.google.com/+JeroenMols" itemprop="sameAs">
+            <i class="fa fa-fw fa-google-plus-square" aria-hidden="true"></i> Google+
+          </a>
+       </li>
+       <li>
+          <a href="https://www.linkedin.com/in/jeroenmols" itemprop="sameAs">
+            <i class="fa fa-fw fa-linkedin-square" aria-hidden="true"></i> LinkedIn
+          </a>
+       </li>
+       <li>
+          <a href="https://github.com/JeroenMols" itemprop="sameAs">
+            <i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+       </li>
+       <li>
+          <a href="https://www.stackoverflow.com/users/2771851/jmols" itemprop="sameAs">
+            <i class="fa fa-fw fa-stack-overflow" aria-hidden="true"></i> Stackoverflow
+          </a>
+       </li>
+      <!--
+ <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs">
+      <i class="fa fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+ </li>
+-->
+   </ul>
+ </div>
+</div>
+ </div>
+ <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+   <meta itemprop="headline" content="How I created my blog">
+   <meta itemprop="description" content="For quite some months, I’ve been planning to create a website and start blogging about the things I’m passionate about. Last week, I finally decided to setup a portfolio and blog using GitHub pages and Jekyll.">
+   <meta itemprop="datePublished" content="April 25, 2015">
+   <div class="page__inner-wrap">
+      <header>
+         <h1 class="page__title" itemprop="headline">How I created my blog
+</h1>
+         <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  25 Apr 2015</p>
+            <img src="https://jeroenmols.com/img/blog/jekyll.png" alt="How I created my blog" title="Image by Jekyll, https://choosealicense.com/licenses/cc-by-4.0/, cropped">
+           <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+  7 minute read
+</p>
+       </header>
+     <section class="page__content" itemprop="text">
+       <p>For quite some months, I’ve been planning to create a website and start blogging about the things I’m passionate about. Last week, I finally decided to setup a <a href="http://jeroenmols.github.io">portfolio</a> and <a href="http://jeroen.mols.github.io/blog">blog</a> using GitHub pages and Jekyll.</p>
+
+<p>Since I’m an Android and not a web developer, the first blogging subject wasn’t hard to find: challenges I came across in setting up this website and blog.</p>
+
+<blockquote>
+ <p><strong>Disclaimer:</strong> Eventually I had to use a workaround - that’s why I don’t build websites professionally - but I strongly believe in a <em>Just do It</em> mentality and then learn/improve as you go.</p>
+</blockquote>
+
+<h2 id="why-jekyll">Why Jekyll</h2>
+<p>Keeping it simple, I only had few requirements for my blog:</p>
+
+<ul>
+ <li>Responsive website</li>
+ <li>Easy to setup and maintain</li>
+ <li>No lock-in: able to migrate to other platforms</li>
+ <li>Support for pagination and comments</li>
+</ul>
+
+<p>First thing I learned was the difference between a static (e.g. Jekyll) and dynamic website (e.g. Wordpress) via a <a href="http://nilclass.com/courses/what-is-a-static-website/">great presentation</a> by <a href="https://twitter.com/plusjade">@plusjade</a>.</p>
+
+<p>The main advantage of static websites is their loading speed because all pages are generated before they are served. Installing the generator on your local machine is simple, making it easy to test your site before deploying online. Posts are written in Markdown, so no HTML clutter nor extra tools needed. Just a text generator and Git to conveniently version all changes.</p>
+
+<blockquote>
+ <p><strong>Protip:</strong> One of my colleagues <a href="https://twitter.com/inferis">@inferis</a> even gets spelling corrections via Pull request!</p>
+</blockquote>
+
+<p>As GitHub pages natively supports Jekyll, I didn’t really spent much time on choosing which <a href="https://staticsitegenerators.net/">static site generator</a> to use.</p>
+
+<h2 id="setting-up">Setting up</h2>
+<p>Installing Jekyll was really a breeze, I just had to run <code class="highlighter-rouge">gem install Jekyll</code> and then I could build my website using <code class="highlighter-rouge">jekyll build</code> or test it locally using <code class="highlighter-rouge">jekyll serve</code>.</p>
+
+<blockquote>
+ <p><strong>Note:</strong> both commands will generate your website in the <code class="highlighter-rouge">_site</code> folder, which you shouldn’t add to version control!</p>
+</blockquote>
+
+<p>Instead of making a new Jekyll site, I decided to fork two existing themes:</p>
+
+<ul>
+ <li><a href="http://hyde.getpoole.com/">Hyde</a>: a clean two-column theme for my Blog</li>
+ <li><a href="http://startbootstrap.com/template-overviews/freelancer/">Freelancer</a>: to have a cool portfolio</li>
+</ul>
+
+<p>Both themes offer quite some predefined customization options via the <code class="highlighter-rouge">_config.yml</code> file, but for advanced theming you can also directly edit the CSS files.</p>
+
+<h2 id="merging-two-jekyll-themes">Merging two Jekyll themes</h2>
+<p>Where I originally only wanted to have a blog, the Freelancer theme was just too cool to ignore. Consequently merging two themes was one of the first things I had to do.</p>
+
+<p>It seemed most convenient to have my portfolio under my main url and to include my blog under a subfolder (i.e. <code class="highlighter-rouge">jeroenmols.github.io/blog</code>).</p>
+
+<p>To do this I merged the blog theme into the portfolio (main) theme:</p>
+
+<ul>
+ <li>
+   <p>Add a subfolder <code class="highlighter-rouge">blog/</code> with the <code class="highlighter-rouge">index.html</code> of my blog.</p>
+ </li>
+ <li>Move all my portfolio posts and blog posts into separate folders:
+   <ul>
+     <li>all portfolio posts went into <code class="highlighter-rouge">portfolio/_posts</code></li>
+     <li>all blog posts went into <code class="highlighter-rouge">blog/_posts</code></li>
+   </ul>
+
+   <p>This allows to easily loop through all portfolio or blog posts separately:</p>
+
+   <ul>
+     <li><code class="highlighter-rouge"><span class="p">{</span><span class="err">%</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">post</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">site.categories.portfolio</span><span class="w"> </span><span class="err">%</span><span class="p">}</span></code></li>
+     <li><code class="highlighter-rouge"><span class="p">{</span><span class="err">%</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">post</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">site.categories.blog</span><span class="w"> </span><span class="err">%</span><span class="p">}</span></code></li>
+   </ul>
+ </li>
+ <li>Move all files in <code class="highlighter-rouge">_layouts</code> and <code class="highlighter-rouge">_includes</code> from my blog into the corresponding folders of my portfolio theme.
+   <ul>
+     <li>Optionally you can move files into subfolders to keep things clean (<code class="highlighter-rouge">_includes/blog</code>), as long as you also update all references to these files. (in <code class="highlighter-rouge">_layouts/blog.html</code> I now refer to my includes as <code class="highlighter-rouge">blog/&lt;original name&gt;</code>)</li>
+     <li>Same holds true if you have naming conflicts (for instance two layouts with the same name), you can just rename one and update all references in all files using it.</li>
+   </ul>
+ </li>
+ <li>
+   <p>Move all other folders and files into the root of the main theme</p>
+ </li>
+ <li>Merge the configurations from both <code class="highlighter-rouge">_config.yml</code> files
+   <ul>
+     <li>Again you can rename conflicting configurations (or merge duplicate ones) if you update all references.</li>
+   </ul>
+ </li>
+ <li>Fix all references to not found images/css/… files in the blog theme. This is necessary because the original theme was assuming to run in the root directory, and now we moved it to a subdirectory <code class="highlighter-rouge">blog/</code>.
+   <ul>
+     <li>I found that the best way to do this is to run <code class="highlighter-rouge">jekyll build</code> and have a look at the generated output in the <code class="highlighter-rouge">_site</code> directory. From this you can learn what’s wrong and fix it.</li>
+   </ul>
+ </li>
+</ul>
+
+<p>After this I could run <code class="highlighter-rouge">Jekyll serve</code> and everything worked flawlessly!</p>
+
+<p>…</p>
+
+<p>Wait…</p>
+
+<p>…</p>
+
+<p>Why are my portfolio posts also showing up in my blog?</p>
+
+<p>…</p>
+
+<p>Damn you Jekyll!</p>
+
+<p>Turns out Jekyll does not support paginating categories and hence it will lump all posts it finds together, in my case both portfolio (unwanted) and blog (wanted). Even more, there is no plugin to add this functionality either! Pretty weird, and a huge limitation if you ask me.</p>
+
+<p>So I did what every self-respecting programmer would do: pray to the Stackoverflow and GitHub gods. And my prayers where answered by a code snippet of <a href="https://github.com/benxtan">benxtan</a>, which I found in an issue tracker of a very old <a href="https://github.com/Painted-Fox/jekyll-category-pagination/issues/6">Jekyll pagination plugin</a>. To enable this plugin, simply create a <code class="highlighter-rouge">_plugins</code> folder and copy the code snippet into a <code class="highlighter-rouge">category_pagination.rb</code> file.</p>
+
+<blockquote>
+ <p><strong>Note</strong>: the former plugin was no longer working, because it was referring to classes that were renamed/moved classes in newer Jekyll versions.</p>
+</blockquote>
+
+<h2 id="github-and-jekyll-plugins">GitHub and Jekyll plugins</h2>
+<p>My new shiny portfolio and blog were working locally, but when I pushed it to GitHub, the pagination again included both blog and portfolio posts. Turns out that GitHub doesn’t allow you to run custom Jekyll plugins except for a few that they have whitelisted.</p>
+
+<blockquote>
+ <p><strong><a href="http://jekyllrb.com/docs/plugins/">Plugins on GitHub Pages</a></strong></p>
+
+ <p>GitHub Pages is powered by Jekyll. However, all Pages sites are generated using the –safe option to disable custom plugins for security reasons. Unfortunately, this means your plugins won’t work if you’re deploying to GitHub Pages.</p>
+</blockquote>
+
+<p>At this point, I am/was completely stuck, because even if Jekyll would add support for category pagination, I would still need to wait for GitHub to update their Jekyll version.</p>
+
+<p>Only option remaining was to directly push the generated <code class="highlighter-rouge">_site</code> directory into my repository and to disable the Jekyll generator on GitHub pages.</p>
+
+<blockquote>
+ <p>Note that this is a really suboptimal solution, because this effectively means pushing a high amount of auto-generated files to your repo, frequently. So if anyone has a better suggestion to solve the pagination issue, please let me know!</p>
+</blockquote>
+
+<p>To make this work, there are a couple of things you need to do:</p>
+
+<ul>
+ <li>
+   <p>Disable Jekyll on GitHub pages by pushing an empty file with name <code class="highlighter-rouge">.nojekyll</code> to the root of your repo</p>
+ </li>
+ <li>
+   <p>Move all auto generated content from the <code class="highlighter-rouge">_site</code> folder into the root of your repository, so that its <code class="highlighter-rouge">index.html</code> is displayed when someone browses to your main page.</p>
+ </li>
+</ul>
+
+<p>This actually by itself imposes a new problem, namely where to put your Jekyll source code? I solved this by:</p>
+
+<ul>
+ <li>
+   <p>move all source files to a subfolder <code class="highlighter-rouge">jekyll-source</code> in my main repository</p>
+ </li>
+ <li>
+   <p>generating all static pages into <code class="highlighter-rouge">jekyll-source/_site</code> using <code class="highlighter-rouge">jekyll build</code></p>
+ </li>
+ <li>
+   <p>removing all files and folders from my root directory, except for the <code class="highlighter-rouge">jekyll-source</code> directory</p>
+ </li>
+ <li>
+   <p>copying the entire content of <code class="highlighter-rouge">jekyll-source/_site</code> into my root folder</p>
+ </li>
+</ul>
+
+<p>I know this is not a great solution, but it gets the job done, and I was able to automate all of this in a <a href="https://github.com/JeroenMols/jeroenmols.github.io/blob/master/jekyll-code/release">release script</a> that you can run by calling <code class="highlighter-rouge">.release</code> from the <code class="highlighter-rouge">jekyll-source</code> folder.</p>
+
+<blockquote>
+ <p><strong>Note</strong>: I also considered two other options:</p>
+
+ <ul>
+   <li>Use a <code class="highlighter-rouge">CNAME</code> file to redirect my main url into a subfolder. This does not work, as the <code class="highlighter-rouge">CNAME</code> file can only be used for top-level domains.</li>
+   <li>Use a placeholder <code class="highlighter-rouge">index.html</code> which redirect the main url into a subfolder.</li>
+ </ul>
+
+ <p>I didn’t use any of those mechanisms as that would unnecessarily complicate my website url.</p>
+</blockquote>
+
+<h2 id="protips">Protips</h2>
+<p>If you really want to make your site look spectacular:</p>
+
+<ul>
+ <li>
+   <p>Site icon: add the following to the head of your <code class="highlighter-rouge">index.html</code> page:
+<code class="highlighter-rouge">&lt;link rel="favicon-144-precomposed" sizes="144x144" href="&lt;link_to_your_icon&gt;"&gt;</code></p>
+ </li>
+ <li>
+   <p>Site toolbar/status bar color on Android: add the following to the head of your <code class="highlighter-rouge">index.html</code> page: <code class="highlighter-rouge">&lt;meta name="theme-color" content="&lt;your_color_hex&gt;"&gt;</code></p>
+ </li>
+</ul>
+
+<h2 id="conclusion">Conclusion</h2>
+<p>I’m glad that I finally got my portfolio and blog up and running. My current solution might not be the best one in the world, but it is automated, maintainable and I can easily add blog posts in the future. Don’t hesitate to look at my <a href="https://github.com/JeroenMols/jeroenmols.github.io">GitHub repo</a> for the full source code. Hopefully the code and my post can help others to setup the same in the future.</p>
+
+<p>Would I use Jekyll again if I would start over? Probably yes.</p>
+
+<p>The only real limitation I ran into was due to the paginator combining the posts from both my portfolio and blog. This caused me to disable Jekyll completely and push the generated site directly to GitHub pages. While this really sucked, using another static site generator would also have forced me to do this (because GitHub only supports Jekyll). Furthermore combining two themes is already quite advanced, and if you stick to just one theme Jekyll is actually very convenient to use.</p>
+
+     </section>
+     <footer class="page__meta">
+ <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+      <a href="https://jeroenmols.com/categories/#blog" class="page__taxonomy-item" rel="tag">blog</a>
+    </span>
+ </p>
+         <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2015-04-25T00:00:00+02:00">April 25, 2015</time></p>
+     </footer>
+     <section class="page__share">
+   <h4 class="page__share-title">Share on</h4>
+  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=How I created my blog https://jeroenmols.com/blog/2015/04/25/blog-creation/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https://jeroenmols.com/blog/2015/04/25/blog-creation/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://plus.google.com/share?url=https://jeroenmols.com/blog/2015/04/25/blog-creation/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://jeroenmols.com/blog/2015/04/25/blog-creation/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+     <section class="page__share">
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-9854541518226004"
+       data-ad-slot="4086741379"
+       data-ad-format="auto"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</section>
+
+ <nav class="pagination">
+      <a href="#" class="pagination--pager disabled">Previous</a>
+      <a href="https://jeroenmols.com/blog/2015/08/06/artifactory/" class="pagination--pager" title="A private Maven repository for Android in 30 min
+">Next</a>
+ </nav>
+   </div>
+     <div class="page__comments">
+   <h4 class="page__comments-title">Leave a Comment</h4>
+   <section id="disqus_thread"></section>
+</div>
+ </article>
+</div>
+   <div class="page__footer">
+     <footer>
+       <div class="page__footer-follow">
+ <ul class="social-icons">
+     <li><strong>Follow:</strong></li>
+     <li><a href="https://twitter.com/molsjeroen"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+     <li><a href="http://github.com/JeroenMols"><i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+   <li><a href="atom.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+ </ul>
+</div>
+<div class="page__footer-copyright">&copy; 2017 Jeroen Mols. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+     </footer>
+   </div>
+    <script src="https://jeroenmols.com/assets/js/main.min.js"></script>
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-63356566-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+  <script type="text/javascript">
+  	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  	var disqus_shortname = 'jeroenmols';
+  	/* * * DON'T EDIT BELOW THIS LINE * * */
+  	(function() {
+  		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  	})();
+  	/* * * DON'T EDIT BELOW THIS LINE * * */
+  	(function () {
+  		var s = document.createElement('script'); s.async = true;
+  		s.type = 'text/javascript';
+  		s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  		(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+  	}());
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+ </body>
+</html>
