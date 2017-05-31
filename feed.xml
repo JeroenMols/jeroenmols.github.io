@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2017-05-31T23:22:38+02:00</updated><id>https://jeroenmols.com/</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">My Google #io17 takeaways</title><link href="https://jeroenmols.com/blog/2017/05/31/googleio17/" rel="alternate" type="text/html" title="My Google #io17 takeaways" /><published>2017-05-31T00:00:00+02:00</published><updated>2017-05-31T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2017/05/31/googleio17</id><content type="html" xml:base="https://jeroenmols.com/blog/2017/05/31/googleio17/">&lt;p&gt;Being my 2nd year at Google IO, I decided to do things differently: Besides taking notes during sessions, I also created a personal todo list. This contains all new (and even old) technologies I got triggered to look into.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2017-05-31T23:43:04+02:00</updated><id>https://jeroenmols.com/</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">My Google #io17 takeaways</title><link href="https://jeroenmols.com/blog/2017/05/31/googleio17/" rel="alternate" type="text/html" title="My Google #io17 takeaways" /><published>2017-05-31T00:00:00+02:00</published><updated>2017-05-31T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2017/05/31/googleio17</id><content type="html" xml:base="https://jeroenmols.com/blog/2017/05/31/googleio17/">&lt;p&gt;Being my 2nd year at Google IO, I decided to do things differently: Besides taking notes during sessions, I also created a personal todo list. This contains all new (and even old) technologies I got triggered to look into.&lt;/p&gt;
 
 &lt;p&gt;This post won’t cover all big #io17 announcements, but instead tries to be an alternative, biased, inside scoop with my personal highlights.&lt;/p&gt;
 
@@ -83,7 +83,7 @@
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;other&quot;&gt;Other&lt;/h2&gt;
-&lt;p&gt;So many interesting areas to explore, yet I have to make choices.&lt;/p&gt;
+&lt;p&gt;Besides the above themes, there are many more exciting areas to explore.&lt;/p&gt;
 
 &lt;p&gt;My todo list:&lt;/p&gt;
 
