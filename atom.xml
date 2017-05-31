@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle>
- <updated>2017-05-28T21:36:46+02:00</updated>
+ <updated>2017-05-31T23:22:38+02:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,22 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>My Google #io17 takeaways</title>
+   <link href="https://jeroenmols.com/blog/2017/05/31/googleio17/"/>
+   <updated>2017-05-31T00:00:00+02:00</updated>
+   <id>https://jeroenmols.com/blog/2017/05/31/googleio17</id>
+   <content type="html"><![CDATA[
+     
+     <p>Being my 2nd year at Google IO, I decided to do things differently: Besides taking notes during sessions, I also created a personal todo list. This contains all new (and even old) technologies I got triggered to look into.</p>
+
+<p>This post won’t cover all big #io17 announcements, but instead tries to be an alternative, biased, inside scoop with my personal highlights.</p>
+
+
+     <a href="https://jeroenmols.com/blog/2017/05/31/googleio17/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>Android Makers FR recap</title>

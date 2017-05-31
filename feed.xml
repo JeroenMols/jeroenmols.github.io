@@ -1,4 +1,115 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2017-05-28T21:36:46+02:00</updated><id>https://jeroenmols.com/</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Android Makers FR recap</title><link href="https://jeroenmols.com/blog/2017/04/11/androidmakers17/" rel="alternate" type="text/html" title="Android Makers FR recap" /><published>2017-04-11T00:00:00+02:00</published><updated>2017-04-11T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2017/04/11/androidmakers17</id><content type="html" xml:base="https://jeroenmols.com/blog/2017/04/11/androidmakers17/">&lt;p&gt;After organizing Droidcon Paris for several year, the organizers decided to move on and experiment with a new format. This didn’t just result in a well organized conference, but also in a fresh new vibe whilst still feeling familiar.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2017-05-31T23:22:38+02:00</updated><id>https://jeroenmols.com/</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">My Google #io17 takeaways</title><link href="https://jeroenmols.com/blog/2017/05/31/googleio17/" rel="alternate" type="text/html" title="My Google #io17 takeaways" /><published>2017-05-31T00:00:00+02:00</published><updated>2017-05-31T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2017/05/31/googleio17</id><content type="html" xml:base="https://jeroenmols.com/blog/2017/05/31/googleio17/">&lt;p&gt;Being my 2nd year at Google IO, I decided to do things differently: Besides taking notes during sessions, I also created a personal todo list. This contains all new (and even old) technologies I got triggered to look into.&lt;/p&gt;
+
+&lt;p&gt;This post won’t cover all big #io17 announcements, but instead tries to be an alternative, biased, inside scoop with my personal highlights.&lt;/p&gt;
+
+&lt;h2 id=&quot;architecture&quot;&gt;Architecture&lt;/h2&gt;
+&lt;p&gt;The most exciting announcement for me is that Google finally becomes opinionated about architecture. This will dramatical lower the bar for starting developers. If you’re already more seasoned however… well .. rules are meant to be broken.&lt;/p&gt;
+
+&lt;p&gt;My todo list:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Read and get inspired by the new &lt;a href=&quot;https://developer.android.com/topic/libraries/architecture/guide.html&quot;&gt;architecture guide&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Learn how &lt;a href=&quot;https://developer.android.com/topic/libraries/architecture/lifecycle.html#lco&quot;&gt;LifecycleObservers&lt;/a&gt; can simplify our codebase&lt;/li&gt;
+  &lt;li&gt;Investigate if &lt;a href=&quot;https://developer.android.com/topic/libraries/architecture/viewmodel.html&quot;&gt;ViewModels&lt;/a&gt; are a better fit for our current state persistence&lt;/li&gt;
+  &lt;li&gt;Strip out all font code and replace it with &lt;a href=&quot;https://developer.android.com/preview/features/working-with-fonts.html#fonts-in-xml&quot;&gt;XML fonts&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Experiment with &lt;a href=&quot;https://developer.android.com/preview/features/downloadable-fonts.html&quot;&gt;downloadable fonts&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Recommended videos:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=FrteWKKVyzI&quot;&gt;Architecture components - introduction&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=bEKNi1JOrNs&quot;&gt;Architecture Components - Solving the Lifecycle Problem&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;world-class-apps&quot;&gt;World class apps&lt;/h2&gt;
+&lt;p&gt;Creating a globally awesome app can be quite challenging. Fortunately we now have some really interesting tools to help us out.&lt;/p&gt;
+
+&lt;p&gt;My todo list:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Investigate automatic APK splits. Here the Play console will automatically split APKs to minimize their size. This requires you to opt-in to &lt;a href=&quot;https://support.google.com/googleplay/android-developer/answer/7384423&quot;&gt;Google play app signing&lt;/a&gt;, which is permanent! (for security reasons)&lt;/li&gt;
+  &lt;li&gt;Get approval to migrate services to Firebase, which is really becoming the best set of developer tools
+    &lt;ul&gt;
+      &lt;li&gt;Migrate to Firebase analytics, that now supports &lt;a href=&quot;https://support.google.com/firebase/answer/7397304&quot;&gt;custom parameters for events&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;Replace crash reporting with Crashlytics (finally). That will become the default Firebase crash reporting since &lt;a href=&quot;https://fabric.io/blog/fabric-joins-google&quot;&gt;Google acquired Fabric&lt;/a&gt;.&lt;/li&gt;
+      &lt;li&gt;Integrate &lt;a href=&quot;https://firebase.google.com/docs/perf-mon/&quot;&gt;Firebase performance monitoring&lt;/a&gt; to automatically measures app performance. This gives you detailed statistics about startup, requests times,… and allows you to filter those by country, devices, versions,… all with zero effort!
+&lt;img src=&quot;https://jeroenmols.com/img/blog/googleio17/firebase_performance.png&quot; alt=&quot;Firebase performance monitoring&quot; class=&quot;align-center&quot; /&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Look into &lt;a href=&quot;https://developer.android.com/topic/performance/vitals/index.html&quot;&gt;Android vitals&lt;/a&gt;, a developer console feature to monitory overall app stability and performance.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Recommended videos:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=HwFIxbCR4Hs&quot;&gt;Great app performance with Firebase&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=9HtTL_RO2wI&quot;&gt;Android performance: UI&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Recommended posts:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://android-developers.googleblog.com/2017/05/whats-new-in-google-play-at-io-2017.html&quot;&gt;I/O 2017: Everything new in the Google Play Console&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://firebase.googleblog.com/2017/05/whats-new-from-firebase-at-google-io.html&quot;&gt;What’s new from Firebase at Google I/O 2017&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;build-improvements&quot;&gt;Build improvements&lt;/h2&gt;
+&lt;p&gt;I’m definitely big on tooling and making builds cleaner and more efficient. Fortunately (and unsurprisingly) the tools team didn’t disappoint this year.&lt;/p&gt;
+
+&lt;p&gt;My todo list:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Migrate to the &lt;a href=&quot;https://developer.android.com/studio/preview/features/new-android-plugin-migration.html&quot;&gt;Android Gradle 3.0 plugin&lt;/a&gt;, that includes some breaking changes to make building multi module projects faster.&lt;/li&gt;
+  &lt;li&gt;Use support libraries directly from the new Google Maven repository
+    &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;n&quot;&gt;allprojects&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;repositories&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;jcenter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;maven&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;https:&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//maven.google.com' }&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Apply all &lt;a href=&quot;https://developer.android.com/studio/build/optimize-your-build.html&quot;&gt;Gradle build speed up tips&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Reduce APK size by explicitly defining supported languages (&lt;code class=&quot;highlighter-rouge&quot;&gt;resConfigs&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Recommended videos:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=7ll-rkLCtyk&quot;&gt;Speeding Up Your Android Gradle Builds&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=Hx_rwS1NTiI&quot;&gt;What’s New in Android Development Tools&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;other&quot;&gt;Other&lt;/h2&gt;
+&lt;p&gt;So many interesting areas to explore, yet I have to make choices.&lt;/p&gt;
+
+&lt;p&gt;My todo list:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Start a study group to &lt;a href=&quot;https://kotlinlang.org/docs/tutorials/koans.html&quot;&gt;learn Kotlin&lt;/a&gt;. It’s important to get the entire team up to speed with the basics, then defining a plan forward and start migrating.&lt;/li&gt;
+  &lt;li&gt;Add support for the super tall Galaxy S8 screen
+    &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;meta&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;android:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;android.max_aspect&quot;&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;android:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;2.1&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Learn about &lt;a href=&quot;https://developer.android.com/topic/instant-apps/overview.html&quot;&gt;Android instant apps&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Watch &lt;a href=&quot;https://www.youtube.com/watch?v=pK7W5npkhho&quot;&gt;TDD on Android&lt;/a&gt; talk&lt;/li&gt;
+  &lt;li&gt;Get up to speed with Android O &lt;a href=&quot;https://developer.android.com/preview/features/notification-channels.html&quot;&gt;notification channels&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Investigate what’s needed to optimize apps for &lt;a href=&quot;https://developer.android.com/preview/features/autofill.html&quot;&gt;autofill&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Recommended videos:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=X1RVYt2QKQE&quot;&gt;Introduction to Kotlin&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
+&lt;p&gt;It’s always super inspiring to visit a conference, especially google IO. This year we got an impressive set of new developer tools/apis and I had the pleasure of meeting many interesting people. We’re lucky to have such a vibrant community!&lt;/p&gt;
+
+&lt;p&gt;Do you like this format? Let me know in the comments below or &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt;.&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><summary type="html">Being my 2nd year at Google IO, I decided to do things differently: Besides taking notes during sessions, I also created a personal todo list. This contains all new (and even old) technologies I got triggered to look into.</summary></entry><entry><title type="html">Android Makers FR recap</title><link href="https://jeroenmols.com/blog/2017/04/11/androidmakers17/" rel="alternate" type="text/html" title="Android Makers FR recap" /><published>2017-04-11T00:00:00+02:00</published><updated>2017-04-11T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2017/04/11/androidmakers17</id><content type="html" xml:base="https://jeroenmols.com/blog/2017/04/11/androidmakers17/">&lt;p&gt;After organizing Droidcon Paris for several year, the organizers decided to move on and experiment with a new format. This didn’t just result in a well organized conference, but also in a fresh new vibe whilst still feeling familiar.&lt;/p&gt;
 
 &lt;p&gt;In this post I’d like to share some general themes, my personal highlights and all of the slides I could gather from socials.&lt;/p&gt;
 
@@ -772,50 +883,4 @@ limitations under the License.
 &lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
 &lt;p&gt;In a few very simple steps we created a complete cycling GPS solution that provides turn by turn navigation and offline maps. Creating tracks is done using Strava and export using a Dropbox folder so that they automatically appear on your GPS device.&lt;/p&gt;
 
-&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><summary type="html">Cycling is all about exploring: visiting new places and making existing routes more fun with better streets. So there must be an app that allows to plan your route and start cycling right? Think again… there is currently no solution that offers turn by turn navigation for cyclists.</summary></entry><entry><title type="html">Testing made sweet with a Mockito</title><link href="https://jeroenmols.com/blog/2016/06/24/droidcondetalk/" rel="alternate" type="text/html" title="Testing made sweet with a Mockito" /><published>2016-06-24T00:00:00+02:00</published><updated>2016-06-24T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2016/06/24/droidcondetalk</id><content type="html" xml:base="https://jeroenmols.com/blog/2016/06/24/droidcondetalk/">&lt;p&gt;At Droidcon Berlin 2016 I had a great time talking about testing using the &lt;a href=&quot;http://mockito.org/&quot;&gt;Mockito&lt;/a&gt; framework. While the talk wasn’t recorded unfortunately, the great folks at &lt;a href=&quot;https://voicerepublic.com/series/droidcon-berlin-2016&quot;&gt;Voice Republic&lt;/a&gt; recorded an audio version which you can listen to as a podcast or together with the slides.&lt;/p&gt;
-
-&lt;h2 id=&quot;talk&quot;&gt;Talk&lt;/h2&gt;
-&lt;script async=&quot;&quot; class=&quot;speakerdeck-embed&quot; data-id=&quot;061ea326e4b24a3aa961440fd699c481&quot; data-ratio=&quot;1.77777777777778&quot; src=&quot;//speakerdeck.com/assets/embed.js&quot;&gt;&lt;/script&gt;
-
-&lt;iframe width=&quot;100%&quot; height=&quot;32%&quot; src=&quot;https://voicerepublic.com/embed/talks/testing-made-sweet-with-a-mockito&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-
-&lt;p&gt;The past year has been huge for Android testing: Testing support lib, fast JVM unit tests,… Having such great tools means writing tests is a breeze! All your apps currently have &amp;gt;80% code coverage, right? Yay! Or wait… is it really? Is all your common Android logic (networking, databases,…) tested? Do you isolate parts of your code base to keep your tests small? And what about providing relevant testing data?&lt;/p&gt;
-
-&lt;p&gt;In order to achieve this, you need to make use of mocks and stubs. And that’s exactly what this talk will be about: What is a mock? What’s the difference between a mock and a stub? Are mocks the only way to provide relevant data for your unit tests? What do I do with all the final classes/methods in the Android SDK? How do I architect my app to make it easier to test? …&lt;/p&gt;
-
-&lt;p&gt;After having adopted TDD as my main development workflow for almost a year now, I feel comfortable saying everything can be tested. Its just a matter of having someone experience show you how.&lt;/p&gt;
-
-&lt;h2 id=&quot;code&quot;&gt;Code&lt;/h2&gt;
-&lt;p&gt;A fully working sample project with all principles is available &lt;a href=&quot;https://github.com/JeroenMols/MockitoExample&quot;&gt;on Github&lt;/a&gt;.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/JeroenMols/MockitoExample/blob/master/app/build.gradle&quot;&gt;build.gradle&lt;/a&gt; file indicating how to configure Mockito
-    &lt;ul&gt;
-      &lt;li&gt;testCompile: for tests run on your computer in a JVM (src/test folder)&lt;/li&gt;
-      &lt;li&gt;androidTestCompile: for tests run on an Android device (src/androidTest folder)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/JeroenMols/MockitoExample/blob/master/app/src/test/java/com/jeroenmols/mockitoexample/UserTest.java&quot;&gt;UserTest&lt;/a&gt; class demonstrating Mockito usage
-    &lt;ul&gt;
-      &lt;li&gt;TLDR: JVM unit tests with mockito are easy to read and write&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/JeroenMols/MockitoExample/blob/master/app/src/androidTest/java/com/jeroenmols/mockitoexample/UserTestAndroid.java&quot;&gt;UserTestAndroid&lt;/a&gt; class demonstrating Mockito usage on Android device
-    &lt;ul&gt;
-      &lt;li&gt;TLDR: Mockito can be used on Android, but need to use V1 and dexmaker&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/JeroenMols/MockitoExample/blob/master/app/src/main/java/com/jeroenmols/mockitoexample/HandlerWrapper.java&quot;&gt;HandlerWrapper&lt;/a&gt; class indicating how to test final methods
-    &lt;ul&gt;
-      &lt;li&gt;TLDR: Wrap final or statics methods with a different non static/final method&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/JeroenMols/MockitoExample/blob/master/app/src/test/java/com/jeroenmols/mockitoexample/TestUserData.java&quot;&gt;TestUserData&lt;/a&gt; class indicating how to provide testing data for POJO objects
-    &lt;ul&gt;
-      &lt;li&gt;TLDR: Override all methods with default values instead of creating a mock and stubbing them out&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;audience&quot;&gt;Audience&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/droidconde16talk/audience.jpg&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/droidconde16talk/audience.jpg&quot; alt=&quot;Quite some people interested in my talk&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><summary type="html">At Droidcon Berlin 2016 I had a great time talking about testing using the Mockito framework. While the talk wasn’t recorded unfortunately, the great folks at Voice Republic recorded an audio version which you can listen to as a podcast or together with the slides.</summary></entry></feed>
+&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><summary type="html">Cycling is all about exploring: visiting new places and making existing routes more fun with better streets. So there must be an app that allows to plan your route and start cycling right? Think again… there is currently no solution that offers turn by turn navigation for cyclists.</summary></entry></feed>
