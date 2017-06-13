@@ -5,7 +5,7 @@ header:
   image: img/blog/androidstudio3/androidstudio3.png
   imgcredit: Android Studio 3.0 launch screen, https://androidstudio.googleblog.com/2017/05/android-studio-30-canary-1-sdk-updates.html, cropped
 ---
-Android studio has hit a major milestone and will soon break 3.0 territory. That major version bump will make building multi-module projects a lot faster, but it unfortunately also means a breaking Gradle plugin API change.
+Upgrading to Android studio 3.0 territory will make building multi-module projects a lot faster, but it also means a breaking Gradle plugin API change unfortunately.
 
 This blog post will detail all benefits of this change and guide you through the upgrade process.
 
