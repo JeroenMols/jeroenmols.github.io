@@ -1,4 +1,99 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2017-06-01T08:30:43+02:00</updated><id>https://jeroenmols.com/</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">My Google #io17 takeaways</title><link href="https://jeroenmols.com/blog/2017/05/31/googleio17/" rel="alternate" type="text/html" title="My Google #io17 takeaways" /><published>2017-05-31T00:00:00+02:00</published><updated>2017-05-31T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2017/05/31/googleio17</id><content type="html" xml:base="https://jeroenmols.com/blog/2017/05/31/googleio17/">&lt;p&gt;Being my 2nd year at Google IO, I decided to do things differently: Besides taking notes during sessions, I also created a personal todo list. This contains all new (and even old) technologies I got triggered to look into.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2017-06-14T23:02:45+02:00</updated><id>https://jeroenmols.com/</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Implementation vs API dependency</title><link href="https://jeroenmols.com/blog/2017/06/14/androidstudio3/" rel="alternate" type="text/html" title="Implementation vs API dependency" /><published>2017-06-14T00:00:00+02:00</published><updated>2017-06-14T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2017/06/14/androidstudio3</id><content type="html" xml:base="https://jeroenmols.com/blog/2017/06/14/androidstudio3/">&lt;p&gt;Upgrading to Android studio 3.0 territory will make building multi-module projects a lot faster, but it also means a breaking Gradle plugin API change unfortunately.&lt;/p&gt;
+
+&lt;p&gt;This blog post will detail all benefits of this change and guide you through the upgrade process.&lt;/p&gt;
+
+&lt;h2 id=&quot;problem-situation&quot;&gt;Problem situation&lt;/h2&gt;
+&lt;p&gt;To understand the limitations of the old Gradle plugin 2.0 build system, consider the following project with multiple layers of modules:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudio3/project.png&quot; alt=&quot;Base project with multiple modules&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Looking at the bottom most module, there are basically two different changes you could make:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Implementation change: internal change, doesn’t modify the external interface of the module&lt;/li&gt;
+  &lt;li&gt;Application binary interface (ABI) change: modify the external interface of the module&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Note: In what follows, all recompiled modules will be highlighted in red.&lt;/p&gt;
+
+&lt;h3 id=&quot;implementation-change&quot;&gt;Implementation change&lt;/h3&gt;
+&lt;p&gt;Since the external interface of the module doesn’t change, Gradle will only recompile that module. All of its consuming modules will be left untouched.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudio3/project_implementation.png&quot; alt=&quot;Implementation change with Gradle 2.0&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;There is no problem in this scenario.&lt;/p&gt;
+
+&lt;h3 id=&quot;abi-change&quot;&gt;ABI change&lt;/h3&gt;
+&lt;p&gt;When the external interface of a module changes however, also the modules consuming that module directly need to be recompiled.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudio3/project_gradle_2.0_step1.png&quot; alt=&quot;Code change (ABI) with Gradle 2.0 compile dependencies&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;But those modules could be exposing parts of the bottom module directly through their own interface! So to be completely safe, they would also need to be recompiled. Same for the ones using those… and those… and…&lt;/p&gt;
+
+&lt;p&gt;Hence Gradle would effectively need to recompile all modules.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudio3/project_gradle_2.0_final.png&quot; alt=&quot;Code change (ABI) with Gradle 2.0 compile dependencies&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now we do have a big problem: one code change causes all modules to be recompiled. The root cause for this is that Gradle doesn’t know if you leak the interface of a module through another one or not.&lt;/p&gt;
+
+&lt;h2 id=&quot;android-gradle-plugin-30-to-the-rescue&quot;&gt;Android Gradle plugin 3.0 to the rescue&lt;/h2&gt;
+&lt;p&gt;The latest Android Gradle plugin now requires you to explicitly define if you leak a module’s interface. Based on that it can make the right choice on what it should recompile.&lt;/p&gt;
+
+&lt;p&gt;As such the &lt;code class=&quot;highlighter-rouge&quot;&gt;compile&lt;/code&gt; dependency has been deprecated and replaced by two new ones:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;api&lt;/code&gt;: you leak the interface of this module through your own interface, meaning exactly the same as the old &lt;code class=&quot;highlighter-rouge&quot;&gt;compile&lt;/code&gt; dependency&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;implementation&lt;/code&gt;: you only use this module internally and does not leak it through your interface&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;So now you can explicitly tell Gradle to recompile a module if the interface of a used module changes or not.&lt;/p&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// recompile this module when legofy interface is modified&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;api&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;project&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;':legofy'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;// don't recompile this module when landscapevideocamera interface is modified&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;implementation&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;project&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;':landscapevideocamera:1.0.0'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;migration-guide&quot;&gt;Migration guide&lt;/h3&gt;
+&lt;p&gt;In theory you can simply replace all &lt;code class=&quot;highlighter-rouge&quot;&gt;compile&lt;/code&gt; dependencies with &lt;code class=&quot;highlighter-rouge&quot;&gt;api&lt;/code&gt; dependencies, but that would still cause everything to be recompiled:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudio3/project_gradle_2.0_final.png&quot; alt=&quot;Code change (ABI) with Gradle 3.0 api dependencies&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So better approach is to replace all &lt;code class=&quot;highlighter-rouge&quot;&gt;compile&lt;/code&gt; dependencies with &lt;code class=&quot;highlighter-rouge&quot;&gt;implementation&lt;/code&gt; dependencies. And only where you leak a module’s interface, you should use &lt;code class=&quot;highlighter-rouge&quot;&gt;api&lt;/code&gt;. That should cause a lot less recompilation.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudio3/project_gradle_3.0.png&quot; alt=&quot;Code change (ABI) with Gradle 3.0 implementation dependencies&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Hopefully, this clarifies the ambiguity between &lt;code class=&quot;highlighter-rouge&quot;&gt;api&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;implementation&lt;/code&gt;, as the official &lt;a href=&quot;https://developer.android.com/studio/preview/features/new-android-plugin-migration.html#new_configurations&quot;&gt;migration guide&lt;/a&gt; is quite cryptic.&lt;/p&gt;
+
+&lt;h3 id=&quot;other-dependency-configurations&quot;&gt;Other dependency configurations&lt;/h3&gt;
+&lt;p&gt;As there was already a breaking change, the team also made use of the opportunity to finally give the other configurations proper names:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;provided&lt;/code&gt; configuration is now &lt;code class=&quot;highlighter-rouge&quot;&gt;compileOnly&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;apk&lt;/code&gt; configuration is now &lt;code class=&quot;highlighter-rouge&quot;&gt;runtimeOnly&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Just like before you can also combine these with your build variants: &lt;code class=&quot;highlighter-rouge&quot;&gt;debugApi&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;testImplementation&lt;/code&gt;,…&lt;/p&gt;
+
+&lt;h2 id=&quot;other-migration-items&quot;&gt;Other migration items&lt;/h2&gt;
+&lt;p&gt;Android Studio 3.0 packs tons of other improvements that have finally been addressed. My favorites are:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;all Google dependencies are available via an online Maven repository&lt;/li&gt;
+  &lt;li&gt;current build variant can now be passed through to your libraries, removing the need for &lt;code class=&quot;highlighter-rouge&quot;&gt;publishNonDefault true&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;…&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For more information have a look at the complete &lt;a href=&quot;https://developer.android.com/studio/preview/features/new-android-plugin-migration.html&quot;&gt;migration guide&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
+&lt;p&gt;To build multi-module projects faster, the Android Gradle plugin needed a breaking API change. Always try to use the &lt;code class=&quot;highlighter-rouge&quot;&gt;implementation&lt;/code&gt; dependency as this will cause fewer modules to be recompiled.&lt;/p&gt;
+
+&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on Twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><summary type="html">Upgrading to Android studio 3.0 territory will make building multi-module projects a lot faster, but it also means a breaking Gradle plugin API change unfortunately.</summary></entry><entry><title type="html">My Google #io17 takeaways</title><link href="https://jeroenmols.com/blog/2017/05/31/googleio17/" rel="alternate" type="text/html" title="My Google #io17 takeaways" /><published>2017-05-31T00:00:00+02:00</published><updated>2017-05-31T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2017/05/31/googleio17</id><content type="html" xml:base="https://jeroenmols.com/blog/2017/05/31/googleio17/">&lt;p&gt;Being my 2nd year at Google IO, I decided to do things differently: Besides taking notes during sessions, I also created a personal todo list. This contains all new (and even old) technologies I got triggered to look into.&lt;/p&gt;
 
 &lt;p&gt;This post won’t cover all big #io17 announcements, but instead tries to be an alternative, biased, inside scoop with my personal highlights.&lt;/p&gt;
 
@@ -789,99 +884,4 @@ limitations under the License.
 &lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
 &lt;p&gt;Copyright is not something to mess around with and you can face cause serious legal consequences if you don’t. Even your open source projects should have a proper copyright notice. Fortunately &lt;a href=&quot;http://choosealicense.com/&quot;&gt;choosealicense.com&lt;/a&gt; and Android Studio help you choose and apply the correct license.&lt;/p&gt;
 
-&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><summary type="html">As die hard Android developers, copyright notices are usually not on top of our priority list. Yet large corporations always insist to add a copyright header. Why do they do that? Should you do that for your open source libraries?</summary></entry><entry><title type="html">Turn Android into an awesome cycling GPS</title><link href="https://jeroenmols.com/blog/2016/07/21/cyclinggps/" rel="alternate" type="text/html" title="Turn Android into an awesome cycling GPS" /><published>2016-07-21T00:00:00+02:00</published><updated>2016-07-21T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2016/07/21/cyclinggps</id><content type="html" xml:base="https://jeroenmols.com/blog/2016/07/21/cyclinggps/">&lt;p&gt;Cycling is all about exploring: visiting new places and making existing routes more fun with better streets. So there must be an app that allows to plan your route and start cycling right? Think again… there is currently no solution that offers turn by turn navigation for cyclists.&lt;/p&gt;
-
-&lt;p&gt;As I had an old Android device laying around, I decided to repurpose that and convert it into a GPS that:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;tracks my activity&lt;/li&gt;
-  &lt;li&gt;imports gpx tracks created on my computer&lt;/li&gt;
-  &lt;li&gt;offers turn by turn navigation (screen + voice)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;This blogpost will detail how I use &lt;a href=&quot;https://play.google.com/store/apps/details?id=net.osmand&quot;&gt;OsmAnd&lt;/a&gt; and &lt;a href=&quot;https://play.google.com/store/apps/details?id=com.ttxapps.dropsync&quot;&gt;Dropsync&lt;/a&gt; to create new tracks with minimal effort. Further I’ll also describe the gear I use in order to make this work.&lt;/p&gt;
-
-&lt;h2 id=&quot;gear&quot;&gt;Gear&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/cyclinggps/gear.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/cyclinggps/gear.png&quot; alt=&quot;Cycling GPS gear&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;To build your own GPS, you’ll need the following:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Android phone - I use my Nexus 5, but any Android device will do&lt;/li&gt;
-  &lt;li&gt;Bicycle GPS mount - I use &lt;a href=&quot;http://www.dx.com/p/universal-bike-bicycle-mount-cell-phones-bracket-holder-stand-black-208712#.V5DBF5O7hBc&quot;&gt;this one&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Rainproof case - I use &lt;a href=&quot;http://www.dx.com/p/universal-waterproof-bag-case-cover-dry-bag-for-iphone-htc-translucent-3-pcs-318004#.V5DBRpO7hBe&quot;&gt;these&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;create-tracks&quot;&gt;Create tracks&lt;/h2&gt;
-&lt;p&gt;To explore new places, you need a great tool to create cycling routes. I personally use &lt;a href=&quot;https://www.strava.com/&quot;&gt;Strava&lt;/a&gt; because it has a “global Heatmap” and also supports “segments” where most people cycle. It is a great way to figure out popular cycling streets and help you plan a great route. Note that you can do all of this using a free account, but with a &lt;a href=&quot;https://www.strava.com/premium&quot;&gt;premium subscription&lt;/a&gt; you will get lots more.&lt;/p&gt;
-
-&lt;p&gt;To create routes, just go to “My routes” and select “Create new route”:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/cyclinggps/routes.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/cyclinggps/routes.png&quot; alt=&quot;Create a new route&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;The global Heatmap indicates where most people cycle:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/cyclinggps/heatmap.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/cyclinggps/heatmap.png&quot; alt=&quot;The global Heatmap indicates where most people cycle&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Segments are often challenging parts to cycle, that contain a leaderboard:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/cyclinggps/segments.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/cyclinggps/segments.png&quot; alt=&quot;Segments are often challenging parts to cycle, that contain a leaderboard&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Once you created a route, you can export it to a &lt;code class=&quot;highlighter-rouge&quot;&gt;gpx&lt;/code&gt; file format. Note that it doesn’t matter which GPS you choose to do the export.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/cyclinggps/export.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/cyclinggps/export.png&quot; alt=&quot;Tracks can be exported into a gpx file format&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;configure-osmand&quot;&gt;Configure OsmAnd&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;https://play.google.com/store/apps/details?id=net.osmand&quot;&gt;OsmAnd&lt;/a&gt; offers both turn by turn navigation and storing maps offline. This is ideal to save bandwidth or for phones without a sim card (like mine). It is completely free to use, but there is also a &lt;a href=&quot;https://play.google.com/store/apps/details?id=net.osmand.plus&quot;&gt;premium version&lt;/a&gt; if you want to support this awesome project.&lt;/p&gt;
-
-&lt;p&gt;Getting it to work with &lt;code class=&quot;highlighter-rouge&quot;&gt;gpx&lt;/code&gt; files is tricky and hence I will guide you through it.&lt;/p&gt;
-
-&lt;p&gt;First of all install &lt;a href=&quot;https://play.google.com/store/apps/details?id=net.osmand&quot;&gt;OsmAnd&lt;/a&gt; (or &lt;a href=&quot;https://play.google.com/store/apps/details?id=net.osmand.plus&quot;&gt;OsmAnd+&lt;/a&gt;). When you open the app, press “skip” and don’t download any maps. This is because they would end up in a private directory. Open the hamburger menu, go to “Settings” and open “General settings”.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/cyclinggps/osmand1.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/cyclinggps/osmand1.png&quot; alt=&quot;Skip downloading maps and go to general settings&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Now we’re going to change the directory in which OsmAnd stores all of its files. Use “Data storage folder”, click the “edit icon” and select “Shared memory” as the data storage folder. This will put all files in an “osmand” directory on the root of your internal storage. Accept the permission when promted to allow OsmAnd to create and write to that folder.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/cyclinggps/osmand2.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/cyclinggps/osmand2.png&quot; alt=&quot;Change the folder in which maps are downloaded to the shared folder&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Next go ahead and download the maps for the areas in which you will be cycling. When prompted for a storage folder, again select “Shared memory”.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/cyclinggps/osmand3.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/cyclinggps/osmand3.png&quot; alt=&quot;Download the maps you need to the shared folder&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;automatically-sync-tracks-using-dropbox&quot;&gt;Automatically sync tracks using Dropbox&lt;/h2&gt;
-&lt;p&gt;Getting new tracks on your phone can be quite a hassle. Therefore we’ll automate this process so you can add new tracks to your phone by only using your computer.&lt;/p&gt;
-
-&lt;p&gt;First of all, create a new folder in your &lt;a href=&quot;https://www.dropbox.com/&quot;&gt;Dropbox&lt;/a&gt; account called “Cycling”.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/cyclinggps/dropbox.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/cyclinggps/dropbox.png&quot; alt=&quot;Dropbox folder that will contain all tracks&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Then install the app &lt;a href=&quot;https://play.google.com/store/apps/details?id=com.ttxapps.dropsync&quot;&gt;Dropsync&lt;/a&gt; (or &lt;a href=&quot;https://play.google.com/store/apps/details?id=com.ttxapps.dropsync.pro&quot;&gt;Dropsync pro&lt;/a&gt;). Next configure it so that it automatically syncs any file you put in the Dropbox folder into the correct folder on the Android phone.&lt;/p&gt;
-
-&lt;p&gt;Open Dropsync, login with your Dropbox account and select “let me create my own folder pair”. As the local folder choose “osmand/tracks” and as the remote folder “Cycling”. Then select “Download mirror” as the sync method and enable sync. Save the changes and wait for the sync to complete.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/cyclinggps/dropsync.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/cyclinggps/dropsync.png&quot; alt=&quot;Configure Dropsync to put the GPX files in the correct folder on the Android phone&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Now all you have to do is export a track from Strava, move it into the Dropbox folder and it will autmagically appear in OsmAnd on your GPS!&lt;/p&gt;
-
-&lt;h2 id=&quot;turn-by-turn-navigation&quot;&gt;Turn by turn navigation&lt;/h2&gt;
-&lt;p&gt;Finally you’re ready to start using your synced tracks for turn by turn navigation.&lt;/p&gt;
-
-&lt;p&gt;Open OsmAnd and press the “globe” icon in the top left corner. Scroll down a bit and select “GPX track…” to choose the track you want to display. Exit the screen and start navigation by pressing the “navigation” icon in the bottom left corner.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/cyclinggps/osmand4.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/cyclinggps/osmand4.png&quot; alt=&quot;Select a track (gpx file) and start navigation&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Enjoy your turn by turn navigation!&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/cyclinggps/osmand5.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/cyclinggps/osmand5.png&quot; alt=&quot;Select a track (gpx file) and start navigation&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;tips-and-tricks&quot;&gt;Tips and tricks&lt;/h2&gt;
-&lt;p&gt;I’ll update this section as I discover new handy features/tricks to make the GPS even more usefull.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Remove the lockscreen: go to “Device Settings” &amp;gt; “Security” and set the “Screen lock” to “none”. This will enable you to simply press the power key to turn on your screen.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
-&lt;p&gt;In a few very simple steps we created a complete cycling GPS solution that provides turn by turn navigation and offline maps. Creating tracks is done using Strava and export using a Dropbox folder so that they automatically appear on your GPS device.&lt;/p&gt;
-
-&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><summary type="html">Cycling is all about exploring: visiting new places and making existing routes more fun with better streets. So there must be an app that allows to plan your route and start cycling right? Think again… there is currently no solution that offers turn by turn navigation for cyclists.</summary></entry></feed>
+&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><summary type="html">As die hard Android developers, copyright notices are usually not on top of our priority list. Yet large corporations always insist to add a copyright header. Why do they do that? Should you do that for your open source libraries?</summary></entry></feed>

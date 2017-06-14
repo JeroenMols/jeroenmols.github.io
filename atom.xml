@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle>
- <updated>2017-06-01T08:30:43+02:00</updated>
+ <updated>2017-06-14T23:02:45+02:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,22 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>Implementation vs API dependency</title>
+   <link href="https://jeroenmols.com/blog/2017/06/14/androidstudio3/"/>
+   <updated>2017-06-14T00:00:00+02:00</updated>
+   <id>https://jeroenmols.com/blog/2017/06/14/androidstudio3</id>
+   <content type="html"><![CDATA[
+     
+     <p>Upgrading to Android studio 3.0 territory will make building multi-module projects a lot faster, but it also means a breaking Gradle plugin API change unfortunately.</p>
+
+<p>This blog post will detail all benefits of this change and guide you through the upgrade process.</p>
+
+
+     <a href="https://jeroenmols.com/blog/2017/06/14/androidstudio3/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>My Google #io17 takeaways</title>
