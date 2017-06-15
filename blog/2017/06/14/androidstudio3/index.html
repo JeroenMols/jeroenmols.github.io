@@ -203,10 +203,11 @@
 <p>So now you can explicitly tell Gradle to recompile a module if the interface of a used module changes or not.</p>
 
 <div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="n">dependencies</span> <span class="o">{</span>
-  <span class="c1">// recompile this module when legofy interface is modified</span>
+  <span class="c1">// recompile this module and all modules using this one</span>
+  <span class="c1">// when legofy interface is modified</span>
   <span class="n">api</span> <span class="nf">project</span><span class="o">(</span><span class="s1">':legofy'</span><span class="o">)</span>
 
-  <span class="c1">// don't recompile this module when landscapevideocamera interface is modified</span>
+  <span class="c1">// only recompile this module when landscapevideocamera interface is modified</span>
   <span class="n">implementation</span> <span class="nf">project</span><span class="o">(</span><span class="s1">':landscapevideocamera:1.0.0'</span><span class="o">)</span>
 <span class="o">}</span>
 </code></pre>
