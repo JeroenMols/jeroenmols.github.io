@@ -53,10 +53,11 @@ So now you can explicitly tell Gradle to recompile a module if the interface of 
 
 ```groovy
 dependencies {
-  // recompile this module when legofy interface is modified
+  // recompile this module and all modules using this one
+  // when legofy interface is modified
   api project(':legofy')
 
-  // don't recompile this module when landscapevideocamera interface is modified
+  // only recompile this module when landscapevideocamera interface is modified
   implementation project(':landscapevideocamera:1.0.0')
 }
 ```
