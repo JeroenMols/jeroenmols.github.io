@@ -11,12 +11,13 @@ I'm always eager to share my technical knowledge with fellow developers. Don't h
 
 Upcoming talks:
 
-- iCapps, June 2nd - Deep into the IoT trenches: how to build a connected product
-- GDG Brussels, June 7th - Testing made sweet with a Mockito
-- Mobel, June 14th - Lessons learned building connected IoT products
+- Dutch Android User Group - Migrating to Android Studio 3.0
 
 2017:
 
+- iCapps, June 2nd - [Deep into the IoT trenches: how to build a connected product]((https://speakerdeck.com/jeroenmols/deep-into-the-iot-trenches-how-to-build-a-connected-product))
+- GDG Brussels, June 7th - [Testing made sweet with a Mockito](https://speakerdeck.com/jeroenmols/testing-made-sweet-with-a-mockito-1)
+- Mobel, June 14th - [Lessons learned building connected IoT products](https://speakerdeck.com/jeroenmols/deep-into-the-iot-trenches-how-to-build-a-connected-product)
 - Devoxx UK - [Deep into the IoT trenches: how to build a connected product](https://speakerdeck.com/jeroenmols/deep-into-the-iot-trenches-how-to-build-a-connected-product)
 - Dutch Android User Group - [Testing made sweet with a Mockito](https://speakerdeck.com/jeroenmols/testing-made-sweet-with-a-mockito-1)
 - Android Makers FR - [The ART of organizing resources](https://speakerdeck.com/jeroenmols/the-art-of-organizing-resources)
