@@ -4,6 +4,8 @@ main:
     url: /blog/
   - title: "Speaking"
     url: /speaking/
+  - title: "Hire me"
+    url: /hireme/
   # - title: "Search"
   #   url: /search/
   # - title: "Sample Posts"

@@ -405,3 +405,21 @@
   font-size: $type-size-6;
   text-transform: uppercase;
 }
+
+/*
+   Contact
+   ========================================================================== */
+
+.page__contact {
+  button {
+    border: none;
+    color: #fff;
+    border-radius: 0.25rem;
+    padding: 0.25em 1em;
+    background-color: $theme-orange
+  }
+
+  textarea {
+    height: 9em;
+  }
+}
