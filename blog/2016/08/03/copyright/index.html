@@ -153,85 +153,55 @@
        </header>
      <section class="page__content" itemprop="text">
        <p>As die hard Android developers, copyright notices are usually not on top of our priority list. Yet large corporations always insist to add a copyright header. Why do they do that? Should you do that for your open source libraries?</p>
-
 <p>This blog post will explain what copyright is and why it’s so important. Further it’ll also show how to easily add/update copyright notices to your code base.</p>
-
 <h2 id="intro-to-copyrights">Intro to copyrights</h2>
 <p>According to wikipedia, copyright is:</p>
-
 <blockquote>
  <p>…a legal right created by the law of a country that grants the creator of an original work exclusive rights for its use and distribution</p>
 </blockquote>
-
 <p>Simplified this means that when you create something “original”, people cannot simply use or copy that without your explicit permission.</p>
-
 <p>This applies to art forms such as: literary works, music compositions, photographs,… and the highest art form of all: computer software!</p>
-
 <p>Hence every line of code you write is - besides a true piece of art - protected by copyright for the rest of your life. No action is needed to acquire this right, it’s implicitly granted on creation.</p>
-
 <p>Now obviously this is highly simplified and there are important exceptions, most notably “<a href="https://en.wikipedia.org/wiki/Right_to_quote">the right of quotation</a>”. But it’s fair to state that anything you blog or code in your time is falls under copyright protection.</p>
-
 <blockquote>
  <p><strong>What with the software I write for my employer?</strong><br /> All copyrights explicitly belong to your employer, unless you explicitly agree to other terms in your contact.</p>
 </blockquote>
-
 <h2 id="licenses">Licenses</h2>
 <p>A software license is a “contract” that allows others from using your code. Restrictions may apply on how “it can be used” and explicit terms may be imposed prior to using it.</p>
-
 <h3 id="creating-code">Creating code</h3>
 <p>All code you write is by default copyright protected, even when not enforced by an explicit license. Therefore others are not allowed to use it, even if you make it <a href="https://help.github.com/articles/open-source-licensing/">publicly available</a> on GitHub!</p>
-
 <blockquote>
  <p>…the absence of a license means that the default copyright laws apply. This means that nobody else may reproduce, distribute, or create derivative works from your work.</p>
 </blockquote>
-
 <p>Therefore it is utterly important to explicitly state a license, otherwise all open source code you write is… well… useless.</p>
-
 <p>To apply a license, simply distribute a license together with your source code e.g by putting a <code class="highlighter-rouge">LICENSE</code> file at the root of my repository. Further it is also a good idea to add a copyright notice on top of every file to avoid any confusion.</p>
-
 <p>This is how I did it in the my library <a href="https://github.com/JeroenMols/LandscapeVideoCamera">LandscapeVideoCamera</a>.</p>
-
 <p><a href="https://jeroenmols.com/img/blog/copyright/landscapevideocameralicense.png"><img src="https://jeroenmols.com/img/blog/copyright/landscapevideocameralicense.png" alt="License for Landscape Video Camera" class="align-center" /></a></p>
-
 <p>And at the top of every file:</p>
-
 <p><a href="https://jeroenmols.com/img/blog/copyright/landscapevideocameralicense2.png"><img src="https://jeroenmols.com/img/blog/copyright/landscapevideocameralicense2.png" alt="Copyright notice for Landscape Video Camera" class="align-center" /></a></p>
-
 <h3 id="using-code">Using code</h3>
 <p>There is a common misconception that open source equals free to use. In reality however, even seemingly innocent open source communities will take legal action if you infringe on their license. Hence care must be taken to comply with the license of all code you use.</p>
-
 <p>Complying to a license can range from:</p>
-
 <ul>
  <li>Making all your code open source</li>
  <li>Only non commercial use</li>
  <li>Acknowledging the author</li>
  <li>…</li>
 </ul>
-
 <p>Do carefully review the license of every piece of software you use and make sure you satisfy all of its terms.</p>
-
 <p>Should that not be acceptable for your use case, you can always contact the author and request him/her to purchase the same software under an alternative license.</p>
-
 <h3 id="understanding-licenses">Understanding licenses</h3>
 <p>As you’re likely not a legal ninja, you must be wondering:</p>
-
 <ul>
  <li>How do I pick the right license for my project?</li>
  <li>Given a license, where can I find its terms/restrictions?</li>
 </ul>
-
 <p>Well there is a great website explaining the ins and outs of various licenses: <a href="http://choosealicense.com/">choosealicense.com</a>.</p>
-
 <p><a href="http://choosealicense.com/"><img src="https://jeroenmols.com/img/blog/copyright/choosealicense.png" alt="Choose a license: great website to learn everything about licenses" class="align-center" /></a></p>
-
 <p>Obviously if you work for a larger corporation like me, you should also involve your legal department.</p>
-
 <h2 id="addingupdating-licenses-to-your-code">Adding/Updating licenses to your code</h2>
 <p>Fortunately Android studio can completely handle all hassle of adding copyright notices for you. It can even update existing notices should you decide to move to a different license or simply update the year.</p>
-
 <p>First of all go to “Preferences &gt; Editor &gt; Copyright &gt; Copyright profiles” and press the plus icon to add a new profile. Give it a meaningful name and fill in your copyright notice.</p>
-
 <div class="highlighter-rouge"><pre class="highlight"><code>Copyright $today.year Jeroen Mols
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -247,40 +217,34 @@ See the License for the specific language governing permissions and
 limitations under the License.
 </code></pre>
 </div>
-
 <p><a href="https://jeroenmols.com/img/blog/copyright/copyrightapache.png"><img src="https://jeroenmols.com/img/blog/copyright/copyrightapache.png" alt="Add a new copyright profile" class="align-center" /></a></p>
-
 <p>Note that you can use the flag <code class="highlighter-rouge">$today.year</code> to denote the current year.</p>
-
 <p>Optionally, the formatting pane allows you to tweak the copyright notice for every file type (Java, Xml, Groovy,…)</p>
-
 <p><a href="https://jeroenmols.com/img/blog/copyright/copyrightformatting.png"><img src="https://jeroenmols.com/img/blog/copyright/copyrightformatting.png" alt="Optionally tweak the copyright look and feel" class="align-center" /></a></p>
-
 <p>Now select the “default project copyright” in the main Copyright pane and you’re fancy new copyright will be added to every new file you create.</p>
-
 <p><a href="https://jeroenmols.com/img/blog/copyright/copyrightselect.png"><img src="https://jeroenmols.com/img/blog/copyright/copyrightselect.png" alt="Select your configured copyright profile" class="align-center" /></a></p>
-
 <p>To update or add the notice to all your existing files, simply right click any file in the project pane and select “Update copyright…”.</p>
-
 <p><a href="https://jeroenmols.com/img/blog/copyright/copyrightupdate.png"><img src="https://jeroenmols.com/img/blog/copyright/copyrightupdate.png" alt="Update existing copyright of files" class="align-center" /></a></p>
-
 <p><a href="https://jeroenmols.com/img/blog/copyright/copyrightscope.png"><img src="https://jeroenmols.com/img/blog/copyright/copyrightscope.png" alt="Choose what scope to apply the copyright headers to" class="align-center" /></a></p>
-
 <p>That’s it! You now have a one click way of ensuring your copyright notices are up to date.</p>
-
 <p><a href="https://jeroenmols.com/img/blog/copyright/copyrightdone.png"><img src="https://jeroenmols.com/img/blog/copyright/copyrightdone.png" alt="Copyright notice added to source code" class="align-center" /></a></p>
-
 <h2 id="wrap-up">Wrap-up</h2>
 <p>Copyright is not something to mess around with and you can face cause serious legal consequences if you don’t. Even your open source projects should have a proper copyright notice. Fortunately <a href="http://choosealicense.com/">choosealicense.com</a> and Android Studio help you choose and apply the correct license.</p>
-
 <p>As always you can reach me <a href="https://twitter.com/molsjeroen">@molsjeroen</a> on twitter, or leave a comment below!</p>
-
      </section>
      <footer class="page__meta">
  <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+      <a href="https://jeroenmols.com/tags/android" class="page__taxonomy-item" rel="tag">android</a><span class="sep">, </span>
+      <a href="https://jeroenmols.com/tags/copyright" class="page__taxonomy-item" rel="tag">copyright</a><span class="sep">, </span>
+      <a href="https://jeroenmols.com/tags/tools" class="page__taxonomy-item" rel="tag">tools</a>
+    </span>
+ </p>
+ <p class="page__taxonomy">
     <strong><i class="fa fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
     <span itemprop="keywords">
-      <a href="https://jeroenmols.com/categories/#blog" class="page__taxonomy-item" rel="tag">blog</a>
+      <a href="https://jeroenmols.com/categories/blog" class="page__taxonomy-item" rel="tag">blog</a>
     </span>
  </p>
          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2016-08-03T00:00:00+02:00">August 03, 2016</time></p>
@@ -294,7 +258,6 @@ limitations under the License.
 </section>
      <section class="page__share">
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  
   <ins class="adsbygoogle"
        style="display:block"
        data-ad-client="ca-pub-9854541518226004"
@@ -304,7 +267,6 @@ limitations under the License.
   (adsbygoogle = window.adsbygoogle || []).push({});
   </script>
 </section>
-
  <nav class="pagination">
       <a href="https://jeroenmols.com/blog/2016/07/21/cyclinggps/" class="pagination--pager" title="Turn Android into an awesome cycling GPS
 ">Previous</a>
@@ -317,6 +279,11 @@ limitations under the License.
    <section id="disqus_thread"></section>
 </div>
  </article>
+   <div class="page__related">
+     <h4 class="page__related-title">You May Also Enjoy</h4>
+     <div class="grid__wrapper">
+     </div>
+   </div>
 </div>
    <div class="page__footer">
      <footer>

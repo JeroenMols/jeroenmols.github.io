@@ -153,108 +153,75 @@
        </header>
      <section class="page__content" itemprop="text">
        <p>Cycling is all about exploring: visiting new places and making existing routes more fun with better streets. So there must be an app that allows to plan your route and start cycling right? Think again… there is currently no solution that offers turn by turn navigation for cyclists.</p>
-
 <p>As I had an old Android device laying around, I decided to repurpose that and convert it into a GPS that:</p>
-
 <ul>
  <li>tracks my activity</li>
  <li>imports gpx tracks created on my computer</li>
  <li>offers turn by turn navigation (screen + voice)</li>
 </ul>
-
 <p>This blogpost will detail how I use <a href="https://play.google.com/store/apps/details?id=net.osmand">OsmAnd</a> and <a href="https://play.google.com/store/apps/details?id=com.ttxapps.dropsync">Dropsync</a> to create new tracks with minimal effort. Further I’ll also describe the gear I use in order to make this work.</p>
-
 <h2 id="gear">Gear</h2>
 <p><a href="https://jeroenmols.com/img/blog/cyclinggps/gear.png"><img src="https://jeroenmols.com/img/blog/cyclinggps/gear.png" alt="Cycling GPS gear" class="align-center" /></a></p>
-
 <p>To build your own GPS, you’ll need the following:</p>
-
 <ol>
  <li>Android phone - I use my Nexus 5, but any Android device will do</li>
  <li>Bicycle GPS mount - I use <a href="http://www.dx.com/p/universal-bike-bicycle-mount-cell-phones-bracket-holder-stand-black-208712#.V5DBF5O7hBc">this one</a></li>
  <li>Rainproof case - I use <a href="http://www.dx.com/p/universal-waterproof-bag-case-cover-dry-bag-for-iphone-htc-translucent-3-pcs-318004#.V5DBRpO7hBe">these</a></li>
 </ol>
-
 <h2 id="create-tracks">Create tracks</h2>
 <p>To explore new places, you need a great tool to create cycling routes. I personally use <a href="https://www.strava.com/">Strava</a> because it has a “global Heatmap” and also supports “segments” where most people cycle. It is a great way to figure out popular cycling streets and help you plan a great route. Note that you can do all of this using a free account, but with a <a href="https://www.strava.com/premium">premium subscription</a> you will get lots more.</p>
-
 <p>To create routes, just go to “My routes” and select “Create new route”:</p>
-
 <p><a href="https://jeroenmols.com/img/blog/cyclinggps/routes.png"><img src="https://jeroenmols.com/img/blog/cyclinggps/routes.png" alt="Create a new route" class="align-center" /></a></p>
-
 <p>The global Heatmap indicates where most people cycle:</p>
-
 <p><a href="https://jeroenmols.com/img/blog/cyclinggps/heatmap.png"><img src="https://jeroenmols.com/img/blog/cyclinggps/heatmap.png" alt="The global Heatmap indicates where most people cycle" class="align-center" /></a></p>
-
 <p>Segments are often challenging parts to cycle, that contain a leaderboard:</p>
-
 <p><a href="https://jeroenmols.com/img/blog/cyclinggps/segments.png"><img src="https://jeroenmols.com/img/blog/cyclinggps/segments.png" alt="Segments are often challenging parts to cycle, that contain a leaderboard" class="align-center" /></a></p>
-
 <p>Once you created a route, you can export it to a <code class="highlighter-rouge">gpx</code> file format. Note that it doesn’t matter which GPS you choose to do the export.</p>
-
 <p><a href="https://jeroenmols.com/img/blog/cyclinggps/export.png"><img src="https://jeroenmols.com/img/blog/cyclinggps/export.png" alt="Tracks can be exported into a gpx file format" class="align-center" /></a></p>
-
 <h2 id="configure-osmand">Configure OsmAnd</h2>
 <p><a href="https://play.google.com/store/apps/details?id=net.osmand">OsmAnd</a> offers both turn by turn navigation and storing maps offline. This is ideal to save bandwidth or for phones without a sim card (like mine). It is completely free to use, but there is also a <a href="https://play.google.com/store/apps/details?id=net.osmand.plus">premium version</a> if you want to support this awesome project.</p>
-
 <p>Getting it to work with <code class="highlighter-rouge">gpx</code> files is tricky and hence I will guide you through it.</p>
-
 <p>First of all install <a href="https://play.google.com/store/apps/details?id=net.osmand">OsmAnd</a> (or <a href="https://play.google.com/store/apps/details?id=net.osmand.plus">OsmAnd+</a>). When you open the app, press “skip” and don’t download any maps. This is because they would end up in a private directory. Open the hamburger menu, go to “Settings” and open “General settings”.</p>
-
 <p><a href="https://jeroenmols.com/img/blog/cyclinggps/osmand1.png"><img src="https://jeroenmols.com/img/blog/cyclinggps/osmand1.png" alt="Skip downloading maps and go to general settings" class="align-center" /></a></p>
-
 <p>Now we’re going to change the directory in which OsmAnd stores all of its files. Use “Data storage folder”, click the “edit icon” and select “Shared memory” as the data storage folder. This will put all files in an “osmand” directory on the root of your internal storage. Accept the permission when promted to allow OsmAnd to create and write to that folder.</p>
-
 <p><a href="https://jeroenmols.com/img/blog/cyclinggps/osmand2.png"><img src="https://jeroenmols.com/img/blog/cyclinggps/osmand2.png" alt="Change the folder in which maps are downloaded to the shared folder" class="align-center" /></a></p>
-
 <p>Next go ahead and download the maps for the areas in which you will be cycling. When prompted for a storage folder, again select “Shared memory”.</p>
-
 <p><a href="https://jeroenmols.com/img/blog/cyclinggps/osmand3.png"><img src="https://jeroenmols.com/img/blog/cyclinggps/osmand3.png" alt="Download the maps you need to the shared folder" class="align-center" /></a></p>
-
 <h2 id="automatically-sync-tracks-using-dropbox">Automatically sync tracks using Dropbox</h2>
 <p>Getting new tracks on your phone can be quite a hassle. Therefore we’ll automate this process so you can add new tracks to your phone by only using your computer.</p>
-
 <p>First of all, create a new folder in your <a href="https://www.dropbox.com/">Dropbox</a> account called “Cycling”.</p>
-
 <p><a href="https://jeroenmols.com/img/blog/cyclinggps/dropbox.png"><img src="https://jeroenmols.com/img/blog/cyclinggps/dropbox.png" alt="Dropbox folder that will contain all tracks" class="align-center" /></a></p>
-
 <p>Then install the app <a href="https://play.google.com/store/apps/details?id=com.ttxapps.dropsync">Dropsync</a> (or <a href="https://play.google.com/store/apps/details?id=com.ttxapps.dropsync.pro">Dropsync pro</a>). Next configure it so that it automatically syncs any file you put in the Dropbox folder into the correct folder on the Android phone.</p>
-
 <p>Open Dropsync, login with your Dropbox account and select “let me create my own folder pair”. As the local folder choose “osmand/tracks” and as the remote folder “Cycling”. Then select “Download mirror” as the sync method and enable sync. Save the changes and wait for the sync to complete.</p>
-
 <p><a href="https://jeroenmols.com/img/blog/cyclinggps/dropsync.png"><img src="https://jeroenmols.com/img/blog/cyclinggps/dropsync.png" alt="Configure Dropsync to put the GPX files in the correct folder on the Android phone" class="align-center" /></a></p>
-
 <p>Now all you have to do is export a track from Strava, move it into the Dropbox folder and it will autmagically appear in OsmAnd on your GPS!</p>
-
 <h2 id="turn-by-turn-navigation">Turn by turn navigation</h2>
 <p>Finally you’re ready to start using your synced tracks for turn by turn navigation.</p>
-
 <p>Open OsmAnd and press the “globe” icon in the top left corner. Scroll down a bit and select “GPX track…” to choose the track you want to display. Exit the screen and start navigation by pressing the “navigation” icon in the bottom left corner.</p>
-
 <p><a href="https://jeroenmols.com/img/blog/cyclinggps/osmand4.png"><img src="https://jeroenmols.com/img/blog/cyclinggps/osmand4.png" alt="Select a track (gpx file) and start navigation" class="align-center" /></a></p>
-
 <p>Enjoy your turn by turn navigation!</p>
-
 <p><a href="https://jeroenmols.com/img/blog/cyclinggps/osmand5.png"><img src="https://jeroenmols.com/img/blog/cyclinggps/osmand5.png" alt="Select a track (gpx file) and start navigation" class="align-center" /></a></p>
-
 <h2 id="tips-and-tricks">Tips and tricks</h2>
 <p>I’ll update this section as I discover new handy features/tricks to make the GPS even more usefull.</p>
-
 <ul>
  <li>Remove the lockscreen: go to “Device Settings” &gt; “Security” and set the “Screen lock” to “none”. This will enable you to simply press the power key to turn on your screen.</li>
 </ul>
-
 <h2 id="wrap-up">Wrap-up</h2>
 <p>In a few very simple steps we created a complete cycling GPS solution that provides turn by turn navigation and offline maps. Creating tracks is done using Strava and export using a Dropbox folder so that they automatically appear on your GPS device.</p>
-
 <p>As always you can reach me <a href="https://twitter.com/molsjeroen">@molsjeroen</a> on twitter, or leave a comment below!</p>
-
      </section>
      <footer class="page__meta">
  <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+      <a href="https://jeroenmols.com/tags/cycling" class="page__taxonomy-item" rel="tag">cycling</a><span class="sep">, </span>
+      <a href="https://jeroenmols.com/tags/howto" class="page__taxonomy-item" rel="tag">howto</a>
+    </span>
+ </p>
+ <p class="page__taxonomy">
     <strong><i class="fa fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
     <span itemprop="keywords">
-      <a href="https://jeroenmols.com/categories/#blog" class="page__taxonomy-item" rel="tag">blog</a>
+      <a href="https://jeroenmols.com/categories/blog" class="page__taxonomy-item" rel="tag">blog</a>
     </span>
  </p>
          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2016-07-21T00:00:00+02:00">July 21, 2016</time></p>
@@ -268,7 +235,6 @@
 </section>
      <section class="page__share">
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  
   <ins class="adsbygoogle"
        style="display:block"
        data-ad-client="ca-pub-9854541518226004"
@@ -278,7 +244,6 @@
   (adsbygoogle = window.adsbygoogle || []).push({});
   </script>
 </section>
-
  <nav class="pagination">
       <a href="https://jeroenmols.com/blog/2016/06/24/droidcondetalk/" class="pagination--pager" title="Testing made sweet with a Mockito
 ">Previous</a>
@@ -291,6 +256,11 @@
    <section id="disqus_thread"></section>
 </div>
  </article>
+   <div class="page__related">
+     <h4 class="page__related-title">You May Also Enjoy</h4>
+     <div class="grid__wrapper">
+     </div>
+   </div>
 </div>
    <div class="page__footer">
      <footer>

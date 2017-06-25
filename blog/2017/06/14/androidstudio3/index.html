@@ -153,55 +153,35 @@
        </header>
      <section class="page__content" itemprop="text">
        <p>Upgrading to Android studio 3.0 territory will make building multi-module projects a lot faster, but it also means a breaking Gradle plugin API change unfortunately.</p>
-
 <p>This blog post will detail all benefits of this change and guide you through the upgrade process.</p>
-
 <h2 id="problem-situation">Problem situation</h2>
 <p>To understand the limitations of the old Gradle plugin 2.0 build system, consider the following project with multiple layers of modules:</p>
-
 <p><img src="https://jeroenmols.com/img/blog/androidstudio3/project.png" alt="Base project with multiple modules" class="align-center" /></p>
-
 <p>Looking at the bottom most module, there are basically two different changes you could make:</p>
-
 <ol>
  <li>Implementation change: internal change, doesn’t modify the external interface of the module</li>
  <li>Application binary interface (ABI) change: modify the external interface of the module</li>
 </ol>
-
 <p>Note: In what follows, all recompiled modules will be highlighted in red.</p>
-
 <h3 id="implementation-change">Implementation change</h3>
 <p>Since the external interface of the module doesn’t change, Gradle will only recompile that module. All of its consuming modules will be left untouched.</p>
-
 <p><img src="https://jeroenmols.com/img/blog/androidstudio3/project_implementation.png" alt="Implementation change with Gradle 2.0" class="align-center" /></p>
-
 <p>There is no problem in this scenario.</p>
-
 <h3 id="abi-change">ABI change</h3>
 <p>When the external interface of a module changes however, also the modules consuming that module directly need to be recompiled.</p>
-
 <p><img src="https://jeroenmols.com/img/blog/androidstudio3/project_gradle_2.0_step1.png" alt="Code change (ABI) with Gradle 2.0 compile dependencies" class="align-center" /></p>
-
 <p>But those modules could be exposing parts of the bottom module directly through their own interface! So to be completely safe, they would also need to be recompiled. Same for the ones using those… and those… and…</p>
-
 <p>Hence Gradle would effectively need to recompile all modules.</p>
-
 <p><img src="https://jeroenmols.com/img/blog/androidstudio3/project_gradle_2.0_final.png" alt="Code change (ABI) with Gradle 2.0 compile dependencies" class="align-center" /></p>
-
 <p>Now we do have a big problem: one code change causes all modules to be recompiled. The root cause for this is that Gradle doesn’t know if you leak the interface of a module through another one or not.</p>
-
 <h2 id="android-gradle-plugin-30-to-the-rescue">Android Gradle plugin 3.0 to the rescue</h2>
 <p>The latest Android Gradle plugin now requires you to explicitly define if you leak a module’s interface. Based on that it can make the right choice on what it should recompile.</p>
-
 <p>As such the <code class="highlighter-rouge">compile</code> dependency has been deprecated and replaced by two new ones:</p>
-
 <ul>
  <li><code class="highlighter-rouge">api</code>: you leak the interface of this module through your own interface, meaning exactly the same as the old <code class="highlighter-rouge">compile</code> dependency</li>
  <li><code class="highlighter-rouge">implementation</code>: you only use this module internally and does not leak it through your interface</li>
 </ul>
-
 <p>So now you can explicitly tell Gradle to recompile a module if the interface of a used module changes or not.</p>
-
 <div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="n">dependencies</span> <span class="o">{</span>
   <span class="c1">// recompile this module and all modules using this one</span>
   <span class="c1">// when legofy interface is modified</span>
@@ -212,50 +192,44 @@
 <span class="o">}</span>
 </code></pre>
 </div>
-
 <h3 id="migration-guide">Migration guide</h3>
 <p>In theory you can simply replace all <code class="highlighter-rouge">compile</code> dependencies with <code class="highlighter-rouge">api</code> dependencies, but that would still cause everything to be recompiled:</p>
-
 <p><img src="https://jeroenmols.com/img/blog/androidstudio3/project_gradle_2.0_final.png" alt="Code change (ABI) with Gradle 3.0 api dependencies" class="align-center" /></p>
-
 <p>So better approach is to replace all <code class="highlighter-rouge">compile</code> dependencies with <code class="highlighter-rouge">implementation</code> dependencies. And only where you leak a module’s interface, you should use <code class="highlighter-rouge">api</code>. That should cause a lot less recompilation.</p>
-
 <p><img src="https://jeroenmols.com/img/blog/androidstudio3/project_gradle_3.0.png" alt="Code change (ABI) with Gradle 3.0 implementation dependencies" class="align-center" /></p>
-
 <p>Hopefully, this clarifies the ambiguity between <code class="highlighter-rouge">api</code> and <code class="highlighter-rouge">implementation</code>, as the official <a href="https://developer.android.com/studio/preview/features/new-android-plugin-migration.html#new_configurations">migration guide</a> is quite cryptic.</p>
-
 <h3 id="other-dependency-configurations">Other dependency configurations</h3>
 <p>As there was already a breaking change, the team also made use of the opportunity to finally give the other configurations proper names:</p>
-
 <ul>
  <li><code class="highlighter-rouge">provided</code> configuration is now <code class="highlighter-rouge">compileOnly</code></li>
  <li><code class="highlighter-rouge">apk</code> configuration is now <code class="highlighter-rouge">runtimeOnly</code></li>
 </ul>
-
 <p>Just like before you can also combine these with your build variants: <code class="highlighter-rouge">debugApi</code>, <code class="highlighter-rouge">testImplementation</code>,…</p>
-
 <h2 id="other-migration-items">Other migration items</h2>
 <p>Android Studio 3.0 packs tons of other improvements that have finally been addressed. My favorites are:</p>
-
 <ul>
  <li>all Google dependencies are available via an online Maven repository</li>
  <li>current build variant can now be passed through to your libraries, removing the need for <code class="highlighter-rouge">publishNonDefault true</code></li>
  <li>…</li>
 </ul>
-
 <p>For more information have a look at the complete <a href="https://developer.android.com/studio/preview/features/new-android-plugin-migration.html">migration guide</a>.</p>
-
 <h2 id="wrap-up">Wrap-up</h2>
 <p>To build multi-module projects faster, the Android Gradle plugin needed a breaking API change. Always try to use the <code class="highlighter-rouge">implementation</code> dependency as this will cause fewer modules to be recompiled.</p>
-
 <p>As always you can reach me <a href="https://twitter.com/molsjeroen">@molsjeroen</a> on Twitter, or leave a comment below!</p>
-
      </section>
      <footer class="page__meta">
  <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+      <a href="https://jeroenmols.com/tags/android" class="page__taxonomy-item" rel="tag">android</a><span class="sep">, </span>
+      <a href="https://jeroenmols.com/tags/gradle" class="page__taxonomy-item" rel="tag">gradle</a><span class="sep">, </span>
+      <a href="https://jeroenmols.com/tags/tools" class="page__taxonomy-item" rel="tag">tools</a>
+    </span>
+ </p>
+ <p class="page__taxonomy">
     <strong><i class="fa fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
     <span itemprop="keywords">
-      <a href="https://jeroenmols.com/categories/#blog" class="page__taxonomy-item" rel="tag">blog</a>
+      <a href="https://jeroenmols.com/categories/blog" class="page__taxonomy-item" rel="tag">blog</a>
     </span>
  </p>
          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2017-06-14T00:00:00+02:00">June 14, 2017</time></p>
@@ -269,7 +243,6 @@
 </section>
      <section class="page__share">
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  
   <ins class="adsbygoogle"
        style="display:block"
        data-ad-client="ca-pub-9854541518226004"
@@ -279,7 +252,6 @@
   (adsbygoogle = window.adsbygoogle || []).push({});
   </script>
 </section>
-
  <nav class="pagination">
       <a href="https://jeroenmols.com/blog/2017/05/31/googleio17/" class="pagination--pager" title="My Google #io17 takeaways
 ">Previous</a>
@@ -291,6 +263,11 @@
    <section id="disqus_thread"></section>
 </div>
  </article>
+   <div class="page__related">
+     <h4 class="page__related-title">You May Also Enjoy</h4>
+     <div class="grid__wrapper">
+     </div>
+   </div>
 </div>
    <div class="page__footer">
      <footer>
