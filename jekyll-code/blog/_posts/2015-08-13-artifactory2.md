@@ -4,6 +4,11 @@ published: true
 header:
   image: img/blog/artifactory2/artifactory2.png
   imgcredit: Screenshot of Artifactory start up, https://www.jfrog.com
+tags:
+  - android
+  - tools
+  - maven
+  - artifactory
 ---
 
 My previous [blog post]({{ site.baseurl }}{% link blog/_posts/2015-08-06-artifactory.md %}) described how to set up your own private Maven repository with Artifactory in 30 minutes. This second and final part will make things more interesting and take your setup to the next level.

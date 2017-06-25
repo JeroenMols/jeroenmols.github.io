@@ -5,6 +5,11 @@ comments: true
 header:
   image: img/blog/methodcount/methodcount.png
   imgcredit: Image by Mutual mobile, https://mutualmobile.com, added method counts
+tags:
+  - android
+  - tools
+  - proguard
+  - methodcount
 ---
 As green field projects are a rare breed, chances are that you've inherited a legacy code base. If you're as lucky as me, that code base has over 65k methods causing the build times to be boringly slow.
 

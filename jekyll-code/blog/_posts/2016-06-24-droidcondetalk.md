@@ -4,6 +4,11 @@ published: true
 header:
   image: img/blog/droidconde16talk/droidcondetalk.png
   imgcredit: Main slide of https://speakerdeck.com/jeroenmols/testing-made-sweet-with-a-mockito, images credits at end.
+tags:
+  - android
+  - mockito
+  - testing
+  - droidcon
 ---
 At Droidcon Berlin 2016 I had a great time talking about testing using the [Mockito](http://mockito.org/) framework. While the talk wasn't recorded unfortunately, the great folks at [Voice Republic](https://voicerepublic.com/series/droidcon-berlin-2016) recorded an audio version which you can listen to as a podcast or together with the slides.
 

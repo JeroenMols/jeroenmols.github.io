@@ -4,6 +4,10 @@ published: true
 header:
   image: img/blog/androidstudio3/androidstudio3.png
   imgcredit: Android Studio 3.0 launch screen, https://androidstudio.googleblog.com/2017/05/android-studio-30-canary-1-sdk-updates.html, cropped
+tags:
+  - android
+  - tools
+  - gradle
 ---
 Upgrading to Android studio 3.0 territory will make building multi-module projects a lot faster, but it also means a breaking Gradle plugin API change unfortunately.
 

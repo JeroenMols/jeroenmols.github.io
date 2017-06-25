@@ -4,6 +4,10 @@ published: true
 header:
   image: img/blog/androidmakers17/androidmakers.jpg
   imgcredit: Android Makers logo and website background, http://androidmakers.fr/, merged together
+tags:
+  - android
+  - conference
+  - androidmakers
 ---
 After organizing Droidcon Paris for several year, the organizers decided to move on and experiment with a new format. This didn't just result in a well organized conference, but also in a fresh new vibe whilst still feeling familiar.
 

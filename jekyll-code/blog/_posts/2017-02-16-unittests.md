@@ -4,6 +4,10 @@ published: true
 header:
   image: img/blog/unittests/unittests.png
   imgcredit: Alberto G., https://creativecommons.org/licenses/by/2.0/, cropped
+tags:
+  - android
+  - testing
+  - cleancode
 ---
 If you can code, you can also write unit tests. Writing awesome tests on the other hand is a different story. Don't fool yourself: Unit testing code is production code that you will need to maintain, refactor and build upon for years to come.
 
