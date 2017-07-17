@@ -11,10 +11,11 @@ I'm always eager to share my technical knowledge with fellow developers. Don't h
 
 Upcoming talks:
 
-- Dutch Android User Group - Migrating to Android Studio 3.0
+- Droidcon UK - Deep into the IoT trenches: how to build a connected product
 
 2017:
 
+- Dutch Android User Group - [Migrating to Android Studio 3.0](https://speakerdeck.com/jeroenmols/migrating-to-android-studio-3-dot-0)
 - iCapps, June 2nd - [Deep into the IoT trenches: how to build a connected product]((https://speakerdeck.com/jeroenmols/deep-into-the-iot-trenches-how-to-build-a-connected-product))
 - GDG Brussels, June 7th - [Testing made sweet with a Mockito](https://speakerdeck.com/jeroenmols/testing-made-sweet-with-a-mockito-1)
 - Mobel, June 14th - [Lessons learned building connected IoT products](https://speakerdeck.com/jeroenmols/deep-into-the-iot-trenches-how-to-build-a-connected-product)
