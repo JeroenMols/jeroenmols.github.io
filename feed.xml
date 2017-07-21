@@ -1,4 +1,216 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.0">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2017-07-17T11:58:26+02:00</updated><id>https://jeroenmols.com/</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Implementation vs API dependency</title><link href="https://jeroenmols.com/blog/2017/06/14/androidstudio3/" rel="alternate" type="text/html" title="Implementation vs API dependency" /><published>2017-06-14T00:00:00+02:00</published><updated>2017-06-14T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2017/06/14/androidstudio3</id><content type="html" xml:base="https://jeroenmols.com/blog/2017/06/14/androidstudio3/">&lt;p&gt;Upgrading to Android studio 3.0 territory will make building multi-module projects a lot faster, but it also means a breaking Gradle plugin API change unfortunately.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.0">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2017-07-22T01:27:35+02:00</updated><id>https://jeroenmols.com/</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Embracing Java 8 language features</title><link href="https://jeroenmols.com/blog/2017/07/21/java8language/" rel="alternate" type="text/html" title="Embracing Java 8 language features" /><published>2017-07-21T00:00:00+02:00</published><updated>2017-07-21T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2017/07/21/java8language</id><content type="html" xml:base="https://jeroenmols.com/blog/2017/07/21/java8language/">&lt;p&gt;For years Android developers have been limited to Java 6 features. While RetroLambda or the experimental Jack toolchain would help, proper support from Google was notably missing.&lt;/p&gt;
+
+&lt;p&gt;Finally, Android Studio 3.0 brings (backported!) support for most Java 8 features. Continue reading to learn how those work and why you should upgrade.&lt;/p&gt;
+
+&lt;h2 id=&quot;enabling-java-8-features&quot;&gt;Enabling java 8 features&lt;/h2&gt;
+&lt;p&gt;While Android Studio already supported many features in the &lt;a href=&quot;https://developer.android.com/guide/platform/j8-jack.html&quot;&gt;Jack toolchain&lt;/a&gt;, starting from Android Studio 3.0 they are supported in the default toolchain.&lt;/p&gt;
+
+&lt;p&gt;First of all, make sure you disable Jack by removing the following from your main &lt;code class=&quot;highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;android&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;defaultConfig&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// Remove the jackOptions if they exist&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;jackOptions&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;enabled&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;And add the following configuration instead:&lt;/p&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;android&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;compileOptions&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;sourceCompatibility&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;JavaVersion&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;VERSION_1_8&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;targetCompatibility&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;JavaVersion&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;VERSION_1_8&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Also make sure you have the latest Gradle plugin in your root &lt;code class=&quot;highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; file:&lt;/p&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;buildscript&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;classpath&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'com.android.tools.build:gradle:3.0.0-alpha7'&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Congratulations, you can now use most Java 8 features on all API levels!&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note: In case you’re migrating from &lt;a href=&quot;https://github.com/evant/gradle-retrolambda&quot;&gt;RetroLambda&lt;/a&gt;, the official documentation has a more extensive &lt;a href=&quot;https://developer.android.com/studio/write/java8-support.html#migrate&quot;&gt;migration guide&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;lambdas&quot;&gt;Lambda’s&lt;/h2&gt;
+&lt;p&gt;Passing a listener to another class in Java 6 is quite verbose. A typical case would be where you add an &lt;code class=&quot;highlighter-rouge&quot;&gt;OnClickListener&lt;/code&gt; to a &lt;code class=&quot;highlighter-rouge&quot;&gt;View&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;button&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setOnClickListener&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;View&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;OnClickListener&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onClick&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;View&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;doSomething&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Lambda’s can dramatically simplify this to the following:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;button&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setOnClickListener&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;view&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;doSomething&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Notice that almost all boilerplate is removed: no access modifier, no return type and no method name!&lt;/p&gt;
+
+&lt;p&gt;Now how do lambda’s actually work?&lt;/p&gt;
+
+&lt;p&gt;They are syntactic sugar that reduce the need for anonymous class creation whenever you have an interface with exactly one method. We call such interfaces functional interfaces and &lt;code class=&quot;highlighter-rouge&quot;&gt;OnClickListener&lt;/code&gt; is an example:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// A functional interface has exactly one method&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;OnClickListener&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onClick&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;View&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Basically the lambda consists out of a three parts:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;button&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setOnClickListener&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;doSomething&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;declaration of all method arguments between brackets &lt;code class=&quot;highlighter-rouge&quot;&gt;()&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;an arrow &lt;code class=&quot;highlighter-rouge&quot;&gt;-&amp;gt;&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;code that needs to execute between brackets &lt;code class=&quot;highlighter-rouge&quot;&gt;&lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Note that in many cases even the brackets &lt;code class=&quot;highlighter-rouge&quot;&gt;()&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;&lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;&lt;/code&gt; can be removed. For more details have a look at the &lt;a href=&quot;https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html&quot;&gt;official documentation&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;method-references&quot;&gt;Method references&lt;/h2&gt;
+&lt;p&gt;Recall that lambda expressions remove a lot of boilerplate code for functional interfaces. Method references take that concept one step further when the lambda calls a method that already has a name.&lt;/p&gt;
+
+&lt;p&gt;In the following example:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;button&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setOnClickListener&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;view&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;doSomething&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;All the lambda does is redirecting the work to an existing &lt;code class=&quot;highlighter-rouge&quot;&gt;doSomething()&lt;/code&gt; method. In such a case, a method reference simplifies things further to:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;button&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setOnClickListener&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;doSomething&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Note that the referenced method must take exactly the same parameters as the functional interface:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// functional interface&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;OnClickListener&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onClick&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;View&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// referenced method: must take View as argument, because onClick() does&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;doSomething&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;View&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// do something here&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;So how do method references work?&lt;/p&gt;
+
+&lt;p&gt;They are again syntactic sugar to simplify a lambda expression that invokes an existing method. They can reference to:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;static methods&lt;/td&gt;
+      &lt;td&gt;MyClass::doSomething&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;instance method of object&lt;/td&gt;
+      &lt;td&gt;myObject::doSomething&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;constructor&lt;/td&gt;
+      &lt;td&gt;MyClass:: new&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;instance method of any argument type&lt;/td&gt;
+      &lt;td&gt;String::compare&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;For more examples about this have a look at the &lt;a href=&quot;https://docs.oracle.com/javase/tutorial/java/javaOO/methodreferences.html&quot;&gt;official documentation&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;default-interface-methods&quot;&gt;Default interface Methods&lt;/h2&gt;
+&lt;p&gt;Default methods make it possible to add new methods to an interface without breaking all classes that implement that interface.&lt;/p&gt;
+
+&lt;p&gt;Imagine if you have a &lt;code class=&quot;highlighter-rouge&quot;&gt;MyView&lt;/code&gt; interface that is implemented by a &lt;code class=&quot;highlighter-rouge&quot;&gt;MyFragment&lt;/code&gt; (typical MVP scenario):&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyView&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;showProgressbar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyFragment&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MyView&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;showProgressbar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;When you now want to add an extra method to &lt;code class=&quot;highlighter-rouge&quot;&gt;MyView&lt;/code&gt; your code will no longer compile, until &lt;code class=&quot;highlighter-rouge&quot;&gt;MyFragment&lt;/code&gt; also implements that new method. This is annoying, and can be even problematic when many classes are implementing said interface.&lt;/p&gt;
+
+&lt;p&gt;Therefore Java 8 now allows you to define default methods that provide a standard implementation:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyView&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;showProgressbar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hideProgressbar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// do something here&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;So how do default methods work?&lt;/p&gt;
+
+&lt;p&gt;Just define a method with the &lt;code class=&quot;highlighter-rouge&quot;&gt;default&lt;/code&gt; keyword in the interface and provide an actual default method body.&lt;/p&gt;
+
+&lt;p&gt;To learn more about this feature, have a look at the &lt;a href=&quot;https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html&quot;&gt;official documentation&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-to-get-started&quot;&gt;How to get started&lt;/h2&gt;
+&lt;p&gt;While this all might seem a bit overwhelming, Android Studio actually offers amazing quick fixes once you enable Java 8 features.&lt;/p&gt;
+
+&lt;p&gt;Just use &lt;code class=&quot;highlighter-rouge&quot;&gt;alt/option&lt;/code&gt; + &lt;code class=&quot;highlighter-rouge&quot;&gt;enter&lt;/code&gt; to convert a functional interface to a lamba or a lambda to a method reference.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/java8language/androidstudioconversion.gif&quot; alt=&quot;Java 8 language quick fixes&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This is a great way to get familiar with these new features and allows you to write code like you’re used to. After enough quick fixes by Android Studio you’ll learn in what cases a lambda or method reference would be possible and start writing them yourself.&lt;/p&gt;
+
+&lt;h2 id=&quot;supported-features&quot;&gt;Supported features&lt;/h2&gt;
+&lt;p&gt;While not all Java 8 features have been backported yet, Android Studio 3.0 offers plenty more features:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html&quot;&gt;static interface methods&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.oracle.com/javase/tutorial/java/annotations/type_annotations.html&quot;&gt;type annotations&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.oracle.com/javase/tutorial/java/annotations/repeating.html&quot;&gt;repeating annotations&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html&quot;&gt;try with resources&lt;/a&gt; (all versions, no longer min SDK 19)&lt;/li&gt;
+  &lt;li&gt;Java 8 APIs (e.g. stream) -&amp;gt; min SDK 24&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
+&lt;p&gt;Thanks to Java 8 features, a lot of code can be simplified into lambda’s or method references. Android Studio auto convert is the easiest way to start learning these features.&lt;/p&gt;
+
+&lt;p&gt;If you’ve made it this far, you should probably follow me on &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;Twitter&lt;/a&gt;. Feel free leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="android" /><category term="tools" /><category term="java" /><summary type="html">For years Android developers have been limited to Java 6 features. While RetroLambda or the experimental Jack toolchain would help, proper support from Google was notably missing.</summary></entry><entry><title type="html">Implementation vs API dependency</title><link href="https://jeroenmols.com/blog/2017/06/14/androidstudio3/" rel="alternate" type="text/html" title="Implementation vs API dependency" /><published>2017-06-14T00:00:00+02:00</published><updated>2017-06-14T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2017/06/14/androidstudio3</id><content type="html" xml:base="https://jeroenmols.com/blog/2017/06/14/androidstudio3/">&lt;p&gt;Upgrading to Android studio 3.0 territory will make building multi-module projects a lot faster, but it also means a breaking Gradle plugin API change unfortunately.&lt;/p&gt;
 
 &lt;p&gt;This blog post will detail all benefits of this change and guide you through the upgrade process.&lt;/p&gt;
 
@@ -764,125 +976,4 @@
 &lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
 &lt;p&gt;Code coverage is a great way to track your testing efforts. With help of a simple flag you can easily avoid it from slowing down your normal development builds.&lt;/p&gt;
 
-&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="android" /><category term="tools" /><category term="gradle" /><category term="testing" /><summary type="html">Code coverage is an awesome way to motivate you and your team to write more tests. But did you know that simply enabling it slows down your build significantly?</summary></entry><entry><title type="html">Why you should care about copyright</title><link href="https://jeroenmols.com/blog/2016/08/03/copyright/" rel="alternate" type="text/html" title="Why you should care about copyright" /><published>2016-08-03T00:00:00+02:00</published><updated>2016-08-03T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2016/08/03/copyright</id><content type="html" xml:base="https://jeroenmols.com/blog/2016/08/03/copyright/">&lt;p&gt;As die hard Android developers, copyright notices are usually not on top of our priority list. Yet large corporations always insist to add a copyright header. Why do they do that? Should you do that for your open source libraries?&lt;/p&gt;
-
-&lt;p&gt;This blog post will explain what copyright is and why it’s so important. Further it’ll also show how to easily add/update copyright notices to your code base.&lt;/p&gt;
-
-&lt;h2 id=&quot;intro-to-copyrights&quot;&gt;Intro to copyrights&lt;/h2&gt;
-&lt;p&gt;According to wikipedia, copyright is:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;…a legal right created by the law of a country that grants the creator of an original work exclusive rights for its use and distribution&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Simplified this means that when you create something “original”, people cannot simply use or copy that without your explicit permission.&lt;/p&gt;
-
-&lt;p&gt;This applies to art forms such as: literary works, music compositions, photographs,… and the highest art form of all: computer software!&lt;/p&gt;
-
-&lt;p&gt;Hence every line of code you write is - besides a true piece of art - protected by copyright for the rest of your life. No action is needed to acquire this right, it’s implicitly granted on creation.&lt;/p&gt;
-
-&lt;p&gt;Now obviously this is highly simplified and there are important exceptions, most notably “&lt;a href=&quot;https://en.wikipedia.org/wiki/Right_to_quote&quot;&gt;the right of quotation&lt;/a&gt;”. But it’s fair to state that anything you blog or code in your time is falls under copyright protection.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;What with the software I write for my employer?&lt;/strong&gt;&lt;br /&gt; All copyrights explicitly belong to your employer, unless you explicitly agree to other terms in your contact.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;licenses&quot;&gt;Licenses&lt;/h2&gt;
-&lt;p&gt;A software license is a “contract” that allows others from using your code. Restrictions may apply on how “it can be used” and explicit terms may be imposed prior to using it.&lt;/p&gt;
-
-&lt;h3 id=&quot;creating-code&quot;&gt;Creating code&lt;/h3&gt;
-&lt;p&gt;All code you write is by default copyright protected, even when not enforced by an explicit license. Therefore others are not allowed to use it, even if you make it &lt;a href=&quot;https://help.github.com/articles/open-source-licensing/&quot;&gt;publicly available&lt;/a&gt; on GitHub!&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;…the absence of a license means that the default copyright laws apply. This means that nobody else may reproduce, distribute, or create derivative works from your work.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Therefore it is utterly important to explicitly state a license, otherwise all open source code you write is… well… useless.&lt;/p&gt;
-
-&lt;p&gt;To apply a license, simply distribute a license together with your source code e.g by putting a &lt;code class=&quot;highlighter-rouge&quot;&gt;LICENSE&lt;/code&gt; file at the root of my repository. Further it is also a good idea to add a copyright notice on top of every file to avoid any confusion.&lt;/p&gt;
-
-&lt;p&gt;This is how I did it in the my library &lt;a href=&quot;https://github.com/JeroenMols/LandscapeVideoCamera&quot;&gt;LandscapeVideoCamera&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/copyright/landscapevideocameralicense.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/copyright/landscapevideocameralicense.png&quot; alt=&quot;License for Landscape Video Camera&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;And at the top of every file:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/copyright/landscapevideocameralicense2.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/copyright/landscapevideocameralicense2.png&quot; alt=&quot;Copyright notice for Landscape Video Camera&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;using-code&quot;&gt;Using code&lt;/h3&gt;
-&lt;p&gt;There is a common misconception that open source equals free to use. In reality however, even seemingly innocent open source communities will take legal action if you infringe on their license. Hence care must be taken to comply with the license of all code you use.&lt;/p&gt;
-
-&lt;p&gt;Complying to a license can range from:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Making all your code open source&lt;/li&gt;
-  &lt;li&gt;Only non commercial use&lt;/li&gt;
-  &lt;li&gt;Acknowledging the author&lt;/li&gt;
-  &lt;li&gt;…&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Do carefully review the license of every piece of software you use and make sure you satisfy all of its terms.&lt;/p&gt;
-
-&lt;p&gt;Should that not be acceptable for your use case, you can always contact the author and request him/her to purchase the same software under an alternative license.&lt;/p&gt;
-
-&lt;h3 id=&quot;understanding-licenses&quot;&gt;Understanding licenses&lt;/h3&gt;
-&lt;p&gt;As you’re likely not a legal ninja, you must be wondering:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;How do I pick the right license for my project?&lt;/li&gt;
-  &lt;li&gt;Given a license, where can I find its terms/restrictions?&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Well there is a great website explaining the ins and outs of various licenses: &lt;a href=&quot;http://choosealicense.com/&quot;&gt;choosealicense.com&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://choosealicense.com/&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/copyright/choosealicense.png&quot; alt=&quot;Choose a license: great website to learn everything about licenses&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Obviously if you work for a larger corporation like me, you should also involve your legal department.&lt;/p&gt;
-
-&lt;h2 id=&quot;addingupdating-licenses-to-your-code&quot;&gt;Adding/Updating licenses to your code&lt;/h2&gt;
-&lt;p&gt;Fortunately Android studio can completely handle all hassle of adding copyright notices for you. It can even update existing notices should you decide to move to a different license or simply update the year.&lt;/p&gt;
-
-&lt;p&gt;First of all go to “Preferences &amp;gt; Editor &amp;gt; Copyright &amp;gt; Copyright profiles” and press the plus icon to add a new profile. Give it a meaningful name and fill in your copyright notice.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Copyright $today.year Jeroen Mols
-
-Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/copyright/copyrightapache.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/copyright/copyrightapache.png&quot; alt=&quot;Add a new copyright profile&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Note that you can use the flag &lt;code class=&quot;highlighter-rouge&quot;&gt;$today.year&lt;/code&gt; to denote the current year.&lt;/p&gt;
-
-&lt;p&gt;Optionally, the formatting pane allows you to tweak the copyright notice for every file type (Java, Xml, Groovy,…)&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/copyright/copyrightformatting.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/copyright/copyrightformatting.png&quot; alt=&quot;Optionally tweak the copyright look and feel&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Now select the “default project copyright” in the main Copyright pane and you’re fancy new copyright will be added to every new file you create.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/copyright/copyrightselect.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/copyright/copyrightselect.png&quot; alt=&quot;Select your configured copyright profile&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;To update or add the notice to all your existing files, simply right click any file in the project pane and select “Update copyright…”.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/copyright/copyrightupdate.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/copyright/copyrightupdate.png&quot; alt=&quot;Update existing copyright of files&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/copyright/copyrightscope.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/copyright/copyrightscope.png&quot; alt=&quot;Choose what scope to apply the copyright headers to&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;That’s it! You now have a one click way of ensuring your copyright notices are up to date.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/copyright/copyrightdone.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/copyright/copyrightdone.png&quot; alt=&quot;Copyright notice added to source code&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
-&lt;p&gt;Copyright is not something to mess around with and you can face cause serious legal consequences if you don’t. Even your open source projects should have a proper copyright notice. Fortunately &lt;a href=&quot;http://choosealicense.com/&quot;&gt;choosealicense.com&lt;/a&gt; and Android Studio help you choose and apply the correct license.&lt;/p&gt;
-
-&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="android" /><category term="copyright" /><category term="tools" /><summary type="html">As die hard Android developers, copyright notices are usually not on top of our priority list. Yet large corporations always insist to add a copyright header. Why do they do that? Should you do that for your open source libraries?</summary></entry></feed>
+&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="android" /><category term="tools" /><category term="gradle" /><category term="testing" /><summary type="html">Code coverage is an awesome way to motivate you and your team to write more tests. But did you know that simply enabling it slows down your build significantly?</summary></entry></feed>

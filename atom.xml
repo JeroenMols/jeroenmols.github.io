@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle>
- <updated>2017-07-17T11:58:26+02:00</updated>
+ <updated>2017-07-22T01:27:35+02:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,22 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>Embracing Java 8 language features</title>
+   <link href="https://jeroenmols.com/blog/2017/07/21/java8language/"/>
+   <updated>2017-07-21T00:00:00+02:00</updated>
+   <id>https://jeroenmols.com/blog/2017/07/21/java8language</id>
+   <content type="html"><![CDATA[
+     
+     <p>For years Android developers have been limited to Java 6 features. While RetroLambda or the experimental Jack toolchain would help, proper support from Google was notably missing.</p>
+
+<p>Finally, Android Studio 3.0 brings (backported!) support for most Java 8 features. Continue reading to learn how those work and why you should upgrade.</p>
+
+
+     <a href="https://jeroenmols.com/blog/2017/07/21/java8language/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>Implementation vs API dependency</title>
