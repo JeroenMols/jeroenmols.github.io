@@ -193,4 +193,4 @@ That's it! A clean simple and easy to use resource naming scheme. Don't forget t
 
 Even though this scheme doesn't (yet) cover all resource types, it does provide an easy to use solution for where most naming pain currently is. In a future blogpost I'll also make a suggestion for the other ones.
 
-Let me know what you think by contacting me [@molsjeroen](https://twitter.com/molsjeroen) on twitter, or leaving a comment below!
+If you've made it this far, you should probably follow me on [Twitter](https://twitter.com/molsjeroen). Feel free leave a comment below!
