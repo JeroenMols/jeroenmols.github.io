@@ -154,18 +154,25 @@
        </header>
      <section class="page__content" itemprop="text">
        <p>Too many times I’ve seen developers trying to avoid crashes at all cost. But are unhandled exceptions really that bad? And are null checks really the answer?</p>
+
 <p>Actually, sometimes you want your app to crash. This post will explain why and give some practical tips.</p>
+
 <h2 id="prologue">Prologue</h2>
 <p>In this post I focus on null checks for simplicity, but this can easily be generalized to any other edge case.</p>
+
 <h2 id="the-null-check-architecture">The null check architecture</h2>
 <p>Let’s say we have a simple application that shows a list of sports player:</p>
+
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">showPlayers</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Player</span><span class="o">&gt;</span> <span class="n">soccerPlayers</span><span class="o">)</span> <span class="o">{</span>
   <span class="c1">// some awesome code here</span>
 <span class="o">}</span>
 </code></pre>
 </div>
+
 <p>In a happy scenario, this will work, but what happens if the list is null?</p>
+
 <p>Obviously can add an infamous null check:</p>
+
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">showPlayers</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Player</span><span class="o">&gt;</span> <span class="n">soccerPlayers</span><span class="o">)</span> <span class="o">{</span>
   <span class="k">if</span> <span class="o">(</span><span class="n">soccerPlayers</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span><span class="o">;</span>
 
@@ -173,8 +180,11 @@
 <span class="o">}</span>
 </code></pre>
 </div>
+
 <p>All settled!</p>
+
 <p>Oh wait… the list can also be empty:</p>
+
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">showPlayers</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Player</span><span class="o">&gt;</span> <span class="n">soccerPlayers</span><span class="o">)</span> <span class="o">{</span>
   <span class="k">if</span> <span class="o">(</span><span class="n">soccerPlayers</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">soccerPlayers</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="k">return</span><span class="o">;</span>
 
@@ -182,11 +192,16 @@
 <span class="o">}</span>
 </code></pre>
 </div>
+
 <p>And what about the five layers of architecture <code class="highlighter-rouge">soccerPlayers</code> gets passed through below the UI? Should we also duplicate our checks in each of those layers in those?</p>
+
 <p>Before you know it you’ll have null checks everywhere!</p>
+
 <h2 id="the-null-check-problem">The null check problem</h2>
 <p>Obviously, null checks clutter your code significantly.</p>
+
 <p>But that’s not the only problem! Because once you’re used to using them, you’ll use them everywhere!</p>
+
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">showPlayers</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Player</span><span class="o">&gt;</span> <span class="n">soccerPlayers</span><span class="o">)</span> <span class="o">{</span>
   <span class="k">if</span> <span class="o">(</span><span class="n">soccerPlayers</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span><span class="o">;</span>
 
@@ -198,37 +213,57 @@
 <span class="o">}</span>
 </code></pre>
 </div>
+
 <p>Even when you don’t need them, you’ll still add them!</p>
+
 <p>Let that sink in for a second…</p>
+
 <p>What is the exact problem here?</p>
+
 <blockquote>
  <p>An “innocent” null check can easily mask a bigger, more fundamental issue</p>
 </blockquote>
+
 <p>Should <code class="highlighter-rouge">soccerPlayers</code> actually ever be null there in the first place? Or is it the responsibility of the lower levels of your app to return an empty list instead?</p>
+
 <p>And what should happen when the <code class="highlighter-rouge">soccerPlayers</code> is actually null? Surely showing the user a completely blank screen by doing a <code class="highlighter-rouge">return</code>, right?</p>
+
 <p>The latter actually means that your app will stop working “silently” in production without you having any way of detecting that!</p>
+
 <h2 id="crashes-to-the-rescue">Crashes to the rescue</h2>
 <blockquote>
  <p>If an app gets into a state it wasn’t designed for, it should crash. There is no general way of handling that.</p>
 </blockquote>
+
 <p>Methods shouldn’t check their inputs for every possible scenario that can theoretically occur. Instead, you should carefully consider what the input can actually be and only prepare for that.</p>
+
 <p>If your app gets in a state you didn’t design it for, wouldn’t that be something you would like to know ASAP?</p>
+
 <p>Well in come our beloved exceptions!</p>
+
 <p>Unhandled exceptions are great because they:</p>
+
 <ul>
  <li>notify you immediately by crashing the app</li>
  <li>highlight the problem instead of dying silently</li>
  <li>have a trace to pinpoint the problem</li>
  <li>are automatically backed up to your crashreporting</li>
 </ul>
+
 <p>This obviously doens’t mean that your app should crash for your users! All I’m saying is that if there is a problem in my app, I’d rather know about it by getting a crash report instead of not knowing.</p>
+
 <p>Crash or not, for the end user it’s the same: their app is broken.</p>
+
 <p>And be reassured, you won’t start bothering users with more crashes! Before rolling out to production you still have several safety nets: developer testing, QA department, beta testing, staged rollout,…</p>
+
 <p>So even with this strategy, you can still get to 99,9% crash free users.</p>
+
 <center><blockquote class="twitter-tweet" data-conversation="none" data-lang="nl"><p lang="en" dir="ltr"><a href="https://twitter.com/molsjeroen">@molsjeroen</a> <a href="https://twitter.com/Jan_Joris">@Jan_Joris</a> we have maybe 100s of throw new IllegalStateException in our code base and our crash-free rate is 99.9%</p>&mdash; Said Tahsin Dane (@tasomaniac) <a href="https://twitter.com/tasomaniac/status/839943184729923586">9 maart 2017</a></blockquote>
 <script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script></center>
+
 <h2 id="practical-tips">Practical tips</h2>
 <p>To clarify this approach and to help you kickstart implementing it:</p>
+
 <ol>
  <li>Always design your app to be robust against any input outside of your control: responses from webservices, data entered in UI, incoming intents,…</li>
  <li>Ensure data integrity at the point of entry in your app. This way invalid data (null, empty,…) cannot occur anywhere else in your app and you don’t have to check for it.</li>
@@ -236,9 +271,12 @@
  <li>If a certain method cannot be called in production, can only be called once,… throw an IllegalStateException.</li>
  <li>Always test thoroughly before shipping to all your users. You’ll catch the feared “crashes” before your users do.</li>
 </ol>
+
 <h2 id="wrap-up">Wrap-up</h2>
 <p>Instead of being afraid of crashes, you should embrace them to find errors in your apps fasters. Crashes not only make errors immediately visible, they also offer a convenient way of debugging them via the stacktrace.</p>
+
 <p>As always you can reach me <a href="https://twitter.com/molsjeroen">@molsjeroen</a> on twitter, or leave a comment below!</p>
+
      </section>
      <footer class="page__meta">
  <p class="page__taxonomy">
@@ -267,6 +305,7 @@
 </section>
      <section class="page__share">
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
   <ins class="adsbygoogle"
        style="display:block"
        data-ad-client="ca-pub-9854541518226004"
@@ -276,6 +315,7 @@
   (adsbygoogle = window.adsbygoogle || []).push({});
   </script>
 </section>
+
  <nav class="pagination">
       <a href="https://jeroenmols.com/blog/2017/02/16/unittests/" class="pagination--pager" title="Write awesome unit tests
 ">Previous</a>
@@ -284,8 +324,8 @@
  </nav>
    </div>
      <div class="page__comments">
-   <h4 class="page__comments-title">Leave a Comment</h4>
-   <section id="disqus_thread"></section>
+       <h4 class="page__comments-title">Leave a Comment</h4>
+       <section id="disqus_thread"></section>
 </div>
  </article>
    <div class="page__related">

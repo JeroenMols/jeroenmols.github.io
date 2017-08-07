@@ -154,56 +154,81 @@
        </header>
      <section class="page__content" itemprop="text">
        <p>Having founded the entire Droidcon franchise in 2009, Droidcon Berlin is a magical conference to be at. Not only do they have an awesome lineup of speakers (including yours truly). But they also organize great after hour events. Further they’re the first conference ever where I didn’t have any Wi-Fi issues (looking at you #io16).</p>
+
 <p>As there were four different tracks, it was obviously not possible to attend every session. But I did notice some general themes and would like to share my personal highlights with you.</p>
+
 <h2 id="architecture">Architecture</h2>
 <p>While Android is maturing as a platform, developers are also professionalizing their applications. Every growing apps mean that testability, maintenance and refactoring is only increasing in importance.</p>
+
 <p>My key takeaways:</p>
+
 <ul>
  <li>MVP is a UI pattern not an architecture</li>
  <li>All dependencies should point in one direction</li>
  <li>Don’t be dogmatic</li>
  <li>Users don’t care about your architecture</li>
 </ul>
+
 <h2 id="iot">IoT</h2>
 <p><img src="https://jeroenmols.com/img/blog/droidconde16/iotcoffee.jpg" alt="Philips Hue Coffee" class="align-center" /></p>
+
 <p>Interest in IoT products is steadily increasing, but as a developer it is still not easy to create IoT apps. Properly handling things like Bluetooth LE keeps on being plagued by device specific issues. And seemingly simple problems like properly handling a user sign in are still extremely complex.</p>
+
 <p>My key takeaways:</p>
+
 <ul>
  <li>When using BT LE, only support API 21 or higher</li>
  <li>Handle all bluetooth LE callbacks on separate HandlerThread</li>
  <li>Firebase can handle all sign in complexity for you</li>
 </ul>
+
 <h2 id="designing-for-the-next-billion">Designing for the next billion</h2>
 <p><img src="https://jeroenmols.com/img/blog/droidconde16/nextbillion.jpg" alt="Designing for the next billion" class="align-center" /></p>
+
 <p>Where we used to be educated that “a developer phone is not a user phone”, this message is now morphing towards people in emerging markets. Designing for such markets doesn’t only require functional changes like developing for offline first, but it even requires you to completely think your UX.</p>
+
 <p>My key takeaways:</p>
+
 <ul>
  <li>access to cheap fast internet is not a given</li>
  <li>battery life is even more precious in emerging countries</li>
  <li>understandable UX when smartphone is your first computer</li>
 </ul>
+
 <h2 id="other-hot-topics">Other hot topics</h2>
 <p><img src="https://jeroenmols.com/img/blog/droidconde16/alphastates.jpg" alt="You can use alpha values for button states in XML" class="align-center" /></p>
+
 <p>Besides these, also a lot of attention was spent on testing and tooling. There were great talks about styling, theming and creating custom views. And many sessions also dived deeper into optimizing your apps performance. Bit unfortunate that there weren’t any more talks on the new Android N features.</p>
+
 <p>My key takeaways:</p>
+
 <ul>
  <li>You can use alpha values for button states in XML</li>
  <li>Use overlay themes instead of changing text colors</li>
  <li>Tests should be fast, focussed and reliable</li>
  <li>It maybe worth to convert an existing app to RXJava, but keep it contained to particular layers. (e.g. Webservice)</li>
 </ul>
+
 <h2 id="sketchnoting">Sketchnoting</h2>
 <p><img src="https://jeroenmols.com/img/blog/droidconde16/sketchnoting.jpg" alt="Corey Leigh Latislaw creating a sketch note" class="align-center" /></p>
+
 <p>Sketch notes are really awesome! In this, creative people summarize a talk into a very cool one pager. This doesn’t only look great, but it’s also by far the easiest way to get a high level view of a talk.</p>
+
 <p>At Droidcon both <a href="https://twitter.com/corey_latislaw">Corey Leigh Latislaw</a> and <a href="https://twitter.com/TeresaHolfeld">Teresa Holfeld</a> were actively creating sketch notes. You should check their twitter feeds for the awesome content they created.</p>
+
 <p>Just a sample:</p>
+
 <center><blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Offline First by <a href="https://twitter.com/glynn_bird">@glynn_bird</a> at <a href="https://twitter.com/hashtag/droidconDe?src=hash">#droidconDe</a>. <a href="https://twitter.com/hashtag/sketchnote?src=hash">#sketchnote</a> <a href="https://t.co/SkeriMsigT">pic.twitter.com/SkeriMsigT</a></p>&mdash; Corey Leigh Latislaw (@corey_latislaw) <a href="https://twitter.com/corey_latislaw/status/743390864660135937">June 16, 2016</a></blockquote>
 <script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script></center>
+
 <center><blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Themes and Styles demystified: talk by <a href="https://twitter.com/chrisbanes">@chrisbanes</a> <a href="https://twitter.com/hashtag/droidconDE?src=hash">#droidconDE</a> <a href="https://twitter.com/hashtag/sketchnotes?src=hash">#sketchnotes</a> <a href="https://t.co/mXNcW8lGRS">pic.twitter.com/mXNcW8lGRS</a></p>&mdash; Teresa Holfeld (@TeresaHolfeld) <a href="https://twitter.com/TeresaHolfeld/status/743438928666034176">June 16, 2016</a></blockquote>
 <script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script></center>
+
 <p>Thanks for both of them for creating such great summaries.</p>
+
 <h2 id="conference-slides">Conference slides</h2>
 <p>While the conference organizers will publish all slides very soon, I can image that quite a few people are already looking for a sneak preview. Hence I bundled everything I could already gather from socials.</p>
+
 <ul>
  <li><a href="https://speakerdeck.com/jeroenmols/testing-made-sweet-with-a-mockito">Testing made sweet with a Mockito</a> by Jeroen Mols</li>
  <li><a href="https://speakerdeck.com/jonreeve/reverse-engineering-is-not-just-for-hackers">Reverse engineering is not just for hackers</a> by Jon Reeve</li>
@@ -232,8 +257,10 @@ Danny Preussler</li>
  <li><a href="https://speakerdeck.com/lyslydia/were-all-ux">We’re all UX!</a> by Lydia Selimalhigazi and Caroline Smith</li>
  <li><a href="http://www.slideshare.net/seamaster29/classshark-android-and-java-executables-browser">10 ways to analyse runtime failure using Classy Shark</a> by Boris Farber</li>
 </ul>
+
 <h2 id="credits">Credits</h2>
 <p>Thanks to the entire Droidcon Berlin team for organizing such a great conference and to all sponsors for their support. Keep up the awesome job!</p>
+
      </section>
      <footer class="page__meta">
  <p class="page__taxonomy">
@@ -261,6 +288,7 @@ Danny Preussler</li>
 </section>
      <section class="page__share">
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
   <ins class="adsbygoogle"
        style="display:block"
        data-ad-client="ca-pub-9854541518226004"
@@ -270,6 +298,7 @@ Danny Preussler</li>
   (adsbygoogle = window.adsbygoogle || []).push({});
   </script>
 </section>
+
  <nav class="pagination">
       <a href="https://jeroenmols.com/blog/2016/05/06/methodcount/" class="pagination--pager" title="Efficiently reducing your method count
 ">Previous</a>
@@ -278,8 +307,8 @@ Danny Preussler</li>
  </nav>
    </div>
      <div class="page__comments">
-   <h4 class="page__comments-title">Leave a Comment</h4>
-   <section id="disqus_thread"></section>
+       <h4 class="page__comments-title">Leave a Comment</h4>
+       <section id="disqus_thread"></section>
 </div>
  </article>
    <div class="page__related">

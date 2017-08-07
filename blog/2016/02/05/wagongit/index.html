@@ -154,36 +154,54 @@
        </header>
      <section class="page__content" itemprop="text">
        <p>As my previous blogposts already covered how to set up a private Maven repository, you might wonder “Why again a Maven blogpost?”. Well that’s a fair question and the answer is twofold:</p>
+
 <ol>
  <li>Backup mechanism, to ensure you never ever loose releases.</li>
  <li>Remote access outside of your local network (intranet).</li>
 </ol>
+
 <p>And Git implicitly solves both! :)</p>
+
 <p>I’ll demonstrate how to configure Bitbucket as a free private remote Maven repository and automate everything in one simple Gradle script.</p>
+
 <h2 id="preface">Preface</h2>
 <p>While you could use any Git repository (like GitHub), I choose Bitbucket as it offers <a href="https://bitbucket.org/product/pricing">free private repositories</a> for small teams. Furthermore it has an API which we will need for some of the wizardry later on.</p>
+
 <p>All source code is available on <a href="https://github.com/JeroenMols/WagonGitExample">Github</a> and can be used after some minor BitBucket configuration. You can find the <a href="https://github.com/JeroenMols/GitAsMaven">Gradle script</a> in a separate repository.</p>
+
 <h2 id="bitbucket">Bitbucket</h2>
 <p>Without any further a do, lets get to it and start configuring BitBucket.</p>
+
 <p>Login to Bitbucket and create a new private repository called <code class="highlighter-rouge">maven_repository</code>.</p>
+
 <p><a href="https://jeroenmols.com/img/blog/wagongit/createrepository.png"><img src="https://jeroenmols.com/img/blog/wagongit/createrepository.png" alt="Create new BitBucket repository" class="align-center" /></a></p>
+
 <p>Checkout the repository locally, create a <code class="highlighter-rouge">README.md</code> file and commit that file to your local branch. Now push that branch to BitBucket, BUT make sure to push it to a remote branch called “releases”. (this is key, as the plugin we’ll use later on depends on this)</p>
+
 <p><a href="https://jeroenmols.com/img/blog/wagongit/releasebranch.png"><img src="https://jeroenmols.com/img/blog/wagongit/releasebranch.png" alt="BitBucket repository with main branch releases." class="align-center" /></a></p>
+
 <blockquote>
  <p><strong>Troubleshooting releases branch</strong>
 If you accidentally push your local branch to a remote called <code class="highlighter-rouge">master</code>, create a new branch locally called releases, push that to a remote <code class="highlighter-rouge">releases</code> and change your main branch in the BitBucket settings for that repository.</p>
+
  <p><a href="https://jeroenmols.com/img/blog/wagongit/configuremainbranch.png"><img src="https://jeroenmols.com/img/blog/wagongit/configuremainbranch.png" alt="Change the main branch from master to releases" class="align-center" /></a></p>
+
  <p>You can safely remove origin/master if you want.</p>
 </blockquote>
+
 <h2 id="wagon-git">Wagon-git</h2>
 <p>To upload Maven artifacts to a Git repository, we will use a Maven plugin called <a href="https://synergian.github.io/wagon-git/">Wagon-git</a>, which can hook into the existing Gradle DSL for Maven uploads.</p>
+
 <p>Simply add a new repository:</p>
+
 <div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="n">repositories</span> <span class="o">{</span>
     <span class="n">maven</span> <span class="o">{</span> <span class="n">url</span> <span class="s2">"https://raw.github.com/synergian/wagon-git/releases"</span> <span class="o">}</span>
 <span class="o">}</span>
 </code></pre>
 </div>
+
 <p>And configure Maven like you would normally do, but with our BitBucket repository url in a particular format:</p>
+
 <div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="n">uploadArchives</span> <span class="o">{</span>
     <span class="n">repositories</span><span class="o">.</span><span class="na">mavenDeployer</span> <span class="o">{</span>
         <span class="o">...</span>
@@ -193,17 +211,26 @@ If you accidentally push your local branch to a remote called <code class="highl
 <span class="o">}</span>
 </code></pre>
 </div>
+
 <p>Where <code class="highlighter-rouge">COMPANY</code> is the name of your BitBucket organization and <code class="highlighter-rouge">REPOSITORY_NAME</code> is <code class="highlighter-rouge">maven_repository</code>.</p>
+
 <p>Now you can simply create a new release by running the following command:</p>
+
 <div class="language-bash highlighter-rouge"><pre class="highlight"><code>./gradlew assembleRelease uploadArchives
 </code></pre>
 </div>
+
 <p>And check BitBucket for the resulting artifacts.</p>
+
 <p><a href="https://jeroenmols.com/img/blog/wagongit/releasecommits.png"><img src="https://jeroenmols.com/img/blog/wagongit/releasecommits.png" alt="Release commit of a Maven upload to BitBucket." class="align-center" /></a></p>
+
 <p><a href="https://jeroenmols.com/img/blog/wagongit/releasecommitdetails.png"><img src="https://jeroenmols.com/img/blog/wagongit/releasecommitdetails.png" alt="File details of a release commit." class="align-center" /></a></p>
+
 <h2 id="unique-versions-only">Unique versions only</h2>
 <p>As Git naturally allows you to override existing files, we will need to do something to prevent this from happening. Otherwise, you could have a v1.1.3 library, which is stable one day and full of bugs the next (because someone replaced it in the Maven repo). Not exactly what you want, right?</p>
+
 <p>We will use the BitBucket API to verify if a particular release already exists:</p>
+
 <div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="n">task</span> <span class="n">lookForArtifacts</span> <span class="o">{</span>
     <span class="n">doLast</span> <span class="o">{</span>
         <span class="o">...</span>
@@ -217,15 +244,22 @@ If you accidentally push your local branch to a remote called <code class="highl
 <span class="o">}</span>
 </code></pre>
 </div>
+
 <p>Quite simple actually: just reverse engineer the url of a particular release artifact and the see if we get a 200 response or not.</p>
+
 <p>Finally we ensure that we always run the previous task before running the Maven task:</p>
+
 <div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="n">uploadArchives</span><span class="o">.</span><span class="na">dependsOn</span> <span class="n">lookForArtifacts</span>
 </code></pre>
 </div>
+
 <p>Running <code class="highlighter-rouge">./gradlew uploadArchives</code> now successfully creates a release.</p>
+
 <p><a href="https://jeroenmols.com/img/blog/wagongit/checkforartifacts.png"><img src="https://jeroenmols.com/img/blog/wagongit/checkforartifacts.png" alt="Check for existing artifacts before uploadArchives." class="align-center" /></a></p>
+
 <h2 id="consuming-artifacts">Consuming artifacts</h2>
 <p>Add your Maven repository to the list of repositories in your main <code class="highlighter-rouge">build.gradle</code> file:</p>
+
 <div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="n">allprojects</span> <span class="o">{</span>
     <span class="n">repositories</span> <span class="o">{</span>
         <span class="n">jcenter</span><span class="o">()</span>
@@ -241,30 +275,41 @@ If you accidentally push your local branch to a remote called <code class="highl
 <span class="o">}</span>
 </code></pre>
 </div>
+
 <p>Note that we have to provide a <code class="highlighter-rouge">username</code> and <code class="highlighter-rouge">password</code> as we are connecting to a private repository.</p>
+
 <blockquote>
  <p><strong>Important</strong></p>
+
  <p>Make sure not to put your username and password directly into the <code class="highlighter-rouge">build.gradle</code> file! That would be a major security risk. Instead have a look at <a href="http://jeroenmols.com/blog/2015/08/13/artifactory2/">this blogpost</a> to learn how to securely provide a username and password.</p>
 </blockquote>
+
 <p>Now simply add a dependency on your library like you are used to and you’re ready.</p>
+
 <div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="n">dependencies</span> <span class="o">{</span>
     <span class="o">...</span>
     <span class="n">compile</span> <span class="s1">'com.jeroenmols.awesomelibrary:awesomelibrary:1.0.0'</span>
 <span class="o">}</span>
 </code></pre>
 </div>
+
 <h2 id="putting-it-all-together">Putting it all together</h2>
 <p>To make your life a lot easier, I’ve created a <a href="https://github.com/JeroenMols/WagonGitExample/blob/master/library/publish-bitbucket.gradle">Gradle script</a> that does everything for you.</p>
+
 <p>Setting up your project is easy:</p>
+
 <ol>
  <li>Add the following plugin to the top of the <a href="https://github.com/JeroenMols/WagonGitExample/blob/master/library/build.gradle">build.gradle</a> file in your library folder</li>
 </ol>
+
 <div class="language-groovy highlighter-rouge"><pre class="highlight"><code>  <span class="n">apply</span> <span class="nl">from:</span> <span class="s1">'https://raw.githubusercontent.com/JeroenMols/GitAsMaven/master/publish-bitbucket.gradle'</span>
 </code></pre>
 </div>
+
 <ol>
  <li>Create a <a href="https://github.com/JeroenMols/WagonGitExample/blob/master/library/gradle.properties">gradle.properties</a> file within your library folder with the following parameters:</li>
 </ol>
+
 <div class="language-groovy highlighter-rouge"><pre class="highlight"><code>  <span class="n">ARTIFACT_VERSION</span><span class="o">=&lt;</span><span class="n">version_here</span><span class="o">&gt;</span>
   <span class="n">ARTIFACT_NAME</span><span class="o">=&lt;</span><span class="n">libraryname_here</span><span class="o">&gt;</span>
   <span class="n">ARTIFACT_PACKAGE</span><span class="o">=&lt;</span><span class="n">packagename_here</span><span class="o">&gt;</span>
@@ -274,24 +319,33 @@ If you accidentally push your local branch to a remote called <code class="highl
   <span class="n">REPOSITORY_NAME</span><span class="o">=&lt;</span><span class="n">bitbucket_reponame_here</span><span class="o">&gt;</span>
 </code></pre>
 </div>
+
 <ol>
  <li>Create a <a href="https://github.com/JeroenMols/WagonGitExample/blob/master/gradle.properties">gradle.properties</a> file in the root of your project (or better in the global <code class="highlighter-rouge">.gradle</code> folder on your system) with the following parameters</li>
 </ol>
+
 <div class="language-groovy highlighter-rouge"><pre class="highlight"><code>  <span class="n">USERNAME</span><span class="o">=&lt;</span><span class="n">username_here</span><span class="o">&gt;</span>
   <span class="n">PASSWORD</span><span class="o">=&lt;</span><span class="n">password_here</span><span class="o">&gt;</span>
 </code></pre>
 </div>
+
 <ol>
  <li>Run the following command to upload a version to your Maven repository.</li>
 </ol>
+
 <div class="language-bash highlighter-rouge"><pre class="highlight"><code>  ./gradlew uploadArchives
 </code></pre>
 </div>
+
 <p>Thats’s it!</p>
+
 <h2 id="wrap-up">Wrap-up</h2>
 <p>Configuring BitBucket or GitHub as a (private) Maven repository is quite easy and can be fully automated in a single Gradle script. Hopefully this blogpost has inspired many of you to start reusing more code.</p>
+
 <p>A basic example project with everything in this blogpost integrated is available on <a href="https://github.com/JeroenMols/WagonGitExample">GitHub</a>. Or you can also directly integrate the <a href="https://github.com/JeroenMols/GitAsMaven">Gradle script</a> into your library.</p>
+
 <p>As always you can reach me <a href="https://twitter.com/molsjeroen">@molsjeroen</a> on twitter, or leave a comment below!</p>
+
      </section>
      <footer class="page__meta">
  <p class="page__taxonomy">
@@ -319,6 +373,7 @@ If you accidentally push your local branch to a remote called <code class="highl
 </section>
      <section class="page__share">
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
   <ins class="adsbygoogle"
        style="display:block"
        data-ad-client="ca-pub-9854541518226004"
@@ -328,6 +383,7 @@ If you accidentally push your local branch to a remote called <code class="highl
   (adsbygoogle = window.adsbygoogle || []).push({});
   </script>
 </section>
+
  <nav class="pagination">
       <a href="https://jeroenmols.com/blog/2016/01/29/yearinreview/" class="pagination--pager" title="Year in review 2015
 ">Previous</a>
@@ -336,8 +392,8 @@ If you accidentally push your local branch to a remote called <code class="highl
  </nav>
    </div>
      <div class="page__comments">
-   <h4 class="page__comments-title">Leave a Comment</h4>
-   <section id="disqus_thread"></section>
+       <h4 class="page__comments-title">Leave a Comment</h4>
+       <section id="disqus_thread"></section>
 </div>
  </article>
    <div class="page__related">

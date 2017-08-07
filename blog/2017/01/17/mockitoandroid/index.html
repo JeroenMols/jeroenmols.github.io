@@ -154,11 +154,16 @@
        </header>
      <section class="page__content" itemprop="text">
        <p>The Mockito team is on fire lately! Not only did they add support to mock final classes and methods, but now they allow running Mockito directly onto an actual Android device.</p>
+
 <p>Time to convert our Mockito 1.x projects to 2.x!</p>
+
 <h2 id="history">History</h2>
 <p>It has always been possible to run Mockito on Android devices and emulators. This however required using a tool called <code class="highlighter-rouge">Dexmaker</code> to help Mockito generate classes in the Android virtual machine.</p>
+
 <p>While this approach worked fine, there was one big caveat: <code class="highlighter-rouge">Dexmaker</code> wasn’t actively maintained. Consequently it was only compatible with Mockito 1.x so you couldn’t use the new stuff while running tests on an Android device.</p>
+
 <p>Further this extra dependency made your <code class="highlighter-rouge">build.gradle</code> look like this:</p>
+
 <div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="n">dependencies</span> <span class="o">{</span>
     <span class="o">...</span>
 
@@ -171,13 +176,20 @@
 <span class="o">}</span>
 </code></pre>
 </div>
+
 <p>Notice the 2.x version for the unit tests and the 1.x version for the instrumentation tests.</p>
+
 <p>Fortunately, Mockito 2.6.0 changed that:</p>
+
 <center><blockquote class="twitter-tweet" data-lang="nl"><p lang="en" dir="ltr">We have just released Mockito 2.6 with native support for Android. On Android, just use the mockito-android dependency. Test code stays!</p>&mdash; Rafael Winterhalter (@rafaelcodes) <a href="https://twitter.com/rafaelcodes/status/819525418231496705">12 januari 2017</a></blockquote></center>
+
 <script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 <h2 id="mockito-260">Mockito 2.6.0+</h2>
 <p>The latest release added a new artifact <code class="highlighter-rouge">mockito-android</code> next to the existing <code class="highlighter-rouge">mockito-core</code> artifact.</p>
+
 <p>So to convert your existing instrumentation tests, just remove the <code class="highlighter-rouge">Dexmaker</code> dependencies and replace the <code class="highlighter-rouge">mockito-core</code> dependency with its <code class="highlighter-rouge">mockito-android</code> equivalent:</p>
+
 <div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="n">dependencies</span> <span class="o">{</span>
     <span class="o">...</span>
 
@@ -187,11 +199,16 @@
 <span class="o">}</span>
 </code></pre>
 </div>
+
 <p>Simple, elegant and future proof!</p>
+
 <p>Finally, please be aware that Mockito 2.x has some <a href="https://github.com/mockito/mockito/wiki/What%27s-new-in-Mockito-2#incompatible">behavior changes</a>. The one you’re most likely going to run into while migrating is that <code class="highlighter-rouge">anyX()</code> and <code class="highlighter-rouge">any(SomeType.class)</code> matchers now reject null values.</p>
+
 <h2 id="wrap-up">Wrap-up</h2>
 <p>Finally Mockito has first class support for Android instrumentation tests! I’ve also updated my <a href="https://github.com/jeroenmols/mockitoexample">Mockito sample project</a> where you can see how it works and learn more about how to use Mockito.</p>
+
 <p>As always you can reach me <a href="https://twitter.com/molsjeroen">@molsjeroen</a> on twitter, or leave a comment below!</p>
+
      </section>
      <footer class="page__meta">
  <p class="page__taxonomy">
@@ -219,6 +236,7 @@
 </section>
      <section class="page__share">
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
   <ins class="adsbygoogle"
        style="display:block"
        data-ad-client="ca-pub-9854541518226004"
@@ -228,6 +246,7 @@
   (adsbygoogle = window.adsbygoogle || []).push({});
   </script>
 </section>
+
  <nav class="pagination">
       <a href="https://jeroenmols.com/blog/2017/01/09/yearinreview/" class="pagination--pager" title="Year in review 2016
 ">Previous</a>
@@ -236,8 +255,8 @@
  </nav>
    </div>
      <div class="page__comments">
-   <h4 class="page__comments-title">Leave a Comment</h4>
-   <section id="disqus_thread"></section>
+       <h4 class="page__comments-title">Leave a Comment</h4>
+       <section id="disqus_thread"></section>
 </div>
  </article>
    <div class="page__related">

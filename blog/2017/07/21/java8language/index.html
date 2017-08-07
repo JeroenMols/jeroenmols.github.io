@@ -154,10 +154,14 @@
        </header>
      <section class="page__content" itemprop="text">
        <p>For years Android developers have been limited to Java 6 features. While RetroLambda or the experimental Jack toolchain would help, proper support from Google was notably missing.</p>
+
 <p>Finally, Android Studio 3.0 brings (backported!) support for most Java 8 features. Continue reading to learn how those work and why you should upgrade.</p>
+
 <h2 id="enabling-java-8-features">Enabling java 8 features</h2>
 <p>While Android Studio already supported many features in the <a href="https://developer.android.com/guide/platform/j8-jack.html">Jack toolchain</a>, starting from Android Studio 3.0 they are supported in the default toolchain.</p>
+
 <p>First of all, make sure you disable Jack by removing the following from your main <code class="highlighter-rouge">build.gradle</code>:</p>
+
 <div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="n">android</span> <span class="o">{</span>
   <span class="o">...</span>
   <span class="n">defaultConfig</span> <span class="o">{</span>
@@ -170,7 +174,9 @@
 <span class="o">}</span>
 </code></pre>
 </div>
+
 <p>And add the following configuration instead:</p>
+
 <div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="n">android</span> <span class="o">{</span>
   <span class="o">...</span>
   <span class="n">compileOptions</span> <span class="o">{</span>
@@ -180,7 +186,9 @@
 <span class="o">}</span>
 </code></pre>
 </div>
+
 <p>Also make sure you have the latest Gradle plugin in your root <code class="highlighter-rouge">build.gradle</code> file:</p>
+
 <div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="n">buildscript</span> <span class="o">{</span>
   <span class="o">...</span>
   <span class="n">dependencies</span> <span class="o">{</span>
@@ -189,12 +197,16 @@
 <span class="o">}</span>
 </code></pre>
 </div>
+
 <p>Congratulations, you can now use most Java 8 features on all API levels!</p>
+
 <blockquote>
  <p>Note: In case you’re migrating from <a href="https://github.com/evant/gradle-retrolambda">RetroLambda</a>, the official documentation has a more extensive <a href="https://developer.android.com/studio/write/java8-support.html#migrate">migration guide</a>.</p>
 </blockquote>
+
 <h2 id="lambdas">Lambda’s</h2>
 <p>Passing a listener to another class in Java 6 is quite verbose. A typical case would be where you add an <code class="highlighter-rouge">OnClickListener</code> to a <code class="highlighter-rouge">View</code>:</p>
+
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">button</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="k">new</span> <span class="n">View</span><span class="o">.</span><span class="na">OnClickListener</span><span class="o">()</span> <span class="o">{</span>
     <span class="nd">@Override</span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="n">View</span> <span class="n">view</span><span class="o">)</span> <span class="o">{</span>
@@ -203,40 +215,56 @@
 <span class="o">});</span>
 </code></pre>
 </div>
+
 <p>Lambda’s can dramatically simplify this to the following:</p>
+
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">button</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="n">view</span> <span class="o">-&gt;</span> <span class="n">doSomething</span><span class="o">());</span>
 </code></pre>
 </div>
+
 <p>Notice that almost all boilerplate is removed: no access modifier, no return type and no method name!</p>
+
 <p>Now how do lambda’s actually work?</p>
+
 <p>They are syntactic sugar that reduce the need for anonymous class creation whenever you have an interface with exactly one method. We call such interfaces functional interfaces and <code class="highlighter-rouge">OnClickListener</code> is an example:</p>
+
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="c1">// A functional interface has exactly one method</span>
 <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">OnClickListener</span> <span class="o">{</span>
     <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="n">View</span> <span class="n">view</span><span class="o">);</span>
 <span class="o">}</span>
 </code></pre>
 </div>
+
 <p>Basically the lambda consists out of a three parts:</p>
+
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">button</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">((</span><span class="n">view</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span><span class="n">doSomething</span><span class="o">()});</span>
 </code></pre>
 </div>
+
 <ol>
  <li>declaration of all method arguments between brackets <code class="highlighter-rouge">()</code></li>
  <li>an arrow <code class="highlighter-rouge">-&gt;</code></li>
  <li>code that needs to execute between brackets <code class="highlighter-rouge"><span class="p">{}</span></code></li>
 </ol>
+
 <p>Note that in many cases even the brackets <code class="highlighter-rouge">()</code> and <code class="highlighter-rouge"><span class="p">{}</span></code> can be removed. For more details have a look at the <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html">official documentation</a>.</p>
+
 <h2 id="method-references">Method references</h2>
 <p>Recall that lambda expressions remove a lot of boilerplate code for functional interfaces. Method references take that concept one step further when the lambda calls a method that already has a name.</p>
+
 <p>In the following example:</p>
+
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">button</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="n">view</span> <span class="o">-&gt;</span> <span class="n">doSomething</span><span class="o">(</span><span class="n">view</span><span class="o">));</span>
 </code></pre>
 </div>
 <p>All the lambda does is redirecting the work to an existing <code class="highlighter-rouge">doSomething()</code> method. In such a case, a method reference simplifies things further to:</p>
+
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">button</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="k">this</span><span class="o">::</span><span class="n">doSomething</span><span class="o">);</span>
 </code></pre>
 </div>
+
 <p>Note that the referenced method must take exactly the same parameters as the functional interface:</p>
+
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="c1">// functional interface</span>
 <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">OnClickListener</span> <span class="o">{</span>
     <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="n">View</span> <span class="n">view</span><span class="o">);</span>
@@ -248,8 +276,11 @@
 <span class="o">}</span>
 </code></pre>
 </div>
+
 <p>So how do method references work?</p>
+
 <p>They are again syntactic sugar to simplify a lambda expression that invokes an existing method. They can reference to:</p>
+
 <table>
  <tbody>
    <tr>
@@ -270,10 +301,14 @@
    </tr>
  </tbody>
 </table>
+
 <p>For more examples about this have a look at the <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/methodreferences.html">official documentation</a>.</p>
+
 <h2 id="default-interface-methods">Default interface Methods</h2>
 <p>Default methods make it possible to add new methods to an interface without breaking all classes that implement that interface.</p>
+
 <p>Imagine if you have a <code class="highlighter-rouge">MyView</code> interface that is implemented by a <code class="highlighter-rouge">MyFragment</code> (typical MVP scenario):</p>
+
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">MyView</span> <span class="o">{</span>
     <span class="kt">void</span> <span class="nf">showProgressbar</span><span class="o">();</span>
 <span class="o">}</span>
@@ -287,8 +322,11 @@
 <span class="o">}</span>
 </code></pre>
 </div>
+
 <p>When you now want to add an extra method to <code class="highlighter-rouge">MyView</code> your code will no longer compile, until <code class="highlighter-rouge">MyFragment</code> also implements that new method. This is annoying, and can be even problematic when many classes are implementing said interface.</p>
+
 <p>Therefore Java 8 now allows you to define default methods that provide a standard implementation:</p>
+
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">MyView</span> <span class="o">{</span>
     <span class="kt">void</span> <span class="nf">showProgressbar</span><span class="o">();</span>
     <span class="k">default</span> <span class="kt">void</span> <span class="nf">hideProgressbar</span><span class="o">()</span> <span class="o">{</span>
@@ -297,16 +335,25 @@
 <span class="o">}</span>
 </code></pre>
 </div>
+
 <p>So how do default methods work?</p>
+
 <p>Just define a method with the <code class="highlighter-rouge">default</code> keyword in the interface and provide an actual default method body.</p>
+
 <p>To learn more about this feature, have a look at the <a href="https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html">official documentation</a>.</p>
+
 <h2 id="how-to-get-started">How to get started</h2>
 <p>While this all might seem a bit overwhelming, Android Studio actually offers amazing quick fixes once you enable Java 8 features.</p>
+
 <p>Just use <code class="highlighter-rouge">alt/option</code> + <code class="highlighter-rouge">enter</code> to convert a functional interface to a lamba or a lambda to a method reference.</p>
+
 <p><img src="https://jeroenmols.com/img/blog/java8language/androidstudioconversion.gif" alt="Java 8 language quick fixes" class="align-center" /></p>
+
 <p>This is a great way to get familiar with these new features and allows you to write code like you’re used to. After enough quick fixes by Android Studio you’ll learn in what cases a lambda or method reference would be possible and start writing them yourself.</p>
+
 <h2 id="supported-features">Supported features</h2>
 <p>While not all Java 8 features have been backported yet, Android Studio 3.0 offers plenty more features:</p>
+
 <ul>
  <li><a href="https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html">static interface methods</a></li>
  <li><a href="https://docs.oracle.com/javase/tutorial/java/annotations/type_annotations.html">type annotations</a></li>
@@ -314,9 +361,12 @@
  <li><a href="https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html">try with resources</a> (all versions, no longer min SDK 19)</li>
  <li>Java 8 APIs (e.g. stream) -&gt; min SDK 24</li>
 </ul>
+
 <h2 id="wrap-up">Wrap-up</h2>
 <p>Thanks to Java 8 features, a lot of code can be simplified into lambda’s or method references. Android Studio auto convert is the easiest way to start learning these features.</p>
+
 <p>If you’ve made it this far, you should probably follow me on <a href="https://twitter.com/molsjeroen">Twitter</a>. Feel free leave a comment below!</p>
+
      </section>
      <footer class="page__meta">
  <p class="page__taxonomy">
@@ -344,6 +394,7 @@
 </section>
      <section class="page__share">
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
   <ins class="adsbygoogle"
        style="display:block"
        data-ad-client="ca-pub-9854541518226004"
@@ -353,6 +404,7 @@
   (adsbygoogle = window.adsbygoogle || []).push({});
   </script>
 </section>
+
  <nav class="pagination">
       <a href="https://jeroenmols.com/blog/2017/06/14/androidstudio3/" class="pagination--pager" title="Implementation vs API dependency
 ">Previous</a>
@@ -360,8 +412,8 @@
  </nav>
    </div>
      <div class="page__comments">
-   <h4 class="page__comments-title">Leave a Comment</h4>
-   <section id="disqus_thread"></section>
+       <h4 class="page__comments-title">Leave a Comment</h4>
+       <section id="disqus_thread"></section>
 </div>
  </article>
    <div class="page__related">

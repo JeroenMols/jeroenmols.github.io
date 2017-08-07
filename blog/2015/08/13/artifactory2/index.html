@@ -154,7 +154,9 @@
        </header>
      <section class="page__content" itemprop="text">
        <p>My previous <a href="/blog/2015/08/06/artifactory/">blog post</a> described how to set up your own private Maven repository with Artifactory in 30 minutes. This second and final part will make things more interesting and take your setup to the next level.</p>
+
 <p>You will learn how to:</p>
+
 <ul>
  <li>handle library projects with dependencies</li>
  <li>securely provide username and password</li>
@@ -162,33 +164,48 @@
  <li>configure custom repositories</li>
  <li>manage user access</li>
 </ul>
+
 <p>All source code is <a href="https://github.com/JeroenMols/ArtifactoryExample">available on Github</a> as usual.</p>
+
 <p>Note that the material presented here can quite easily be extended to be applicable beyond Android.</p>
+
 <h2 id="library-projects-with-dependencies">Library projects with dependencies</h2>
 <p>Imagine if your Android library project itself has dependencies. Then the application using the library wouldn’t be able to run unless it provides all dependencies the library requires.</p>
+
 <p>To better understand this, consider the new <a href="https://github.com/JeroenMols/ArtifactoryExample/blob/master/AwesomeAdvancedLibrary/awesomeadvancedlibrary/src/main/java/com/jeroenmols/awesomeadvancedlibrary/AwesomeConvertor.java"><code class="highlighter-rouge">AwesomeAdvancedLibrary</code></a> which makes use of <a href="https://github.com/google/guava">Guava</a> to <em>awesomize</em> a <code class="highlighter-rouge">String</code>. The application using this library should be agnostic of this dependency. Hence we do not want to define two dependencies:</p>
+
 <div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="n">dependencies</span> <span class="o">{</span>
     <span class="n">compile</span> <span class="s1">'com.jeroenmols.awesomeadvancedlibrary:awesomeadvancedlibrary:1.0.0'</span>
     <span class="n">compile</span> <span class="s1">'com.google.guava:guava:18.0'</span>
 <span class="o">}</span>
 </code></pre>
 </div>
+
 <p>Instead one <code class="highlighter-rouge">compile</code> dependency should suffice to use the library.</p>
+
 <blockquote>
  <p><strong>Important note on including dependencies</strong></p>
+
  <p>You can <em>skip this if you want</em>, just some extra context</p>
+
  <p>Including dependencies in your library is not always a good idea, because this can lead to a dependency conflict while integrating. I only choose Guava to keep things simple, but it is actually a very bad example as it is a utility library. This means it’s quite likely that the app also needs it.</p>
+
  <p>A better example would be a universal <em>analytics</em> library offering a universal API to track analytics and redirecting all calls internally to one or more analytics providers. Here packaging dependencies makes sense, because the app never needs to talk to the dependency directly. It also hides implementation details, so the app doesn’t need to be modified when switching to a new provider.</p>
 </blockquote>
+
 <p>Imagine if we would simply resort to the buildscript we had in my previous <a href="/blog/2015/08/06/artifactory/">blogpost</a>. At compile time the <code class="highlighter-rouge">Guava</code> dependency will not be included, because the would make the library unnecessarily large. Instead, the compiler will tell the library: “don’t worry about this dependency, the app will provide it for you.”</p>
+
 <p>The app on the other hand wouldn’t have a clue which dependencies the library actually needs (how would it?) and hence the app will compile just fine. However, after starting the app and trying to access the library, the app would crash at runtime:</p>
+
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="mi">08</span><span class="o">-</span><span class="mi">09</span> <span class="mi">20</span><span class="o">:</span><span class="mi">49</span><span class="o">:</span><span class="mf">46.096</span>  <span class="mi">28892</span><span class="o">-</span><span class="mi">28892</span><span class="o">/?</span> <span class="n">E</span><span class="o">/</span><span class="n">AndroidRuntime</span><span class="err">﹕</span> <span class="n">FATAL</span> <span class="nl">EXCEPTION:</span> <span class="n">main</span>
 <span class="nl">Process:</span> <span class="n">com</span><span class="o">.</span><span class="na">jeroenmols</span><span class="o">.</span><span class="na">awesomeadvancedapplication</span><span class="o">,</span> <span class="nl">PID:</span> <span class="mi">28892</span>
 <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">NoClassDefFoundError</span><span class="o">:</span> <span class="n">Failed</span> <span class="n">resolution</span> <span class="nl">of:</span> <span class="n">Lcom</span><span class="o">/</span><span class="n">google</span><span class="o">/</span><span class="n">common</span><span class="o">/</span><span class="n">base</span><span class="o">/</span><span class="n">CharMatcher</span><span class="o">;</span>
     <span class="n">at</span> <span class="n">com</span><span class="o">.</span><span class="na">jeroenmols</span><span class="o">.</span><span class="na">awesomeadvancedlibrary</span><span class="o">.</span><span class="na">AwesomeConvertor</span><span class="o">.</span><span class="na">toAwesome</span><span class="o">(</span><span class="n">AwesomeConvertor</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">11</span><span class="o">)</span>
 </code></pre>
 </div>
+
 <p>To solve this, we need to ensure that the library <code class="highlighter-rouge">pom.xml</code> file  contains the right dependencies by manually adding the <code class="highlighter-rouge">pom.withXml{}</code> element to the <code class="highlighter-rouge">publishing task</code>:</p>
+
 <div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="n">publishing</span> <span class="o">{</span>
     <span class="n">publications</span> <span class="o">{</span>
         <span class="n">aar</span><span class="o">(</span><span class="n">MavenPublication</span><span class="o">)</span> <span class="o">{</span>
@@ -211,34 +228,47 @@
 <span class="o">}</span>
 </code></pre>
 </div>
+
 <p>Note that while you can similarly add other repositories in this way to the <code class="highlighter-rouge">pom.xml</code>, Gradle itself <a href="https://discuss.gradle.org/t/resolving-problem-when-maven-repo-contains-pom-but-not-jar/7174">won’t look</a> for repositories in that file. Therefore if you use libraries from 3rd party repositories, you still need to add those repositories to the <code class="highlighter-rouge">build.gradle</code> of your app.</p>
+
 <h2 id="securely-provide-username-and-password">Securely provide username and password</h2>
 <p>Obviously we do not want to store a plain text username and password in any file that we check in to our version control system. So to make sure we hide those, create a <code class="highlighter-rouge">gradle.properties</code> file in the root of your project and add the following content:</p>
+
 <div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="n">artifactory_username</span><span class="o">=</span><span class="n">admin</span>
 <span class="n">artifactory_password</span><span class="o">=</span><span class="n">password</span>
 </code></pre>
 </div>
+
 <p>Then in your <code class="highlighter-rouge">build.gradle</code> file, refer to the properties like this:</p>
+
 <div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="n">username</span> <span class="o">=</span> <span class="n">artifactory_username</span>
 <span class="n">password</span> <span class="o">=</span> <span class="n">artifactory_password</span>
 </code></pre>
 </div>
+
 <p>We have now obfuscated the password, so it is no longer in the <code class="highlighter-rouge">build.gradle</code> file, but people can still find it in the <code class="highlighter-rouge">gradle.properties</code> file under version control. To prevent this, you must do one of the following:</p>
+
 <ul>
  <li>Don’t add <code class="highlighter-rouge">gradle.properties</code> to your version control system. (add it to your <code class="highlighter-rouge">.gitignore</code> file instead)</li>
  <li>Move the <code class="highlighter-rouge">gradle.properties</code> to the base <code class="highlighter-rouge">~/.gradle</code> folder on your hard drive. I personally recommend this approach as you can never accidentally check in your username and password.</li>
 </ul>
+
 <h2 id="working-with-snapshot-and-release-builds">Working with Snapshot and Release builds</h2>
 <p>While the Artifactory Gradle plugin doesn’t have support for snapshot/release builds out of the box, it is easy to add this functionality by relying on the artifact version:</p>
+
 <ul>
  <li>For release builds: use <a href="http://semver.org/">symantic versioning</a> e.g. <code class="highlighter-rouge">1.0.0</code></li>
  <li>For Snapshot builds: use symantic versioning with <code class="highlighter-rouge">-SNAPSHOT</code> suffix e.g. <code class="highlighter-rouge">1.0.0-SNAPSHOT</code></li>
 </ul>
+
 <p>Now you can direct each one to a different Artifactory repository by changing the repository key as follows:</p>
+
 <div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="n">repoKey</span> <span class="o">=</span> <span class="n">libraryVersion</span><span class="o">.</span><span class="na">endsWith</span><span class="o">(</span><span class="s1">'SNAPSHOT'</span><span class="o">)</span> <span class="o">?</span> <span class="s1">'libs-snapshot-local'</span> <span class="o">:</span> <span class="s1">'libs-release-local'</span>
 </code></pre>
 </div>
+
 <p>On the application side you need to add two different Maven urls so you can refer to artifacts in both repositories.</p>
+
 <div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="n">allprojects</span> <span class="o">{</span>
     <span class="n">repositories</span> <span class="o">{</span>
       <span class="n">maven</span> <span class="o">{</span> <span class="n">url</span> <span class="s2">"http://localhost:8081/artifactory/libs-release-local"</span> <span class="o">}</span>
@@ -247,8 +277,11 @@
 <span class="o">}</span>
 </code></pre>
 </div>
+
 <p>Referencing artifacts is exactly the same as before, just don’t forget to add the <code class="highlighter-rouge">-SNAPSHOT</code> suffix for snapshot artifacts.</p>
+
 <p>Alternatively we can also create a <code class="highlighter-rouge">virtual</code> repository in Artifactory which wraps around both repositories. This way the app only requires one URL, but does create a dependency on the existing Artifactory setup.</p>
+
 <ol>
  <li>Login to Artifactory and go to admin &gt; repositories &gt; virtual
   <a href="https://jeroenmols.com/img/blog/artifactory2/artifactory2_virtualrepo1.png"><img src="https://jeroenmols.com/img/blog/artifactory2/artifactory2_virtualrepo1.png" alt="All virtual repositories can be found under admin - repositories - virtual" class="align-center" /></a></li>
@@ -256,6 +289,7 @@
   <a href="https://jeroenmols.com/img/blog/artifactory2/artifactory2_virtualrepo2.png"><img src="https://jeroenmols.com/img/blog/artifactory2/artifactory2_virtualrepo2.png" alt="Create a new virtual maven repository which contains both libs-release-local and libs-snapshot-local" class="align-center" /></a></li>
  <li>In the top level <code class="highlighter-rouge">build.gradle</code> of your application, replace the two previous URLS by the following:</li>
 </ol>
+
 <div class="language-groovy highlighter-rouge"><pre class="highlight"><code>  <span class="n">allprojects</span> <span class="o">{</span>
       <span class="n">repositories</span> <span class="o">{</span>
         <span class="n">maven</span> <span class="o">{</span> <span class="n">url</span> <span class="s2">"http://localhost:8081/artifactory/libs-local"</span> <span class="o">}</span>
@@ -263,31 +297,50 @@
   <span class="o">}</span>
 </code></pre>
 </div>
+
 <h2 id="user-access-management">User access management</h2>
 <p>Currently everyone can both read and write to all your repositories. This is not a good idea, especially if your server is also connected to the internet. Therefore we are going to set up two different users: one to deploy artifacts and one to consume artifacts.</p>
+
 <p>In order to do so, go to artifactory and login as <code class="highlighter-rouge">admin</code>. Now navigate to admin &gt; security &gt; general and make the following changes:</p>
+
 <ul>
  <li>set <code class="highlighter-rouge">Allow Anonymous Access</code> to false -&gt; ensures only known Artifactory users can consume artifacts</li>
  <li>set <code class="highlighter-rouge">Password Encryption Policy</code> to <code class="highlighter-rouge">REQUIRED</code> -&gt; ensures we don’t have to hardcode a plain text password in our <code class="highlighter-rouge">build.gradle</code>.</li>
  <li>press the <code class="highlighter-rouge">encrypt</code> button in the <code class="highlighter-rouge">Password Encyption</code> section -&gt; encrypts all passwords</li>
 </ul>
+
 <p>If the app now tries to consume an artifact, it will get a <code class="highlighter-rouge">401</code> error: unauthorized. You can verify this yourself by clearing the gradle cache (to force a dependency download):</p>
+
 <div class="language-bash highlighter-rouge"><pre class="highlight"><code>gradle clean --refresh-dependencies
 </code></pre>
 </div>
+
 <p>Next, go to the <code class="highlighter-rouge">Users</code> pane and add two new user: <code class="highlighter-rouge">consumer</code> and <code class="highlighter-rouge">deployer</code>. Make sure not to add them to any group.</p>
+
 <p><a href="https://jeroenmols.com/img/blog/artifactory2/artifactory2_user1.png"><img src="https://jeroenmols.com/img/blog/artifactory2/artifactory2_user1.png" alt="Settings for consumer user" class="align-center" /></a></p>
+
 <p><a href="https://jeroenmols.com/img/blog/artifactory2/artifactory2_user2.png"><img src="https://jeroenmols.com/img/blog/artifactory2/artifactory2_user2.png" alt="Settings for deployer user" class="align-center" /></a></p>
+
 <p>Note that you probably also want to change your admin password at this stage. ;)</p>
+
 <p>Now go to the <code class="highlighter-rouge">Permissions</code> pane and add a new <code class="highlighter-rouge">Consume Libraries</code> permission. Set the Selected repositories to include the snapshot and release repository, and in the <code class="highlighter-rouge">Users</code> tab add the <code class="highlighter-rouge">consumer</code> user with read permissions.</p>
+
 <p><a href="https://jeroenmols.com/img/blog/artifactory2/artifactory2_permission1.png"><img src="https://jeroenmols.com/img/blog/artifactory2/artifactory2_permission1.png" alt="Settings for Consume Libraries permission" class="align-center" /></a></p>
+
 <p><a href="https://jeroenmols.com/img/blog/artifactory2/artifactory2_permission2.png"><img src="https://jeroenmols.com/img/blog/artifactory2/artifactory2_permission2.png" alt="Settings for Consume Libraries permission" class="align-center" /></a></p>
+
 <p>Add a second permission: <code class="highlighter-rouge">Deploy Libraries</code> with the snapshot and release repository included. Here give the <code class="highlighter-rouge">deployer</code> user <code class="highlighter-rouge">Deploy/Cache</code> permission but not <code class="highlighter-rouge">Delete/Overwrite</code> as you never want to override an existing artifact!</p>
+
 <p><a href="https://jeroenmols.com/img/blog/artifactory2/artifactory2_permission3.png"><img src="https://jeroenmols.com/img/blog/artifactory2/artifactory2_permission3.png" alt="Settings for Deploy Libraries permission" class="align-center" /></a></p>
+
 <p><a href="https://jeroenmols.com/img/blog/artifactory2/artifactory2_permission4.png"><img src="https://jeroenmols.com/img/blog/artifactory2/artifactory2_permission4.png" alt="Settings for Deploy Libraries permission" class="align-center" /></a></p>
+
 <p>All we need to do now is modify the Library and Application to make use of these new users. This is easy for the Library as you can simply replace the <code class="highlighter-rouge">admin</code> user with the <code class="highlighter-rouge">deploy</code> user in the <code class="highlighter-rouge">gradle.properties</code> file.</p>
+
 <p>For the Application we will need to provide credentials to access the Maven repository. Here we will hard code the username and password in the top level <code class="highlighter-rouge">build.gradle</code> file because team members should be able to checkout and build the code without extra configuration.</p>
+
 <p>Therefore we will take some extra security precautions:</p>
+
 <ul>
  <li>Use a user with read access to only a small subset of our repositories: <code class="highlighter-rouge">deploy</code>.</li>
  <li>Check the code into a private repository, so the hardcoded password is protected by repository password.</li>
@@ -298,12 +351,15 @@
      <li>Unlock your profile with your password</li>
      <li>
        <p>Copy the API key</p>
+
        <p><a href="https://jeroenmols.com/img/blog/artifactory2/artifactory2_consumer.png"><img src="https://jeroenmols.com/img/blog/artifactory2/artifactory2_consumer.png" alt="Copy the API key from the consumer profile." class="align-center" /></a></p>
      </li>
    </ul>
  </li>
 </ul>
+
 <p>Now add the user authentication to the top level <code class="highlighter-rouge">build.gradle</code> file:</p>
+
 <div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="n">allprojects</span> <span class="o">{</span>
     <span class="n">repositories</span> <span class="o">{</span>
         <span class="n">jcenter</span><span class="o">()</span>
@@ -319,11 +375,16 @@
 <span class="o">}</span>
 </code></pre>
 </div>
+
 <p>And we are all set with authenticated access to our repositories.</p>
+
 <h2 id="wrap-up">Wrap-up</h2>
 <p>That’s a wrap to my two part blogpost about Artifactory! We made our previous repository a lot more secure, added support for dependencies and can now differentiate between release and snapshot artifacts.</p>
+
 <p>No more excuses not to write reusable code!</p>
+
 <p>Feel free to leave a comment and don’t forget to check the <a href="https://github.com/JeroenMols/ArtifactoryExample">full source code</a> on Github.</p>
+
      </section>
      <footer class="page__meta">
  <p class="page__taxonomy">
@@ -352,6 +413,7 @@
 </section>
      <section class="page__share">
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
   <ins class="adsbygoogle"
        style="display:block"
        data-ad-client="ca-pub-9854541518226004"
@@ -361,6 +423,7 @@
   (adsbygoogle = window.adsbygoogle || []).push({});
   </script>
 </section>
+
  <nav class="pagination">
       <a href="https://jeroenmols.com/blog/2015/08/06/artifactory/" class="pagination--pager" title="A private Maven repository for Android in 30 min
 ">Previous</a>
@@ -369,8 +432,8 @@
  </nav>
    </div>
      <div class="page__comments">
-   <h4 class="page__comments-title">Leave a Comment</h4>
-   <section id="disqus_thread"></section>
+       <h4 class="page__comments-title">Leave a Comment</h4>
+       <section id="disqus_thread"></section>
 </div>
  </article>
    <div class="page__related">
