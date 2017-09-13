@@ -1,4 +1,79 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.0">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2017-08-07T22:31:48+02:00</updated><id>https://jeroenmols.com/</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Embracing Java 8 language features</title><link href="https://jeroenmols.com/blog/2017/07/21/java8language/" rel="alternate" type="text/html" title="Embracing Java 8 language features" /><published>2017-07-21T00:00:00+02:00</published><updated>2017-07-21T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2017/07/21/java8language</id><content type="html" xml:base="https://jeroenmols.com/blog/2017/07/21/java8language/">&lt;p&gt;For years Android developers have been limited to Java 6 features. While RetroLambda or the experimental Jack toolchain would help, proper support from Google was notably missing.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.0">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2017-09-13T20:40:05+02:00</updated><id>https://jeroenmols.com/</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">The carreer opportunity called Kotlin</title><link href="https://jeroenmols.com/blog/2017/09/13/kotlinopportunity/" rel="alternate" type="text/html" title="The carreer opportunity called Kotlin" /><published>2017-09-13T00:00:00+02:00</published><updated>2017-09-13T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2017/09/13/kotlinopportunity</id><content type="html" xml:base="https://jeroenmols.com/blog/2017/09/13/kotlinopportunity/">&lt;p&gt;This isn’t another post about the benefits of using Kotlin. Hell, I’m not even going to cover any of its language features. Nor will I try to convince you to make the switch.&lt;/p&gt;
+
+&lt;p&gt;In contrast, this post will talk carreer. How learning a new language makes you a better developer and ensures you stay relevant. And in that regards, Kotlin now presents a golden opportunity.&lt;/p&gt;
+
+&lt;h2 id=&quot;why-you-should-learn-a-new-programming-language&quot;&gt;Why you should learn a new programming language&lt;/h2&gt;
+&lt;p&gt;Predicting the future is nearly impossible. But 10 years ago (2007) there where no smartphone apps… And 10 years before that (1997) well… dot-com bubble anyone?&lt;/p&gt;
+
+&lt;p&gt;So how will the future look like in 10 years from now? Or 20 years?&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Only sure thing is that you’ll still be working as retirement age continues to be raised.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Two things are likely to happen though:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Software will become even more ubiquitous than today&lt;/li&gt;
+  &lt;li&gt;The platform your now developing for is no longer relevant&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Differently put: your software skills will still be needed, but you’ll have to switch programming languages several times along the way.&lt;/p&gt;
+
+&lt;p&gt;Say what?&lt;/p&gt;
+
+&lt;p&gt;Learning a new programming language isn’t easy! And I will have to do that multiple times? Even when I’m 40 or 50?&lt;/p&gt;
+
+&lt;p&gt;Yes, absolutely!&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;But here’s the thing: while there are hundreds of programming languages, &lt;a href=&quot;https://8thlight.com/blog/uncle-bob/2012/12/19/Three-Paradigms.html&quot;&gt;programming concepts are finite&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;And with every language you learn, you pick up a couple extra of those concepts.&lt;/p&gt;
+
+&lt;p&gt;So while learning your first programming language is really time consuming. Your second will already go slightly smoother and after your third you’ll realize: “Hey Kotlin coroutines are like C# async/await, but then slightly different”.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Learning a new language becomes easier with every language you learn. And every time you learn a new language, your horizon broadens and you pick up tons of new widely applicable software concepts.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;challenges-in-learning-a-new-language&quot;&gt;Challenges in learning a new language&lt;/h2&gt;
+&lt;p&gt;While the previous statement may be true, you hardly ever learn a programming language alone.&lt;/p&gt;
+
+&lt;p&gt;For instance while learning Android you need to learn the core platform concepts (e.g. activity lifecycle), environment (e.g battery constraints), Android APIs, …&lt;/p&gt;
+
+&lt;p&gt;And that’s just to get you started. If you really want to get productive you’ll also have to figure out what 3rd party libraries to use, how to get the most out of the IDE and especially how to write tests effectively.&lt;/p&gt;
+
+&lt;p&gt;So imagine you want to learn how to build a web app:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;What technology do you use? Ruby on rails, Javascript,…?&lt;/li&gt;
+  &lt;li&gt;What Javascript framework should you use?&lt;/li&gt;
+  &lt;li&gt;How does a DOM work?&lt;/li&gt;
+  &lt;li&gt;Do I use a text editor or are there any good IDE’s?&lt;/li&gt;
+  &lt;li&gt;How/where do I deploy my web app?&lt;/li&gt;
+  &lt;li&gt;How can I find the answers to my problems?&lt;/li&gt;
+  &lt;li&gt;…&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;That’s a lot to take in, right?&lt;/p&gt;
+
+&lt;p&gt;Learning all of this at once can easily become a very frustrating experience. You’ll manage, I’m sure, but it will take you quite some time before you’ll become productive.&lt;/p&gt;
+
+&lt;h2 id=&quot;why-your-next-language-should-be-kotlin&quot;&gt;Why your next language should be Kotlin&lt;/h2&gt;
+&lt;p&gt;Here’s where Kotlin enters the game. Suddenly every Android developer has gotten the opportunity to learn a new, modern language inside of his already familiar cocoon.&lt;/p&gt;
+
+&lt;p&gt;You’re already used to every Android problem you may encounter. You know the ins and outs of Android studio. And I’ll be damned if you’re not a StackOverflow wizard by now!&lt;/p&gt;
+
+&lt;p&gt;So grab the opportunity to learn a new language without it being too frustrating. Learn those extra programming concepts that will remain relevant throughout your entire carreer. Have you horizon broadened by new concepts and ways of thinking.&lt;/p&gt;
+
+&lt;p&gt;I’m not saying you must learn Kotlin. But learning a new programming language is inevitable if you’re aspiring a technical carreer. And Kotlin presents a damn fine opportunity to keep your sanity while you’re at it.&lt;/p&gt;
+
+&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
+&lt;p&gt;Learning a new programming language is essential in staying relevant as a software developer. Thanks to Kotlin, Android developers can now learn a new language without the frustration of all boilerplate around it.&lt;/p&gt;
+
+&lt;p&gt;If you’ve made it this far, you should probably follow me on &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;Twitter&lt;/a&gt;. Feel free leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="android" /><category term="kotlin" /><category term="carreer" /><summary type="html">This isn’t another post about the benefits of using Kotlin. Hell, I’m not even going to cover any of its language features. Nor will I try to convince you to make the switch.</summary></entry><entry><title type="html">Embracing Java 8 language features</title><link href="https://jeroenmols.com/blog/2017/07/21/java8language/" rel="alternate" type="text/html" title="Embracing Java 8 language features" /><published>2017-07-21T00:00:00+02:00</published><updated>2017-07-21T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2017/07/21/java8language</id><content type="html" xml:base="https://jeroenmols.com/blog/2017/07/21/java8language/">&lt;p&gt;For years Android developers have been limited to Java 6 features. While RetroLambda or the experimental Jack toolchain would help, proper support from Google was notably missing.&lt;/p&gt;
 
 &lt;p&gt;Finally, Android Studio 3.0 brings (backported!) support for most Java 8 features. Continue reading to learn how those work and why you should upgrade.&lt;/p&gt;
 
@@ -914,66 +989,4 @@
 &lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
 &lt;p&gt;Custom matchers are a great way to simplify unit tests. In my &lt;a href=&quot;https://github.com/jeroenmols/mockitoexample&quot;&gt;Mockito sample project&lt;/a&gt; you can learn more about how to use Mockito and find other custom matcher examples.&lt;/p&gt;
 
-&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="android" /><category term="mockito" /><category term="testing" /><summary type="html">Due to its clean simple api, Mockito has become world’s most popular Java mocking framework. After having covered all of its basics, it’s time to spice things up and start extending Mockito.</summary></entry><entry><title type="html">The hidden cost of code coverage</title><link href="https://jeroenmols.com/blog/2016/09/01/coveragecost/" rel="alternate" type="text/html" title="The hidden cost of code coverage" /><published>2016-09-01T00:00:00+02:00</published><updated>2016-09-01T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2016/09/01/coveragecost</id><content type="html" xml:base="https://jeroenmols.com/blog/2016/09/01/coveragecost/">&lt;p&gt;Code coverage is an awesome way to motivate you and your team to write more tests. But did you know that simply enabling it slows down your build significantly?&lt;/p&gt;
-
-&lt;p&gt;This blogpost will detail why and offer an easy solution.&lt;/p&gt;
-
-&lt;h2 id=&quot;impact-on-build-speed&quot;&gt;Impact on build speed&lt;/h2&gt;
-&lt;p&gt;Profiling your Gradle build speed can easily be done using the &lt;code class=&quot;highlighter-rouge&quot;&gt;--profile&lt;/code&gt; option:&lt;/p&gt;
-
-&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;./&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gradlew&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;clean&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;assembleDebug&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;profile&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;When profiling a project recently, I noticed something surprising in the generated report:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/coveragecost/buildtime.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/coveragecost/buildtime.png&quot; alt=&quot;Jacoco task takes up 14% of the build time! (report located in the `build/reports/profile` folder)&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;The Jacoco task takes up almost 12 second, accounting for 14% of the build time!&lt;/p&gt;
-
-&lt;p&gt;That’s crazy! Especially because our build command isn’t even running any test.&lt;/p&gt;
-
-&lt;p&gt;Looking at our &lt;code class=&quot;highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; file it is clear that we’re not really doing anything exotic:&lt;/p&gt;
-
-&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;buildTypes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;debug&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;testCoverageEnabled&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Yet this still causes delays in all debug builds.&lt;/p&gt;
-
-&lt;h2 id=&quot;the-solution&quot;&gt;The solution&lt;/h2&gt;
-&lt;p&gt;Ask yourself when do you need code coverage? At most after running unit tests, but probably only after running a CI build.&lt;/p&gt;
-
-&lt;p&gt;Hence we’re going to introduce a very simple flag &lt;code class=&quot;highlighter-rouge&quot;&gt;-Pcoverage&lt;/code&gt; which we can add to the build command:&lt;/p&gt;
-
-&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;./&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gradlew&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Pcoverage&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;clean&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;connectedDebugAndroidTest&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;All you need to do to make this work is a small modification to your &lt;code class=&quot;highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; file:&lt;/p&gt;
-
-&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;buildTypes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;debug&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;testCoverageEnabled&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;project&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;hasProperty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'coverage'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;And now code coverage will run when you add the flag and won’t run when you don’t add it!&lt;/p&gt;
-
-&lt;blockquote&gt;
-
-  &lt;p&gt;Note that you can also add this flag to the test configuration in Android Studio if you also want to have coverage enabled while running tests locally.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
-&lt;p&gt;Code coverage is a great way to track your testing efforts. With help of a simple flag you can easily avoid it from slowing down your normal development builds.&lt;/p&gt;
-
-&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="android" /><category term="tools" /><category term="gradle" /><category term="testing" /><summary type="html">Code coverage is an awesome way to motivate you and your team to write more tests. But did you know that simply enabling it slows down your build significantly?</summary></entry></feed>
+&lt;p&gt;As always you can reach me &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;@molsjeroen&lt;/a&gt; on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="android" /><category term="mockito" /><category term="testing" /><summary type="html">Due to its clean simple api, Mockito has become world’s most popular Java mocking framework. After having covered all of its basics, it’s time to spice things up and start extending Mockito.</summary></entry></feed>
