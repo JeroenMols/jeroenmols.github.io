@@ -12,6 +12,7 @@ I'm always eager to share my technical knowledge with fellow developers. Don't h
 Upcoming talks:
 
 - Droidcon UK - Deep into the IoT trenches: how to build a connected product
+- Devoxx - Deep into the IoT trenches: how to build a connected product
 
 2017:
 
