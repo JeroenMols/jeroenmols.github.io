@@ -104,7 +104,6 @@ $masthead-link-color-hover  : $theme-orange !default;
 /*
    POST PREVIEW
    ========================================================================== */
-
 .archive__date {
   margin: 0 0 0 0;
   font-size: $type-size-6;
@@ -154,4 +153,13 @@ $masthead-link-color-hover  : $theme-orange !default;
 
 .list__item {
   margin-bottom: 2em;
+}
+
+/*
+   REMOVE HEIGHT RESTRICTION SIDEBAR
+   ========================================================================== */
+.sidebar {
+  &.sticky {
+    height: auto;
+  }
 }
