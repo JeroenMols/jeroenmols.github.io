@@ -59,7 +59,6 @@
     }
  </style>
 <![endif]-->
-<meta http-equiv="cleartype" content="on">
  </head>
  <body class="layout--single">
     <!--[if lt IE 9]>
@@ -234,7 +233,7 @@
 
 <p>First of all go to “Preferences &gt; Editor &gt; Copyright &gt; Copyright profiles” and press the plus icon to add a new profile. Give it a meaningful name and fill in your copyright notice.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Copyright $today.year Jeroen Mols
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Copyright $today.year Jeroen Mols
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -247,8 +246,7 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><a href="https://jeroenmols.com/img/blog/copyright/copyrightapache.png"><img src="https://jeroenmols.com/img/blog/copyright/copyrightapache.png" alt="Add a new copyright profile" class="align-center" /></a></p>
 
@@ -297,10 +295,10 @@ limitations under the License.
      </footer>
      <section class="page__share">
    <h4 class="page__share-title">Share on</h4>
-  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=Why you should care about copyright https://jeroenmols.com/blog/2016/08/03/copyright/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https://jeroenmols.com/blog/2016/08/03/copyright/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
-  <a href="https://plus.google.com/share?url=https://jeroenmols.com/blog/2016/08/03/copyright/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://jeroenmols.com/blog/2016/08/03/copyright/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=Why+you+should+care+about+copyright%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2016%2F08%2F03%2Fcopyright%2F" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2016%2F08%2F03%2Fcopyright%2F" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://plus.google.com/share?url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2016%2F08%2F03%2Fcopyright%2F" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2016%2F08%2F03%2Fcopyright%2F" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
      <section class="page__share">
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -346,7 +344,7 @@ limitations under the License.
 <div class="page__footer-copyright">&copy; 2017 Jeroen Mols. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
      </footer>
    </div>
-    <script src="https://jeroenmols.com/assets/js/main.min.js"></script>
+  <script src="https://jeroenmols.com/assets/js/main.min.js"></script>
   <script type="text/javascript">
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-63356566-1']);
@@ -357,23 +355,21 @@ limitations under the License.
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>
-  <script type="text/javascript">
-  	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-  	var disqus_shortname = 'jeroenmols';
-  	/* * * DON'T EDIT BELOW THIS LINE * * */
-  	(function() {
-  		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-  		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-  		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  	})();
-  	/* * * DON'T EDIT BELOW THIS LINE * * */
-  	(function () {
-  		var s = document.createElement('script'); s.async = true;
-  		s.type = 'text/javascript';
-  		s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-  		(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-  	}());
+      
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://jeroenmols.com/blog/2016/08/03/copyright/";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = "/blog/2016/08/03/copyright"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jeroenmols.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
   </script>
-  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
  </body>
 </html>

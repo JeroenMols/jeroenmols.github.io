@@ -59,7 +59,6 @@
     }
  </style>
 <![endif]-->
-<meta http-equiv="cleartype" content="on">
  </head>
  <body class="layout--single">
     <!--[if lt IE 9]>
@@ -195,31 +194,28 @@ If you accidentally push your local branch to a remote called <code class="highl
 
 <p>Simply add a new repository:</p>
 
-<div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="n">repositories</span> <span class="o">{</span>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">repositories</span> <span class="o">{</span>
     <span class="n">maven</span> <span class="o">{</span> <span class="n">url</span> <span class="s2">"https://raw.github.com/synergian/wagon-git/releases"</span> <span class="o">}</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>And configure Maven like you would normally do, but with our BitBucket repository url in a particular format:</p>
 
-<div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="n">uploadArchives</span> <span class="o">{</span>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">uploadArchives</span> <span class="o">{</span>
     <span class="n">repositories</span><span class="o">.</span><span class="na">mavenDeployer</span> <span class="o">{</span>
         <span class="o">...</span>
         <span class="n">repository</span><span class="o">(</span><span class="nl">url:</span> <span class="s1">'git:releases://git@bitbucket.org:'</span> <span class="o">+</span> <span class="n">COMPANY</span> <span class="o">+</span> <span class="s1">'/'</span> <span class="o">+</span> <span class="n">REPOSITORY_NAME</span> <span class="o">+</span> <span class="s1">'.git'</span><span class="o">)</span>
         <span class="o">...</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Where <code class="highlighter-rouge">COMPANY</code> is the name of your BitBucket organization and <code class="highlighter-rouge">REPOSITORY_NAME</code> is <code class="highlighter-rouge">maven_repository</code>.</p>
 
 <p>Now you can simply create a new release by running the following command:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>./gradlew assembleRelease uploadArchives
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./gradlew assembleRelease uploadArchives
+</code></pre></div></div>
 
 <p>And check BitBucket for the resulting artifacts.</p>
 
@@ -232,7 +228,7 @@ If you accidentally push your local branch to a remote called <code class="highl
 
 <p>We will use the BitBucket API to verify if a particular release already exists:</p>
 
-<div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="n">task</span> <span class="n">lookForArtifacts</span> <span class="o">{</span>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">task</span> <span class="n">lookForArtifacts</span> <span class="o">{</span>
     <span class="n">doLast</span> <span class="o">{</span>
         <span class="o">...</span>
         <span class="kt">def</span> <span class="n">repositoryUrl</span> <span class="o">=</span> <span class="s1">'https://api.bitbucket.org/1.0/repositories/'</span> <span class="o">+</span> <span class="n">COMPANY</span> <span class="o">+</span> <span class="s1">'/'</span> <span class="o">+</span> <span class="n">REPOSITORY_NAME</span> <span class="o">+</span> <span class="s1">'/raw/releases/'</span> <span class="o">+</span> <span class="n">artifactPath</span>
@@ -243,16 +239,14 @@ If you accidentally push your local branch to a remote called <code class="highl
         <span class="k">return</span> <span class="kc">true</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Quite simple actually: just reverse engineer the url of a particular release artifact and the see if we get a 200 response or not.</p>
 
 <p>Finally we ensure that we always run the previous task before running the Maven task:</p>
 
-<div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="n">uploadArchives</span><span class="o">.</span><span class="na">dependsOn</span> <span class="n">lookForArtifacts</span>
-</code></pre>
-</div>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">uploadArchives</span><span class="o">.</span><span class="na">dependsOn</span> <span class="n">lookForArtifacts</span>
+</code></pre></div></div>
 
 <p>Running <code class="highlighter-rouge">./gradlew uploadArchives</code> now successfully creates a release.</p>
 
@@ -261,7 +255,7 @@ If you accidentally push your local branch to a remote called <code class="highl
 <h2 id="consuming-artifacts">Consuming artifacts</h2>
 <p>Add your Maven repository to the list of repositories in your main <code class="highlighter-rouge">build.gradle</code> file:</p>
 
-<div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="n">allprojects</span> <span class="o">{</span>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">allprojects</span> <span class="o">{</span>
     <span class="n">repositories</span> <span class="o">{</span>
         <span class="n">jcenter</span><span class="o">()</span>
 
@@ -274,8 +268,7 @@ If you accidentally push your local branch to a remote called <code class="highl
         <span class="o">}</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Note that we have to provide a <code class="highlighter-rouge">username</code> and <code class="highlighter-rouge">password</code> as we are connecting to a private repository.</p>
 
@@ -287,12 +280,11 @@ If you accidentally push your local branch to a remote called <code class="highl
 
 <p>Now simply add a dependency on your library like you are used to and you’re ready.</p>
 
-<div class="language-groovy highlighter-rouge"><pre class="highlight"><code><span class="n">dependencies</span> <span class="o">{</span>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dependencies</span> <span class="o">{</span>
     <span class="o">...</span>
     <span class="n">compile</span> <span class="s1">'com.jeroenmols.awesomelibrary:awesomelibrary:1.0.0'</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="putting-it-all-together">Putting it all together</h2>
 <p>To make your life a lot easier, I’ve created a <a href="https://github.com/JeroenMols/WagonGitExample/blob/master/library/publish-bitbucket.gradle">Gradle script</a> that does everything for you.</p>
@@ -303,40 +295,36 @@ If you accidentally push your local branch to a remote called <code class="highl
  <li>Add the following plugin to the top of the <a href="https://github.com/JeroenMols/WagonGitExample/blob/master/library/build.gradle">build.gradle</a> file in your library folder</li>
 </ol>
 
-<div class="language-groovy highlighter-rouge"><pre class="highlight"><code>  <span class="n">apply</span> <span class="nl">from:</span> <span class="s1">'https://raw.githubusercontent.com/JeroenMols/GitAsMaven/master/publish-bitbucket.gradle'</span>
-</code></pre>
-</div>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">apply</span> <span class="nl">from:</span> <span class="s1">'https://raw.githubusercontent.com/JeroenMols/GitAsMaven/master/publish-bitbucket.gradle'</span>
+</code></pre></div></div>
 
 <ol>
  <li>Create a <a href="https://github.com/JeroenMols/WagonGitExample/blob/master/library/gradle.properties">gradle.properties</a> file within your library folder with the following parameters:</li>
 </ol>
 
-<div class="language-groovy highlighter-rouge"><pre class="highlight"><code>  <span class="n">ARTIFACT_VERSION</span><span class="o">=&lt;</span><span class="n">version_here</span><span class="o">&gt;</span>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">ARTIFACT_VERSION</span><span class="o">=&lt;</span><span class="n">version_here</span><span class="o">&gt;</span>
   <span class="n">ARTIFACT_NAME</span><span class="o">=&lt;</span><span class="n">libraryname_here</span><span class="o">&gt;</span>
   <span class="n">ARTIFACT_PACKAGE</span><span class="o">=&lt;</span><span class="n">packagename_here</span><span class="o">&gt;</span>
   <span class="n">ARTIFACT_PACKAGING</span><span class="o">=</span><span class="n">aar</span> <span class="c1">//You could also use jar</span>
 
   <span class="n">COMPANY</span><span class="o">=&lt;</span><span class="n">bitbucket_team_company_here</span><span class="o">&gt;</span> <span class="c1">//Username if not part of team</span>
   <span class="n">REPOSITORY_NAME</span><span class="o">=&lt;</span><span class="n">bitbucket_reponame_here</span><span class="o">&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ol>
  <li>Create a <a href="https://github.com/JeroenMols/WagonGitExample/blob/master/gradle.properties">gradle.properties</a> file in the root of your project (or better in the global <code class="highlighter-rouge">.gradle</code> folder on your system) with the following parameters</li>
 </ol>
 
-<div class="language-groovy highlighter-rouge"><pre class="highlight"><code>  <span class="n">USERNAME</span><span class="o">=&lt;</span><span class="n">username_here</span><span class="o">&gt;</span>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">USERNAME</span><span class="o">=&lt;</span><span class="n">username_here</span><span class="o">&gt;</span>
   <span class="n">PASSWORD</span><span class="o">=&lt;</span><span class="n">password_here</span><span class="o">&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ol>
  <li>Run the following command to upload a version to your Maven repository.</li>
 </ol>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>  ./gradlew uploadArchives
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ./gradlew uploadArchives
+</code></pre></div></div>
 
 <p>Thats’s it!</p>
 
@@ -367,10 +355,10 @@ If you accidentally push your local branch to a remote called <code class="highl
      </footer>
      <section class="page__share">
    <h4 class="page__share-title">Share on</h4>
-  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=Git as a secure private Maven repository https://jeroenmols.com/blog/2016/02/05/wagongit/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https://jeroenmols.com/blog/2016/02/05/wagongit/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
-  <a href="https://plus.google.com/share?url=https://jeroenmols.com/blog/2016/02/05/wagongit/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://jeroenmols.com/blog/2016/02/05/wagongit/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=Git+as+a+secure+private+Maven+repository%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2016%2F02%2F05%2Fwagongit%2F" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2016%2F02%2F05%2Fwagongit%2F" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://plus.google.com/share?url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2016%2F02%2F05%2Fwagongit%2F" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2016%2F02%2F05%2Fwagongit%2F" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
      <section class="page__share">
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -416,7 +404,7 @@ If you accidentally push your local branch to a remote called <code class="highl
 <div class="page__footer-copyright">&copy; 2017 Jeroen Mols. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
      </footer>
    </div>
-    <script src="https://jeroenmols.com/assets/js/main.min.js"></script>
+  <script src="https://jeroenmols.com/assets/js/main.min.js"></script>
   <script type="text/javascript">
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-63356566-1']);
@@ -427,23 +415,21 @@ If you accidentally push your local branch to a remote called <code class="highl
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>
-  <script type="text/javascript">
-  	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-  	var disqus_shortname = 'jeroenmols';
-  	/* * * DON'T EDIT BELOW THIS LINE * * */
-  	(function() {
-  		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-  		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-  		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  	})();
-  	/* * * DON'T EDIT BELOW THIS LINE * * */
-  	(function () {
-  		var s = document.createElement('script'); s.async = true;
-  		s.type = 'text/javascript';
-  		s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-  		(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-  	}());
+      
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://jeroenmols.com/blog/2016/02/05/wagongit/";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = "/blog/2016/02/05/wagongit"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jeroenmols.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
   </script>
-  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
  </body>
 </html>
