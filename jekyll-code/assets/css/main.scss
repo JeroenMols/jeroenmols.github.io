@@ -4,5 +4,54 @@
 
 @charset "utf-8";
 
+
+// Color tweaks
+$theme-orange               : #d28445 !default;
+$theme-grey                 : #2c3e50 !default;
+
+$body-color                 : #fff !default;
+$navigation-color           : $theme-grey !default;
+$link-color                 : $theme-orange !default;
+$masthead-link-color        : #fff !default;
+$masthead-link-color-hover  : $theme-orange !default;
+
+
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
+
+// THEME NAVIGATION BAR
+
+.masthead {
+  background-color: $navigation-color;
+  border-bottom: 1px solid $navigation-color;
+}
+
+.greedy-nav {
+  background: $navigation-color;
+  text-transform: uppercase;
+
+  a {
+    font-size: $type-size-3;
+  }
+
+  button {
+    background-color: $navigation-color;
+  }
+
+  .visible-links a {
+      &:before {
+        height: 0px;
+      }
+  }
+
+  .hidden-links {
+    border: 1px solid $navigation-color;
+    background: $navigation-color;
+
+    a {
+      &:hover {
+        background: $navigation-color;
+      }
+    }
+  }
+}
