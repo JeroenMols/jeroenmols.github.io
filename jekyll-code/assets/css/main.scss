@@ -12,6 +12,7 @@ $theme-grey                 : #2c3e50 !default;
 $body-color                 : #fff !default;
 $navigation-color           : $theme-grey !default;
 $link-color                 : $theme-orange !default;
+$link-color-hover           : $theme-orange !default;
 $masthead-link-color        : #fff !default;
 $masthead-link-color-hover  : $theme-orange !default;
 
@@ -19,8 +20,9 @@ $masthead-link-color-hover  : $theme-orange !default;
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
 
-// THEME NAVIGATION BAR
-
+/*
+   NAVIGATION BAR
+   ========================================================================== */
 .masthead {
   background-color: $navigation-color;
   border-bottom: 1px solid $navigation-color;
@@ -53,5 +55,48 @@ $masthead-link-color-hover  : $theme-orange !default;
         background: $navigation-color;
       }
     }
+  }
+}
+
+/*
+   PAGE
+   ========================================================================== */
+   .page__content {
+     a:not(.btn) {
+       text-decoration: none;
+     }
+   }
+
+
+/*
+   HIRE ME PAGE
+   ========================================================================== */
+.page__contact {
+  background-color: #fff;
+  padding: 0px;
+
+  button {
+    border: none;
+    color: #fff;
+    border-radius: 0.25rem;
+    padding: 0.25em 1em;
+    background-color: $theme-orange
+  }
+
+  input {
+    border: 1px solid $light-gray;
+  }
+
+  input:focus {
+    border: 1px solid $text-color;
+  }
+
+  textarea {
+    height: 9em;
+    border: 1px solid $light-gray;
+  }
+
+  textarea:focus {
+    border: 1px solid $text-color;
   }
 }
