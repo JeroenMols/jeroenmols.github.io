@@ -108,8 +108,8 @@ $masthead-link-color-hover  : $theme-orange !default;
 /*
    POST PREVIEW
    ========================================================================== */
-.archive__date {
-  margin: 0 0 0 0 !important;
+h3.archive__date {
+  margin: 0 0 0 0;
   font-size: $type-size-6;
   color: $light-gray;
   font-style: normal;
