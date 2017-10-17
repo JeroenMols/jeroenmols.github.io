@@ -62,6 +62,10 @@ $masthead-link-color-hover  : $theme-orange !default;
    PAGE
    ========================================================================== */
    .page__content {
+     h2 {
+       border-bottom: none;
+     }
+
      a:not(.btn) {
        text-decoration: none;
      }
