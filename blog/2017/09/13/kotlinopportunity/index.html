@@ -65,6 +65,21 @@
 <div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
 <![endif]-->
    <meta name="theme-color" content="#2c3e50">
+<script>
+$(document).ready(function(){
+	$('.ga-link').on('click', function(){
+		if (typeof(ga)!=="undefined"){
+			ga('send',{
+				hitType: 'event',
+				eventCategory: 'Outbound link',
+				eventAction: 'click',
+				eventLabel: event.target.href
+			});
+	  	}
+	});
+)};
+</script>
+ 
 <div class="masthead">
  <div class="masthead__inner-wrap">
    <div class="masthead__menu">
@@ -228,7 +243,8 @@
 <h2 id="wrap-up">Wrap-up</h2>
 <p>Learning a new programming language is essential in staying relevant as a software developer. Thanks to Kotlin, Android developers can now learn a new language without the frustration of all boilerplate around it.</p>
 
-<p>If you’ve made it this far, you should probably follow me on <a href="https://twitter.com/molsjeroen">Twitter</a>. Feel free leave a comment below!</p>
+<p>If you’ve made it this far, you should probably follow me on <span><a href="https://twitter.com/molsjeroen?source=thecareeropportunitycalledkotlin2017" class="ga-link" target="_blank">Twitter</a></span>
+. Feel free leave a comment below!</p>
 
      </section>
      <footer class="page__meta">

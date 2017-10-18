@@ -65,6 +65,21 @@
 <div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
 <![endif]-->
    <meta name="theme-color" content="#2c3e50">
+<script>
+$(document).ready(function(){
+	$('.ga-link').on('click', function(){
+		if (typeof(ga)!=="undefined"){
+			ga('send',{
+				hitType: 'event',
+				eventCategory: 'Outbound link',
+				eventAction: 'click',
+				eventLabel: event.target.href
+			});
+	  	}
+	});
+)};
+</script>
+ 
 <div class="masthead">
  <div class="masthead__inner-wrap">
    <div class="masthead__menu">
@@ -263,7 +278,8 @@
 <h2 id="wrap-up">Wrap-up</h2>
 <p>It’s always super inspiring to visit a conference, especially google IO. This year we got an impressive set of new developer tools/apis and I had the pleasure of meeting many interesting people. We’re lucky to have such a vibrant community!</p>
 
-<p>Do you like this format? Let me know in the comments below or <a href="https://twitter.com/molsjeroen">@molsjeroen</a>.</p>
+<p>Do you like this format? Let me know in the comments below or <span><a href="https://twitter.com/molsjeroen?source=mygoogle#io17takeaways2017" class="ga-link" target="_blank">@molsjeroen</a></span>
+.</p>
 
      </section>
      <footer class="page__meta">

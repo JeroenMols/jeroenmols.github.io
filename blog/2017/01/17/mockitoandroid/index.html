@@ -65,6 +65,21 @@
 <div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
 <![endif]-->
    <meta name="theme-color" content="#2c3e50">
+<script>
+$(document).ready(function(){
+	$('.ga-link').on('click', function(){
+		if (typeof(ga)!=="undefined"){
+			ga('send',{
+				hitType: 'event',
+				eventCategory: 'Outbound link',
+				eventAction: 'click',
+				eventLabel: event.target.href
+			});
+	  	}
+	});
+)};
+</script>
+ 
 <div class="masthead">
  <div class="masthead__inner-wrap">
    <div class="masthead__menu">
@@ -205,7 +220,8 @@
 <h2 id="wrap-up">Wrap-up</h2>
 <p>Finally Mockito has first class support for Android instrumentation tests! I’ve also updated my <a href="https://github.com/jeroenmols/mockitoexample">Mockito sample project</a> where you can see how it works and learn more about how to use Mockito.</p>
 
-<p>As always you can reach me <a href="https://twitter.com/molsjeroen">@molsjeroen</a> on twitter, or leave a comment below!</p>
+<p>As always you can reach me <span><a href="https://twitter.com/molsjeroen?source=usingmockito2.xonandroid2017" class="ga-link" target="_blank">@molsjeroen</a></span>
+ on twitter, or leave a comment below!</p>
 
      </section>
      <footer class="page__meta">

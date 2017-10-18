@@ -62,6 +62,21 @@
 <div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
 <![endif]-->
    <meta name="theme-color" content="#2c3e50">
+<script>
+$(document).ready(function(){
+	$('.ga-link').on('click', function(){
+		if (typeof(ga)!=="undefined"){
+			ga('send',{
+				hitType: 'event',
+				eventCategory: 'Outbound link',
+				eventAction: 'click',
+				eventLabel: event.target.href
+			});
+	  	}
+	});
+)};
+</script>
+ 
 <div class="masthead">
  <div class="masthead__inner-wrap">
    <div class="masthead__menu">
@@ -142,16 +157,17 @@
  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
    <div style="position:relative;">
        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/coveragecost/coveragecost.png)"></div>
-        <a href="https://jeroenmols.com/blog/2016/09/01/coveragecost/" rel="permalink">
-        </a>
-   <div class="archive__item_titlecontainer">
+     <div class="archive__item_titlecontainer">
        <h2 class="archive__item-title" itemprop="headline">
             <a href="https://jeroenmols.com/blog/2016/09/01/coveragecost/" rel="permalink">The hidden cost of code coverage
 </a>
        </h2>
        <h3 class="archive__date">01 Sep 2016</h3>
+     </div>
+        <a href="https://jeroenmols.com/blog/2016/09/01/coveragecost/" rel="permalink">
+         <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
    </div>
- </div>
      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
   1 minute read
 </p>
@@ -162,16 +178,17 @@
  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
    <div style="position:relative;">
        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/copyright/copyright.png)"></div>
-        <a href="https://jeroenmols.com/blog/2016/08/03/copyright/" rel="permalink">
-        </a>
-   <div class="archive__item_titlecontainer">
+     <div class="archive__item_titlecontainer">
        <h2 class="archive__item-title" itemprop="headline">
             <a href="https://jeroenmols.com/blog/2016/08/03/copyright/" rel="permalink">Why you should care about copyright
 </a>
        </h2>
        <h3 class="archive__date">03 Aug 2016</h3>
+     </div>
+        <a href="https://jeroenmols.com/blog/2016/08/03/copyright/" rel="permalink">
+         <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
    </div>
- </div>
      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
   4 minute read
 </p>
@@ -182,16 +199,17 @@
  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
    <div style="position:relative;">
        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/cyclinggps/cyclinggps.png)"></div>
-        <a href="https://jeroenmols.com/blog/2016/07/21/cyclinggps/" rel="permalink">
-        </a>
-   <div class="archive__item_titlecontainer">
+     <div class="archive__item_titlecontainer">
        <h2 class="archive__item-title" itemprop="headline">
             <a href="https://jeroenmols.com/blog/2016/07/21/cyclinggps/" rel="permalink">Turn Android into an awesome cycling GPS
 </a>
        </h2>
        <h3 class="archive__date">21 Jul 2016</h3>
+     </div>
+        <a href="https://jeroenmols.com/blog/2016/07/21/cyclinggps/" rel="permalink">
+         <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
    </div>
- </div>
      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
   4 minute read
 </p>
@@ -202,16 +220,17 @@
  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
    <div style="position:relative;">
        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/droidconde16talk/droidcondetalk.png)"></div>
-        <a href="https://jeroenmols.com/blog/2016/06/24/droidcondetalk/" rel="permalink">
-        </a>
-   <div class="archive__item_titlecontainer">
+     <div class="archive__item_titlecontainer">
        <h2 class="archive__item-title" itemprop="headline">
             <a href="https://jeroenmols.com/blog/2016/06/24/droidcondetalk/" rel="permalink">Testing made sweet with a Mockito
 </a>
        </h2>
        <h3 class="archive__date">24 Jun 2016</h3>
+     </div>
+        <a href="https://jeroenmols.com/blog/2016/06/24/droidcondetalk/" rel="permalink">
+         <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
    </div>
- </div>
      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
   1 minute read
 </p>
@@ -222,16 +241,17 @@
  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
    <div style="position:relative;">
        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/droidconde16/droidconde.png)"></div>
-        <a href="https://jeroenmols.com/blog/2016/06/18/droidconde/" rel="permalink">
-        </a>
-   <div class="archive__item_titlecontainer">
+     <div class="archive__item_titlecontainer">
        <h2 class="archive__item-title" itemprop="headline">
             <a href="https://jeroenmols.com/blog/2016/06/18/droidconde/" rel="permalink">Droidcon Berlin recap
 </a>
        </h2>
        <h3 class="archive__date">18 Jun 2016</h3>
+     </div>
+        <a href="https://jeroenmols.com/blog/2016/06/18/droidconde/" rel="permalink">
+         <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
    </div>
- </div>
      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
   3 minute read
 </p>
@@ -242,16 +262,17 @@
  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
    <div style="position:relative;">
        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/methodcount/methodcount.png)"></div>
-        <a href="https://jeroenmols.com/blog/2016/05/06/methodcount/" rel="permalink">
-        </a>
-   <div class="archive__item_titlecontainer">
+     <div class="archive__item_titlecontainer">
        <h2 class="archive__item-title" itemprop="headline">
             <a href="https://jeroenmols.com/blog/2016/05/06/methodcount/" rel="permalink">Efficiently reducing your method count
 </a>
        </h2>
        <h3 class="archive__date">06 May 2016</h3>
+     </div>
+        <a href="https://jeroenmols.com/blog/2016/05/06/methodcount/" rel="permalink">
+         <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
    </div>
- </div>
      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
   6 minute read
 </p>
@@ -262,16 +283,17 @@
  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
    <div style="position:relative;">
        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/droidconit16/droidconit.png)"></div>
-        <a href="https://jeroenmols.com/blog/2016/04/08/droidconit/" rel="permalink">
-        </a>
-   <div class="archive__item_titlecontainer">
+     <div class="archive__item_titlecontainer">
        <h2 class="archive__item-title" itemprop="headline">
             <a href="https://jeroenmols.com/blog/2016/04/08/droidconit/" rel="permalink">Droidcon Italy recap
 </a>
        </h2>
        <h3 class="archive__date">08 Apr 2016</h3>
+     </div>
+        <a href="https://jeroenmols.com/blog/2016/04/08/droidconit/" rel="permalink">
+         <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
    </div>
- </div>
      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
   4 minute read
 </p>
@@ -282,16 +304,17 @@
  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
    <div style="position:relative;">
        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/resourcenaming/resourcenaming.png)"></div>
-        <a href="https://jeroenmols.com/blog/2016/03/07/resourcenaming/" rel="permalink">
-        </a>
-   <div class="archive__item_titlecontainer">
+     <div class="archive__item_titlecontainer">
        <h2 class="archive__item-title" itemprop="headline">
             <a href="https://jeroenmols.com/blog/2016/03/07/resourcenaming/" rel="permalink">A successful XML naming convention
 </a>
        </h2>
        <h3 class="archive__date">07 Mar 2016</h3>
+     </div>
+        <a href="https://jeroenmols.com/blog/2016/03/07/resourcenaming/" rel="permalink">
+         <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
    </div>
- </div>
      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
   5 minute read
 </p>
@@ -302,16 +325,17 @@
  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
    <div style="position:relative;">
        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/wagongit/wagongit.png)"></div>
-        <a href="https://jeroenmols.com/blog/2016/02/05/wagongit/" rel="permalink">
-        </a>
-   <div class="archive__item_titlecontainer">
+     <div class="archive__item_titlecontainer">
        <h2 class="archive__item-title" itemprop="headline">
             <a href="https://jeroenmols.com/blog/2016/02/05/wagongit/" rel="permalink">Git as a secure private Maven repository
 </a>
        </h2>
        <h3 class="archive__date">05 Feb 2016</h3>
+     </div>
+        <a href="https://jeroenmols.com/blog/2016/02/05/wagongit/" rel="permalink">
+         <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
    </div>
- </div>
      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
   4 minute read
 </p>
@@ -322,16 +346,17 @@
  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
    <div style="position:relative;">
        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/yearinreview15/yearinreview15.png)"></div>
-        <a href="https://jeroenmols.com/blog/2016/01/29/yearinreview/" rel="permalink">
-        </a>
-   <div class="archive__item_titlecontainer">
+     <div class="archive__item_titlecontainer">
        <h2 class="archive__item-title" itemprop="headline">
             <a href="https://jeroenmols.com/blog/2016/01/29/yearinreview/" rel="permalink">Year in review 2015
 </a>
        </h2>
        <h3 class="archive__date">29 Jan 2016</h3>
+     </div>
+        <a href="https://jeroenmols.com/blog/2016/01/29/yearinreview/" rel="permalink">
+         <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
    </div>
- </div>
      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
   1 minute read
 </p>

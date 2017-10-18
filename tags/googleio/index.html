@@ -60,6 +60,21 @@
 <div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
 <![endif]-->
    <meta name="theme-color" content="#2c3e50">
+<script>
+$(document).ready(function(){
+	$('.ga-link').on('click', function(){
+		if (typeof(ga)!=="undefined"){
+			ga('send',{
+				hitType: 'event',
+				eventCategory: 'Outbound link',
+				eventAction: 'click',
+				eventLabel: event.target.href
+			});
+	  	}
+	});
+)};
+</script>
+ 
 <div class="masthead">
  <div class="masthead__inner-wrap">
    <div class="masthead__menu">
@@ -144,16 +159,17 @@
  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
    <div style="position:relative;">
        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/googleio17/googleio17.png)"></div>
-        <a href="https://jeroenmols.com/blog/2017/05/31/googleio17/" rel="permalink">
-        </a>
-   <div class="archive__item_titlecontainer">
+     <div class="archive__item_titlecontainer">
        <h2 class="archive__item-title" itemprop="headline">
             <a href="https://jeroenmols.com/blog/2017/05/31/googleio17/" rel="permalink">My Google #io17 takeaways
 </a>
        </h2>
        <h3 class="archive__date">31 May 2017</h3>
+     </div>
+        <a href="https://jeroenmols.com/blog/2017/05/31/googleio17/" rel="permalink">
+         <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
    </div>
- </div>
      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
   3 minute read
 </p>
