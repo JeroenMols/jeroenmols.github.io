@@ -126,4 +126,4 @@ That's it! You now have a one click way of ensuring your copyright notices are u
 ## Wrap-up
 Copyright is not something to mess around with and you can face cause serious legal consequences if you don't. Even your open source projects should have a proper copyright notice. Fortunately [choosealicense.com](http://choosealicense.com/) and Android Studio help you choose and apply the correct license.
 
-As always you can reach me [@molsjeroen](https://twitter.com/molsjeroen) on twitter, or leave a comment below!
+As always you can reach me {% include link_twitter_molsjeroen.html %} on twitter, or leave a comment below!

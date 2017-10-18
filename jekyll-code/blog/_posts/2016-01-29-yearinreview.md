@@ -25,4 +25,4 @@ On a technical level I also fared well and I'm very happy with what I've been ab
 
 Next year will be more challenging as my daughter has become a lot more effective at grabbing my attention than my laptop. However I want to increase my efforts contributing back to the community by speaking at more conferences and writing more blogposts. Finally I also want to visit Google IO, which is about time I got there, don't you agree? ;)
 
-As always you can reach me [@molsjeroen](https://twitter.com/molsjeroen) on twitter, or leave a comment below!
+As always you can reach me {% include link_twitter_molsjeroen.html %} on twitter, or leave a comment below!

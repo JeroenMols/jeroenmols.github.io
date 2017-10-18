@@ -104,4 +104,4 @@ I'll update this section as I discover new handy features/tricks to make the GPS
 ## Wrap-up
 In a few very simple steps we created a complete cycling GPS solution that provides turn by turn navigation and offline maps. Creating tracks is done using Strava and export using a Dropbox folder so that they automatically appear on your GPS device.
 
-As always you can reach me [@molsjeroen](https://twitter.com/molsjeroen) on twitter, or leave a comment below!
+As always you can reach me {% include link_twitter_molsjeroen.html %} on twitter, or leave a comment below!

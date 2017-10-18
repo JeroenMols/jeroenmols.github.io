@@ -97,4 +97,4 @@ For more information have a look at the complete [migration guide](https://devel
 ## Wrap-up
 To build multi-module projects faster, the Android Gradle plugin needed a breaking API change. Always try to use the `implementation` dependency as this will cause fewer modules to be recompiled.
 
-As always you can reach me [@molsjeroen](https://twitter.com/molsjeroen) on Twitter, or leave a comment below!
+As always you can reach me {% include link_twitter_molsjeroen.html %} on Twitter, or leave a comment below!

@@ -122,4 +122,4 @@ This is very much a work in progress, so expect more matchers to come soon!
 ## Wrap-up
 Custom matchers are a great way to simplify unit tests. In my [Mockito sample project](https://github.com/jeroenmols/mockitoexample) you can learn more about how to use Mockito and find other custom matcher examples.
 
-As always you can reach me [@molsjeroen](https://twitter.com/molsjeroen) on twitter, or leave a comment below!
+As always you can reach me {% include link_twitter_molsjeroen.html %} on twitter, or leave a comment below!
