@@ -12,19 +12,22 @@
 
 <div class="{{ include.type | default: "list" }}__item" style="position: relative">
   <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    {% if teaser %}
     <div style="position:relative;">
+      {% if teaser %}
         <div class="archive__item-teaser" style="background-image: url({{ teaser | absolute_url }})"></div>
-        <a href="{{ post.url | absolute_url }}" rel="permalink">
-        </a>
-    {% endif %}
-    <div class="archive__item_titlecontainer">
+      {% endif %}
+      <div class="archive__item_titlecontainer">
         <h2 class="archive__item-title" itemprop="headline">
             <a href="{{ post.url | absolute_url }}" rel="permalink">{{ title }}</a>
         </h2>
         <h3 class="archive__date">{{ post.date | date_to_string }}</h3>
+      </div>
+      {% if teaser %}
+        <a href="{{ post.url | absolute_url }}" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      {% endif %}
     </div>
-  </div>
     {% if post.read_time %}
       <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> {% include read-time.html %}</p>
     {% endif %}

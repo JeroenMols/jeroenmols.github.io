@@ -135,13 +135,18 @@ h3.archive__date {
   width:100%;
 }
 
-.archive__item-teaser {
+.archive__item-teaser, .archive__item-teaser-imageclickhandler {
   display: inline-block;
   background-size: cover;
   background-position: center;
   position: relative;
   min-height: 240px;
   width: 100%;
+}
+
+.archive__item-teaser-imageclickhandler {
+  position: absolute;
+  top: 0;
 }
 
 .archive__item-excerpt {
