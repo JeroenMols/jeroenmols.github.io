@@ -36,6 +36,12 @@ Fabio Collini
 - [Doo z z z z z e](https://speakerdeck.com/vrallev/doo-z-z-z-z-z-e) by Ralf Wondratschek‏
 - [OpenGL - A noob's guide for Android developers](https://speakerdeck.com/bmonjoie/droidconuk-2017-opengl-a-noobs-guide-for-android-developers) by Benjamin Monjoie
 - [Through the looking-glass eyes of an Android](https://docs.google.com/presentation/d/1hnWTlKi95_VhX1T0s4MnT0PrVq5bRutY2WsSvFARjh8/present?slide=id.g267d5be2b1_0_0) by Adrián Catalán
+- [Travelling across Asia - Our journey from Java to Kotlin](https://speakerdeck.com/marianeum/travelling-across-asia-our-journey-from-java-to-kotlin) by Amal Kakaiya and Maria Neumayer
+- [Merge like it's 2099](https://gitpitch.com/xgouchet/Talks/DroidconUK_AutoMergeTool) by Xavier Gouchet
+- [Poor programming patterns and how to avoid them](https://docs.google.com/presentation/d/e/2PACX-1vRHA5uSq_Zn9qCg-Lx0BYWjDoIw3Cm8ui19MdLTDtfs54YjiQTjpsBLF1fCgXlGCJOBaYuf1QNCR170/pub?start=false&loop=false&delayms=3000&slide=id.g280bfd46a0_0_17) by Alice Yuan
+- [Android Internals for Developers](https://speakerdeck.com/codingchick/android-internals-for-developers) by Effie Barak
+- [Deep Android Integrations](https://speakerdeck.com/tysmith/deep-android-integrations) by Ty Smith
+- [When your app’s asleep](https://speakerdeck.com/gdglviv/britt-barak-when-your-apps-asleep) by Britt Barak
 
 ## Credits
 Thanks to the Skills Matter team for organizing a top notch conference! To all sponsors for making this event possible. And to the entire Android community for being so awesome!
