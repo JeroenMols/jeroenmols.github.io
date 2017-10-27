@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle>
- <updated>2017-10-23T12:11:55+02:00</updated>
+ <updated>2017-10-28T00:36:17+02:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,20 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>Droidcon UK slides</title>
+   <link href="https://jeroenmols.com/blog/2017/10/27/droidconuk/"/>
+   <updated>2017-10-27T00:00:00+02:00</updated>
+   <id>https://jeroenmols.com/blog/2017/10/27/droidconuk</id>
+   <content type="html"><![CDATA[
+     
+     <p>Had a blast visiting Droidcon UK this year and wanted to do a quick post to link to all of it’s wonderful content.</p>
+
+
+     <a href="https://jeroenmols.com/blog/2017/10/27/droidconuk/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>The career opportunity called Kotlin</title>

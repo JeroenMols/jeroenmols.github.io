@@ -1,4 +1,40 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.0">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2017-10-23T12:11:55+02:00</updated><id>https://jeroenmols.com/</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">The career opportunity called Kotlin</title><link href="https://jeroenmols.com/blog/2017/09/13/kotlinopportunity/" rel="alternate" type="text/html" title="The career opportunity called Kotlin" /><published>2017-09-13T00:00:00+02:00</published><updated>2017-09-13T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2017/09/13/kotlinopportunity</id><content type="html" xml:base="https://jeroenmols.com/blog/2017/09/13/kotlinopportunity/">&lt;p&gt;This isn’t another post about the benefits of using Kotlin. Hell, I’m not even going to cover any of its language features. Nor will I try to convince you to make the switch.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.0">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2017-10-28T00:36:17+02:00</updated><id>https://jeroenmols.com/</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Droidcon UK slides</title><link href="https://jeroenmols.com/blog/2017/10/27/droidconuk/" rel="alternate" type="text/html" title="Droidcon UK slides" /><published>2017-10-27T00:00:00+02:00</published><updated>2017-10-27T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2017/10/27/droidconuk</id><content type="html" xml:base="https://jeroenmols.com/blog/2017/10/27/droidconuk/">&lt;p&gt;Had a blast visiting Droidcon UK this year and wanted to do a quick post to link to all of it’s wonderful content.&lt;/p&gt;
+
+&lt;h2 id=&quot;conference-slides&quot;&gt;Conference slides&lt;/h2&gt;
+&lt;p&gt;While you can find all recordings &lt;a href=&quot;http://uk.droidcon.com/#program&quot;&gt;here&lt;/a&gt;, I often find it useful to be able to quickly scan through the slides. Hence I bundled everything I could already from socials.&lt;/p&gt;
+
+&lt;p&gt;// Will update this section as more slides become available…&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/jeroenmols/deep-into-the-iot-trenches-how-to-build-a-connected-product&quot;&gt;IoT from the trenches - How to build a connected product&lt;/a&gt; by Jeroen Mols&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/colabug/the-creative-technologist&quot;&gt;The Creative Technologist!&lt;/a&gt; by Corey Latislaw&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://photos.google.com/share/AF1QipPv2vuQuVln5ASkKskgxIGWvh5E_Gtx4rEQR9GW1USQAo0ir0-msywha4mcA8Vzgg?key=NllER3QwalRjTXN4alRzejJtdExYV054ajlhd3VB&quot;&gt;Vector Workflows&lt;/a&gt; by Nick Butcher&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/erikhellman/my-app-is-smarter-than-your-app&quot;&gt;My app is smarter than your app&lt;/a&gt; by Erik Hellman&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/jakewharton/sinking-your-teeth-into-bytecode-droidcon-uk-2017&quot;&gt;Sinking your teeth into byte code&lt;/a&gt; by Jake Wharton&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/lisawray/tips-for-library-development-from-a-startup-developer&quot;&gt;Tips for Library Development from a Startup Developer&lt;/a&gt; by Lisa Wray
+-&lt;a href=&quot;https://speakerdeck.com/igorwojda/why-do-we-need-clean-architecture&quot;&gt;Why do we need Clean Architecture&lt;/a&gt; by Igor Wojda&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://photos.google.com/share/AF1QipNFHDcQ8dYK_qMxCjPU4vp1mWQZUEYWHvLklKRAmruZ_z5xmQptv8WPsUjEH5_zlw?key=azg3OUFTUFV3d0xwaF9QTUllYUUybzhlcFZEckRR&quot;&gt;Becoming a master window fitter&lt;/a&gt; by Chris Banes&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/maltzj/multiplying-your-impact-through-mentoring-droidcon-london-2017&quot;&gt;Multiplying your impact through mentoring&lt;/a&gt; by Jonathan Maltz&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.slideshare.net/fabio_collini/testing-android-apps-based-on-dagger-and-rxjava-droidcon-uk/1&quot;&gt;Testing Android apps based on Dagger and RxJava&lt;/a&gt; by
+Fabio Collini&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.google.com/presentation/d/e/2PACX-1vRHA5uSq_Zn9qCg-Lx0BYWjDoIw3Cm8ui19MdLTDtfs54YjiQTjpsBLF1fCgXlGCJOBaYuf1QNCR170/pub?start=false&amp;amp;loop=false&amp;amp;delayms=3000&amp;amp;slide=id.g280bfd46a0_0_17&quot;&gt;Poor programming patterns and how to avoid them&lt;/a&gt; by Alice Yuan&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/raulh82vlc/building-a-minimum-viable-product-mvp-with-face-recognition-and-ar-in-android-at-droidcon-london-2017&quot;&gt;Building a “Minimum Viable Product” (MVP) with Face recognition and AR in Android&lt;/a&gt; by Raul Hernandez Lopez&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/stkent/bluetooth-low-energy-on-android-top-tips-for-the-tricky-bits-v3-droidcon-london&quot;&gt;Bluetooth Low Energy on Android: Top Tips for the Tricky Bits&lt;/a&gt; by Stuart Kent&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/nightlynexus/making-dogfood-builds-testable-and-fun&quot;&gt;Making Dogfood Builds Testable and Fun&lt;/a&gt; by Eric Cochran&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/mplacona/these-are-a-few-of-my-favourite-android-things&quot;&gt;These are a few of my favourite (Android) Things&lt;/a&gt; by Marcos Placona&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/pakoito/short-about-memory-management-in-fully-reactive-apps&quot;&gt;About Memory Management in Fully Reactive Apps&lt;/a&gt; by Paco Estevez&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/vrallev/doo-z-z-z-z-z-e&quot;&gt;Doo z z z z z e&lt;/a&gt; by Ralf Wondratschek‏&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/bmonjoie/droidconuk-2017-opengl-a-noobs-guide-for-android-developers&quot;&gt;OpenGL - A noob’s guide for Android developers&lt;/a&gt; by Benjamin Monjoie&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.google.com/presentation/d/1hnWTlKi95_VhX1T0s4MnT0PrVq5bRutY2WsSvFARjh8/present?slide=id.g267d5be2b1_0_0&quot;&gt;Through the looking-glass eyes of an Android&lt;/a&gt; by Adrián Catalán&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;credits&quot;&gt;Credits&lt;/h2&gt;
+&lt;p&gt;Thanks to the Skills Matter team for organizing a top notch conference! To all sponsors for making this event possible. And to the entire Android community for being so awesome!&lt;/p&gt;
+
+&lt;p&gt;Hope to see you all next year!&lt;/p&gt;
+
+&lt;p&gt;Helpful? Got extra slides? Hit me up on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=droidconukslides2017&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
+.&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="android" /><category term="conference" /><category term="droidconuk" /><summary type="html">Had a blast visiting Droidcon UK this year and wanted to do a quick post to link to all of it’s wonderful content.</summary></entry><entry><title type="html">The career opportunity called Kotlin</title><link href="https://jeroenmols.com/blog/2017/09/13/kotlinopportunity/" rel="alternate" type="text/html" title="The career opportunity called Kotlin" /><published>2017-09-13T00:00:00+02:00</published><updated>2017-09-13T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2017/09/13/kotlinopportunity</id><content type="html" xml:base="https://jeroenmols.com/blog/2017/09/13/kotlinopportunity/">&lt;p&gt;This isn’t another post about the benefits of using Kotlin. Hell, I’m not even going to cover any of its language features. Nor will I try to convince you to make the switch.&lt;/p&gt;
 
 &lt;p&gt;In contrast, this post will talk career. How learning a new language makes you a better developer and ensures you stay relevant. And in that regards, Kotlin now presents a golden opportunity.&lt;/p&gt;
 
@@ -866,108 +902,4 @@
 &lt;p&gt;Next year construction of our dream house will start, so time will once again be a scarce resource. And since I don’t want to give in on quality time with my daughter, I’ll just try to keep up my current blogging and speaking efforts. However, it would be really cool if I could speak at a conference outside Europe!&lt;/p&gt;
 
 &lt;p&gt;As always you can reach me &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=yearinreview20162017&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;@molsjeroen&lt;/a&gt;&lt;/span&gt;
- on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="review" /><summary type="html">It’s that time of the year again to do a little personal retrospective.</summary></entry><entry><title type="html">Extending Mockito</title><link href="https://jeroenmols.com/blog/2016/10/31/mockitomatchers/" rel="alternate" type="text/html" title="Extending Mockito" /><published>2016-10-31T00:00:00+01:00</published><updated>2016-10-31T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2016/10/31/mockitomatchers</id><content type="html" xml:base="https://jeroenmols.com/blog/2016/10/31/mockitomatchers/">&lt;p&gt;Due to its clean simple api, Mockito has become world’s most popular Java mocking framework. After having covered &lt;a href=&quot;https://speakerdeck.com/jeroenmols/testing-made-sweet-with-a-mockito&quot;&gt;all of its basics&lt;/a&gt;, it’s time to spice things up and start extending Mockito.&lt;/p&gt;
-
-&lt;p&gt;This blogpost will demonstrate the power of custom Mockito matchers.&lt;/p&gt;
-
-&lt;h2 id=&quot;problem-sketch&quot;&gt;Problem sketch&lt;/h2&gt;
-&lt;p&gt;Imagine a very simple example where a button in the UI sends a message to a User object that in its turn does the a WebService call.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/mockitomatchers/architecture.png&quot; alt=&quot;Basic architecture of our situation to test&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;We now want to verify that the User calls the &lt;code class=&quot;highlighter-rouge&quot;&gt;sendMessages()&lt;/code&gt; method on the WebService with the appropriate arguments.&lt;/p&gt;
-
-&lt;h2 id=&quot;traditional-test&quot;&gt;Traditional test&lt;/h2&gt;
-&lt;p&gt;The way to typically test such a scenario is to use an ArgumentCaptor that captures the ArrayList passed to &lt;code class=&quot;highlighter-rouge&quot;&gt;sendMessages()&lt;/code&gt;. Next you can verify that the list contains the appropriate element.&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Test&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;sendMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mockWebService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;USER_ID&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PASSWORD&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;ArgumentCaptor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;listArgumentCaptor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ArgumentCaptor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;forClass&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expectedMessage&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Test message&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sendMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;expectedMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;verify&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mockWebService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sendMessages&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;eq&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;listArgumentCaptor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;capture&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;listArgumentCaptor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getValue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;actualMessage&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;assertEquals&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;expectedMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;actualMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;I don’t even have to begin to explain how cumbersome this is!&lt;/p&gt;
-
-&lt;h2 id=&quot;custom-matcher-test&quot;&gt;Custom matcher test&lt;/h2&gt;
-&lt;p&gt;We can dramatically simplify this by writing our own Mockito matcher and use that as an argument in our test verification.&lt;/p&gt;
-
-&lt;p&gt;First we create a class called &lt;code class=&quot;highlighter-rouge&quot;&gt;ListContains&lt;/code&gt; that implements the &lt;code class=&quot;highlighter-rouge&quot;&gt;ArgumentMatcher&lt;/code&gt; interface. Then add a constructor that get’s the expected element and implement the &lt;code class=&quot;highlighter-rouge&quot;&gt;matches()&lt;/code&gt; method so it checks if the list contains that element.&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ListContains&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ArgumentMatcher&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;T&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ListContains&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;matches&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;List&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;contains&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;c1&quot;&gt;//printed in verification errors&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;[list doesn't contain object]&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Note that &lt;code class=&quot;highlighter-rouge&quot;&gt;toString()&lt;/code&gt; prints an error when the verification fails.&lt;/p&gt;
-
-&lt;p&gt;To make the matcher syntax more intuitive you should create a new class called &lt;code class=&quot;highlighter-rouge&quot;&gt;ListMatchers&lt;/code&gt; that provides a easy to access the matcher.&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ListMatchers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@Nullable&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;K&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;List&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;listContains&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;K&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;argThat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ListContains&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;With this new custom matcher, we can simplify the test to:&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Test&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;customMatchers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mockWebService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;USER_ID&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PASSWORD&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expectedMessage&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Test message&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sendMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;expectedMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;verify&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mockWebService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sendMessages&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;listContains&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;expectedMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Pretty neat isn’t it?&lt;/p&gt;
-
-&lt;h2 id=&quot;library&quot;&gt;Library&lt;/h2&gt;
-&lt;p&gt;After a great suggestion from Eugen Martynov, I’ve decided to create a &lt;a href=&quot;https://github.com/JeroenMols/MockitoCollectionMatchers&quot;&gt;library for all of these collection matchers&lt;/a&gt; on Github.&lt;/p&gt;
-
-&lt;p&gt;All you have to do is add Jitpack to your main &lt;code class=&quot;highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; file:&lt;/p&gt;
-
-&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;repositories&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;maven&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;https://jitpack.io&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;And add a dependency on the library in your project &lt;code class=&quot;highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; file:&lt;/p&gt;
-
-&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;testCompile&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'com.github.JeroenMols:MockitoCollectionMatchers:0.0.1'&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;This is very much a work in progress, so expect more matchers to come soon!&lt;/p&gt;
-
-&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
-&lt;p&gt;Custom matchers are a great way to simplify unit tests. In my &lt;a href=&quot;https://github.com/jeroenmols/mockitoexample&quot;&gt;Mockito sample project&lt;/a&gt; you can learn more about how to use Mockito and find other custom matcher examples.&lt;/p&gt;
-
-&lt;p&gt;As always you can reach me &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=extendingmockito2016&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;@molsjeroen&lt;/a&gt;&lt;/span&gt;
- on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="android" /><category term="mockito" /><category term="testing" /><summary type="html">Due to its clean simple api, Mockito has become world’s most popular Java mocking framework. After having covered all of its basics, it’s time to spice things up and start extending Mockito.</summary></entry></feed>
+ on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="review" /><summary type="html">It’s that time of the year again to do a little personal retrospective.</summary></entry></feed>
