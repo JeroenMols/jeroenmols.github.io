@@ -22,7 +22,7 @@ While you can find all recordings [here](http://uk.droidcon.com/#program), I oft
 - [My app is smarter than your app](https://speakerdeck.com/erikhellman/my-app-is-smarter-than-your-app) by Erik Hellman
 - [Sinking your teeth into byte code](https://speakerdeck.com/jakewharton/sinking-your-teeth-into-bytecode-droidcon-uk-2017) by Jake Wharton
 - [Tips for Library Development from a Startup Developer](https://speakerdeck.com/lisawray/tips-for-library-development-from-a-startup-developer) by Lisa Wray
--[Why do we need Clean Architecture](https://speakerdeck.com/igorwojda/why-do-we-need-clean-architecture) by Igor Wojda
+- [Why do we need Clean Architecture](https://speakerdeck.com/igorwojda/why-do-we-need-clean-architecture) by Igor Wojda
 - [Becoming a master window fitter](https://photos.google.com/share/AF1QipNFHDcQ8dYK_qMxCjPU4vp1mWQZUEYWHvLklKRAmruZ_z5xmQptv8WPsUjEH5_zlw?key=azg3OUFTUFV3d0xwaF9QTUllYUUybzhlcFZEckRR) by Chris Banes
 - [Multiplying your impact through mentoring](https://speakerdeck.com/maltzj/multiplying-your-impact-through-mentoring-droidcon-london-2017) by Jonathan Maltz
 - [Testing Android apps based on Dagger and RxJava](https://www.slideshare.net/fabio_collini/testing-android-apps-based-on-dagger-and-rxjava-droidcon-uk/1) by
@@ -42,6 +42,10 @@ Fabio Collini
 - [Android Internals for Developers](https://speakerdeck.com/codingchick/android-internals-for-developers) by Effie Barak
 - [Deep Android Integrations](https://speakerdeck.com/tysmith/deep-android-integrations) by Ty Smith
 - [When your app’s asleep](https://speakerdeck.com/gdglviv/britt-barak-when-your-apps-asleep) by Britt Barak
+- [Modularizing Android Applications](https://speakerdeck.com/mauin/modularizing-android-applications) by Marvin Ramin
+- [Heat the neurons of your smartphone with Deep Learning](https://speakerdeck.com/jinqian/droidcon-london-heat-the-neurons-of-your-smartphone-with-deep-learning) by Qian Jin
+- [Kotlin Coroutines and Android sitting in a tree](https://www.slideshare.net/AgentK/kotlin-coroutines-and-android-sitting-in-a-tree) by Kai Koenig
+- [Hacking Android, a Hacker's narrative](https://github.com/brompwnie/DroidConLondon2017/blob/master/Hacking%20Android.pdf) by Chris Le Roy
 
 ## Credits
 Thanks to the Skills Matter team for organizing a top notch conference! To all sponsors for making this event possible. And to the entire Android community for being so awesome!
