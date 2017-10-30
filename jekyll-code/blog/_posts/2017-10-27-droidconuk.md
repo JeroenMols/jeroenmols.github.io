@@ -14,8 +14,6 @@ Had a blast visiting Droidcon UK this year and wanted to do a quick post to link
 ## Conference slides
 While you can find all recordings [here](http://uk.droidcon.com/#program), I often find it useful to be able to quickly scan through the slides. Hence I bundled everything I could already from socials.
 
-// Will update this section as more slides become available...
-
 - [IoT from the trenches - How to build a connected product](https://speakerdeck.com/jeroenmols/deep-into-the-iot-trenches-how-to-build-a-connected-product) by Jeroen Mols
 - [The Creative Technologist!](https://speakerdeck.com/colabug/the-creative-technologist) by Corey Latislaw
 - [Vector Workflows](https://photos.google.com/share/AF1QipPv2vuQuVln5ASkKskgxIGWvh5E_Gtx4rEQR9GW1USQAo0ir0-msywha4mcA8Vzgg?key=NllER3QwalRjTXN4alRzejJtdExYV054ajlhd3VB) by Nick Butcher
