@@ -45,6 +45,7 @@ Fabio Collini
 - [Kotlin Coroutines and Android sitting in a tree](https://www.slideshare.net/AgentK/kotlin-coroutines-and-android-sitting-in-a-tree) by Kai Koenig
 - [Hacking Android, a Hacker's narrative](https://github.com/brompwnie/DroidConLondon2017/blob/master/Hacking%20Android.pdf) by Chris Le Roy
 - [Commonly overlooked areas of security](https://docs.google.com/presentation/d/e/2PACX-1vQ92zS6_X-ExPBTNO4uFfFOVee5NW3NZ0iYClzrvO_TTRmvNBNVSIfA7jQohOwn_lvsYWnoT7qk-URj/pub?start=false&loop=false&delayms=30000&slide=id.p) By Clive Lee
+- [Accessibility @ Scale](https://speakerdeck.com/mallikapotter/accessibility-at-scale-droidcon-uk-2017) by Mallika Potter
 
 ## Credits
 Thanks to the Skills Matter team for organizing a top notch conference! To all sponsors for making this event possible. And to the entire Android community for being so awesome!
