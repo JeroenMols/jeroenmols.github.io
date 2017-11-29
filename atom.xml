@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle>
- <updated>2017-11-20T21:37:33+01:00</updated>
+ <updated>2017-11-29T02:28:26+01:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,22 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>The 100% code coverage problem</title>
+   <link href="https://jeroenmols.com/blog/2017/11/28/coveragproblem/"/>
+   <updated>2017-11-28T00:00:00+01:00</updated>
+   <id>https://jeroenmols.com/blog/2017/11/28/coveragproblem</id>
+   <content type="html"><![CDATA[
+     
+     <p>While you may be tempted to strive for 100% code coverage, that would be a horrible idea. Besides some code being hard to test, the concept of coverage is actually fundamentally limited.</p>
+
+<p>This post will deep dive in what code coverage actually means, detail why you should never set coverage goals and help you get the most value out of this concept.</p>
+
+
+     <a href="https://jeroenmols.com/blog/2017/11/28/coveragproblem/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>Droidcon UK slides</title>

@@ -1,4 +1,125 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2017-11-20T21:37:33+01:00</updated><id>https://jeroenmols.com/</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Droidcon UK slides</title><link href="https://jeroenmols.com/blog/2017/10/27/droidconuk/" rel="alternate" type="text/html" title="Droidcon UK slides" /><published>2017-10-27T00:00:00+02:00</published><updated>2017-10-27T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2017/10/27/droidconuk</id><content type="html" xml:base="https://jeroenmols.com/blog/2017/10/27/droidconuk/">&lt;p&gt;Had a blast visiting Droidcon UK this year and wanted to do a quick post to link to all of it’s wonderful content.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2017-11-29T02:28:26+01:00</updated><id>https://jeroenmols.com/</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">The 100% code coverage problem</title><link href="https://jeroenmols.com/blog/2017/11/28/coveragproblem/" rel="alternate" type="text/html" title="The 100% code coverage problem" /><published>2017-11-28T00:00:00+01:00</published><updated>2017-11-28T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2017/11/28/coveragproblem</id><content type="html" xml:base="https://jeroenmols.com/blog/2017/11/28/coveragproblem/">&lt;p&gt;While you may be tempted to strive for 100% code coverage, that would be a horrible idea. Besides some code being hard to test, the concept of coverage is actually fundamentally limited.&lt;/p&gt;
+
+&lt;p&gt;This post will deep dive in what code coverage actually means, detail why you should never set coverage goals and help you get the most value out of this concept.&lt;/p&gt;
+
+&lt;h2 id=&quot;app-coverage&quot;&gt;App coverage&lt;/h2&gt;
+&lt;p&gt;Take a step back and try to answer the following question:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;If your app has 100% code coverage, are you then sure everything will work as expected? (i.e. there are no bugs) Why/why not?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;…&lt;/p&gt;
+
+&lt;p&gt;…&lt;/p&gt;
+
+&lt;p&gt;Well obviously no! Because even if all your classes have 100% coverage, that still doesn’t mean they will correctly interact with each other.&lt;/p&gt;
+
+&lt;p&gt;For instance your JSON parser could get an unexpected response back from the web server. (Note that this is typically something you address with integration tests.)&lt;/p&gt;
+
+&lt;h2 id=&quot;class-coverage&quot;&gt;Class coverage&lt;/h2&gt;
+&lt;p&gt;Let’s narrow down the scope and look at one single very focussed class e.g. a Calculator class.&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Calculator&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;If one single focussed class has 100% code coverage, are you then sure everything will work as expected for that class? (i.e. there are no bugs) Why/why not?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;…&lt;/p&gt;
+
+&lt;p&gt;…&lt;/p&gt;
+
+&lt;p&gt;Mmmmm trickier…&lt;/p&gt;
+
+&lt;p&gt;But the answer is still clearly no!&lt;/p&gt;
+
+&lt;p&gt;This is because code coverage doesn’t tell you anything about the quality of your tests. It only counts what lines of code are executed during tests and what aren’t.&lt;/p&gt;
+
+&lt;p&gt;A good Calculator test (with 100% line coverage) would be:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Test&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;sumOfOneAndThreeShouldBeFour&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Calculator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;assertEquals&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;But even the same test without assert would result in 100% line coverage:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Test&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;sumOfOneAndThreeShouldBeFourWithoutAssert&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Calculator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;That test is just plain useless! It doesn’t prevent you from changing the implementation of &lt;code class=&quot;highlighter-rouge&quot;&gt;sum()&lt;/code&gt; at all.&lt;/p&gt;
+
+&lt;h2 id=&quot;code-coverage--quality-of-tests&quot;&gt;Code coverage != quality of tests&lt;/h2&gt;
+&lt;p&gt;So if we remove all asserts from our test suite, our code coverage would remain the same. Interesting… what else is broken with code coverage?&lt;/p&gt;
+
+&lt;p&gt;Even if you have asserts, code coverage doesn’t guarantee that you’ve covered your functionality. For instance if we change our &lt;code class=&quot;highlighter-rouge&quot;&gt;Calculator&lt;/code&gt; class and hardcode the result of the sum:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Calculator&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;All above tests would still pass, code coverage would be 100% but your code doesn’t functionally do what it should. We would need to add multiple tests (covering the same line of code) to guarantee that.&lt;/p&gt;
+
+&lt;p&gt;So coverage doesn’t ensure your tests:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;do an actual assert&lt;/li&gt;
+  &lt;li&gt;are complete (cover all functionality)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;use-for-coverage&quot;&gt;Use for coverage&lt;/h2&gt;
+&lt;p&gt;Hopefully it is clear now that you should never use code coverage as a goal or KPI (key performance indicator). This is because the tool can too easily be fooled and 100% coverage is in that regard meaningless.&lt;/p&gt;
+
+&lt;p&gt;Even if coverage wouldn’t be flawed, it still would be a mistake to try and get 100% coverage. While everything can be tested, not everything is easy to test!&lt;/p&gt;
+
+&lt;p&gt;Think about UI animations, communication between Threads, operations on filesystem,…&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/coverageproblem/effortvalue.png&quot; alt=&quot;Everything can be tested, but at some point the effort gets bigger than the value you could get out of those tests.&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Trying to test complex things doesn’t just take way to much effort. The resulting tests usually also tend to be so complex that they will end up being a maintenance burden. Wasted effort with hardly any value in return.&lt;/p&gt;
+
+&lt;p&gt;Well then, how should you use coverage?&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The real value is in the evolution of code coverage over time.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Assume the team is proficient in writing &lt;a href=&quot;https://jeroenmols.com/blog/2017/02/16/unittests/&quot;&gt;high quality tests&lt;/a&gt; and has the ambition to have everything well tested, then code coverage shouldn’t decrease right?&lt;/p&gt;
+
+&lt;p&gt;Why not use it to identify parts of your app that should get some extra testing love?&lt;/p&gt;
+
+&lt;p&gt;Or how about automatically adding a coverage report to every pull request? This is something I do for all my &lt;a href=&quot;https://github.com/JeroenMols/LandscapeVideoCamera/pull/49&quot;&gt;open source projects&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/coverageproblem/coveragereport.png&quot; alt=&quot;Code coverage on pull requests&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So the next time your boss asks you to have 100% code coverage, you know what to do:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;generate all your tests using a &lt;a href=&quot;https://plugins.jetbrains.com/plugin/8326-generate-tests&quot;&gt;tool&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;claim your bonus&lt;/li&gt;
+  &lt;li&gt;go back to doing proper engineering and empower yourself with coverage to build something your proud of.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
+&lt;p&gt;Code coverage can be an incredibly powerful tool to improve the quality of your code as long as you don’t blindly optimize for maximum coverage.&lt;/p&gt;
+
+&lt;p&gt;If you’ve made it this far, you should probably follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=the100%codecoverageproblem2017&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
+. Feel free leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="android" /><category term="testing" /><category term="coverage" /><summary type="html">While you may be tempted to strive for 100% code coverage, that would be a horrible idea. Besides some code being hard to test, the concept of coverage is actually fundamentally limited.</summary></entry><entry><title type="html">Droidcon UK slides</title><link href="https://jeroenmols.com/blog/2017/10/27/droidconuk/" rel="alternate" type="text/html" title="Droidcon UK slides" /><published>2017-10-27T00:00:00+02:00</published><updated>2017-10-27T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2017/10/27/droidconuk</id><content type="html" xml:base="https://jeroenmols.com/blog/2017/10/27/droidconuk/">&lt;p&gt;Had a blast visiting Droidcon UK this year and wanted to do a quick post to link to all of it’s wonderful content.&lt;/p&gt;
 
 &lt;h2 id=&quot;conference-slides&quot;&gt;Conference slides&lt;/h2&gt;
 &lt;p&gt;While you can find all recordings &lt;a href=&quot;https://skillsmatter.com/conferences/8265-droidcon-london-2017#skillscasts&quot;&gt;here&lt;/a&gt;, I often find it useful to be able to quickly scan through the slides. Hence I bundled everything I could already from socials.&lt;/p&gt;
@@ -884,32 +1005,4 @@ Fabio Collini&lt;/li&gt;
 &lt;p&gt;Finally Mockito has first class support for Android instrumentation tests! I’ve also updated my &lt;a href=&quot;https://github.com/jeroenmols/mockitoexample&quot;&gt;Mockito sample project&lt;/a&gt; where you can see how it works and learn more about how to use Mockito.&lt;/p&gt;
 
 &lt;p&gt;As always you can reach me &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=usingmockito2.xonandroid2017&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;@molsjeroen&lt;/a&gt;&lt;/span&gt;
- on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="android" /><category term="mockito" /><category term="testing" /><summary type="html">The Mockito team is on fire lately! Not only did they add support to mock final classes and methods, but now they allow running Mockito directly onto an actual Android device.</summary></entry><entry><title type="html">Year in review 2016</title><link href="https://jeroenmols.com/blog/2017/01/09/yearinreview/" rel="alternate" type="text/html" title="Year in review 2016" /><published>2017-01-09T00:00:00+01:00</published><updated>2017-01-09T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2017/01/09/yearinreview</id><content type="html" xml:base="https://jeroenmols.com/blog/2017/01/09/yearinreview/">&lt;p&gt;It’s that time of the year again to do a little personal retrospective.&lt;/p&gt;
-
-&lt;p&gt;2016 passed by so quickly! I had a fantastic time playing around with (and taking care of) my wife and daughter. It’s really astonishing to see how much a baby can learn and grow in a year.&lt;/p&gt;
-
-&lt;p&gt;Being a father also helps putting things into perspective and rediscover the little pleasures in live. For example, there is literally no better cure for stress than coming home, being greeted by a happy smile and laying down on the floor playing with your own kid. :)&lt;/p&gt;
-
-&lt;p&gt;Besides that, I actually found more time than expected to grow technically. As such I:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Wrote &lt;a href=&quot;http://jeroenmols.com/blog/&quot;&gt;11 blogposts&lt;/a&gt;, almost meeting my goal of 1 per month&lt;/li&gt;
-  &lt;li&gt;Got featured in &lt;a href=&quot;http://androidweekly.net/search?keyword=jeroen+mols&amp;amp;commit=Search&quot;&gt;Android weekly&lt;/a&gt; a whopping 9 times&lt;/li&gt;
-  &lt;li&gt;Appeared on &lt;a href=&quot;https://www.youtube.com/watch?v=TxFaWXkBo2E&quot;&gt;Android dialogs&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Spoke at 5 big conferences + 1 local meetup&lt;/li&gt;
-  &lt;li&gt;Grew my &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;twitter&lt;/a&gt; followers to more than 750&lt;/li&gt;
-  &lt;li&gt;Gathered over 1000 stars on &lt;a href=&quot;http://github-awards.com/users/search?login=jeroenmols&quot;&gt;Github&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Gained &amp;gt;2000 reputation on &lt;a href=&quot;https://stackoverflow.com/users/2771851/jmols&quot;&gt;stackoverflow&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Built a new Github library &lt;a href=&quot;https://github.com/JeroenMols/MockitoCollectionMatchers&quot;&gt;MockitoCollectionMatchers&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Visited Google IO (finally!)&lt;/li&gt;
-  &lt;li&gt;Built 2 green field side projects!&lt;/li&gt;
-  &lt;li&gt;Made plans for building a house&lt;/li&gt;
-  &lt;li&gt;Taught my daughter how to fist bump and say Yolo #awesomedad&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/yearinreview16/house.png&quot; alt=&quot;Render of our house&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Next year construction of our dream house will start, so time will once again be a scarce resource. And since I don’t want to give in on quality time with my daughter, I’ll just try to keep up my current blogging and speaking efforts. However, it would be really cool if I could speak at a conference outside Europe!&lt;/p&gt;
-
-&lt;p&gt;As always you can reach me &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=yearinreview20162017&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;@molsjeroen&lt;/a&gt;&lt;/span&gt;
- on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="review" /><summary type="html">It’s that time of the year again to do a little personal retrospective.</summary></entry></feed>
+ on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="android" /><category term="mockito" /><category term="testing" /><summary type="html">The Mockito team is on fire lately! Not only did they add support to mock final classes and methods, but now they allow running Mockito directly onto an actual Android device.</summary></entry></feed>
