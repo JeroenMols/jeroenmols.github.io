@@ -11,10 +11,11 @@ I'm always eager to share my technical knowledge with fellow developers. Don't h
 
 Upcoming talks:
 
-- Devoxx - Deep into the IoT trenches: how to build a connected product
+- None, end of 2017 speaker season for me.
 
 2017:
 
+- Devoxx - [Deep into the IoT trenches: how to build a connected product](https://speakerdeck.com/jeroenmols/deep-into-the-iot-trenches-how-to-build-a-connected-product)
 - Droidcon UK - [Deep into the IoT trenches: how to build a connected product](https://speakerdeck.com/jeroenmols/deep-into-the-iot-trenches-how-to-build-a-connected-product)
 - Dutch Android User Group - [Migrating to Android Studio 3.0](https://speakerdeck.com/jeroenmols/migrating-to-android-studio-3-dot-0)
 - iCapps, June 2nd - [Deep into the IoT trenches: how to build a connected product](https://speakerdeck.com/jeroenmols/deep-into-the-iot-trenches-how-to-build-a-connected-product)

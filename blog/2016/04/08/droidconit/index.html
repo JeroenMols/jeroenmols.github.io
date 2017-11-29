@@ -53,7 +53,6 @@ $(document).ready(function(){
 	});
 })	;
 </script>
- 
 <link href="atom.xml" type="application/atom+xml" rel="alternate" title="Jeroen Mols Feed">
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
@@ -122,7 +121,7 @@ $(document).ready(function(){
           </a>
        </li>
        <li>
-          <a href="https://plus.google.com/+JeroenMols" itemprop="sameAs">
+          <a href="https://plus.google.com/JeroenMols" itemprop="sameAs">
             <i class="fa fa-fw fa-google-plus-square" aria-hidden="true"></i> Google+
           </a>
        </li>
@@ -138,7 +137,7 @@ $(document).ready(function(){
        </li>
        <li>
           <a href="https://www.stackoverflow.com/users/2771851/jmols" itemprop="sameAs">
-            <i class="fa fa-fw fa-stack-overflow" aria-hidden="true"></i> Stackoverflow
+            <i class="fa fa-fw fa-stack-overflow" aria-hidden="true"></i> Stack Overflow
           </a>
        </li>
          <li>
@@ -171,69 +170,47 @@ $(document).ready(function(){
        </header>
      <section class="page__content" itemprop="text">
        <p>A conference about our favorite Green little robots? In sunny Italy? With great food and a party? Yeah, I can image how you must feel in case you missed it… I on the other hand was fortunate enough to attend and speak at this awesome conference.</p>
-
 <p>With over 770 attendees and four different tracks, it was obviously not possible to attend every session. But I did notice some general themes and would like to share my personal highlights with you.</p>
-
 <h2 id="we-are-all-ux">We are all UX</h2>
 <center><img style="width: 50%" src="https://jeroenmols.com/img/blog/droidconit16/wereallux.jpg" alt="We are all UX" /></center>
-
 <p>The holy grail in app development is to have an amazing user experience. While app performance and feature set are obviously important, you must also understand your users, simplify main use cases and have a delightful design.</p>
-
 <p>Do you really think a developer or designer alone can create such a great UX? NO, off course not! They’ll both have to work together and synergize to really blow the users of their feet. We need more pairing between developers and designers folks!</p>
-
 <p>The best advice I got was:</p>
-
 <ul>
  <li>A prototype is worth a thousand meetings.</li>
  <li>Five people to test your prototype with is the sweet spot. It’s enough to notice patterns, yet not too much to be a burden.</li>
  <li>Developers and designers should be transparent and open to learn from each other</li>
  <li>“How might we…” is a great way to phrase problems as opportunities</li>
 </ul>
-
 <h2 id="optimizing-layouts">Optimizing layouts</h2>
 <p><img src="https://jeroenmols.com/img/blog/droidconit16/leanlayouts.jpg" alt="Loving lean layouts" class="align-center" /></p>
-
 <p>Screens containing a lot of views can sometimes render slowly. Mostly caused by deeply nested view hierarchies and/or using RelativeLayouts as a root element. Using “heavy” layouts in lists or increased nesting makes these problems multiplicative instead of simply additive.</p>
-
 <p>When running into issues, first resolve to Lint and investigate all warnings. If the problem persist, Hierarchy viewer will help you understanding what’s going on. Always prefer simple solutions over complex ones and if you really really have to you can go - Facebook Style - replacing views with drawables.</p>
-
 <p>The best advice in this track was:</p>
-
 <ul>
  <li>Rendering times in Hierarchy Viewer are not reliable</li>
  <li>Optimize responsibly</li>
 </ul>
-
 <h2 id="dex-diet">DEX diet</h2>
 <p><img src="https://jeroenmols.com/img/blog/droidconit16/classyshark.png" alt="ClassyShark" class="align-center" /></p>
-
 <p>Hitting the DEX method limit or trying to improve your app security? As a real Proguard expert you created an amazing configuration and now all those problems are gone. Or are they?</p>
-
 <p>Analyzing your own APK file is a must to verify what methods are actually stripped and what code is obfuscated. Who knows you might even find some duplicate dependencies (GSON anyone?), causing a further method count reduction. Thanksfully all of this has become a breeze thanks to tools like <a href="http://www.classyshark.com/">ClassyShark</a>.</p>
-
 <p>The best advice here was:</p>
-
 <ul>
  <li>Be restrictive using Proguard iso keeping entire packages</li>
  <li>IDE method count != dex method count</li>
  <li>Use <a href="http://www.methodscount.com/">methodscount.com</a> to see how large a lib is before using it</li>
 </ul>
-
 <h2 id="other-hot-topics">Other hot topics</h2>
 <center><img style="width: 50%" src="https://jeroenmols.com/img/blog/droidconit16/android_cookie.jpg" alt="Android cookies" /></center>
-
 <p>Besides the three main themes, other topics varied from Kotlin, over library distribution to (MVP) architecture and app store optimizations. Awesome sources of inspiration, brought by even more awesome speakers.</p>
-
 <p>My key takeaways:</p>
-
 <ul>
  <li>Use App invites to grow your user base</li>
  <li>If you don’t like testing your code, most likely customers won’t like testing your app either</li>
  <li>Italian food is awesome</li>
 </ul>
-
 <h2 id="conference-slides">Conference slides</h2>
-
 <ul>
  <li><a href="https://speakerdeck.com/jeroenmols/distribute-your-libraries-via-maven-even-privately">Distribute your libraries via Maven, even privately</a> by Jeroen Mols</li>
  <li><a href="https://photos.google.com/share/AF1QipMB_VOceGeOuQZ0UhBf0dKrGhgu92k8-qpXu0X5WtWUvoSqFJKRsoPzESyuhNEDRw?key=VVctWHBsVG4zZVlsRlBjVGRBWkIzT295Vk9qcWlB">Think like a designer</a> by Nick Butcher</li>
@@ -269,12 +246,9 @@ Alessandro Martellucci</li>
  <li><a href="http://www.slideshare.net/PedroVicenteGmezSnch/worldclass-testing-development-pipeline-for-android">World-Class Testing Development Pipeline for Android</a> by Pedro Vicente Gómez Sánchez]</li>
  <li><a href="http://www.slideshare.net/seamaster29/classshark-android-and-java-executables-browser">ClassShark - Android and Java executables browser</a> by Boris Farber</li>
 </ul>
-
 <h2 id="credits">Credits</h2>
 <p>Thanks to the entire Droidcon Italy team for organizing such a great conference and to all sponsers for their support.</p>
-
 <p><img src="https://jeroenmols.com/img/blog/droidconit16/droidconit_team.jpg" alt="Droidcon Italy team" class="align-center" /></p>
-
      </section>
      <footer class="page__meta">
  <p class="page__taxonomy">
@@ -302,7 +276,6 @@ Alessandro Martellucci</li>
 </section>
      <section class="page__share">
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  
   <ins class="adsbygoogle"
        style="display:block"
        data-ad-client="ca-pub-9854541518226004"
@@ -312,7 +285,6 @@ Alessandro Martellucci</li>
   (adsbygoogle = window.adsbygoogle || []).push({});
   </script>
 </section>
-
  <nav class="pagination">
       <a href="https://jeroenmols.com/blog/2016/03/07/resourcenaming/" class="pagination--pager" title="A successful XML naming convention
 ">Previous</a>
@@ -321,8 +293,8 @@ Alessandro Martellucci</li>
  </nav>
    </div>
      <div class="page__comments">
-       <h4 class="page__comments-title">Leave a Comment</h4>
-       <section id="disqus_thread"></section>
+     <h4 class="page__comments-title">Leave a Comment</h4>
+     <section id="disqus_thread"></section>
 </div>
  </article>
    <div class="page__related">
@@ -353,7 +325,6 @@ Alessandro Martellucci</li>
   ga('create', 'UA-63356566-1', 'auto');
   ga('send', 'pageview');
 </script>
-      
   <script>
     var disqus_config = function () {
       this.page.url = "https://jeroenmols.com/blog/2016/04/08/droidconit/";  // Replace PAGE_URL with your page's canonical URL variable
@@ -367,7 +338,5 @@ Alessandro Martellucci</li>
     })();
   </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
-
  </body>
 </html>

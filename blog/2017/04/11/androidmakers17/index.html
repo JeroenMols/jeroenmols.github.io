@@ -53,7 +53,6 @@ $(document).ready(function(){
 	});
 })	;
 </script>
- 
 <link href="atom.xml" type="application/atom+xml" rel="alternate" title="Jeroen Mols Feed">
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
@@ -122,7 +121,7 @@ $(document).ready(function(){
           </a>
        </li>
        <li>
-          <a href="https://plus.google.com/+JeroenMols" itemprop="sameAs">
+          <a href="https://plus.google.com/JeroenMols" itemprop="sameAs">
             <i class="fa fa-fw fa-google-plus-square" aria-hidden="true"></i> Google+
           </a>
        </li>
@@ -138,7 +137,7 @@ $(document).ready(function(){
        </li>
        <li>
           <a href="https://www.stackoverflow.com/users/2771851/jmols" itemprop="sameAs">
-            <i class="fa fa-fw fa-stack-overflow" aria-hidden="true"></i> Stackoverflow
+            <i class="fa fa-fw fa-stack-overflow" aria-hidden="true"></i> Stack Overflow
           </a>
        </li>
          <li>
@@ -171,16 +170,11 @@ $(document).ready(function(){
        </header>
      <section class="page__content" itemprop="text">
        <p>After organizing Droidcon Paris for several year, the organizers decided to move on and experiment with a new format. This didn’t just result in a well organized conference, but also in a fresh new vibe whilst still feeling familiar.</p>
-
 <p>In this post I’d like to share some general themes, my personal highlights and all of the slides I could gather from socials.</p>
-
 <h2 id="details-matter">Details matter</h2>
 <p><img src="https://jeroenmols.com/img/blog/androidmakers17/launchscreen.png" alt="Make sure your app doesn't launch with a blank screen" class="align-center" /></p>
-
 <p>Building a world class app doesn’t just require good engineering practices, but you literally have to handle details on every front.</p>
-
 <p>My key takeaways:</p>
-
 <ul>
  <li>Learn and optimize your app launch time:<code class="highlighter-rouge">adb shell am start -W &lt;packagename&gt;/. &lt;activityname&gt;</code></li>
  <li>Never share a file directly via an intent, always copy it first</li>
@@ -188,43 +182,31 @@ $(document).ready(function(){
  <li>Hard-coded encryption keys can be easily found in byte code: grep for <code class="highlighter-rouge">Ljavax/crypto</code></li>
  <li>API design is basically designing future regrets</li>
 </ul>
-
 <h2 id="productivity">Productivity</h2>
 <p><img src="https://jeroenmols.com/img/blog/androidmakers17/testingpyramid.png" alt="The Android testing pyramid" class="align-center" /></p>
-
 <p>As projects get more complex, it becomes crucial (for your own sanity) to have the right engineering practices in place. Try and leverage your continuous integration to automatically build, test and statically analyze your pull requests before merging.</p>
-
 <p>My key takeaways:</p>
-
 <ul>
  <li>Testability must be taken into account from project start</li>
  <li>Many git conflicts can be resolved automatically with proper tooling</li>
  <li>Use pre launch reports before going to production</li>
  <li>Naming things is hard, yet super important</li>
 </ul>
-
 <h2 id="programming-languages">Programming languages</h2>
 <p>Challenging the traditional way of app development has gotten a new spark thanks to Kotlin and the rise of other cross platform tools. There is definitely no silver bullet yet, but it’s good to see the community stay open minded.</p>
-
 <p>My key takeaways:</p>
-
 <ul>
  <li>Every Android developer hates WebViews</li>
  <li>With incremental builds, Kotlin compiles as fast as Java</li>
  <li>React native is JavaScript rendered to a native UI(not ready for primetime yet, wait for 1.0 version)</li>
  <li>Any Android dev can develop for Android Things (runs Activities!)</li>
 </ul>
-
 <h2 id="organizer-recap">Organizer recap</h2>
 <p>Relive the conference through the organizers eyes, they did a great job at summarizing each day. Clicking each moment will expand more details.</p>
-
 <p><a class="twitter-moment" href="https://twitter.com/i/moments/851372466341629952?limit=3">Android Makers 2017 - Day 1</a> <script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script></p>
-
 <p><a class="twitter-moment" href="https://twitter.com/i/moments/851650664644194304?limit=3">Android Makers - Day 2</a> <script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script></p>
-
 <h2 id="conference-slides">Conference slides</h2>
 <p>While the conference organizers will publish all slides very soon, I can image that quite a few people are already looking for a sneak preview. Hence I bundled everything I could already gather from socials.</p>
-
 <ul>
  <li><a href="https://speakerdeck.com/jeroenmols/the-art-of-organizing-resources">The ART of organizing resources</a> by Jeroen Mols</li>
  <li><a href="https://speakerdeck.com/malmstein/remote-and-lonely">Remote, lonely and productive</a> by David González</li>
@@ -254,12 +236,9 @@ $(document).ready(function(){
  <li><a href="https://speakerdeck.com/oleur/exoplayer-player-multimedia-pour-les-applications-et-la-realite-virtuelle">ExoPlayer, player multimédia pour vos applications et la réalité virtuelle</a> by Julien Salvi</li>
  <li><a href="https://www.slideshare.net/aerilys/le-design-mobile-cest-pas-facile-74910698">Le design mobile c’est pas facile</a> by Quentin Sallat</li>
 </ul>
-
 <h2 id="credits">Credits</h2>
 <p><img src="https://jeroenmols.com/img/blog/androidmakers17/team.jpg" alt="The awesome Android makers organizing team" class="align-center" /></p>
-
 <p>Thanks to the entire Android Makers team for organizing a great conference and to all sponsors for supporting. Hope to see you all next year!</p>
-
      </section>
      <footer class="page__meta">
  <p class="page__taxonomy">
@@ -287,7 +266,6 @@ $(document).ready(function(){
 </section>
      <section class="page__share">
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  
   <ins class="adsbygoogle"
        style="display:block"
        data-ad-client="ca-pub-9854541518226004"
@@ -297,7 +275,6 @@ $(document).ready(function(){
   (adsbygoogle = window.adsbygoogle || []).push({});
   </script>
 </section>
-
  <nav class="pagination">
       <a href="https://jeroenmols.com/blog/2017/03/08/appcrash/" class="pagination--pager" title="Why your app should crash
 ">Previous</a>
@@ -306,8 +283,8 @@ $(document).ready(function(){
  </nav>
    </div>
      <div class="page__comments">
-       <h4 class="page__comments-title">Leave a Comment</h4>
-       <section id="disqus_thread"></section>
+     <h4 class="page__comments-title">Leave a Comment</h4>
+     <section id="disqus_thread"></section>
 </div>
  </article>
    <div class="page__related">
@@ -338,7 +315,6 @@ $(document).ready(function(){
   ga('create', 'UA-63356566-1', 'auto');
   ga('send', 'pageview');
 </script>
-      
   <script>
     var disqus_config = function () {
       this.page.url = "https://jeroenmols.com/blog/2017/04/11/androidmakers17/";  // Replace PAGE_URL with your page's canonical URL variable
@@ -352,7 +328,5 @@ $(document).ready(function(){
     })();
   </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
-
  </body>
 </html>
