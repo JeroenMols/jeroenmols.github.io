@@ -9,7 +9,7 @@ tags:
   - fragment
   - navigation
 ---
-Executing Fragment transactions and back navigation is familiar territory for every Android developer. So did I think this concept didn't have any secrets anymore for me, until a Fragment (literally) started to haunt us...
+Fragment transactions and back navigation are familiar for every Android developer. So did I think this concept didn't have any secrets anymore for me, until a Fragment (literally) started to haunt us...
 
 This post will show how a seemingly simple transaction can have unintended side effects. And give a detailed explanation of how fragment transactions work.
 
@@ -27,17 +27,76 @@ Login is a multi step flow that consists out of a `UserNameFragment` and a `Pass
 
 Note that for simplicity we'll leave displaying the events out of scope and return back to the placeholder screen after successful login.
 
-// continue here
+A very simple implementation for all FragmentTransactions could be:
 
-## Why this happened
+```kotlin
+transaction.replace(TodayFragment())
+transaction.replace(UserNameFragment()).addToBackStack(null)
+transaction.replace(PasswordFragment())
+```
+
+Where we only add the `UserNameFragment` to the back stack to simplify back navigation. This way one single back would always take the user back to the `TodayFragment`, making it super easy to navigate back when login was successful.
+
+```kotlin
+fun onLoginSuccess() {
+  activity.onBackPressed()
+}
+```
+
+But that gives surprising results:
+
+![Password fragment is back to haunt us]({{ site.url }}{{ site.baseurl }}/img/blog/fragmentback/fragmentback_ghost.gif){: .align-center}
+
+The `PasswordFragment` is back to haunt us!
+
+## Investigation
+Let's have another look at the sequence of transactions that takes place:
+
+```kotlin
+transaction.replace(todayFragment)
+transaction.replace(userNameFragment).addToBackStack(null)
+transaction.replace(passwordFragment)
+```
+
+Since a replace is just a combination of `remove()` and `add()` we can rewrite this to:
+
+```kotlin
+transaction.remove(null).add(todayFragment)
+transaction.remove(todayFragment).add(userNameFragment.addToBackStack(null)
+transaction.remove(userNameFragment).replace(passwordFragment)
+```
+
+Now it is important to know that the FragmentTransactionManager only saves the FragmentTransactions that were executed, not the Fragments themselves!
+
+Consequently when you press back in the `PasswordFragment`, it won't show all Fragments that where present before the Transaction! Instead it will revert the previous Transaction that was added to the back stack:
+
+```kotlin
+transaction.remove(todayFragment).add(userNameFragment).addToBackStack(null)
+```
+
+Which will then be executed in reverse:
+
+```kotlin
+transaction.remove(userNameFragment).add(todayFragment)
+```
+
+But because we are on the `PasswordFragment`, which has replace the `UserNameFragment`, there is no `UserNameFragment` in this situation!
+
+```kotlin
+transaction.remove(null).add(todayFragment)
+```
+
+Hence nothing is removed and the `TodayFragment` is added leaving the users with both the `PasswordFragment` and `TodayFragment`.
+
+![Haunting password fragment]({{ site.url }}{{ site.baseurl }}/img/blog/fragmentback/app_haunting.png){: .align-center}
+
+# Solution
 
 [![Event app with login flow]({{ site.url }}{{ site.baseurl }}/img/blog/fragmentback/app_flow_ideal.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/fragmentback/app_flow_ideal.png)
 
 
 
 [![Event app with login flow problem]({{ site.url }}{{ site.baseurl }}/img/blog/fragmentback/app_flow_problem.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/fragmentback/app_flow_problem.png)
-
-# Solution
 
 ## Wrap-up
 Code coverage can be an incredibly powerful tool to improve the quality of your code as long as you don't blindly optimize for maximum coverage.
