@@ -9,33 +9,35 @@ tags:
   - fragment
   - navigation
 ---
-Fragment transactions and back navigation are familiar for every Android developer. So did I think this concept didn't have any secrets anymore for me, until a Fragment (literally) started to haunt us...
+Do Fragment transactions and back navigation have no more secrets for you? Well then you should definitely try to solve the mystery in this post, where a Fragment (literally) started to haunt us...
 
-This post will show how a seemingly simple transaction can have unintended side effects. And give a detailed explanation of how fragment transactions work.
+Seemingly simple Fragment transactions can sometimes have unintended side effects. While investigating, we'll learn how Fragment transactions actually work .
 
-## Problem explanation
-Let's build a very simple app that shows all todays' calendar events for a particular user. This app basically consists out of 1 main screen that:
+## Part 1: the haunt
+Let's build a very straightforward app that shows all today's calendar events for a particular user. To do so, users will obviously have to login first.
 
-- either shows todays' events if user is logged in
+Assume now that the app consists out of a single screen that:
+
+- either shows today's events if user is logged in
 - otherwise shows a placeholder + login button
 
-![Main screens shows either list of events or a placeholder with login button]({{ site.url }}{{ site.baseurl }}/img/blog/fragmentback/app_explanation.png){: .align-center}
+[![Main screens shows either list of events or a placeholder with login button]({{ site.url }}{{ site.baseurl }}/img/blog/fragmentback/app_explanation.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/fragmentback/app_explanation.png)
 
-Login is a multi step flow that consists out of a `UserNameFragment` and a `PasswordFragment`. After the login is successful, the app navigates back to the main screen to show the events.
+The login is a two step flow that consists out of a `UserNameFragment` and a `PasswordFragment`. Afterwards the app navigates back to the main screen to show the events.
 
 [![Event app with login flow simplified]({{ site.url }}{{ site.baseurl }}/img/blog/fragmentback/app_flow_simplified.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/fragmentback/app_flow_simplified.png)
 
-Note that for simplicity we'll leave displaying the events out of scope and return back to the placeholder screen after successful login.
+Note that for simplicity we don't display the events when navigating back, but instead show the placeholder screen again after successful login.
 
-A very simple implementation for all FragmentTransactions could be:
+A simple implementation for all Fragment transactions could be:
 
 ```kotlin
-transaction.replace(TodayFragment())
-transaction.replace(UserNameFragment()).addToBackStack(null)
-transaction.replace(PasswordFragment())
+transaction.replace(todayFragment)
+transaction.replace(userNameFragment).addToBackStack(null)
+transaction.replace(passwordFragment)
 ```
 
-Where we only add the `UserNameFragment` to the back stack to simplify back navigation. This way one single back would always take the user back to the `TodayFragment`, making it super easy to navigate back when login was successful.
+Notice that we only add the `UserNameFragment` to the back stack! This way one single back would always take the user back to the `TodayFragment`, making it super easy to navigate back when login was successful.
 
 ```kotlin
 fun onLoginSuccess() {
@@ -49,7 +51,7 @@ But that gives surprising results:
 
 The `PasswordFragment` is back to haunt us!
 
-## Investigation
+## Part 2: investigative development
 Let's have another look at the sequence of transactions that takes place:
 
 ```kotlin
@@ -62,8 +64,8 @@ Since a replace is just a combination of `remove()` and `add()` we can rewrite t
 
 ```kotlin
 transaction.remove(null).add(todayFragment)
-transaction.remove(todayFragment).add(userNameFragment.addToBackStack(null)
-transaction.remove(userNameFragment).replace(passwordFragment)
+transaction.remove(todayFragment).add(userNameFragment).addToBackStack(null)
+transaction.remove(userNameFragment).add(passwordFragment)
 ```
 
 Now it is important to know that the FragmentTransactionManager only saves the FragmentTransactions that were executed, not the Fragments themselves!
@@ -80,7 +82,7 @@ Which will then be executed in reverse:
 transaction.remove(userNameFragment).add(todayFragment)
 ```
 
-But because we are on the `PasswordFragment`, which has replace the `UserNameFragment`, there is no `UserNameFragment` in this situation!
+But because we are on the `PasswordFragment`, which has replaced the `UserNameFragment`, there is no `UserNameFragment` in this situation!
 
 ```kotlin
 transaction.remove(null).add(todayFragment)
@@ -90,17 +92,56 @@ Hence nothing is removed and the `TodayFragment` is added leaving the users with
 
 ![Haunting password fragment]({{ site.url }}{{ site.baseurl }}/img/blog/fragmentback/app_haunting.png){: .align-center}
 
-# Solution
+## Part 3: mystery solved
+As a first stab you could say that this problem is caused by tranaction three not being added to the back stack. So why not also add that transaction and do a double back..
 
-[![Event app with login flow]({{ site.url }}{{ site.baseurl }}/img/blog/fragmentback/app_flow_ideal.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/fragmentback/app_flow_ideal.png)
+```kotlin
+transaction.replace(todayFragment)
+transaction.replace(userNameFragment).addToBackStack(null))
+transaction.replace(passwordFragment).addToBackStack(null))
+```
 
+```kotlin
+fun onLoginSuccess() {
+  activity.onBackPressed()
+  activity.onBackPressed()
+}
+```
 
+While simple, this actually won't work! After calling `onBackPressed()` the first time, the fragment will be detached from its activity, causing a `NullPointerException` on accessing the activity for the second back press.
 
-[![Event app with login flow problem]({{ site.url }}{{ site.baseurl }}/img/blog/fragmentback/app_flow_problem.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/fragmentback/app_flow_problem.png)
+But even if that would've worked, it would still be a poor idea because the `PasswordFragment` would have hardcoded in it that it's preceded by exactly one Fragment. Should you ever change that, this would break.
 
-## Wrap-up
-Code coverage can be an incredibly powerful tool to improve the quality of your code as long as you don't blindly optimize for maximum coverage.
+Alternatively you could assign a tag to the first `addToBackStack` invocation and add every transaction to the back stack:
 
-mention code on Github
+```kotlin
+transaction.replace(todayFragment)
+transaction.replace(userNameFragment).addToBackStack("username"))
+transaction.replace(passwordFragment).addToBackStack("password"))
+```
 
-If you've made it this far, you should probably follow me on {% include link_twitter.html %}. Feel free leave a comment below!
+```kotlin
+fun onLoginSuccess() {
+  activity.supportFragmentManager.popBackStack("username", POP_BACK_STACK_INCLUSIVE)
+}
+```
+
+That actually works! But unfortunately the `PasswordFragment` still needs to know what the first screen of the login flow is... This cannot just break easily, but it also makes it very complex to build dynamic login flows.
+
+So what would be clean way of setting it up?
+
+Well actually... since all login screens together form a separate flow, why not just move them all to a single `LoginActivity`?
+
+That has many advantages:
+
+- Default way of reusing app parts on Android
+- Screens in the flow don't know about each other
+- Ability to pass back a result
+- Better fits multi module architectures
+- Super simple
+- ...
+
+## Epilogue
+Fragment transactions are a surprisingly simple concept of adding/removing and reversing those operations. When navigations become complex, consider moving parts of the flow to a separate activity.
+
+If you've made it this far you should probably follow me on {% include link_twitter.html %}. Feel free leave a comment below or check out [the code](https://github.com/JeroenMols/FragmentBackNavigation) on GitHub!
