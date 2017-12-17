@@ -123,4 +123,4 @@ So the next time your boss asks you to have 100% code coverage, you know what to
 ## Wrap-up
 Code coverage can be an incredibly powerful tool to improve the quality of your code as long as you don't blindly optimize for maximum coverage.
 
-If you've made it this far, you should probably follow me on {% include link_twitter.html %}. Feel free leave a comment below!
+If you've made it this far you should probably follow me on {% include link_twitter.html %}. Feel free leave a comment below!
