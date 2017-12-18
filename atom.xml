@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle>
- <updated>2017-11-29T02:28:26+01:00</updated>
+ <updated>2017-12-18T21:46:56+01:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,22 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>The curious case of haunting fragments</title>
+   <link href="https://jeroenmols.com/blog/2017/12/18/fragmentback/"/>
+   <updated>2017-12-18T00:00:00+01:00</updated>
+   <id>https://jeroenmols.com/blog/2017/12/18/fragmentback</id>
+   <content type="html"><![CDATA[
+     
+     <p>Do Fragment transactions and back navigation have no more secrets for you? Well then you should definitely try to solve the mystery in this post, where a Fragment (literally) started to haunt us…</p>
+
+<p>Seemingly simple Fragment transactions can sometimes have unintended side effects. While investigating, we’ll learn how Fragment transactions actually work.</p>
+
+
+     <a href="https://jeroenmols.com/blog/2017/12/18/fragmentback/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>The 100% code coverage problem</title>

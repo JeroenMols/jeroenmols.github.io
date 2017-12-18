@@ -1,0 +1,348 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.2.2 by Michael Rose
+  Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+ <head>
+   <meta charset="utf-8">
+<title>The curious case of haunting fragments - Jeroen Mols</title>
+<meta name="description" content="Do Fragment transactions and back navigation have no more secrets for you? Well then you should definitely try to solve the mystery in this post, where a Fragment (literally) started to haunt us…">
+<meta name="author" content="Jeroen Mols">
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="Jeroen Mols">
+<meta property="og:title" content="The curious case of haunting fragments">
+<link rel="canonical" href="https://jeroenmols.com/blog/2017/12/18/fragmentback/">
+ <meta property="og:url" content="https://jeroenmols.com/blog/2017/12/18/fragmentback/">
+ <meta property="og:description" content="Do Fragment transactions and back navigation have no more secrets for you? Well then you should definitely try to solve the mystery in this post, where a Fragment (literally) started to haunt us…">
+ <meta name="twitter:site" content="@molsjeroen">
+ <meta name="twitter:title" content="The curious case of haunting fragments">
+ <meta name="twitter:description" content="Do Fragment transactions and back navigation have no more secrets for you? Well then you should definitely try to solve the mystery in this post, where a Fragment (literally) started to haunt us…">
+ <meta name="twitter:url" content="https://jeroenmols.com/blog/2017/12/18/fragmentback/">
+   <meta name="twitter:card" content="summary_large_image">
+   <meta name="twitter:image" content="https://jeroenmols.com/img/blog/fragmentback/fragmentback.jpg">
+   <meta name="twitter:creator" content="@Jeroen Mols">
+ <meta property="og:image" content="https://jeroenmols.com/img/blog/fragmentback/fragmentback.jpg">
+ <meta property="og:type" content="article">
+ <meta property="article:published_time" content="2017-12-18T00:00:00+01:00">
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "Jeroen Mols",
+      "url" : "https://jeroenmols.com",
+      "sameAs" : ["https://twitter.com/molsjeroen","https://www.linkedin.com/in/jeroenmols/","https://plus.google.com/+JeroenMols","https://github.com/JeroenMols","https://speakerdeck.com/jeroenmols","https://stackoverflow.com/users/2771851/jmols"]
+    }
+  </script>
+ <meta name="google-site-verification" content="8E8HUpExgyNFdLuFMWmkSUl08gISnOF3UWexA55aNrk" />
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$('.ga-link').on('click', function(){
+		if (typeof(ga)!=="undefined"){
+			ga('send',{
+				hitType: 'event',
+				eventCategory: 'Outbound link',
+				eventAction: 'click',
+				eventLabel: event.target.href
+			});
+	  	}
+	});
+})	;
+</script>
+<link href="atom.xml" type="application/atom+xml" rel="alternate" title="Jeroen Mols Feed">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+<link rel="stylesheet" href="https://jeroenmols.com/assets/css/main.css">
+<!--[if lte IE 9]>
+ <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+ </style>
+<![endif]-->
+ </head>
+ <body class="layout--single">
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+   <meta name="theme-color" content="#2c3e50">
+<div class="masthead">
+ <div class="masthead__inner-wrap">
+   <div class="masthead__menu">
+     <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="https://jeroenmols.com/">Jeroen Mols</a>
+       <ul class="visible-links">
+           <li class="masthead__menu-item"><a href="https://jeroenmols.com/blog/">Blog</a></li>
+           <li class="masthead__menu-item"><a href="https://jeroenmols.com/speaking/">Speaking</a></li>
+           <li class="masthead__menu-item"><a href="https://jeroenmols.com/hireme/">Hire me</a></li>
+       </ul>
+        <button><div class="navicon"></div></button>
+       <ul class="hidden-links hidden"></ul>
+     </nav>
+   </div>
+ </div>
+</div>
+<div id="main" role="main">
+ <div class="sidebar sticky">
+<div itemscope itemtype="http://schema.org/Person">
+   <div class="author__avatar">
+        <img src="https://jeroenmols.com/img/profile.jpg" class="author__avatar" alt="Jeroen Mols" itemprop="image">
+   </div>
+ <div class="author__content">
+   <h3 class="author__name" itemprop="name">Jeroen Mols</h3>
+     <p class="author__bio" itemprop="description">
+        Android GDE & Lead Android developer at Philips Hue
+     </p>
+ </div>
+ <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+   <ul class="author__urls social-icons">
+       <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
+          <i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> <span itemprop="name">Mol, Belgium</span>
+       </li>
+       <li>
+          <a href="https://twitter.com/@molsjeroen" itemprop="sameAs">
+            <i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+          </a>
+       </li>
+       <li>
+          <a href="https://plus.google.com/JeroenMols" itemprop="sameAs">
+            <i class="fa fa-fw fa-google-plus-square" aria-hidden="true"></i> Google+
+          </a>
+       </li>
+       <li>
+          <a href="https://www.linkedin.com/in/jeroenmols" itemprop="sameAs">
+            <i class="fa fa-fw fa-linkedin-square" aria-hidden="true"></i> LinkedIn
+          </a>
+       </li>
+       <li>
+          <a href="https://github.com/JeroenMols" itemprop="sameAs">
+            <i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+       </li>
+       <li>
+          <a href="https://www.stackoverflow.com/users/2771851/jmols" itemprop="sameAs">
+            <i class="fa fa-fw fa-stack-overflow" aria-hidden="true"></i> Stack Overflow
+          </a>
+       </li>
+         <li>
+            <a href="https://www.youtube.com/channel/UC34Vt1lo8T15_rgc3e3Jsew" itemprop="sameAs">
+              <i class="fa fa-fw fa-youtube-square" aria-hidden="true"></i> YouTube
+            </a>
+         </li>
+ <li>
+    <a href="https://speakerdeck.com/jeroenmols" itemprop="sameAs">
+      <i class="fa fa-line-chart" aria-hidden="true"></i> Speaker Deck
+    </a>
+ </li>
+   </ul>
+ </div>
+</div>
+ </div>
+ <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+   <meta itemprop="headline" content="The curious case of haunting fragments">
+   <meta itemprop="description" content="Do Fragment transactions and back navigation have no more secrets for you? Well then you should definitely try to solve the mystery in this post, where a Fragment (literally) started to haunt us…">
+   <meta itemprop="datePublished" content="December 18, 2017">
+   <div class="page__inner-wrap">
+      <header>
+         <h1 class="page__title" itemprop="headline">The curious case of haunting fragments
+</h1>
+         <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  18 Dec 2017</p>
+            <img src="https://jeroenmols.com/img/blog/fragmentback/fragmentback.jpg" alt="The curious case of haunting fragments" title="Photo by Pixabay, https://www.pexels.com/photo/night-building-forest-trees-42263/, cropped">
+           <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+  3 minute read
+</p>
+       </header>
+     <section class="page__content" itemprop="text">
+       <p>Do Fragment transactions and back navigation have no more secrets for you? Well then you should definitely try to solve the mystery in this post, where a Fragment (literally) started to haunt us…</p>
+<p>Seemingly simple Fragment transactions can sometimes have unintended side effects. While investigating, we’ll learn how Fragment transactions actually work.</p>
+<h2 id="part-1-the-haunt">Part 1: the haunt</h2>
+<p>Let’s build a very straightforward app that shows all today’s calendar events for a particular user. To do so, users will obviously have to log in first.</p>
+<p>Assume now that the app consists out of a single screen that:</p>
+<ul>
+ <li>either shows today’s events if user is logged in</li>
+ <li>otherwise shows a placeholder + login button</li>
+</ul>
+<p><a href="https://jeroenmols.com/img/blog/fragmentback/app_explanation.png"><img src="https://jeroenmols.com/img/blog/fragmentback/app_explanation.png" alt="Main screens shows either list of events or a placeholder with login button" class="align-center" /></a></p>
+<p>The login is a two-step flow that consists out of a <code class="highlighter-rouge">UserNameFragment</code> and a <code class="highlighter-rouge">PasswordFragment</code>. Afterwards, the app navigates back to the main screen to show the events.</p>
+<p><a href="https://jeroenmols.com/img/blog/fragmentback/app_flow_simplified.png"><img src="https://jeroenmols.com/img/blog/fragmentback/app_flow_simplified.png" alt="Event app with login flow simplified" class="align-center" /></a></p>
+<p>Note that for simplicity we don’t display the events when navigating back, but instead show the placeholder screen again after successful login.</p>
+<p>A simple implementation for all Fragment transactions could be:</p>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">transaction</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="n">todayFragment</span><span class="p">)</span>
+<span class="n">transaction</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="n">userNameFragment</span><span class="p">).</span><span class="n">addToBackStack</span><span class="p">(</span><span class="k">null</span><span class="p">)</span>
+<span class="n">transaction</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="n">passwordFragment</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Notice that we only add the <code class="highlighter-rouge">UserNameFragment</code> to the back stack! This way one single back would always take the user back to the <code class="highlighter-rouge">TodayFragment</code>, making it super easy to navigate back when log in was successful.</p>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">onLoginSuccess</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">activity</span><span class="p">.</span><span class="n">onBackPressed</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>But that gives surprising results:</p>
+<p><img src="https://jeroenmols.com/img/blog/fragmentback/fragmentback_ghost.gif" alt="Password fragment is back to haunt us" class="align-center" /></p>
+<p>The <code class="highlighter-rouge">PasswordFragment</code> is back to haunt us!</p>
+<h2 id="part-2-investigative-development">Part 2: investigative development</h2>
+<p>Let’s have another look at the sequence of transactions that takes place:</p>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">transaction</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="n">todayFragment</span><span class="p">)</span>
+<span class="n">transaction</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="n">userNameFragment</span><span class="p">).</span><span class="n">addToBackStack</span><span class="p">(</span><span class="k">null</span><span class="p">)</span>
+<span class="n">transaction</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="n">passwordFragment</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Since a replace is just a combination of <code class="highlighter-rouge">remove()</code> and <code class="highlighter-rouge">add()</code> we can rewrite this to:</p>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">transaction</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="k">null</span><span class="p">).</span><span class="n">add</span><span class="p">(</span><span class="n">todayFragment</span><span class="p">)</span>
+<span class="n">transaction</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">todayFragment</span><span class="p">).</span><span class="n">add</span><span class="p">(</span><span class="n">userNameFragment</span><span class="p">).</span><span class="n">addToBackStack</span><span class="p">(</span><span class="k">null</span><span class="p">)</span>
+<span class="n">transaction</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">userNameFragment</span><span class="p">).</span><span class="n">add</span><span class="p">(</span><span class="n">passwordFragment</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Now it is important to know that the FragmentTransactionManager only saves the FragmentTransactions that were executed, not the Fragments themselves!</p>
+<p>Consequently, when you press back in the <code class="highlighter-rouge">PasswordFragment</code>, it won’t show all Fragments that were present before the Transaction! Instead, it will revert the previous Transaction that was added to the back stack:</p>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">transaction</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">todayFragment</span><span class="p">).</span><span class="n">add</span><span class="p">(</span><span class="n">userNameFragment</span><span class="p">).</span><span class="n">addToBackStack</span><span class="p">(</span><span class="k">null</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Which will then be executed in reverse:</p>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">transaction</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">userNameFragment</span><span class="p">).</span><span class="n">add</span><span class="p">(</span><span class="n">todayFragment</span><span class="p">)</span>
+</code></pre></div></div>
+<p>But because we are on the <code class="highlighter-rouge">PasswordFragment</code>, which has replaced the <code class="highlighter-rouge">UserNameFragment</code>, there is no <code class="highlighter-rouge">UserNameFragment</code> in this situation!</p>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">transaction</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="k">null</span><span class="p">).</span><span class="n">add</span><span class="p">(</span><span class="n">todayFragment</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Hence nothing is removed and the <code class="highlighter-rouge">TodayFragment</code> is added leaving the users with both the <code class="highlighter-rouge">PasswordFragment</code> and <code class="highlighter-rouge">TodayFragment</code>.</p>
+<p><img src="https://jeroenmols.com/img/blog/fragmentback/app_haunting.png" alt="Haunting password fragment" class="align-center" /></p>
+<h2 id="part-3-mystery-solved">Part 3: mystery solved</h2>
+<p>As a first stab, you could say that this problem is caused by transaction three not being added to the back stack. So why not also add that transaction and do a double back.</p>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">transaction</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="n">todayFragment</span><span class="p">)</span>
+<span class="n">transaction</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="n">userNameFragment</span><span class="p">).</span><span class="n">addToBackStack</span><span class="p">(</span><span class="k">null</span><span class="p">))</span>
+<span class="n">transaction</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="n">passwordFragment</span><span class="p">).</span><span class="n">addToBackStack</span><span class="p">(</span><span class="k">null</span><span class="p">))</span>
+</code></pre></div></div>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">onLoginSuccess</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">activity</span><span class="p">.</span><span class="n">onBackPressed</span><span class="p">()</span>
+  <span class="n">activity</span><span class="p">.</span><span class="n">onBackPressed</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>While simple, this actually won’t work! After calling <code class="highlighter-rouge">onBackPressed()</code> the first time, the fragment will be detached from its activity, causing a <code class="highlighter-rouge">NullPointerException</code> on accessing the activity for the second back press.</p>
+<p>But even if that would’ve worked, it would still be a poor idea because this way the <code class="highlighter-rouge">PasswordFragment</code> has hardcoded in it that it’s preceded by exactly one Fragment. Should you ever change that, this would break.</p>
+<p>Alternatively you could assign a tag to the first <code class="highlighter-rouge">addToBackStack</code> invocation and add every transaction to the back stack:</p>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">transaction</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="n">todayFragment</span><span class="p">)</span>
+<span class="n">transaction</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="n">userNameFragment</span><span class="p">).</span><span class="n">addToBackStack</span><span class="p">(</span><span class="s">"username"</span><span class="p">)</span>
+<span class="n">transaction</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="n">passwordFragment</span><span class="p">).</span><span class="n">addToBackStack</span><span class="p">(</span><span class="k">null</span><span class="p">)</span>
+</code></pre></div></div>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">onLoginSuccess</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">activity</span><span class="p">.</span><span class="n">supportFragmentManager</span><span class="p">.</span><span class="n">popBackStack</span><span class="p">(</span><span class="s">"username"</span><span class="p">,</span> <span class="n">POP_BACK_STACK_INCLUSIVE</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>That actually works! But unfortunately, the <code class="highlighter-rouge">PasswordFragment</code> still needs to know what the first screen of the login flow is… This won’t just break easily, but it also makes it very complex to build dynamic login flows.</p>
+<p>So what would be the clean way of setting it up?</p>
+<p>Well actually… since all login screens together form a separate flow, why not just move them all to a single <code class="highlighter-rouge">LoginActivity</code>?</p>
+<p>That has many advantages:</p>
+<ul>
+ <li>Default way of reusing app parts on Android</li>
+ <li>Screens in the flow don’t know about each other</li>
+ <li>Ability to pass back a result</li>
+ <li>Better fits multi-module architectures</li>
+ <li>Super simple back handling: <code class="highlighter-rouge">activity.finish()</code></li>
+ <li>…</li>
+</ul>
+<h2 id="epilogue">Epilogue</h2>
+<p>Fragment transactions are a surprisingly simple concept of adding/removing and reversing those operations. When navigations become complex, consider moving parts of the flow to a separate activity.</p>
+<p>If you’ve made it this far you should probably follow me on <span><a href="https://twitter.com/molsjeroen?source=thecuriouscaseofhauntingfragments2017" class="ga-link" target="_blank">Twitter</a></span>
+. Feel free leave a comment below or check out <a href="https://github.com/JeroenMols/FragmentBackNavigation">the code</a> on GitHub!</p>
+     </section>
+     <footer class="page__meta">
+ <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+      <a href="https://jeroenmols.com/tags/android" class="page__taxonomy-item" rel="tag">android</a><span class="sep">, </span>
+      <a href="https://jeroenmols.com/tags/fragment" class="page__taxonomy-item" rel="tag">fragment</a><span class="sep">, </span>
+      <a href="https://jeroenmols.com/tags/navigation" class="page__taxonomy-item" rel="tag">navigation</a>
+    </span>
+ </p>
+ <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+      <a href="https://jeroenmols.com/categories/blog" class="page__taxonomy-item" rel="tag">blog</a>
+    </span>
+ </p>
+         <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2017-12-18T00:00:00+01:00">December 18, 2017</time></p>
+     </footer>
+     <section class="page__share">
+   <h4 class="page__share-title">Share on</h4>
+  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=The+curious+case+of+haunting+fragments%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2017%2F12%2F18%2Ffragmentback%2F" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2017%2F12%2F18%2Ffragmentback%2F" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://plus.google.com/share?url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2017%2F12%2F18%2Ffragmentback%2F" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2017%2F12%2F18%2Ffragmentback%2F" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+     <section class="page__share">
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-9854541518226004"
+       data-ad-slot="4086741379"
+       data-ad-format="auto"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</section>
+ <nav class="pagination">
+      <a href="https://jeroenmols.com/blog/2017/11/28/coveragproblem/" class="pagination--pager" title="The 100% code coverage problem
+">Previous</a>
+      <a href="#" class="pagination--pager disabled">Next</a>
+ </nav>
+   </div>
+     <div class="page__comments">
+     <h4 class="page__comments-title">Leave a Comment</h4>
+     <section id="disqus_thread"></section>
+</div>
+ </article>
+   <div class="page__related">
+     <h4 class="page__related-title">You May Also Enjoy</h4>
+     <div class="grid__wrapper">
+     </div>
+   </div>
+</div>
+   <div class="page__footer">
+     <footer>
+       <div class="page__footer-follow">
+ <ul class="social-icons">
+     <li><strong>Follow:</strong></li>
+     <li><a href="https://twitter.com/molsjeroen"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+     <li><a href="http://github.com/JeroenMols"><i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+   <li><a href="atom.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+ </ul>
+</div>
+<div class="page__footer-copyright">&copy; 2017 Jeroen Mols. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+     </footer>
+   </div>
+  <script src="https://jeroenmols.com/assets/js/main.min.js"></script>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-63356566-1', 'auto');
+  ga('send', 'pageview');
+</script>
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://jeroenmols.com/blog/2017/12/18/fragmentback/";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = "/blog/2017/12/18/fragmentback"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jeroenmols.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+ </body>
+</html>

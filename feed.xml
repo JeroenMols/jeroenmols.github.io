@@ -1,4 +1,133 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2017-11-29T02:28:26+01:00</updated><id>https://jeroenmols.com/</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">The 100% code coverage problem</title><link href="https://jeroenmols.com/blog/2017/11/28/coveragproblem/" rel="alternate" type="text/html" title="The 100% code coverage problem" /><published>2017-11-28T00:00:00+01:00</published><updated>2017-11-28T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2017/11/28/coveragproblem</id><content type="html" xml:base="https://jeroenmols.com/blog/2017/11/28/coveragproblem/">&lt;p&gt;While you may be tempted to strive for 100% code coverage, that would be a horrible idea. Besides some code being hard to test, the concept of coverage is actually fundamentally limited.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2017-12-18T21:46:56+01:00</updated><id>https://jeroenmols.com/</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">The curious case of haunting fragments</title><link href="https://jeroenmols.com/blog/2017/12/18/fragmentback/" rel="alternate" type="text/html" title="The curious case of haunting fragments" /><published>2017-12-18T00:00:00+01:00</published><updated>2017-12-18T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2017/12/18/fragmentback</id><content type="html" xml:base="https://jeroenmols.com/blog/2017/12/18/fragmentback/">&lt;p&gt;Do Fragment transactions and back navigation have no more secrets for you? Well then you should definitely try to solve the mystery in this post, where a Fragment (literally) started to haunt us…&lt;/p&gt;
+
+&lt;p&gt;Seemingly simple Fragment transactions can sometimes have unintended side effects. While investigating, we’ll learn how Fragment transactions actually work.&lt;/p&gt;
+
+&lt;h2 id=&quot;part-1-the-haunt&quot;&gt;Part 1: the haunt&lt;/h2&gt;
+&lt;p&gt;Let’s build a very straightforward app that shows all today’s calendar events for a particular user. To do so, users will obviously have to log in first.&lt;/p&gt;
+
+&lt;p&gt;Assume now that the app consists out of a single screen that:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;either shows today’s events if user is logged in&lt;/li&gt;
+  &lt;li&gt;otherwise shows a placeholder + login button&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/fragmentback/app_explanation.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/fragmentback/app_explanation.png&quot; alt=&quot;Main screens shows either list of events or a placeholder with login button&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The login is a two-step flow that consists out of a &lt;code class=&quot;highlighter-rouge&quot;&gt;UserNameFragment&lt;/code&gt; and a &lt;code class=&quot;highlighter-rouge&quot;&gt;PasswordFragment&lt;/code&gt;. Afterwards, the app navigates back to the main screen to show the events.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/fragmentback/app_flow_simplified.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/fragmentback/app_flow_simplified.png&quot; alt=&quot;Event app with login flow simplified&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Note that for simplicity we don’t display the events when navigating back, but instead show the placeholder screen again after successful login.&lt;/p&gt;
+
+&lt;p&gt;A simple implementation for all Fragment transactions could be:&lt;/p&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;transaction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;todayFragment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;transaction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;userNameFragment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;addToBackStack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;transaction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;passwordFragment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Notice that we only add the &lt;code class=&quot;highlighter-rouge&quot;&gt;UserNameFragment&lt;/code&gt; to the back stack! This way one single back would always take the user back to the &lt;code class=&quot;highlighter-rouge&quot;&gt;TodayFragment&lt;/code&gt;, making it super easy to navigate back when log in was successful.&lt;/p&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onLoginSuccess&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;activity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;onBackPressed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;But that gives surprising results:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/fragmentback/fragmentback_ghost.gif&quot; alt=&quot;Password fragment is back to haunt us&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;PasswordFragment&lt;/code&gt; is back to haunt us!&lt;/p&gt;
+
+&lt;h2 id=&quot;part-2-investigative-development&quot;&gt;Part 2: investigative development&lt;/h2&gt;
+&lt;p&gt;Let’s have another look at the sequence of transactions that takes place:&lt;/p&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;transaction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;todayFragment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;transaction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;userNameFragment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;addToBackStack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;transaction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;passwordFragment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Since a replace is just a combination of &lt;code class=&quot;highlighter-rouge&quot;&gt;remove()&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;add()&lt;/code&gt; we can rewrite this to:&lt;/p&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;transaction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;todayFragment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;transaction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;todayFragment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;userNameFragment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;addToBackStack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;transaction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;userNameFragment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;passwordFragment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now it is important to know that the FragmentTransactionManager only saves the FragmentTransactions that were executed, not the Fragments themselves!&lt;/p&gt;
+
+&lt;p&gt;Consequently, when you press back in the &lt;code class=&quot;highlighter-rouge&quot;&gt;PasswordFragment&lt;/code&gt;, it won’t show all Fragments that were present before the Transaction! Instead, it will revert the previous Transaction that was added to the back stack:&lt;/p&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;transaction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;todayFragment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;userNameFragment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;addToBackStack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Which will then be executed in reverse:&lt;/p&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;transaction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;userNameFragment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;todayFragment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;But because we are on the &lt;code class=&quot;highlighter-rouge&quot;&gt;PasswordFragment&lt;/code&gt;, which has replaced the &lt;code class=&quot;highlighter-rouge&quot;&gt;UserNameFragment&lt;/code&gt;, there is no &lt;code class=&quot;highlighter-rouge&quot;&gt;UserNameFragment&lt;/code&gt; in this situation!&lt;/p&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;transaction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;todayFragment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Hence nothing is removed and the &lt;code class=&quot;highlighter-rouge&quot;&gt;TodayFragment&lt;/code&gt; is added leaving the users with both the &lt;code class=&quot;highlighter-rouge&quot;&gt;PasswordFragment&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;TodayFragment&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/fragmentback/app_haunting.png&quot; alt=&quot;Haunting password fragment&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;part-3-mystery-solved&quot;&gt;Part 3: mystery solved&lt;/h2&gt;
+&lt;p&gt;As a first stab, you could say that this problem is caused by transaction three not being added to the back stack. So why not also add that transaction and do a double back.&lt;/p&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;transaction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;todayFragment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;transaction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;userNameFragment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;addToBackStack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;transaction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;passwordFragment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;addToBackStack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onLoginSuccess&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;activity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;onBackPressed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;activity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;onBackPressed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;While simple, this actually won’t work! After calling &lt;code class=&quot;highlighter-rouge&quot;&gt;onBackPressed()&lt;/code&gt; the first time, the fragment will be detached from its activity, causing a &lt;code class=&quot;highlighter-rouge&quot;&gt;NullPointerException&lt;/code&gt; on accessing the activity for the second back press.&lt;/p&gt;
+
+&lt;p&gt;But even if that would’ve worked, it would still be a poor idea because this way the &lt;code class=&quot;highlighter-rouge&quot;&gt;PasswordFragment&lt;/code&gt; has hardcoded in it that it’s preceded by exactly one Fragment. Should you ever change that, this would break.&lt;/p&gt;
+
+&lt;p&gt;Alternatively you could assign a tag to the first &lt;code class=&quot;highlighter-rouge&quot;&gt;addToBackStack&lt;/code&gt; invocation and add every transaction to the back stack:&lt;/p&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;transaction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;todayFragment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;transaction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;userNameFragment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;addToBackStack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;username&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;transaction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;passwordFragment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;addToBackStack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onLoginSuccess&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;activity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;supportFragmentManager&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;popBackStack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;username&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;POP_BACK_STACK_INCLUSIVE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;That actually works! But unfortunately, the &lt;code class=&quot;highlighter-rouge&quot;&gt;PasswordFragment&lt;/code&gt; still needs to know what the first screen of the login flow is… This won’t just break easily, but it also makes it very complex to build dynamic login flows.&lt;/p&gt;
+
+&lt;p&gt;So what would be the clean way of setting it up?&lt;/p&gt;
+
+&lt;p&gt;Well actually… since all login screens together form a separate flow, why not just move them all to a single &lt;code class=&quot;highlighter-rouge&quot;&gt;LoginActivity&lt;/code&gt;?&lt;/p&gt;
+
+&lt;p&gt;That has many advantages:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Default way of reusing app parts on Android&lt;/li&gt;
+  &lt;li&gt;Screens in the flow don’t know about each other&lt;/li&gt;
+  &lt;li&gt;Ability to pass back a result&lt;/li&gt;
+  &lt;li&gt;Better fits multi-module architectures&lt;/li&gt;
+  &lt;li&gt;Super simple back handling: &lt;code class=&quot;highlighter-rouge&quot;&gt;activity.finish()&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;…&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;epilogue&quot;&gt;Epilogue&lt;/h2&gt;
+&lt;p&gt;Fragment transactions are a surprisingly simple concept of adding/removing and reversing those operations. When navigations become complex, consider moving parts of the flow to a separate activity.&lt;/p&gt;
+
+&lt;p&gt;If you’ve made it this far you should probably follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=thecuriouscaseofhauntingfragments2017&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
+. Feel free leave a comment below or check out &lt;a href=&quot;https://github.com/JeroenMols/FragmentBackNavigation&quot;&gt;the code&lt;/a&gt; on GitHub!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="android" /><category term="fragment" /><category term="navigation" /><summary type="html">Do Fragment transactions and back navigation have no more secrets for you? Well then you should definitely try to solve the mystery in this post, where a Fragment (literally) started to haunt us…</summary></entry><entry><title type="html">The 100% code coverage problem</title><link href="https://jeroenmols.com/blog/2017/11/28/coveragproblem/" rel="alternate" type="text/html" title="The 100% code coverage problem" /><published>2017-11-28T00:00:00+01:00</published><updated>2017-11-28T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2017/11/28/coveragproblem</id><content type="html" xml:base="https://jeroenmols.com/blog/2017/11/28/coveragproblem/">&lt;p&gt;While you may be tempted to strive for 100% code coverage, that would be a horrible idea. Besides some code being hard to test, the concept of coverage is actually fundamentally limited.&lt;/p&gt;
 
 &lt;p&gt;This post will deep dive in what code coverage actually means, detail why you should never set coverage goals and help you get the most value out of this concept.&lt;/p&gt;
 
@@ -118,7 +247,7 @@
 &lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
 &lt;p&gt;Code coverage can be an incredibly powerful tool to improve the quality of your code as long as you don’t blindly optimize for maximum coverage.&lt;/p&gt;
 
-&lt;p&gt;If you’ve made it this far, you should probably follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=the100%codecoverageproblem2017&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
+&lt;p&gt;If you’ve made it this far you should probably follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=the100%codecoverageproblem2017&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
 . Feel free leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="android" /><category term="testing" /><category term="coverage" /><summary type="html">While you may be tempted to strive for 100% code coverage, that would be a horrible idea. Besides some code being hard to test, the concept of coverage is actually fundamentally limited.</summary></entry><entry><title type="html">Droidcon UK slides</title><link href="https://jeroenmols.com/blog/2017/10/27/droidconuk/" rel="alternate" type="text/html" title="Droidcon UK slides" /><published>2017-10-27T00:00:00+02:00</published><updated>2017-10-27T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2017/10/27/droidconuk</id><content type="html" xml:base="https://jeroenmols.com/blog/2017/10/27/droidconuk/">&lt;p&gt;Had a blast visiting Droidcon UK this year and wanted to do a quick post to link to all of it’s wonderful content.&lt;/p&gt;
 
 &lt;h2 id=&quot;conference-slides&quot;&gt;Conference slides&lt;/h2&gt;
@@ -240,7 +369,7 @@ Fabio Collini&lt;/li&gt;
 &lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
 &lt;p&gt;Learning a new programming language is essential in staying relevant as a software developer. Thanks to Kotlin, Android developers can now learn a new language without the frustration of all boilerplate around it.&lt;/p&gt;
 
-&lt;p&gt;If you’ve made it this far, you should probably follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=thecareeropportunitycalledkotlin2017&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
+&lt;p&gt;If you’ve made it this far you should probably follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=thecareeropportunitycalledkotlin2017&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
 . Feel free leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="android" /><category term="kotlin" /><category term="career" /><summary type="html">This isn’t another post about the benefits of using Kotlin. Hell, I’m not even going to cover any of its language features. Nor will I try to convince you to make the switch.</summary></entry><entry><title type="html">Embracing Java 8 language features</title><link href="https://jeroenmols.com/blog/2017/07/21/java8language/" rel="alternate" type="text/html" title="Embracing Java 8 language features" /><published>2017-07-21T00:00:00+02:00</published><updated>2017-07-21T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2017/07/21/java8language</id><content type="html" xml:base="https://jeroenmols.com/blog/2017/07/21/java8language/">&lt;p&gt;For years Android developers have been limited to Java 6 features. While RetroLambda or the experimental Jack toolchain would help, proper support from Google was notably missing.&lt;/p&gt;
 
 &lt;p&gt;Finally, Android Studio 3.0 brings (backported!) support for most Java 8 features. Continue reading to learn how those work and why you should upgrade.&lt;/p&gt;
@@ -441,7 +570,7 @@ Fabio Collini&lt;/li&gt;
 &lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
 &lt;p&gt;Thanks to Java 8 features, a lot of code can be simplified into lambda’s or method references. Android Studio auto convert is the easiest way to start learning these features.&lt;/p&gt;
 
-&lt;p&gt;If you’ve made it this far, you should probably follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=embracingjava8languagefeatures2017&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
+&lt;p&gt;If you’ve made it this far you should probably follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=embracingjava8languagefeatures2017&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
 . Feel free leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="android" /><category term="tools" /><category term="java" /><summary type="html">For years Android developers have been limited to Java 6 features. While RetroLambda or the experimental Jack toolchain would help, proper support from Google was notably missing.</summary></entry><entry><title type="html">Implementation vs API dependency</title><link href="https://jeroenmols.com/blog/2017/06/14/androidstudio3/" rel="alternate" type="text/html" title="Implementation vs API dependency" /><published>2017-06-14T00:00:00+02:00</published><updated>2017-06-14T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2017/06/14/androidstudio3</id><content type="html" xml:base="https://jeroenmols.com/blog/2017/06/14/androidstudio3/">&lt;p&gt;Upgrading to Android studio 3.0 territory will make building multi-module projects a lot faster, but it also means a breaking Gradle plugin API change unfortunately.&lt;/p&gt;
 
 &lt;p&gt;This blog post will detail all benefits of this change and guide you through the upgrade process.&lt;/p&gt;
@@ -952,57 +1081,4 @@ Fabio Collini&lt;/li&gt;
 &lt;p&gt;The more you run your unit tests, the more value you’ll get from them. Awesome unit tests facilitate exactly that by being fast, focussed and super reliable.&lt;/p&gt;
 
 &lt;p&gt;As always you can reach me &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=writeawesomeunittests2017&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;@molsjeroen&lt;/a&gt;&lt;/span&gt;
- on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="android" /><category term="testing" /><category term="cleancode" /><summary type="html">If you can code, you can also write unit tests. Writing awesome tests on the other hand is a different story. Don’t fool yourself: Unit testing code is production code that you will need to maintain, refactor and build upon for years to come.</summary></entry><entry><title type="html">Using Mockito 2.x on Android</title><link href="https://jeroenmols.com/blog/2017/01/17/mockitoandroid/" rel="alternate" type="text/html" title="Using Mockito 2.x on Android" /><published>2017-01-17T00:00:00+01:00</published><updated>2017-01-17T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2017/01/17/mockitoandroid</id><content type="html" xml:base="https://jeroenmols.com/blog/2017/01/17/mockitoandroid/">&lt;p&gt;The Mockito team is on fire lately! Not only did they add support to mock final classes and methods, but now they allow running Mockito directly onto an actual Android device.&lt;/p&gt;
-
-&lt;p&gt;Time to convert our Mockito 1.x projects to 2.x!&lt;/p&gt;
-
-&lt;h2 id=&quot;history&quot;&gt;History&lt;/h2&gt;
-&lt;p&gt;It has always been possible to run Mockito on Android devices and emulators. This however required using a tool called &lt;code class=&quot;highlighter-rouge&quot;&gt;Dexmaker&lt;/code&gt; to help Mockito generate classes in the Android virtual machine.&lt;/p&gt;
-
-&lt;p&gt;While this approach worked fine, there was one big caveat: &lt;code class=&quot;highlighter-rouge&quot;&gt;Dexmaker&lt;/code&gt; wasn’t actively maintained. Consequently it was only compatible with Mockito 1.x so you couldn’t use the new stuff while running tests on an Android device.&lt;/p&gt;
-
-&lt;p&gt;Further this extra dependency made your &lt;code class=&quot;highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; look like this:&lt;/p&gt;
-
-&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;testCompile&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'org.mockito:mockito-core:2.6.3'&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;androidTestCompile&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'org.mockito:mockito-core:1.10.19'&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;androidTestCompile&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'com.crittercism.dexmaker:dexmaker:1.4'&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;androidTestCompile&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'com.crittercism.dexmaker:dexmaker-dx:1.4'&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;androidTestCompile&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'com.crittercism.dexmaker:dexmaker-mockito:1.4'&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Notice the 2.x version for the unit tests and the 1.x version for the instrumentation tests.&lt;/p&gt;
-
-&lt;p&gt;Fortunately, Mockito 2.6.0 changed that:&lt;/p&gt;
-
-&lt;center&gt;&lt;blockquote class=&quot;twitter-tweet&quot; data-lang=&quot;nl&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;We have just released Mockito 2.6 with native support for Android. On Android, just use the mockito-android dependency. Test code stays!&lt;/p&gt;&amp;mdash; Rafael Winterhalter (@rafaelcodes) &lt;a href=&quot;https://twitter.com/rafaelcodes/status/819525418231496705&quot;&gt;12 januari 2017&lt;/a&gt;&lt;/blockquote&gt;&lt;/center&gt;
-
-&lt;script async=&quot;&quot; src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
-
-&lt;h2 id=&quot;mockito-260&quot;&gt;Mockito 2.6.0+&lt;/h2&gt;
-&lt;p&gt;The latest release added a new artifact &lt;code class=&quot;highlighter-rouge&quot;&gt;mockito-android&lt;/code&gt; next to the existing &lt;code class=&quot;highlighter-rouge&quot;&gt;mockito-core&lt;/code&gt; artifact.&lt;/p&gt;
-
-&lt;p&gt;So to convert your existing instrumentation tests, just remove the &lt;code class=&quot;highlighter-rouge&quot;&gt;Dexmaker&lt;/code&gt; dependencies and replace the &lt;code class=&quot;highlighter-rouge&quot;&gt;mockito-core&lt;/code&gt; dependency with its &lt;code class=&quot;highlighter-rouge&quot;&gt;mockito-android&lt;/code&gt; equivalent:&lt;/p&gt;
-
-&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;testCompile&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'org.mockito:mockito-core:2.6.3'&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;androidTestCompile&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'org.mockito:mockito-android:2.6.3'&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Simple, elegant and future proof!&lt;/p&gt;
-
-&lt;p&gt;Finally, please be aware that Mockito 2.x has some &lt;a href=&quot;https://github.com/mockito/mockito/wiki/What%27s-new-in-Mockito-2#incompatible&quot;&gt;behavior changes&lt;/a&gt;. The one you’re most likely going to run into while migrating is that &lt;code class=&quot;highlighter-rouge&quot;&gt;anyX()&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;any(SomeType.class)&lt;/code&gt; matchers now reject null values.&lt;/p&gt;
-
-&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
-&lt;p&gt;Finally Mockito has first class support for Android instrumentation tests! I’ve also updated my &lt;a href=&quot;https://github.com/jeroenmols/mockitoexample&quot;&gt;Mockito sample project&lt;/a&gt; where you can see how it works and learn more about how to use Mockito.&lt;/p&gt;
-
-&lt;p&gt;As always you can reach me &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=usingmockito2.xonandroid2017&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;@molsjeroen&lt;/a&gt;&lt;/span&gt;
- on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="android" /><category term="mockito" /><category term="testing" /><summary type="html">The Mockito team is on fire lately! Not only did they add support to mock final classes and methods, but now they allow running Mockito directly onto an actual Android device.</summary></entry></feed>
+ on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="android" /><category term="testing" /><category term="cleancode" /><summary type="html">If you can code, you can also write unit tests. Writing awesome tests on the other hand is a different story. Don’t fool yourself: Unit testing code is production code that you will need to maintain, refactor and build upon for years to come.</summary></entry></feed>
