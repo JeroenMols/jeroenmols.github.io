@@ -11,10 +11,10 @@ tags:
 ---
 Do Fragment transactions and back navigation have no more secrets for you? Well then you should definitely try to solve the mystery in this post, where a Fragment (literally) started to haunt us...
 
-Seemingly simple Fragment transactions can sometimes have unintended side effects. While investigating, we'll learn how Fragment transactions actually work .
+Seemingly simple Fragment transactions can sometimes have unintended side effects. While investigating, we'll learn how Fragment transactions actually work.
 
 ## Part 1: the haunt
-Let's build a very straightforward app that shows all today's calendar events for a particular user. To do so, users will obviously have to login first.
+Let's build a very straightforward app that shows all today's calendar events for a particular user. To do so, users will obviously have to log in first.
 
 Assume now that the app consists out of a single screen that:
 
@@ -23,7 +23,7 @@ Assume now that the app consists out of a single screen that:
 
 [![Main screens shows either list of events or a placeholder with login button]({{ site.url }}{{ site.baseurl }}/img/blog/fragmentback/app_explanation.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/fragmentback/app_explanation.png)
 
-The login is a two step flow that consists out of a `UserNameFragment` and a `PasswordFragment`. Afterwards the app navigates back to the main screen to show the events.
+The login is a two-step flow that consists out of a `UserNameFragment` and a `PasswordFragment`. Afterwards, the app navigates back to the main screen to show the events.
 
 [![Event app with login flow simplified]({{ site.url }}{{ site.baseurl }}/img/blog/fragmentback/app_flow_simplified.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/fragmentback/app_flow_simplified.png)
 
@@ -37,7 +37,7 @@ transaction.replace(userNameFragment).addToBackStack(null)
 transaction.replace(passwordFragment)
 ```
 
-Notice that we only add the `UserNameFragment` to the back stack! This way one single back would always take the user back to the `TodayFragment`, making it super easy to navigate back when login was successful.
+Notice that we only add the `UserNameFragment` to the back stack! This way one single back would always take the user back to the `TodayFragment`, making it super easy to navigate back when log in was successful.
 
 ```kotlin
 fun onLoginSuccess() {
@@ -70,7 +70,7 @@ transaction.remove(userNameFragment).add(passwordFragment)
 
 Now it is important to know that the FragmentTransactionManager only saves the FragmentTransactions that were executed, not the Fragments themselves!
 
-Consequently when you press back in the `PasswordFragment`, it won't show all Fragments that where present before the Transaction! Instead it will revert the previous Transaction that was added to the back stack:
+Consequently, when you press back in the `PasswordFragment`, it won't show all Fragments that were present before the Transaction! Instead, it will revert the previous Transaction that was added to the back stack:
 
 ```kotlin
 transaction.remove(todayFragment).add(userNameFragment).addToBackStack(null)
@@ -93,7 +93,7 @@ Hence nothing is removed and the `TodayFragment` is added leaving the users with
 ![Haunting password fragment]({{ site.url }}{{ site.baseurl }}/img/blog/fragmentback/app_haunting.png){: .align-center}
 
 ## Part 3: mystery solved
-As a first stab you could say that this problem is caused by tranaction three not being added to the back stack. So why not also add that transaction and do a double back..
+As a first stab, you could say that this problem is caused by transaction three not being added to the back stack. So why not also add that transaction and do a double back.
 
 ```kotlin
 transaction.replace(todayFragment)
@@ -110,14 +110,14 @@ fun onLoginSuccess() {
 
 While simple, this actually won't work! After calling `onBackPressed()` the first time, the fragment will be detached from its activity, causing a `NullPointerException` on accessing the activity for the second back press.
 
-But even if that would've worked, it would still be a poor idea because the `PasswordFragment` would have hardcoded in it that it's preceded by exactly one Fragment. Should you ever change that, this would break.
+But even if that would've worked, it would still be a poor idea because this way the `PasswordFragment` has hardcoded in it that it's preceded by exactly one Fragment. Should you ever change that, this would break.
 
 Alternatively you could assign a tag to the first `addToBackStack` invocation and add every transaction to the back stack:
 
 ```kotlin
 transaction.replace(todayFragment)
-transaction.replace(userNameFragment).addToBackStack("username"))
-transaction.replace(passwordFragment).addToBackStack("password"))
+transaction.replace(userNameFragment).addToBackStack("username")
+transaction.replace(passwordFragment).addToBackStack(null)
 ```
 
 ```kotlin
@@ -126,9 +126,9 @@ fun onLoginSuccess() {
 }
 ```
 
-That actually works! But unfortunately the `PasswordFragment` still needs to know what the first screen of the login flow is... This cannot just break easily, but it also makes it very complex to build dynamic login flows.
+That actually works! But unfortunately, the `PasswordFragment` still needs to know what the first screen of the login flow is... This won't just break easily, but it also makes it very complex to build dynamic login flows.
 
-So what would be clean way of setting it up?
+So what would be the clean way of setting it up?
 
 Well actually... since all login screens together form a separate flow, why not just move them all to a single `LoginActivity`?
 
@@ -137,8 +137,8 @@ That has many advantages:
 - Default way of reusing app parts on Android
 - Screens in the flow don't know about each other
 - Ability to pass back a result
-- Better fits multi module architectures
-- Super simple
+- Better fits multi-module architectures
+- Super simple back handling: `activity.finish()`
 - ...
 
 ## Epilogue
