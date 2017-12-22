@@ -58,6 +58,13 @@ $masthead-link-color-hover  : $theme-orange !default;
   }
 }
 
+.search__toggle {
+  color: $masthead-link-color;
+  &:hover {
+    color: $masthead-link-color-hover;
+  }
+}
+
 /*
    PAGE
    ========================================================================== */
