@@ -2,7 +2,7 @@
 title: Droidcon Berlin recap
 published: true
 header:
-  image: img/blog/droidconde16/droidconde.png
+  teaser: img/blog/droidconde16/droidconde.png
   imgcredit: Droidcon Berlin logo, https://de.droidcon.com/, added background
 tags:
   - android

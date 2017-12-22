@@ -2,7 +2,7 @@
 title: "The career opportunity called Kotlin"
 published: true
 header:
-  image: img/blog/kotlinopportunity/kotlinopportunity.png
+  teaser: img/blog/kotlinopportunity/kotlinopportunity.png
   imgcredit: Official Kotlin logo by Jetbrains, https://kotlinlang.org/assets/images/open-graph/kotlin_250x250.png, placed on grey background with drop shadow
 tags:
   - android

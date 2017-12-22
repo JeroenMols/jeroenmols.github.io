@@ -2,7 +2,7 @@
 title: A private Maven repository for Android in 30 min
 published: true
 header:
-  image: img/blog/artifactory/artifactory.png
+  teaser: img/blog/artifactory/artifactory.png
   imgcredit: Image by JFrog, https://www.jfrog.com/wp-content/uploads/2014/05/artifactory_overview_diagram.jpg, cropped
 tags:
   - android

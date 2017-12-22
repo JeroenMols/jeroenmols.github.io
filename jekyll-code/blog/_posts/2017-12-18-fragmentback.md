@@ -2,7 +2,7 @@
 title: The curious case of haunting fragments
 published: true
 header:
-  image: img/blog/fragmentback/fragmentback.jpg
+  teaser: img/blog/fragmentback/fragmentback.jpg
   imgcredit: Photo by Pixabay, https://www.pexels.com/photo/night-building-forest-trees-42263/, cropped
 tags:
   - android

@@ -3,7 +3,7 @@ title: Efficiently reducing your method count
 published: true
 comments: true
 header:
-  image: img/blog/methodcount/methodcount.png
+  teaser: img/blog/methodcount/methodcount.png
   imgcredit: Image by Mutual mobile, https://mutualmobile.com, added method counts
 tags:
   - android

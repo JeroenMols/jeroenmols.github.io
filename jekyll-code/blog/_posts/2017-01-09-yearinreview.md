@@ -2,7 +2,7 @@
 title: Year in review 2016
 published: true
 header:
-  image: img/blog/yearinreview16/yearinreview16.png
+  teaser: img/blog/yearinreview16/yearinreview16.png
   imgcredit: Photo by Java User Group Belgium, https://creativecommons.org/licenses/by-nc-sa/2.0/, cropped
 tags:
   - review

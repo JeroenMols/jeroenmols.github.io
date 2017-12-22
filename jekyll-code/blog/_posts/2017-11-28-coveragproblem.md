@@ -2,7 +2,7 @@
 title: The 100% code coverage problem
 published: true
 header:
-  image: img/blog/coverageproblem/coverageproblem.png
+  teaser: img/blog/coverageproblem/coverageproblem.png
   imgcredit: Jeroen Mols
 tags:
   - android

@@ -2,7 +2,7 @@
 title: "Implementation vs API dependency"
 published: true
 header:
-  image: img/blog/androidstudio3/androidstudio3.png
+  teaser: img/blog/androidstudio3/androidstudio3.png
   imgcredit: Android Studio 3.0 launch screen, https://androidstudio.googleblog.com/2017/05/android-studio-30-canary-1-sdk-updates.html, cropped
 tags:
   - android

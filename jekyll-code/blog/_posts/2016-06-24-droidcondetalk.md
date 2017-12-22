@@ -2,7 +2,7 @@
 title: Testing made sweet with a Mockito
 published: true
 header:
-  image: img/blog/droidconde16talk/droidcondetalk.png
+  teaser: img/blog/droidconde16talk/droidcondetalk.png
   imgcredit: Main slide of https://speakerdeck.com/jeroenmols/testing-made-sweet-with-a-mockito, images credits at end.
 tags:
   - android

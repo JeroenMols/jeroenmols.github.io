@@ -2,7 +2,7 @@
 title: Android Makers FR recap
 published: true
 header:
-  image: img/blog/androidmakers17/androidmakers.jpg
+  teaser: img/blog/androidmakers17/androidmakers.jpg
   imgcredit: Android Makers logo and website background, http://androidmakers.fr/, merged together
 tags:
   - android

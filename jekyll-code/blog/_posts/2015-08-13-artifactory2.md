@@ -2,7 +2,7 @@
 title: Getting the most out of Artifactory
 published: true
 header:
-  image: img/blog/artifactory2/artifactory2.png
+  teaser: img/blog/artifactory2/artifactory2.png
   imgcredit: Screenshot of Artifactory start up, https://www.jfrog.com
 tags:
   - android

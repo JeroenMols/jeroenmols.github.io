@@ -2,7 +2,7 @@
 title: Turn Android into an awesome cycling GPS
 published: true
 header:
-  image: img/blog/cyclinggps/cyclinggps.png
+  teaser: img/blog/cyclinggps/cyclinggps.png
   imgcredit: Photo by Jeroen Mols
 tags:
   - cycling

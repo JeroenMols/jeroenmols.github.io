@@ -2,7 +2,7 @@
 title: A successful XML naming convention
 published: true
 header:
-  image: img/blog/resourcenaming/resourcenaming.png
+  teaser: img/blog/resourcenaming/resourcenaming.png
   imgcredit: Android logo by Google, https://creativecommons.org/licenses/by/3.0/, cropped
 tags:
   - android

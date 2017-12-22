@@ -2,7 +2,7 @@
 title: Why you should care about copyright
 published: true
 header:
-  image: img/blog/copyright/copyright.png
+  teaser: img/blog/copyright/copyright.png
   imgcredit: Photo by Ady Satria Herzegovina, https://creativecommons.org/publicdomain/zero/1.0/, cropped
 tags:
   - android

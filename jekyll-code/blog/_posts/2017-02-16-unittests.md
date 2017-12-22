@@ -2,7 +2,7 @@
 title: Write awesome unit tests
 published: true
 header:
-  image: img/blog/unittests/unittests.png
+  teaser: img/blog/unittests/unittests.png
   imgcredit: Alberto G., https://creativecommons.org/licenses/by/2.0/, cropped
 tags:
   - android

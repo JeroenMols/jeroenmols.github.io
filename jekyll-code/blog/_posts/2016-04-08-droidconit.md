@@ -2,7 +2,7 @@
 title: Droidcon Italy recap
 published: true
 header:
-  image: img/blog/droidconit16/droidconit.png
+  teaser: img/blog/droidconit16/droidconit.png
   imgcredit: Droidcon Italy logo, http://it.droidcon.com/2015/, modified background
 tags:
   - android

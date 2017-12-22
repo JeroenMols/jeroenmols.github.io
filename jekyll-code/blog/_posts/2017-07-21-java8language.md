@@ -2,7 +2,7 @@
 title: "Embracing Java 8 language features"
 published: true
 header:
-  image: img/blog/java8language/java8language.jpg
+  teaser: img/blog/java8language/java8language.jpg
   imgcredit: Photo by Braetschit, https://pixabay.com/en/service/terms/#usage, cropped and added lambda
 tags:
   - android

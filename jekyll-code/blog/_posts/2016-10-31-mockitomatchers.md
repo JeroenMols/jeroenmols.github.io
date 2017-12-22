@@ -2,7 +2,7 @@
 title: Extending Mockito
 published: true
 header:
-  image: img/blog/mockitomatchers/mockitomatchers.png
+  teaser: img/blog/mockitomatchers/mockitomatchers.png
   imgcredit: Image by Andrés Nieto Porras, https://creativecommons.org/licenses/by-sa/2.0/, cropped
 tags:
   - android

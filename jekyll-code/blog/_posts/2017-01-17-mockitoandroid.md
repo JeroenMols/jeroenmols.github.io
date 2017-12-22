@@ -2,7 +2,7 @@
 title: Using Mockito 2.x on Android
 published: true
 header:
-  image: img/blog/mockitoandroid/mockitoandroid.png
+  teaser: img/blog/mockitoandroid/mockitoandroid.png
   imgcredit: Android logo by Google, https://creativecommons.org/licenses/by/3.0/, cropped. Mockito logo, https://github.com/mockito/mockito, unmodified.
 tags:
   - android
