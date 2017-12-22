@@ -1,32 +1,100 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.2.2 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.8.0 by Michael Rose
   Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
 -->
 <html lang="en" class="no-js">
- <head>
-   <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
 <title>Implementation vs API dependency - Jeroen Mols</title>
+
+
+
+
 <meta name="description" content="Upgrading to Android studio 3.0 territory will make building multi-module projects a lot faster, but it also means a breaking Gradle plugin API change unfortunately.">
+
+
+
+
 <meta name="author" content="Jeroen Mols">
+
 <meta property="og:locale" content="en">
 <meta property="og:site_name" content="Jeroen Mols">
 <meta property="og:title" content="Implementation vs API dependency">
-<link rel="canonical" href="https://jeroenmols.com/blog/2017/06/14/androidstudio3/">
- <meta property="og:url" content="https://jeroenmols.com/blog/2017/06/14/androidstudio3/">
- <meta property="og:description" content="Upgrading to Android studio 3.0 territory will make building multi-module projects a lot faster, but it also means a breaking Gradle plugin API change unfortunately.">
- <meta name="twitter:site" content="@molsjeroen">
- <meta name="twitter:title" content="Implementation vs API dependency">
- <meta name="twitter:description" content="Upgrading to Android studio 3.0 territory will make building multi-module projects a lot faster, but it also means a breaking Gradle plugin API change unfortunately.">
- <meta name="twitter:url" content="https://jeroenmols.com/blog/2017/06/14/androidstudio3/">
-   <meta name="twitter:card" content="summary_large_image">
-   <meta name="twitter:image" content="https://jeroenmols.com/img/blog/androidstudio3/androidstudio3.png">
-   <meta name="twitter:creator" content="@Jeroen Mols">
- <meta property="og:image" content="https://jeroenmols.com/img/blog/androidstudio3/androidstudio3.png">
- <meta property="og:type" content="article">
- <meta property="article:published_time" content="2017-06-14T00:00:00+02:00">
+
+
+  <link rel="canonical" href="https://jeroenmols.com/blog/2017/06/14/androidstudio3/">
+  <meta property="og:url" content="https://jeroenmols.com/blog/2017/06/14/androidstudio3/">
+
+
+
+  <meta property="og:description" content="Upgrading to Android studio 3.0 territory will make building multi-module projects a lot faster, but it also means a breaking Gradle plugin API change unfortunately.">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <meta name="twitter:site" content="@molsjeroen">
+  <meta name="twitter:title" content="Implementation vs API dependency">
+  <meta name="twitter:description" content="Upgrading to Android studio 3.0 territory will make building multi-module projects a lot faster, but it also means a breaking Gradle plugin API change unfortunately.">
+  <meta name="twitter:url" content="https://jeroenmols.com/blog/2017/06/14/androidstudio3/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+      <meta name="twitter:image" content="https://jeroenmols.com/img/blog/androidstudio3/androidstudio3.png">
+    
+  
+
+  
+    <meta name="twitter:creator" content="@Jeroen Mols">
+  
+
+
+
+  
+
+  
+
+
+
+  <meta property="og:image" content="https://jeroenmols.com/img/blog/androidstudio3/androidstudio3.png">
+
+
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2017-06-14T00:00:00+02:00">
+
+
+
+
+
+
+
+
   <script type="application/ld+json">
     {
       "@context" : "http://schema.org",
@@ -36,7 +104,17 @@
       "sameAs" : ["https://twitter.com/molsjeroen","https://www.linkedin.com/in/jeroenmols/","https://plus.google.com/+JeroenMols","https://github.com/JeroenMols","https://speakerdeck.com/jeroenmols","https://stackoverflow.com/users/2771851/jmols"]
     }
   </script>
- <meta name="google-site-verification" content="8E8HUpExgyNFdLuFMWmkSUl08gISnOF3UWexA55aNrk" />
+
+
+
+  <meta name="google-site-verification" content="8E8HUpExgyNFdLuFMWmkSUl08gISnOF3UWexA55aNrk" />
+
+
+
+
+
+<!-- end SEO -->
+
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script>
@@ -53,16 +131,25 @@ $(document).ready(function(){
 	});
 })	;
 </script>
+
+<meta name="theme-color" content="#2c3e50">
+
 <link href="atom.xml" type="application/atom+xml" rel="alternate" title="Jeroen Mols Feed">
+
+<!-- http://t.co/dKP3o1e -->
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <script>
   document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
 </script>
+
+<!-- For all browsers -->
 <link rel="stylesheet" href="https://jeroenmols.com/assets/css/main.css">
+
 <!--[if lte IE 9]>
- <style>
+  <style>
     /* old IE unsupported flexbox fixes */
     .greedy-nav .site-title {
       padding-right: 3em;
@@ -73,132 +160,285 @@ $(document).ready(function(){
       right: 0;
       height: 100%;
     }
- </style>
+  </style>
 <![endif]-->
- </head>
- <body class="layout--single">
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--single">
+
     <!--[if lt IE 9]>
-<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
 <![endif]-->
-   <meta name="theme-color" content="#2c3e50">
-<div class="masthead">
- <div class="masthead__inner-wrap">
-   <div class="masthead__menu">
-     <nav id="site-nav" class="greedy-nav">
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
         <a class="site-title" href="https://jeroenmols.com/">Jeroen Mols</a>
-       <ul class="visible-links">
-           <li class="masthead__menu-item"><a href="https://jeroenmols.com/blog/">Blog</a></li>
-           <li class="masthead__menu-item"><a href="https://jeroenmols.com/speaking/">Speaking</a></li>
-           <li class="masthead__menu-item"><a href="https://jeroenmols.com/hireme/">Hire me</a></li>
-       </ul>
-        <button><div class="navicon"></div></button>
-       <ul class="hidden-links hidden"></ul>
-     </nav>
-   </div>
- </div>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://jeroenmols.com/blog/" >Blog</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://jeroenmols.com/speaking/" >Speaking</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://jeroenmols.com/hireme/" >Hire me</a>
+            </li>
+          
+        </ul>
+        
+        <button class="search__toggle" type="button">
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
 </div>
+
+    <div class="initial-content">
+      
+
+
+
 <div id="main" role="main">
- <div class="sidebar sticky">
+  
+  <div class="sidebar sticky">
+  
+
 <div itemscope itemtype="http://schema.org/Person">
-   <div class="author__avatar">
+
+  
+    <div class="author__avatar">
+      
         <img src="https://jeroenmols.com/img/profile.jpg" class="author__avatar" alt="Jeroen Mols" itemprop="image">
-   </div>
- <div class="author__content">
-   <h3 class="author__name" itemprop="name">Jeroen Mols</h3>
-     <p class="author__bio" itemprop="description">
+      
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name" itemprop="name">Jeroen Mols</h3>
+    
+      <p class="author__bio" itemprop="description">
         Android GDE & Lead Android developer at Philips Hue
-     </p>
- </div>
- <div class="author__urls-wrapper">
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
     <button class="btn btn--inverse">Follow</button>
-   <ul class="author__urls social-icons">
-       <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
           <i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> <span itemprop="name">Mol, Belgium</span>
-       </li>
-       <li>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
           <a href="https://twitter.com/@molsjeroen" itemprop="sameAs">
             <i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
           </a>
-       </li>
-       <li>
+        </li>
+      
+
+      
+
+      
+        <li>
           <a href="https://plus.google.com/JeroenMols" itemprop="sameAs">
             <i class="fa fa-fw fa-google-plus-square" aria-hidden="true"></i> Google+
           </a>
-       </li>
-       <li>
+        </li>
+      
+
+      
+        <li>
           <a href="https://www.linkedin.com/in/jeroenmols" itemprop="sameAs">
             <i class="fa fa-fw fa-linkedin-square" aria-hidden="true"></i> LinkedIn
           </a>
-       </li>
-       <li>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
           <a href="https://github.com/JeroenMols" itemprop="sameAs">
             <i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub
           </a>
-       </li>
-       <li>
+        </li>
+      
+
+      
+
+      
+        <li>
           <a href="https://www.stackoverflow.com/users/2771851/jmols" itemprop="sameAs">
             <i class="fa fa-fw fa-stack-overflow" aria-hidden="true"></i> Stack Overflow
           </a>
-       </li>
-         <li>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        
+          <li>
             <a href="https://www.youtube.com/channel/UC34Vt1lo8T15_rgc3e3Jsew" itemprop="sameAs">
               <i class="fa fa-fw fa-youtube-square" aria-hidden="true"></i> YouTube
             </a>
-         </li>
- <li>
+          </li>
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+  <li>
     <a href="https://speakerdeck.com/jeroenmols" itemprop="sameAs">
       <i class="fa fa-line-chart" aria-hidden="true"></i> Speaker Deck
     </a>
- </li>
-   </ul>
- </div>
+  </li>
+
+    </ul>
+  </div>
 </div>
- </div>
- <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-   <meta itemprop="headline" content="Implementation vs API dependency">
-   <meta itemprop="description" content="Upgrading to Android studio 3.0 territory will make building multi-module projects a lot faster, but it also means a breaking Gradle plugin API change unfortunately.">
-   <meta itemprop="datePublished" content="June 14, 2017">
-   <div class="page__inner-wrap">
-      <header>
-         <h1 class="page__title" itemprop="headline">Implementation vs API dependency
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Implementation vs API dependency">
+    <meta itemprop="description" content="Upgrading to Android studio 3.0 territory will make building multi-module projects a lot faster, but it also means a breaking Gradle plugin API change unfortunately.">
+    <meta itemprop="datePublished" content="June 14, 2017">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Implementation vs API dependency
 </h1>
-         <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  14 Jun 2017</p>
-            <img src="https://jeroenmols.com/img/blog/androidstudio3/androidstudio3.png" alt="Implementation vs API dependency" title="Android Studio 3.0 launch screen, https://androidstudio.googleblog.com/2017/05/android-studio-30-canary-1-sdk-updates.html, cropped">
-           <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+          <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  14 Jun 2017</p>
+
+          
+            
+          
+
+          
+            <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
   3 minute read
 </p>
-       </header>
-     <section class="page__content" itemprop="text">
-       <p>Upgrading to Android studio 3.0 territory will make building multi-module projects a lot faster, but it also means a breaking Gradle plugin API change unfortunately.</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        <p>Upgrading to Android studio 3.0 territory will make building multi-module projects a lot faster, but it also means a breaking Gradle plugin API change unfortunately.</p>
+
 <p>This blog post will detail all benefits of this change and guide you through the upgrade process.</p>
+
 <h2 id="problem-situation">Problem situation</h2>
 <p>To understand the limitations of the old Gradle plugin 2.0 build system, consider the following project with multiple layers of modules:</p>
+
 <p><img src="https://jeroenmols.com/img/blog/androidstudio3/project.png" alt="Base project with multiple modules" class="align-center" /></p>
+
 <p>Looking at the bottom most module, there are basically two different changes you could make:</p>
+
 <ol>
- <li>Implementation change: internal change, doesn’t modify the external interface of the module</li>
- <li>Application binary interface (ABI) change: modify the external interface of the module</li>
+  <li>Implementation change: internal change, doesn’t modify the external interface of the module</li>
+  <li>Application binary interface (ABI) change: modify the external interface of the module</li>
 </ol>
+
 <p>Note: In what follows, all recompiled modules will be highlighted in red.</p>
+
 <h3 id="implementation-change">Implementation change</h3>
 <p>Since the external interface of the module doesn’t change, Gradle will only recompile that module. All of its consuming modules will be left untouched.</p>
+
 <p><img src="https://jeroenmols.com/img/blog/androidstudio3/project_implementation.png" alt="Implementation change with Gradle 2.0" class="align-center" /></p>
+
 <p>There is no problem in this scenario.</p>
+
 <h3 id="abi-change">ABI change</h3>
 <p>When the external interface of a module changes however, also the modules consuming that module directly need to be recompiled.</p>
+
 <p><img src="https://jeroenmols.com/img/blog/androidstudio3/project_gradle_2.0_step1.png" alt="Code change (ABI) with Gradle 2.0 compile dependencies" class="align-center" /></p>
+
 <p>But those modules could be exposing parts of the bottom module directly through their own interface! So to be completely safe, they would also need to be recompiled. Same for the ones using those… and those… and…</p>
+
 <p>Hence Gradle would effectively need to recompile all modules.</p>
+
 <p><img src="https://jeroenmols.com/img/blog/androidstudio3/project_gradle_2.0_final.png" alt="Code change (ABI) with Gradle 2.0 compile dependencies" class="align-center" /></p>
+
 <p>Now we do have a big problem: one code change causes all modules to be recompiled. The root cause for this is that Gradle doesn’t know if you leak the interface of a module through another one or not.</p>
+
 <h2 id="android-gradle-plugin-30-to-the-rescue">Android Gradle plugin 3.0 to the rescue</h2>
 <p>The latest Android Gradle plugin now requires you to explicitly define if you leak a module’s interface. Based on that it can make the right choice on what it should recompile.</p>
+
 <p>As such the <code class="highlighter-rouge">compile</code> dependency has been deprecated and replaced by two new ones:</p>
+
 <ul>
- <li><code class="highlighter-rouge">api</code>: you leak the interface of this module through your own interface, meaning exactly the same as the old <code class="highlighter-rouge">compile</code> dependency</li>
- <li><code class="highlighter-rouge">implementation</code>: you only use this module internally and does not leak it through your interface</li>
+  <li><code class="highlighter-rouge">api</code>: you leak the interface of this module through your own interface, meaning exactly the same as the old <code class="highlighter-rouge">compile</code> dependency</li>
+  <li><code class="highlighter-rouge">implementation</code>: you only use this module internally and does not leak it through your interface</li>
 </ul>
+
 <p>So now you can explicitly tell Gradle to recompile a module if the interface of a used module changes or not.</p>
+
 <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dependencies</span> <span class="o">{</span>
   <span class="c1">// recompile this module and all modules using this one</span>
   <span class="c1">// when legofy interface is modified</span>
@@ -208,58 +448,122 @@ $(document).ready(function(){
   <span class="n">implementation</span> <span class="nf">project</span><span class="o">(</span><span class="s1">':landscapevideocamera:1.0.0'</span><span class="o">)</span>
 <span class="o">}</span>
 </code></pre></div></div>
+
 <h3 id="migration-guide">Migration guide</h3>
 <p>In theory you can simply replace all <code class="highlighter-rouge">compile</code> dependencies with <code class="highlighter-rouge">api</code> dependencies, but that would still cause everything to be recompiled:</p>
+
 <p><img src="https://jeroenmols.com/img/blog/androidstudio3/project_gradle_2.0_final.png" alt="Code change (ABI) with Gradle 3.0 api dependencies" class="align-center" /></p>
+
 <p>So better approach is to replace all <code class="highlighter-rouge">compile</code> dependencies with <code class="highlighter-rouge">implementation</code> dependencies. And only where you leak a module’s interface, you should use <code class="highlighter-rouge">api</code>. That should cause a lot less recompilation.</p>
+
 <p><img src="https://jeroenmols.com/img/blog/androidstudio3/project_gradle_3.0.png" alt="Code change (ABI) with Gradle 3.0 implementation dependencies" class="align-center" /></p>
+
 <p>Hopefully, this clarifies the ambiguity between <code class="highlighter-rouge">api</code> and <code class="highlighter-rouge">implementation</code>, as the official <a href="https://developer.android.com/studio/preview/features/new-android-plugin-migration.html#new_configurations">migration guide</a> is quite cryptic.</p>
+
 <h3 id="other-dependency-configurations">Other dependency configurations</h3>
 <p>As there was already a breaking change, the team also made use of the opportunity to finally give the other configurations proper names:</p>
+
 <ul>
- <li><code class="highlighter-rouge">provided</code> configuration is now <code class="highlighter-rouge">compileOnly</code></li>
- <li><code class="highlighter-rouge">apk</code> configuration is now <code class="highlighter-rouge">runtimeOnly</code></li>
+  <li><code class="highlighter-rouge">provided</code> configuration is now <code class="highlighter-rouge">compileOnly</code></li>
+  <li><code class="highlighter-rouge">apk</code> configuration is now <code class="highlighter-rouge">runtimeOnly</code></li>
 </ul>
+
 <p>Just like before you can also combine these with your build variants: <code class="highlighter-rouge">debugApi</code>, <code class="highlighter-rouge">testImplementation</code>,…</p>
+
 <h2 id="other-migration-items">Other migration items</h2>
 <p>Android Studio 3.0 packs tons of other improvements that have finally been addressed. My favorites are:</p>
+
 <ul>
- <li>all Google dependencies are available via an online Maven repository</li>
- <li>current build variant can now be passed through to your libraries, removing the need for <code class="highlighter-rouge">publishNonDefault true</code></li>
- <li>…</li>
+  <li>all Google dependencies are available via an online Maven repository</li>
+  <li>current build variant can now be passed through to your libraries, removing the need for <code class="highlighter-rouge">publishNonDefault true</code></li>
+  <li>…</li>
 </ul>
+
 <p>For more information have a look at the complete <a href="https://developer.android.com/studio/preview/features/new-android-plugin-migration.html">migration guide</a>.</p>
+
 <h2 id="wrap-up">Wrap-up</h2>
 <p>To build multi-module projects faster, the Android Gradle plugin needed a breaking API change. Always try to use the <code class="highlighter-rouge">implementation</code> dependency as this will cause fewer modules to be recompiled.</p>
+
 <p>As always you can reach me <span><a href="https://twitter.com/molsjeroen?source=implementationvsapidependency2017" class="ga-link" target="_blank">@molsjeroen</a></span>
  on Twitter, or leave a comment below!</p>
-     </section>
-     <footer class="page__meta">
- <p class="page__taxonomy">
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
     <strong><i class="fa fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
     <span itemprop="keywords">
+    
+      
+      
       <a href="https://jeroenmols.com/tags/android" class="page__taxonomy-item" rel="tag">android</a><span class="sep">, </span>
+    
+      
+      
       <a href="https://jeroenmols.com/tags/gradle" class="page__taxonomy-item" rel="tag">gradle</a><span class="sep">, </span>
+    
+      
+      
       <a href="https://jeroenmols.com/tags/tools" class="page__taxonomy-item" rel="tag">tools</a>
+    
     </span>
- </p>
- <p class="page__taxonomy">
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
     <strong><i class="fa fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
     <span itemprop="keywords">
+    
+      
+      
       <a href="https://jeroenmols.com/categories/blog" class="page__taxonomy-item" rel="tag">blog</a>
+    
     </span>
- </p>
-         <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2017-06-14T00:00:00+02:00">June 14, 2017</time></p>
-     </footer>
-     <section class="page__share">
-   <h4 class="page__share-title">Share on</h4>
-  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=Implementation+vs+API+dependency%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2017%2F06%2F14%2Fandroidstudio3%2F" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2017%2F06%2F14%2Fandroidstudio3%2F" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
-  <a href="https://plus.google.com/share?url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2017%2F06%2F14%2Fandroidstudio3%2F" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2017%2F06%2F14%2Fandroidstudio3%2F" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2017-06-14T00:00:00+02:00">June 14, 2017</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=Implementation+vs+API+dependency%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2017%2F06%2F14%2Fandroidstudio3%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2017%2F06%2F14%2Fandroidstudio3%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://plus.google.com/share?url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2017%2F06%2F14%2Fandroidstudio3%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2017%2F06%2F14%2Fandroidstudio3%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
-     <section class="page__share">
+
+
+      <section class="page__share">
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bottom-blog-responsive -->
   <ins class="adsbygoogle"
        style="display:block"
        data-ad-client="ca-pub-9854541518226004"
@@ -269,46 +573,96 @@ $(document).ready(function(){
   (adsbygoogle = window.adsbygoogle || []).push({});
   </script>
 </section>
- <nav class="pagination">
+
+
+      
+  <nav class="pagination">
+    
       <a href="https://jeroenmols.com/blog/2017/05/31/googleio17/" class="pagination--pager" title="My Google #io17 takeaways
 ">Previous</a>
+    
+    
       <a href="https://jeroenmols.com/blog/2017/07/21/java8language/" class="pagination--pager" title="Embracing Java 8 language features
 ">Next</a>
- </nav>
-   </div>
-     <div class="page__comments">
-     <h4 class="page__comments-title">Leave a Comment</h4>
-     <section id="disqus_thread"></section>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a Comment</h4>
+      <section id="disqus_thread"></section>
+    
 </div>
- </article>
-   <div class="page__related">
-     <h4 class="page__related-title">You May Also Enjoy</h4>
-     <div class="grid__wrapper">
-     </div>
-   </div>
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+      </div>
+    </div>
+  
 </div>
-   <div class="page__footer">
-     <footer>
-       <div class="page__footer-follow">
- <ul class="social-icons">
-     <li><strong>Follow:</strong></li>
-     <li><a href="https://twitter.com/molsjeroen"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
-     <li><a href="http://github.com/JeroenMols"><i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
-   <li><a href="atom.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
- </ul>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap">
+  <input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  <div id="results" class="results"></div>
 </div>
-<div class="page__footer-copyright">&copy; 2017 Jeroen Mols. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
-     </footer>
-   </div>
+      </div>
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+      <li><a href="https://twitter.com/molsjeroen"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+    
+    
+    
+      <li><a href="https://github.com/JeroenMols"><i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    
+    <li><a href="atom.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2017 Jeroen Mols. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
   <script src="https://jeroenmols.com/assets/js/main.min.js"></script>
-  <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-63356566-1', 'auto');
-  ga('send', 'pageview');
-</script>
+
+
+
+  <script src="https://jeroenmols.com/assets/js/lunr.min.js"></script>
+  <script src="https://jeroenmols.com/assets/js/lunr-en.js"></script>
+
+
+
+
+
+    
   <script>
     var disqus_config = function () {
       this.page.url = "https://jeroenmols.com/blog/2017/06/14/androidstudio3/";  // Replace PAGE_URL with your page's canonical URL variable
@@ -322,5 +676,11 @@ $(document).ready(function(){
     })();
   </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
- </body>
+
+
+  
+
+
+
+  </body>
 </html>

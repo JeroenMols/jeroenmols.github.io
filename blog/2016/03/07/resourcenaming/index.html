@@ -1,32 +1,100 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.2.2 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.8.0 by Michael Rose
   Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
 -->
 <html lang="en" class="no-js">
- <head>
-   <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
 <title>A successful XML naming convention - Jeroen Mols</title>
+
+
+
+
 <meta name="description" content="Do you remember the last time you had to dig into strings.xml to find the right String to use? Or that you manually had to go over all drawables to find the one you needed?">
+
+
+
+
 <meta name="author" content="Jeroen Mols">
+
 <meta property="og:locale" content="en">
 <meta property="og:site_name" content="Jeroen Mols">
 <meta property="og:title" content="A successful XML naming convention">
-<link rel="canonical" href="https://jeroenmols.com/blog/2016/03/07/resourcenaming/">
- <meta property="og:url" content="https://jeroenmols.com/blog/2016/03/07/resourcenaming/">
- <meta property="og:description" content="Do you remember the last time you had to dig into strings.xml to find the right String to use? Or that you manually had to go over all drawables to find the one you needed?">
- <meta name="twitter:site" content="@molsjeroen">
- <meta name="twitter:title" content="A successful XML naming convention">
- <meta name="twitter:description" content="Do you remember the last time you had to dig into strings.xml to find the right String to use? Or that you manually had to go over all drawables to find the one you needed?">
- <meta name="twitter:url" content="https://jeroenmols.com/blog/2016/03/07/resourcenaming/">
-   <meta name="twitter:card" content="summary_large_image">
-   <meta name="twitter:image" content="https://jeroenmols.com/img/blog/resourcenaming/resourcenaming.png">
-   <meta name="twitter:creator" content="@Jeroen Mols">
- <meta property="og:image" content="https://jeroenmols.com/img/blog/resourcenaming/resourcenaming.png">
- <meta property="og:type" content="article">
- <meta property="article:published_time" content="2016-03-07T00:00:00+01:00">
+
+
+  <link rel="canonical" href="https://jeroenmols.com/blog/2016/03/07/resourcenaming/">
+  <meta property="og:url" content="https://jeroenmols.com/blog/2016/03/07/resourcenaming/">
+
+
+
+  <meta property="og:description" content="Do you remember the last time you had to dig into strings.xml to find the right String to use? Or that you manually had to go over all drawables to find the one you needed?">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <meta name="twitter:site" content="@molsjeroen">
+  <meta name="twitter:title" content="A successful XML naming convention">
+  <meta name="twitter:description" content="Do you remember the last time you had to dig into strings.xml to find the right String to use? Or that you manually had to go over all drawables to find the one you needed?">
+  <meta name="twitter:url" content="https://jeroenmols.com/blog/2016/03/07/resourcenaming/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+      <meta name="twitter:image" content="https://jeroenmols.com/img/blog/resourcenaming/resourcenaming.png">
+    
+  
+
+  
+    <meta name="twitter:creator" content="@Jeroen Mols">
+  
+
+
+
+  
+
+  
+
+
+
+  <meta property="og:image" content="https://jeroenmols.com/img/blog/resourcenaming/resourcenaming.png">
+
+
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2016-03-07T00:00:00+01:00">
+
+
+
+
+
+
+
+
   <script type="application/ld+json">
     {
       "@context" : "http://schema.org",
@@ -36,7 +104,17 @@
       "sameAs" : ["https://twitter.com/molsjeroen","https://www.linkedin.com/in/jeroenmols/","https://plus.google.com/+JeroenMols","https://github.com/JeroenMols","https://speakerdeck.com/jeroenmols","https://stackoverflow.com/users/2771851/jmols"]
     }
   </script>
- <meta name="google-site-verification" content="8E8HUpExgyNFdLuFMWmkSUl08gISnOF3UWexA55aNrk" />
+
+
+
+  <meta name="google-site-verification" content="8E8HUpExgyNFdLuFMWmkSUl08gISnOF3UWexA55aNrk" />
+
+
+
+
+
+<!-- end SEO -->
+
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script>
@@ -53,16 +131,25 @@ $(document).ready(function(){
 	});
 })	;
 </script>
+
+<meta name="theme-color" content="#2c3e50">
+
 <link href="atom.xml" type="application/atom+xml" rel="alternate" title="Jeroen Mols Feed">
+
+<!-- http://t.co/dKP3o1e -->
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <script>
   document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
 </script>
+
+<!-- For all browsers -->
 <link rel="stylesheet" href="https://jeroenmols.com/assets/css/main.css">
+
 <!--[if lte IE 9]>
- <style>
+  <style>
     /* old IE unsupported flexbox fixes */
     .greedy-nav .site-title {
       padding-right: 3em;
@@ -73,327 +160,566 @@ $(document).ready(function(){
       right: 0;
       height: 100%;
     }
- </style>
+  </style>
 <![endif]-->
- </head>
- <body class="layout--single">
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--single">
+
     <!--[if lt IE 9]>
-<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
 <![endif]-->
-   <meta name="theme-color" content="#2c3e50">
-<div class="masthead">
- <div class="masthead__inner-wrap">
-   <div class="masthead__menu">
-     <nav id="site-nav" class="greedy-nav">
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
         <a class="site-title" href="https://jeroenmols.com/">Jeroen Mols</a>
-       <ul class="visible-links">
-           <li class="masthead__menu-item"><a href="https://jeroenmols.com/blog/">Blog</a></li>
-           <li class="masthead__menu-item"><a href="https://jeroenmols.com/speaking/">Speaking</a></li>
-           <li class="masthead__menu-item"><a href="https://jeroenmols.com/hireme/">Hire me</a></li>
-       </ul>
-        <button><div class="navicon"></div></button>
-       <ul class="hidden-links hidden"></ul>
-     </nav>
-   </div>
- </div>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://jeroenmols.com/blog/" >Blog</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://jeroenmols.com/speaking/" >Speaking</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://jeroenmols.com/hireme/" >Hire me</a>
+            </li>
+          
+        </ul>
+        
+        <button class="search__toggle" type="button">
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
 </div>
+
+    <div class="initial-content">
+      
+
+
+
 <div id="main" role="main">
- <div class="sidebar sticky">
+  
+  <div class="sidebar sticky">
+  
+
 <div itemscope itemtype="http://schema.org/Person">
-   <div class="author__avatar">
+
+  
+    <div class="author__avatar">
+      
         <img src="https://jeroenmols.com/img/profile.jpg" class="author__avatar" alt="Jeroen Mols" itemprop="image">
-   </div>
- <div class="author__content">
-   <h3 class="author__name" itemprop="name">Jeroen Mols</h3>
-     <p class="author__bio" itemprop="description">
+      
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name" itemprop="name">Jeroen Mols</h3>
+    
+      <p class="author__bio" itemprop="description">
         Android GDE & Lead Android developer at Philips Hue
-     </p>
- </div>
- <div class="author__urls-wrapper">
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
     <button class="btn btn--inverse">Follow</button>
-   <ul class="author__urls social-icons">
-       <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
           <i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> <span itemprop="name">Mol, Belgium</span>
-       </li>
-       <li>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
           <a href="https://twitter.com/@molsjeroen" itemprop="sameAs">
             <i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
           </a>
-       </li>
-       <li>
+        </li>
+      
+
+      
+
+      
+        <li>
           <a href="https://plus.google.com/JeroenMols" itemprop="sameAs">
             <i class="fa fa-fw fa-google-plus-square" aria-hidden="true"></i> Google+
           </a>
-       </li>
-       <li>
+        </li>
+      
+
+      
+        <li>
           <a href="https://www.linkedin.com/in/jeroenmols" itemprop="sameAs">
             <i class="fa fa-fw fa-linkedin-square" aria-hidden="true"></i> LinkedIn
           </a>
-       </li>
-       <li>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
           <a href="https://github.com/JeroenMols" itemprop="sameAs">
             <i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub
           </a>
-       </li>
-       <li>
+        </li>
+      
+
+      
+
+      
+        <li>
           <a href="https://www.stackoverflow.com/users/2771851/jmols" itemprop="sameAs">
             <i class="fa fa-fw fa-stack-overflow" aria-hidden="true"></i> Stack Overflow
           </a>
-       </li>
-         <li>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        
+          <li>
             <a href="https://www.youtube.com/channel/UC34Vt1lo8T15_rgc3e3Jsew" itemprop="sameAs">
               <i class="fa fa-fw fa-youtube-square" aria-hidden="true"></i> YouTube
             </a>
-         </li>
- <li>
+          </li>
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+  <li>
     <a href="https://speakerdeck.com/jeroenmols" itemprop="sameAs">
       <i class="fa fa-line-chart" aria-hidden="true"></i> Speaker Deck
     </a>
- </li>
-   </ul>
- </div>
+  </li>
+
+    </ul>
+  </div>
 </div>
- </div>
- <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-   <meta itemprop="headline" content="A successful XML naming convention">
-   <meta itemprop="description" content="Do you remember the last time you had to dig into strings.xml to find the right String to use? Or that you manually had to go over all drawables to find the one you needed?">
-   <meta itemprop="datePublished" content="March 07, 2016">
-   <div class="page__inner-wrap">
-      <header>
-         <h1 class="page__title" itemprop="headline">A successful XML naming convention
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="A successful XML naming convention">
+    <meta itemprop="description" content="Do you remember the last time you had to dig into strings.xml to find the right String to use? Or that you manually had to go over all drawables to find the one you needed?">
+    <meta itemprop="datePublished" content="March 07, 2016">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">A successful XML naming convention
 </h1>
-         <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  07 Mar 2016</p>
-            <img src="https://jeroenmols.com/img/blog/resourcenaming/resourcenaming.png" alt="A successful XML naming convention" title="Android logo by Google, https://creativecommons.org/licenses/by/3.0/, cropped">
-           <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+          <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  07 Mar 2016</p>
+
+          
+            
+          
+
+          
+            <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
   5 minute read
 </p>
-       </header>
-     <section class="page__content" itemprop="text">
-       <p>Do you remember the last time you had to dig into <code class="highlighter-rouge">strings.xml</code> to find the right String to use? Or that you manually had to go over all drawables to find the one you needed?</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        <p>Do you remember the last time you had to dig into <code class="highlighter-rouge">strings.xml</code> to find the right String to use? Or that you manually had to go over all drawables to find the one you needed?</p>
+
 <p>Whenever we start a new project, we take a lot of care in setting up our architecture, CI, build flavors,… But do you also have a strategy to name your resources?</p>
+
 <p>You should! Because the lack of XML namespaces, makes managing Android resources tedious. And causes things to grow out of control easily, especially in large projects.</p>
+
 <p>So let’s introduce a simple scheme that will solve your pains.</p>
+
 <ul>
- <li>easy lookup of any resource (autocomplete)</li>
- <li>logical, predictable names</li>
- <li>clean ordering of resources</li>
- <li>strongly typed resources</li>
+  <li>easy lookup of any resource (autocomplete)</li>
+  <li>logical, predictable names</li>
+  <li>clean ordering of resources</li>
+  <li>strongly typed resources</li>
 </ul>
+
 <p>This blogpost will explain the mechanism, its advantages, limitations and provide an easy to use cheat sheet.</p>
+
 <h2 id="basic-principle">Basic principle</h2>
 <p>All resource names follow a simple convention.</p>
+
 <p><img src="https://jeroenmols.com/img/blog/resourcenaming/whatwheredescriptionsize.jpg" alt="what_where_description_size" class="align-center" /></p>
+
 <p>Let’s first describe every element briefly. After the advantages, we’ll see how this applies to each resource type.</p>
+
 <h3 id="what">&lt;WHAT&gt;</h3>
 <p>Indicate what the resource actually represents, often a standard Android view class. Limited options per resource type. <br /> (e.g. MainActivity -&gt; <code class="highlighter-rouge">activity</code>)</p>
+
 <h3 id="where">&lt;WHERE&gt;</h3>
 <p>Describe where it logically belongs in the app. Resources used in multiple screens use <code class="highlighter-rouge">all</code>, all others use the custom part of the Android view subclass they are in. <br /> (e.g. MainActivity -&gt; <code class="highlighter-rouge">main</code>, ArticleDetailFragment -&gt; <code class="highlighter-rouge">articledetail</code>)</p>
+
 <h3 id="description">&lt;DESCRIPTION&gt;</h3>
 <p>Differentiate multiple elements in one screen. <br /> (e.g. <code class="highlighter-rouge">title</code>)</p>
+
 <h3 id="size-optional">&lt;SIZE&gt; (optional)</h3>
 <p>Either a precise size or size bucket. Optionally used for drawables and dimensions. <br />  (e.g. <code class="highlighter-rouge">24dp</code>, <code class="highlighter-rouge">small</code>))</p>
+
 <p><a href="https://jeroenmols.com/img/blog/resourcenaming/resourcenaming_cheatsheet.pdf"><img src="https://jeroenmols.com/img/blog/resourcenaming/resourcenaming_cheatsheet.png" alt="Resource naming cheat sheet" class="align-center" /></a></p>
+
 <p>Download and print the <a href="https://jeroenmols.com/img/blog/resourcenaming/resourcenaming_cheatsheet.pdf">cheat sheet</a> for easy reference.</p>
+
 <h2 id="advantages">Advantages</h2>
+
 <ol>
- <li><strong>Ordering of resources by screen</strong> <br />
+  <li><strong>Ordering of resources by screen</strong> <br />
   The <code class="highlighter-rouge">WHERE</code> part describes what screen a resource belongs to. Hence it is easy to get all IDs, drawables, dimensions,… for a particular screen.</li>
- <li><strong>Strongly typed resource IDs</strong> <br />
+  <li><strong>Strongly typed resource IDs</strong> <br />
   For resource IDs, the <code class="highlighter-rouge">WHAT</code> describes the class name of the xml element it belongs to. This makes is easy to what to cast your <code class="highlighter-rouge">findViewById()</code> calls to.</li>
- <li><strong>Better resource organizing</strong> <br />
+  <li><strong>Better resource organizing</strong> <br />
   File browsers/project navigator usually sort files alphabetically. This means layouts and drawables are grouped by their <code class="highlighter-rouge">WHAT</code> (activity, fragment,..) and <code class="highlighter-rouge">WHERE</code> prefix respectively. A simple Android Studio plugin/feature can now display these resources as if they were in their own folder.</li>
- <li><strong>More efficient autocomplete</strong> <br />
+  <li><strong>More efficient autocomplete</strong> <br />
   Because resource names are far more predictable, using the IDE’s autocomplete becomes even easier. Usually entering the <code class="highlighter-rouge">WHAT</code> or <code class="highlighter-rouge">WHERE</code> is sufficient to narrow autocomplete down to a limited set of options.</li>
- <li><strong>No more name conflicts</strong> <br />
+  <li><strong>No more name conflicts</strong> <br />
   Similar resources in different screens are either <code class="highlighter-rouge">all</code> or have a different <code class="highlighter-rouge">WHERE</code>. A fixed naming scheme avoids all naming collisions.</li>
- <li><strong>Cleaner resource names</strong> <br />
+  <li><strong>Cleaner resource names</strong> <br />
   Overall all resources will be named more logical, causing a cleaner Android project.</li>
- <li><strong>Tools support</strong> <br />
+  <li><strong>Tools support</strong> <br />
   This naming scheme could be easily supported by the Android Studio offering features such as: lint rules to enforce these names, refactoring support when you change a <code class="highlighter-rouge">WHAT</code> or <code class="highlighter-rouge">WHERE</code>, better resource visualisation in project view,…</li>
 </ol>
+
 <h2 id="layouts">Layouts</h2>
 <p>Layouts are relatively simple, as there usually are only a few layouts per screen. Therefore the rule can be simplified to:</p>
+
 <p><img src="https://jeroenmols.com/img/blog/resourcenaming/layouts.png" alt="what_where.xml" class="align-center" /></p>
+
 <p>Where <code class="highlighter-rouge">&lt;WHAT&gt;</code> is one of the following:</p>
+
 <table>
-<thead>
-   <tr>
-     <th>Prefix</th>
-     <th>Usage</th>
-   </tr>
- </thead>
- <tbody>
-   <tr>
-     <td>activity</td>
-     <td>contentview for activity</td>
-   </tr>
-   <tr>
-     <td>fragment</td>
-     <td>view for a fragment</td>
-   </tr>
-   <tr>
-     <td>view</td>
-     <td>inflated by a custom view</td>
-   </tr>
-   <tr>
-     <td>item</td>
-     <td>layout used in list/recycler/gridview</td>
-   </tr>
-   <tr>
-     <td>layout</td>
-     <td>layout reused using the include tag</td>
-   </tr>
- </tbody>
+  <thead>
+    <tr>
+      <th>Prefix</th>
+      <th>Usage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>activity</td>
+      <td>contentview for activity</td>
+    </tr>
+    <tr>
+      <td>fragment</td>
+      <td>view for a fragment</td>
+    </tr>
+    <tr>
+      <td>view</td>
+      <td>inflated by a custom view</td>
+    </tr>
+    <tr>
+      <td>item</td>
+      <td>layout used in list/recycler/gridview</td>
+    </tr>
+    <tr>
+      <td>layout</td>
+      <td>layout reused using the include tag</td>
+    </tr>
+  </tbody>
 </table>
+
 <p>Examples:</p>
+
 <ul>
- <li><strong>activity_main</strong>: content view of the MainActivity</li>
- <li><strong>fragment_articledetail</strong>: view for the ArticleDetailFragment</li>
- <li><strong>view_menu</strong>: layout inflated by custom view class MenuView</li>
- <li><strong>item_article</strong>: list item in ArticleRecyclerView</li>
- <li><strong>layout_actionbar_backbutton</strong>: layout for an actionbar with a backbutton (too simple to be a customview)</li>
+  <li><strong>activity_main</strong>: content view of the MainActivity</li>
+  <li><strong>fragment_articledetail</strong>: view for the ArticleDetailFragment</li>
+  <li><strong>view_menu</strong>: layout inflated by custom view class MenuView</li>
+  <li><strong>item_article</strong>: list item in ArticleRecyclerView</li>
+  <li><strong>layout_actionbar_backbutton</strong>: layout for an actionbar with a backbutton (too simple to be a customview)</li>
 </ul>
+
 <h2 id="strings">Strings</h2>
 <p>The <code class="highlighter-rouge">&lt;WHAT&gt;</code> part for Strings is irrelevant. So either we use <code class="highlighter-rouge">&lt;WHERE&gt;</code> to indicate where the string will be used:</p>
+
 <p><img src="https://jeroenmols.com/img/blog/resourcenaming/strings.png" alt="where_description.xml" class="align-center" /></p>
+
 <p>or <code class="highlighter-rouge">all</code> if the string is reused throughout the app:</p>
+
 <p><img src="https://jeroenmols.com/img/blog/resourcenaming/strings2.png" alt="all_description.xml" class="align-center" /></p>
+
 <p>Examples:</p>
+
 <ul>
- <li><strong>articledetail_title</strong>: title of ArticleDetailFragment</li>
- <li><strong>feedback_explanation</strong>: feedback explanation in FeedbackFragment</li>
- <li><strong>feedback_namehint</strong>: hint of name field in FeedbackFragment</li>
- <li><strong>all_done</strong>: generic “done” string</li>
+  <li><strong>articledetail_title</strong>: title of ArticleDetailFragment</li>
+  <li><strong>feedback_explanation</strong>: feedback explanation in FeedbackFragment</li>
+  <li><strong>feedback_namehint</strong>: hint of name field in FeedbackFragment</li>
+  <li><strong>all_done</strong>: generic “done” string</li>
 </ul>
+
 <p><code class="highlighter-rouge">&lt;WHERE&gt;</code> obviously is the same for all resources in the same view.</p>
+
 <h2 id="drawables">Drawables</h2>
 <p>The <code class="highlighter-rouge">&lt;WHAT&gt;</code> part for Drawables is irrelevant. So either we use <code class="highlighter-rouge">&lt;WHERE&gt;</code> to indicate where the drawable will be used:</p>
+
 <p><img src="https://jeroenmols.com/img/blog/resourcenaming/drawables.png" alt="where_description_size.xml" class="align-center" /></p>
+
 <p>or <code class="highlighter-rouge">all</code> if the drawable is reused throughout the app:</p>
+
 <p><img src="https://jeroenmols.com/img/blog/resourcenaming/drawables2.png" alt="all_description_size.xml" class="align-center" /></p>
+
 <p>Optionally you can add a <code class="highlighter-rouge">&lt;SIZE&gt;</code> argument, which can be an actual size “24dp” or a size qualifier “small”.</p>
+
 <p>Examples:</p>
+
 <ul>
- <li><strong>articledetail_placeholder</strong>: placeholder in ArticleDetailFragment</li>
- <li><strong>all_infoicon</strong>: generic info icon</li>
- <li><strong>all_infoicon_large</strong>: large version of generic info icon</li>
- <li><strong>all_infoicon_24dp</strong>: 24dp version of generic info icon</li>
+  <li><strong>articledetail_placeholder</strong>: placeholder in ArticleDetailFragment</li>
+  <li><strong>all_infoicon</strong>: generic info icon</li>
+  <li><strong>all_infoicon_large</strong>: large version of generic info icon</li>
+  <li><strong>all_infoicon_24dp</strong>: 24dp version of generic info icon</li>
 </ul>
+
 <h2 id="ids">IDs</h2>
 <p>For IDs, <code class="highlighter-rouge">&lt;WHAT&gt;</code> is the class name of the xml element it belongs to. Next is the screen the ID is in, followed by an optional description to distinguish similar elements in one screen.</p>
+
 <p><img src="https://jeroenmols.com/img/blog/resourcenaming/ids.png" alt="what_where_description.xml" class="align-center" /></p>
+
 <p>Examples:</p>
+
 <ul>
- <li><strong>tablayout_main</strong> -&gt; TabLayout in MainActivity</li>
- <li><strong>imageview_menu_profile</strong> -&gt; profile image in custom MenuView</li>
- <li><strong>textview_articledetail_title</strong> -&gt; title TextView in ArticleDetailFragment</li>
+  <li><strong>tablayout_main</strong> -&gt; TabLayout in MainActivity</li>
+  <li><strong>imageview_menu_profile</strong> -&gt; profile image in custom MenuView</li>
+  <li><strong>textview_articledetail_title</strong> -&gt; title TextView in ArticleDetailFragment</li>
 </ul>
+
 <h2 id="dimensions">Dimensions</h2>
 <p>Apps should only define a limited set of dimensions, which are constantly reused. This makes most dimensions <code class="highlighter-rouge">all</code> by default.</p>
+
 <p>Therefore you should mostly use:</p>
+
 <p><img src="https://jeroenmols.com/img/blog/resourcenaming/dimensions2.png" alt="what_all_description_size.xml" class="align-center" /></p>
+
 <p>and optionally use the screen specific variant:</p>
+
 <p><img src="https://jeroenmols.com/img/blog/resourcenaming/dimensions.png" alt="what_where_description_size.xml" class="align-center" /></p>
+
 <p>Where <code class="highlighter-rouge">&lt;WHAT&gt;</code> is one of the following:</p>
+
 <table>
-<thead>
-   <tr>
-     <th>Prefix</th>
-     <th>Usage</th>
-   </tr>
- </thead>
- <tbody>
-   <tr>
-     <td>width</td>
-     <td>width in dp</td>
-   </tr>
-   <tr>
-     <td>height</td>
-     <td>height in dp</td>
-   </tr>
-   <tr>
-     <td>size</td>
-     <td>if width == height</td>
-   </tr>
-   <tr>
-     <td>margin</td>
-     <td>margin in dp</td>
-   </tr>
-   <tr>
-     <td>padding</td>
-     <td>padding in dp</td>
-   </tr>
-   <tr>
-     <td>elevation</td>
-     <td>elevation in dp</td>
-   </tr>
-   <tr>
-     <td>keyline</td>
-     <td>absolute keyline measured from view edge in dp</td>
-   </tr>
-   <tr>
-     <td>textsize</td>
-     <td>size of text in sp</td>
-   </tr>
- </tbody>
+  <thead>
+    <tr>
+      <th>Prefix</th>
+      <th>Usage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>width</td>
+      <td>width in dp</td>
+    </tr>
+    <tr>
+      <td>height</td>
+      <td>height in dp</td>
+    </tr>
+    <tr>
+      <td>size</td>
+      <td>if width == height</td>
+    </tr>
+    <tr>
+      <td>margin</td>
+      <td>margin in dp</td>
+    </tr>
+    <tr>
+      <td>padding</td>
+      <td>padding in dp</td>
+    </tr>
+    <tr>
+      <td>elevation</td>
+      <td>elevation in dp</td>
+    </tr>
+    <tr>
+      <td>keyline</td>
+      <td>absolute keyline measured from view edge in dp</td>
+    </tr>
+    <tr>
+      <td>textsize</td>
+      <td>size of text in sp</td>
+    </tr>
+  </tbody>
 </table>
+
 <p>Note that this list only contains the most used <code class="highlighter-rouge">&lt;WHAT&gt;</code>s. Other dimensions qualifiers like: rotation, scale,… are usually only used in drawables and as such less reused.</p>
+
 <p>Examples:</p>
+
 <ul>
- <li><strong>height_toolbar</strong>: height of all toolbars</li>
- <li><strong>keyline_listtext</strong>: listitem text is aligned at this keyline</li>
- <li><strong>textsize_medium</strong>: medium size of all text</li>
- <li><strong>size_menu_icon</strong>: size of icons in menu</li>
- <li><strong>height_menu_profileimage</strong>: height of profile image in menu</li>
+  <li><strong>height_toolbar</strong>: height of all toolbars</li>
+  <li><strong>keyline_listtext</strong>: listitem text is aligned at this keyline</li>
+  <li><strong>textsize_medium</strong>: medium size of all text</li>
+  <li><strong>size_menu_icon</strong>: size of icons in menu</li>
+  <li><strong>height_menu_profileimage</strong>: height of profile image in menu</li>
 </ul>
+
 <h2 id="known-limitations">Known limitations</h2>
 <ol>
- <li>
-   <p><strong>Screens need to have unique names</strong><br />
+  <li>
+    <p><strong>Screens need to have unique names</strong><br />
 To avoid collisions in the <code class="highlighter-rouge">&lt;WHERE&gt;</code> argument, View (like) classes must have unique names. Therefore you cannot have a “MainActivity” and a “MainFragment”, because the “Main” prefix would no longer uniquely identify one <code class="highlighter-rouge">&lt;WHERE&gt;</code>.</p>
- </li>
- <li>
-   <p><strong>Refactoring not supported</strong><br />
+  </li>
+  <li>
+    <p><strong>Refactoring not supported</strong><br />
 Changing class names does not change along resource names when refactoring. So if you rename “MainActivity” to “ContentActivity”, the layout “activity_main” won’t be renamed to “activity_content”. Hopefully Android Studio will one day add support for this.</p>
- </li>
- <li>
-   <p><strong>Not all resource types supported</strong><br />
+  </li>
+  <li>
+    <p><strong>Not all resource types supported</strong><br />
 The proposed scheme currently does not yet support all resource types. For some resources this is because they are less frequently used and tend to be very varied (e.g. raw and assets). For other resources this is because they are a lot harder to generalize (e.g. themes/styles/colors/animations).</p>
-   <p>Your apps colors palette likely wants to reuse the terminology of your design philosophy. Animations can range from modest (fade) to very exotic. Themes and styles already have a naming scheme that allows you to implicitly inherit properties.</p>
- </li>
+
+    <p>Your apps colors palette likely wants to reuse the terminology of your design philosophy. Animations can range from modest (fade) to very exotic. Themes and styles already have a naming scheme that allows you to implicitly inherit properties.</p>
+  </li>
 </ol>
+
 <h2 id="wrap-up">Wrap-up</h2>
 <p>That’s it! A clean simple and easy to use resource naming scheme. Don’t forget to download the <a href="https://jeroenmols.com/img/blog/resourcenaming/resourcenaming_cheatsheet.pdf">cheat sheet</a> for easy reference!</p>
+
 <p>Even though this scheme doesn’t (yet) cover all resource types, it does provide an easy to use solution for where most naming pain currently is. In a future blogpost I’ll also make a suggestion for the other ones.</p>
+
 <p>If you’ve made it this far, you should probably follow me on <span><a href="https://twitter.com/molsjeroen?source=asuccessfulxmlnamingconvention2016" class="ga-link" target="_blank">Twitter</a></span>
 . Feel free leave a comment below!</p>
-     </section>
-     <footer class="page__meta">
- <p class="page__taxonomy">
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
     <strong><i class="fa fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
     <span itemprop="keywords">
+    
+      
+      
       <a href="https://jeroenmols.com/tags/android" class="page__taxonomy-item" rel="tag">android</a><span class="sep">, </span>
+    
+      
+      
       <a href="https://jeroenmols.com/tags/cleancode" class="page__taxonomy-item" rel="tag">cleancode</a><span class="sep">, </span>
+    
+      
+      
       <a href="https://jeroenmols.com/tags/resources" class="page__taxonomy-item" rel="tag">resources</a>
+    
     </span>
- </p>
- <p class="page__taxonomy">
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
     <strong><i class="fa fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
     <span itemprop="keywords">
+    
+      
+      
       <a href="https://jeroenmols.com/categories/blog" class="page__taxonomy-item" rel="tag">blog</a>
+    
     </span>
- </p>
-         <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2016-03-07T00:00:00+01:00">March 07, 2016</time></p>
-     </footer>
-     <section class="page__share">
-   <h4 class="page__share-title">Share on</h4>
-  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=A+successful+XML+naming+convention%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2016%2F03%2F07%2Fresourcenaming%2F" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2016%2F03%2F07%2Fresourcenaming%2F" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
-  <a href="https://plus.google.com/share?url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2016%2F03%2F07%2Fresourcenaming%2F" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2016%2F03%2F07%2Fresourcenaming%2F" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2016-03-07T00:00:00+01:00">March 07, 2016</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=A+successful+XML+naming+convention%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2016%2F03%2F07%2Fresourcenaming%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2016%2F03%2F07%2Fresourcenaming%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://plus.google.com/share?url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2016%2F03%2F07%2Fresourcenaming%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2016%2F03%2F07%2Fresourcenaming%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
-     <section class="page__share">
+
+
+      <section class="page__share">
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bottom-blog-responsive -->
   <ins class="adsbygoogle"
        style="display:block"
        data-ad-client="ca-pub-9854541518226004"
@@ -403,46 +729,96 @@ The proposed scheme currently does not yet support all resource types. For some 
   (adsbygoogle = window.adsbygoogle || []).push({});
   </script>
 </section>
- <nav class="pagination">
+
+
+      
+  <nav class="pagination">
+    
       <a href="https://jeroenmols.com/blog/2016/02/05/wagongit/" class="pagination--pager" title="Git as a secure private Maven repository
 ">Previous</a>
+    
+    
       <a href="https://jeroenmols.com/blog/2016/04/08/droidconit/" class="pagination--pager" title="Droidcon Italy recap
 ">Next</a>
- </nav>
-   </div>
-     <div class="page__comments">
-     <h4 class="page__comments-title">Leave a Comment</h4>
-     <section id="disqus_thread"></section>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a Comment</h4>
+      <section id="disqus_thread"></section>
+    
 </div>
- </article>
-   <div class="page__related">
-     <h4 class="page__related-title">You May Also Enjoy</h4>
-     <div class="grid__wrapper">
-     </div>
-   </div>
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+      </div>
+    </div>
+  
 </div>
-   <div class="page__footer">
-     <footer>
-       <div class="page__footer-follow">
- <ul class="social-icons">
-     <li><strong>Follow:</strong></li>
-     <li><a href="https://twitter.com/molsjeroen"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
-     <li><a href="http://github.com/JeroenMols"><i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
-   <li><a href="atom.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
- </ul>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap">
+  <input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  <div id="results" class="results"></div>
 </div>
-<div class="page__footer-copyright">&copy; 2017 Jeroen Mols. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
-     </footer>
-   </div>
+      </div>
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+      <li><a href="https://twitter.com/molsjeroen"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+    
+    
+    
+      <li><a href="https://github.com/JeroenMols"><i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    
+    <li><a href="atom.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2017 Jeroen Mols. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
   <script src="https://jeroenmols.com/assets/js/main.min.js"></script>
-  <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-63356566-1', 'auto');
-  ga('send', 'pageview');
-</script>
+
+
+
+  <script src="https://jeroenmols.com/assets/js/lunr.min.js"></script>
+  <script src="https://jeroenmols.com/assets/js/lunr-en.js"></script>
+
+
+
+
+
+    
   <script>
     var disqus_config = function () {
       this.page.url = "https://jeroenmols.com/blog/2016/03/07/resourcenaming/";  // Replace PAGE_URL with your page's canonical URL variable
@@ -456,5 +832,11 @@ The proposed scheme currently does not yet support all resource types. For some 
     })();
   </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
- </body>
+
+
+  
+
+
+
+  </body>
 </html>

@@ -1,32 +1,100 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.2.2 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.8.0 by Michael Rose
   Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
 -->
 <html lang="en" class="no-js">
- <head>
-   <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
 <title>Embracing Java 8 language features - Jeroen Mols</title>
+
+
+
+
 <meta name="description" content="For years Android developers have been limited to Java 6 features. While RetroLambda or the experimental Jack toolchain would help, proper support from Google was notably missing.">
+
+
+
+
 <meta name="author" content="Jeroen Mols">
+
 <meta property="og:locale" content="en">
 <meta property="og:site_name" content="Jeroen Mols">
 <meta property="og:title" content="Embracing Java 8 language features">
-<link rel="canonical" href="https://jeroenmols.com/blog/2017/07/21/java8language/">
- <meta property="og:url" content="https://jeroenmols.com/blog/2017/07/21/java8language/">
- <meta property="og:description" content="For years Android developers have been limited to Java 6 features. While RetroLambda or the experimental Jack toolchain would help, proper support from Google was notably missing.">
- <meta name="twitter:site" content="@molsjeroen">
- <meta name="twitter:title" content="Embracing Java 8 language features">
- <meta name="twitter:description" content="For years Android developers have been limited to Java 6 features. While RetroLambda or the experimental Jack toolchain would help, proper support from Google was notably missing.">
- <meta name="twitter:url" content="https://jeroenmols.com/blog/2017/07/21/java8language/">
-   <meta name="twitter:card" content="summary_large_image">
-   <meta name="twitter:image" content="https://jeroenmols.com/img/blog/java8language/java8language.jpg">
-   <meta name="twitter:creator" content="@Jeroen Mols">
- <meta property="og:image" content="https://jeroenmols.com/img/blog/java8language/java8language.jpg">
- <meta property="og:type" content="article">
- <meta property="article:published_time" content="2017-07-21T00:00:00+02:00">
+
+
+  <link rel="canonical" href="https://jeroenmols.com/blog/2017/07/21/java8language/">
+  <meta property="og:url" content="https://jeroenmols.com/blog/2017/07/21/java8language/">
+
+
+
+  <meta property="og:description" content="For years Android developers have been limited to Java 6 features. While RetroLambda or the experimental Jack toolchain would help, proper support from Google was notably missing.">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <meta name="twitter:site" content="@molsjeroen">
+  <meta name="twitter:title" content="Embracing Java 8 language features">
+  <meta name="twitter:description" content="For years Android developers have been limited to Java 6 features. While RetroLambda or the experimental Jack toolchain would help, proper support from Google was notably missing.">
+  <meta name="twitter:url" content="https://jeroenmols.com/blog/2017/07/21/java8language/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+      <meta name="twitter:image" content="https://jeroenmols.com/img/blog/java8language/java8language.jpg">
+    
+  
+
+  
+    <meta name="twitter:creator" content="@Jeroen Mols">
+  
+
+
+
+  
+
+  
+
+
+
+  <meta property="og:image" content="https://jeroenmols.com/img/blog/java8language/java8language.jpg">
+
+
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2017-07-21T00:00:00+02:00">
+
+
+
+
+
+
+
+
   <script type="application/ld+json">
     {
       "@context" : "http://schema.org",
@@ -36,7 +104,17 @@
       "sameAs" : ["https://twitter.com/molsjeroen","https://www.linkedin.com/in/jeroenmols/","https://plus.google.com/+JeroenMols","https://github.com/JeroenMols","https://speakerdeck.com/jeroenmols","https://stackoverflow.com/users/2771851/jmols"]
     }
   </script>
- <meta name="google-site-verification" content="8E8HUpExgyNFdLuFMWmkSUl08gISnOF3UWexA55aNrk" />
+
+
+
+  <meta name="google-site-verification" content="8E8HUpExgyNFdLuFMWmkSUl08gISnOF3UWexA55aNrk" />
+
+
+
+
+
+<!-- end SEO -->
+
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script>
@@ -53,16 +131,25 @@ $(document).ready(function(){
 	});
 })	;
 </script>
+
+<meta name="theme-color" content="#2c3e50">
+
 <link href="atom.xml" type="application/atom+xml" rel="alternate" title="Jeroen Mols Feed">
+
+<!-- http://t.co/dKP3o1e -->
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <script>
   document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
 </script>
+
+<!-- For all browsers -->
 <link rel="stylesheet" href="https://jeroenmols.com/assets/css/main.css">
+
 <!--[if lte IE 9]>
- <style>
+  <style>
     /* old IE unsupported flexbox fixes */
     .greedy-nav .site-title {
       padding-right: 3em;
@@ -73,107 +160,244 @@ $(document).ready(function(){
       right: 0;
       height: 100%;
     }
- </style>
+  </style>
 <![endif]-->
- </head>
- <body class="layout--single">
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--single">
+
     <!--[if lt IE 9]>
-<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
 <![endif]-->
-   <meta name="theme-color" content="#2c3e50">
-<div class="masthead">
- <div class="masthead__inner-wrap">
-   <div class="masthead__menu">
-     <nav id="site-nav" class="greedy-nav">
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
         <a class="site-title" href="https://jeroenmols.com/">Jeroen Mols</a>
-       <ul class="visible-links">
-           <li class="masthead__menu-item"><a href="https://jeroenmols.com/blog/">Blog</a></li>
-           <li class="masthead__menu-item"><a href="https://jeroenmols.com/speaking/">Speaking</a></li>
-           <li class="masthead__menu-item"><a href="https://jeroenmols.com/hireme/">Hire me</a></li>
-       </ul>
-        <button><div class="navicon"></div></button>
-       <ul class="hidden-links hidden"></ul>
-     </nav>
-   </div>
- </div>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://jeroenmols.com/blog/" >Blog</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://jeroenmols.com/speaking/" >Speaking</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://jeroenmols.com/hireme/" >Hire me</a>
+            </li>
+          
+        </ul>
+        
+        <button class="search__toggle" type="button">
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
 </div>
+
+    <div class="initial-content">
+      
+
+
+
 <div id="main" role="main">
- <div class="sidebar sticky">
+  
+  <div class="sidebar sticky">
+  
+
 <div itemscope itemtype="http://schema.org/Person">
-   <div class="author__avatar">
+
+  
+    <div class="author__avatar">
+      
         <img src="https://jeroenmols.com/img/profile.jpg" class="author__avatar" alt="Jeroen Mols" itemprop="image">
-   </div>
- <div class="author__content">
-   <h3 class="author__name" itemprop="name">Jeroen Mols</h3>
-     <p class="author__bio" itemprop="description">
+      
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name" itemprop="name">Jeroen Mols</h3>
+    
+      <p class="author__bio" itemprop="description">
         Android GDE & Lead Android developer at Philips Hue
-     </p>
- </div>
- <div class="author__urls-wrapper">
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
     <button class="btn btn--inverse">Follow</button>
-   <ul class="author__urls social-icons">
-       <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
           <i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> <span itemprop="name">Mol, Belgium</span>
-       </li>
-       <li>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
           <a href="https://twitter.com/@molsjeroen" itemprop="sameAs">
             <i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
           </a>
-       </li>
-       <li>
+        </li>
+      
+
+      
+
+      
+        <li>
           <a href="https://plus.google.com/JeroenMols" itemprop="sameAs">
             <i class="fa fa-fw fa-google-plus-square" aria-hidden="true"></i> Google+
           </a>
-       </li>
-       <li>
+        </li>
+      
+
+      
+        <li>
           <a href="https://www.linkedin.com/in/jeroenmols" itemprop="sameAs">
             <i class="fa fa-fw fa-linkedin-square" aria-hidden="true"></i> LinkedIn
           </a>
-       </li>
-       <li>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
           <a href="https://github.com/JeroenMols" itemprop="sameAs">
             <i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub
           </a>
-       </li>
-       <li>
+        </li>
+      
+
+      
+
+      
+        <li>
           <a href="https://www.stackoverflow.com/users/2771851/jmols" itemprop="sameAs">
             <i class="fa fa-fw fa-stack-overflow" aria-hidden="true"></i> Stack Overflow
           </a>
-       </li>
-         <li>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        
+          <li>
             <a href="https://www.youtube.com/channel/UC34Vt1lo8T15_rgc3e3Jsew" itemprop="sameAs">
               <i class="fa fa-fw fa-youtube-square" aria-hidden="true"></i> YouTube
             </a>
-         </li>
- <li>
+          </li>
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+  <li>
     <a href="https://speakerdeck.com/jeroenmols" itemprop="sameAs">
       <i class="fa fa-line-chart" aria-hidden="true"></i> Speaker Deck
     </a>
- </li>
-   </ul>
- </div>
+  </li>
+
+    </ul>
+  </div>
 </div>
- </div>
- <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-   <meta itemprop="headline" content="Embracing Java 8 language features">
-   <meta itemprop="description" content="For years Android developers have been limited to Java 6 features. While RetroLambda or the experimental Jack toolchain would help, proper support from Google was notably missing.">
-   <meta itemprop="datePublished" content="July 21, 2017">
-   <div class="page__inner-wrap">
-      <header>
-         <h1 class="page__title" itemprop="headline">Embracing Java 8 language features
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Embracing Java 8 language features">
+    <meta itemprop="description" content="For years Android developers have been limited to Java 6 features. While RetroLambda or the experimental Jack toolchain would help, proper support from Google was notably missing.">
+    <meta itemprop="datePublished" content="July 21, 2017">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Embracing Java 8 language features
 </h1>
-         <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  21 Jul 2017</p>
-            <img src="https://jeroenmols.com/img/blog/java8language/java8language.jpg" alt="Embracing Java 8 language features" title="Photo by Braetschit, https://pixabay.com/en/service/terms/#usage, cropped and added lambda">
-           <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+          <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  21 Jul 2017</p>
+
+          
+            
+          
+
+          
+            <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
   4 minute read
 </p>
-       </header>
-     <section class="page__content" itemprop="text">
-       <p>For years Android developers have been limited to Java 6 features. While RetroLambda or the experimental Jack toolchain would help, proper support from Google was notably missing.</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        <p>For years Android developers have been limited to Java 6 features. While RetroLambda or the experimental Jack toolchain would help, proper support from Google was notably missing.</p>
+
 <p>Finally, Android Studio 3.0 brings (backported!) support for most Java 8 features. Continue reading to learn how those work and why you should upgrade.</p>
+
 <h2 id="enabling-java-8-features">Enabling java 8 features</h2>
 <p>While Android Studio already supported many features in the <a href="https://developer.android.com/guide/platform/j8-jack.html">Jack toolchain</a>, starting from Android Studio 3.0 they are supported in the default toolchain.</p>
+
 <p>First of all, make sure you disable Jack by removing the following from your main <code class="highlighter-rouge">build.gradle</code>:</p>
+
 <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">android</span> <span class="o">{</span>
   <span class="o">...</span>
   <span class="n">defaultConfig</span> <span class="o">{</span>
@@ -185,7 +409,9 @@ $(document).ready(function(){
   <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div></div>
+
 <p>And add the following configuration instead:</p>
+
 <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">android</span> <span class="o">{</span>
   <span class="o">...</span>
   <span class="n">compileOptions</span> <span class="o">{</span>
@@ -194,7 +420,9 @@ $(document).ready(function(){
   <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div></div>
+
 <p>Also make sure you have the latest Gradle plugin in your root <code class="highlighter-rouge">build.gradle</code> file:</p>
+
 <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">buildscript</span> <span class="o">{</span>
   <span class="o">...</span>
   <span class="n">dependencies</span> <span class="o">{</span>
@@ -202,12 +430,16 @@ $(document).ready(function(){
   <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div></div>
+
 <p>Congratulations, you can now use most Java 8 features on all API levels!</p>
+
 <blockquote>
- <p>Note: In case you’re migrating from <a href="https://github.com/evant/gradle-retrolambda">RetroLambda</a>, the official documentation has a more extensive <a href="https://developer.android.com/studio/write/java8-support.html#migrate">migration guide</a>.</p>
+  <p>Note: In case you’re migrating from <a href="https://github.com/evant/gradle-retrolambda">RetroLambda</a>, the official documentation has a more extensive <a href="https://developer.android.com/studio/write/java8-support.html#migrate">migration guide</a>.</p>
 </blockquote>
+
 <h2 id="lambdas">Lambda’s</h2>
 <p>Passing a listener to another class in Java 6 is quite verbose. A typical case would be where you add an <code class="highlighter-rouge">OnClickListener</code> to a <code class="highlighter-rouge">View</code>:</p>
+
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">button</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="k">new</span> <span class="n">View</span><span class="o">.</span><span class="na">OnClickListener</span><span class="o">()</span> <span class="o">{</span>
     <span class="nd">@Override</span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="n">View</span> <span class="n">view</span><span class="o">)</span> <span class="o">{</span>
@@ -215,35 +447,51 @@ $(document).ready(function(){
     <span class="o">}</span>
 <span class="o">});</span>
 </code></pre></div></div>
+
 <p>Lambda’s can dramatically simplify this to the following:</p>
+
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">button</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="n">view</span> <span class="o">-&gt;</span> <span class="n">doSomething</span><span class="o">());</span>
 </code></pre></div></div>
+
 <p>Notice that almost all boilerplate is removed: no access modifier, no return type and no method name!</p>
+
 <p>Now how do lambda’s actually work?</p>
+
 <p>They are syntactic sugar that reduce the need for anonymous class creation whenever you have an interface with exactly one method. We call such interfaces functional interfaces and <code class="highlighter-rouge">OnClickListener</code> is an example:</p>
+
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// A functional interface has exactly one method</span>
 <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">OnClickListener</span> <span class="o">{</span>
     <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="n">View</span> <span class="n">view</span><span class="o">);</span>
 <span class="o">}</span>
 </code></pre></div></div>
+
 <p>Basically the lambda consists out of a three parts:</p>
+
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">button</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">((</span><span class="n">view</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span><span class="n">doSomething</span><span class="o">()});</span>
 </code></pre></div></div>
+
 <ol>
- <li>declaration of all method arguments between brackets <code class="highlighter-rouge">()</code></li>
- <li>an arrow <code class="highlighter-rouge">-&gt;</code></li>
- <li>code that needs to execute between brackets <code class="highlighter-rouge">{}</code></li>
+  <li>declaration of all method arguments between brackets <code class="highlighter-rouge">()</code></li>
+  <li>an arrow <code class="highlighter-rouge">-&gt;</code></li>
+  <li>code that needs to execute between brackets <code class="highlighter-rouge">{}</code></li>
 </ol>
+
 <p>Note that in many cases even the brackets <code class="highlighter-rouge">()</code> and <code class="highlighter-rouge">{}</code> can be removed. For more details have a look at the <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html">official documentation</a>.</p>
+
 <h2 id="method-references">Method references</h2>
 <p>Recall that lambda expressions remove a lot of boilerplate code for functional interfaces. Method references take that concept one step further when the lambda calls a method that already has a name.</p>
+
 <p>In the following example:</p>
+
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">button</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="n">view</span> <span class="o">-&gt;</span> <span class="n">doSomething</span><span class="o">(</span><span class="n">view</span><span class="o">));</span>
 </code></pre></div></div>
 <p>All the lambda does is redirecting the work to an existing <code class="highlighter-rouge">doSomething()</code> method. In such a case, a method reference simplifies things further to:</p>
+
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">button</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="k">this</span><span class="o">::</span><span class="n">doSomething</span><span class="o">);</span>
 </code></pre></div></div>
+
 <p>Note that the referenced method must take exactly the same parameters as the functional interface:</p>
+
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// functional interface</span>
 <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">OnClickListener</span> <span class="o">{</span>
     <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="n">View</span> <span class="n">view</span><span class="o">);</span>
@@ -254,32 +502,39 @@ $(document).ready(function(){
     <span class="c1">// do something here</span>
 <span class="o">}</span>
 </code></pre></div></div>
+
 <p>So how do method references work?</p>
+
 <p>They are again syntactic sugar to simplify a lambda expression that invokes an existing method. They can reference to:</p>
+
 <table>
- <tbody>
-   <tr>
-     <td>static methods</td>
-     <td>MyClass::doSomething</td>
-   </tr>
-   <tr>
-     <td>instance method of object</td>
-     <td>myObject::doSomething</td>
-   </tr>
-   <tr>
-     <td>constructor</td>
-     <td>MyClass:: new</td>
-   </tr>
-   <tr>
-     <td>instance method of any argument type</td>
-     <td>String::compare</td>
-   </tr>
- </tbody>
+  <tbody>
+    <tr>
+      <td>static methods</td>
+      <td>MyClass::doSomething</td>
+    </tr>
+    <tr>
+      <td>instance method of object</td>
+      <td>myObject::doSomething</td>
+    </tr>
+    <tr>
+      <td>constructor</td>
+      <td>MyClass:: new</td>
+    </tr>
+    <tr>
+      <td>instance method of any argument type</td>
+      <td>String::compare</td>
+    </tr>
+  </tbody>
 </table>
+
 <p>For more examples about this have a look at the <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/methodreferences.html">official documentation</a>.</p>
+
 <h2 id="default-interface-methods">Default interface Methods</h2>
 <p>Default methods make it possible to add new methods to an interface without breaking all classes that implement that interface.</p>
+
 <p>Imagine if you have a <code class="highlighter-rouge">MyView</code> interface that is implemented by a <code class="highlighter-rouge">MyFragment</code> (typical MVP scenario):</p>
+
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">MyView</span> <span class="o">{</span>
     <span class="kt">void</span> <span class="nf">showProgressbar</span><span class="o">();</span>
 <span class="o">}</span>
@@ -292,8 +547,11 @@ $(document).ready(function(){
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div></div>
+
 <p>When you now want to add an extra method to <code class="highlighter-rouge">MyView</code> your code will no longer compile, until <code class="highlighter-rouge">MyFragment</code> also implements that new method. This is annoying, and can be even problematic when many classes are implementing said interface.</p>
+
 <p>Therefore Java 8 now allows you to define default methods that provide a standard implementation:</p>
+
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">MyView</span> <span class="o">{</span>
     <span class="kt">void</span> <span class="nf">showProgressbar</span><span class="o">();</span>
     <span class="k">default</span> <span class="kt">void</span> <span class="nf">hideProgressbar</span><span class="o">()</span> <span class="o">{</span>
@@ -301,54 +559,116 @@ $(document).ready(function(){
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div></div>
+
 <p>So how do default methods work?</p>
+
 <p>Just define a method with the <code class="highlighter-rouge">default</code> keyword in the interface and provide an actual default method body.</p>
+
 <p>To learn more about this feature, have a look at the <a href="https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html">official documentation</a>.</p>
+
 <h2 id="how-to-get-started">How to get started</h2>
 <p>While this all might seem a bit overwhelming, Android Studio actually offers amazing quick fixes once you enable Java 8 features.</p>
+
 <p>Just use <code class="highlighter-rouge">alt/option</code> + <code class="highlighter-rouge">enter</code> to convert a functional interface to a lamba or a lambda to a method reference.</p>
+
 <p><img src="https://jeroenmols.com/img/blog/java8language/androidstudioconversion.gif" alt="Java 8 language quick fixes" class="align-center" /></p>
+
 <p>This is a great way to get familiar with these new features and allows you to write code like you’re used to. After enough quick fixes by Android Studio you’ll learn in what cases a lambda or method reference would be possible and start writing them yourself.</p>
+
 <h2 id="supported-features">Supported features</h2>
 <p>While not all Java 8 features have been backported yet, Android Studio 3.0 offers plenty more features:</p>
+
 <ul>
- <li><a href="https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html">static interface methods</a></li>
- <li><a href="https://docs.oracle.com/javase/tutorial/java/annotations/type_annotations.html">type annotations</a></li>
- <li><a href="https://docs.oracle.com/javase/tutorial/java/annotations/repeating.html">repeating annotations</a></li>
- <li><a href="https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html">try with resources</a> (all versions, no longer min SDK 19)</li>
- <li>Java 8 APIs (e.g. stream) -&gt; min SDK 24</li>
+  <li><a href="https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html">static interface methods</a></li>
+  <li><a href="https://docs.oracle.com/javase/tutorial/java/annotations/type_annotations.html">type annotations</a></li>
+  <li><a href="https://docs.oracle.com/javase/tutorial/java/annotations/repeating.html">repeating annotations</a></li>
+  <li><a href="https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html">try with resources</a> (all versions, no longer min SDK 19)</li>
+  <li>Java 8 APIs (e.g. stream) -&gt; min SDK 24</li>
 </ul>
+
 <h2 id="wrap-up">Wrap-up</h2>
 <p>Thanks to Java 8 features, a lot of code can be simplified into lambda’s or method references. Android Studio auto convert is the easiest way to start learning these features.</p>
+
 <p>If you’ve made it this far you should probably follow me on <span><a href="https://twitter.com/molsjeroen?source=embracingjava8languagefeatures2017" class="ga-link" target="_blank">Twitter</a></span>
 . Feel free leave a comment below!</p>
-     </section>
-     <footer class="page__meta">
- <p class="page__taxonomy">
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
     <strong><i class="fa fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
     <span itemprop="keywords">
+    
+      
+      
       <a href="https://jeroenmols.com/tags/android" class="page__taxonomy-item" rel="tag">android</a><span class="sep">, </span>
+    
+      
+      
       <a href="https://jeroenmols.com/tags/java" class="page__taxonomy-item" rel="tag">java</a><span class="sep">, </span>
+    
+      
+      
       <a href="https://jeroenmols.com/tags/tools" class="page__taxonomy-item" rel="tag">tools</a>
+    
     </span>
- </p>
- <p class="page__taxonomy">
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
     <strong><i class="fa fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
     <span itemprop="keywords">
+    
+      
+      
       <a href="https://jeroenmols.com/categories/blog" class="page__taxonomy-item" rel="tag">blog</a>
+    
     </span>
- </p>
-         <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2017-07-21T00:00:00+02:00">July 21, 2017</time></p>
-     </footer>
-     <section class="page__share">
-   <h4 class="page__share-title">Share on</h4>
-  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=Embracing+Java+8+language+features%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2017%2F07%2F21%2Fjava8language%2F" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2017%2F07%2F21%2Fjava8language%2F" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
-  <a href="https://plus.google.com/share?url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2017%2F07%2F21%2Fjava8language%2F" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2017%2F07%2F21%2Fjava8language%2F" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2017-07-21T00:00:00+02:00">July 21, 2017</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=Embracing+Java+8+language+features%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2017%2F07%2F21%2Fjava8language%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2017%2F07%2F21%2Fjava8language%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://plus.google.com/share?url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2017%2F07%2F21%2Fjava8language%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2017%2F07%2F21%2Fjava8language%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
-     <section class="page__share">
+
+
+      <section class="page__share">
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bottom-blog-responsive -->
   <ins class="adsbygoogle"
        style="display:block"
        data-ad-client="ca-pub-9854541518226004"
@@ -358,46 +678,96 @@ $(document).ready(function(){
   (adsbygoogle = window.adsbygoogle || []).push({});
   </script>
 </section>
- <nav class="pagination">
+
+
+      
+  <nav class="pagination">
+    
       <a href="https://jeroenmols.com/blog/2017/06/14/androidstudio3/" class="pagination--pager" title="Implementation vs API dependency
 ">Previous</a>
+    
+    
       <a href="https://jeroenmols.com/blog/2017/09/13/kotlinopportunity/" class="pagination--pager" title="The career opportunity called Kotlin
 ">Next</a>
- </nav>
-   </div>
-     <div class="page__comments">
-     <h4 class="page__comments-title">Leave a Comment</h4>
-     <section id="disqus_thread"></section>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a Comment</h4>
+      <section id="disqus_thread"></section>
+    
 </div>
- </article>
-   <div class="page__related">
-     <h4 class="page__related-title">You May Also Enjoy</h4>
-     <div class="grid__wrapper">
-     </div>
-   </div>
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+      </div>
+    </div>
+  
 </div>
-   <div class="page__footer">
-     <footer>
-       <div class="page__footer-follow">
- <ul class="social-icons">
-     <li><strong>Follow:</strong></li>
-     <li><a href="https://twitter.com/molsjeroen"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
-     <li><a href="http://github.com/JeroenMols"><i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
-   <li><a href="atom.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
- </ul>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap">
+  <input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  <div id="results" class="results"></div>
 </div>
-<div class="page__footer-copyright">&copy; 2017 Jeroen Mols. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
-     </footer>
-   </div>
+      </div>
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+      <li><a href="https://twitter.com/molsjeroen"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+    
+    
+    
+      <li><a href="https://github.com/JeroenMols"><i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    
+    <li><a href="atom.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2017 Jeroen Mols. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
   <script src="https://jeroenmols.com/assets/js/main.min.js"></script>
-  <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-63356566-1', 'auto');
-  ga('send', 'pageview');
-</script>
+
+
+
+  <script src="https://jeroenmols.com/assets/js/lunr.min.js"></script>
+  <script src="https://jeroenmols.com/assets/js/lunr-en.js"></script>
+
+
+
+
+
+    
   <script>
     var disqus_config = function () {
       this.page.url = "https://jeroenmols.com/blog/2017/07/21/java8language/";  // Replace PAGE_URL with your page's canonical URL variable
@@ -411,5 +781,11 @@ $(document).ready(function(){
     })();
   </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
- </body>
+
+
+  
+
+
+
+  </body>
 </html>
