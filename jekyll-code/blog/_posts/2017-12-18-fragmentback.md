@@ -9,7 +9,7 @@ tags:
   - fragment
   - navigation
 ---
-Do Fragment transactions and back navigation have no more secrets for you? Well then you should definitely try to solve the mystery in this post, where a Fragment (literally) started to haunt us...
+Do Fragment transactions and back navigation have no more secrets for you? Well then you should try to solve the mystery in this post, where a Fragment (literally) came to haunt us...
 
 Seemingly simple Fragment transactions can sometimes have unintended side effects. While investigating, we'll learn how Fragment transactions actually work.
 
