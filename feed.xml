@@ -1,4 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2017-12-24T14:25:09+01:00</updated><id>https://jeroenmols.com/</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">The curious case of haunting fragments</title><link href="https://jeroenmols.com/blog/2017/12/18/fragmentback/" rel="alternate" type="text/html" title="The curious case of haunting fragments" /><published>2017-12-18T00:00:00+01:00</published><updated>2017-12-18T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2017/12/18/fragmentback</id><content type="html" xml:base="https://jeroenmols.com/blog/2017/12/18/fragmentback/">&lt;p&gt;Do Fragment transactions and back navigation have no more secrets for you? Well then you should try to solve the mystery in this post, where a Fragment (literally) came to haunt us…&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2017-12-26T22:56:47+01:00</updated><id>https://jeroenmols.com/</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">MacOS update could not be installed</title><link href="https://jeroenmols.com/blog/2017/12/26/macosupdate/" rel="alternate" type="text/html" title="MacOS update could not be installed" /><published>2017-12-26T00:00:00+01:00</published><updated>2017-12-26T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2017/12/26/macosupdate</id><content type="html" xml:base="https://jeroenmols.com/blog/2017/12/26/macosupdate/">&lt;p&gt;Tonight after a routine MacOS update (10.13.2) disaster struck and my Mac got stuck in an update boot loop. After a few hours of panic, reading online and trial &amp;amp; error I managed to resolve it. Here’s what I did in the hope it also helps someone else.&lt;/p&gt;
+
+&lt;h2 id=&quot;steps&quot;&gt;Steps&lt;/h2&gt;
+&lt;p&gt;From the “MacOS could not be installed on your computer” screen:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Press and hold “option” key and click restart&lt;/li&gt;
+  &lt;li&gt;In the “Startup disk selection” screen, use the arrow keys to select your main hard drive (not the MacOS update)&lt;/li&gt;
+  &lt;li&gt;Wait for your Mac to boot normally&lt;/li&gt;
+  &lt;li&gt;Download the latest &lt;a href=&quot;https://support.apple.com/downloads/macos&quot;&gt;combo update&lt;/a&gt; directly from Apple. (this is a full system image, not an incremental update)&lt;/li&gt;
+  &lt;li&gt;Open and install the update&lt;/li&gt;
+  &lt;li&gt;Grab a snickers, this will take a while&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;My environment: 2017 Macbook pro 15” Touch Bar with MacOS 10.13.1 (High Sierra) installed and tried to update to 10.13.2 using the App Store.&lt;/p&gt;
+
+&lt;p&gt;Feel free leave a comment below or follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=macosupdatecouldnotbeinstalled2017&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
+!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="macos" /><category term="update" /><category term="troubleshooting" /><summary type="html">Tonight after a routine MacOS update (10.13.2) disaster struck and my Mac got stuck in an update boot loop. After a few hours of panic, reading online and trial &amp;amp; error I managed to resolve it. Here’s what I did in the hope it also helps someone else.</summary></entry><entry><title type="html">The curious case of haunting fragments</title><link href="https://jeroenmols.com/blog/2017/12/18/fragmentback/" rel="alternate" type="text/html" title="The curious case of haunting fragments" /><published>2017-12-18T00:00:00+01:00</published><updated>2017-12-18T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2017/12/18/fragmentback</id><content type="html" xml:base="https://jeroenmols.com/blog/2017/12/18/fragmentback/">&lt;p&gt;Do Fragment transactions and back navigation have no more secrets for you? Well then you should try to solve the mystery in this post, where a Fragment (literally) came to haunt us…&lt;/p&gt;
 
 &lt;p&gt;Seemingly simple Fragment transactions can sometimes have unintended side effects. While investigating, we’ll learn how Fragment transactions actually work.&lt;/p&gt;
 
@@ -985,100 +1002,4 @@ Fabio Collini&lt;/li&gt;
 &lt;p&gt;Instead of being afraid of crashes, you should embrace them to find errors in your apps fasters. Crashes not only make errors immediately visible, they also offer a convenient way of debugging them via the stacktrace.&lt;/p&gt;
 
 &lt;p&gt;As always you can reach me &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=whyyourappshouldcrash2017&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;@molsjeroen&lt;/a&gt;&lt;/span&gt;
- on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="android" /><category term="crashes" /><category term="architecture" /><category term="cleancode" /><summary type="html">Too many times I’ve seen developers trying to avoid crashes at all cost. But are unhandled exceptions really that bad? And are null checks really the answer?</summary></entry><entry><title type="html">Write awesome unit tests</title><link href="https://jeroenmols.com/blog/2017/02/16/unittests/" rel="alternate" type="text/html" title="Write awesome unit tests" /><published>2017-02-16T00:00:00+01:00</published><updated>2017-02-16T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2017/02/16/unittests</id><content type="html" xml:base="https://jeroenmols.com/blog/2017/02/16/unittests/">&lt;p&gt;If you can code, you can also write unit tests. Writing awesome tests on the other hand is a different story. Don’t fool yourself: Unit testing code is production code that you will need to maintain, refactor and build upon for years to come.&lt;/p&gt;
-
-&lt;p&gt;This blogpost aims at providing three very simple rules that will significantly ramp up your testing game. Every rule is followed by pragmatic tips so you can easily start implementing.&lt;/p&gt;
-
-&lt;h2 id=&quot;1-run-ludicrously-fast&quot;&gt;1. Run ludicrously fast&lt;/h2&gt;
-&lt;p&gt;The only reason you write unit tests is to run them. This has two benefits:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;confirm that something is working properly&lt;/li&gt;
-  &lt;li&gt;detect when something stopped working&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;In summary, tests are your safety net, the main weapon against regression. They make sure bugs remain fixed and allow you to refactor your code.&lt;/p&gt;
-
-&lt;p&gt;There is one caveat however: for tests to do their job, you need to run them!&lt;/p&gt;
-
-&lt;p&gt;Every time they run, they give you feedback about the code. And the shorter you can get your feedback loop, the sooner you’ll notice bugs and the easier (=cheaper) it will be to fix. That means you don’t just want to run them before every release, nor on a daily basis, but literally after every change you make.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;The more you run your test, the more value you’ll get from them.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Now the less time you have to wait for your tests to run, the more often you’re going to run them. Consequently for you to run your tests often, they need to run fast… ludicrously fast.&lt;/p&gt;
-
-&lt;p&gt;Not in one minute, not even in 10 seconds, but your entire test suite should pass in less than a second!&lt;/p&gt;
-
-&lt;p&gt;This means you’ll have to:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;run your tests on a JVM instead of on a device&lt;/li&gt;
-  &lt;li&gt;only test isolated pieces of business logic&lt;/li&gt;
-  &lt;li&gt;don’t include UI, database or network tests in your main test suite&lt;/li&gt;
-  &lt;li&gt;don’t use wait/sleep statements in tests&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;2-small-and-focussed-tests&quot;&gt;2. Small and focussed tests&lt;/h2&gt;
-&lt;p&gt;Always write your tests with failures in mind. This means explicitly designing your tests to catch bugs in your apps.&lt;/p&gt;
-
-&lt;p&gt;Given a bug, would you prefer:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;one bug -&amp;gt; multiple tests fail&lt;/li&gt;
-  &lt;li&gt;one bug -&amp;gt; exactly one test fails&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Bingo, the second one, because that simplifies debugging. In case of a failing test you just look at the test name to see what went wrong.&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Test&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;logInShouldFailWithWrongPassword&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;// Test code&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;For every bug, exactly one test must fail. The root cause of failure should be described by the test name.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;This forces you to only check for one thing per test and will lead to smaller tests that are easier to understand, easier to explain and easier to maintain.&lt;/p&gt;
-
-&lt;p&gt;That’s why a good test should be small (=few lines of code) and focussed (=only test for one thing), just like any other method in our codebase.&lt;/p&gt;
-
-&lt;p&gt;This means you’ll have to:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;write tests with only one single assert/verify statement&lt;/li&gt;
-  &lt;li&gt;have more small tests instead of fewer big ones&lt;/li&gt;
-  &lt;li&gt;clearly describe the cause of failure in test names&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;3-100-reliable&quot;&gt;3. 100% reliable&lt;/h2&gt;
-&lt;p&gt;Tests are your safety net, so whenever that tells you something is wrong… you’ll have to take it seriously. That means dropping everything to go and fix that failing test.&lt;/p&gt;
-
-&lt;p&gt;Obviously that’s quite frustrating as you’re eager to build a feature and suddenly you have to start fire fighting somewhere else.&lt;/p&gt;
-
-&lt;p&gt;Now imagine analyzing the problem for a couple of hours, not finding anything wrong, rerunning the tests (out of desperation) and every test suddenly passes…&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;The most frustrating thing for a developer is waisting time on random errors that are fixed by a clean or IDE restart&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;And if more tests behave the same way… you’ll loose trust in your entire test suite. You stop taking failures seriously and stop having the benefits from your test suit altogether.&lt;/p&gt;
-
-&lt;p&gt;That’s why all your test need to be 100% reliable and only fail when there is actually a problem.&lt;/p&gt;
-
-&lt;p&gt;This means you’ll have to:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;run your tests on a JVM (connection to device can break)&lt;/li&gt;
-  &lt;li&gt;mock network communication during tests&lt;/li&gt;
-  &lt;li&gt;move UI/integration tests out of your unit test suite&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
-&lt;p&gt;The more you run your unit tests, the more value you’ll get from them. Awesome unit tests facilitate exactly that by being fast, focussed and super reliable.&lt;/p&gt;
-
-&lt;p&gt;As always you can reach me &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=writeawesomeunittests2017&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;@molsjeroen&lt;/a&gt;&lt;/span&gt;
- on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="android" /><category term="testing" /><category term="cleancode" /><summary type="html">If you can code, you can also write unit tests. Writing awesome tests on the other hand is a different story. Don’t fool yourself: Unit testing code is production code that you will need to maintain, refactor and build upon for years to come.</summary></entry></feed>
+ on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="android" /><category term="crashes" /><category term="architecture" /><category term="cleancode" /><summary type="html">Too many times I’ve seen developers trying to avoid crashes at all cost. But are unhandled exceptions really that bad? And are null checks really the answer?</summary></entry></feed>

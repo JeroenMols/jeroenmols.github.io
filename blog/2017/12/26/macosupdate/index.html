@@ -19,12 +19,12 @@
 
 
 
-<title>The hidden cost of code coverage - Jeroen Mols</title>
+<title>MacOS update could not be installed - Jeroen Mols</title>
 
 
 
 
-<meta name="description" content="Code coverage is an awesome way to motivate you and your team to write more tests. But did you know that simply enabling it slows down your build significantly?">
+<meta name="description" content="Tonight after a routine MacOS update (10.13.2) disaster struck and my Mac got stuck in an update boot loop. After a few hours of panic, reading online and trial &amp; error I managed to resolve it. Here’s what I did in the hope it also helps someone else.">
 
 
 
@@ -33,15 +33,15 @@
 
 <meta property="og:locale" content="en">
 <meta property="og:site_name" content="Jeroen Mols">
-<meta property="og:title" content="The hidden cost of code coverage">
+<meta property="og:title" content="MacOS update could not be installed">
 
 
-  <link rel="canonical" href="https://jeroenmols.com/blog/2016/09/01/coveragecost/">
-  <meta property="og:url" content="https://jeroenmols.com/blog/2016/09/01/coveragecost/">
+  <link rel="canonical" href="https://jeroenmols.com/blog/2017/12/26/macosupdate/">
+  <meta property="og:url" content="https://jeroenmols.com/blog/2017/12/26/macosupdate/">
 
 
 
-  <meta property="og:description" content="Code coverage is an awesome way to motivate you and your team to write more tests. But did you know that simply enabling it slows down your build significantly?">
+  <meta property="og:description" content="Tonight after a routine MacOS update (10.13.2) disaster struck and my Mac got stuck in an update boot loop. After a few hours of panic, reading online and trial &amp; error I managed to resolve it. Here’s what I did in the hope it also helps someone else.">
 
 
 
@@ -58,14 +58,14 @@
 
 
   <meta name="twitter:site" content="@molsjeroen">
-  <meta name="twitter:title" content="The hidden cost of code coverage">
-  <meta name="twitter:description" content="Code coverage is an awesome way to motivate you and your team to write more tests. But did you know that simply enabling it slows down your build significantly?">
-  <meta name="twitter:url" content="https://jeroenmols.com/blog/2016/09/01/coveragecost/">
+  <meta name="twitter:title" content="MacOS update could not be installed">
+  <meta name="twitter:description" content="Tonight after a routine MacOS update (10.13.2) disaster struck and my Mac got stuck in an update boot loop. After a few hours of panic, reading online and trial &amp; error I managed to resolve it. Here’s what I did in the hope it also helps someone else.">
+  <meta name="twitter:url" content="https://jeroenmols.com/blog/2017/12/26/macosupdate/">
 
   
     <meta name="twitter:card" content="summary">
     
-      <meta name="twitter:image" content="https://jeroenmols.com/img/blog/coveragecost/coveragecost.png">
+      <meta name="twitter:image" content="https://jeroenmols.com/img/blog/macosupdate/macosupdate.png">
     
   
 
@@ -81,12 +81,12 @@
 
 
 
-  <meta property="og:image" content="https://jeroenmols.com/img/blog/coveragecost/coveragecost.png">
+  <meta property="og:image" content="https://jeroenmols.com/img/blog/macosupdate/macosupdate.png">
 
 
 
   <meta property="og:type" content="article">
-  <meta property="article:published_time" content="2016-09-01T00:00:00+02:00">
+  <meta property="article:published_time" content="2017-12-26T00:00:00+01:00">
 
 
 
@@ -360,20 +360,20 @@ $(document).ready(function(){
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="The hidden cost of code coverage">
-    <meta itemprop="description" content="Code coverage is an awesome way to motivate you and your team to write more tests. But did you know that simply enabling it slows down your build significantly?">
-    <meta itemprop="datePublished" content="September 01, 2016">
+    <meta itemprop="headline" content="MacOS update could not be installed">
+    <meta itemprop="description" content="Tonight after a routine MacOS update (10.13.2) disaster struck and my Mac got stuck in an update boot loop. After a few hours of panic, reading online and trial &amp; error I managed to resolve it. Here’s what I did in the hope it also helps someone else.">
+    <meta itemprop="datePublished" content="December 26, 2017">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 class="page__title" itemprop="headline">The hidden cost of code coverage
+          <h1 class="page__title" itemprop="headline">MacOS update could not be installed
 </h1>
-          <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  01 Sep 2016</p>
+          <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  26 Dec 2017</p>
 
           
-            <img src="https://jeroenmols.com/img/blog/coveragecost/coveragecost.png" alt="The hidden cost of code coverage" title="Photo by Steve Buissinne, https://creativecommons.org/publicdomain/zero/1.0/deed.en, cropped">
+            <img src="https://jeroenmols.com/img/blog/macosupdate/macosupdate.png" alt="MacOS update could not be installed" title="Photo by Graham Perrin, https://user-images.githubusercontent.com/192271/27255121-5811f2b4-538f-11e7-8117-9401bc9a7a80.png, cropped">
           
 
           
@@ -382,7 +382,7 @@ $(document).ready(function(){
 
 
 
-  1 minute read
+  less than 1 minute read
 </p>
           
         </header>
@@ -390,66 +390,24 @@ $(document).ready(function(){
 
       <section class="page__content" itemprop="text">
         
-        <p>Code coverage is an awesome way to motivate you and your team to write more tests. But did you know that simply enabling it slows down your build significantly?</p>
+        <p>Tonight after a routine MacOS update (10.13.2) disaster struck and my Mac got stuck in an update boot loop. After a few hours of panic, reading online and trial &amp; error I managed to resolve it. Here’s what I did in the hope it also helps someone else.</p>
 
-<p>This blogpost will detail why and offer an easy solution.</p>
+<h2 id="steps">Steps</h2>
+<p>From the “MacOS could not be installed on your computer” screen:</p>
 
-<h2 id="impact-on-build-speed">Impact on build speed</h2>
-<p>Profiling your Gradle build speed can easily be done using the <code class="highlighter-rouge">--profile</code> option:</p>
+<ul>
+  <li>Press and hold “option” key and click restart</li>
+  <li>In the “Startup disk selection” screen, use the arrow keys to select your main hard drive (not the MacOS update)</li>
+  <li>Wait for your Mac to boot normally</li>
+  <li>Download the latest <a href="https://support.apple.com/downloads/macos">combo update</a> directly from Apple. (this is a full system image, not an incremental update)</li>
+  <li>Open and install the update</li>
+  <li>Grab a snickers, this will take a while</li>
+</ul>
 
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">./</span><span class="n">gradlew</span> <span class="n">clean</span> <span class="n">assembleDebug</span> <span class="o">--</span><span class="n">profile</span>
-</code></pre></div></div>
+<p>My environment: 2017 Macbook pro 15” Touch Bar with MacOS 10.13.1 (High Sierra) installed and tried to update to 10.13.2 using the App Store.</p>
 
-<p>When profiling a project recently, I noticed something surprising in the generated report:</p>
-
-<p><a href="https://jeroenmols.com/img/blog/coveragecost/buildtime.png"><img src="https://jeroenmols.com/img/blog/coveragecost/buildtime.png" alt="Jacoco task takes up 14% of the build time! (report located in the `build/reports/profile` folder)" class="align-center" /></a></p>
-
-<p>The Jacoco task takes up almost 12 second, accounting for 14% of the build time!</p>
-
-<p>That’s crazy! Especially because our build command isn’t even running any test.</p>
-
-<p>Looking at our <code class="highlighter-rouge">build.gradle</code> file it is clear that we’re not really doing anything exotic:</p>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">buildTypes</span> <span class="o">{</span>
-    <span class="n">debug</span> <span class="o">{</span>
-        <span class="o">...</span>
-        <span class="n">testCoverageEnabled</span> <span class="kc">true</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>Yet this still causes delays in all debug builds.</p>
-
-<h2 id="the-solution">The solution</h2>
-<p>Ask yourself when do you need code coverage? At most after running unit tests, but probably only after running a CI build.</p>
-
-<p>Hence we’re going to introduce a very simple flag <code class="highlighter-rouge">-Pcoverage</code> which we can add to the build command:</p>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">./</span><span class="n">gradlew</span> <span class="o">-</span><span class="n">Pcoverage</span> <span class="n">clean</span> <span class="n">connectedDebugAndroidTest</span>
-</code></pre></div></div>
-
-<p>All you need to do to make this work is a small modification to your <code class="highlighter-rouge">build.gradle</code> file:</p>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">buildTypes</span> <span class="o">{</span>
-    <span class="n">debug</span> <span class="o">{</span>
-        <span class="o">...</span>
-        <span class="n">testCoverageEnabled</span> <span class="o">(</span><span class="n">project</span><span class="o">.</span><span class="na">hasProperty</span><span class="o">(</span><span class="s1">'coverage'</span><span class="o">)</span> <span class="o">?</span> <span class="kc">true</span> <span class="o">:</span> <span class="kc">false</span><span class="o">)</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>And now code coverage will run when you add the flag and won’t run when you don’t add it!</p>
-
-<blockquote>
-
-  <p>Note that you can also add this flag to the test configuration in Android Studio if you also want to have coverage enabled while running tests locally.</p>
-</blockquote>
-
-<h2 id="wrap-up">Wrap-up</h2>
-<p>Code coverage is a great way to track your testing efforts. With help of a simple flag you can easily avoid it from slowing down your normal development builds.</p>
-
-<p>As always you can reach me <span><a href="https://twitter.com/molsjeroen?source=thehiddencostofcodecoverage2016" class="ga-link" target="_blank">@molsjeroen</a></span>
- on twitter, or leave a comment below!</p>
+<p>Feel free leave a comment below or follow me on <span><a href="https://twitter.com/molsjeroen?source=macosupdatecouldnotbeinstalled2017" class="ga-link" target="_blank">Twitter</a></span>
+!</p>
 
         
       </section>
@@ -470,19 +428,15 @@ $(document).ready(function(){
     
       
       
-      <a href="https://jeroenmols.com/tags/android" class="page__taxonomy-item" rel="tag">android</a><span class="sep">, </span>
+      <a href="https://jeroenmols.com/tags/macos" class="page__taxonomy-item" rel="tag">macos</a><span class="sep">, </span>
     
       
       
-      <a href="https://jeroenmols.com/tags/gradle" class="page__taxonomy-item" rel="tag">gradle</a><span class="sep">, </span>
+      <a href="https://jeroenmols.com/tags/troubleshooting" class="page__taxonomy-item" rel="tag">troubleshooting</a><span class="sep">, </span>
     
       
       
-      <a href="https://jeroenmols.com/tags/testing" class="page__taxonomy-item" rel="tag">testing</a><span class="sep">, </span>
-    
-      
-      
-      <a href="https://jeroenmols.com/tags/tools" class="page__taxonomy-item" rel="tag">tools</a>
+      <a href="https://jeroenmols.com/tags/update" class="page__taxonomy-item" rel="tag">update</a>
     
     </span>
   </p>
@@ -510,7 +464,7 @@ $(document).ready(function(){
 
 
         
-          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2016-09-01T00:00:00+02:00">September 01, 2016</time></p>
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2017-12-26T00:00:00+01:00">December 26, 2017</time></p>
         
       </footer>
 
@@ -519,13 +473,13 @@ $(document).ready(function(){
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=The+hidden+cost+of+code+coverage%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2016%2F09%2F01%2Fcoveragecost%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=MacOS+update+could+not+be+installed%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2017%2F12%2F26%2Fmacosupdate%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2016%2F09%2F01%2Fcoveragecost%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2017%2F12%2F26%2Fmacosupdate%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://plus.google.com/share?url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2016%2F09%2F01%2Fcoveragecost%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+  <a href="https://plus.google.com/share?url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2017%2F12%2F26%2Fmacosupdate%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2016%2F09%2F01%2Fcoveragecost%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2017%2F12%2F26%2Fmacosupdate%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
@@ -546,12 +500,11 @@ $(document).ready(function(){
       
   <nav class="pagination">
     
-      <a href="https://jeroenmols.com/blog/2016/08/03/copyright/" class="pagination--pager" title="Why you should care about copyright
+      <a href="https://jeroenmols.com/blog/2017/12/18/fragmentback/" class="pagination--pager" title="The curious case of haunting fragments
 ">Previous</a>
     
     
-      <a href="https://jeroenmols.com/blog/2016/10/31/mockitomatchers/" class="pagination--pager" title="Extending Mockito
-">Next</a>
+      <a href="#" class="pagination--pager disabled">Next</a>
     
   </nav>
 
@@ -573,43 +526,6 @@ $(document).ready(function(){
     <div class="page__related">
       <h4 class="page__related-title">You May Also Enjoy</h4>
       <div class="grid__wrapper">
-        
-          
-
-
-
-<div class="grid__item" style="position: relative">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    <div style="position:relative;">
-      
-        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/macosupdate/macosupdate.png)"></div>
-      
-      <div class="archive__item_titlecontainer">
-        <h2 class="archive__item-title" itemprop="headline">
-            <a href="https://jeroenmols.com/blog/2017/12/26/macosupdate/" rel="permalink">MacOS update could not be installed
-</a>
-        </h2>
-        <h3 class="archive__date">26 Dec 2017</h3>
-      </div>
-      
-        <a href="https://jeroenmols.com/blog/2017/12/26/macosupdate/" rel="permalink">
-          <div class="archive__item-teaser-imageclickhandler"></div>
-        </a>
-      
-    </div>
-    
-      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
-
-
-
-
-  less than 1 minute read
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">Tonight after a routine MacOS update (10.13.2) disaster struck and my Mac got stuck in an update boot loop. After a few hours of panic, reading online and trial &amp; error I managed to resolve it. Here’s what I did...</p>
-  </article>
-</div>
-
         
           
 
@@ -679,7 +595,7 @@ $(document).ready(function(){
 
 
 
-  4 minute read
+  3 minute read
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">While you may be tempted to strive for 100% code coverage, that would be a horrible idea. Besides some code being hard to test, the concept of coverage is actually fundamentally limited.
@@ -728,8 +644,48 @@ $(document).ready(function(){
 </div>
 
         
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/kotlinopportunity/kotlinopportunity.png)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2017/09/13/kotlinopportunity/" rel="permalink">The career opportunity called Kotlin
+</a>
+        </h2>
+        <h3 class="archive__date">13 Sep 2017</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2017/09/13/kotlinopportunity/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">This isn’t another post about the benefits of using Kotlin. Hell, I’m not even going to cover any of its language features. Nor will I try to convince you to make the switch.
+
+</p>
+  </article>
+</div>
+
+        
       </div>
     </div>
+  
   
 </div>
 
@@ -787,8 +743,8 @@ $(document).ready(function(){
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://jeroenmols.com/blog/2016/09/01/coveragecost/";  // Replace PAGE_URL with your page's canonical URL variable
-      this.page.identifier = "/blog/2016/09/01/coveragecost"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      this.page.url = "https://jeroenmols.com/blog/2017/12/26/macosupdate/";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = "/blog/2017/12/26/macosupdate"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
     (function() { // DON'T EDIT BELOW THIS LINE
       var d = document, s = d.createElement('script');

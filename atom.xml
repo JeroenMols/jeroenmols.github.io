@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle>
- <updated>2017-12-24T14:25:09+01:00</updated>
+ <updated>2017-12-26T22:56:47+01:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,20 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>MacOS update could not be installed</title>
+   <link href="https://jeroenmols.com/blog/2017/12/26/macosupdate/"/>
+   <updated>2017-12-26T00:00:00+01:00</updated>
+   <id>https://jeroenmols.com/blog/2017/12/26/macosupdate</id>
+   <content type="html"><![CDATA[
+     
+     <p>Tonight after a routine MacOS update (10.13.2) disaster struck and my Mac got stuck in an update boot loop. After a few hours of panic, reading online and trial &amp; error I managed to resolve it. Here’s what I did in the hope it also helps someone else.</p>
+
+
+     <a href="https://jeroenmols.com/blog/2017/12/26/macosupdate/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>The curious case of haunting fragments</title>

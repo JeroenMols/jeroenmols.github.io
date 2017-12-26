@@ -253,6 +253,15 @@ var idx = lunr(function () {
     });
     
   
+    idx.add({
+      title: "MacOS update could not be installed",
+      excerpt: "Tonight after a routine MacOS update (10.13.2) disaster struck and my Mac got stuck in an update boot loop. After...",
+      categories: ["blog"],
+      tags: ["macos","update","troubleshooting"],
+      id: 27
+    });
+    
+  
 
 
 console.log( jQuery.type(idx) );
@@ -556,6 +565,17 @@ var store = [
         "teaser":
           
             "https://jeroenmols.com/img/blog/fragmentback/fragmentback.jpg"
+          
+      },
+    
+      
+      {
+        "title": "MacOS update could not be installed",
+        "url": "https://jeroenmols.com/blog/2017/12/26/macosupdate/",
+        "excerpt": "Tonight after a routine MacOS update (10.13.2) disaster struck and my Mac got stuck in an update boot loop. After...",
+        "teaser":
+          
+            "https://jeroenmols.com/img/blog/macosupdate/macosupdate.png"
           
       }
     
