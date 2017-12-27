@@ -13,7 +13,7 @@ ls | grep -v 'jekyll-code' | xargs rm -rf
 cd -
 echo ""
 echo "### Running jekyll"
-bundle exec jekyll build
+JEKYLL_ENV=production bundle exec jekyll build
 echo ""
 echo "### Copying generated site"
 cp -r  _site/* ../
