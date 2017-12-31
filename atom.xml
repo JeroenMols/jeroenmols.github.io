@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle>
- <updated>2017-12-27T16:40:42+01:00</updated>
+ <updated>2018-01-01T00:31:33+01:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,52 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>Year in review 2017</title>
+   <link href="https://jeroenmols.com/blog/2018/01/01/yearinreview/"/>
+   <updated>2018-01-01T00:00:00+01:00</updated>
+   <id>https://jeroenmols.com/blog/2018/01/01/yearinreview</id>
+   <content type="html"><![CDATA[
+     
+     <p>For the first time ever I have my <code class="highlighter-rouge">year in review</code> ready in time.</p>
+
+<p>I’m sure I’ll never forget 2017. Not only did we start building our dream house, but more importantly, our family grew to 4 people! Our baby girl Lene - ahum Toddler - became the big sister of our newborn son Wout. While having two kids is definitely very, very intense, it’s extraordinary to see them grow and a privilege to experience how fond they already are of each other.</p>
+
+<p>For my career this for sure was the most remarkable year so far as I:</p>
+
+<ul>
+  <li>Became a <a href="https://developers.google.com/experts/people/jeroen-mols">Google Developer Expert for Android</a></li>
+  <li>Built up an internal app team and became the <a href="https://www.linkedin.com/feed/update/urn:li:activity:6264882628466475008">Lead Android developer</a> at Philips Hue</li>
+  <li>Started my own company <a href="https://jeroenmols.com/hireme/">Build IT bvba</a></li>
+</ul>
+
+<p>Further, I’m super proud of all my community efforts:</p>
+
+<ul>
+  <li>Spoke at <a href="https://jeroenmols.com/speaking/">4 big conferences + 5 local meetups</a></li>
+  <li>Wrote <a href="http://jeroenmols.com/blog/">13 blog posts</a>, exceeding my goal of 1 per month</li>
+  <li>Grew my <a href="https://twitter.com/molsjeroen">Twitter</a> followers to more than 1850</li>
+  <li>Had the <a href="https://medium.com/@jordanjoz/12-android-blogs-you-should-be-following-1220c7e5398d">12th most influential Android blog</a> in the world</li>
+  <li>Got 4 times featured in <a href="http://androidweekly.net/search?keyword=jeroen+mols&amp;commit=Search">Android weekly</a> and once in <a href="http://mailchi.mp/kotlinweekly/kotlin-weekly-59">Kotlin weekly</a></li>
+  <li>Gave the <a href="https://devoxx.be/2017/11/the-top-100-rated-devoxx-belgium-2017-talks/">8th highest rated talk</a> at Devoxx</li>
+  <li>Revamped <a href="https://jeroenmols.com/">my website</a> with https, faster loading, and search</li>
+</ul>
+
+<p>But leave no mistake, my family is and will always be the most important thing in the world!</p>
+
+<p><img src="https://jeroenmols.com/img/blog/yearinreview17/house.jpg" alt="Status of our house" class="align-center" /></p>
+
+<p>Looking forward to next year, stuff is going to be intense for sure! We’ll complete the construction of our house, our daughter will start going to school, our son will likely learn how to walk,… and I don’t want to miss a second of all that. Which means #latenightblogging. :)</p>
+
+<p>So I’m not going to increase my community efforts, but instead, I’d like to experiment with data analytics to increase the impact of all my typical efforts.</p>
+
+<p>As always you can reach me <span><a href="https://twitter.com/molsjeroen?source=yearinreview20172018" class="ga-link" target="_blank">@molsjeroen</a></span>
+ on twitter, or leave a comment below!</p>
+
+     <a href="https://jeroenmols.com/blog/2018/01/01/yearinreview/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>MacOS update could not be installed</title>

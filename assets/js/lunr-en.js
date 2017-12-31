@@ -262,6 +262,15 @@ var idx = lunr(function () {
     });
     
   
+    idx.add({
+      title: "Year in review 2017",
+      excerpt: "For the first time ever I have my year in review ready in time. I’m sure I’ll never forget 2017....",
+      categories: ["blog"],
+      tags: ["review"],
+      id: 28
+    });
+    
+  
 
 
 console.log( jQuery.type(idx) );
@@ -576,6 +585,17 @@ var store = [
         "teaser":
           
             "https://jeroenmols.com/img/blog/macosupdate/macosupdate.png"
+          
+      },
+    
+      
+      {
+        "title": "Year in review 2017",
+        "url": "https://jeroenmols.com/blog/2018/01/01/yearinreview/",
+        "excerpt": "For the first time ever I have my year in review ready in time. I’m sure I’ll never forget 2017....",
+        "teaser":
+          
+            "https://jeroenmols.com/img/blog/yearinreview17/yearinreview17.jpg"
           
       }
     
