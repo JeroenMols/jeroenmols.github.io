@@ -23,7 +23,7 @@ Further, I'm super proud of all my community efforts:
 - Wrote [13 blog posts](http://jeroenmols.com/blog/), exceeding my goal of 1 per month
 - Grew my [Twitter](https://twitter.com/molsjeroen) followers to more than 1850
 - Had the [12th most influential Android blog](https://medium.com/@jordanjoz/12-android-blogs-you-should-be-following-1220c7e5398d) in the world
-- Got 4 times featured in [Android weekly](http://androidweekly.net/search?keyword=jeroen+mols&commit=Search) and once in [Kotlin weekly](http://mailchi.mp/kotlinweekly/kotlin-weekly-59)
+- Got 5 times featured in [Android weekly](http://androidweekly.net/search?keyword=jeroen+mols&commit=Search) and once in [Kotlin weekly](http://mailchi.mp/kotlinweekly/kotlin-weekly-59)
 - Gave the [8th highest rated talk](https://devoxx.be/2017/11/the-top-100-rated-devoxx-belgium-2017-talks/) at Devoxx
 - Revamped [my website](https://jeroenmols.com/) with https, faster loading, and search
 
