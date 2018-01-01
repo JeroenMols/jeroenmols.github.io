@@ -11,7 +11,7 @@ For the first time ever I have my `year in review` ready in time.
 
 I'm sure I'll never forget 2017. Not only did we start building our dream house, but more importantly, our family grew to 4 people! Our baby girl Lene - ahum Toddler - became the big sister of our newborn son Wout. While having two kids is definitely very, very intense, it's extraordinary to see them grow and a privilege to experience how fond they already are of each other.
 
-For my career this for sure was the most remarkable year so far as I:
+For my career this was the most remarkable year so far as I:
 
 - Became a [Google Developer Expert for Android](https://developers.google.com/experts/people/jeroen-mols)
 - Built up an internal app team and became the [Lead Android developer](https://www.linkedin.com/feed/update/urn:li:activity:6264882628466475008) at Philips Hue
