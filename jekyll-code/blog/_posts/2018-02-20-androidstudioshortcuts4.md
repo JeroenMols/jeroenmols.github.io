@@ -1,6 +1,6 @@
 ---
 title: Pro Android Studio - Random musings
-published: true
+published: false
 header:
   teaser: img/blog/androidstudioshortcuts4/androidstudioshortcuts4.jpg
   imgcredit: Photo by Patrick Fore on Unsplash, https://unsplash.com/photos/YS_51ncQL5o, cropped

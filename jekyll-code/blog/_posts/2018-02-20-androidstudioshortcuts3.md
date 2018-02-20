@@ -1,6 +1,6 @@
 ---
 title: Pro Android Studio - Taming the interface
-published: true
+published: false
 header:
   teaser: img/blog/androidstudioshortcuts3/androidstudioshortcuts3.jpg
   imgcredit: Photo by Benjamin Bousquet on Unsplash, https://unsplash.com/photos/PDVvoXRAmCY, cropped

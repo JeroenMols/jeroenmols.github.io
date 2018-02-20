@@ -1,6 +1,6 @@
 ---
 title: Pro Android Studio - Refactoring
-published: true
+published: false
 header:
   teaser: img/blog/androidstudioshortcuts2/androidstudioshortcuts2.jpg
   imgcredit: Photo by Ant Rozetsky on Unsplash, https://unsplash.com/photos/io7dX_1EFCg, cropped

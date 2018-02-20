@@ -1,6 +1,6 @@
 ---
 title: Pro Android Studio - Code navigation
-published: true
+published: false
 header:
   teaser: img/blog/androidstudioshortcuts/androidstudioshortcuts.jpg
   imgcredit: Photo by Manki Kim on Unsplash, https://unsplash.com/photos/BtHjHxh-D7I, cropped
