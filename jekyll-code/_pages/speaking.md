@@ -11,7 +11,7 @@ I'm always eager to share my technical knowledge with fellow developers. Don't h
 
 Upcoming talks:
 
-- None, end of 2017 speaker season for me.
+- Philips Research - Deep into the IoT trenches: how to build a connected product
 
 2017:
 
