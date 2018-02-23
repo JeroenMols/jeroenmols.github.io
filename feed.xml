@@ -1,4 +1,149 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2018-01-01T08:32:42+01:00</updated><id>https://jeroenmols.com/</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Year in review 2017</title><link href="https://jeroenmols.com/blog/2018/01/01/yearinreview/" rel="alternate" type="text/html" title="Year in review 2017" /><published>2018-01-01T00:00:00+01:00</published><updated>2018-01-01T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2018/01/01/yearinreview</id><content type="html" xml:base="https://jeroenmols.com/blog/2018/01/01/yearinreview/">&lt;p&gt;For the first time ever I have my &lt;code class=&quot;highlighter-rouge&quot;&gt;year in review&lt;/code&gt; ready in time.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.2">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2018-02-23T02:08:20+01:00</updated><id>https://jeroenmols.com/</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Pro Android Studio - Code navigation</title><link href="https://jeroenmols.com/blog/2018/02/22/androidstudioshortcuts/" rel="alternate" type="text/html" title="Pro Android Studio - Code navigation" /><published>2018-02-22T00:00:00+01:00</published><updated>2018-02-22T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2018/02/22/androidstudioshortcuts</id><content type="html" xml:base="https://jeroenmols.com/blog/2018/02/22/androidstudioshortcuts/">&lt;p&gt;Struggling to navigate your code? Getting lost in deep inheritance hierarchies? Hard time figuring out relations between classes? Let’s learn how to navigate code in Android Studio like a pro.&lt;/p&gt;
+
+&lt;p&gt;Being a skilled Android developer means getting the most out of the tools at your disposal. While there are plenty resources listing shortcuts, it’s often hard to make sense and master those.&lt;/p&gt;
+
+&lt;p&gt;Therefore this series aims to be a practical guide with clear examples on how to better navigate and refactor code. It will effectively cover how I personally use Android Studio.&lt;/p&gt;
+
+&lt;h2 id=&quot;tldr&quot;&gt;TL;DR&lt;/h2&gt;
+&lt;p&gt;I strongly suggest you look at the examples below, but a quick reference is always useful.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + O&lt;/code&gt;: find class&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + ⌥ + O&lt;/code&gt;: find symbol&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + ⇧ + O&lt;/code&gt;: find file&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + T&lt;/code&gt;: go to/from test&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + ⌥ + F7&lt;/code&gt;: show usages&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + U&lt;/code&gt;: jump to superclass/defining method&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + ⌥ + B&lt;/code&gt;: jump to subclass/overridden method&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;^ + H&lt;/code&gt;: show class hierarchy&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + F12&lt;/code&gt;: show methods&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + B&lt;/code&gt;: go to declaration&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;F2&lt;/code&gt;: next error/warning&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⇧ +F2&lt;/code&gt;: previous error/warning&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + L&lt;/code&gt;: go to line&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + E&lt;/code&gt;: show recent files&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + [&lt;/code&gt;: to previous code position&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + ]&lt;/code&gt;: to next code position&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + ⇧ + backspace&lt;/code&gt;: to last code edit&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Windows equivalents can be found &lt;a href=&quot;https://developer.android.com/studio/intro/keyboard-shortcuts.html&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;opening-classes-and-files&quot;&gt;Opening classes and files&lt;/h2&gt;
+&lt;p&gt;Better than search everywhere is telling Android Studio what you are looking for:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + O&lt;/code&gt;: a class&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + ⌥ + O&lt;/code&gt;: a symbol&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + ⇧ + O&lt;/code&gt;: a file&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This makes search a lot faster and returns fewer, more relevant results!&lt;/p&gt;
+
+&lt;p&gt;Searched for classes but needed a file? Just hit &lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + ⇧ + O&lt;/code&gt; while open to dynamically swap between modes. You can even use &lt;a href=&quot;https://en.wikipedia.org/wiki/Camel_case&quot;&gt;Camel Casing&lt;/a&gt; to quickly find &lt;code class=&quot;highlighter-rouge&quot;&gt;AlbumActivityTest&lt;/code&gt; by typing &lt;code class=&quot;highlighter-rouge&quot;&gt;AlAT&lt;/code&gt; or directly jump to a line number by adding &lt;code class=&quot;highlighter-rouge&quot;&gt;:&lt;/code&gt;.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts/openclassandfiles.gif&quot; alt=&quot;Open classes, symbols or files&quot; /&gt;
+  &lt;figcaption&gt;Open classes, symbols or files&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Already found the class you were looking for, but quickly want to go to the test? Go to the class declaration and use &lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + T&lt;/code&gt;. It even suggests to create a new test and also works from the test.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts/navigatetest.gif&quot; alt=&quot;Navigate between test and class with ⌘ + T&quot; /&gt;
+  &lt;figcaption&gt;Navigate between test and class with ⌘ + T&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h2 id=&quot;relationships-between-classes&quot;&gt;Relationships between classes&lt;/h2&gt;
+&lt;p&gt;If you want to figure out where a class is being used? &lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + ⌥ + F7&lt;/code&gt; shows it in a handy pop over. Note that you can show the same info in the find tab using &lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + F7&lt;/code&gt; for a more static view.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts/classusages.gif&quot; alt=&quot;Show class usages with ⌘ + ⌥ + F7&quot; /&gt;
+  &lt;figcaption&gt;Show class usages with ⌘ + ⌥ + F7&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Inheritance hierarchies are typically easy to get lost in.&lt;/p&gt;
+
+&lt;p&gt;Did you know you can use &lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + U&lt;/code&gt; to jump to the super class or &lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + ⌥ + B&lt;/code&gt; to go to a sub class? It even works for method overrides!&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts/supersubclass.gif&quot; alt=&quot;Navigate between super- and subclasses&quot; /&gt;
+  &lt;figcaption&gt;Navigate between super- and subclasses&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Finally, &lt;code class=&quot;highlighter-rouge&quot;&gt;^ + H&lt;/code&gt; dumps out the entire class hierarchy in a handy overview.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts/classhierarchy.png&quot; alt=&quot;Show class hierarchy with ^ + H&quot; /&gt;
+  &lt;figcaption&gt;Show class hierarchy with ^ + H&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h2 id=&quot;structure-of-classes&quot;&gt;Structure of classes&lt;/h2&gt;
+&lt;p&gt;Use &lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + F12&lt;/code&gt; to show all methods and properties of a class. Like any other view in Android Studio, even this one is searchable.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts/showmethods.gif&quot; alt=&quot;Show class methods and properties with ⌘ + F12&quot; /&gt;
+  &lt;figcaption&gt;Show class methods and properties with ⌘ + F12&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Come across a member in code? With &lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + B&lt;/code&gt; you can immediately jump to where it is defined. Tapping &lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + B&lt;/code&gt; a second time shows you where it is used.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts/gotodeclaration.gif&quot; alt=&quot;Analyze class usages with ⌘ + ⌥ + F7&quot; /&gt;
+  &lt;figcaption&gt;Go to declaration and show usages with ⌘ + B&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Be it a failing build due to multiple errors, or you scroll away from broken code under development. Compilation errors are common and can be hard to navigate to.&lt;/p&gt;
+
+&lt;p&gt;Using &lt;code class=&quot;highlighter-rouge&quot;&gt;F2&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;⇧ + F2&lt;/code&gt;, however, will let you jump back and forth between all errors in a file. If there are none, those keys will do the same for all warnings.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts/nexterror.gif&quot; alt=&quot;Navigate between errors/warnings in a file&quot; /&gt;
+  &lt;figcaption&gt;Navigate between errors/warnings in a file&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Know the exact line number? Then &lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + L&lt;/code&gt; is the shortcut for you.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts/gotoline.gif&quot; alt=&quot;Go to a specific line in a file with ⌘ + L&quot; /&gt;
+  &lt;figcaption&gt;Go to a specific line in a file with ⌘ + L&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h2 id=&quot;history&quot;&gt;History&lt;/h2&gt;
+&lt;p&gt;With all these new code navigation superpowers, there is one critical element missing: how do you find your way back to where you started?&lt;/p&gt;
+
+&lt;p&gt;One of the well-known options is to use &lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + E&lt;/code&gt; to list your recently opened files.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts/recentnavigation.gif&quot; alt=&quot;List recently opened files with ⌘ + E&quot; /&gt;
+  &lt;figcaption&gt;List recently opened files with ⌘ + E&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;However, when clicking through code you can also use &lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + [&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + ]&lt;/code&gt; to take a step back or forth respectively.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts/previousnextnavigation.gif&quot; alt=&quot;Navigate between previous visited code&quot; /&gt;
+  &lt;figcaption&gt;Navigate between previous visited code&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;And finally, if you just want to continue coding where you left off, use &lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + ⇧ + backspace&lt;/code&gt; to jump to where you made the last code edit.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts/previousedit.gif&quot; alt=&quot;Navigate to the last edited code with ⌘ + ⇧ + backspace&quot; /&gt;
+  &lt;figcaption&gt;Navigate to the last edited code with ⌘ + ⇧ + backspace&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap up&lt;/h2&gt;
+&lt;p&gt;This was part one of my series to get the most out of Android Studio. If you’re interested in the next posts it’s probably best to follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=proandroidstudio-codenavigation2018&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
+.&lt;/p&gt;
+
+&lt;p&gt;Special thanks to Antonio Leiva, all gifs are made with code from his open source project &lt;a href=&quot;https://github.com/antoniolg/Bandhook-Kotlin&quot;&gt;Bankhook&lt;/a&gt;.&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="androidstudio" /><category term="tools" /><category term="shortcuts" /><summary type="html">Struggling to navigate your code? Getting lost in deep inheritance hierarchies? Hard time figuring out relations between classes? Let’s learn how to navigate code in Android Studio like a pro.</summary></entry><entry><title type="html">Year in review 2017</title><link href="https://jeroenmols.com/blog/2018/01/01/yearinreview/" rel="alternate" type="text/html" title="Year in review 2017" /><published>2018-01-01T00:00:00+01:00</published><updated>2018-01-01T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2018/01/01/yearinreview</id><content type="html" xml:base="https://jeroenmols.com/blog/2018/01/01/yearinreview/">&lt;p&gt;For the first time ever I have my &lt;code class=&quot;highlighter-rouge&quot;&gt;year in review&lt;/code&gt; ready in time.&lt;/p&gt;
 
 &lt;p&gt;I’m sure I’ll never forget 2017. Not only did we start building our dream house, but more importantly, our family grew to 4 people! Our baby girl Lene - ahum Toddler - became the big sister of our newborn son Wout. While having two kids is definitely very, very intense, it’s extraordinary to see them grow and a privilege to experience how fond they already are of each other.&lt;/p&gt;
 
@@ -79,7 +224,7 @@
 
 &lt;p&gt;Notice that we only add the &lt;code class=&quot;highlighter-rouge&quot;&gt;UserNameFragment&lt;/code&gt; to the back stack! This way one single back would always take the user back to the &lt;code class=&quot;highlighter-rouge&quot;&gt;TodayFragment&lt;/code&gt;, making it super easy to navigate back when log in was successful.&lt;/p&gt;
 
-&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onLoginSuccess&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;onLoginSuccess&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;n&quot;&gt;activity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;onBackPressed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -134,7 +279,7 @@
 &lt;span class=&quot;n&quot;&gt;transaction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;passwordFragment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;addToBackStack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onLoginSuccess&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;onLoginSuccess&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;n&quot;&gt;activity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;onBackPressed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
   &lt;span class=&quot;n&quot;&gt;activity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;onBackPressed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
@@ -151,7 +296,7 @@
 &lt;span class=&quot;n&quot;&gt;transaction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;passwordFragment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;addToBackStack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onLoginSuccess&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;onLoginSuccess&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;n&quot;&gt;activity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;supportFragmentManager&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;popBackStack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;username&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;POP_BACK_STACK_INCLUSIVE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -828,92 +973,4 @@ Fabio Collini&lt;/li&gt;
 &lt;p&gt;It’s always super inspiring to visit a conference, especially google IO. This year we got an impressive set of new developer tools/apis and I had the pleasure of meeting many interesting people. We’re lucky to have such a vibrant community!&lt;/p&gt;
 
 &lt;p&gt;Do you like this format? Let me know in the comments below or &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=mygoogle#io17takeaways2017&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;@molsjeroen&lt;/a&gt;&lt;/span&gt;
-.&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="android" /><category term="conference" /><category term="googleio" /><summary type="html">Being my 2nd year at Google IO, I decided to do things differently: Besides taking notes during sessions, I also created a personal todo list. This contains all new (and even old) technologies I got triggered to look into.</summary></entry><entry><title type="html">Android Makers FR recap</title><link href="https://jeroenmols.com/blog/2017/04/11/androidmakers17/" rel="alternate" type="text/html" title="Android Makers FR recap" /><published>2017-04-11T00:00:00+02:00</published><updated>2017-04-11T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2017/04/11/androidmakers17</id><content type="html" xml:base="https://jeroenmols.com/blog/2017/04/11/androidmakers17/">&lt;p&gt;After organizing Droidcon Paris for several year, the organizers decided to move on and experiment with a new format. This didn’t just result in a well organized conference, but also in a fresh new vibe whilst still feeling familiar.&lt;/p&gt;
-
-&lt;p&gt;In this post I’d like to share some general themes, my personal highlights and all of the slides I could gather from socials.&lt;/p&gt;
-
-&lt;h2 id=&quot;details-matter&quot;&gt;Details matter&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/androidmakers17/launchscreen.png&quot; alt=&quot;Make sure your app doesn't launch with a blank screen&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Building a world class app doesn’t just require good engineering practices, but you literally have to handle details on every front.&lt;/p&gt;
-
-&lt;p&gt;My key takeaways:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Learn and optimize your app launch time:&lt;code class=&quot;highlighter-rouge&quot;&gt;adb shell am start -W &amp;lt;packagename&amp;gt;/. &amp;lt;activityname&amp;gt;&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Never share a file directly via an intent, always copy it first&lt;/li&gt;
-  &lt;li&gt;Prefer &lt;code class=&quot;highlighter-rouge&quot;&gt;https://&lt;/code&gt; as the scheme for direct links&lt;/li&gt;
-  &lt;li&gt;Hard-coded encryption keys can be easily found in byte code: grep for &lt;code class=&quot;highlighter-rouge&quot;&gt;Ljavax/crypto&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;API design is basically designing future regrets&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;productivity&quot;&gt;Productivity&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/androidmakers17/testingpyramid.png&quot; alt=&quot;The Android testing pyramid&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;As projects get more complex, it becomes crucial (for your own sanity) to have the right engineering practices in place. Try and leverage your continuous integration to automatically build, test and statically analyze your pull requests before merging.&lt;/p&gt;
-
-&lt;p&gt;My key takeaways:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Testability must be taken into account from project start&lt;/li&gt;
-  &lt;li&gt;Many git conflicts can be resolved automatically with proper tooling&lt;/li&gt;
-  &lt;li&gt;Use pre launch reports before going to production&lt;/li&gt;
-  &lt;li&gt;Naming things is hard, yet super important&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;programming-languages&quot;&gt;Programming languages&lt;/h2&gt;
-&lt;p&gt;Challenging the traditional way of app development has gotten a new spark thanks to Kotlin and the rise of other cross platform tools. There is definitely no silver bullet yet, but it’s good to see the community stay open minded.&lt;/p&gt;
-
-&lt;p&gt;My key takeaways:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Every Android developer hates WebViews&lt;/li&gt;
-  &lt;li&gt;With incremental builds, Kotlin compiles as fast as Java&lt;/li&gt;
-  &lt;li&gt;React native is JavaScript rendered to a native UI(not ready for primetime yet, wait for 1.0 version)&lt;/li&gt;
-  &lt;li&gt;Any Android dev can develop for Android Things (runs Activities!)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;organizer-recap&quot;&gt;Organizer recap&lt;/h2&gt;
-&lt;p&gt;Relive the conference through the organizers eyes, they did a great job at summarizing each day. Clicking each moment will expand more details.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&quot;twitter-moment&quot; href=&quot;https://twitter.com/i/moments/851372466341629952?limit=3&quot;&gt;Android Makers 2017 - Day 1&lt;/a&gt; &lt;script async=&quot;&quot; src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a class=&quot;twitter-moment&quot; href=&quot;https://twitter.com/i/moments/851650664644194304?limit=3&quot;&gt;Android Makers - Day 2&lt;/a&gt; &lt;script async=&quot;&quot; src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;conference-slides&quot;&gt;Conference slides&lt;/h2&gt;
-&lt;p&gt;While the conference organizers will publish all slides very soon, I can image that quite a few people are already looking for a sneak preview. Hence I bundled everything I could already gather from socials.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/jeroenmols/the-art-of-organizing-resources&quot;&gt;The ART of organizing resources&lt;/a&gt; by Jeroen Mols&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/malmstein/remote-and-lonely&quot;&gt;Remote, lonely and productive&lt;/a&gt; by David González&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/cyrilmottier/launch-screens-from-a-tap-to-your-app&quot;&gt;Launch Screens: From a Tap to Your App&lt;/a&gt; by Cyril Mottier&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/jeremiemartinez/the-evolution-of-android-notification&quot;&gt;The evolution of Android notification&lt;/a&gt; by Jeremie Martinez&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/tysmith/deep-android-integrations&quot;&gt;Deep Android Integrations&lt;/a&gt; by Ty Smith&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/camaelon/android-design-tools-new-features-and-tools-for-rapid-ui-development&quot;&gt;Android Design Tools : New features and tools for rapid UI development&lt;/a&gt; by Nicolas Roard&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/baresse/develop-a-weather-app-with-kotlin-androidmakers-17&quot;&gt;Develop a weather app with Kotlin&lt;/a&gt; by Laurent Baresse&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/xgouchet/merge-like-its-2099-androidmakers-2017&quot;&gt;Merge like it’s 2099&lt;/a&gt; by Xavier Gouchet&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/dwursteisen/rxjava-est-mort-vive-rxjava-2&quot;&gt;RxJava est mort, vive RxJava 2&lt;/a&gt; by David Wursteisen&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/florianmski/taking-care-of-your-ui-tests&quot;&gt;Taking care of your UI tests&lt;/a&gt; by Florian Mierzejewski&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.slideshare.net/VasiliyZukanov/dependency-injection-in-android-74836565?trk=v-feed&quot;&gt;Dependency Injection in Android - Best Practices&lt;/a&gt; by Vasiliy Zukanov&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/stephanenicolas/toothpick-a-fresh-approach-to-dependency-injection-di-on-android&quot;&gt;Toothpick: a fresh approach to Dependency Injection on Android&lt;/a&gt; by Stéphane Nicolas and Daniel Molinero Reguera&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/mathieu_calba/streamlining-payments-on-mobile&quot;&gt;Streamlining Payments on Mobile&lt;/a&gt; by Mathieu Calba&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/jinqian/heat-the-neurons-of-your-smartphone-with-deep-learning&quot;&gt;Heat the Neurons of Your Smartphone with Deep Learning&lt;/a&gt; by Qian Jin and Yoann Benoit&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/ecgreb/testable-android-architecture-android-makers-france&quot;&gt;Testable Android Architecture&lt;/a&gt; by Chuck Greb&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.slideshare.net/arnaudgiuliani&quot;&gt;Develop your next app with kotlin&lt;/a&gt; by Arnaud Giuliani&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/smarkovik/make-or-break&quot;&gt;Make or brake… using Gradle&lt;/a&gt; by Stanojko Markovik&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/renaudboulard/getting-the-most-of-android-obfuscation-tools&quot;&gt;Getting the most of Android obfuscation tools&lt;/a&gt; by Renaud Boulard&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/elainedb/intro-to-google-assistant-and-actions-on-google&quot;&gt;Intro to Google Assistant and Actions on Google&lt;/a&gt; by Elaine Dias Batista and Wajdi Ben Rabah&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/elainedb/actions-on-google-workshop&quot;&gt;Actions on Google workshop&lt;/a&gt; by Elaine Dias Batista and Wajdi Ben Rabah&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://docs.google.com/presentation/d/1Ehc6B78kWnX23W1SZvUtpP42LMsSJwdEvD0WIkgACmk/edit#slide=id.p&quot;&gt;Modern Android: How to ditch Activities &amp;amp; Fragments&lt;/a&gt; by Fabien Devos&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/rpradal/kotlin-in-the-real-world&quot;&gt;Kotlin in the real world&lt;/a&gt; by Rémi Pradal&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.slideshare.net/OCTOTechnology/one-year-of-clean-architecture-the-good-the-bad-and-the-bob&quot;&gt;One Year of Clean Architecture - The Good, The Bad and The Bob&lt;/a&gt; by Gabriel Adgeg and Dorian Lamande&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.slideshare.net/ophilippot/iotception-energy-measurement-of-android-things-on-raspberry-pi-3-with-arduino-uno&quot;&gt;IotCeption - Energy Measurement of Android Things on Raspberry PI 3 with Arduino Uno&lt;/a&gt; by Olivier Philippot&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/perfectslayer/le-root-un-inconnu-chez-soi&quot;&gt;Le root : un inconnu chez soi?&lt;/a&gt; by Bruce Bujon&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/oleur/exoplayer-player-multimedia-pour-les-applications-et-la-realite-virtuelle&quot;&gt;ExoPlayer, player multimédia pour vos applications et la réalité virtuelle&lt;/a&gt; by Julien Salvi&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.slideshare.net/aerilys/le-design-mobile-cest-pas-facile-74910698&quot;&gt;Le design mobile c’est pas facile&lt;/a&gt; by Quentin Sallat&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;credits&quot;&gt;Credits&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/androidmakers17/team.jpg&quot; alt=&quot;The awesome Android makers organizing team&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Thanks to the entire Android Makers team for organizing a great conference and to all sponsors for supporting. Hope to see you all next year!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="android" /><category term="conference" /><category term="androidmakers" /><summary type="html">After organizing Droidcon Paris for several year, the organizers decided to move on and experiment with a new format. This didn’t just result in a well organized conference, but also in a fresh new vibe whilst still feeling familiar.</summary></entry></feed>
+.&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="android" /><category term="conference" /><category term="googleio" /><summary type="html">Being my 2nd year at Google IO, I decided to do things differently: Besides taking notes during sessions, I also created a personal todo list. This contains all new (and even old) technologies I got triggered to look into.</summary></entry></feed>

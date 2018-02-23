@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle>
- <updated>2018-01-01T08:32:42+01:00</updated>
+ <updated>2018-02-23T02:08:20+01:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,24 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>Pro Android Studio - Code navigation</title>
+   <link href="https://jeroenmols.com/blog/2018/02/22/androidstudioshortcuts/"/>
+   <updated>2018-02-22T00:00:00+01:00</updated>
+   <id>https://jeroenmols.com/blog/2018/02/22/androidstudioshortcuts</id>
+   <content type="html"><![CDATA[
+     
+     <p>Struggling to navigate your code? Getting lost in deep inheritance hierarchies? Hard time figuring out relations between classes? Let’s learn how to navigate code in Android Studio like a pro.</p>
+
+<p>Being a skilled Android developer means getting the most out of the tools at your disposal. While there are plenty resources listing shortcuts, it’s often hard to make sense and master those.</p>
+
+<p>Therefore this series aims to be a practical guide with clear examples on how to better navigate and refactor code. It will effectively cover how I personally use Android Studio.</p>
+
+
+     <a href="https://jeroenmols.com/blog/2018/02/22/androidstudioshortcuts/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>Year in review 2017</title>

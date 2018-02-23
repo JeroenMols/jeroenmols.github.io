@@ -1,7 +1,7 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.8.0 by Michael Rose
-  Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
+  Minimal Mistakes Jekyll Theme 4.10.0 by Michael Rose
+  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
 -->
@@ -9,46 +9,16 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin SEO -->
-
-
-
-
-
-
-
-
-
-<title>Search Posts - Jeroen Mols</title>
-
-
-
-
+<!-- begin _includes/seo.html --><title>Search Posts - Jeroen Mols</title>
 <meta name="description" content="Blog and portfolio of Jeroen Mols, the Android developer you should hire.">
 
 
 
-
-<meta name="author" content="Jeroen Mols">
-
+<meta property="og:type" content="website">
 <meta property="og:locale" content="en">
 <meta property="og:site_name" content="Jeroen Mols">
 <meta property="og:title" content="Search Posts">
-
-
-  <link rel="canonical" href="https://jeroenmols.com/search/">
-  <meta property="og:url" content="https://jeroenmols.com/search/">
-
-
-
-
-
-
-
-
-
-
-
+<meta property="og:url" content="https://jeroenmols.com/search/">
 
 
 
@@ -66,19 +36,19 @@
   
 
   
-    <meta name="twitter:creator" content="@Jeroen Mols">
+
+
+
+
+
+
+
+  
+
   
 
 
-
-  
-
-  
-
-
-
-
-
+<link rel="canonical" href="https://jeroenmols.com/search/">
 
 
 
@@ -88,11 +58,11 @@
 
   <script type="application/ld+json">
     {
-      "@context" : "http://schema.org",
-      "@type" : "Person",
-      "name" : "Jeroen Mols",
-      "url" : "https://jeroenmols.com",
-      "sameAs" : ["https://twitter.com/molsjeroen","https://www.linkedin.com/in/jeroenmols/","https://plus.google.com/+JeroenMols","https://github.com/JeroenMols","https://speakerdeck.com/jeroenmols","https://stackoverflow.com/users/2771851/jmols"]
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "Jeroen Mols",
+      "url": "https://jeroenmols.com",
+      "sameAs": ["https://twitter.com/molsjeroen","https://www.linkedin.com/in/jeroenmols/","https://plus.google.com/+JeroenMols","https://github.com/JeroenMols","https://speakerdeck.com/jeroenmols","https://stackoverflow.com/users/2771851/jmols"]
     }
   </script>
 
@@ -104,7 +74,7 @@
 
 
 
-<!-- end SEO -->
+<!-- end _includes/seo.html -->
 
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
@@ -199,7 +169,7 @@ $(document).ready(function(){
           </svg>
         </button>
         
-        <button class="greedy-nav__toggle" type="button">
+        <button class="greedy-nav__toggle hidden" type="button">
           <span class="visually-hidden">Toggle Menu</span>
           <div class="navicon"></div>
         </button>
@@ -271,10 +241,8 @@ $(document).ready(function(){
 
     
       <div class="search-content">
-        <div class="search-content__inner-wrap">
-  <input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
-  <div id="results" class="results"></div>
-</div>
+        <div class="search-content__inner-wrap"><input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+    <div id="results" class="results"></div></div>
       </div>
     
 
@@ -289,15 +257,15 @@ $(document).ready(function(){
       <li><strong>Follow:</strong></li>
     
     
-      <li><a href="https://twitter.com/molsjeroen"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+      <li><a href="https://twitter.com/molsjeroen"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
     
     
     
-      <li><a href="https://github.com/JeroenMols"><i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+      <li><a href="https://github.com/JeroenMols"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
     
     
     
-    <li><a href="atom.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    <li><a href="atom.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
   </ul>
 </div>
 
@@ -308,12 +276,14 @@ $(document).ready(function(){
 
     
   <script src="https://jeroenmols.com/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 
 
 
-  <script src="https://jeroenmols.com/assets/js/lunr.min.js"></script>
-  <script src="https://jeroenmols.com/assets/js/lunr-en.js"></script>
 
+<script src="https://jeroenmols.com/assets/js/lunr/lunr.min.js"></script>
+<script src="https://jeroenmols.com/assets/js/lunr/lunr-store.js"></script>
+<script src="https://jeroenmols.com/assets/js/lunr/lunr-en.js"></script>
 
 
 

@@ -1,0 +1,879 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.10.0 by Michael Rose
+  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Pro Android Studio - Code navigation - Jeroen Mols</title>
+<meta name="description" content="Struggling to navigate your code? Getting lost in deep inheritance hierarchies? Hard time figuring out relations between classes? Let’s learn how to navigate code in Android Studio like a pro.">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="Jeroen Mols">
+<meta property="og:title" content="Pro Android Studio - Code navigation">
+<meta property="og:url" content="https://jeroenmols.com/blog/2018/02/22/androidstudioshortcuts/">
+
+
+  <meta property="og:description" content="Struggling to navigate your code? Getting lost in deep inheritance hierarchies? Hard time figuring out relations between classes? Let’s learn how to navigate code in Android Studio like a pro.">
+
+
+
+  <meta property="og:image" content="https://jeroenmols.com/img/blog/androidstudioshortcuts/androidstudioshortcuts.jpg">
+
+
+
+  <meta name="twitter:site" content="@molsjeroen">
+  <meta name="twitter:title" content="Pro Android Studio - Code navigation">
+  <meta name="twitter:description" content="Struggling to navigate your code? Getting lost in deep inheritance hierarchies? Hard time figuring out relations between classes? Let’s learn how to navigate code in Android Studio like a pro.">
+  <meta name="twitter:url" content="https://jeroenmols.com/blog/2018/02/22/androidstudioshortcuts/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+      <meta name="twitter:image" content="https://jeroenmols.com/img/blog/androidstudioshortcuts/androidstudioshortcuts.jpg">
+    
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2018-02-22T00:00:00+01:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://jeroenmols.com/blog/2018/02/22/androidstudioshortcuts/">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "Jeroen Mols",
+      "url": "https://jeroenmols.com",
+      "sameAs": ["https://twitter.com/molsjeroen","https://www.linkedin.com/in/jeroenmols/","https://plus.google.com/+JeroenMols","https://github.com/JeroenMols","https://speakerdeck.com/jeroenmols","https://stackoverflow.com/users/2771851/jmols"]
+    }
+  </script>
+
+
+
+  <meta name="google-site-verification" content="8E8HUpExgyNFdLuFMWmkSUl08gISnOF3UWexA55aNrk" />
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$('.ga-link').on('click', function(){
+		if (typeof(ga)!=="undefined"){
+			ga('send',{
+				hitType: 'event',
+				eventCategory: 'Outbound link',
+				eventAction: 'click',
+				eventLabel: event.target.href
+			});
+	  	}
+	});
+})	;
+</script>
+
+<meta name="theme-color" content="#2c3e50">
+
+<link href="atom.xml" type="application/atom+xml" rel="alternate" title="Jeroen Mols Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="https://jeroenmols.com/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="https://jeroenmols.com/">Jeroen Mols</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://jeroenmols.com/blog/" >Blog</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://jeroenmols.com/speaking/" >Speaking</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://jeroenmols.com/hireme/" >Hire me</a>
+            </li>
+          
+        </ul>
+        
+        <button class="search__toggle" type="button">
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="https://jeroenmols.com/img/profile.jpg" alt="Jeroen Mols" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Jeroen Mols</h3>
+    
+    
+      <p class="author__bio" itemprop="description">
+        Android GDE & Lead Android developer at Philips Hue
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Mol, Belgium</span>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://twitter.com/@molsjeroen" itemprop="sameAs">
+            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+          </a>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="https://plus.google.com/JeroenMols" itemprop="sameAs">
+            <i class="fab fa-fw fa-google-plus-square" aria-hidden="true"></i> Google+
+          </a>
+        </li>
+      
+
+      
+        <li>
+          <a href="https://www.linkedin.com/in/jeroenmols" itemprop="sameAs">
+            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/JeroenMols" itemprop="sameAs">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="https://www.stackoverflow.com/users/2771851/jmols" itemprop="sameAs">
+            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i> Stack Overflow
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        
+          <li>
+            <a href="https://www.youtube.com/channel/UC34Vt1lo8T15_rgc3e3Jsew" itemprop="sameAs">
+              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i> YouTube
+            </a>
+          </li>
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+  <li>
+    <a href="https://speakerdeck.com/jeroenmols" itemprop="sameAs">
+      <i class="fa fa-line-chart" aria-hidden="true"></i> Speaker Deck
+    </a>
+  </li>
+
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Pro Android Studio - Code navigation">
+    <meta itemprop="description" content="Struggling to navigate your code? Getting lost in deep inheritance hierarchies? Hard time figuring out relations between classes? Let’s learn how to navigate code in Android Studio like a pro.">
+    <meta itemprop="datePublished" content="February 22, 2018">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Pro Android Studio - Code navigation
+</h1>
+          <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  22 Feb 2018</p>
+
+          
+            <img src="https://jeroenmols.com/img/blog/androidstudioshortcuts/androidstudioshortcuts.jpg" alt="Pro Android Studio - Code navigation" title="Photo by Manki Kim on Unsplash, https://unsplash.com/photos/BtHjHxh-D7I, cropped">
+          
+
+          
+            <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>Struggling to navigate your code? Getting lost in deep inheritance hierarchies? Hard time figuring out relations between classes? Let’s learn how to navigate code in Android Studio like a pro.</p>
+
+<p>Being a skilled Android developer means getting the most out of the tools at your disposal. While there are plenty resources listing shortcuts, it’s often hard to make sense and master those.</p>
+
+<p>Therefore this series aims to be a practical guide with clear examples on how to better navigate and refactor code. It will effectively cover how I personally use Android Studio.</p>
+
+<h2 id="tldr">TL;DR</h2>
+<p>I strongly suggest you look at the examples below, but a quick reference is always useful.</p>
+
+<ul>
+  <li><code class="highlighter-rouge">⌘ + O</code>: find class</li>
+  <li><code class="highlighter-rouge">⌘ + ⌥ + O</code>: find symbol</li>
+  <li><code class="highlighter-rouge">⌘ + ⇧ + O</code>: find file</li>
+  <li>
+    <p><code class="highlighter-rouge">⌘ + T</code>: go to/from test</p>
+  </li>
+  <li><code class="highlighter-rouge">⌘ + ⌥ + F7</code>: show usages</li>
+  <li><code class="highlighter-rouge">⌘ + U</code>: jump to superclass/defining method</li>
+  <li><code class="highlighter-rouge">⌘ + ⌥ + B</code>: jump to subclass/overridden method</li>
+  <li>
+    <p><code class="highlighter-rouge">^ + H</code>: show class hierarchy</p>
+  </li>
+  <li><code class="highlighter-rouge">⌘ + F12</code>: show methods</li>
+  <li><code class="highlighter-rouge">⌘ + B</code>: go to declaration</li>
+  <li><code class="highlighter-rouge">F2</code>: next error/warning</li>
+  <li><code class="highlighter-rouge">⇧ +F2</code>: previous error/warning</li>
+  <li>
+    <p><code class="highlighter-rouge">⌘ + L</code>: go to line</p>
+  </li>
+  <li><code class="highlighter-rouge">⌘ + E</code>: show recent files</li>
+  <li><code class="highlighter-rouge">⌘ + [</code>: to previous code position</li>
+  <li><code class="highlighter-rouge">⌘ + ]</code>: to next code position</li>
+  <li><code class="highlighter-rouge">⌘ + ⇧ + backspace</code>: to last code edit</li>
+</ul>
+
+<p>Windows equivalents can be found <a href="https://developer.android.com/studio/intro/keyboard-shortcuts.html">here</a>.</p>
+
+<h2 id="opening-classes-and-files">Opening classes and files</h2>
+<p>Better than search everywhere is telling Android Studio what you are looking for:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">⌘ + O</code>: a class</li>
+  <li><code class="highlighter-rouge">⌘ + ⌥ + O</code>: a symbol</li>
+  <li><code class="highlighter-rouge">⌘ + ⇧ + O</code>: a file</li>
+</ul>
+
+<p>This makes search a lot faster and returns fewer, more relevant results!</p>
+
+<p>Searched for classes but needed a file? Just hit <code class="highlighter-rouge">⌘ + ⇧ + O</code> while open to dynamically swap between modes. You can even use <a href="https://en.wikipedia.org/wiki/Camel_case">Camel Casing</a> to quickly find <code class="highlighter-rouge">AlbumActivityTest</code> by typing <code class="highlighter-rouge">AlAT</code> or directly jump to a line number by adding <code class="highlighter-rouge">:</code>.</p>
+
+<figure>
+  <img src="https://jeroenmols.com/img/blog/androidstudioshortcuts/openclassandfiles.gif" alt="Open classes, symbols or files" />
+  <figcaption>Open classes, symbols or files</figcaption>
+</figure>
+
+<p>Already found the class you were looking for, but quickly want to go to the test? Go to the class declaration and use <code class="highlighter-rouge">⌘ + T</code>. It even suggests to create a new test and also works from the test.</p>
+
+<figure>
+  <img src="https://jeroenmols.com/img/blog/androidstudioshortcuts/navigatetest.gif" alt="Navigate between test and class with ⌘ + T" />
+  <figcaption>Navigate between test and class with ⌘ + T</figcaption>
+</figure>
+
+<h2 id="relationships-between-classes">Relationships between classes</h2>
+<p>If you want to figure out where a class is being used? <code class="highlighter-rouge">⌘ + ⌥ + F7</code> shows it in a handy pop over. Note that you can show the same info in the find tab using <code class="highlighter-rouge">⌘ + F7</code> for a more static view.</p>
+
+<figure>
+  <img src="https://jeroenmols.com/img/blog/androidstudioshortcuts/classusages.gif" alt="Show class usages with ⌘ + ⌥ + F7" />
+  <figcaption>Show class usages with ⌘ + ⌥ + F7</figcaption>
+</figure>
+
+<p>Inheritance hierarchies are typically easy to get lost in.</p>
+
+<p>Did you know you can use <code class="highlighter-rouge">⌘ + U</code> to jump to the super class or <code class="highlighter-rouge">⌘ + ⌥ + B</code> to go to a sub class? It even works for method overrides!</p>
+
+<figure>
+  <img src="https://jeroenmols.com/img/blog/androidstudioshortcuts/supersubclass.gif" alt="Navigate between super- and subclasses" />
+  <figcaption>Navigate between super- and subclasses</figcaption>
+</figure>
+
+<p>Finally, <code class="highlighter-rouge">^ + H</code> dumps out the entire class hierarchy in a handy overview.</p>
+
+<figure>
+  <img src="https://jeroenmols.com/img/blog/androidstudioshortcuts/classhierarchy.png" alt="Show class hierarchy with ^ + H" />
+  <figcaption>Show class hierarchy with ^ + H</figcaption>
+</figure>
+
+<h2 id="structure-of-classes">Structure of classes</h2>
+<p>Use <code class="highlighter-rouge">⌘ + F12</code> to show all methods and properties of a class. Like any other view in Android Studio, even this one is searchable.</p>
+
+<figure>
+  <img src="https://jeroenmols.com/img/blog/androidstudioshortcuts/showmethods.gif" alt="Show class methods and properties with ⌘ + F12" />
+  <figcaption>Show class methods and properties with ⌘ + F12</figcaption>
+</figure>
+
+<p>Come across a member in code? With <code class="highlighter-rouge">⌘ + B</code> you can immediately jump to where it is defined. Tapping <code class="highlighter-rouge">⌘ + B</code> a second time shows you where it is used.</p>
+
+<figure>
+  <img src="https://jeroenmols.com/img/blog/androidstudioshortcuts/gotodeclaration.gif" alt="Analyze class usages with ⌘ + ⌥ + F7" />
+  <figcaption>Go to declaration and show usages with ⌘ + B</figcaption>
+</figure>
+
+<p>Be it a failing build due to multiple errors, or you scroll away from broken code under development. Compilation errors are common and can be hard to navigate to.</p>
+
+<p>Using <code class="highlighter-rouge">F2</code> and <code class="highlighter-rouge">⇧ + F2</code>, however, will let you jump back and forth between all errors in a file. If there are none, those keys will do the same for all warnings.</p>
+
+<figure>
+  <img src="https://jeroenmols.com/img/blog/androidstudioshortcuts/nexterror.gif" alt="Navigate between errors/warnings in a file" />
+  <figcaption>Navigate between errors/warnings in a file</figcaption>
+</figure>
+
+<p>Know the exact line number? Then <code class="highlighter-rouge">⌘ + L</code> is the shortcut for you.</p>
+
+<figure>
+  <img src="https://jeroenmols.com/img/blog/androidstudioshortcuts/gotoline.gif" alt="Go to a specific line in a file with ⌘ + L" />
+  <figcaption>Go to a specific line in a file with ⌘ + L</figcaption>
+</figure>
+
+<h2 id="history">History</h2>
+<p>With all these new code navigation superpowers, there is one critical element missing: how do you find your way back to where you started?</p>
+
+<p>One of the well-known options is to use <code class="highlighter-rouge">⌘ + E</code> to list your recently opened files.</p>
+
+<figure>
+  <img src="https://jeroenmols.com/img/blog/androidstudioshortcuts/recentnavigation.gif" alt="List recently opened files with ⌘ + E" />
+  <figcaption>List recently opened files with ⌘ + E</figcaption>
+</figure>
+
+<p>However, when clicking through code you can also use <code class="highlighter-rouge">⌘ + [</code> and <code class="highlighter-rouge">⌘ + ]</code> to take a step back or forth respectively.</p>
+
+<figure>
+  <img src="https://jeroenmols.com/img/blog/androidstudioshortcuts/previousnextnavigation.gif" alt="Navigate between previous visited code" />
+  <figcaption>Navigate between previous visited code</figcaption>
+</figure>
+
+<p>And finally, if you just want to continue coding where you left off, use <code class="highlighter-rouge">⌘ + ⇧ + backspace</code> to jump to where you made the last code edit.</p>
+
+<figure>
+  <img src="https://jeroenmols.com/img/blog/androidstudioshortcuts/previousedit.gif" alt="Navigate to the last edited code with ⌘ + ⇧ + backspace" />
+  <figcaption>Navigate to the last edited code with ⌘ + ⇧ + backspace</figcaption>
+</figure>
+
+<h2 id="wrap-up">Wrap up</h2>
+<p>This was part one of my series to get the most out of Android Studio. If you’re interested in the next posts it’s probably best to follow me on <span><a href="https://twitter.com/molsjeroen?source=proandroidstudio-codenavigation2018" class="ga-link" target="_blank">Twitter</a></span>
+.</p>
+
+<p>Special thanks to Antonio Leiva, all gifs are made with code from his open source project <a href="https://github.com/antoniolg/Bandhook-Kotlin">Bankhook</a>.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="https://jeroenmols.com/tags/androidstudio" class="page__taxonomy-item" rel="tag">androidstudio</a><span class="sep">, </span>
+    
+      
+      
+      <a href="https://jeroenmols.com/tags/shortcuts" class="page__taxonomy-item" rel="tag">shortcuts</a><span class="sep">, </span>
+    
+      
+      
+      <a href="https://jeroenmols.com/tags/tools" class="page__taxonomy-item" rel="tag">tools</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="https://jeroenmols.com/categories/blog" class="page__taxonomy-item" rel="tag">blog</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-02-22T00:00:00+01:00">February 22, 2018</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=Pro+Android+Studio+-+Code+navigation%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2018%2F02%2F22%2Fandroidstudioshortcuts%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2018%2F02%2F22%2Fandroidstudioshortcuts%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://plus.google.com/share?url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2018%2F02%2F22%2Fandroidstudioshortcuts%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fab fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2018%2F02%2F22%2Fandroidstudioshortcuts%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      <section class="page__share">
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bottom-blog-responsive -->
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-9854541518226004"
+       data-ad-slot="4086741379"
+       data-ad-format="auto"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="https://jeroenmols.com/blog/2018/01/01/yearinreview/" class="pagination--pager" title="Year in review 2017
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a Comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/yearinreview17/yearinreview17.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2018/01/01/yearinreview/" rel="permalink">Year in review 2017
+</a>
+        </h2>
+        <h3 class="archive__date">01 Jan 2018</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2018/01/01/yearinreview/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">For the first time ever I have my year in review ready in time.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/macosupdate/macosupdate.png)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2017/12/26/macosupdate/" rel="permalink">MacOS update could not be installed
+</a>
+        </h2>
+        <h3 class="archive__date">26 Dec 2017</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2017/12/26/macosupdate/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Tonight after a routine MacOS update (10.13.2) disaster struck and my Mac got stuck in an update boot loop. After a few hours of panic, reading online and trial &amp; error I managed to resolve it. Here’s what I did...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/fragmentback/fragmentback.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2017/12/18/fragmentback/" rel="permalink">The curious case of haunting fragments
+</a>
+        </h2>
+        <h3 class="archive__date">18 Dec 2017</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2017/12/18/fragmentback/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Do Fragment transactions and back navigation have no more secrets for you? Well then you should try to solve the mystery in this post, where a Fragment (literally) came to haunt us…
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/coverageproblem/coverageproblem.png)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2017/11/28/coveragproblem/" rel="permalink">The 100% code coverage problem
+</a>
+        </h2>
+        <h3 class="archive__date">28 Nov 2017</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2017/11/28/coveragproblem/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">While you may be tempted to strive for 100% code coverage, that would be a horrible idea. Besides some code being hard to test, the concept of coverage is actually fundamentally limited.
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+    <div id="results" class="results"></div></div>
+      </div>
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+      <li><a href="https://twitter.com/molsjeroen"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+    
+    
+    
+      <li><a href="https://github.com/JeroenMols"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    
+    <li><a href="atom.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2018 Jeroen Mols. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="https://jeroenmols.com/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+
+
+
+
+<script src="https://jeroenmols.com/assets/js/lunr/lunr.min.js"></script>
+<script src="https://jeroenmols.com/assets/js/lunr/lunr-store.js"></script>
+<script src="https://jeroenmols.com/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-63356566-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://jeroenmols.com/blog/2018/02/22/androidstudioshortcuts/";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = "/blog/2018/02/22/androidstudioshortcuts"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jeroenmols.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+  </body>
+</html>
