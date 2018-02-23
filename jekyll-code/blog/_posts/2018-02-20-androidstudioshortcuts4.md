@@ -18,3 +18,7 @@ Being a skillful Android developer means getting the most out of the tools at yo
 other
 cmd shift V -> paste from memory
 cmd shift enter -> smart complete your sentence
+alt enter
+cmd shift A -> search any option
+
+how to have fn keys enabled in AS
