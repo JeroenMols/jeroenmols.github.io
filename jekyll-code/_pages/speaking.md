@@ -10,11 +10,14 @@ header:
 I'm always eager to share my technical knowledge with fellow developers. Don't hesitate to <a href="https://twitter.com/molsjeroen" target="blank">contact me on Twitter</a> if you would like me to speak at your event!
 
 Upcoming talks:
+- Droidcon Italy - The big rewrite
+- Android Makers Paris - The big rewrite
 
-- Philips Research - Deep into the IoT trenches: how to build a connected product
+
+2018:
+- Philips Research - [Deep into the IoT trenches: how to build a connected product](https://speakerdeck.com/jeroenmols/deep-into-the-iot-trenches-how-to-build-a-connected-product)
 
 2017:
-
 - Devoxx - [Deep into the IoT trenches: how to build a connected product](https://speakerdeck.com/jeroenmols/deep-into-the-iot-trenches-how-to-build-a-connected-product)
 - Droidcon UK - [Deep into the IoT trenches: how to build a connected product](https://speakerdeck.com/jeroenmols/deep-into-the-iot-trenches-how-to-build-a-connected-product)
 - Dutch Android User Group - [Migrating to Android Studio 3.0](https://speakerdeck.com/jeroenmols/migrating-to-android-studio-3-dot-0)
@@ -23,7 +26,7 @@ Upcoming talks:
 - Mobel, June 14th - [Lessons learned building connected IoT products](https://speakerdeck.com/jeroenmols/deep-into-the-iot-trenches-how-to-build-a-connected-product)
 - Devoxx UK - [Deep into the IoT trenches: how to build a connected product](https://speakerdeck.com/jeroenmols/deep-into-the-iot-trenches-how-to-build-a-connected-product)
 - Dutch Android User Group - [Testing made sweet with a Mockito](https://speakerdeck.com/jeroenmols/testing-made-sweet-with-a-mockito-1)
-- Android Makers FR - [The ART of organizing resources](https://speakerdeck.com/jeroenmols/the-art-of-organizing-resources)
+- Android Makers Paris - [The ART of organizing resources](https://speakerdeck.com/jeroenmols/the-art-of-organizing-resources)
 
 2016:
 
