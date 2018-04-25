@@ -31,7 +31,7 @@ I strongly suggest you look at the examples below, but a quick reference is alwa
 * `⌘ + F12`: show methods
 * `⌘ + B`: go to declaration
 * `F2`: next error/warning
-* `⇧ +F2`: previous error/warning
+* `⇧ + F2`: previous error/warning
 * `⌘ + L`: go to line
 
 * `⌘ + E`: show recent files
@@ -159,4 +159,4 @@ And finally, if you just want to continue coding where you left off, use `⌘ + 
 ## Wrap up
 This was part one of my series to get the most out of Android Studio. If you're interested in the next posts it's probably best to follow me on {% include link_twitter.html %}.
 
-Special thanks to Antonio Leiva, all gifs are made with code from his open source project [Bankhook](https://github.com/antoniolg/Bandhook-Kotlin).
+Special thanks to Antonio Leiva, all gifs are made with code from his open source project [Bandhook](https://github.com/antoniolg/Bandhook-Kotlin).
