@@ -15,6 +15,12 @@ Being a skilled Android developer means getting the most out of the tools at you
 
 Therefore this series aims to be a practical guide with clear examples on how to better navigate and refactor code. It will effectively cover how I personally use Android Studio.
 
+>
+This post is part of a series with practical examples on how you to get the most out of Android Studio:
+- [Part 1: Code navigation]({{ site.baseurl }}{% link blog/_posts/2018-02-22-androidstudioshortcuts.md %})
+- [Part 2: Refactoring]({{ site.baseurl }}{% link blog/_posts/2018-04-26-androidstudioshortcuts2.md %})
+
+
 ## TL;DR
 I strongly suggest you look at the examples below, but a quick reference is always useful.
 
@@ -157,6 +163,8 @@ And finally, if you just want to continue coding where you left off, use `⌘ + 
 </figure>
 
 ## Wrap up
-This was part one of my series to get the most out of Android Studio. If you're interested in the next posts it's probably best to follow me on {% include link_twitter.html %}.
+This was part one of my series to get the most out of Android Studio, feel free to continue reading [the second part]({{ site.baseurl }}{% link blog/_posts/2018-04-26-androidstudioshortcuts2.md %}).
+
+If you've made it this far you should probably follow me on {% include link_twitter.html %}.
 
 Special thanks to Antonio Leiva, all gifs are made with code from his open source project [Bandhook](https://github.com/antoniolg/Bandhook-Kotlin).
