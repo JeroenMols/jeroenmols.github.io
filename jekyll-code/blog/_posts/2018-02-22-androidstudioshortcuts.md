@@ -27,7 +27,7 @@ I strongly suggest you look at the examples below, but a quick reference is alwa
 * `⌘ + O`: find class
 * `⌘ + ⌥ + O`: find symbol
 * `⌘ + ⇧ + O`: find file
-* `⌘ + T`: go to/from test
+* `⇧ + ⌘ + T`: go to/from test
 
 * `⌘ + ⌥ + F7`: show usages
 * `⌘ + U`: jump to superclass/defining method
@@ -65,7 +65,7 @@ Searched for classes but needed a file? Just hit `⌘ + ⇧ + O` while open to d
   <figcaption>Open classes, symbols or files</figcaption>
 </figure>
 
-Already found the class you were looking for, but quickly want to go to the test? Go to the class declaration and use `⌘ + T`. It even suggests to create a new test and also works from the test.
+Already found the class you were looking for, but quickly want to go to the test? Go to the class declaration and use `⇧ + ⌘ + T`. It even suggests to create a new test and also works from the test.
 
 <figure>
   <img src="{{ site.url }}{{ site.baseurl }}/img/blog/androidstudioshortcuts/navigatetest.gif"
