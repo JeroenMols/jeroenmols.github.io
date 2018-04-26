@@ -148,4 +148,9 @@ var store = [{
         "excerpt":"Struggling to navigate your code? Getting lost in deep inheritance hierarchies? Hard time figuring out relations between classes? Let’s learn how to navigate code in Android Studio like a pro.Being a skilled Android developer means getting the most out of the tools at your disposal. While there are plenty resources...","categories": ["blog"],
         "tags": ["androidstudio","tools","shortcuts"],
         "url": "https://jeroenmols.com/blog/2018/02/22/androidstudioshortcuts/",
-        "teaser":"https://jeroenmols.com/img/blog/androidstudioshortcuts/androidstudioshortcuts.jpg"}]
+        "teaser":"https://jeroenmols.com/img/blog/androidstudioshortcuts/androidstudioshortcuts.jpg"},{
+        "title": "Pro Android Studio - Refactoring",
+        "excerpt":"Refactoring can be tedious and easily introduce bugs. The main reason for this is the number of manual steps involved: rename, move, copy-paste,… So wouldn’t it make sense to automate this and have Android Studio do all the work for you?This post will zoom in on the most useful refactoring...","categories": ["blog"],
+        "tags": ["androidstudio","tools","shortcuts"],
+        "url": "https://jeroenmols.com/blog/2018/04/26/androidstudioshortcuts2/",
+        "teaser":"https://jeroenmols.com/img/blog/androidstudioshortcuts2/androidstudioshortcuts2.jpg"}]

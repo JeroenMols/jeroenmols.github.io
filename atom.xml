@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle>
- <updated>2018-03-15T13:58:30+01:00</updated>
+ <updated>2018-04-27T01:47:19+02:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,31 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>Pro Android Studio - Refactoring</title>
+   <link href="https://jeroenmols.com/blog/2018/04/26/androidstudioshortcuts2/"/>
+   <updated>2018-04-26T00:00:00+02:00</updated>
+   <id>https://jeroenmols.com/blog/2018/04/26/androidstudioshortcuts2</id>
+   <content type="html"><![CDATA[
+     
+     <p>Refactoring can be tedious and easily introduce bugs. The main reason for this is the number of manual steps involved: rename, move, copy-paste,… So wouldn’t it make sense to automate this and have Android Studio do all the work for you?</p>
+
+<p>This post will zoom in on the most useful refactoring options of Android Studio. Enabling you to refactor more confidently, introduce fewer bugs and increase overall quality as also variables, documentation, etc. will be updated.</p>
+
+<blockquote>
+
+  <p>This post is part of a series with practical examples on how you to get the most out of Android Studio:</p>
+  <ul>
+    <li><a href="/blog/2018/02/22/androidstudioshortcuts/">Part 1: Code navigation</a></li>
+    <li><a href="/blog/2018/04/26/androidstudioshortcuts2/">Part 2: Refactoring</a></li>
+  </ul>
+</blockquote>
+
+
+     <a href="https://jeroenmols.com/blog/2018/04/26/androidstudioshortcuts2/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>Pro Android Studio - Code navigation</title>
@@ -29,6 +54,15 @@
 <p>Being a skilled Android developer means getting the most out of the tools at your disposal. While there are plenty resources listing shortcuts, it’s often hard to make sense and master those.</p>
 
 <p>Therefore this series aims to be a practical guide with clear examples on how to better navigate and refactor code. It will effectively cover how I personally use Android Studio.</p>
+
+<blockquote>
+
+  <p>This post is part of a series with practical examples on how you to get the most out of Android Studio:</p>
+  <ul>
+    <li><a href="/blog/2018/02/22/androidstudioshortcuts/">Part 1: Code navigation</a></li>
+    <li><a href="/blog/2018/04/26/androidstudioshortcuts2/">Part 2: Refactoring</a></li>
+  </ul>
+</blockquote>
 
 
      <a href="https://jeroenmols.com/blog/2018/02/22/androidstudioshortcuts/">Continue reading</p>]]>
