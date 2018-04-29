@@ -162,9 +162,9 @@ And finally, if you just want to continue coding where you left off, use `⌘ + 
   <figcaption>Navigate to the last edited code with ⌘ + ⇧ + backspace</figcaption>
 </figure>
 
+> If you've made it this far you should probably follow me on {% include link_twitter.html %}.
+
 ## Wrap up
 This was part one of my series to get the most out of Android Studio, feel free to continue reading [the second part]({{ site.baseurl }}{% link blog/_posts/2018-04-26-androidstudioshortcuts2.md %}).
-
-If you've made it this far you should probably follow me on {% include link_twitter.html %}.
 
 Special thanks to Antonio Leiva, all gifs are made with code from his open source project [Bandhook](https://github.com/antoniolg/Bandhook-Kotlin).
