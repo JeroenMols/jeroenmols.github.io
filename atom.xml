@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle>
- <updated>2018-05-04T07:50:13+02:00</updated>
+ <updated>2018-07-16T23:48:56+02:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,32 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>Pro Android Studio - Taming the interface</title>
+   <link href="https://jeroenmols.com/blog/2018/07/16/androidstudioshortcuts3/"/>
+   <updated>2018-07-16T00:00:00+02:00</updated>
+   <id>https://jeroenmols.com/blog/2018/07/16/androidstudioshortcuts3</id>
+   <content type="html"><![CDATA[
+     
+     <p>Not only can anything in Android Studio be controlled with a keyboard shortcut, it offers many more simple tricks to make you more productive.</p>
+
+<p>To conclude this series, we will look at how you can control the interface, invoke every (!) action and point you to even more advanced features.</p>
+
+<blockquote>
+
+  <p>This post is part of a series with practical examples on how you to get the most out of Android Studio:</p>
+  <ul>
+    <li><a href="/blog/2018/02/22/androidstudioshortcuts/">Part 1: Code navigation</a></li>
+    <li><a href="/blog/2018/04/26/androidstudioshortcuts2/">Part 2: Refactoring</a></li>
+    <li><a href="/blog/2018/07/16/androidstudioshortcuts3/">Part 3: Taming the interface</a></li>
+  </ul>
+</blockquote>
+
+
+     <a href="https://jeroenmols.com/blog/2018/07/16/androidstudioshortcuts3/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>Pro Android Studio - Refactoring</title>
@@ -34,6 +60,7 @@
   <ul>
     <li><a href="/blog/2018/02/22/androidstudioshortcuts/">Part 1: Code navigation</a></li>
     <li><a href="/blog/2018/04/26/androidstudioshortcuts2/">Part 2: Refactoring</a></li>
+    <li><a href="/blog/2018/07/16/androidstudioshortcuts3/">Part 3: Taming the interface</a></li>
   </ul>
 </blockquote>
 
@@ -61,6 +88,7 @@
   <ul>
     <li><a href="/blog/2018/02/22/androidstudioshortcuts/">Part 1: Code navigation</a></li>
     <li><a href="/blog/2018/04/26/androidstudioshortcuts2/">Part 2: Refactoring</a></li>
+    <li><a href="/blog/2018/07/16/androidstudioshortcuts3/">Part 3: Taming the interface</a></li>
   </ul>
 </blockquote>
 

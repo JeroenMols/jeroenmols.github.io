@@ -1,4 +1,123 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2018-05-04T07:50:13+02:00</updated><id>https://jeroenmols.com/</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Pro Android Studio - Refactoring</title><link href="https://jeroenmols.com/blog/2018/04/26/androidstudioshortcuts2/" rel="alternate" type="text/html" title="Pro Android Studio - Refactoring" /><published>2018-04-26T00:00:00+02:00</published><updated>2018-04-26T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2018/04/26/androidstudioshortcuts2</id><content type="html" xml:base="https://jeroenmols.com/blog/2018/04/26/androidstudioshortcuts2/">&lt;p&gt;Refactoring can be tedious and easily introduce bugs. The main reason for this is the number of manual steps involved: rename, move, copy-paste,… So wouldn’t it make sense to automate this and have Android Studio do all the work for you?&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2018-07-16T23:48:56+02:00</updated><id>https://jeroenmols.com/</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Pro Android Studio - Taming the interface</title><link href="https://jeroenmols.com/blog/2018/07/16/androidstudioshortcuts3/" rel="alternate" type="text/html" title="Pro Android Studio - Taming the interface" /><published>2018-07-16T00:00:00+02:00</published><updated>2018-07-16T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2018/07/16/androidstudioshortcuts3</id><content type="html" xml:base="https://jeroenmols.com/blog/2018/07/16/androidstudioshortcuts3/">&lt;p&gt;Not only can anything in Android Studio be controlled with a keyboard shortcut, it offers many more simple tricks to make you more productive.&lt;/p&gt;
+
+&lt;p&gt;To conclude this series, we will look at how you can control the interface, invoke every (!) action and point you to even more advanced features.&lt;/p&gt;
+
+&lt;blockquote&gt;
+
+  &lt;p&gt;This post is part of a series with practical examples on how you to get the most out of Android Studio:&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href=&quot;/blog/2018/02/22/androidstudioshortcuts/&quot;&gt;Part 1: Code navigation&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;/blog/2018/04/26/androidstudioshortcuts2/&quot;&gt;Part 2: Refactoring&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;/blog/2018/07/16/androidstudioshortcuts3/&quot;&gt;Part 3: Taming the interface&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;tldr&quot;&gt;TL;DR&lt;/h2&gt;
+&lt;p&gt;I strongly suggest you look at the examples below, but a quick reference is always useful.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌥ + number&lt;/code&gt;: open/close views&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⇧ + ⌘ + ↑&lt;/code&gt;: enlarge view&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⇧ + ⌘ + ↓&lt;/code&gt;: shrink view&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⇧ + ⌘ + →&lt;/code&gt;: enlarge side view&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⇧ + ⌘ + ←&lt;/code&gt;: shrink side view&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⇧ + ⌘ + F12&lt;/code&gt;: close all views&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⇧ + ⌘ + ]&lt;/code&gt;: next tab&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⇧ + ⌘ + [&lt;/code&gt;: previous tab&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;^ + ⇧ + →&lt;/code&gt;: text view (xml layout editing)&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;^ + ⇧ + ←&lt;/code&gt;: design view (visual layout editing)&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌥ + letter&lt;/code&gt;: invoke button&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + ⇧ + A&lt;/code&gt;: action lookup&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;taming-the-interface&quot;&gt;Taming the interface&lt;/h2&gt;
+&lt;p&gt;Using your keyboard is always more efficient than using a mouse. This is because you can make use of all your fingers at the same time + you don’t have to switch between mouse and keyboard.&lt;/p&gt;
+
+&lt;p&gt;Wouldn’t it be cool if we never have to use our mouse again?&lt;/p&gt;
+
+&lt;p&gt;First of all you can use &lt;code class=&quot;highlighter-rouge&quot;&gt;⌥ + number&lt;/code&gt; to open/close different Android Studio views (e.g. Logcat, Project view,…)&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts3/openviews.gif&quot; alt=&quot;Use `⌥ + number` to open/close different Android Studio views&quot; /&gt;
+  &lt;figcaption&gt;Use `⌥ + number` to open/close different Android Studio views&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;You can shrink/enlarge the views above using &lt;code class=&quot;highlighter-rouge&quot;&gt;⇧ + ⌘ + ↑&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;⇧ + ⌘ + ↓&lt;/code&gt; respectively,&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts3/expandshrinkviews.gif&quot; alt=&quot;Use `⇧ + ⌘ + ↑` and `⇧ + ⌘ + ↓` to shrink or enlarge views&quot; /&gt;
+  &lt;figcaption&gt;Use `⇧ + ⌘ + ↑` and `⇧ + ⌘ + ↓` to shrink or enlarge views&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Note that this will also work with &lt;code class=&quot;highlighter-rouge&quot;&gt;⇧ + ⌘ + →&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;⇧ + ⌘ + ←&lt;/code&gt; for side views.&lt;/p&gt;
+
+&lt;p&gt;Or close all views with &lt;code class=&quot;highlighter-rouge&quot;&gt;⇧ + ⌘ + F12&lt;/code&gt; to have a clutter free interface,&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts3/closeallviews.gif&quot; alt=&quot;Use `⇧ + ⌘ + F12` to close all views&quot; /&gt;
+  &lt;figcaption&gt;Use `⇧ + ⌘ + F12` to close all views&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;When you have multiple tabs open, &lt;code class=&quot;highlighter-rouge&quot;&gt;⇧ + ⌘ + [&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;⇧ + ⌘ + ]&lt;/code&gt; come in handy to cycle between tabs.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts3/closeallviews.gif&quot; alt=&quot;Use `⇧ + ⌘ + [` and `⇧ + ⌘ + ]` to cycle between tabs&quot; /&gt;
+  &lt;figcaption&gt;Use `⇧ + ⌘ + [` and `⇧ + ⌘ + ]` to cycle between tabs&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;If you’re designing layouts, you can use &lt;code class=&quot;highlighter-rouge&quot;&gt;^ + ⇧ + →&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;^ + ⇧ + ←&lt;/code&gt; to switch between design and text view.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts3/switchdesignxml.gif&quot; alt=&quot;Use `^ + ⇧ + →` and `^ + ⇧ + ←` to switch between design and text view&quot; /&gt;
+  &lt;figcaption&gt;Use `^ + ⇧ + →` and `^ + ⇧ + ←` to switch between design and text view&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;And whenever you have a dialog open you can use &lt;code class=&quot;highlighter-rouge&quot;&gt;⌥&lt;/code&gt; to highlight what letters you can press to invoke the respective buttons. E.g. in the example below &lt;code class=&quot;highlighter-rouge&quot;&gt;⌥ + R&lt;/code&gt; is used to press the replace button.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts3/controlinterface.gif&quot; alt=&quot;Use `⌥` to highlight what letters you can press to invoke the respective buttons&quot; /&gt;
+  &lt;figcaption&gt;Use `⌥` to highlight what letters you can press to invoke the respective buttons&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Note that pressing &lt;code class=&quot;highlighter-rouge&quot;&gt;⌥&lt;/code&gt; helps in a lot more situations such as in the find and replace window. (notice the subtle underline)&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts3/althighlighting.gif&quot; alt=&quot;Pressing `⌥` reveals you can use `⌥ + p` to replace the next occurrence&quot; /&gt;
+  &lt;figcaption&gt;Pressing `⌥` reveals you can use `⌥ + p` to replace the next occurrence&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h2 id=&quot;shortcut-lookup&quot;&gt;Shortcut lookup&lt;/h2&gt;
+&lt;p&gt;If there is one shortcut you should really remember, then that is &lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + ⇧ + A&lt;/code&gt;. That one allows you to invoke any Android Studio action using your keyboard.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts3/searchactions.gif&quot; alt=&quot;Use `⌘ + ⇧ + A` to search for any action.&quot; /&gt;
+  &lt;figcaption&gt;Use `⌘ + ⇧ + A` to search for any action.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Note that this also serves as a useful shortcut lookup tool. Next to every action the corresponding shortcut will be displayed (if there is one).&lt;/p&gt;
+
+&lt;h2 id=&quot;additional-reads&quot;&gt;Additional reads&lt;/h2&gt;
+&lt;p&gt;Android Studio is incredibly powerful and hence this blog post series couldn’t cover everything. However, if I piqued your interest, have a look at these references:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://kevinpelgrims.com/blog/2017/12/29/using-multicursor-in-android-studio/&quot;&gt;Using multicursor in Android studio&lt;/a&gt; by Kevin Pelgrims&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://medium.com/@geapi/permanent-function-keys-intellij-macbook-pro-w-touchbar-d6fc78781b90&quot;&gt;Permantent function keys in Android Studio with Macbook pro Touchbar&lt;/a&gt; By Georg Apitz&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://afterecho.uk/blog/structural-search-and-replace-in-android-studio.html&quot;&gt;Structural search and replace&lt;/a&gt; by Darren&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://medium.com/google-developers/writing-more-code-by-writing-less-code-with-android-studio-live-templates-244f648d17c7&quot;&gt;Android studio live templates&lt;/a&gt; by Retro Meier&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.vojtechruzicka.com/intellij-idea-tips-tricks-postfix-code-completion/&quot;&gt;Postfix code completion&lt;/a&gt; by Vojtech Ruzicka’s&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap up&lt;/h2&gt;
+&lt;p&gt;Investing time to really learn Android Studio can mean a big productivity boost. Start with &lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + ⇧ + A&lt;/code&gt;, learn the corresponding shortcuts and challenge yourself to use your mouse less.&lt;/p&gt;
+
+&lt;p&gt;This was the last part in my series to get the most out of Android Studio.&lt;/p&gt;
+
+&lt;p&gt;If you’ve made it this far you should probably follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=proandroidstudio-tamingtheinterface2018&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
+. Feel free leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="androidstudio" /><category term="tools" /><category term="shortcuts" /><category term="navigation" /><summary type="html">Not only can anything in Android Studio be controlled with a keyboard shortcut, it offers many more simple tricks to make you more productive.</summary></entry><entry><title type="html">Pro Android Studio - Refactoring</title><link href="https://jeroenmols.com/blog/2018/04/26/androidstudioshortcuts2/" rel="alternate" type="text/html" title="Pro Android Studio - Refactoring" /><published>2018-04-26T00:00:00+02:00</published><updated>2018-04-26T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2018/04/26/androidstudioshortcuts2</id><content type="html" xml:base="https://jeroenmols.com/blog/2018/04/26/androidstudioshortcuts2/">&lt;p&gt;Refactoring can be tedious and easily introduce bugs. The main reason for this is the number of manual steps involved: rename, move, copy-paste,… So wouldn’t it make sense to automate this and have Android Studio do all the work for you?&lt;/p&gt;
 
 &lt;p&gt;This post will zoom in on the most useful refactoring options of Android Studio. Enabling you to refactor more confidently, introduce fewer bugs and increase overall quality as also variables, documentation, etc. will be updated.&lt;/p&gt;
 
@@ -8,6 +127,7 @@
   &lt;ul&gt;
     &lt;li&gt;&lt;a href=&quot;/blog/2018/02/22/androidstudioshortcuts/&quot;&gt;Part 1: Code navigation&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;&lt;a href=&quot;/blog/2018/04/26/androidstudioshortcuts2/&quot;&gt;Part 2: Refactoring&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;/blog/2018/07/16/androidstudioshortcuts3/&quot;&gt;Part 3: Taming the interface&lt;/a&gt;&lt;/li&gt;
   &lt;/ul&gt;
 &lt;/blockquote&gt;
 
@@ -193,7 +313,10 @@
 &lt;h2 id=&quot;wrap-up&quot;&gt;Wrap up&lt;/h2&gt;
 &lt;p&gt;Refactoring can be tedious and easily introduce bugs. Therefore we should automate as much as we can using Android Studio.&lt;/p&gt;
 
-&lt;p&gt;This was part two of my series to get the most out of Android Studio.&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="androidstudio" /><category term="tools" /><category term="shortcuts" /><summary type="html">Refactoring can be tedious and easily introduce bugs. The main reason for this is the number of manual steps involved: rename, move, copy-paste,… So wouldn’t it make sense to automate this and have Android Studio do all the work for you?</summary></entry><entry><title type="html">Pro Android Studio - Code navigation</title><link href="https://jeroenmols.com/blog/2018/02/22/androidstudioshortcuts/" rel="alternate" type="text/html" title="Pro Android Studio - Code navigation" /><published>2018-02-22T00:00:00+01:00</published><updated>2018-02-22T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2018/02/22/androidstudioshortcuts</id><content type="html" xml:base="https://jeroenmols.com/blog/2018/02/22/androidstudioshortcuts/">&lt;p&gt;Struggling to navigate your code? Getting lost in deep inheritance hierarchies? Hard time figuring out relations between classes? Let’s learn how to navigate code in Android Studio like a pro.&lt;/p&gt;
+&lt;p&gt;This was part two of my series to get the most out of Android Studio.&lt;/p&gt;
+
+&lt;p&gt;If you’ve made it this far you should probably follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=proandroidstudio-refactoring2018&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
+. Feel free leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="androidstudio" /><category term="tools" /><category term="shortcuts" /><summary type="html">Refactoring can be tedious and easily introduce bugs. The main reason for this is the number of manual steps involved: rename, move, copy-paste,… So wouldn’t it make sense to automate this and have Android Studio do all the work for you?</summary></entry><entry><title type="html">Pro Android Studio - Code navigation</title><link href="https://jeroenmols.com/blog/2018/02/22/androidstudioshortcuts/" rel="alternate" type="text/html" title="Pro Android Studio - Code navigation" /><published>2018-02-22T00:00:00+01:00</published><updated>2018-02-22T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2018/02/22/androidstudioshortcuts</id><content type="html" xml:base="https://jeroenmols.com/blog/2018/02/22/androidstudioshortcuts/">&lt;p&gt;Struggling to navigate your code? Getting lost in deep inheritance hierarchies? Hard time figuring out relations between classes? Let’s learn how to navigate code in Android Studio like a pro.&lt;/p&gt;
 
 &lt;p&gt;Being a skilled Android developer means getting the most out of the tools at your disposal. While there are plenty resources listing shortcuts, it’s often hard to make sense and master those.&lt;/p&gt;
 
@@ -205,6 +328,7 @@
   &lt;ul&gt;
     &lt;li&gt;&lt;a href=&quot;/blog/2018/02/22/androidstudioshortcuts/&quot;&gt;Part 1: Code navigation&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;&lt;a href=&quot;/blog/2018/04/26/androidstudioshortcuts2/&quot;&gt;Part 2: Refactoring&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;/blog/2018/07/16/androidstudioshortcuts3/&quot;&gt;Part 3: Taming the interface&lt;/a&gt;&lt;/li&gt;
   &lt;/ul&gt;
 &lt;/blockquote&gt;
 
@@ -350,6 +474,9 @@
 
 &lt;h2 id=&quot;wrap-up&quot;&gt;Wrap up&lt;/h2&gt;
 &lt;p&gt;This was part one of my series to get the most out of Android Studio, feel free to continue reading &lt;a href=&quot;/blog/2018/04/26/androidstudioshortcuts2/&quot;&gt;the second part&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;If you’ve made it this far you should probably follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=proandroidstudio-codenavigation2018&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
+. Feel free leave a comment below!&lt;/p&gt;
 
 &lt;p&gt;Special thanks to Antonio Leiva, all gifs are made with code from his open source project &lt;a href=&quot;https://github.com/antoniolg/Bandhook-Kotlin&quot;&gt;Bandhook&lt;/a&gt;.&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="androidstudio" /><category term="tools" /><category term="shortcuts" /><summary type="html">Struggling to navigate your code? Getting lost in deep inheritance hierarchies? Hard time figuring out relations between classes? Let’s learn how to navigate code in Android Studio like a pro.</summary></entry><entry><title type="html">Year in review 2017</title><link href="https://jeroenmols.com/blog/2018/01/01/yearinreview/" rel="alternate" type="text/html" title="Year in review 2017" /><published>2018-01-01T00:00:00+01:00</published><updated>2018-01-01T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2018/01/01/yearinreview</id><content type="html" xml:base="https://jeroenmols.com/blog/2018/01/01/yearinreview/">&lt;p&gt;For the first time ever I have my &lt;code class=&quot;highlighter-rouge&quot;&gt;year in review&lt;/code&gt; ready in time.&lt;/p&gt;
 
@@ -974,100 +1101,4 @@ Fabio Collini&lt;/li&gt;
 &lt;p&gt;Thanks to Java 8 features, a lot of code can be simplified into lambda’s or method references. Android Studio auto convert is the easiest way to start learning these features.&lt;/p&gt;
 
 &lt;p&gt;If you’ve made it this far you should probably follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=embracingjava8languagefeatures2017&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
-. Feel free leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="android" /><category term="tools" /><category term="java" /><summary type="html">For years Android developers have been limited to Java 6 features. While RetroLambda or the experimental Jack toolchain would help, proper support from Google was notably missing.</summary></entry><entry><title type="html">Implementation vs API dependency</title><link href="https://jeroenmols.com/blog/2017/06/14/androidstudio3/" rel="alternate" type="text/html" title="Implementation vs API dependency" /><published>2017-06-14T00:00:00+02:00</published><updated>2017-06-14T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2017/06/14/androidstudio3</id><content type="html" xml:base="https://jeroenmols.com/blog/2017/06/14/androidstudio3/">&lt;p&gt;Upgrading to Android studio 3.0 territory will make building multi-module projects a lot faster, but it also means a breaking Gradle plugin API change unfortunately.&lt;/p&gt;
-
-&lt;p&gt;This blog post will detail all benefits of this change and guide you through the upgrade process.&lt;/p&gt;
-
-&lt;h2 id=&quot;problem-situation&quot;&gt;Problem situation&lt;/h2&gt;
-&lt;p&gt;To understand the limitations of the old Gradle plugin 2.0 build system, consider the following project with multiple layers of modules:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudio3/project.png&quot; alt=&quot;Base project with multiple modules&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Looking at the bottom most module, there are basically two different changes you could make:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Implementation change: internal change, doesn’t modify the external interface of the module&lt;/li&gt;
-  &lt;li&gt;Application binary interface (ABI) change: modify the external interface of the module&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Note: In what follows, all recompiled modules will be highlighted in red.&lt;/p&gt;
-
-&lt;h3 id=&quot;implementation-change&quot;&gt;Implementation change&lt;/h3&gt;
-&lt;p&gt;Since the external interface of the module doesn’t change, Gradle will only recompile that module. All of its consuming modules will be left untouched.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudio3/project_implementation.png&quot; alt=&quot;Implementation change with Gradle 2.0&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;There is no problem in this scenario.&lt;/p&gt;
-
-&lt;h3 id=&quot;abi-change&quot;&gt;ABI change&lt;/h3&gt;
-&lt;p&gt;When the external interface of a module changes however, also the modules consuming that module directly need to be recompiled.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudio3/project_gradle_2.0_step1.png&quot; alt=&quot;Code change (ABI) with Gradle 2.0 compile dependencies&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;But those modules could be exposing parts of the bottom module directly through their own interface! So to be completely safe, they would also need to be recompiled. Same for the ones using those… and those… and…&lt;/p&gt;
-
-&lt;p&gt;Hence Gradle would effectively need to recompile all modules.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudio3/project_gradle_2.0_final.png&quot; alt=&quot;Code change (ABI) with Gradle 2.0 compile dependencies&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Now we do have a big problem: one code change causes all modules to be recompiled. The root cause for this is that Gradle doesn’t know if you leak the interface of a module through another one or not.&lt;/p&gt;
-
-&lt;h2 id=&quot;android-gradle-plugin-30-to-the-rescue&quot;&gt;Android Gradle plugin 3.0 to the rescue&lt;/h2&gt;
-&lt;p&gt;The latest Android Gradle plugin now requires you to explicitly define if you leak a module’s interface. Based on that it can make the right choice on what it should recompile.&lt;/p&gt;
-
-&lt;p&gt;As such the &lt;code class=&quot;highlighter-rouge&quot;&gt;compile&lt;/code&gt; dependency has been deprecated and replaced by two new ones:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;api&lt;/code&gt;: you leak the interface of this module through your own interface, meaning exactly the same as the old &lt;code class=&quot;highlighter-rouge&quot;&gt;compile&lt;/code&gt; dependency&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;implementation&lt;/code&gt;: you only use this module internally and does not leak it through your interface&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;So now you can explicitly tell Gradle to recompile a module if the interface of a used module changes or not.&lt;/p&gt;
-
-&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;// recompile this module and all modules using this one&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;// when legofy interface is modified&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;api&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;project&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;':legofy'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-
-  &lt;span class=&quot;c1&quot;&gt;// only recompile this module when landscapevideocamera interface is modified&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;implementation&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;project&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;':landscapevideocamera:1.0.0'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;migration-guide&quot;&gt;Migration guide&lt;/h3&gt;
-&lt;p&gt;In theory you can simply replace all &lt;code class=&quot;highlighter-rouge&quot;&gt;compile&lt;/code&gt; dependencies with &lt;code class=&quot;highlighter-rouge&quot;&gt;api&lt;/code&gt; dependencies, but that would still cause everything to be recompiled:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudio3/project_gradle_2.0_final.png&quot; alt=&quot;Code change (ABI) with Gradle 3.0 api dependencies&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;So better approach is to replace all &lt;code class=&quot;highlighter-rouge&quot;&gt;compile&lt;/code&gt; dependencies with &lt;code class=&quot;highlighter-rouge&quot;&gt;implementation&lt;/code&gt; dependencies. And only where you leak a module’s interface, you should use &lt;code class=&quot;highlighter-rouge&quot;&gt;api&lt;/code&gt;. That should cause a lot less recompilation.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudio3/project_gradle_3.0.png&quot; alt=&quot;Code change (ABI) with Gradle 3.0 implementation dependencies&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Hopefully, this clarifies the ambiguity between &lt;code class=&quot;highlighter-rouge&quot;&gt;api&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;implementation&lt;/code&gt;, as the official &lt;a href=&quot;https://developer.android.com/studio/preview/features/new-android-plugin-migration.html#new_configurations&quot;&gt;migration guide&lt;/a&gt; is quite cryptic.&lt;/p&gt;
-
-&lt;h3 id=&quot;other-dependency-configurations&quot;&gt;Other dependency configurations&lt;/h3&gt;
-&lt;p&gt;As there was already a breaking change, the team also made use of the opportunity to finally give the other configurations proper names:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;provided&lt;/code&gt; configuration is now &lt;code class=&quot;highlighter-rouge&quot;&gt;compileOnly&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;apk&lt;/code&gt; configuration is now &lt;code class=&quot;highlighter-rouge&quot;&gt;runtimeOnly&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Just like before you can also combine these with your build variants: &lt;code class=&quot;highlighter-rouge&quot;&gt;debugApi&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;testImplementation&lt;/code&gt;,…&lt;/p&gt;
-
-&lt;h2 id=&quot;other-migration-items&quot;&gt;Other migration items&lt;/h2&gt;
-&lt;p&gt;Android Studio 3.0 packs tons of other improvements that have finally been addressed. My favorites are:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;all Google dependencies are available via an online Maven repository&lt;/li&gt;
-  &lt;li&gt;current build variant can now be passed through to your libraries, removing the need for &lt;code class=&quot;highlighter-rouge&quot;&gt;publishNonDefault true&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;…&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;For more information have a look at the complete &lt;a href=&quot;https://developer.android.com/studio/preview/features/new-android-plugin-migration.html&quot;&gt;migration guide&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
-&lt;p&gt;To build multi-module projects faster, the Android Gradle plugin needed a breaking API change. Always try to use the &lt;code class=&quot;highlighter-rouge&quot;&gt;implementation&lt;/code&gt; dependency as this will cause fewer modules to be recompiled.&lt;/p&gt;
-
-&lt;p&gt;As always you can reach me &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=implementationvsapidependency2017&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;@molsjeroen&lt;/a&gt;&lt;/span&gt;
- on Twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="android" /><category term="tools" /><category term="gradle" /><summary type="html">Upgrading to Android studio 3.0 territory will make building multi-module projects a lot faster, but it also means a breaking Gradle plugin API change unfortunately.</summary></entry></feed>
+. Feel free leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="android" /><category term="tools" /><category term="java" /><summary type="html">For years Android developers have been limited to Java 6 features. While RetroLambda or the experimental Jack toolchain would help, proper support from Google was notably missing.</summary></entry></feed>

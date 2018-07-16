@@ -153,4 +153,9 @@ var store = [{
         "excerpt":"Refactoring can be tedious and easily introduce bugs. The main reason for this is the number of manual steps involved: rename, move, copy-paste,… So wouldn’t it make sense to automate this and have Android Studio do all the work for you? This post will zoom in on the most useful...","categories": ["blog"],
         "tags": ["androidstudio","tools","shortcuts"],
         "url": "https://jeroenmols.com/blog/2018/04/26/androidstudioshortcuts2/",
-        "teaser":"https://jeroenmols.com/img/blog/androidstudioshortcuts2/androidstudioshortcuts2.jpg"}]
+        "teaser":"https://jeroenmols.com/img/blog/androidstudioshortcuts2/androidstudioshortcuts2.jpg"},{
+        "title": "Pro Android Studio - Taming the interface",
+        "excerpt":"Not only can anything in Android Studio be controlled with a keyboard shortcut, it offers many more simple tricks to make you more productive. To conclude this series, we will look at how you can control the interface, invoke every (!) action and point you to even more advanced features....","categories": ["blog"],
+        "tags": ["androidstudio","tools","shortcuts","navigation"],
+        "url": "https://jeroenmols.com/blog/2018/07/16/androidstudioshortcuts3/",
+        "teaser":"https://jeroenmols.com/img/blog/androidstudioshortcuts3/androidstudioshortcuts3.jpg"}]
