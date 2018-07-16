@@ -17,6 +17,7 @@ This post will zoom in on the most useful refactoring options of Android Studio.
 This post is part of a series with practical examples on how you to get the most out of Android Studio:
 - [Part 1: Code navigation]({{ site.baseurl }}{% link blog/_posts/2018-02-22-androidstudioshortcuts.md %})
 - [Part 2: Refactoring]({{ site.baseurl }}{% link blog/_posts/2018-04-26-androidstudioshortcuts2.md %})
+- [Part 3: Taming the interface]({{ site.baseurl }}{% link blog/_posts/2018-07-16-androidstudioshortcuts3.md %})
 
 
 ## TL;DR
@@ -210,3 +211,5 @@ Even better: this procedure is 100% safe!!! This is because we've offloaded all 
 Refactoring can be tedious and easily introduce bugs. Therefore we should automate as much as we can using Android Studio.
 
 This was part two of my series to get the most out of Android Studio.
+
+If you've made it this far you should probably follow me on {% include link_twitter.html %}. Feel free leave a comment below!
