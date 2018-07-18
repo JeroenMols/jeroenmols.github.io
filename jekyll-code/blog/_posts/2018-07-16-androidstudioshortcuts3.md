@@ -73,7 +73,7 @@ Or close all views with `⇧ + ⌘ + F12` to have a clutter free interface,
 When you have multiple tabs open, `⇧ + ⌘ + [` and `⇧ + ⌘ + ]` come in handy to cycle between tabs.
 
 <figure>
-  <img src="{{ site.url }}{{ site.baseurl }}/img/blog/androidstudioshortcuts3/closeallviews.gif"
+  <img src="{{ site.url }}{{ site.baseurl }}/img/blog/androidstudioshortcuts3/changetabs.gif"
        alt="Use `⇧ + ⌘ + [` and `⇧ + ⌘ + ]` to cycle between tabs"/>
   <figcaption>Use `⇧ + ⌘ + [` and `⇧ + ⌘ + ]` to cycle between tabs</figcaption>
 </figure>
