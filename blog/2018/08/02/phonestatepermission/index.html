@@ -9,35 +9,35 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Pro Android Studio - Taming the interface - Jeroen Mols</title>
-<meta name="description" content="Not only can anything in Android Studio be controlled with a keyboard shortcut, it offers many more simple tricks to make you more productive.">
+<!-- begin _includes/seo.html --><title>How dangerous permissions sneak into apps - Jeroen Mols</title>
+<meta name="description" content="This is a post-mortem where the very dangerous permission, READ_PHONE_STATE, unintentionally sneaked into our app. Here’s how this could happen, how we debugged and finally how we solved it.">
 
 
 
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en">
 <meta property="og:site_name" content="Jeroen Mols">
-<meta property="og:title" content="Pro Android Studio - Taming the interface">
-<meta property="og:url" content="https://jeroenmols.com/blog/2018/07/16/androidstudioshortcuts3/">
+<meta property="og:title" content="How dangerous permissions sneak into apps">
+<meta property="og:url" content="https://jeroenmols.com/blog/2018/08/02/phonestatepermission/">
 
 
-  <meta property="og:description" content="Not only can anything in Android Studio be controlled with a keyboard shortcut, it offers many more simple tricks to make you more productive.">
+  <meta property="og:description" content="This is a post-mortem where the very dangerous permission, READ_PHONE_STATE, unintentionally sneaked into our app. Here’s how this could happen, how we debugged and finally how we solved it.">
 
 
 
-  <meta property="og:image" content="https://jeroenmols.com/img/blog/androidstudioshortcuts3/androidstudioshortcuts3.jpg">
+  <meta property="og:image" content="https://jeroenmols.com/img/blog/phonestatepermission/phonestatepermission.jpg">
 
 
 
   <meta name="twitter:site" content="@molsjeroen">
-  <meta name="twitter:title" content="Pro Android Studio - Taming the interface">
-  <meta name="twitter:description" content="Not only can anything in Android Studio be controlled with a keyboard shortcut, it offers many more simple tricks to make you more productive.">
-  <meta name="twitter:url" content="https://jeroenmols.com/blog/2018/07/16/androidstudioshortcuts3/">
+  <meta name="twitter:title" content="How dangerous permissions sneak into apps">
+  <meta name="twitter:description" content="This is a post-mortem where the very dangerous permission, READ_PHONE_STATE, unintentionally sneaked into our app. Here’s how this could happen, how we debugged and finally how we solved it.">
+  <meta name="twitter:url" content="https://jeroenmols.com/blog/2018/08/02/phonestatepermission/">
 
   
     <meta name="twitter:card" content="summary">
     
-      <meta name="twitter:image" content="https://jeroenmols.com/img/blog/androidstudioshortcuts3/androidstudioshortcuts3.jpg">
+      <meta name="twitter:image" content="https://jeroenmols.com/img/blog/phonestatepermission/phonestatepermission.jpg">
     
   
 
@@ -45,7 +45,7 @@
 
 
 
-  <meta property="article:published_time" content="2018-07-16T00:00:00+02:00">
+  <meta property="article:published_time" content="2018-08-02T00:00:00+02:00">
 
 
 
@@ -56,7 +56,7 @@
   
 
 
-<link rel="canonical" href="https://jeroenmols.com/blog/2018/07/16/androidstudioshortcuts3/">
+<link rel="canonical" href="https://jeroenmols.com/blog/2018/08/02/phonestatepermission/">
 
 
 
@@ -335,20 +335,20 @@ $(document).ready(function(){
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Pro Android Studio - Taming the interface">
-    <meta itemprop="description" content="Not only can anything in Android Studio be controlled with a keyboard shortcut, it offers many more simple tricks to make you more productive.">
-    <meta itemprop="datePublished" content="July 16, 2018">
+    <meta itemprop="headline" content="How dangerous permissions sneak into apps">
+    <meta itemprop="description" content="This is a post-mortem where the very dangerous permission, READ_PHONE_STATE, unintentionally sneaked into our app. Here’s how this could happen, how we debugged and finally how we solved it.">
+    <meta itemprop="datePublished" content="August 02, 2018">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 class="page__title" itemprop="headline">Pro Android Studio - Taming the interface
+          <h1 class="page__title" itemprop="headline">How dangerous permissions sneak into apps
 </h1>
-          <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  16 Jul 2018</p>
+          <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  02 Aug 2018</p>
 
           
-            <img src="https://jeroenmols.com/img/blog/androidstudioshortcuts3/androidstudioshortcuts3.jpg" alt="Pro Android Studio - Taming the interface" title="Photo by Patrick Fore on Unsplash, https://unsplash.com/photos/YS_51ncQL5o, cropped">
+            <img src="https://jeroenmols.com/img/blog/phonestatepermission/phonestatepermission.jpg" alt="How dangerous permissions sneak into apps" title="Photo by Skitterphoto on Pexels, https://www.pexels.com/photo/brown-wooden-mouse-trap-with-cheese-bait-on-top-633881/, cropped">
           
 
           
@@ -357,7 +357,7 @@ $(document).ready(function(){
 
 
 
-  3 minute read
+  2 minute read
 </p>
           
         </header>
@@ -365,125 +365,107 @@ $(document).ready(function(){
 
       <section class="page__content" itemprop="text">
         
-        <p>Not only can anything in Android Studio be controlled with a keyboard shortcut, it offers many more simple tricks to make you more productive.</p>
+        <p>This is a post-mortem where the very dangerous permission, <code class="highlighter-rouge">READ_PHONE_STATE</code>, unintentionally sneaked into our app. Here’s how this could happen, how we debugged and finally how we solved it.</p>
 
-<p>To conclude this series, we will look at how you can control the interface, invoke every (!) action and point you to even more advanced features.</p>
+<h2 id="prologue">Prologue</h2>
+<p>Sprint comes to an end and we’re happy to deliver a new release of our app. After rolling it out to our beta community without issues, we move ahead to production.</p>
 
-<blockquote>
+<p>While everything looks fine at first, after a while we see users complaining:</p>
 
-  <p>This post is part of a series with practical examples on how you to get the most out of Android Studio:</p>
-  <ul>
-    <li><a href="/blog/2018/02/22/androidstudioshortcuts/">Part 1: Code navigation</a></li>
-    <li><a href="/blog/2018/04/26/androidstudioshortcuts2/">Part 2: Refactoring</a></li>
-    <li><a href="/blog/2018/07/16/androidstudioshortcuts3/">Part 3: Taming the interface</a></li>
-  </ul>
-</blockquote>
+<p><img src="https://jeroenmols.com/img/blog/phonestatepermission/userreview.png" alt="Users complaining: Why does this app want to know if I'm in a phone call and who I'm calling?" class="align-center" /></p>
 
-<h2 id="tldr">TL;DR</h2>
-<p>I strongly suggest you look at the examples below, but a quick reference is always useful.</p>
+<p>Honestly we were completely taken aback by this… But sure enough looking at the play store:</p>
 
-<ul>
-  <li><code class="highlighter-rouge">⌥ + number</code>: open/close views</li>
-  <li><code class="highlighter-rouge">⇧ + ⌘ + ↑</code>: enlarge view</li>
-  <li><code class="highlighter-rouge">⇧ + ⌘ + ↓</code>: shrink view</li>
-  <li><code class="highlighter-rouge">⇧ + ⌘ + →</code>: enlarge side view</li>
-  <li><code class="highlighter-rouge">⇧ + ⌘ + ←</code>: shrink side view</li>
-  <li>
-    <p><code class="highlighter-rouge">⇧ + ⌘ + F12</code>: close all views</p>
-  </li>
-  <li><code class="highlighter-rouge">⇧ + ⌘ + ]</code>: next tab</li>
-  <li><code class="highlighter-rouge">⇧ + ⌘ + [</code>: previous tab</li>
-  <li><code class="highlighter-rouge">^ + ⇧ + →</code>: text view (xml layout editing)</li>
-  <li><code class="highlighter-rouge">^ + ⇧ + ←</code>: design view (visual layout editing)</li>
-  <li>
-    <p><code class="highlighter-rouge">⌥ + letter</code>: invoke button</p>
-  </li>
-  <li><code class="highlighter-rouge">⌘ + ⇧ + A</code>: action lookup</li>
-</ul>
+<p><img src="https://jeroenmols.com/img/blog/phonestatepermission/permissionsoverview.png" alt="Google play store permissions" class="align-center" /></p>
 
-<h2 id="taming-the-interface">Taming the interface</h2>
-<p>Using your keyboard is always more efficient than using a mouse. This is because you can make use of all your fingers at the same time + you don’t have to switch between mouse and keyboard.</p>
+<h2 id="root-cause">Root cause</h2>
+<p>If you ever run into a similar issue, the Android Studio merged manifest view is the way to go. Just open your manifest and click the <code class="highlighter-rouge">Merged manifest</code> tab at the bottom.</p>
 
-<p>Wouldn’t it be cool if we never have to use our mouse again?</p>
+<p><img src="https://jeroenmols.com/img/blog/phonestatepermission/mergedmanifest.png" alt="Google play store permissions" class="align-center" /></p>
 
-<p>First of all you can use <code class="highlighter-rouge">⌥ + number</code> to open/close different Android Studio views (e.g. Logcat, Project view,…)</p>
+<p>Sure enough, the <code class="highlighter-rouge">READ_PHONE_STATE</code> permission is there.</p>
 
-<figure>
-  <img src="https://jeroenmols.com/img/blog/androidstudioshortcuts3/openviews.gif" alt="Use `⌥ + number` to open/close different Android Studio views" />
-  <figcaption>Use `⌥ + number` to open/close different Android Studio views</figcaption>
-</figure>
-
-<p>You can shrink/enlarge the views above using <code class="highlighter-rouge">⇧ + ⌘ + ↑</code> and <code class="highlighter-rouge">⇧ + ⌘ + ↓</code> respectively,</p>
-
-<figure>
-  <img src="https://jeroenmols.com/img/blog/androidstudioshortcuts3/expandshrinkviews.gif" alt="Use `⇧ + ⌘ + ↑` and `⇧ + ⌘ + ↓` to shrink or enlarge views" />
-  <figcaption>Use `⇧ + ⌘ + ↑` and `⇧ + ⌘ + ↓` to shrink or enlarge views</figcaption>
-</figure>
-
-<p>Note that this will also work with <code class="highlighter-rouge">⇧ + ⌘ + →</code> and <code class="highlighter-rouge">⇧ + ⌘ + ←</code> for side views.</p>
-
-<p>Or close all views with <code class="highlighter-rouge">⇧ + ⌘ + F12</code> to have a clutter free interface,</p>
-
-<figure>
-  <img src="https://jeroenmols.com/img/blog/androidstudioshortcuts3/closeallviews.gif" alt="Use `⇧ + ⌘ + F12` to close all views" />
-  <figcaption>Use `⇧ + ⌘ + F12` to close all views</figcaption>
-</figure>
-
-<p>When you have multiple tabs open, <code class="highlighter-rouge">⇧ + ⌘ + [</code> and <code class="highlighter-rouge">⇧ + ⌘ + ]</code> come in handy to cycle between tabs.</p>
-
-<figure>
-  <img src="https://jeroenmols.com/img/blog/androidstudioshortcuts3/changetabs.gif" alt="Use `⇧ + ⌘ + [` and `⇧ + ⌘ + ]` to cycle between tabs" />
-  <figcaption>Use `⇧ + ⌘ + [` and `⇧ + ⌘ + ]` to cycle between tabs</figcaption>
-</figure>
-
-<p>If you’re designing layouts, you can use <code class="highlighter-rouge">^ + ⇧ + →</code> and <code class="highlighter-rouge">^ + ⇧ + ←</code> to switch between design and text view.</p>
-
-<figure>
-  <img src="https://jeroenmols.com/img/blog/androidstudioshortcuts3/switchdesignxml.gif" alt="Use `^ + ⇧ + →` and `^ + ⇧ + ←` to switch between design and text view" />
-  <figcaption>Use `^ + ⇧ + →` and `^ + ⇧ + ←` to switch between design and text view</figcaption>
-</figure>
-
-<p>And whenever you have a dialog open you can use <code class="highlighter-rouge">⌥</code> to highlight what letters you can press to invoke the respective buttons. E.g. in the example below <code class="highlighter-rouge">⌥ + R</code> is used to press the replace button.</p>
-
-<figure>
-  <img src="https://jeroenmols.com/img/blog/androidstudioshortcuts3/controlinterface.gif" alt="Use `⌥` to highlight what letters you can press to invoke the respective buttons" />
-  <figcaption>Use `⌥` to highlight what letters you can press to invoke the respective buttons</figcaption>
-</figure>
-
-<p>Note that pressing <code class="highlighter-rouge">⌥</code> helps in a lot more situations such as in the find and replace window. (notice the subtle underline)</p>
-
-<figure>
-  <img src="https://jeroenmols.com/img/blog/androidstudioshortcuts3/althighlighting.gif" alt="Pressing `⌥` reveals you can use `⌥ + p` to replace the next occurrence" />
-  <figcaption>Pressing `⌥` reveals you can use `⌥ + p` to replace the next occurrence</figcaption>
-</figure>
-
-<h2 id="shortcut-lookup">Shortcut lookup</h2>
-<p>If there is one shortcut you should really remember, then that is <code class="highlighter-rouge">⌘ + ⇧ + A</code>. That one allows you to invoke any Android Studio action using your keyboard.</p>
-
-<figure>
-  <img src="https://jeroenmols.com/img/blog/androidstudioshortcuts3/searchactions.gif" alt="Use `⌘ + ⇧ + A` to search for any action." />
-  <figcaption>Use `⌘ + ⇧ + A` to search for any action.</figcaption>
-</figure>
-
-<p>Note that this also serves as a useful shortcut lookup tool. Next to every action the corresponding shortcut will be displayed (if there is one).</p>
-
-<h2 id="additional-reads">Additional reads</h2>
-<p>Android Studio is incredibly powerful and hence this blog post series couldn’t cover everything. However, if I piqued your interest, have a look at these references:</p>
+<p>Unfortunately, this view couldn’t help us find where the permission was merged from:</p>
 
 <ul>
-  <li><a href="http://kevinpelgrims.com/blog/2017/12/29/using-multicursor-in-android-studio/">Using multicursor in Android studio</a> by Kevin Pelgrims</li>
-  <li><a href="https://medium.com/@geapi/permanent-function-keys-intellij-macbook-pro-w-touchbar-d6fc78781b90">Permantent function keys in Android Studio with Macbook pro Touchbar</a> By Georg Apitz</li>
-  <li><a href="https://afterecho.uk/blog/structural-search-and-replace-in-android-studio.html">Structural search and replace</a> by Darren</li>
-  <li><a href="https://medium.com/google-developers/writing-more-code-by-writing-less-code-with-android-studio-live-templates-244f648d17c7">Android studio live templates</a> by Retro Meier</li>
-  <li><a href="https://www.vojtechruzicka.com/intellij-idea-tips-tricks-postfix-code-completion/">Postfix code completion</a> by Vojtech Ruzicka’s</li>
+  <li>Double-clicking the permission led us back to normal manifest view</li>
+  <li>Color coding palette is so subtle that we couldn’t see what color the permission was highlighted in</li>
 </ul>
 
-<h2 id="wrap-up">Wrap up</h2>
-<p>Investing time to really learn Android Studio can mean a big productivity boost. Start with <code class="highlighter-rouge">⌘ + ⇧ + A</code>, learn the corresponding shortcuts and challenge yourself to use your mouse less.</p>
+<p><center><img style="width: 85%" src="https://jeroenmols.com/img/blog/phonestatepermission/mergedmanifestcolors.png" alt="Color highlighting of manifest merger needs an extremely trained eye to map it on the legend" /></center></p>
 
-<p>This was the last part in my series to get the most out of Android Studio.</p>
+<p>Fortunately, the manifest merger also prints a log file to <code class="highlighter-rouge">build/outputs/logs</code> that describes where everything is merged from.</p>
 
-<p>If you’ve made it this far you should probably follow me on <span><a href="https://twitter.com/molsjeroen?source=proandroidstudio-tamingtheinterface2018" class="ga-link" target="_blank">Twitter</a></span>
+<p><center><img style="width: 85%" src="https://jeroenmols.com/img/blog/phonestatepermission/manifestmerger.png" alt="Output logs of the manifest merger are located at build/outputs/logs" /></center></p>
+
+<p>This file gave a clear answer:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>uses-permission#android.permission.READ_PHONE_STATE
+IMPLIED from /app/src/debug/AndroidManifest.xml:8:1-15:12
+reason: hue.libraries.translations has a targetSdkVersion &lt; 4
+</code></pre></div></div>
+
+<p>Wow… That’s nasty!</p>
+
+<p>A while ago we decided to move all our translations to a new module, with an empty manifest and a bare-bones <code class="highlighter-rouge">build.gradle</code> file:</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">'com.android.library'</span>
+
+<span class="n">android</span> <span class="o">{</span>
+    <span class="n">compileSdkVersion</span> <span class="n">Config</span><span class="o">.</span><span class="na">compileSdk</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>And because we didn’t explicitly set the targetSdk, a targetSdk of 1 is assumed and hence we end up with a <a href="https://developer.android.com/reference/android/Manifest.permission.html#READ_PHONE_STATE">dangerous permission</a>!</p>
+
+<p>To be fair, the documentation does warn you about this:</p>
+
+<p><img src="https://jeroenmols.com/img/blog/phonestatepermission/permissiondisclaimer.png" alt="Google play store permissions" class="align-center" /></p>
+
+<p>But still… wow!</p>
+
+<h2 id="solution">Solution</h2>
+<p>While a solution could be to simply set the targetSdk in our translations module. This wouldn’t prevent something similar from happening in the future.</p>
+
+<p>Therefore we decided to set the targetSdk (and others) for all our modules in the top level <code class="highlighter-rouge">build.gradle</code> file. This also keeps submodule <code class="highlighter-rouge">build.gradle</code> files lean.</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">subprojects</span> <span class="o">{</span>
+    <span class="n">afterEvaluate</span> <span class="o">{</span> <span class="n">project</span> <span class="o">-&gt;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">project</span><span class="o">.</span><span class="na">plugins</span><span class="o">.</span><span class="na">findPlugin</span><span class="o">(</span><span class="s1">'android'</span><span class="o">)</span> <span class="o">?:</span> <span class="n">project</span><span class="o">.</span><span class="na">plugins</span><span class="o">.</span><span class="na">findPlugin</span><span class="o">(</span><span class="s1">'android-library'</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">android</span> <span class="o">{</span>
+                <span class="n">buildToolsVersion</span> <span class="n">Config</span><span class="o">.</span><span class="na">buildTools</span>
+                <span class="n">compileSdkVersion</span> <span class="n">Config</span><span class="o">.</span><span class="na">compileSdk</span>
+
+                <span class="n">defaultConfig</span> <span class="o">{</span>
+                    <span class="n">minSdkVersion</span> <span class="n">Config</span><span class="o">.</span><span class="na">minSdk</span>
+                    <span class="n">targetSdkVersion</span> <span class="n">Config</span><span class="o">.</span><span class="na">compileSdk</span>
+                <span class="o">}</span>
+
+                <span class="n">compileOptions</span> <span class="o">{</span>
+                    <span class="n">sourceCompatibility</span> <span class="n">Config</span><span class="o">.</span><span class="na">javaVersion</span>
+                    <span class="n">targetCompatibility</span> <span class="n">Config</span><span class="o">.</span><span class="na">javaVersion</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Additionally, we also wanted to protect ourselves against 3rd party library developers that could make this mistake. To do so, you can inform the manifest merger to remove the permission while merging by adding the following to your manifest:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"android.permission.READ_PHONE_STATE"</span> <span class="na">tools:node=</span><span class="s">"remove"</span><span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<p>That is overkill you say?</p>
+
+<p>Well, <a href="https://github.com/firebase/quickstart-unity/issues/68">Firebase</a> AND <a href="https://developers.google.com/android/guides/releases#november_2016_version_100">Google play services</a> already made this booboo in the past.</p>
+
+<p>… wow!</p>
+
+<h2 id="wrap-up">Wrap-up</h2>
+<p>Not explicitly setting your target SDK version will cause a dangerous permission to sneak into your app. Make sure you set the target SDK in every module and protect yourself from 3rd party libraries.</p>
+
+<p>If you’ve made it this far you should probably follow me on <span><a href="https://twitter.com/molsjeroen?source=howdangerouspermissionssneakintoapps2018" class="ga-link" target="_blank">Twitter</a></span>
 . Feel free leave a comment below!</p>
 
         
@@ -505,19 +487,23 @@ $(document).ready(function(){
     
       
       
-      <a href="/tags/androidstudio" class="page__taxonomy-item" rel="tag">androidstudio</a><span class="sep">, </span>
+      <a href="/tags/android" class="page__taxonomy-item" rel="tag">android</a><span class="sep">, </span>
     
       
       
-      <a href="/tags/navigation" class="page__taxonomy-item" rel="tag">navigation</a><span class="sep">, </span>
+      <a href="/tags/manifest" class="page__taxonomy-item" rel="tag">manifest</a><span class="sep">, </span>
     
       
       
-      <a href="/tags/shortcuts" class="page__taxonomy-item" rel="tag">shortcuts</a><span class="sep">, </span>
+      <a href="/tags/modules" class="page__taxonomy-item" rel="tag">modules</a><span class="sep">, </span>
     
       
       
-      <a href="/tags/tools" class="page__taxonomy-item" rel="tag">tools</a>
+      <a href="/tags/permissions" class="page__taxonomy-item" rel="tag">permissions</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/post-mortem" class="page__taxonomy-item" rel="tag">post-mortem</a>
     
     </span>
   </p>
@@ -545,7 +531,7 @@ $(document).ready(function(){
 
 
         
-          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-07-16T00:00:00+02:00">July 16, 2018</time></p>
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-08-02T00:00:00+02:00">August 02, 2018</time></p>
         
       </footer>
 
@@ -554,13 +540,13 @@ $(document).ready(function(){
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=Pro+Android+Studio+-+Taming+the+interface%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2018%2F07%2F16%2Fandroidstudioshortcuts3%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=How+dangerous+permissions+sneak+into+apps%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2018%2F08%2F02%2Fphonestatepermission%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2018%2F07%2F16%2Fandroidstudioshortcuts3%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2018%2F08%2F02%2Fphonestatepermission%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://plus.google.com/share?url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2018%2F07%2F16%2Fandroidstudioshortcuts3%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fab fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+  <a href="https://plus.google.com/share?url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2018%2F08%2F02%2Fphonestatepermission%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fab fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2018%2F07%2F16%2Fandroidstudioshortcuts3%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2018%2F08%2F02%2Fphonestatepermission%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
@@ -581,12 +567,11 @@ $(document).ready(function(){
       
   <nav class="pagination">
     
-      <a href="/blog/2018/04/26/androidstudioshortcuts2/" class="pagination--pager" title="Pro Android Studio - Refactoring
+      <a href="/blog/2018/07/16/androidstudioshortcuts3/" class="pagination--pager" title="Pro Android Studio - Taming the interface
 ">Previous</a>
     
     
-      <a href="/blog/2018/08/02/phonestatepermission/" class="pagination--pager" title="How dangerous permissions sneak into apps
-">Next</a>
+      <a href="#" class="pagination--pager disabled">Next</a>
     
   </nav>
 
@@ -617,17 +602,17 @@ $(document).ready(function(){
   <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
     <div style="position:relative;">
       
-        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/phonestatepermission/phonestatepermission.jpg)"></div>
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/androidstudioshortcuts3/androidstudioshortcuts3.jpg)"></div>
       
       <div class="archive__item_titlecontainer">
         <h2 class="archive__item-title" itemprop="headline">
-            <a href="https://jeroenmols.com/blog/2018/08/02/phonestatepermission/" rel="permalink">How dangerous permissions sneak into apps
+            <a href="https://jeroenmols.com/blog/2018/07/16/androidstudioshortcuts3/" rel="permalink">Pro Android Studio - Taming the interface
 </a>
         </h2>
-        <h3 class="archive__date">02 Aug 2018</h3>
+        <h3 class="archive__date">16 Jul 2018</h3>
       </div>
       
-        <a href="https://jeroenmols.com/blog/2018/08/02/phonestatepermission/" rel="permalink">
+        <a href="https://jeroenmols.com/blog/2018/07/16/androidstudioshortcuts3/" rel="permalink">
           <div class="archive__item-teaser-imageclickhandler"></div>
         </a>
       
@@ -638,10 +623,10 @@ $(document).ready(function(){
 
 
 
-  2 minute read
+  3 minute read
 </p>
     
-    <p class="archive__item-excerpt" itemprop="description">This is a post-mortem where the very dangerous permission, READ_PHONE_STATE, unintentionally sneaked into our app. Here’s how this could happen, how we debugged and finally how we solved it.
+    <p class="archive__item-excerpt" itemprop="description">Not only can anything in Android Studio be controlled with a keyboard shortcut, it offers many more simple tricks to make you more productive.
 
 </p>
   </article>
@@ -839,8 +824,8 @@ $(document).ready(function(){
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://jeroenmols.com/blog/2018/07/16/androidstudioshortcuts3/";  // Replace PAGE_URL with your page's canonical URL variable
-      this.page.identifier = "/blog/2018/07/16/androidstudioshortcuts3"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      this.page.url = "https://jeroenmols.com/blog/2018/08/02/phonestatepermission/";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = "/blog/2018/08/02/phonestatepermission"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
     (function() { // DON'T EDIT BELOW THIS LINE
       var d = document, s = d.createElement('script');

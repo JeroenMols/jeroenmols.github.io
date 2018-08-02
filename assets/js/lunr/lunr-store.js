@@ -158,4 +158,9 @@ var store = [{
         "excerpt":"Not only can anything in Android Studio be controlled with a keyboard shortcut, it offers many more simple tricks to make you more productive. To conclude this series, we will look at how you can control the interface, invoke every (!) action and point you to even more advanced features....","categories": ["blog"],
         "tags": ["androidstudio","tools","shortcuts","navigation"],
         "url": "https://jeroenmols.com/blog/2018/07/16/androidstudioshortcuts3/",
-        "teaser":"https://jeroenmols.com/img/blog/androidstudioshortcuts3/androidstudioshortcuts3.jpg"}]
+        "teaser":"https://jeroenmols.com/img/blog/androidstudioshortcuts3/androidstudioshortcuts3.jpg"},{
+        "title": "How dangerous permissions sneak into apps",
+        "excerpt":"This is a post-mortem where the very dangerous permission, READ_PHONE_STATE, unintentionally sneaked into our app. Here’s how this could happen, how we debugged and finally how we solved it. Prologue Sprint comes to an end and we’re happy to deliver a new release of our app. After rolling it out...","categories": ["blog"],
+        "tags": ["android","permissions","modules","manifest","post-mortem"],
+        "url": "https://jeroenmols.com/blog/2018/08/02/phonestatepermission/",
+        "teaser":"https://jeroenmols.com/img/blog/phonestatepermission/phonestatepermission.jpg"}]

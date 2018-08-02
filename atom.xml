@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle>
- <updated>2018-07-18T09:30:42+02:00</updated>
+ <updated>2018-08-02T21:39:32+02:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,20 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>How dangerous permissions sneak into apps</title>
+   <link href="https://jeroenmols.com/blog/2018/08/02/phonestatepermission/"/>
+   <updated>2018-08-02T00:00:00+02:00</updated>
+   <id>https://jeroenmols.com/blog/2018/08/02/phonestatepermission</id>
+   <content type="html"><![CDATA[
+     
+     <p>This is a post-mortem where the very dangerous permission, <code class="highlighter-rouge">READ_PHONE_STATE</code>, unintentionally sneaked into our app. Here’s how this could happen, how we debugged and finally how we solved it.</p>
+
+
+     <a href="https://jeroenmols.com/blog/2018/08/02/phonestatepermission/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>Pro Android Studio - Taming the interface</title>
