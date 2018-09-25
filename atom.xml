@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle>
- <updated>2018-09-25T20:46:18+02:00</updated>
+ <updated>2018-09-25T22:49:53+02:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,20 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>A little Kotlin puzzler</title>
+   <link href="https://jeroenmols.com/blog/2018/09/25/kotlinpuzzler/"/>
+   <updated>2018-09-25T00:00:00+02:00</updated>
+   <id>https://jeroenmols.com/blog/2018/09/25/kotlinpuzzler</id>
+   <content type="html"><![CDATA[
+     
+     <p>Kotlin is an incredibly enjoyable, concise and powerful programming language. Yet sometimes also a bit confusing…</p>
+
+
+     <a href="https://jeroenmols.com/blog/2018/09/25/kotlinpuzzler/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>How dangerous permissions sneak into apps</title>

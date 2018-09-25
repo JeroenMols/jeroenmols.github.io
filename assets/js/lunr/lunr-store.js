@@ -163,4 +163,9 @@ var store = [{
         "excerpt":"This is a post-mortem where the very dangerous permission, READ_PHONE_STATE, unintentionally sneaked into our app. Here’s how this could happen, how we debugged and finally how we solved it. Prologue Sprint comes to an end and we’re happy to deliver a new release of our app. After rolling it out...","categories": ["blog"],
         "tags": ["android","permissions","modules","manifest","post-mortem"],
         "url": "https://jeroenmols.com/blog/2018/08/02/phonestatepermission/",
-        "teaser":"https://jeroenmols.com/img/blog/phonestatepermission/phonestatepermission.jpg"}]
+        "teaser":"https://jeroenmols.com/img/blog/phonestatepermission/phonestatepermission.jpg"},{
+        "title": "A little Kotlin puzzler",
+        "excerpt":"Kotlin is an incredibly enjoyable, concise and powerful programming language. Yet sometimes also a bit confusing… Puzzle Have a look at the simple class below. It simulates an ongoing operation by smoothly moving a progress bar from 0 to 100 over the course of 30 seconds: class ProgressbarAnimator(private val progressBar:...","categories": ["blog"],
+        "tags": ["kotlin","lambda","puzzle"],
+        "url": "https://jeroenmols.com/blog/2018/09/25/kotlinpuzzler/",
+        "teaser":"https://jeroenmols.com/img/blog/kotlinpuzzler/kotlinpuzzler.jpg"}]

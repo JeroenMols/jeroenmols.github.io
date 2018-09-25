@@ -9,35 +9,35 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>How dangerous permissions sneak into apps - Jeroen Mols</title>
-<meta name="description" content="This is a post-mortem where the very dangerous permission, READ_PHONE_STATE, unintentionally sneaked into our app. Here’s how this could happen, how we debugged and finally how we solved it.">
+<!-- begin _includes/seo.html --><title>A little Kotlin puzzler - Jeroen Mols</title>
+<meta name="description" content="Kotlin is an incredibly enjoyable, concise and powerful programming language. Yet sometimes also a bit confusing…">
 
 
 
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en">
 <meta property="og:site_name" content="Jeroen Mols">
-<meta property="og:title" content="How dangerous permissions sneak into apps">
-<meta property="og:url" content="https://jeroenmols.com/blog/2018/08/02/phonestatepermission/">
+<meta property="og:title" content="A little Kotlin puzzler">
+<meta property="og:url" content="https://jeroenmols.com/blog/2018/09/25/kotlinpuzzler/">
 
 
-  <meta property="og:description" content="This is a post-mortem where the very dangerous permission, READ_PHONE_STATE, unintentionally sneaked into our app. Here’s how this could happen, how we debugged and finally how we solved it.">
+  <meta property="og:description" content="Kotlin is an incredibly enjoyable, concise and powerful programming language. Yet sometimes also a bit confusing…">
 
 
 
-  <meta property="og:image" content="https://jeroenmols.com/img/blog/phonestatepermission/phonestatepermission.jpg">
+  <meta property="og:image" content="https://jeroenmols.com/img/blog/kotlinpuzzler/kotlinpuzzler.jpg">
 
 
 
   <meta name="twitter:site" content="@molsjeroen">
-  <meta name="twitter:title" content="How dangerous permissions sneak into apps">
-  <meta name="twitter:description" content="This is a post-mortem where the very dangerous permission, READ_PHONE_STATE, unintentionally sneaked into our app. Here’s how this could happen, how we debugged and finally how we solved it.">
-  <meta name="twitter:url" content="https://jeroenmols.com/blog/2018/08/02/phonestatepermission/">
+  <meta name="twitter:title" content="A little Kotlin puzzler">
+  <meta name="twitter:description" content="Kotlin is an incredibly enjoyable, concise and powerful programming language. Yet sometimes also a bit confusing…">
+  <meta name="twitter:url" content="https://jeroenmols.com/blog/2018/09/25/kotlinpuzzler/">
 
   
     <meta name="twitter:card" content="summary">
     
-      <meta name="twitter:image" content="https://jeroenmols.com/img/blog/phonestatepermission/phonestatepermission.jpg">
+      <meta name="twitter:image" content="https://jeroenmols.com/img/blog/kotlinpuzzler/kotlinpuzzler.jpg">
     
   
 
@@ -45,7 +45,7 @@
 
 
 
-  <meta property="article:published_time" content="2018-08-02T00:00:00+02:00">
+  <meta property="article:published_time" content="2018-09-25T00:00:00+02:00">
 
 
 
@@ -56,7 +56,7 @@
   
 
 
-<link rel="canonical" href="https://jeroenmols.com/blog/2018/08/02/phonestatepermission/">
+<link rel="canonical" href="https://jeroenmols.com/blog/2018/09/25/kotlinpuzzler/">
 
 
 
@@ -335,20 +335,20 @@ $(document).ready(function(){
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="How dangerous permissions sneak into apps">
-    <meta itemprop="description" content="This is a post-mortem where the very dangerous permission, READ_PHONE_STATE, unintentionally sneaked into our app. Here’s how this could happen, how we debugged and finally how we solved it.">
-    <meta itemprop="datePublished" content="August 02, 2018">
+    <meta itemprop="headline" content="A little Kotlin puzzler">
+    <meta itemprop="description" content="Kotlin is an incredibly enjoyable, concise and powerful programming language. Yet sometimes also a bit confusing…">
+    <meta itemprop="datePublished" content="September 25, 2018">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 class="page__title" itemprop="headline">How dangerous permissions sneak into apps
+          <h1 class="page__title" itemprop="headline">A little Kotlin puzzler
 </h1>
-          <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  02 Aug 2018</p>
+          <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  25 Sep 2018</p>
 
           
-            <img src="https://jeroenmols.com/img/blog/phonestatepermission/phonestatepermission.jpg" alt="How dangerous permissions sneak into apps" title="Photo by Skitterphoto on Pexels, https://www.pexels.com/photo/brown-wooden-mouse-trap-with-cheese-bait-on-top-633881/, cropped">
+            <img src="https://jeroenmols.com/img/blog/kotlinpuzzler/kotlinpuzzler.jpg" alt="A little Kotlin puzzler" title="Photo by Ryoji Iwata on Unsplash, https://unsplash.com/photos/5siQcvSxCP8, cropped and added Kotlin logo">
           
 
           
@@ -365,107 +365,114 @@ $(document).ready(function(){
 
       <section class="page__content" itemprop="text">
         
-        <p>This is a post-mortem where the very dangerous permission, <code class="highlighter-rouge">READ_PHONE_STATE</code>, unintentionally sneaked into our app. Here’s how this could happen, how we debugged and finally how we solved it.</p>
+        <p>Kotlin is an incredibly enjoyable, concise and powerful programming language. Yet sometimes also a bit confusing…</p>
 
-<h2 id="prologue">Prologue</h2>
-<p>Sprint comes to an end and we’re happy to deliver a new release of our app. After rolling it out to our beta community without issues, we move ahead to production.</p>
+<h2 id="puzzle">Puzzle</h2>
+<p>Have a look at the simple class below. It simulates an ongoing operation by smoothly moving a progress bar from 0 to 100 over the course of 30 seconds:</p>
 
-<p>While everything looks fine at first, after a while we see users complaining:</p>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">ProgressbarAnimator</span><span class="p">(</span><span class="k">private</span> <span class="kd">val</span> <span class="py">progressBar</span><span class="p">:</span> <span class="n">ProgressBar</span><span class="p">)</span> <span class="p">:</span> <span class="n">AnimatorUpdateListener</span> <span class="p">{</span>
 
-<p><img src="https://jeroenmols.com/img/blog/phonestatepermission/userreview.png" alt="Users complaining: Why does this app want to know if I'm in a phone call and who I'm calling?" class="align-center" /></p>
+    <span class="k">private</span> <span class="k">lateinit</span> <span class="kd">var</span> <span class="py">animator</span><span class="p">:</span> <span class="n">ValueAnimator</span>
 
-<p>Honestly we were completely taken aback by this… But sure enough looking at the play store:</p>
+    <span class="n">init</span> <span class="p">{</span>
+        <span class="n">configureAnimator</span><span class="p">()</span>
+        <span class="n">animator</span><span class="p">.</span><span class="n">addUpdateListener</span> <span class="p">{</span> <span class="k">this</span> <span class="p">}</span>
+        <span class="n">animator</span><span class="p">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="p">}</span>
 
-<p><img src="https://jeroenmols.com/img/blog/phonestatepermission/permissionsoverview.png" alt="Google play store permissions" class="align-center" /></p>
+    <span class="k">fun</span> <span class="n">configureAnimator</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">val</span> <span class="py">endValue</span> <span class="p">=</span> <span class="p">(</span><span class="n">FPS</span> <span class="p">*</span> <span class="n">DURATION</span><span class="p">).</span><span class="n">toInt</span><span class="p">()</span>
+        <span class="n">progressBar</span><span class="p">.</span><span class="n">max</span> <span class="p">=</span> <span class="n">endValue</span>
 
-<h2 id="root-cause">Root cause</h2>
-<p>If you ever run into a similar issue, the Android Studio merged manifest view is the way to go. Just open your manifest and click the <code class="highlighter-rouge">Merged manifest</code> tab at the bottom.</p>
+        <span class="n">animator</span> <span class="p">=</span> <span class="n">ValueAnimator</span><span class="p">.</span><span class="n">ofInt</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">endValue</span><span class="p">)</span>
+        <span class="n">animator</span><span class="p">.</span><span class="n">duration</span> <span class="p">=</span> <span class="n">DURATION</span>
+        <span class="n">animator</span><span class="p">.</span><span class="n">interpolator</span> <span class="p">=</span> <span class="n">LinearInterpolator</span><span class="p">()</span>
+    <span class="p">}</span>
 
-<p><img src="https://jeroenmols.com/img/blog/phonestatepermission/mergedmanifest.png" alt="Google play store permissions" class="align-center" /></p>
+    <span class="k">override</span> <span class="k">fun</span> <span class="n">onAnimationUpdate</span><span class="p">(</span><span class="n">p</span><span class="p">:</span> <span class="n">ValueAnimator</span><span class="p">?)</span> <span class="p">{</span>
+        <span class="n">progressBar</span><span class="p">.</span><span class="n">progress</span> <span class="p">=</span> <span class="n">animator</span><span class="p">.</span><span class="n">animatedValue</span> <span class="k">as</span> <span class="n">Int</span>
+    <span class="p">}</span>
 
-<p>Sure enough, the <code class="highlighter-rouge">READ_PHONE_STATE</code> permission is there.</p>
+    <span class="k">companion</span> <span class="k">object</span> <span class="p">{</span>
+        <span class="k">private</span> <span class="k">const</span> <span class="kd">val</span> <span class="py">FPS</span> <span class="p">=</span> <span class="m">0.06</span>
+        <span class="k">private</span> <span class="k">const</span> <span class="kd">val</span> <span class="py">DURATION</span> <span class="p">=</span> <span class="m">30</span> <span class="p">*</span> <span class="m">1000L</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-<p>Unfortunately, this view couldn’t help us find where the permission was merged from:</p>
-
-<ul>
-  <li>Double-clicking the permission led us back to normal manifest view</li>
-  <li>Color coding palette is so subtle that we couldn’t see what color the permission was highlighted in</li>
-</ul>
-
-<p><center><img style="width: 85%" src="https://jeroenmols.com/img/blog/phonestatepermission/mergedmanifestcolors.png" alt="Color highlighting of manifest merger needs an extremely trained eye to map it on the legend" /></center></p>
-
-<p>Fortunately, the manifest merger also prints a log file to <code class="highlighter-rouge">build/outputs/logs</code> that describes where everything is merged from.</p>
-
-<p><center><img style="width: 85%" src="https://jeroenmols.com/img/blog/phonestatepermission/manifestmerger.png" alt="Output logs of the manifest merger are located at build/outputs/logs" /></center></p>
-
-<p>This file gave a clear answer:</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>uses-permission#android.permission.READ_PHONE_STATE
-IMPLIED from /app/src/debug/AndroidManifest.xml:8:1-15:12
-reason: hue.libraries.translations has a targetSdkVersion &lt; 4
 </code></pre></div></div>
 
-<p>Wow… That’s nasty!</p>
+<p>What do you think will happen if we instantiate one of these with a given progress bar?</p>
 
-<p>A while ago we decided to move all our translations to a new module, with an empty manifest and a bare-bones <code class="highlighter-rouge">build.gradle</code> file:</p>
+<p>Well… nothing! The progress bar doesn’t move at all.</p>
 
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">'com.android.library'</span>
+<p>Can you spot what’s wrong? The error is in the following lines:</p>
 
-<span class="n">android</span> <span class="o">{</span>
-    <span class="n">compileSdkVersion</span> <span class="n">Config</span><span class="o">.</span><span class="na">compileSdk</span>
-<span class="o">}</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">init</span> <span class="p">{</span>
+    <span class="n">configureAnimator</span><span class="p">()</span>
+    <span class="n">animator</span><span class="p">.</span><span class="n">addUpdateListener</span> <span class="p">{</span> <span class="k">this</span> <span class="p">}</span>
+    <span class="n">animator</span><span class="p">.</span><span class="n">start</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>Any luck?</p>
+
+<p>…</p>
+
+<p>…</p>
+
+<p>…</p>
+
+<p>Well this is the actual culprit:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">animator</span><span class="p">.</span><span class="n">addUpdateListener</span> <span class="p">{</span> <span class="k">this</span> <span class="p">}</span>
 </code></pre></div></div>
 
-<p>And because we didn’t explicitly set the targetSdk, a targetSdk of 1 is assumed and hence we end up with a <a href="https://developer.android.com/reference/android/Manifest.permission.html#READ_PHONE_STATE">dangerous permission</a>!</p>
+<p>There is syntactically a very subtle, yet incredibly important difference between that line and this:</p>
 
-<p>To be fair, the documentation does warn you about this:</p>
-
-<p><img src="https://jeroenmols.com/img/blog/phonestatepermission/permissiondisclaimer.png" alt="Google play store permissions" class="align-center" /></p>
-
-<p>But still… wow!</p>
-
-<h2 id="solution">Solution</h2>
-<p>While a solution could be to simply set the targetSdk in our translations module. This wouldn’t prevent something similar from happening in the future.</p>
-
-<p>Therefore we decided to set the targetSdk (and others) for all our modules in the top level <code class="highlighter-rouge">build.gradle</code> file. This also keeps submodule <code class="highlighter-rouge">build.gradle</code> files lean.</p>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">subprojects</span> <span class="o">{</span>
-    <span class="n">afterEvaluate</span> <span class="o">{</span> <span class="n">project</span> <span class="o">-&gt;</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">project</span><span class="o">.</span><span class="na">plugins</span><span class="o">.</span><span class="na">findPlugin</span><span class="o">(</span><span class="s1">'android'</span><span class="o">)</span> <span class="o">?:</span> <span class="n">project</span><span class="o">.</span><span class="na">plugins</span><span class="o">.</span><span class="na">findPlugin</span><span class="o">(</span><span class="s1">'android-library'</span><span class="o">))</span> <span class="o">{</span>
-            <span class="n">android</span> <span class="o">{</span>
-                <span class="n">buildToolsVersion</span> <span class="n">Config</span><span class="o">.</span><span class="na">buildTools</span>
-                <span class="n">compileSdkVersion</span> <span class="n">Config</span><span class="o">.</span><span class="na">compileSdk</span>
-
-                <span class="n">defaultConfig</span> <span class="o">{</span>
-                    <span class="n">minSdkVersion</span> <span class="n">Config</span><span class="o">.</span><span class="na">minSdk</span>
-                    <span class="n">targetSdkVersion</span> <span class="n">Config</span><span class="o">.</span><span class="na">compileSdk</span>
-                <span class="o">}</span>
-
-                <span class="n">compileOptions</span> <span class="o">{</span>
-                    <span class="n">sourceCompatibility</span> <span class="n">Config</span><span class="o">.</span><span class="na">javaVersion</span>
-                    <span class="n">targetCompatibility</span> <span class="n">Config</span><span class="o">.</span><span class="na">javaVersion</span>
-                <span class="o">}</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">animator</span><span class="p">.</span><span class="n">addUpdateListener</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>Additionally, we also wanted to protect ourselves against 3rd party library developers that could make this mistake. To do so, you can inform the manifest merger to remove the permission while merging by adding the following to your manifest:</p>
+<p>If we change our init to the latter, then the progress bar works as expected!</p>
 
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"android.permission.READ_PHONE_STATE"</span> <span class="na">tools:node=</span><span class="s">"remove"</span><span class="nt">/&gt;</span>
+<h1 id="explanation">Explanation</h1>
+<p>One of the Kotlin features is that if the last argument of a method call is a lambda, you can move the lambda outside of the method invocation. (which is great for building <a href="https://proandroiddev.com/writing-dsls-in-kotlin-part-1-7f5d2193f277">DSLs</a>)</p>
+
+<p>Consequently,</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">animator</span><span class="p">.</span><span class="n">addUpdateListener</span> <span class="p">{</span> <span class="k">this</span> <span class="p">}</span>
 </code></pre></div></div>
 
-<p>That is overkill you say?</p>
+<p>is equivalent to</p>
 
-<p>Well, <a href="https://github.com/firebase/quickstart-unity/issues/68">Firebase</a> AND <a href="https://developers.google.com/android/guides/releases#november_2016_version_100">Google play services</a> already made this booboo in the past.</p>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">animator</span><span class="p">.</span><span class="n">addUpdateListener</span><span class="p">()</span> <span class="p">{</span> <span class="k">this</span> <span class="p">}</span>
+</code></pre></div></div>
 
-<p>… wow!</p>
+<p>and even</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">animator</span><span class="p">.</span><span class="n">addUpdateListener</span><span class="p">({</span> <span class="k">this</span> <span class="p">})</span>
+</code></pre></div></div>
+
+<p>and by expanding the lambda, this</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">animator</span><span class="p">.</span><span class="n">addUpdateListener</span><span class="p">({</span> <span class="n">_</span> <span class="p">-&gt;</span> <span class="k">this</span> <span class="p">})</span>
+</code></pre></div></div>
+
+<p>So the reason why the progress bar wasn’t working is simple. Instead of registering itself as an <code class="highlighter-rouge">AnimationUpdateListener</code>, it actually registered a lambda, a new function to handle the animation updates.</p>
+
+<p>So every animation update the lambda <code class="highlighter-rouge">{ _ -&gt; this }</code> was invoked instead of the <code class="highlighter-rouge">onAnimationUpdate</code> method. Thereby not doing anything, it just has the <code class="highlighter-rouge">this</code> object without any invocation on it.</p>
+
+<p>Equivalent to writing the following function:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="n">doNothing</span><span class="p">()</span> <span class="p">{</span>
+  <span class="m">5</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Perfectly valid syntax, but otherwise completely useless.</p>
 
 <h2 id="wrap-up">Wrap-up</h2>
-<p>Not explicitly setting your target SDK version will cause a dangerous permission to sneak into your app. Make sure you set the target SDK in every module and protect yourself from 3rd party libraries.</p>
+<p>A very subtle difference in syntax (<code class="highlighter-rouge">{}</code> instead of <code class="highlighter-rouge">()</code>) can make a huge difference in what the code actually does. Kotlin is a very powerful programming language, but with great power comes great…</p>
 
-<p>If you’ve made it this far you should probably follow me on <span><a href="https://twitter.com/molsjeroen?source=howdangerouspermissionssneakintoapps2018" class="ga-link" target="_blank">Twitter</a></span>
+<p>If you’ve made it this far you should probably follow me on <span><a href="https://twitter.com/molsjeroen?source=alittlekotlinpuzzler2018" class="ga-link" target="_blank">Twitter</a></span>
 . Feel free leave a comment below!</p>
 
         
@@ -487,23 +494,15 @@ reason: hue.libraries.translations has a targetSdkVersion &lt; 4
     
       
       
-      <a href="/tags/android" class="page__taxonomy-item" rel="tag">android</a><span class="sep">, </span>
+      <a href="/tags/kotlin" class="page__taxonomy-item" rel="tag">kotlin</a><span class="sep">, </span>
     
       
       
-      <a href="/tags/manifest" class="page__taxonomy-item" rel="tag">manifest</a><span class="sep">, </span>
+      <a href="/tags/lambda" class="page__taxonomy-item" rel="tag">lambda</a><span class="sep">, </span>
     
       
       
-      <a href="/tags/modules" class="page__taxonomy-item" rel="tag">modules</a><span class="sep">, </span>
-    
-      
-      
-      <a href="/tags/permissions" class="page__taxonomy-item" rel="tag">permissions</a><span class="sep">, </span>
-    
-      
-      
-      <a href="/tags/post-mortem" class="page__taxonomy-item" rel="tag">post-mortem</a>
+      <a href="/tags/puzzle" class="page__taxonomy-item" rel="tag">puzzle</a>
     
     </span>
   </p>
@@ -531,7 +530,7 @@ reason: hue.libraries.translations has a targetSdkVersion &lt; 4
 
 
         
-          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-08-02T00:00:00+02:00">August 02, 2018</time></p>
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-09-25T00:00:00+02:00">September 25, 2018</time></p>
         
       </footer>
 
@@ -540,13 +539,13 @@ reason: hue.libraries.translations has a targetSdkVersion &lt; 4
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=How+dangerous+permissions+sneak+into+apps%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2018%2F08%2F02%2Fphonestatepermission%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=A+little+Kotlin+puzzler%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2018%2F09%2F25%2Fkotlinpuzzler%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2018%2F08%2F02%2Fphonestatepermission%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2018%2F09%2F25%2Fkotlinpuzzler%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://plus.google.com/share?url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2018%2F08%2F02%2Fphonestatepermission%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fab fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+  <a href="https://plus.google.com/share?url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2018%2F09%2F25%2Fkotlinpuzzler%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fab fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2018%2F08%2F02%2Fphonestatepermission%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2018%2F09%2F25%2Fkotlinpuzzler%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
@@ -567,12 +566,11 @@ reason: hue.libraries.translations has a targetSdkVersion &lt; 4
       
   <nav class="pagination">
     
-      <a href="/blog/2018/07/16/androidstudioshortcuts3/" class="pagination--pager" title="Pro Android Studio - Taming the interface
+      <a href="/blog/2018/08/02/phonestatepermission/" class="pagination--pager" title="How dangerous permissions sneak into apps
 ">Previous</a>
     
     
-      <a href="/blog/2018/09/25/kotlinpuzzler/" class="pagination--pager" title="A little Kotlin puzzler
-">Next</a>
+      <a href="#" class="pagination--pager disabled">Next</a>
     
   </nav>
 
@@ -603,17 +601,17 @@ reason: hue.libraries.translations has a targetSdkVersion &lt; 4
   <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
     <div style="position:relative;">
       
-        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/kotlinpuzzler/kotlinpuzzler.jpg)"></div>
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/phonestatepermission/phonestatepermission.jpg)"></div>
       
       <div class="archive__item_titlecontainer">
         <h2 class="archive__item-title" itemprop="headline">
-            <a href="https://jeroenmols.com/blog/2018/09/25/kotlinpuzzler/" rel="permalink">A little Kotlin puzzler
+            <a href="https://jeroenmols.com/blog/2018/08/02/phonestatepermission/" rel="permalink">How dangerous permissions sneak into apps
 </a>
         </h2>
-        <h3 class="archive__date">25 Sep 2018</h3>
+        <h3 class="archive__date">02 Aug 2018</h3>
       </div>
       
-        <a href="https://jeroenmols.com/blog/2018/09/25/kotlinpuzzler/" rel="permalink">
+        <a href="https://jeroenmols.com/blog/2018/08/02/phonestatepermission/" rel="permalink">
           <div class="archive__item-teaser-imageclickhandler"></div>
         </a>
       
@@ -627,7 +625,7 @@ reason: hue.libraries.translations has a targetSdkVersion &lt; 4
   2 minute read
 </p>
     
-    <p class="archive__item-excerpt" itemprop="description">Kotlin is an incredibly enjoyable, concise and powerful programming language. Yet sometimes also a bit confusing…
+    <p class="archive__item-excerpt" itemprop="description">This is a post-mortem where the very dangerous permission, READ_PHONE_STATE, unintentionally sneaked into our app. Here’s how this could happen, how we debugged and finally how we solved it.
 
 </p>
   </article>
@@ -825,8 +823,8 @@ reason: hue.libraries.translations has a targetSdkVersion &lt; 4
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://jeroenmols.com/blog/2018/08/02/phonestatepermission/";  // Replace PAGE_URL with your page's canonical URL variable
-      this.page.identifier = "/blog/2018/08/02/phonestatepermission"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      this.page.url = "https://jeroenmols.com/blog/2018/09/25/kotlinpuzzler/";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = "/blog/2018/09/25/kotlinpuzzler"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
     (function() { // DON'T EDIT BELOW THIS LINE
       var d = document, s = d.createElement('script');
