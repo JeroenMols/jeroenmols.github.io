@@ -11,6 +11,7 @@ I'm always eager to share my technical knowledge with fellow developers. Don't h
 
 Upcoming talks:
 - Droidcon UK - The big rewrite
+- Devoxx - Write awesome tests
 
 2018:
 - Droidcon Italy - [The big rewrite](https://speakerdeck.com/jeroenmols/the-big-rewrite)
