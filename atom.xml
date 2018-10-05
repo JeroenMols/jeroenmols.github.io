@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle>
- <updated>2018-10-02T23:26:48+02:00</updated>
+ <updated>2018-10-05T17:57:39+02:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,20 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>Kotlinconf 2018 slides</title>
+   <link href="https://jeroenmols.com/blog/2018/10/05/kotlinconf18/"/>
+   <updated>2018-10-05T00:00:00+02:00</updated>
+   <id>https://jeroenmols.com/blog/2018/10/05/kotlinconf18</id>
+   <content type="html"><![CDATA[
+     
+     <p>Was really great visiting Kotlinconf this year and I wanted to do a quick post to link to all of it’s wonderful content.</p>
+
+
+     <a href="https://jeroenmols.com/blog/2018/10/05/kotlinconf18/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>A little Kotlin puzzler</title>

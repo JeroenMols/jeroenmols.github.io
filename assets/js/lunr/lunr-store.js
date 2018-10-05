@@ -168,4 +168,9 @@ var store = [{
         "excerpt":"Kotlin is an incredibly enjoyable, concise and powerful programming language. Yet sometimes also a bit confusing… Puzzle Have a look at the simple class below. It simulates an ongoing operation by smoothly moving a progress bar from 0 to 100 over the course of 30 seconds: class ProgressbarAnimator(private val progressBar:...","categories": ["blog"],
         "tags": ["kotlin","lambda","puzzle"],
         "url": "https://jeroenmols.com/blog/2018/09/25/kotlinpuzzler/",
-        "teaser":"https://jeroenmols.com/img/blog/kotlinpuzzler/kotlinpuzzler.jpg"}]
+        "teaser":"https://jeroenmols.com/img/blog/kotlinpuzzler/kotlinpuzzler.jpg"},{
+        "title": "Kotlinconf 2018 slides",
+        "excerpt":"Was really great visiting Kotlinconf this year and I wanted to do a quick post to link to all of it’s wonderful content. Conference slides While you will be able to find all recordings here, I often find it useful to be able to quickly scan through the slides. Hence...","categories": ["blog"],
+        "tags": ["android","conference","kotlinconf"],
+        "url": "https://jeroenmols.com/blog/2018/10/05/kotlinconf18/",
+        "teaser":"https://jeroenmols.com/img/blog/kotlinconf18/kotlinconf18.jpg"}]
