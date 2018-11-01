@@ -9,35 +9,35 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>A little Kotlin puzzler - Jeroen Mols</title>
-<meta name="description" content="Kotlin is an incredibly enjoyable, concise and powerful programming language. Yet sometimes also a bit confusing…">
+<!-- begin _includes/seo.html --><title>Kotlin Stackoverflow error - Jeroen Mols</title>
+<meta name="description" content="Java interop is one of the best features of the Kotlin language, yet sometimes this also can cause unforeseen issues…">
 
 
 
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en">
 <meta property="og:site_name" content="Jeroen Mols">
-<meta property="og:title" content="A little Kotlin puzzler">
-<meta property="og:url" content="https://jeroenmols.com/blog/2018/09/25/kotlinpuzzler/">
+<meta property="og:title" content="Kotlin Stackoverflow error">
+<meta property="og:url" content="https://jeroenmols.com/blog/2018/11/01/kotlinstackoverflow/">
 
 
-  <meta property="og:description" content="Kotlin is an incredibly enjoyable, concise and powerful programming language. Yet sometimes also a bit confusing…">
+  <meta property="og:description" content="Java interop is one of the best features of the Kotlin language, yet sometimes this also can cause unforeseen issues…">
 
 
 
-  <meta property="og:image" content="https://jeroenmols.com/img/blog/kotlinpuzzler/kotlinpuzzler.jpg">
+  <meta property="og:image" content="https://jeroenmols.com/img/blog/kotlinstackoverflow/kotlin_stackoverflow.jpg">
 
 
 
   <meta name="twitter:site" content="@molsjeroen">
-  <meta name="twitter:title" content="A little Kotlin puzzler">
-  <meta name="twitter:description" content="Kotlin is an incredibly enjoyable, concise and powerful programming language. Yet sometimes also a bit confusing…">
-  <meta name="twitter:url" content="https://jeroenmols.com/blog/2018/09/25/kotlinpuzzler/">
+  <meta name="twitter:title" content="Kotlin Stackoverflow error">
+  <meta name="twitter:description" content="Java interop is one of the best features of the Kotlin language, yet sometimes this also can cause unforeseen issues…">
+  <meta name="twitter:url" content="https://jeroenmols.com/blog/2018/11/01/kotlinstackoverflow/">
 
   
     <meta name="twitter:card" content="summary">
     
-      <meta name="twitter:image" content="https://jeroenmols.com/img/blog/kotlinpuzzler/kotlinpuzzler.jpg">
+      <meta name="twitter:image" content="https://jeroenmols.com/img/blog/kotlinstackoverflow/kotlin_stackoverflow.jpg">
     
   
 
@@ -45,7 +45,7 @@
 
 
 
-  <meta property="article:published_time" content="2018-09-25T00:00:00+02:00">
+  <meta property="article:published_time" content="2018-11-01T00:00:00+01:00">
 
 
 
@@ -56,7 +56,7 @@
   
 
 
-<link rel="canonical" href="https://jeroenmols.com/blog/2018/09/25/kotlinpuzzler/">
+<link rel="canonical" href="https://jeroenmols.com/blog/2018/11/01/kotlinstackoverflow/">
 
 
 
@@ -335,20 +335,20 @@ $(document).ready(function(){
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="A little Kotlin puzzler">
-    <meta itemprop="description" content="Kotlin is an incredibly enjoyable, concise and powerful programming language. Yet sometimes also a bit confusing…">
-    <meta itemprop="datePublished" content="September 25, 2018">
+    <meta itemprop="headline" content="Kotlin Stackoverflow error">
+    <meta itemprop="description" content="Java interop is one of the best features of the Kotlin language, yet sometimes this also can cause unforeseen issues…">
+    <meta itemprop="datePublished" content="November 01, 2018">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 class="page__title" itemprop="headline">A little Kotlin puzzler
+          <h1 class="page__title" itemprop="headline">Kotlin Stackoverflow error
 </h1>
-          <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  25 Sep 2018</p>
+          <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  01 Nov 2018</p>
 
           
-            <img src="https://jeroenmols.com/img/blog/kotlinpuzzler/kotlinpuzzler.jpg" alt="A little Kotlin puzzler" title="Photo by Ryoji Iwata on Unsplash, https://unsplash.com/photos/5siQcvSxCP8, cropped and added Kotlin logo">
+            <img src="https://jeroenmols.com/img/blog/kotlinstackoverflow/kotlin_stackoverflow.jpg" alt="Kotlin Stackoverflow error" title="Photo by Olav Ahrens Røtne on Unsplash, https://unsplash.com/photos/MAEbdaFe4ps, cropped and added Kotlin logo">
           
 
           
@@ -365,114 +365,115 @@ $(document).ready(function(){
 
       <section class="page__content" itemprop="text">
         
-        <p>Kotlin is an incredibly enjoyable, concise and powerful programming language. Yet sometimes also a bit confusing…</p>
+        <p>Java interop is one of the best features of the Kotlin language, yet sometimes this also can cause unforeseen issues…</p>
 
 <h2 id="puzzle">Puzzle</h2>
-<p>Have a look at the simple class below. It simulates an ongoing operation by smoothly moving a progress bar from 0 to 100 over the course of 30 seconds:</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">ProgressbarAnimator</span><span class="p">(</span><span class="k">private</span> <span class="kd">val</span> <span class="py">progressBar</span><span class="p">:</span> <span class="n">ProgressBar</span><span class="p">)</span> <span class="p">:</span> <span class="n">AnimatorUpdateListener</span> <span class="p">{</span>
+<blockquote>
+  <p>Disclaimer, the example below is a consequence of legacy code and only serves to demonstrate a Kotlin puzzler.</p>
+</blockquote>
 
-    <span class="k">private</span> <span class="k">lateinit</span> <span class="kd">var</span> <span class="py">animator</span><span class="p">:</span> <span class="n">ValueAnimator</span>
+<p>Have a look at the simple test class below. It subclasses the subject under test (<code class="highlighter-rouge">BaseFragment</code>) to inject a mocked <code class="highlighter-rouge">Repository</code> that is used by the <code class="highlighter-rouge">getDataOperation()</code> method in the test.</p>
 
-    <span class="n">init</span> <span class="p">{</span>
-        <span class="n">configureAnimator</span><span class="p">()</span>
-        <span class="n">animator</span><span class="p">.</span><span class="n">addUpdateListener</span> <span class="p">{</span> <span class="k">this</span> <span class="p">}</span>
-        <span class="n">animator</span><span class="p">.</span><span class="n">start</span><span class="p">()</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">BaseFragmentTest</span> <span class="p">{</span>
+
+    <span class="n">@get</span><span class="p">:</span><span class="n">Rule</span>
+    <span class="k">public</span> <span class="kd">val</span> <span class="py">mockitoRule</span> <span class="p">=</span> <span class="n">MockitoJUnit</span><span class="p">.</span><span class="n">rule</span><span class="p">()</span>
+
+    <span class="n">@Mock</span>
+    <span class="k">lateinit</span> <span class="kd">var</span> <span class="py">repository</span><span class="p">:</span> <span class="n">Repository</span>
+
+    <span class="n">@Test</span>
+    <span class="k">internal</span> <span class="k">fun</span> <span class="err">`</span><span class="n">data</span> <span class="n">should</span> <span class="n">be</span> <span class="k">as</span> <span class="n">expected</span><span class="err">`</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">val</span> <span class="py">actual</span> <span class="p">=</span> <span class="n">TestFragment</span><span class="p">().</span><span class="n">getDataOperation</span><span class="p">()</span>
+
+        <span class="n">assertEquals</span><span class="p">(</span><span class="n">actual</span><span class="p">,</span> <span class="s">"expected"</span><span class="p">)</span>
     <span class="p">}</span>
 
-    <span class="k">fun</span> <span class="n">configureAnimator</span><span class="p">()</span> <span class="p">{</span>
-        <span class="kd">val</span> <span class="py">endValue</span> <span class="p">=</span> <span class="p">(</span><span class="n">FPS</span> <span class="p">*</span> <span class="n">DURATION</span><span class="p">).</span><span class="n">toInt</span><span class="p">()</span>
-        <span class="n">progressBar</span><span class="p">.</span><span class="n">max</span> <span class="p">=</span> <span class="n">endValue</span>
-
-        <span class="n">animator</span> <span class="p">=</span> <span class="n">ValueAnimator</span><span class="p">.</span><span class="n">ofInt</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">endValue</span><span class="p">)</span>
-        <span class="n">animator</span><span class="p">.</span><span class="n">duration</span> <span class="p">=</span> <span class="n">DURATION</span>
-        <span class="n">animator</span><span class="p">.</span><span class="n">interpolator</span> <span class="p">=</span> <span class="n">LinearInterpolator</span><span class="p">()</span>
-    <span class="p">}</span>
-
-    <span class="k">override</span> <span class="k">fun</span> <span class="n">onAnimationUpdate</span><span class="p">(</span><span class="n">p</span><span class="p">:</span> <span class="n">ValueAnimator</span><span class="p">?)</span> <span class="p">{</span>
-        <span class="n">progressBar</span><span class="p">.</span><span class="n">progress</span> <span class="p">=</span> <span class="n">animator</span><span class="p">.</span><span class="n">animatedValue</span> <span class="k">as</span> <span class="n">Int</span>
-    <span class="p">}</span>
-
-    <span class="k">companion</span> <span class="k">object</span> <span class="p">{</span>
-        <span class="k">private</span> <span class="k">const</span> <span class="kd">val</span> <span class="py">FPS</span> <span class="p">=</span> <span class="m">0.06</span>
-        <span class="k">private</span> <span class="k">const</span> <span class="kd">val</span> <span class="py">DURATION</span> <span class="p">=</span> <span class="m">30</span> <span class="p">*</span> <span class="m">1000L</span>
+    <span class="k">inner</span> <span class="kd">class</span> <span class="nc">TestFragment</span> <span class="p">:</span> <span class="n">BaseFragment</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">override</span> <span class="k">fun</span> <span class="n">getRepository</span><span class="p">():</span> <span class="n">Repository</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">repository</span>
+        <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
 </code></pre></div></div>
 
-<p>What do you think will happen if we instantiate one of these with a given progress bar?</p>
-
-<p>Well… nothing! The progress bar doesn’t move at all.</p>
-
-<p>Can you spot what’s wrong? The error is in the following lines:</p>
-
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">init</span> <span class="p">{</span>
-    <span class="n">configureAnimator</span><span class="p">()</span>
-    <span class="n">animator</span><span class="p">.</span><span class="n">addUpdateListener</span> <span class="p">{</span> <span class="k">this</span> <span class="p">}</span>
-    <span class="n">animator</span><span class="p">.</span><span class="n">start</span><span class="p">()</span>
-<span class="p">}</span>
-</code></pre></div></div>
-<p>Any luck?</p>
+<p>What do you think will happen we run the test?</p>
 
 <p>…</p>
 
-<p>…</p>
+<p>Well…</p>
 
 <p>…</p>
 
-<p>Well this is the actual culprit:</p>
-
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">animator</span><span class="p">.</span><span class="n">addUpdateListener</span> <span class="p">{</span> <span class="k">this</span> <span class="p">}</span>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>java.lang.StackOverflowError
+    at com.jeroenmols.BaseFragmentTest$TestFragment.getRepository(BaseFragmentTest.kt:26)
+    at com.jeroenmols.BaseFragmentTest$TestFragment.getRepository(BaseFragmentTest.kt:26)
+    at com.jeroenmols.BaseFragmentTest$TestFragment.getRepository(BaseFragmentTest.kt:26)
+    at com.jeroenmols.BaseFragmentTest$TestFragment.getRepository(BaseFragmentTest.kt:26)
+    at com.jeroenmols.BaseFragmentTest$TestFragment.getRepository(BaseFragmentTest.kt:26)
+    at com.jeroenmols.BaseFragmentTest$TestFragment.getRepository(BaseFragmentTest.kt:26)
+    at com.jeroenmols.BaseFragmentTest$TestFragment.getRepository(BaseFragmentTest.kt:26)
 </code></pre></div></div>
 
-<p>There is syntactically a very subtle, yet incredibly important difference between that line and this:</p>
+<p>Wait, what???</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">animator</span><span class="p">.</span><span class="n">addUpdateListener</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
-</code></pre></div></div>
+<p>This trace indicates that the line <code class="highlighter-rouge">return repository</code> (line 26) is called recursively… How is that even possible? That line just return a value, right?</p>
 
-<p>If we change our init to the latter, then the progress bar works as expected!</p>
+<p>Well…</p>
 
 <h1 id="explanation">Explanation</h1>
-<p>One of the Kotlin features is that if the last argument of a method call is a lambda, you can move the lambda outside of the method invocation. (which is great for building <a href="https://proandroiddev.com/writing-dsls-in-kotlin-part-1-7f5d2193f277">DSLs</a>)</p>
+<p>This is actually a very interesting case of Java/Kotlin interop. Because a Kotlin property is compiled down to the following Java elements:</p>
 
-<p>Consequently,</p>
+<ul>
+  <li>a getter method with <code class="highlighter-rouge">get</code> prefix</li>
+  <li>a setter method with <code class="highlighter-rouge">set</code> prefix</li>
+  <li>a private field backing the property</li>
+</ul>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">animator</span><span class="p">.</span><span class="n">addUpdateListener</span> <span class="p">{</span> <span class="k">this</span> <span class="p">}</span>
-</code></pre></div></div>
+<p>Hence the <code class="highlighter-rouge">return repository</code> statement actually ends up executing <code class="highlighter-rouge">return getRepository()</code> and hence recursively calling itself!</p>
 
-<p>is equivalent to</p>
+<p>Now the really interesting detail here is that this only happens when <code class="highlighter-rouge">BaseFragment</code> is a Java class! When converting the class to Kotlin this doesn’t happen.</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">animator</span><span class="p">.</span><span class="n">addUpdateListener</span><span class="p">()</span> <span class="p">{</span> <span class="k">this</span> <span class="p">}</span>
-</code></pre></div></div>
+<p>So let’s have a look at the decompiled bytecode:</p>
 
-<p>and even</p>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Decompiled when BaseFragment in Java</span>
+<span class="k">public</span> <span class="k">final</span> <span class="kd">class</span> <span class="nc">TestFragment</span> <span class="n">extends</span> <span class="n">BaseFragment</span> <span class="p">{</span>
+   <span class="n">@NotNull</span>
+   <span class="k">public</span> <span class="n">Repository</span> <span class="n">getRepository</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="n">getRepository</span><span class="p">();</span>
+   <span class="p">}</span>
+<span class="p">}</span>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">animator</span><span class="p">.</span><span class="n">addUpdateListener</span><span class="p">({</span> <span class="k">this</span> <span class="p">})</span>
-</code></pre></div></div>
-
-<p>and by expanding the lambda, this</p>
-
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">animator</span><span class="p">.</span><span class="n">addUpdateListener</span><span class="p">({</span> <span class="n">_</span> <span class="p">-&gt;</span> <span class="k">this</span> <span class="p">})</span>
-</code></pre></div></div>
-
-<p>So the reason why the progress bar wasn’t working is simple. Instead of registering itself as an <code class="highlighter-rouge">AnimationUpdateListener</code>, it actually registered a lambda, a new function to handle the animation updates.</p>
-
-<p>So every animation update the lambda <code class="highlighter-rouge">{ _ -&gt; this }</code> was invoked instead of the <code class="highlighter-rouge">onAnimationUpdate</code> method. Thereby not doing anything, it just has the <code class="highlighter-rouge">this</code> object without any invocation on it.</p>
-
-<p>Equivalent to writing the following function:</p>
-
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="n">doNothing</span><span class="p">()</span> <span class="p">{</span>
-  <span class="m">5</span>
+<span class="c1">// Decompiled when BaseFragment in Kotlin</span>
+<span class="k">public</span> <span class="k">final</span> <span class="kd">class</span> <span class="nc">TestFragment</span> <span class="n">extends</span> <span class="n">BaseFragment</span> <span class="p">{</span>
+   <span class="n">@NotNull</span>
+   <span class="k">public</span> <span class="n">Repository</span> <span class="n">getRepository</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="n">BaseFragmentTest</span><span class="p">.</span><span class="k">this</span><span class="p">.</span><span class="n">getRepository</span><span class="p">();</span>
+   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>Perfectly valid syntax, but otherwise completely useless.</p>
+<p>Sure enough, the decompiled Java code recursively links to the <code class="highlighter-rouge">TestFragment</code> when <code class="highlighter-rouge">BaseFragment</code> is in java and properly links to the right method when <code class="highlighter-rouge">BaseFragment</code> is in Kotlin.</p>
+
+<p>A simple way to fix this is to strongly refer the overridden method to point at the <code class="highlighter-rouge">BaseFragmentTest</code> class:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">inner</span> <span class="kd">class</span> <span class="nc">TestFragment</span> <span class="p">:</span> <span class="n">BaseFragment</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">override</span> <span class="k">fun</span> <span class="n">getRepository</span><span class="p">():</span> <span class="n">Repository</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">this</span><span class="n">@BaseFragmentTest</span><span class="p">.</span><span class="n">repository</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p>Fortunately Android Studio also warns you about recursion with an indicator:</p>
+
+<p><img src="https://jeroenmols.com/img/blog/kotlinstackoverflow/androidstudio_warning.png" alt="Android Studio recursive function indicator" class="align-center" /></p>
 
 <h2 id="wrap-up">Wrap-up</h2>
-<p>A very subtle difference in syntax (<code class="highlighter-rouge">{}</code> instead of <code class="highlighter-rouge">()</code>) can make a huge difference in what the code actually does. Kotlin is a very powerful programming language, but with great power comes great…</p>
+<p>This post indicates an interesting case where methods/properties get linked incorrectly when inheriting from a Java class in Kotlin. Fortunately, Android Studio and the decompiled bytecode clearly indicate what is going wrong.</p>
 
-<p>If you’ve made it this far you should probably follow me on <span><a href="https://twitter.com/molsjeroen?source=alittlekotlinpuzzler2018" class="ga-link" target="_blank">Twitter</a></span>
+<p>If you’ve made it this far you should probably follow me on <span><a href="https://twitter.com/molsjeroen?source=kotlinstackoverflowerror2018" class="ga-link" target="_blank">Twitter</a></span>
 . Feel free leave a comment below!</p>
 
         
@@ -498,11 +499,11 @@ $(document).ready(function(){
     
       
       
-      <a href="/tags/lambda" class="page__taxonomy-item" rel="tag">lambda</a><span class="sep">, </span>
+      <a href="/tags/puzzle" class="page__taxonomy-item" rel="tag">puzzle</a><span class="sep">, </span>
     
       
       
-      <a href="/tags/puzzle" class="page__taxonomy-item" rel="tag">puzzle</a>
+      <a href="/tags/stackoverflow" class="page__taxonomy-item" rel="tag">stackoverflow</a>
     
     </span>
   </p>
@@ -530,7 +531,7 @@ $(document).ready(function(){
 
 
         
-          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-09-25T00:00:00+02:00">September 25, 2018</time></p>
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-11-01T00:00:00+01:00">November 01, 2018</time></p>
         
       </footer>
 
@@ -539,13 +540,13 @@ $(document).ready(function(){
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=A+little+Kotlin+puzzler%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2018%2F09%2F25%2Fkotlinpuzzler%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=Kotlin+Stackoverflow+error%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2018%2F11%2F01%2Fkotlinstackoverflow%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2018%2F09%2F25%2Fkotlinpuzzler%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2018%2F11%2F01%2Fkotlinstackoverflow%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://plus.google.com/share?url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2018%2F09%2F25%2Fkotlinpuzzler%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fab fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+  <a href="https://plus.google.com/share?url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2018%2F11%2F01%2Fkotlinstackoverflow%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fab fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2018%2F09%2F25%2Fkotlinpuzzler%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2018%2F11%2F01%2Fkotlinstackoverflow%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
@@ -566,12 +567,11 @@ $(document).ready(function(){
       
   <nav class="pagination">
     
-      <a href="/blog/2018/08/02/phonestatepermission/" class="pagination--pager" title="How dangerous permissions sneak into apps
+      <a href="/blog/2018/10/05/kotlinconf18/" class="pagination--pager" title="Kotlinconf 2018 slides
 ">Previous</a>
     
     
-      <a href="/blog/2018/10/05/kotlinconf18/" class="pagination--pager" title="Kotlinconf 2018 slides
-">Next</a>
+      <a href="#" class="pagination--pager disabled">Next</a>
     
   </nav>
 
@@ -593,45 +593,6 @@ $(document).ready(function(){
     <div class="page__related">
       <h4 class="page__related-title">You May Also Enjoy</h4>
       <div class="grid__wrapper">
-        
-          
-
-
-
-<div class="grid__item" style="position: relative">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    <div style="position:relative;">
-      
-        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/kotlinstackoverflow/kotlin_stackoverflow.jpg)"></div>
-      
-      <div class="archive__item_titlecontainer">
-        <h2 class="archive__item-title" itemprop="headline">
-            <a href="https://jeroenmols.com/blog/2018/11/01/kotlinstackoverflow/" rel="permalink">Kotlin Stackoverflow error
-</a>
-        </h2>
-        <h3 class="archive__date">01 Nov 2018</h3>
-      </div>
-      
-        <a href="https://jeroenmols.com/blog/2018/11/01/kotlinstackoverflow/" rel="permalink">
-          <div class="archive__item-teaser-imageclickhandler"></div>
-        </a>
-      
-    </div>
-    
-      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
-
-
-
-
-  2 minute read
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">Java interop is one of the best features of the Kotlin language, yet sometimes this also can cause unforeseen issues…
-
-</p>
-  </article>
-</div>
-
         
           
 
@@ -666,6 +627,45 @@ $(document).ready(function(){
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">Was really great visiting Kotlinconf this year and I wanted to do a quick post to link to all of it’s wonderful content.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/kotlinpuzzler/kotlinpuzzler.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2018/09/25/kotlinpuzzler/" rel="permalink">A little Kotlin puzzler
+</a>
+        </h2>
+        <h3 class="archive__date">25 Sep 2018</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2018/09/25/kotlinpuzzler/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Kotlin is an incredibly enjoyable, concise and powerful programming language. Yet sometimes also a bit confusing…
 
 </p>
   </article>
@@ -826,8 +826,8 @@ $(document).ready(function(){
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://jeroenmols.com/blog/2018/09/25/kotlinpuzzler/";  // Replace PAGE_URL with your page's canonical URL variable
-      this.page.identifier = "/blog/2018/09/25/kotlinpuzzler"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      this.page.url = "https://jeroenmols.com/blog/2018/11/01/kotlinstackoverflow/";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = "/blog/2018/11/01/kotlinstackoverflow"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
     (function() { // DON'T EDIT BELOW THIS LINE
       var d = document, s = d.createElement('script');

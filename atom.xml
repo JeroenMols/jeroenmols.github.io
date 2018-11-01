@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle>
- <updated>2018-10-10T13:59:51+02:00</updated>
+ <updated>2018-11-02T00:08:39+01:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,20 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>Kotlin Stackoverflow error</title>
+   <link href="https://jeroenmols.com/blog/2018/11/01/kotlinstackoverflow/"/>
+   <updated>2018-11-01T00:00:00+01:00</updated>
+   <id>https://jeroenmols.com/blog/2018/11/01/kotlinstackoverflow</id>
+   <content type="html"><![CDATA[
+     
+     <p>Java interop is one of the best features of the Kotlin language, yet sometimes this also can cause unforeseen issues…</p>
+
+
+     <a href="https://jeroenmols.com/blog/2018/11/01/kotlinstackoverflow/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>Kotlinconf 2018 slides</title>

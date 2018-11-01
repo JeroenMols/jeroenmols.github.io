@@ -173,4 +173,9 @@ var store = [{
         "excerpt":"Was really great visiting Kotlinconf this year and I wanted to do a quick post to link to all of it’s wonderful content. Conference slides While you will be able to find all recordings here, I often find it useful to be able to quickly scan through the slides. Hence...","categories": ["blog"],
         "tags": ["android","conference","kotlinconf"],
         "url": "https://jeroenmols.com/blog/2018/10/05/kotlinconf18/",
-        "teaser":"https://jeroenmols.com/img/blog/kotlinconf18/kotlinconf18.jpg"}]
+        "teaser":"https://jeroenmols.com/img/blog/kotlinconf18/kotlinconf18.jpg"},{
+        "title": "Kotlin Stackoverflow error",
+        "excerpt":"Java interop is one of the best features of the Kotlin language, yet sometimes this also can cause unforeseen issues… Puzzle Disclaimer, the example below is a consequence of legacy code and only serves to demonstrate a Kotlin puzzler. Have a look at the simple test class below. It subclasses...","categories": ["blog"],
+        "tags": ["kotlin","stackoverflow","puzzle"],
+        "url": "https://jeroenmols.com/blog/2018/11/01/kotlinstackoverflow/",
+        "teaser":"https://jeroenmols.com/img/blog/kotlinstackoverflow/kotlin_stackoverflow.jpg"}]
