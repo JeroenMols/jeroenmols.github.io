@@ -27,7 +27,7 @@ class BaseFragmentTest {
     lateinit var repository: Repository
 
     @Test
-    internal fun `data should be as expected`() {
+    fun `data should be as expected`() {
         val actual = TestFragment().getDataOperation()
 
         assertEquals(actual, "expected")
