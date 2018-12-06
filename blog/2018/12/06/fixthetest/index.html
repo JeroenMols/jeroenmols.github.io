@@ -1,0 +1,1106 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.12.0 by Michael Rose
+  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Can you fix the test? - Jeroen Mols</title>
+<meta name="description" content="Learning from analyzing code is one of the greatest ways to improve your skills. Can you spot the mistakes in the tests below?">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="Jeroen Mols">
+<meta property="og:title" content="Can you fix the test?">
+<meta property="og:url" content="https://jeroenmols.com/blog/2018/12/06/fixthetest/">
+
+
+  <meta property="og:description" content="Learning from analyzing code is one of the greatest ways to improve your skills. Can you spot the mistakes in the tests below?">
+
+
+
+  <meta property="og:image" content="https://jeroenmols.com/img/blog/fixthetest/fixthetest.jpg">
+
+
+
+  <meta name="twitter:site" content="@molsjeroen">
+  <meta name="twitter:title" content="Can you fix the test?">
+  <meta name="twitter:description" content="Learning from analyzing code is one of the greatest ways to improve your skills. Can you spot the mistakes in the tests below?">
+  <meta name="twitter:url" content="https://jeroenmols.com/blog/2018/12/06/fixthetest/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+      <meta name="twitter:image" content="https://jeroenmols.com/img/blog/fixthetest/fixthetest.jpg">
+    
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2018-12-06T00:00:00+01:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://jeroenmols.com/blog/2018/12/06/fixthetest/">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "Jeroen Mols",
+      "url": "https://jeroenmols.com",
+      "sameAs": ["https://twitter.com/molsjeroen","https://www.linkedin.com/in/jeroenmols/","https://plus.google.com/+JeroenMols","https://github.com/JeroenMols","https://speakerdeck.com/jeroenmols","https://stackoverflow.com/users/2771851/jmols"]
+    }
+  </script>
+
+
+
+  <meta name="google-site-verification" content="8E8HUpExgyNFdLuFMWmkSUl08gISnOF3UWexA55aNrk" />
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$('.ga-link').on('click', function(){
+		if (typeof(ga)!=="undefined"){
+			ga('send',{
+				hitType: 'event',
+				eventCategory: 'Outbound link',
+				eventAction: 'click',
+				eventLabel: event.target.href
+			});
+	  	}
+	});
+})	;
+</script>
+
+<meta name="theme-color" content="#2c3e50">
+
+<link href="atom.xml" type="application/atom+xml" rel="alternate" title="Jeroen Mols Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="https://jeroenmols.com/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="/">Jeroen Mols</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://jeroenmols.com/blog/" >Blog</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://jeroenmols.com/speaking/" >Speaking</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://jeroenmols.com/hireme/" >Hire me</a>
+            </li>
+          
+        </ul>
+        
+        <button class="search__toggle" type="button">
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="/img/profile.jpg" alt="Jeroen Mols" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Jeroen Mols</h3>
+    
+    
+      <p class="author__bio" itemprop="description">
+        Android GDE & Lead Android developer at Philips Hue
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Mol, Belgium</span>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://twitter.com/@molsjeroen" itemprop="sameAs">
+            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+          </a>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="https://plus.google.com/JeroenMols" itemprop="sameAs">
+            <i class="fab fa-fw fa-google-plus-square" aria-hidden="true"></i> Google+
+          </a>
+        </li>
+      
+
+      
+        <li>
+          <a href="https://www.linkedin.com/in/jeroenmols" itemprop="sameAs">
+            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/JeroenMols" itemprop="sameAs">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="https://www.stackoverflow.com/users/2771851/jmols" itemprop="sameAs">
+            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i> Stack Overflow
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        
+          <li>
+            <a href="https://www.youtube.com/channel/UC34Vt1lo8T15_rgc3e3Jsew" itemprop="sameAs">
+              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i> YouTube
+            </a>
+          </li>
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+  <li>
+    <a href="https://speakerdeck.com/jeroenmols" itemprop="sameAs">
+      <i class="fa fa-line-chart" aria-hidden="true"></i> Speaker Deck
+    </a>
+  </li>
+
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Can you fix the test?">
+    <meta itemprop="description" content="Learning from analyzing code is one of the greatest ways to improve your skills. Can you spot the mistakes in the tests below?">
+    <meta itemprop="datePublished" content="December 06, 2018">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Can you fix the test?
+</h1>
+          <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  06 Dec 2018</p>
+
+          
+            <img src="https://jeroenmols.com/img/blog/fixthetest/fixthetest.jpg" alt="Can you fix the test?" title="Photo by Daniel Cheung on Unsplash, https://unsplash.com/photos/ZqqlOZyGG7g, cropped">
+          
+
+          
+            <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  7 minute read
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>Learning from analyzing code is one of the greatest ways to improve your skills. Can you spot the mistakes in the tests below?</p>
+
+<p>This post brings a fun little quiz for both testing gurus as novices, with a deep dive into the how and why of awesome tests.</p>
+
+<h2 id="case-1-sugary">Case 1: sugary</h2>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Instrumented test, run on Android device.</span>
+<span class="n">@RunWith</span><span class="p">(</span><span class="n">AndroidJUnit4</span><span class="o">::</span><span class="k">class</span><span class="p">)</span>
+<span class="kd">class</span> <span class="nc">CalculatorTest</span> <span class="p">:</span> <span class="n">TestCase</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="k">fun</span> <span class="n">test_sumShouldAddNumbers</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">val</span> <span class="py">sum</span> <span class="p">=</span> <span class="n">Calculator</span><span class="p">().</span><span class="n">sum</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
+
+        <span class="n">assertThat</span><span class="p">(</span><span class="n">sum</span><span class="p">).</span><span class="n">isEqualTo</span><span class="p">(</span><span class="m">3</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Take a good look at the test above and think what you would do differently.</p>
+
+<p>…</p>
+
+<p>Don’t worry, I’ll wait.</p>
+
+<p>…</p>
+
+<p>Ready?</p>
+
+<p>Well there are actually quite some things wrong with this test, but the main problem is the syntax:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">CalculatorTest</code> inherits from <code class="highlighter-rouge">TestCase</code></li>
+  <li><code class="highlighter-rouge">test_sumShouldAddNumbers()</code> is prefixed with <code class="highlighter-rouge">test</code></li>
+</ul>
+
+<p>This is actually the old <a href="http://junit.sourceforge.net/junit3.8.1/">JUnit3</a> syntax, whereas Android currently supports <a href="https://junit.org/junit4/">JUnit4</a> (and even <a href="https://junit.org/junit5/">JUnit5</a>).</p>
+
+<p>In these newer frameworks, the inheritance and prefixing are not required. All you have to do is annotate each test method with <code class="highlighter-rouge">@Test</code>.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Instrumented test, run on Android device.</span>
+<span class="n">@RunWith</span><span class="p">(</span><span class="n">AndroidJUnit4</span><span class="o">::</span><span class="k">class</span><span class="p">)</span>
+<span class="kd">class</span> <span class="nc">CalculatorTest</span> <span class="p">{</span>
+
+    <span class="n">@Test</span>
+    <span class="k">fun</span> <span class="n">sumShouldAddNumbers</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">val</span> <span class="py">sum</span> <span class="p">=</span> <span class="n">Calculator</span><span class="p">().</span><span class="n">sum</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
+
+        <span class="n">assertThat</span><span class="p">(</span><span class="n">sum</span><span class="p">).</span><span class="n">isEqualTo</span><span class="p">(</span><span class="m">3</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Interestingly enough the JUnit4 conversion enables two additional optimizations:</p>
+
+<ul>
+  <li>since <code class="highlighter-rouge">test</code> prefix is not required for test methods, we can use the backtick notation in Kotlin to make more descriptive test names (e.g. `sum of 1 and 2 should equal 3`)</li>
+  <li>since we are only using JUnit4 now, there is no need to declare <code class="highlighter-rouge">@RunWith(AndroidJUnit4::class)</code> as this is only required to run both JUnit3 and 4 tests in the same file</li>
+</ul>
+
+<p>This dramatically clarifies our test:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">CalculatorTest</span> <span class="p">{</span>
+
+    <span class="n">@Test</span>
+    <span class="k">fun</span> <span class="err">`</span><span class="n">sum</span> <span class="n">of</span> <span class="m">1</span> <span class="n">and</span> <span class="m">2</span> <span class="n">should</span> <span class="n">equal</span> <span class="m">3</span><span class="err">`</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">val</span> <span class="py">sum</span> <span class="p">=</span> <span class="n">Calculator</span><span class="p">().</span><span class="n">sum</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
+
+        <span class="n">assertThat</span><span class="p">(</span><span class="n">sum</span><span class="p">).</span><span class="n">isEqualTo</span><span class="p">(</span><span class="m">3</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Note that the test above also doesn’t need to be run on an Android device as it doesn’t use the Instrumentation framework.</p>
+
+<p>The <code class="highlighter-rouge">@RunWith()</code> annotation was only added to be able to explain what <code class="highlighter-rouge">AndroidJunit4</code> does.</p>
+
+<blockquote>
+  <p>TL;DR All you need is @Test annotations on test methods</p>
+</blockquote>
+
+<h2 id="case-2-exceptional">Case 2: exceptional</h2>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">@Test</span>
+<span class="k">fun</span> <span class="err">`</span><span class="n">divide</span> <span class="k">by</span> <span class="n">zero</span> <span class="n">should</span> <span class="k">throw</span> <span class="n">an</span> <span class="n">exception</span><span class="err">`</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="n">Calculator</span><span class="p">().</span><span class="n">divide</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span>
+        <span class="n">fail</span><span class="p">(</span><span class="s">"No exception thrown"</span><span class="p">)</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">e</span><span class="p">:</span> <span class="n">RuntimeException</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Alright, now that you’re warmed up, have a good look at the next test.</p>
+
+<p>…</p>
+
+<p>Going for a quick coffee brb…</p>
+
+<p>…</p>
+
+<p>Trying to catch the exception yourself and making the test fail subsequently is quite verbose, no?</p>
+
+<p>There is actually a better way of doing this, by using the <code class="highlighter-rouge">expected</code> annotation.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">@Test</span> <span class="p">(</span><span class="n">expected</span> <span class="p">=</span> <span class="n">RuntimeException</span><span class="o">::</span><span class="k">class</span><span class="p">)</span>
+<span class="k">fun</span> <span class="err">`</span><span class="n">divide</span> <span class="k">by</span> <span class="n">zero</span> <span class="n">should</span> <span class="k">throw</span> <span class="n">an</span> <span class="n">exception</span><span class="err">`</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">Calculator</span><span class="p">().</span><span class="n">divide</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This doesn’t just amount to less code to write (and maintain) but you’ll also get a proper error message out of the box.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>java.lang.AssertionError: Expected exception: java.lang.RuntimeException
+</code></pre></div></div>
+
+<blockquote>
+  <p>TL;DR Use @Test (expected = …) for expected exceptions</p>
+</blockquote>
+
+<h2 id="case-3-assertive">Case 3: assertive</h2>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">@Test</span>
+<span class="k">fun</span> <span class="err">`</span><span class="n">should</span> <span class="n">ask</span> <span class="n">WebService</span> <span class="n">to</span> <span class="n">login</span><span class="err">`</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">result</span> <span class="p">=</span> <span class="n">User</span><span class="p">(</span><span class="n">mockWebService</span><span class="p">).</span><span class="n">login</span><span class="p">()</span>
+
+    <span class="n">verify</span><span class="p">(</span><span class="n">mockWebService</span><span class="p">).</span><span class="n">login</span><span class="p">()</span>
+    <span class="n">verify</span><span class="p">(</span><span class="n">mockWebService</span><span class="p">,</span> <span class="n">never</span><span class="p">()).</span><span class="n">logout</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>An example with mocks this time! Can you spot the improvement?</p>
+
+<p>…</p>
+
+<p>I’m not mocking you, I promise! ;)</p>
+
+<p>…</p>
+
+<p>Imagine for a second that the test above fails… What could be the cause of that?</p>
+
+<p>There are actually a few different possibilities:</p>
+
+<ul>
+  <li>either <code class="highlighter-rouge">login()</code> was not called</li>
+  <li>or <code class="highlighter-rouge">logout()</code> was called</li>
+  <li>or both of the above</li>
+</ul>
+
+<p>Because the test can fail for multiple reasons, you can never conclude from the failure output what the problem is. Instead you have to dive deeper into each failing test, which can be quite time consuming and frustrating.</p>
+
+<p>Wouldn’t it be nice if every tests would just fail for one single reason?</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">@Test</span>
+<span class="k">fun</span> <span class="err">`</span><span class="n">login</span> <span class="n">should</span> <span class="n">ask</span> <span class="n">WebService</span> <span class="n">to</span> <span class="n">login</span><span class="err">`</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">result</span> <span class="p">=</span> <span class="n">User</span><span class="p">(</span><span class="n">mockWebService</span><span class="p">).</span><span class="n">login</span><span class="p">()</span>
+
+    <span class="n">verify</span><span class="p">(</span><span class="n">mockWebService</span><span class="p">).</span><span class="n">login</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="n">@Test</span>
+<span class="k">fun</span> <span class="err">`</span><span class="n">login</span> <span class="n">shouldn</span><span class="err">'</span><span class="n">t</span> <span class="n">ask</span> <span class="n">WebService</span> <span class="n">to</span> <span class="n">logout</span><span class="err">`</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">result</span> <span class="p">=</span> <span class="n">User</span><span class="p">(</span><span class="n">mockWebService</span><span class="p">).</span><span class="n">login</span><span class="p">()</span>
+
+    <span class="n">verify</span><span class="p">(</span><span class="n">mockWebService</span><span class="p">,</span> <span class="n">never</span><span class="p">()).</span><span class="n">logout</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>If one of those fail, the test message will immediate tell you what’s going wrong!</p>
+
+<p>This actually isn’t the only reason why you should only use one single assert/verify per test:</p>
+
+<ul>
+  <li>
+    <p>JUnit4 stops test execution after the first failure: so if the first assert fails, the following ones aren’t executed! Consequently you don’t know how many problems there are on test failure.</p>
+  </li>
+  <li>
+    <p>Too many assertions can make code nearly impossible to refactor: To fully test a login functionality, you probably need over 10 tests (username null, wrong password,…), right? Imagine that every single test also explicitly checks that logout isn’t called on login… What happens now if your requirement changes and you need to support immediate logout after login? (e.g. For Android Wear) Then you would have to refactor all those tests!!!</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p>TL;DR Use only one assert/verify per test</p>
+</blockquote>
+
+<h2 id="case-4-divided">Case 4: divided</h2>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">@Test</span>
+<span class="k">fun</span> <span class="err">`</span><span class="n">should</span> <span class="k">do</span> <span class="n">multiple</span> <span class="n">calculations</span><span class="err">`</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">calculator</span> <span class="p">=</span> <span class="n">Calculator</span><span class="p">()</span>
+    <span class="kd">val</span> <span class="py">sum</span> <span class="p">=</span> <span class="n">calculator</span><span class="p">.</span><span class="n">sum</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
+
+    <span class="kd">val</span> <span class="py">division</span> <span class="p">=</span> <span class="n">calculator</span><span class="p">.</span><span class="n">divide</span><span class="p">(</span><span class="n">sum</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span>
+
+    <span class="n">assertThat</span><span class="p">(</span><span class="n">division</span><span class="p">).</span><span class="n">isEqualTo</span><span class="p">(</span><span class="m">1f</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>…</p>
+
+<p>You know the drill…</p>
+
+<p>…</p>
+
+<p>Let’s step through the test: first it calculates the sum of 1 and 2, followed by a division of the result by 3.</p>
+
+<p>Why are we testing that sequence? Mathematical operations (add/divide) aren’t supposed to have side effects (and influence each other), right?</p>
+
+<p>Even more, the interface of <code class="highlighter-rouge">Calculator</code> makes that clear: both <code class="highlighter-rouge">sum()</code> and <code class="highlighter-rouge">divide()</code> take all parameters they need as an input to produce an output.</p>
+
+<p>So if <code class="highlighter-rouge">sum()</code> and <code class="highlighter-rouge">divide()</code> are already tested, there really isn’t an added benefit of testing the sequence, right?</p>
+
+<p>Instead, there are quite some disadvantages:</p>
+
+<ul>
+  <li>the combined test is harder to understand (more steps)</li>
+  <li>the combined test can fail due to multiple reasons (causing more failure analysis effort).</li>
+  <li>it’s unclear what combinations of steps should be tested and which ones not (where do you stop?)</li>
+  <li>not really a unit test</li>
+</ul>
+
+<p>Hence this test should be split it two:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">@Test</span>
+<span class="k">fun</span> <span class="err">`</span><span class="n">sum</span> <span class="n">of</span> <span class="m">1</span> <span class="n">and</span> <span class="m">2</span> <span class="n">should</span> <span class="n">be</span> <span class="m">3</span><span class="err">`</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">sum</span> <span class="p">=</span> <span class="n">Calculator</span><span class="p">().</span><span class="n">sum</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
+
+    <span class="n">assertThat</span><span class="p">(</span><span class="n">sum</span><span class="p">).</span><span class="n">isEqualTo</span><span class="p">(</span><span class="m">3</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">@Test</span>
+<span class="k">fun</span> <span class="err">`</span><span class="n">division</span> <span class="n">of</span> <span class="m">3</span> <span class="n">and</span> <span class="m">3</span> <span class="n">should</span> <span class="n">be</span> <span class="m">1f</span><span class="err">`</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">division</span> <span class="p">=</span> <span class="n">Calculator</span><span class="p">().</span><span class="n">divide</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span>
+
+    <span class="n">assertThat</span><span class="p">(</span><span class="n">division</span><span class="p">).</span><span class="n">isEqualTo</span><span class="p">(</span><span class="m">1f</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>TL;DR Only unit test one method per test</p>
+</blockquote>
+
+<h2 id="case-5-readable">Case 5: readable</h2>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">WebServiceTest</span> <span class="p">{</span>
+
+    <span class="k">lateinit</span> <span class="kd">var</span> <span class="py">webService</span><span class="p">:</span> <span class="n">WebService</span>
+
+    <span class="n">@Before</span>
+    <span class="k">fun</span> <span class="n">setUp</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">webService</span> <span class="p">=</span> <span class="n">WebServiceTestHelper</span><span class="p">.</span><span class="n">createWebService</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="n">@Test</span>
+    <span class="k">fun</span> <span class="err">`</span><span class="n">login</span> <span class="n">should</span> <span class="n">fail</span> <span class="k">when</span> <span class="n">wrong</span> <span class="n">password</span><span class="err">`</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">val</span> <span class="py">result</span> <span class="p">=</span> <span class="n">webService</span><span class="p">.</span><span class="n">login</span><span class="p">()</span>
+        <span class="n">checkLoginFailed</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Let’s make things slightly more interesting…</p>
+
+<p>…</p>
+
+<p>Any ideas?</p>
+
+<p>…</p>
+
+<p>In order to understand what’s bad about this test, you need to imagine a lot more tests in the same file.</p>
+
+<p>If you where to encounter the test above somewhere in a file with a lot more tests, it would take you quite some time to figure out what’s going on:</p>
+
+<ul>
+  <li>Need to look at <code class="highlighter-rouge">setUp()</code> method to understand where the WebService under test is coming from</li>
+  <li>Need to open <code class="highlighter-rouge">WebServiceTestHelper</code>to understand the WebService initialization</li>
+  <li>Need to open <code class="highlighter-rouge">checkLoginFailed()</code> method to see how a failed login is identified</li>
+</ul>
+
+<p>That’s a lot of work!</p>
+
+<p>The problem here is that the reader constantly has to exit the test method to figure out what’s going on.</p>
+
+<p>Removing the <code class="highlighter-rouge">setUp</code> method, inlining the <code class="highlighter-rouge">WebServiceTestHelper</code> and the <code class="highlighter-rouge">checkLoginFailed()</code> method yields the following.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">WebServiceTest</span> <span class="p">{</span>
+
+    <span class="n">@Test</span>
+    <span class="k">fun</span> <span class="n">`loginHasFailed`</span><span class="p">()</span> <span class="p">{</span>
+<span class="kd">var</span> <span class="py">webService</span> <span class="p">=</span> <span class="n">WebService</span><span class="p">()</span>
+        <span class="n">webService</span><span class="p">.</span><span class="n">setUserCredentials</span><span class="p">(</span><span class="s">"email@google.com"</span><span class="p">,</span> <span class="err">“</span><span class="n">wrong_pwd</span><span class="err">”</span><span class="p">)</span>
+
+        <span class="kd">val</span> <span class="py">result</span> <span class="p">=</span> <span class="n">webService</span><span class="p">.</span><span class="n">login</span><span class="p">()</span>
+
+        <span class="n">assertThat</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">isSuccess</span><span class="p">).</span><span class="n">isFalse</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Notice how easy it has now become to understand what’s going on in the test!</p>
+
+<p>But wouldn’t that lead to quite some code duplication you say? Well, I’m glad you ask. YES! But even though testing code is also production code, the <a href="https://mtlynch.io/good-developers-bad-tests/">same rules don’t</a> completely apply.</p>
+
+<p>It is fine for test code to have duplication, magic numbers/strings, long method names,…  Readability and ease of fixing failures are what matter most.</p>
+
+<blockquote>
+  <p>TL;DR Always keep the reader within the test function</p>
+</blockquote>
+
+<h2 id="case-6-trustworthy">Case 6: trustworthy</h2>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">@Test</span>
+<span class="k">fun</span> <span class="err">`</span><span class="n">should</span> <span class="n">properly</span> <span class="n">format</span> <span class="n">time</span><span class="err">`</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">expectedTime</span> <span class="p">=</span> <span class="n">FORMAT</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="n">Date</span><span class="p">())</span>
+
+    <span class="kd">val</span> <span class="py">formattedTime</span> <span class="p">=</span> <span class="n">TimeFormatter</span><span class="p">().</span><span class="n">currentFormattedTime</span>
+
+    <span class="n">assertEquals</span><span class="p">(</span><span class="n">expectedTime</span><span class="p">,</span> <span class="n">formattedTime</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">companion</span> <span class="k">object</span> <span class="p">{</span>
+    <span class="k">private</span> <span class="kd">val</span> <span class="py">FORMAT</span> <span class="p">=</span> <span class="n">SimpleDateFormat</span><span class="p">(</span><span class="s">"HH:mm:ss:SSS"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>And the final contender of the day is…</p>
+
+<p>…</p>
+
+<p>Any ideas?</p>
+
+<p>…</p>
+
+<p>Simply put, this test is flaky. It will only fail very rarely, but still it will.</p>
+
+<p>Reason for this is that the <code class="highlighter-rouge">expectedTime</code> isn’t the time used by the <code class="highlighter-rouge">TimeFormatter</code> and hence there will be a slight difference (~ ns) between both. When rounding works against us, this could actually end up in a real formatted ms difference.</p>
+
+<p>And flakiness in tests, well… no matter how infrequent, we should have a <a href="/blog/2017/02/16/unittests/">zero tolerance policy</a> towards them. This is because flakiness can completely destroy the confidence of the team in the test suite.</p>
+
+<p>Fortunately this can easily be fixed by passing the current time into the <code class="highlighter-rouge">TimeFormatter</code>.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">@Test</span>
+<span class="k">fun</span> <span class="err">`</span><span class="n">should</span> <span class="n">properly</span> <span class="n">format</span> <span class="n">time</span><span class="err">`</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">now</span> <span class="p">=</span> <span class="n">Date</span><span class="p">()</span>
+    <span class="kd">val</span> <span class="py">expectedTime</span> <span class="p">=</span> <span class="n">FORMAT</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="n">Date</span><span class="p">())</span>
+
+    <span class="kd">val</span> <span class="py">formattedTime</span> <span class="p">=</span> <span class="n">TimeFormatter</span><span class="p">(</span><span class="n">now</span><span class="p">).</span><span class="n">currentFormattedTime</span>
+
+    <span class="n">assertEquals</span><span class="p">(</span><span class="n">expectedTime</span><span class="p">,</span> <span class="n">formattedTime</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">companion</span> <span class="k">object</span> <span class="p">{</span>
+    <span class="k">private</span> <span class="kd">val</span> <span class="py">FORMAT</span> <span class="p">=</span> <span class="n">SimpleDateFormat</span><span class="p">(</span><span class="s">"HH:mm:ss:SSS"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>TL;DR Tests should never randomly fail</p>
+</blockquote>
+
+<h2 id="wrap-up">Wrap-up</h2>
+<p>Putting it all together, great tests follow the following principles:</p>
+
+<ul>
+  <li>All you need is @Test annotations on test methods</li>
+  <li>Use @Test (expected = …) for expected exceptions</li>
+  <li>Only one assert/verify per test</li>
+  <li>Only unit test one method per test</li>
+  <li>Always keep the reader within the test function</li>
+  <li>Tests should never randomly fail</li>
+</ul>
+
+<p>Check out my slides/video to learn more about <a href="https://speakerdeck.com/jeroenmols/write-awesome-unit-tests">awesome unit tests</a>.</p>
+
+<p>If you’ve made it this far you should probably follow me on <span><a href="https://twitter.com/molsjeroen?source=canyoufixthetest?2018" class="ga-link" target="_blank">Twitter</a></span>
+. Feel free leave a comment below!</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/cleancode" class="page__taxonomy-item" rel="tag">cleancode</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/kotlin" class="page__taxonomy-item" rel="tag">kotlin</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/testing" class="page__taxonomy-item" rel="tag">testing</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/blog" class="page__taxonomy-item" rel="tag">blog</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-12-06T00:00:00+01:00">December 06, 2018</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=Can+you+fix+the+test%3F%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2018%2F12%2F06%2Ffixthetest%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2018%2F12%2F06%2Ffixthetest%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://plus.google.com/share?url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2018%2F12%2F06%2Ffixthetest%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fab fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2018%2F12%2F06%2Ffixthetest%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      <section class="page__share">
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bottom-blog-responsive -->
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-9854541518226004"
+       data-ad-slot="4086741379"
+       data-ad-format="auto"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/blog/2018/11/01/kotlinstackoverflow/" class="pagination--pager" title="Kotlin Stackoverflow error
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a Comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/kotlinstackoverflow/kotlin_stackoverflow.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2018/11/01/kotlinstackoverflow/" rel="permalink">Kotlin Stackoverflow error
+</a>
+        </h2>
+        <h3 class="archive__date">01 Nov 2018</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2018/11/01/kotlinstackoverflow/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Java interop is one of the best features of the Kotlin language, yet sometimes this also can cause unforeseen issues…
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/kotlinconf18/kotlinconf18.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2018/10/05/kotlinconf18/" rel="permalink">Kotlinconf 2018 slides
+</a>
+        </h2>
+        <h3 class="archive__date">05 Oct 2018</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2018/10/05/kotlinconf18/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Was really great visiting Kotlinconf this year and I wanted to do a quick post to link to all of it’s wonderful content.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/kotlinpuzzler/kotlinpuzzler.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2018/09/25/kotlinpuzzler/" rel="permalink">A little Kotlin puzzler
+</a>
+        </h2>
+        <h3 class="archive__date">25 Sep 2018</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2018/09/25/kotlinpuzzler/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Kotlin is an incredibly enjoyable, concise and powerful programming language. Yet sometimes also a bit confusing…
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/phonestatepermission/phonestatepermission.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2018/08/02/phonestatepermission/" rel="permalink">How dangerous permissions sneak into apps
+</a>
+        </h2>
+        <h3 class="archive__date">02 Aug 2018</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2018/08/02/phonestatepermission/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">This is a post-mortem where the very dangerous permission, READ_PHONE_STATE, unintentionally sneaked into our app. Here’s how this could happen, how we debugged and finally how we solved it.
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+    <div id="results" class="results"></div></div>
+      </div>
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+      <li><a href="https://twitter.com/molsjeroen"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+    
+    
+    
+      <li><a href="https://github.com/JeroenMols"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    
+    <li><a href="atom.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2018 Jeroen Mols. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-63356566-1', 'auto');
+  ga('set', 'anonymizeIp', false)
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://jeroenmols.com/blog/2018/12/06/fixthetest/";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = "/blog/2018/12/06/fixthetest"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jeroenmols.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+  </body>
+</html>

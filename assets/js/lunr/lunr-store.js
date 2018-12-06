@@ -178,4 +178,9 @@ var store = [{
         "excerpt":"Java interop is one of the best features of the Kotlin language, yet sometimes this also can cause unforeseen issues… Puzzle Disclaimer, the example below is a consequence of legacy code and only serves to demonstrate a Kotlin puzzler. Have a look at the simple test class below. It subclasses...","categories": ["blog"],
         "tags": ["kotlin","stackoverflow","puzzle"],
         "url": "https://jeroenmols.com/blog/2018/11/01/kotlinstackoverflow/",
-        "teaser":"https://jeroenmols.com/img/blog/kotlinstackoverflow/kotlin_stackoverflow.jpg"}]
+        "teaser":"https://jeroenmols.com/img/blog/kotlinstackoverflow/kotlin_stackoverflow.jpg"},{
+        "title": "Can you fix the test?",
+        "excerpt":"Learning from analyzing code is one of the greatest ways to improve your skills. Can you spot the mistakes in the tests below? This post brings a fun little quiz for both testing gurus as novices, with a deep dive into the how and why of awesome tests. Case 1:...","categories": ["blog"],
+        "tags": ["testing","kotlin","cleancode"],
+        "url": "https://jeroenmols.com/blog/2018/12/06/fixthetest/",
+        "teaser":"https://jeroenmols.com/img/blog/fixthetest/fixthetest.jpg"}]

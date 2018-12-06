@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle>
- <updated>2018-11-02T11:02:19+01:00</updated>
+ <updated>2018-12-06T09:43:48+01:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,22 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>Can you fix the test?</title>
+   <link href="https://jeroenmols.com/blog/2018/12/06/fixthetest/"/>
+   <updated>2018-12-06T00:00:00+01:00</updated>
+   <id>https://jeroenmols.com/blog/2018/12/06/fixthetest</id>
+   <content type="html"><![CDATA[
+     
+     <p>Learning from analyzing code is one of the greatest ways to improve your skills. Can you spot the mistakes in the tests below?</p>
+
+<p>This post brings a fun little quiz for both testing gurus as novices, with a deep dive into the how and why of awesome tests.</p>
+
+
+     <a href="https://jeroenmols.com/blog/2018/12/06/fixthetest/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>Kotlin Stackoverflow error</title>
