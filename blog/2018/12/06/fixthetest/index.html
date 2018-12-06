@@ -702,7 +702,7 @@ $(document).ready(function(){
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">@Test</span>
 <span class="k">fun</span> <span class="err">`</span><span class="n">should</span> <span class="n">properly</span> <span class="n">format</span> <span class="n">time</span><span class="err">`</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">val</span> <span class="py">now</span> <span class="p">=</span> <span class="n">Date</span><span class="p">()</span>
-    <span class="kd">val</span> <span class="py">expectedTime</span> <span class="p">=</span> <span class="n">FORMAT</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="n">Date</span><span class="p">())</span>
+    <span class="kd">val</span> <span class="py">expectedTime</span> <span class="p">=</span> <span class="n">FORMAT</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="n">now</span><span class="p">)</span>
 
     <span class="kd">val</span> <span class="py">formattedTime</span> <span class="p">=</span> <span class="n">TimeFormatter</span><span class="p">(</span><span class="n">now</span><span class="p">).</span><span class="n">currentFormattedTime</span>
 
