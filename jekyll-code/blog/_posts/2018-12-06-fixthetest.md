@@ -336,7 +336,7 @@ Fortunately this can easily be fixed by passing the current time into the `TimeF
 @Test
 fun `should properly format time`() {
     val now = Date()
-    val expectedTime = FORMAT.format(Date())
+    val expectedTime = FORMAT.format(now)
 
     val formattedTime = TimeFormatter(now).currentFormattedTime
 
