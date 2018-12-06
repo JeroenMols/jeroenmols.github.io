@@ -10,10 +10,11 @@ header:
 I'm always eager to share my technical knowledge with fellow developers. Don't hesitate to <a href="https://twitter.com/molsjeroen" target="blank">contact me on Twitter</a> if you would like me to speak at your event!
 
 Upcoming talks:
-- Droidcon UK - The big rewrite
-- Devoxx - Write awesome tests
+- To be announced
 
 2018:
+- Devoxx - [Write awesome unit tests](https://speakerdeck.com/jeroenmols/write-awesome-unit-tests)
+- Droidcon UK - [The big rewrite](https://speakerdeck.com/jeroenmols/the-big-rewrite)
 - Droidcon Italy - [The big rewrite](https://speakerdeck.com/jeroenmols/the-big-rewrite)
 - Android Makers Paris - [The big rewrite](https://speakerdeck.com/jeroenmols/the-big-rewrite)
 - Philips Research - [Deep into the IoT trenches: how to build a connected product](https://speakerdeck.com/jeroenmols/deep-into-the-iot-trenches-how-to-build-a-connected-product)
