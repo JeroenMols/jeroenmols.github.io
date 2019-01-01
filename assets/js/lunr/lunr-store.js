@@ -185,7 +185,7 @@ var store = [{
         "url": "https://jeroenmols.com/blog/2018/12/06/fixthetest/",
         "teaser":"https://jeroenmols.com/img/blog/fixthetest/fixthetest.jpg"},{
         "title": "Year in review 2018",
-        "excerpt":"Sitting in our own couch, in our own house, kids safely asleep upstairs,… The road here was brutal, but the result is extraordinary. Past year was (hopefully) the busiest year of my entire life. In the midst of raising two amazing kids, a challenging full time job and being an...","categories": ["blog"],
+        "excerpt":"Sitting in our own couch, in our own house, kids safely asleep upstairs,… The road here was brutal, but the result is extraordinary. The past year was (hopefully) the busiest year of my entire life. In the midst of raising two amazing kids, a challenging full-time job and being an...","categories": ["blog"],
         "tags": ["review"],
-        "url": "https://jeroenmols.com/blog/2018/12/28/yearinreview/",
+        "url": "https://jeroenmols.com/blog/2019/01/01/yearinreview/",
         "teaser":"https://jeroenmols.com/img/blog/yearinreview18/yearinreview18.jpg"}]
