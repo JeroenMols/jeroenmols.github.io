@@ -183,4 +183,9 @@ var store = [{
         "excerpt":"Learning from analyzing code is one of the greatest ways to improve your skills. Can you spot the mistakes in the tests below? This post brings a fun little quiz for both testing gurus as novices, with a deep dive into the how and why of awesome tests. Case 1:...","categories": ["blog"],
         "tags": ["testing","kotlin","cleancode"],
         "url": "https://jeroenmols.com/blog/2018/12/06/fixthetest/",
-        "teaser":"https://jeroenmols.com/img/blog/fixthetest/fixthetest.jpg"}]
+        "teaser":"https://jeroenmols.com/img/blog/fixthetest/fixthetest.jpg"},{
+        "title": "Year in review 2018",
+        "excerpt":"Sitting in our own couch, in our own house, kids safely asleep upstairs,… The road here was brutal, but the result is extraordinary. Past year was (hopefully) the busiest year of my entire life. In the midst of raising two amazing kids, a challenging full time job and being an...","categories": ["blog"],
+        "tags": ["review"],
+        "url": "https://jeroenmols.com/blog/2018/12/28/yearinreview/",
+        "teaser":"https://jeroenmols.com/img/blog/yearinreview18/yearinreview18.jpg"}]
