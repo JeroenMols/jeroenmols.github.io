@@ -9,35 +9,35 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Year in review 2018 - Jeroen Mols</title>
-<meta name="description" content="Sitting in our own couch, in our own house, kids safely asleep upstairs,… The road here was brutal, but the result is extraordinary.">
+<!-- begin _includes/seo.html --><title>Testing LiveData in JUnit 4 and JUnit 5 - Jeroen Mols</title>
+<meta name="description" content="Architecture components are one of the most exciting things that happened to Android in the past years. But how do you effectively go about and testing this?">
 
 
 
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en">
 <meta property="og:site_name" content="Jeroen Mols">
-<meta property="og:title" content="Year in review 2018">
-<meta property="og:url" content="https://jeroenmols.com/blog/2019/01/01/yearinreview/">
+<meta property="og:title" content="Testing LiveData in JUnit 4 and JUnit 5">
+<meta property="og:url" content="https://jeroenmols.com/blog/2019/01/17/livedatajunit5/">
 
 
-  <meta property="og:description" content="Sitting in our own couch, in our own house, kids safely asleep upstairs,… The road here was brutal, but the result is extraordinary.">
+  <meta property="og:description" content="Architecture components are one of the most exciting things that happened to Android in the past years. But how do you effectively go about and testing this?">
 
 
 
-  <meta property="og:image" content="https://jeroenmols.com/img/blog/yearinreview18/yearinreview18.jpg">
+  <meta property="og:image" content="https://jeroenmols.com/img/blog/livedatajunit5/livedatajunit5.jpg">
 
 
 
   <meta name="twitter:site" content="@molsjeroen">
-  <meta name="twitter:title" content="Year in review 2018">
-  <meta name="twitter:description" content="Sitting in our own couch, in our own house, kids safely asleep upstairs,… The road here was brutal, but the result is extraordinary.">
-  <meta name="twitter:url" content="https://jeroenmols.com/blog/2019/01/01/yearinreview/">
+  <meta name="twitter:title" content="Testing LiveData in JUnit 4 and JUnit 5">
+  <meta name="twitter:description" content="Architecture components are one of the most exciting things that happened to Android in the past years. But how do you effectively go about and testing this?">
+  <meta name="twitter:url" content="https://jeroenmols.com/blog/2019/01/17/livedatajunit5/">
 
   
     <meta name="twitter:card" content="summary">
     
-      <meta name="twitter:image" content="https://jeroenmols.com/img/blog/yearinreview18/yearinreview18.jpg">
+      <meta name="twitter:image" content="https://jeroenmols.com/img/blog/livedatajunit5/livedatajunit5.jpg">
     
   
 
@@ -45,7 +45,7 @@
 
 
 
-  <meta property="article:published_time" content="2019-01-01T00:00:00+01:00">
+  <meta property="article:published_time" content="2019-01-17T00:00:00+01:00">
 
 
 
@@ -56,7 +56,7 @@
   
 
 
-<link rel="canonical" href="https://jeroenmols.com/blog/2019/01/01/yearinreview/">
+<link rel="canonical" href="https://jeroenmols.com/blog/2019/01/17/livedatajunit5/">
 
 
 
@@ -335,20 +335,20 @@ $(document).ready(function(){
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Year in review 2018">
-    <meta itemprop="description" content="Sitting in our own couch, in our own house, kids safely asleep upstairs,… The road here was brutal, but the result is extraordinary.">
-    <meta itemprop="datePublished" content="January 01, 2019">
+    <meta itemprop="headline" content="Testing LiveData in JUnit 4 and JUnit 5">
+    <meta itemprop="description" content="Architecture components are one of the most exciting things that happened to Android in the past years. But how do you effectively go about and testing this?">
+    <meta itemprop="datePublished" content="January 17, 2019">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 class="page__title" itemprop="headline">Year in review 2018
+          <h1 class="page__title" itemprop="headline">Testing LiveData in JUnit 4 and JUnit 5
 </h1>
-          <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  01 Jan 2019</p>
+          <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  17 Jan 2019</p>
 
           
-            <img src="https://jeroenmols.com/img/blog/yearinreview18/yearinreview18.jpg" alt="Year in review 2018" title="Jeroen Mols">
+            <img src="https://jeroenmols.com/img/blog/livedatajunit5/livedatajunit5.jpg" alt="Testing LiveData in JUnit 4 and JUnit 5" title="Photo by James Pond on Unsplash, https://unsplash.com/photos/HUiSySuofY0, cropped">
           
 
           
@@ -357,7 +357,7 @@ $(document).ready(function(){
 
 
 
-  1 minute read
+  2 minute read
 </p>
           
         </header>
@@ -365,37 +365,134 @@ $(document).ready(function(){
 
       <section class="page__content" itemprop="text">
         
-        <p>Sitting in our own couch, in our own house, kids safely asleep upstairs,… The road here was brutal, but the result is extraordinary.</p>
+        <p>Architecture components are one of the most exciting things that happened to Android in the past years. But how do you effectively go about and testing this?</p>
 
-<p>The past year was (hopefully) the busiest year of my entire life. In the midst of raising two amazing kids, a challenging full-time job and being an active GDE, we built our dream house!</p>
-
-<p>Looking back I honestly don’t know how we managed to pull all of this off… Choosing everything for the house, selecting and planning all contractors and even doing some (a lot more than anticipated) work myself… Anyways, I won’t bother you with the details, but if not for my wife and kids I would have broken down completely. The goal justifies the means.</p>
-
-<p>Also at work, it was a non-trivial and very demanding year. I used to pride myself for being great at keeping a work-life balance, but… being a responsible for a team of people can really be quite intense.</p>
-
-<p>Our team had quite some challenges thrown at us, and we really made the best of it: sometimes massively successful, but we also struggled… All in all, we did get a tight grip on our regression, laid the groundwork to improve our architecture and migrated to continuous deployment. (talk coming 2019 ;) )</p>
-
-<p>In 2018, I/we mostly invested in our family’s future and:</p>
+<h2 id="problem-statement">Problem statement</h2>
+<p>One of the interesting problems LiveData solves is to ensure the observer is always called on the main thread. This happens in the following ways:</p>
 
 <ul>
-  <li>Built and moved into our dream house</li>
-  <li>Helped our daughter go to school and taught our son how to walk</li>
-  <li>Spoke at <a href="https://jeroenmols.com/speaking/">4 big conferences</a> and 1 meetup.</li>
-  <li>Wrote <a href="http://jeroenmols.com/blog/">9 blog posts</a>, not making my goal of 1 per month</li>
-  <li>Almost double my <a href="https://twitter.com/molsjeroen">Twitter</a> followers to more than 3620</li>
-  <li>Got 6 times featured in <a href="http://androidweekly.net/search?keyword=jeroen+mols&amp;commit=Search">Android weekly</a> and several times in <a href="http://mailchi.mp/kotlinweekly/kotlin-weekly-118">Kotlin weekly</a></li>
-  <li>Exclusively used Kotlin for every blog post and slide deck</li>
-  <li>Helped Pluralsight built a <a href="https://app.pluralsight.com/score/skill-assessment/kotlin-app-fundamentals/intro?context=skills#/v2/landing">Kotlin: App Fundamentals</a> assessment</li>
+  <li><code class="highlighter-rouge">setValue()</code>: crashes if not called from main thread</li>
+  <li><code class="highlighter-rouge">postValue()</code>: swaps to main thread and is safe to be called from any background thread</li>
 </ul>
 
-<p><img src="https://jeroenmols.com/img/blog/yearinreview18/christmas_tree.jpg" alt="Garden view" class="align-center" /></p>
+<p>Now what happens if you call any of these methods in a junit test?</p>
 
-<p>Looking forward to next year, I’m planning on living more! I’ve bought quite a few Lego’s I’d like to build, want to bring my kids to school by bike, spend more quality time with my wife and just professionally waste time on occasion. :)</p>
+<p>When calling <code class="highlighter-rouge">livedata.setValue()</code> or <code class="highlighter-rouge">livedata.value =</code> you get:</p>
 
-<p>I’m going to try and increase my community efforts back to 2017 level and maybe experiment with some new formats, such as <a href="https://jeroenmols.com/blog/2018/12/06/fixthetest/">my last blog post</a>.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>java.lang.RuntimeException:
+Method getMainLooper in android.os.Looper not mocked.
+</code></pre></div></div>
 
-<p>As always you can reach me <span><a href="https://twitter.com/molsjeroen?source=yearinreview20182019" class="ga-link" target="_blank">@molsjeroen</a></span>
- on twitter, or leave a comment below!</p>
+<p>Or alternatively when <code class="highlighter-rouge">unitTests.returnDefaultValues = true</code> is on:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>java.lang.NullPointerException
+at androidx.arch.core.executor.DefaultTaskExecutor.isMainThread(DefaultTaskExecutor.java:74)
+</code></pre></div></div>
+
+<p>This makes sense, because JVM unit tests don’t know anything about the Android main thread! Hence all unit test are executed on a random (background) thread.</p>
+
+<blockquote>
+  <p>Note that this is true in general. The main Thread is just a concept provided by most UI frameworks to avoid race conditions while updating the UI. E.g. on Android the main thread is provided by the Android Framework, for Java applications the main thread is provided by Swing (for instance).</p>
+</blockquote>
+
+<p>When calling <code class="highlighter-rouge">livedata.postValue()</code>, you get similar results.</p>
+
+<p>However here the problem is even more fundamental as this can never work. Even if the main thread would exist in the test, then the actual value update would happen asynchronously from the test, causing the asserts to happen before the value is actually updated.</p>
+
+<h2 id="junit-4">JUnit 4</h2>
+<p>Solving this means doing two things:</p>
+
+<ul>
+  <li>don’t update live data on the main thread</li>
+  <li>update live data immediately (don’t post value)</li>
+</ul>
+
+<p>Fortunately the architecture components team has provided a JUnit rule to do exactly that:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">ExampleUnitTest</span> <span class="p">{</span>
+
+    <span class="n">@get</span><span class="p">:</span><span class="n">Rule</span>
+    <span class="kd">val</span> <span class="py">rule</span> <span class="p">=</span> <span class="n">InstantTaskExecutorRule</span><span class="p">()</span>
+
+    <span class="n">@Test</span>
+    <span class="k">fun</span> <span class="err">`</span><span class="n">my</span> <span class="n">test</span><span class="err">`</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">val</span> <span class="py">mutableLiveData</span> <span class="p">=</span> <span class="n">MutableLiveData</span><span class="p">&lt;</span><span class="n">String</span><span class="p">&gt;()</span>
+
+        <span class="n">mutableLiveData</span><span class="p">.</span><span class="n">postValue</span><span class="p">(</span><span class="s">"test"</span><span class="p">)</span>
+
+        <span class="n">assertEquals</span><span class="p">(</span><span class="s">"test"</span><span class="p">,</span> <span class="n">mutableLiveData</span><span class="p">.</span><span class="n">value</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>All you have to do is add a <code class="highlighter-rouge">InstantTaskExecutorRule()</code> to the class containing ViewModel and add the following Gradle dependency:</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dependencies</span> <span class="o">{</span>
+    <span class="n">testImplementation</span> <span class="s1">'android.arch.core:core-testing:1.1.1'</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="junit-5">JUnit 5</h2>
+<p>This doesn’t work for JUnit 5 however as the concept of <code class="highlighter-rouge">Rule</code> and <code class="highlighter-rouge">TestRunner</code> are merged into one single concept of <a href="https://junit.org/junit5/docs/current/user-guide/#extensions"><code class="highlighter-rouge">Extensions</code></a>.</p>
+
+<p>Hence we can create a similar extension like the <code class="highlighter-rouge">InstantTaskExecutorRule</code>:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nn">androidx.arch.core.executor.ArchTaskExecutor</span>
+<span class="k">import</span> <span class="nn">androidx.arch.core.executor.TaskExecutor</span>
+<span class="k">import</span> <span class="nn">org.junit.jupiter.api.extension.AfterEachCallback</span>
+<span class="k">import</span> <span class="nn">org.junit.jupiter.api.extension.BeforeEachCallback</span>
+<span class="k">import</span> <span class="nn">org.junit.jupiter.api.extension.ExtensionContext</span>
+
+<span class="kd">class</span> <span class="nc">InstantExecutorExtension</span> <span class="p">:</span> <span class="n">BeforeEachCallback</span><span class="p">,</span> <span class="n">AfterEachCallback</span> <span class="p">{</span>
+
+    <span class="k">override</span> <span class="k">fun</span> <span class="n">beforeEach</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">ExtensionContext</span><span class="p">?)</span> <span class="p">{</span>
+        <span class="n">ArchTaskExecutor</span><span class="p">.</span><span class="n">getInstance</span><span class="p">()</span>
+            <span class="p">.</span><span class="n">setDelegate</span><span class="p">(</span><span class="kd">object</span> <span class="err">: </span><span class="nc">TaskExecutor</span><span class="p">()</span> <span class="p">{</span>
+                <span class="k">override</span> <span class="k">fun</span> <span class="n">executeOnDiskIO</span><span class="p">(</span><span class="n">runnable</span><span class="p">:</span> <span class="n">Runnable</span><span class="p">)</span> <span class="p">=</span> <span class="n">runnable</span><span class="p">.</span><span class="n">run</span><span class="p">()</span>
+
+                <span class="k">override</span> <span class="k">fun</span> <span class="n">postToMainThread</span><span class="p">(</span><span class="n">runnable</span><span class="p">:</span> <span class="n">Runnable</span><span class="p">)</span> <span class="p">=</span> <span class="n">runnable</span><span class="p">.</span><span class="n">run</span><span class="p">()</span>
+
+                <span class="k">override</span> <span class="k">fun</span> <span class="n">isMainThread</span><span class="p">():</span> <span class="n">Boolean</span> <span class="p">=</span> <span class="k">true</span>
+            <span class="p">})</span>
+    <span class="p">}</span>
+
+    <span class="k">override</span> <span class="k">fun</span> <span class="n">afterEach</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">ExtensionContext</span><span class="p">?)</span> <span class="p">{</span>
+        <span class="n">ArchTaskExecutor</span><span class="p">.</span><span class="n">getInstance</span><span class="p">().</span><span class="n">setDelegate</span><span class="p">(</span><span class="k">null</span><span class="p">)</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This basically does two things:</p>
+
+<ul>
+  <li>set a delegate before each test that updates live data values immediately on the calling thread</li>
+  <li>remove the delegate after each tests to avoid influencing other tests.</li>
+</ul>
+
+<p>Using this, the JUnit 4 test can easily be converted to JUnit 5:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">@ExtendWith</span><span class="p">(</span><span class="n">InstantExecutorExtension</span><span class="o">::</span><span class="k">class</span><span class="p">)</span>
+<span class="kd">class</span> <span class="nc">PhotosViewModelTest</span> <span class="p">{</span>
+
+    <span class="n">@Test</span>
+    <span class="k">fun</span> <span class="err">`</span><span class="n">my</span> <span class="n">test</span><span class="err">`</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">val</span> <span class="py">mutableLiveData</span> <span class="p">=</span> <span class="n">MutableLiveData</span><span class="p">&lt;</span><span class="n">String</span><span class="p">&gt;()</span>
+
+        <span class="n">mutableLiveData</span><span class="p">.</span><span class="n">postValue</span><span class="p">(</span><span class="s">"test"</span><span class="p">)</span>
+
+        <span class="n">assertEquals</span><span class="p">(</span><span class="s">"test"</span><span class="p">,</span> <span class="n">mutableLiveData</span><span class="p">.</span><span class="n">value</span><span class="p">)</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p>Voila! That’s it.</p>
+
+<h2 id="wrap-up">Wrap-up</h2>
+<p>In order to test LiveData, it’s values need to be directly updated on the calling thread. This can be done using
+a rule in JUnit 4 or an extension in JUnit 5.</p>
+
+<p>If you’ve made it this far you should probably follow me on <span><a href="https://twitter.com/molsjeroen?source=testinglivedatainjunit4andjunit52019" class="ga-link" target="_blank">Twitter</a></span>
+. Feel free leave a comment below!</p>
 
         
       </section>
@@ -416,7 +513,15 @@ $(document).ready(function(){
     
       
       
-      <a href="/tags/review" class="page__taxonomy-item" rel="tag">review</a>
+      <a href="/tags/architecture" class="page__taxonomy-item" rel="tag">architecture</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/livedata" class="page__taxonomy-item" rel="tag">livedata</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/testing" class="page__taxonomy-item" rel="tag">testing</a>
     
     </span>
   </p>
@@ -444,7 +549,7 @@ $(document).ready(function(){
 
 
         
-          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-01-01T00:00:00+01:00">January 01, 2019</time></p>
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-01-17T00:00:00+01:00">January 17, 2019</time></p>
         
       </footer>
 
@@ -453,13 +558,13 @@ $(document).ready(function(){
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=Year+in+review+2018%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2019%2F01%2F01%2Fyearinreview%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=Testing+LiveData+in+JUnit+4+and+JUnit+5%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2019%2F01%2F17%2Flivedatajunit5%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2019%2F01%2F01%2Fyearinreview%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2019%2F01%2F17%2Flivedatajunit5%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://plus.google.com/share?url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2019%2F01%2F01%2Fyearinreview%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fab fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+  <a href="https://plus.google.com/share?url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2019%2F01%2F17%2Flivedatajunit5%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fab fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2019%2F01%2F01%2Fyearinreview%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2019%2F01%2F17%2Flivedatajunit5%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
@@ -480,12 +585,11 @@ $(document).ready(function(){
       
   <nav class="pagination">
     
-      <a href="/blog/2018/12/06/fixthetest/" class="pagination--pager" title="Can you fix the test?
+      <a href="/blog/2019/01/01/yearinreview/" class="pagination--pager" title="Year in review 2018
 ">Previous</a>
     
     
-      <a href="/blog/2019/01/17/livedatajunit5/" class="pagination--pager" title="Testing LiveData in JUnit 4 and JUnit 5
-">Next</a>
+      <a href="#" class="pagination--pager disabled">Next</a>
     
   </nav>
 
@@ -516,17 +620,17 @@ $(document).ready(function(){
   <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
     <div style="position:relative;">
       
-        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/livedatajunit5/livedatajunit5.jpg)"></div>
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/yearinreview18/yearinreview18.jpg)"></div>
       
       <div class="archive__item_titlecontainer">
         <h2 class="archive__item-title" itemprop="headline">
-            <a href="https://jeroenmols.com/blog/2019/01/17/livedatajunit5/" rel="permalink">Testing LiveData in JUnit 4 and JUnit 5
+            <a href="https://jeroenmols.com/blog/2019/01/01/yearinreview/" rel="permalink">Year in review 2018
 </a>
         </h2>
-        <h3 class="archive__date">17 Jan 2019</h3>
+        <h3 class="archive__date">01 Jan 2019</h3>
       </div>
       
-        <a href="https://jeroenmols.com/blog/2019/01/17/livedatajunit5/" rel="permalink">
+        <a href="https://jeroenmols.com/blog/2019/01/01/yearinreview/" rel="permalink">
           <div class="archive__item-teaser-imageclickhandler"></div>
         </a>
       
@@ -537,10 +641,10 @@ $(document).ready(function(){
 
 
 
-  2 minute read
+  1 minute read
 </p>
     
-    <p class="archive__item-excerpt" itemprop="description">Architecture components are one of the most exciting things that happened to Android in the past years. But how do you effectively go about and testing this?
+    <p class="archive__item-excerpt" itemprop="description">Sitting in our own couch, in our own house, kids safely asleep upstairs,… The road here was brutal, but the result is extraordinary.
 
 </p>
   </article>
@@ -740,8 +844,8 @@ $(document).ready(function(){
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://jeroenmols.com/blog/2019/01/01/yearinreview/";  // Replace PAGE_URL with your page's canonical URL variable
-      this.page.identifier = "/blog/2019/01/01/yearinreview"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      this.page.url = "https://jeroenmols.com/blog/2019/01/17/livedatajunit5/";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = "/blog/2019/01/17/livedatajunit5"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
     (function() { // DON'T EDIT BELOW THIS LINE
       var d = document, s = d.createElement('script');

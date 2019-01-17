@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle>
- <updated>2019-01-01T19:06:56+01:00</updated>
+ <updated>2019-01-17T07:40:39+01:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,20 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>Testing LiveData in JUnit 4 and JUnit 5</title>
+   <link href="https://jeroenmols.com/blog/2019/01/17/livedatajunit5/"/>
+   <updated>2019-01-17T00:00:00+01:00</updated>
+   <id>https://jeroenmols.com/blog/2019/01/17/livedatajunit5</id>
+   <content type="html"><![CDATA[
+     
+     <p>Architecture components are one of the most exciting things that happened to Android in the past years. But how do you effectively go about and testing this?</p>
+
+
+     <a href="https://jeroenmols.com/blog/2019/01/17/livedatajunit5/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>Year in review 2018</title>

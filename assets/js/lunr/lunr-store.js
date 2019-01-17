@@ -188,4 +188,9 @@ var store = [{
         "excerpt":"Sitting in our own couch, in our own house, kids safely asleep upstairs,… The road here was brutal, but the result is extraordinary. The past year was (hopefully) the busiest year of my entire life. In the midst of raising two amazing kids, a challenging full-time job and being an...","categories": ["blog"],
         "tags": ["review"],
         "url": "https://jeroenmols.com/blog/2019/01/01/yearinreview/",
-        "teaser":"https://jeroenmols.com/img/blog/yearinreview18/yearinreview18.jpg"}]
+        "teaser":"https://jeroenmols.com/img/blog/yearinreview18/yearinreview18.jpg"},{
+        "title": "Testing LiveData in JUnit 4 and JUnit 5",
+        "excerpt":"Architecture components are one of the most exciting things that happened to Android in the past years. But how do you effectively go about and testing this? Problem statement One of the interesting problems LiveData solves is to ensure the observer is always called on the main thread. This happens...","categories": ["blog"],
+        "tags": ["testing","architecture","livedata"],
+        "url": "https://jeroenmols.com/blog/2019/01/17/livedatajunit5/",
+        "teaser":"https://jeroenmols.com/img/blog/livedatajunit5/livedatajunit5.jpg"}]
