@@ -1,6 +1,6 @@
 ---
 title: Testing LiveData in JUnit 4 and JUnit 5
-published: false
+published: true
 header:
   teaser: img/blog/livedatajunit5/livedatajunit5.jpg
   imgcredit: Photo by James Pond on Unsplash, https://unsplash.com/photos/HUiSySuofY0, cropped
