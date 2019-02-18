@@ -10,7 +10,10 @@ header:
 I'm always eager to share my technical knowledge with fellow developers. Don't hesitate to <a href="https://twitter.com/molsjeroen" target="blank">contact me on Twitter</a> if you would like me to speak at your event!
 
 Upcoming talks:
-- To be announced
+- Android makers - Journey to painless releases: Continuous delivery for Philips Hue Android
+
+2019:
+- Fragmented Podcast - [Should I Rewrite My App?](https://fragmentedpodcast.com/episodes/152/)
 
 2018:
 - Devoxx - [Write awesome unit tests](https://speakerdeck.com/jeroenmols/write-awesome-unit-tests)
