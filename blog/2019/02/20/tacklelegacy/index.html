@@ -1,0 +1,871 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.12.0 by Michael Rose
+  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Five tips to get your code base in shape - Jeroen Mols</title>
+<meta name="description" content="Are you living the dream? Is your code so clean it makes your eyes just tear a little? Can’t think of anything you would still like to refactor? Never have any bugs? Using all the latest technologies?">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="Jeroen Mols">
+<meta property="og:title" content="Five tips to get your code base in shape">
+<meta property="og:url" content="https://jeroenmols.com/blog/2019/02/20/tacklelegacy/">
+
+
+  <meta property="og:description" content="Are you living the dream? Is your code so clean it makes your eyes just tear a little? Can’t think of anything you would still like to refactor? Never have any bugs? Using all the latest technologies?">
+
+
+
+  <meta property="og:image" content="https://jeroenmols.com/img/blog/tacklelegacy/tacklelegacy.jpg">
+
+
+
+  <meta name="twitter:site" content="@molsjeroen">
+  <meta name="twitter:title" content="Five tips to get your code base in shape">
+  <meta name="twitter:description" content="Are you living the dream? Is your code so clean it makes your eyes just tear a little? Can’t think of anything you would still like to refactor? Never have any bugs? Using all the latest technologies?">
+  <meta name="twitter:url" content="https://jeroenmols.com/blog/2019/02/20/tacklelegacy/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+      <meta name="twitter:image" content="https://jeroenmols.com/img/blog/tacklelegacy/tacklelegacy.jpg">
+    
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2019-02-20T00:00:00+01:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://jeroenmols.com/blog/2019/02/20/tacklelegacy/">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "Jeroen Mols",
+      "url": "https://jeroenmols.com",
+      "sameAs": ["https://twitter.com/molsjeroen","https://www.linkedin.com/in/jeroenmols/","https://plus.google.com/+JeroenMols","https://github.com/JeroenMols","https://speakerdeck.com/jeroenmols","https://stackoverflow.com/users/2771851/jmols"]
+    }
+  </script>
+
+
+
+  <meta name="google-site-verification" content="8E8HUpExgyNFdLuFMWmkSUl08gISnOF3UWexA55aNrk" />
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$('.ga-link').on('click', function(){
+		if (typeof(ga)!=="undefined"){
+			ga('send',{
+				hitType: 'event',
+				eventCategory: 'Outbound link',
+				eventAction: 'click',
+				eventLabel: event.target.href
+			});
+	  	}
+	});
+})	;
+</script>
+
+<meta name="theme-color" content="#2c3e50">
+
+<link href="atom.xml" type="application/atom+xml" rel="alternate" title="Jeroen Mols Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="https://jeroenmols.com/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="/">Jeroen Mols</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://jeroenmols.com/blog/" >Blog</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://jeroenmols.com/speaking/" >Speaking</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://jeroenmols.com/hireme/" >Hire me</a>
+            </li>
+          
+        </ul>
+        
+        <button class="search__toggle" type="button">
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="/img/profile.jpg" alt="Jeroen Mols" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Jeroen Mols</h3>
+    
+    
+      <p class="author__bio" itemprop="description">
+        Android GDE & Lead Android developer at Philips Hue
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Mol, Belgium</span>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://twitter.com/@molsjeroen" itemprop="sameAs">
+            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+          </a>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="https://plus.google.com/JeroenMols" itemprop="sameAs">
+            <i class="fab fa-fw fa-google-plus-square" aria-hidden="true"></i> Google+
+          </a>
+        </li>
+      
+
+      
+        <li>
+          <a href="https://www.linkedin.com/in/jeroenmols" itemprop="sameAs">
+            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/JeroenMols" itemprop="sameAs">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="https://www.stackoverflow.com/users/2771851/jmols" itemprop="sameAs">
+            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i> Stack Overflow
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        
+          <li>
+            <a href="https://www.youtube.com/channel/UC34Vt1lo8T15_rgc3e3Jsew" itemprop="sameAs">
+              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i> YouTube
+            </a>
+          </li>
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+  <li>
+    <a href="https://speakerdeck.com/jeroenmols" itemprop="sameAs">
+      <i class="fa fa-line-chart" aria-hidden="true"></i> Speaker Deck
+    </a>
+  </li>
+
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Five tips to get your code base in shape">
+    <meta itemprop="description" content="Are you living the dream? Is your code so clean it makes your eyes just tear a little? Can’t think of anything you would still like to refactor? Never have any bugs? Using all the latest technologies?">
+    <meta itemprop="datePublished" content="February 20, 2019">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Five tips to get your code base in shape
+</h1>
+          <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  20 Feb 2019</p>
+
+          
+            <img src="https://jeroenmols.com/img/blog/tacklelegacy/tacklelegacy.jpg" alt="Five tips to get your code base in shape" title="Photo by The Creative Exchange on Unsplash, https://unsplash.com/photos/LEWYF8C5KIM, cropped">
+          
+
+          
+            <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  7 minute read
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>Are you living the dream? Is your code so clean it makes your eyes just tear a little? Can’t think of anything you would still like to refactor? Never have any bugs? Using all the latest technologies?</p>
+
+<p>Unfortunately, most of us aren’t in this state. We have bugs that haunt us, crashes at inconvenient times and sometimes 💩 simply hits the fan… So how on earth do you get out of this mess?</p>
+
+<p>Well, I’m glad you ask! Here are five tips to get started.</p>
+
+<h2 id="1-dont-rewrite">1. Don’t rewrite</h2>
+<blockquote>
+  <p>If only we could rewrite all of the code, we would be out of this mess in no time;</p>
+</blockquote>
+
+<p>Remember that every project was a green field once, right? So why is it that all of us seem to end up in a similar state? Do you really think the previous developers didn’t have the best intentions?</p>
+
+<p>In reality rewrites hardly ever work out. Mainly because the complexity (corner cases) and required effort (amount of features) to rewrite everything gets underestimated. Hence rewriting will be incredibly time-consuming.</p>
+
+<p>At the same time, rewrites don’t focus on maximizing user value: you’ll lose tons of time rewriting stuff that wasn’t problematic to begin with and users won’t get any new features until the rewrite is done.</p>
+
+<p>And technology isn’t standing still either: two years ago we didn’t have Kotlin, Jetpack, Architecture components, Navigation components,… And that’s just the official Google stuff!</p>
+
+<p>With deadlines slipping, users complaining (no new features) and competition catching up… will you really be able to resist not taking any shortcuts? Can you really guarantee you’ll be better off?</p>
+
+<p>I’m not saying rewrites never work out, but they are certainly one of the riskiest approaches to getting rid of your legacy. If you’re rewriting your app, you are basically developing a new product that just happens to have the same feature set as the old app. (with all risks involved in new product development)</p>
+
+<p>Read more about challenges while rewriting by <a href="http://chadfowler.com/2006/12/27/the-big-rewrite.html">Chad Fowler</a>, <a href="https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/">Joel Spolsky</a>, <a href="https://blog.intracto.com/paying-technical-debt-how-to-rescue-legacy-code-through-refactoring">Jeroen Moons</a> or <a href="https://jvaneyck.wordpress.com/2015/03/12/the-big-rewrite/">Jo Van Eyck</a>.</p>
+
+<h2 id="2-release-release-release">2. Release, release, release</h2>
+<blockquote>
+  <p>If it hurts, do it more often; Jez Humble</p>
+</blockquote>
+
+<p>One thing that all legacy code has in common is that it’s poorly tested. Hence it can be very hard to control the impact of code changes.</p>
+
+<p>Ever been in the situation where a simple code clean up, suddenly broke a seemingly unrelated feature elsewhere in the app?</p>
+
+<p>Or maybe you wanted to release a new update to the field, but your test team just kept on finding issues? Causing release candidate to be created after release candidate?</p>
+
+<p>Such a lack of control over regression, unfortunately, isn’t uncommon. And while your natural instinct might be to just test each release longer manually, that just creates different problems:</p>
+
+<ul>
+  <li>slower time to market due to longer test cycles</li>
+  <li>decreased release frequency due to more test overhead</li>
+  <li>harder to fix bugs, because they are found later</li>
+  <li>more overhead with Git branches (where does this fix go?)</li>
+  <li>working on several releases in parallel</li>
+  <li>frustrated testers</li>
+  <li>…</li>
+</ul>
+
+<p>The problem here is that you’re actually fundamentally accepting you don’t trust your app anymore. You start to rely on release testing to find bugs, implicitly taking away the responsibility from developers to not break things.</p>
+
+<p>Counterintuitively, however, you should release more often instead of less.</p>
+
+<p>Having smaller releases increases awareness of what changes were made in each release. Hence bugs can be easily tracked back to code changes and testing can be better focussed on the parts changed.</p>
+
+<p>Also having fewer lines of code changed in every release will simply cause fewer bugs to be introduced. And the more often you do something, the better you’ll become at doing it.</p>
+
+<p>Finally, developers will get feedback faster as their code ends up in production sooner. That makes them more accountable, causing quality to go up.</p>
+
+<p>At Philips Hue, we now release every two weeks and it has gotten so normal that we barely think about it.</p>
+
+<h2 id="3-divide-and-conquer">3. Divide and conquer</h2>
+<blockquote>
+  <p>It’s easier to build several smaller things than to build one big thing;</p>
+</blockquote>
+
+<p>While most developers tend to like spaghetti, they aren’t quite as fond of spaghetti code. This is because, in a spaghetti codebase, everything is connected to everything else.</p>
+
+<p>This has several challenges:</p>
+
+<ul>
+  <li>changing things is hard: one small clean up leads to changes in another file, requiring changes somewhere else, cascading into a world of pain.</li>
+  <li>making changes in one place has unintended side effects</li>
+  <li>difficult to introduce new technologies (e.g. RXJava)</li>
+  <li>hard to scale up team: developers will often change the same files causing a lot of merge conflicts</li>
+</ul>
+
+<p>What you are really missing, in this case, is having clearly defined contracts between different parts of your code. Instead, the implementation of several parts is tightly coupled together.</p>
+
+<p>So why don’t you split your big monolith in several, fully decoupled feature modules? This doesn’t just speed up builds, allow you to do instant apps, but it also allows to aggressively improve your app.</p>
+
+<p>Once you split a feature off, the rest of the app becomes completely agnostic of the internal implementation of such a feature, which means you can:</p>
+
+<ul>
+  <li>either refactor the feature</li>
+  <li>fully rewrite the feature</li>
+  <li>or leave the feature as-is (not a problem to solve now)</li>
+</ul>
+
+<p>This allows you to quickly and aggressively get your app into good shape, focussing on those parts that need attention most. In that way, even rewriting parts of your app suddenly becomes possible as you can derisk their roll-out with a feature toggle!</p>
+
+<h2 id="4-master-your-tools">4. Master your tools</h2>
+<blockquote>
+  <p>The right tools for the right Job;</p>
+</blockquote>
+
+<p>If you read any <a href="https://www.amazon.com/gp/product/0131177052/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0131177052&amp;linkCode=as2&amp;tag=jrnmls-20&amp;linkId=e757dc2fcc803f637c8cd5c3d89c281e">book on refactoring</a>, you’ll quickly learn that one of the main prerequisites of it is to have proper tests in place. But as mentioned above, legacy code usually either has no tests or is poorly tested.</p>
+
+<p>Now I don’t really want to dive into any particular refactoring strategies here, but a great way to reduce regression while refactoring is to automate as much of the process as possible.</p>
+
+<p>By this time I hope nobody renames classes by hand anymore? (e.g. rename class, rename constructors, rename file,…) But did you also know Android studio can also move code, extract methods, inline interfaces,…?</p>
+
+<p>Really really powerful stuff there. And it doesn’t just reduce regression, it also removes a lot of dull repetitive work from your plate allowing you to focus on the interesting challenges.</p>
+
+<p>I can help you get started with posts on <a href="/blog/2018/02/22/androidstudioshortcuts/">code navigation</a> and <a href="/blog/2018/04/26/androidstudioshortcuts2/">refactoring</a> in Android Studio.</p>
+
+<h2 id="5-have-faith">5. Have faith</h2>
+<blockquote>
+  <p>We choose to go to the Moon, not because it is easy, but because it is hard; JFK</p>
+</blockquote>
+
+<p>Incrementally refactoring your app and rewriting parts of it isn’t going to be easy. It definitely won’t be a walk in the park.</p>
+
+<p>Especially refactoring can easily leave you unfulfilled: If you clean up the code in different places, it can easily feel insignificant, like your work barely made a dent in the bigger picture.</p>
+
+<p>Please know that you are not alone. The age of small apps is behind us for quite some time now. And software often looks deceptively simple, yet can be extremely hard.</p>
+
+<p>Bear with us, you’ll manage. Even if you fail a few times along the way, at least you are trying (and learning!). There is light at the end of the tunnel, things will go better if you persist, one step at a time.</p>
+
+<p>Finally, know that you are learning an invaluable skill: maintaining software whilst improving and building further upon it. Trust me, these refactoring skills will prove to be invaluable for the rest of your career.</p>
+
+<h2 id="wrap-up">Wrap-up</h2>
+<p>There is no silver bullet to magically improve your code base, especially not rewriting. But by learning your tools, slicing your app in several modules and releasing often you will succeed if you have faith.</p>
+
+<p>If you’ve made it this far you should probably follow me on <span><a href="https://twitter.com/molsjeroen?source=fivetipstogetyourcodebaseinshape2019" class="ga-link" target="_blank">Twitter</a></span>
+. Feel free leave a comment below!</p>
+
+<h2 id="further-reads">Further reads</h2>
+<p>If I’ve piqued your interest and you would like to learn more, I can highly recommend the following books:</p>
+
+<ul>
+  <li><a href="https://www.amazon.com/gp/product/0131177052/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0131177052&amp;linkCode=as2&amp;tag=jrnmls-20&amp;linkId=e757dc2fcc803f637c8cd5c3d89c281e">Working effectively with legacy code</a> by Michael Feathers: Excellent book on how to refactor legacy code with amazing chapter names like “I Don’t Have Much Time and I Have to Change It” and “I Need to Make a Change, but I Don’t Know What Tests to Write”</li>
+  <li><a href="https://www.amazon.com/gp/product/0321601912/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0321601912&amp;linkCode=as2&amp;tag=jrnmls-20&amp;linkId=6118692c28efd4239f6e14c430bbd871">Continuous Delivery: Reliable Software Releases Through Build, Test, and Deployment Automation</a> by Jez Humble and David Farley: Great book if you’d like to learn more about continuous delivery and what the benefits could be for your team/organization.</li>
+  <li><a href="https://www.amazon.com/gp/product/0321146530/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0321146530&amp;linkCode=as2&amp;tag=jrnmls-20&amp;linkId=b785589aa73d26e7dcddfb1a1d70d3d0">Test Driven Development: By Example</a> by Kent Beck: While tackling legacy code, writing automated tests is of the utmost importance. This book provides a really nice introduction to test-driven development from its inventor Kent Beck.</li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/architecture" class="page__taxonomy-item" rel="tag">architecture</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/refactoring" class="page__taxonomy-item" rel="tag">refactoring</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/software-engineering" class="page__taxonomy-item" rel="tag">software engineering</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/blog" class="page__taxonomy-item" rel="tag">blog</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-02-20T00:00:00+01:00">February 20, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=Five+tips+to+get+your+code+base+in+shape%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2019%2F02%2F20%2Ftacklelegacy%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2019%2F02%2F20%2Ftacklelegacy%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://plus.google.com/share?url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2019%2F02%2F20%2Ftacklelegacy%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fab fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2019%2F02%2F20%2Ftacklelegacy%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      <section class="page__share">
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bottom-blog-responsive -->
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-9854541518226004"
+       data-ad-slot="4086741379"
+       data-ad-format="auto"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/blog/2019/01/17/livedatajunit5/" class="pagination--pager" title="Testing LiveData in JUnit 4 and JUnit 5
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a Comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/livedatajunit5/livedatajunit5.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2019/01/17/livedatajunit5/" rel="permalink">Testing LiveData in JUnit 4 and JUnit 5
+</a>
+        </h2>
+        <h3 class="archive__date">17 Jan 2019</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2019/01/17/livedatajunit5/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Architecture components are one of the most exciting things that happened to Android in the past years. But how do you effectively go about and testing this?
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/yearinreview18/yearinreview18.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2019/01/01/yearinreview/" rel="permalink">Year in review 2018
+</a>
+        </h2>
+        <h3 class="archive__date">01 Jan 2019</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2019/01/01/yearinreview/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Sitting in our own couch, in our own house, kids safely asleep upstairs,… The road here was brutal, but the result is extraordinary.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/fixthetest/fixthetest.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2018/12/06/fixthetest/" rel="permalink">Can you fix the test?
+</a>
+        </h2>
+        <h3 class="archive__date">06 Dec 2018</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2018/12/06/fixthetest/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  7 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Learning from analyzing code is one of the greatest ways to improve your skills. Can you spot the mistakes in the tests below?
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/kotlinstackoverflow/kotlin_stackoverflow.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2018/11/01/kotlinstackoverflow/" rel="permalink">Kotlin Stackoverflow error
+</a>
+        </h2>
+        <h3 class="archive__date">01 Nov 2018</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2018/11/01/kotlinstackoverflow/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Java interop is one of the best features of the Kotlin language, yet sometimes this also can cause unforeseen issues…
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+    <div id="results" class="results"></div></div>
+      </div>
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+      <li><a href="https://twitter.com/molsjeroen"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+    
+    
+    
+      <li><a href="https://github.com/JeroenMols"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    
+    <li><a href="atom.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2019 Jeroen Mols. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-63356566-1', 'auto');
+  ga('set', 'anonymizeIp', false)
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://jeroenmols.com/blog/2019/02/20/tacklelegacy/";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = "/blog/2019/02/20/tacklelegacy"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jeroenmols.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+  </body>
+</html>

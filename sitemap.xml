@@ -157,6 +157,10 @@
 <lastmod>2019-01-17T00:00:00+01:00</lastmod>
 </url>
 <url>
+<loc>https://jeroenmols.com/blog/2019/02/20/tacklelegacy/</loc>
+<lastmod>2019-02-20T00:00:00+01:00</lastmod>
+</url>
+<url>
 <loc>https://jeroenmols.com/categories/</loc>
 </url>
 <url>
@@ -308,6 +312,12 @@
 </url>
 <url>
 <loc>https://jeroenmols.com/tags/livedata/</loc>
+</url>
+<url>
+<loc>https://jeroenmols.com/tags/refactoring/</loc>
+</url>
+<url>
+<loc>https://jeroenmols.com/tags/software-engineering/</loc>
 </url>
 <url>
 <loc>https://jeroenmols.com/categories/blog/</loc>

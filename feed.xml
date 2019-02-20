@@ -1,4 +1,137 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2019-01-17T07:40:39+01:00</updated><id>https://jeroenmols.com/</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Testing LiveData in JUnit 4 and JUnit 5</title><link href="https://jeroenmols.com/blog/2019/01/17/livedatajunit5/" rel="alternate" type="text/html" title="Testing LiveData in JUnit 4 and JUnit 5" /><published>2019-01-17T00:00:00+01:00</published><updated>2019-01-17T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2019/01/17/livedatajunit5</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/01/17/livedatajunit5/">&lt;p&gt;Architecture components are one of the most exciting things that happened to Android in the past years. But how do you effectively go about and testing this?&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2019-02-20T20:45:51+01:00</updated><id>https://jeroenmols.com/</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Five tips to get your code base in shape</title><link href="https://jeroenmols.com/blog/2019/02/20/tacklelegacy/" rel="alternate" type="text/html" title="Five tips to get your code base in shape" /><published>2019-02-20T00:00:00+01:00</published><updated>2019-02-20T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2019/02/20/tacklelegacy</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/02/20/tacklelegacy/">&lt;p&gt;Are you living the dream? Is your code so clean it makes your eyes just tear a little? Can’t think of anything you would still like to refactor? Never have any bugs? Using all the latest technologies?&lt;/p&gt;
+
+&lt;p&gt;Unfortunately, most of us aren’t in this state. We have bugs that haunt us, crashes at inconvenient times and sometimes 💩 simply hits the fan… So how on earth do you get out of this mess?&lt;/p&gt;
+
+&lt;p&gt;Well, I’m glad you ask! Here are five tips to get started.&lt;/p&gt;
+
+&lt;h2 id=&quot;1-dont-rewrite&quot;&gt;1. Don’t rewrite&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;If only we could rewrite all of the code, we would be out of this mess in no time;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Remember that every project was a green field once, right? So why is it that all of us seem to end up in a similar state? Do you really think the previous developers didn’t have the best intentions?&lt;/p&gt;
+
+&lt;p&gt;In reality rewrites hardly ever work out. Mainly because the complexity (corner cases) and required effort (amount of features) to rewrite everything gets underestimated. Hence rewriting will be incredibly time-consuming.&lt;/p&gt;
+
+&lt;p&gt;At the same time, rewrites don’t focus on maximizing user value: you’ll lose tons of time rewriting stuff that wasn’t problematic to begin with and users won’t get any new features until the rewrite is done.&lt;/p&gt;
+
+&lt;p&gt;And technology isn’t standing still either: two years ago we didn’t have Kotlin, Jetpack, Architecture components, Navigation components,… And that’s just the official Google stuff!&lt;/p&gt;
+
+&lt;p&gt;With deadlines slipping, users complaining (no new features) and competition catching up… will you really be able to resist not taking any shortcuts? Can you really guarantee you’ll be better off?&lt;/p&gt;
+
+&lt;p&gt;I’m not saying rewrites never work out, but they are certainly one of the riskiest approaches to getting rid of your legacy. If you’re rewriting your app, you are basically developing a new product that just happens to have the same feature set as the old app. (with all risks involved in new product development)&lt;/p&gt;
+
+&lt;p&gt;Read more about challenges while rewriting by &lt;a href=&quot;http://chadfowler.com/2006/12/27/the-big-rewrite.html&quot;&gt;Chad Fowler&lt;/a&gt;, &lt;a href=&quot;https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/&quot;&gt;Joel Spolsky&lt;/a&gt;, &lt;a href=&quot;https://blog.intracto.com/paying-technical-debt-how-to-rescue-legacy-code-through-refactoring&quot;&gt;Jeroen Moons&lt;/a&gt; or &lt;a href=&quot;https://jvaneyck.wordpress.com/2015/03/12/the-big-rewrite/&quot;&gt;Jo Van Eyck&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;2-release-release-release&quot;&gt;2. Release, release, release&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;If it hurts, do it more often; Jez Humble&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;One thing that all legacy code has in common is that it’s poorly tested. Hence it can be very hard to control the impact of code changes.&lt;/p&gt;
+
+&lt;p&gt;Ever been in the situation where a simple code clean up, suddenly broke a seemingly unrelated feature elsewhere in the app?&lt;/p&gt;
+
+&lt;p&gt;Or maybe you wanted to release a new update to the field, but your test team just kept on finding issues? Causing release candidate to be created after release candidate?&lt;/p&gt;
+
+&lt;p&gt;Such a lack of control over regression, unfortunately, isn’t uncommon. And while your natural instinct might be to just test each release longer manually, that just creates different problems:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;slower time to market due to longer test cycles&lt;/li&gt;
+  &lt;li&gt;decreased release frequency due to more test overhead&lt;/li&gt;
+  &lt;li&gt;harder to fix bugs, because they are found later&lt;/li&gt;
+  &lt;li&gt;more overhead with Git branches (where does this fix go?)&lt;/li&gt;
+  &lt;li&gt;working on several releases in parallel&lt;/li&gt;
+  &lt;li&gt;frustrated testers&lt;/li&gt;
+  &lt;li&gt;…&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The problem here is that you’re actually fundamentally accepting you don’t trust your app anymore. You start to rely on release testing to find bugs, implicitly taking away the responsibility from developers to not break things.&lt;/p&gt;
+
+&lt;p&gt;Counterintuitively, however, you should release more often instead of less.&lt;/p&gt;
+
+&lt;p&gt;Having smaller releases increases awareness of what changes were made in each release. Hence bugs can be easily tracked back to code changes and testing can be better focussed on the parts changed.&lt;/p&gt;
+
+&lt;p&gt;Also having fewer lines of code changed in every release will simply cause fewer bugs to be introduced. And the more often you do something, the better you’ll become at doing it.&lt;/p&gt;
+
+&lt;p&gt;Finally, developers will get feedback faster as their code ends up in production sooner. That makes them more accountable, causing quality to go up.&lt;/p&gt;
+
+&lt;p&gt;At Philips Hue, we now release every two weeks and it has gotten so normal that we barely think about it.&lt;/p&gt;
+
+&lt;h2 id=&quot;3-divide-and-conquer&quot;&gt;3. Divide and conquer&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;It’s easier to build several smaller things than to build one big thing;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;While most developers tend to like spaghetti, they aren’t quite as fond of spaghetti code. This is because, in a spaghetti codebase, everything is connected to everything else.&lt;/p&gt;
+
+&lt;p&gt;This has several challenges:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;changing things is hard: one small clean up leads to changes in another file, requiring changes somewhere else, cascading into a world of pain.&lt;/li&gt;
+  &lt;li&gt;making changes in one place has unintended side effects&lt;/li&gt;
+  &lt;li&gt;difficult to introduce new technologies (e.g. RXJava)&lt;/li&gt;
+  &lt;li&gt;hard to scale up team: developers will often change the same files causing a lot of merge conflicts&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;What you are really missing, in this case, is having clearly defined contracts between different parts of your code. Instead, the implementation of several parts is tightly coupled together.&lt;/p&gt;
+
+&lt;p&gt;So why don’t you split your big monolith in several, fully decoupled feature modules? This doesn’t just speed up builds, allow you to do instant apps, but it also allows to aggressively improve your app.&lt;/p&gt;
+
+&lt;p&gt;Once you split a feature off, the rest of the app becomes completely agnostic of the internal implementation of such a feature, which means you can:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;either refactor the feature&lt;/li&gt;
+  &lt;li&gt;fully rewrite the feature&lt;/li&gt;
+  &lt;li&gt;or leave the feature as-is (not a problem to solve now)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This allows you to quickly and aggressively get your app into good shape, focussing on those parts that need attention most. In that way, even rewriting parts of your app suddenly becomes possible as you can derisk their roll-out with a feature toggle!&lt;/p&gt;
+
+&lt;h2 id=&quot;4-master-your-tools&quot;&gt;4. Master your tools&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;The right tools for the right Job;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;If you read any &lt;a href=&quot;https://www.amazon.com/gp/product/0131177052/ref=as_li_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;creativeASIN=0131177052&amp;amp;linkCode=as2&amp;amp;tag=jrnmls-20&amp;amp;linkId=e757dc2fcc803f637c8cd5c3d89c281e&quot;&gt;book on refactoring&lt;/a&gt;, you’ll quickly learn that one of the main prerequisites of it is to have proper tests in place. But as mentioned above, legacy code usually either has no tests or is poorly tested.&lt;/p&gt;
+
+&lt;p&gt;Now I don’t really want to dive into any particular refactoring strategies here, but a great way to reduce regression while refactoring is to automate as much of the process as possible.&lt;/p&gt;
+
+&lt;p&gt;By this time I hope nobody renames classes by hand anymore? (e.g. rename class, rename constructors, rename file,…) But did you also know Android studio can also move code, extract methods, inline interfaces,…?&lt;/p&gt;
+
+&lt;p&gt;Really really powerful stuff there. And it doesn’t just reduce regression, it also removes a lot of dull repetitive work from your plate allowing you to focus on the interesting challenges.&lt;/p&gt;
+
+&lt;p&gt;I can help you get started with posts on &lt;a href=&quot;/blog/2018/02/22/androidstudioshortcuts/&quot;&gt;code navigation&lt;/a&gt; and &lt;a href=&quot;/blog/2018/04/26/androidstudioshortcuts2/&quot;&gt;refactoring&lt;/a&gt; in Android Studio.&lt;/p&gt;
+
+&lt;h2 id=&quot;5-have-faith&quot;&gt;5. Have faith&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;We choose to go to the Moon, not because it is easy, but because it is hard; JFK&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Incrementally refactoring your app and rewriting parts of it isn’t going to be easy. It definitely won’t be a walk in the park.&lt;/p&gt;
+
+&lt;p&gt;Especially refactoring can easily leave you unfulfilled: If you clean up the code in different places, it can easily feel insignificant, like your work barely made a dent in the bigger picture.&lt;/p&gt;
+
+&lt;p&gt;Please know that you are not alone. The age of small apps is behind us for quite some time now. And software often looks deceptively simple, yet can be extremely hard.&lt;/p&gt;
+
+&lt;p&gt;Bear with us, you’ll manage. Even if you fail a few times along the way, at least you are trying (and learning!). There is light at the end of the tunnel, things will go better if you persist, one step at a time.&lt;/p&gt;
+
+&lt;p&gt;Finally, know that you are learning an invaluable skill: maintaining software whilst improving and building further upon it. Trust me, these refactoring skills will prove to be invaluable for the rest of your career.&lt;/p&gt;
+
+&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
+&lt;p&gt;There is no silver bullet to magically improve your code base, especially not rewriting. But by learning your tools, slicing your app in several modules and releasing often you will succeed if you have faith.&lt;/p&gt;
+
+&lt;p&gt;If you’ve made it this far you should probably follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=fivetipstogetyourcodebaseinshape2019&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
+. Feel free leave a comment below!&lt;/p&gt;
+
+&lt;h2 id=&quot;further-reads&quot;&gt;Further reads&lt;/h2&gt;
+&lt;p&gt;If I’ve piqued your interest and you would like to learn more, I can highly recommend the following books:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.amazon.com/gp/product/0131177052/ref=as_li_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;creativeASIN=0131177052&amp;amp;linkCode=as2&amp;amp;tag=jrnmls-20&amp;amp;linkId=e757dc2fcc803f637c8cd5c3d89c281e&quot;&gt;Working effectively with legacy code&lt;/a&gt; by Michael Feathers: Excellent book on how to refactor legacy code with amazing chapter names like “I Don’t Have Much Time and I Have to Change It” and “I Need to Make a Change, but I Don’t Know What Tests to Write”&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.amazon.com/gp/product/0321601912/ref=as_li_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;creativeASIN=0321601912&amp;amp;linkCode=as2&amp;amp;tag=jrnmls-20&amp;amp;linkId=6118692c28efd4239f6e14c430bbd871&quot;&gt;Continuous Delivery: Reliable Software Releases Through Build, Test, and Deployment Automation&lt;/a&gt; by Jez Humble and David Farley: Great book if you’d like to learn more about continuous delivery and what the benefits could be for your team/organization.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.amazon.com/gp/product/0321146530/ref=as_li_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;creativeASIN=0321146530&amp;amp;linkCode=as2&amp;amp;tag=jrnmls-20&amp;amp;linkId=b785589aa73d26e7dcddfb1a1d70d3d0&quot;&gt;Test Driven Development: By Example&lt;/a&gt; by Kent Beck: While tackling legacy code, writing automated tests is of the utmost importance. This book provides a really nice introduction to test-driven development from its inventor Kent Beck.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Jeroen Mols</name></author><category term="refactoring" /><category term="architecture" /><category term="software engineering" /><summary type="html">Are you living the dream? Is your code so clean it makes your eyes just tear a little? Can’t think of anything you would still like to refactor? Never have any bugs? Using all the latest technologies?</summary></entry><entry><title type="html">Testing LiveData in JUnit 4 and JUnit 5</title><link href="https://jeroenmols.com/blog/2019/01/17/livedatajunit5/" rel="alternate" type="text/html" title="Testing LiveData in JUnit 4 and JUnit 5" /><published>2019-01-17T00:00:00+01:00</published><updated>2019-01-17T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2019/01/17/livedatajunit5</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/01/17/livedatajunit5/">&lt;p&gt;Architecture components are one of the most exciting things that happened to Android in the past years. But how do you effectively go about and testing this?&lt;/p&gt;
 
 &lt;h2 id=&quot;problem-statement&quot;&gt;Problem statement&lt;/h2&gt;
 &lt;p&gt;One of the interesting problems LiveData solves is to ensure the observer is always called on the main thread. This happens in the following ways:&lt;/p&gt;
@@ -1207,166 +1340,4 @@ reason: hue.libraries.translations has a targetSdkVersion &amp;lt; 4
 &lt;p&gt;This was part two of my series to get the most out of Android Studio.&lt;/p&gt;
 
 &lt;p&gt;If you’ve made it this far you should probably follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=proandroidstudio-refactoring2018&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
-. Feel free leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="androidstudio" /><category term="tools" /><category term="shortcuts" /><summary type="html">Refactoring can be tedious and easily introduce bugs. The main reason for this is the number of manual steps involved: rename, move, copy-paste,… So wouldn’t it make sense to automate this and have Android Studio do all the work for you?</summary></entry><entry><title type="html">Pro Android Studio - Code navigation</title><link href="https://jeroenmols.com/blog/2018/02/22/androidstudioshortcuts/" rel="alternate" type="text/html" title="Pro Android Studio - Code navigation" /><published>2018-02-22T00:00:00+01:00</published><updated>2018-02-22T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2018/02/22/androidstudioshortcuts</id><content type="html" xml:base="https://jeroenmols.com/blog/2018/02/22/androidstudioshortcuts/">&lt;p&gt;Struggling to navigate your code? Getting lost in deep inheritance hierarchies? Hard time figuring out relations between classes? Let’s learn how to navigate code in Android Studio like a pro.&lt;/p&gt;
-
-&lt;p&gt;Being a skilled Android developer means getting the most out of the tools at your disposal. While there are plenty resources listing shortcuts, it’s often hard to make sense and master those.&lt;/p&gt;
-
-&lt;p&gt;Therefore this series aims to be a practical guide with clear examples on how to better navigate and refactor code. It will effectively cover how I personally use Android Studio.&lt;/p&gt;
-
-&lt;blockquote&gt;
-
-  &lt;p&gt;This post is part of a series with practical examples on how you to get the most out of Android Studio:&lt;/p&gt;
-  &lt;ul&gt;
-    &lt;li&gt;&lt;a href=&quot;/blog/2018/02/22/androidstudioshortcuts/&quot;&gt;Part 1: Code navigation&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;/blog/2018/04/26/androidstudioshortcuts2/&quot;&gt;Part 2: Refactoring&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;/blog/2018/07/16/androidstudioshortcuts3/&quot;&gt;Part 3: Taming the interface&lt;/a&gt;&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;tldr&quot;&gt;TL;DR&lt;/h2&gt;
-&lt;p&gt;I strongly suggest you look at the examples below, but a quick reference is always useful.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + O&lt;/code&gt;: find class&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + ⌥ + O&lt;/code&gt;: find symbol&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + ⇧ + O&lt;/code&gt;: find file&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⇧ + ⌘ + T&lt;/code&gt;: go to/from test&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + ⌥ + F7&lt;/code&gt;: show usages&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + U&lt;/code&gt;: jump to superclass/defining method&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + ⌥ + B&lt;/code&gt;: jump to subclass/overridden method&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;^ + H&lt;/code&gt;: show class hierarchy&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + F12&lt;/code&gt;: show methods&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + B&lt;/code&gt;: go to declaration&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;F2&lt;/code&gt;: next error/warning&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⇧ + F2&lt;/code&gt;: previous error/warning&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + L&lt;/code&gt;: go to line&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + E&lt;/code&gt;: show recent files&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + [&lt;/code&gt;: to previous code position&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + ]&lt;/code&gt;: to next code position&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + ⇧ + backspace&lt;/code&gt;: to last code edit&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Windows equivalents can be found &lt;a href=&quot;https://developer.android.com/studio/intro/keyboard-shortcuts.html&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;opening-classes-and-files&quot;&gt;Opening classes and files&lt;/h2&gt;
-&lt;p&gt;Better than search everywhere is telling Android Studio what you are looking for:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + O&lt;/code&gt;: a class&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + ⌥ + O&lt;/code&gt;: a symbol&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + ⇧ + O&lt;/code&gt;: a file&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;This makes search a lot faster and returns fewer, more relevant results!&lt;/p&gt;
-
-&lt;p&gt;Searched for classes but needed a file? Just hit &lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + ⇧ + O&lt;/code&gt; while open to dynamically swap between modes. You can even use &lt;a href=&quot;https://en.wikipedia.org/wiki/Camel_case&quot;&gt;Camel Casing&lt;/a&gt; to quickly find &lt;code class=&quot;highlighter-rouge&quot;&gt;AlbumActivityTest&lt;/code&gt; by typing &lt;code class=&quot;highlighter-rouge&quot;&gt;AlAT&lt;/code&gt; or directly jump to a line number by adding &lt;code class=&quot;highlighter-rouge&quot;&gt;:&lt;/code&gt;.&lt;/p&gt;
-
-&lt;figure&gt;
-  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts/openclassandfiles.gif&quot; alt=&quot;Open classes, symbols or files&quot; /&gt;
-  &lt;figcaption&gt;Open classes, symbols or files&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;Already found the class you were looking for, but quickly want to go to the test? Go to the class declaration and use &lt;code class=&quot;highlighter-rouge&quot;&gt;⇧ + ⌘ + T&lt;/code&gt;. It even suggests to create a new test and also works from the test.&lt;/p&gt;
-
-&lt;figure&gt;
-  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts/navigatetest.gif&quot; alt=&quot;Navigate between test and class with ⌘ + T&quot; /&gt;
-  &lt;figcaption&gt;Navigate between test and class with ⌘ + T&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;h2 id=&quot;relationships-between-classes&quot;&gt;Relationships between classes&lt;/h2&gt;
-&lt;p&gt;If you want to figure out where a class is being used? &lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + ⌥ + F7&lt;/code&gt; shows it in a handy pop over. Note that you can show the same info in the find tab using &lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + F7&lt;/code&gt; for a more static view.&lt;/p&gt;
-
-&lt;figure&gt;
-  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts/classusages.gif&quot; alt=&quot;Show class usages with ⌘ + ⌥ + F7&quot; /&gt;
-  &lt;figcaption&gt;Show class usages with ⌘ + ⌥ + F7&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;Inheritance hierarchies are typically easy to get lost in.&lt;/p&gt;
-
-&lt;p&gt;Did you know you can use &lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + U&lt;/code&gt; to jump to the super class or &lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + ⌥ + B&lt;/code&gt; to go to a sub class? It even works for method overrides!&lt;/p&gt;
-
-&lt;figure&gt;
-  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts/supersubclass.gif&quot; alt=&quot;Navigate between super- and subclasses&quot; /&gt;
-  &lt;figcaption&gt;Navigate between super- and subclasses&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;Finally, &lt;code class=&quot;highlighter-rouge&quot;&gt;^ + H&lt;/code&gt; dumps out the entire class hierarchy in a handy overview.&lt;/p&gt;
-
-&lt;figure&gt;
-  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts/classhierarchy.png&quot; alt=&quot;Show class hierarchy with ^ + H&quot; /&gt;
-  &lt;figcaption&gt;Show class hierarchy with ^ + H&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;h2 id=&quot;structure-of-classes&quot;&gt;Structure of classes&lt;/h2&gt;
-&lt;p&gt;Use &lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + F12&lt;/code&gt; to show all methods and properties of a class. Like any other view in Android Studio, even this one is searchable.&lt;/p&gt;
-
-&lt;figure&gt;
-  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts/showmethods.gif&quot; alt=&quot;Show class methods and properties with ⌘ + F12&quot; /&gt;
-  &lt;figcaption&gt;Show class methods and properties with ⌘ + F12&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;Come across a member in code? With &lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + B&lt;/code&gt; you can immediately jump to where it is defined. Tapping &lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + B&lt;/code&gt; a second time shows you where it is used.&lt;/p&gt;
-
-&lt;figure&gt;
-  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts/gotodeclaration.gif&quot; alt=&quot;Analyze class usages with ⌘ + ⌥ + F7&quot; /&gt;
-  &lt;figcaption&gt;Go to declaration and show usages with ⌘ + B&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;Be it a failing build due to multiple errors, or you scroll away from broken code under development. Compilation errors are common and can be hard to navigate to.&lt;/p&gt;
-
-&lt;p&gt;Using &lt;code class=&quot;highlighter-rouge&quot;&gt;F2&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;⇧ + F2&lt;/code&gt;, however, will let you jump back and forth between all errors in a file. If there are none, those keys will do the same for all warnings.&lt;/p&gt;
-
-&lt;figure&gt;
-  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts/nexterror.gif&quot; alt=&quot;Navigate between errors/warnings in a file&quot; /&gt;
-  &lt;figcaption&gt;Navigate between errors/warnings in a file&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;Know the exact line number? Then &lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + L&lt;/code&gt; is the shortcut for you.&lt;/p&gt;
-
-&lt;figure&gt;
-  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts/gotoline.gif&quot; alt=&quot;Go to a specific line in a file with ⌘ + L&quot; /&gt;
-  &lt;figcaption&gt;Go to a specific line in a file with ⌘ + L&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;h2 id=&quot;history&quot;&gt;History&lt;/h2&gt;
-&lt;p&gt;With all these new code navigation superpowers, there is one critical element missing: how do you find your way back to where you started?&lt;/p&gt;
-
-&lt;p&gt;One of the well-known options is to use &lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + E&lt;/code&gt; to list your recently opened files.&lt;/p&gt;
-
-&lt;figure&gt;
-  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts/recentnavigation.gif&quot; alt=&quot;List recently opened files with ⌘ + E&quot; /&gt;
-  &lt;figcaption&gt;List recently opened files with ⌘ + E&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;However, when clicking through code you can also use &lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + [&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + ]&lt;/code&gt; to take a step back or forth respectively.&lt;/p&gt;
-
-&lt;figure&gt;
-  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts/previousnextnavigation.gif&quot; alt=&quot;Navigate between previous visited code&quot; /&gt;
-  &lt;figcaption&gt;Navigate between previous visited code&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;And finally, if you just want to continue coding where you left off, use &lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + ⇧ + backspace&lt;/code&gt; to jump to where you made the last code edit.&lt;/p&gt;
-
-&lt;figure&gt;
-  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts/previousedit.gif&quot; alt=&quot;Navigate to the last edited code with ⌘ + ⇧ + backspace&quot; /&gt;
-  &lt;figcaption&gt;Navigate to the last edited code with ⌘ + ⇧ + backspace&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;If you’ve made it this far you should probably follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=proandroidstudio-codenavigation2018&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
-.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap up&lt;/h2&gt;
-&lt;p&gt;This was part one of my series to get the most out of Android Studio, feel free to continue reading &lt;a href=&quot;/blog/2018/04/26/androidstudioshortcuts2/&quot;&gt;the second part&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;If you’ve made it this far you should probably follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=proandroidstudio-codenavigation2018&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
-. Feel free leave a comment below!&lt;/p&gt;
-
-&lt;p&gt;Special thanks to Antonio Leiva, all gifs are made with code from his open source project &lt;a href=&quot;https://github.com/antoniolg/Bandhook-Kotlin&quot;&gt;Bandhook&lt;/a&gt;.&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="androidstudio" /><category term="tools" /><category term="shortcuts" /><summary type="html">Struggling to navigate your code? Getting lost in deep inheritance hierarchies? Hard time figuring out relations between classes? Let’s learn how to navigate code in Android Studio like a pro.</summary></entry></feed>
+. Feel free leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="androidstudio" /><category term="tools" /><category term="shortcuts" /><summary type="html">Refactoring can be tedious and easily introduce bugs. The main reason for this is the number of manual steps involved: rename, move, copy-paste,… So wouldn’t it make sense to automate this and have Android Studio do all the work for you?</summary></entry></feed>

@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle>
- <updated>2019-01-17T07:40:39+01:00</updated>
+ <updated>2019-02-20T20:45:51+01:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,24 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>Five tips to get your code base in shape</title>
+   <link href="https://jeroenmols.com/blog/2019/02/20/tacklelegacy/"/>
+   <updated>2019-02-20T00:00:00+01:00</updated>
+   <id>https://jeroenmols.com/blog/2019/02/20/tacklelegacy</id>
+   <content type="html"><![CDATA[
+     
+     <p>Are you living the dream? Is your code so clean it makes your eyes just tear a little? Can’t think of anything you would still like to refactor? Never have any bugs? Using all the latest technologies?</p>
+
+<p>Unfortunately, most of us aren’t in this state. We have bugs that haunt us, crashes at inconvenient times and sometimes 💩 simply hits the fan… So how on earth do you get out of this mess?</p>
+
+<p>Well, I’m glad you ask! Here are five tips to get started.</p>
+
+
+     <a href="https://jeroenmols.com/blog/2019/02/20/tacklelegacy/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>Testing LiveData in JUnit 4 and JUnit 5</title>

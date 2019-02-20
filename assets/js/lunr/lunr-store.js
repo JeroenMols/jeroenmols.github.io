@@ -193,4 +193,9 @@ var store = [{
         "excerpt":"Architecture components are one of the most exciting things that happened to Android in the past years. But how do you effectively go about and testing this? Problem statement One of the interesting problems LiveData solves is to ensure the observer is always called on the main thread. This happens...","categories": ["blog"],
         "tags": ["testing","architecture","livedata"],
         "url": "https://jeroenmols.com/blog/2019/01/17/livedatajunit5/",
-        "teaser":"https://jeroenmols.com/img/blog/livedatajunit5/livedatajunit5.jpg"}]
+        "teaser":"https://jeroenmols.com/img/blog/livedatajunit5/livedatajunit5.jpg"},{
+        "title": "Five tips to get your code base in shape",
+        "excerpt":"Are you living the dream? Is your code so clean it makes your eyes just tear a little? Can’t think of anything you would still like to refactor? Never have any bugs? Using all the latest technologies? Unfortunately, most of us aren’t in this state. We have bugs that haunt...","categories": ["blog"],
+        "tags": ["refactoring","architecture","software engineering"],
+        "url": "https://jeroenmols.com/blog/2019/02/20/tacklelegacy/",
+        "teaser":"https://jeroenmols.com/img/blog/tacklelegacy/tacklelegacy.jpg"}]
