@@ -11,7 +11,7 @@ tags:
 ---
 Are you living the dream? Is your code so clean it makes your eyes just tear a little? Can't think of anything you would still like to refactor? Never have any bugs? Using all the latest technologies?
 
-unfortunately, most of us aren't in this state. We have bugs that haunt us, crashes at inconvenient times and sometimes 💩 simply hits the fan... So how on earth do you get out of this mess?
+Unfortunately, most of us aren't in this state. We have bugs that haunt us, crashes at inconvenient times and sometimes 💩 simply hits the fan... So how on earth do you get out of this mess?
 
 Well, I'm glad you ask! Here are five tips to get started.
 
@@ -21,9 +21,9 @@ Well, I'm glad you ask! Here are five tips to get started.
 
 Remember that every project was a green field once, right? So why is it that all of us seem to end up in a similar state? Do you really think the previous developers didn't have the best intentions?
 
-In reality rewrites hardly ever work out. Mainly because you are probably underestimating the complexity (corner cases) and required effort (amount of features) to rewrite everything. Hence rewriting will be incredibly time-consuming.
+In reality rewrites hardly ever work out. Mainly because the complexity (corner cases) and required effort (amount of features) to rewrite everything gets underestimated. Hence rewriting will be incredibly time-consuming.
 
-At the same time, you aren't focussing on maximizing user value: you'll lose tons of time rewriting stuff that wasn't problematic to begin with and users won't get any new features until the rewrite is done.
+At the same time, rewrites don't focus on maximizing user value: you'll lose tons of time rewriting stuff that wasn't problematic to begin with and users won't get any new features until the rewrite is done.
 
 And technology isn't standing still either: two years ago we didn't have Kotlin, Jetpack, Architecture components, Navigation components,... And that's just the official Google stuff!
 
@@ -76,7 +76,7 @@ This has several challenges:
 - difficult to introduce new technologies (e.g. RXJava)
 - hard to scale up team: developers will often change the same files causing a lot of merge conflicts
 
-What you are really missing, in this case, is having clearly defined contracts between different parts of your code. And the implementation of several parts is tightly coupled together.
+What you are really missing, in this case, is having clearly defined contracts between different parts of your code. Instead, the implementation of several parts is tightly coupled together.
 
 So why don't you split your big monolith in several, fully decoupled feature modules? This doesn't just speed up builds, allow you to do instant apps, but it also allows to aggressively improve your app.
 
@@ -86,12 +86,12 @@ Once you split a feature off, the rest of the app becomes completely agnostic of
 - fully rewrite the feature
 - or leave the feature as-is (not a problem to solve now)
 
-This allows you to quickly and aggressively get your app into good shape, focussing on those parts that need attention most. Even rewriting parts of your app suddenly becomes possible as you can derisk their roll-out with a feature toggle!
+This allows you to quickly and aggressively get your app into good shape, focussing on those parts that need attention most. In that way, even rewriting parts of your app suddenly becomes possible as you can derisk their roll-out with a feature toggle!
 
 ## 4. Master your tools
 > The right tools for the right Job;
 
-If you read any [book on refactoring](https://www.amazon.com/gp/product/0131177052/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0131177052&linkCode=as2&tag=jrnmls-20&linkId=e757dc2fcc803f637c8cd5c3d89c281e), you’ll quickly learn that one of the main prerequisites of it is to have proper tests in place. As mentioned above, legacy code usually either has no tests or is poorly tested.
+If you read any [book on refactoring](https://www.amazon.com/gp/product/0131177052/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0131177052&linkCode=as2&tag=jrnmls-20&linkId=e757dc2fcc803f637c8cd5c3d89c281e), you’ll quickly learn that one of the main prerequisites of it is to have proper tests in place. But as mentioned above, legacy code usually either has no tests or is poorly tested.
 
 Now I don’t really want to dive into any particular refactoring strategies here, but a great way to reduce regression while refactoring is to automate as much of the process as possible.
 
