@@ -23,4 +23,4 @@ From the "MacOS could not be installed on your computer" screen:
 
 My environment: 2017 Macbook pro 15" Touch Bar with MacOS 10.13.1 (High Sierra) installed and tried to update to 10.13.2 using the App Store.
 
-Feel free leave a comment below or follow me on {% include link_twitter.html %}!
+If this was helpful to you, consider [buying me a coffee](https://www.buymeacoffee.com/jeroen) or thanking me at {% include link_twitter_molsjeroen.html %} on twitter!
