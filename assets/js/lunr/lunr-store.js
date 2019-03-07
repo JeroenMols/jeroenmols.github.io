@@ -198,4 +198,9 @@ var store = [{
         "excerpt":"Are you living the dream? Is your code so clean it makes your eyes just tear a little? Can’t think of anything you would still like to refactor? Never have any bugs? Using all the latest technologies? Unfortunately, most of us aren’t in this state. We have bugs that haunt...","categories": ["blog"],
         "tags": ["refactoring","architecture","software engineering"],
         "url": "https://jeroenmols.com/blog/2019/02/20/tacklelegacy/",
-        "teaser":"https://jeroenmols.com/img/blog/tacklelegacy/tacklelegacy.jpg"}]
+        "teaser":"https://jeroenmols.com/img/blog/tacklelegacy/tacklelegacy.jpg"},{
+        "title": "Modularization - Why you should care",
+        "excerpt":"Modularizing your app seems to be all the hype these days. But why should you actually care? What are the benefits for you and your team? How should a modularized app look like? And how do you start splitting your app? Part one of this blog post series will deep...","categories": ["blog"],
+        "tags": ["modularization","architecture","software engineering"],
+        "url": "https://jeroenmols.com/blog/2019/03/06/modularizationwhy/",
+        "teaser":"https://jeroenmols.com/img/blog/modularizationwhy/modularization_why.jpg"}]

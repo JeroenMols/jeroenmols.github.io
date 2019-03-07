@@ -1,0 +1,845 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.12.0 by Michael Rose
+  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Modularization - Why you should care - Jeroen Mols</title>
+<meta name="description" content="Modularizing your app seems to be all the hype these days. But why should you actually care? What are the benefits for you and your team? How should a modularized app look like? And how do you start splitting your app?">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="Jeroen Mols">
+<meta property="og:title" content="Modularization - Why you should care">
+<meta property="og:url" content="https://jeroenmols.com/blog/2019/03/06/modularizationwhy/">
+
+
+  <meta property="og:description" content="Modularizing your app seems to be all the hype these days. But why should you actually care? What are the benefits for you and your team? How should a modularized app look like? And how do you start splitting your app?">
+
+
+
+  <meta property="og:image" content="https://jeroenmols.com/img/blog/modularizationwhy/modularization_why.jpg">
+
+
+
+  <meta name="twitter:site" content="@molsjeroen">
+  <meta name="twitter:title" content="Modularization - Why you should care">
+  <meta name="twitter:description" content="Modularizing your app seems to be all the hype these days. But why should you actually care? What are the benefits for you and your team? How should a modularized app look like? And how do you start splitting your app?">
+  <meta name="twitter:url" content="https://jeroenmols.com/blog/2019/03/06/modularizationwhy/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+      <meta name="twitter:image" content="https://jeroenmols.com/img/blog/modularizationwhy/modularization_why.jpg">
+    
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2019-03-06T00:00:00+01:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://jeroenmols.com/blog/2019/03/06/modularizationwhy/">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "Jeroen Mols",
+      "url": "https://jeroenmols.com",
+      "sameAs": ["https://twitter.com/molsjeroen","https://www.linkedin.com/in/jeroenmols/","https://plus.google.com/+JeroenMols","https://github.com/JeroenMols","https://speakerdeck.com/jeroenmols","https://stackoverflow.com/users/2771851/jmols"]
+    }
+  </script>
+
+
+
+  <meta name="google-site-verification" content="8E8HUpExgyNFdLuFMWmkSUl08gISnOF3UWexA55aNrk" />
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$('.ga-link').on('click', function(){
+		if (typeof(ga)!=="undefined"){
+			ga('send',{
+				hitType: 'event',
+				eventCategory: 'Outbound link',
+				eventAction: 'click',
+				eventLabel: event.target.href
+			});
+	  	}
+	});
+})	;
+</script>
+
+<meta name="theme-color" content="#2c3e50">
+
+<link href="atom.xml" type="application/atom+xml" rel="alternate" title="Jeroen Mols Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="https://jeroenmols.com/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="/">Jeroen Mols</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://jeroenmols.com/blog/" >Blog</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://jeroenmols.com/speaking/" >Speaking</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://jeroenmols.com/hireme/" >Hire me</a>
+            </li>
+          
+        </ul>
+        
+        <button class="search__toggle" type="button">
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="/img/profile.jpg" alt="Jeroen Mols" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Jeroen Mols</h3>
+    
+    
+      <p class="author__bio" itemprop="description">
+        Android GDE & Lead Android developer at Philips Hue
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Mol, Belgium</span>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://twitter.com/@molsjeroen" itemprop="sameAs">
+            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+          </a>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="https://plus.google.com/JeroenMols" itemprop="sameAs">
+            <i class="fab fa-fw fa-google-plus-square" aria-hidden="true"></i> Google+
+          </a>
+        </li>
+      
+
+      
+        <li>
+          <a href="https://www.linkedin.com/in/jeroenmols" itemprop="sameAs">
+            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/JeroenMols" itemprop="sameAs">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="https://www.stackoverflow.com/users/2771851/jmols" itemprop="sameAs">
+            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i> Stack Overflow
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        
+          <li>
+            <a href="https://www.youtube.com/channel/UC34Vt1lo8T15_rgc3e3Jsew" itemprop="sameAs">
+              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i> YouTube
+            </a>
+          </li>
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+  <li>
+    <a href="https://speakerdeck.com/jeroenmols" itemprop="sameAs">
+      <i class="fa fa-line-chart" aria-hidden="true"></i> Speaker Deck
+    </a>
+  </li>
+
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Modularization - Why you should care">
+    <meta itemprop="description" content="Modularizing your app seems to be all the hype these days. But why should you actually care? What are the benefits for you and your team? How should a modularized app look like? And how do you start splitting your app?">
+    <meta itemprop="datePublished" content="March 06, 2019">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Modularization - Why you should care
+</h1>
+          <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  06 Mar 2019</p>
+
+          
+            <img src="https://jeroenmols.com/img/blog/modularizationwhy/modularization_why.jpg" alt="Modularization - Why you should care" title="Photo by Clement127 under Creative Commons license (CC BY-NC-ND 2.0), https://www.flickr.com/photos/clement127/15074072753/in/photolist-oY3yE6-pCoFVW-oY3xhX-oY3tF8-pUB3jK-zrkR2h, cropped">
+          
+
+          
+            <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  6 minute read
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>Modularizing your app seems to be all the hype these days. But why should you actually care? What are the benefits for you and your team? How should a modularized app look like? And how do you start splitting your app?</p>
+
+<p>Part one of this blog post series will deep dive into the problems modularization solves and the unique opportunities it offers.</p>
+
+<h2 id="why">Why</h2>
+<p>There is no short answer to this question, modularisation really has a lot going for it:</p>
+
+<ol>
+  <li>Speeds up builds</li>
+  <li>Enable dynamic delivery (instant apps)</li>
+  <li>Simplify development</li>
+  <li>Reuse modules across apps</li>
+  <li>Experiment with new technologies</li>
+  <li>Scale development teams</li>
+  <li>Enables refactoring</li>
+  <li>Simplifies test automation</li>
+</ol>
+
+<p>Let’s investigate these benefits more in depth.</p>
+
+<h3 id="1-speeds-up-builds">1. Speeds up builds</h3>
+<p>Highly simplified, Gradle does two things to speed up builds:</p>
+
+<ol>
+  <li>Cache work it did before so it doesn’t have to do it again</li>
+  <li>Try to do as much work as possible in parallel</li>
+</ol>
+
+<p>Both of these strategies aren’t effective for single module apps as every code change, makes it impossible to reuse the already generated (cached) compiled code artifact and hence all code has to be recompiled again sequentially.</p>
+
+<p>With multiple modules, however, Gradle can build several modules in parallel and avoid building modules that have no code changed it already has a cached artifact for. This speeds up your incremental builds and even your clean builds if you use the <a href="https://gradle.com/build-cache/">Gradle build cache</a>.</p>
+
+<blockquote>
+  <p>Note: modules sometimes need to be recompiled even if they don’t have direct code changes, but because a dependency changed. More info <a href="https://jeroenmols.com/blog/2017/06/14/androidstudio3/">here</a>.</p>
+</blockquote>
+
+<h3 id="2-enable-dynamic-delivery-instant-apps">2. Enable dynamic delivery (instant apps)</h3>
+<p>While you could argue that app size isn’t a major concern in most western countries, the same cannot be said for all parts of the world. <a href="https://developer.android.com/topic/google-play-instant/">Instant apps</a> however break that line of thinking and ensure small apps are beneficial for everyone.</p>
+
+<p>In order to become an instant app, your app must be under 4MB (or 10MB without direct deep links from search results). This means you have to aggressively scale down your app, reducing it to only its essentials for the instant app variant.</p>
+
+<p>Having a modularized app will make it dramatically easier (and is almost inevitable) to get under those limits. Further, it allows you to use <a href="https://developer.android.com/studio/projects/dynamic-delivery">dynamic delivery</a> to download new features on the fly when the user starts accessing those.</p>
+
+<h3 id="3-simplify-development">3. Simplify development</h3>
+<p>As covered in my <a href="/blog/2019/02/20/tacklelegacy/">previous post</a>, modularization helps to get rid of or to avoid spaghetti code. In a modularized world you could still have spaghetti (within modules), but at least it would be multiple smaller, easily digestible portions.</p>
+
+<p>A clear contract between the modules won’t just decouple everything, avoiding that one change causes side effects somewhere else. But it also forces you to group code in smaller coherent parts. That makes the code easier to read, understand and consequently, maintenance will also become a lot easier.</p>
+
+<p>It’s always easier to build several small things than trying to build one huge thing.</p>
+
+<h3 id="4-reuse-modules-across-apps">4. Reuse modules across apps</h3>
+<p>Even if your business has no plans to launch several apps in the near future, preparing for that still makes sense:</p>
+
+<ul>
+  <li>should your business be successful, you have a head start launching a second app/product!</li>
+  <li>maybe someday you want to involve 3rd party developers on your platform and make an SDK</li>
+  <li>or perhaps you want to expose full app flows to 3rd party developers. (e.g. Firebase remote login)<br />At Philips Hue, for instance, our bridge discovery flow could potentially bootstrap any 3rd party Hue app)</li>
+  <li>and why wouldn’t you step up your game and contribute a few of those shine modules back to the open source community?</li>
+</ul>
+
+<p>Striving to make modules reusable across apps is a great thing to strive for, even if you never end up actually doing it.</p>
+
+<h3 id="5-experiment-with-new-technologies">5. Experiment with new technologies</h3>
+<p>The Android landscape is evolving at a rapid pace: just two years ago we didn’t have Kotlin, Jetpack, Architecture components, Navigation components, … and that’s just the official Google stuff!</p>
+
+<p>How on earth can you keep up with that in your app, while avoiding <a href="https://blog.daftcode.pl/hype-driven-development-3469fc2e9b22">hype driven development</a>? Because making the wrong technology or architecture choice could haunt you for several months or even years!</p>
+
+<p>Again modularisation comes in to save the day. What if you just contain the new tech/architecture to a single module? That makes integrating the technology (e.g. RXJava) a lot easier and you can experience the full benefits of the technology by converting an entire module end to end. Hence you can rapidly experiment and if the choice turns out not to work for you, it won’t be that much work to revert it.</p>
+
+<p>Enabling experimentation with new technologies isn’t the only benefit. Modules also help to avoid technology lock-in! What if you go all in react native and Facebook pulls official support? Containing technology choices to modules gives you room to see how a technology matures before going all in.</p>
+
+<h3 id="6-scale-development-teams">6. Scale development teams</h3>
+<p>The more people that work on a code base, the more files will be modified concurrently causing a hell of merge conflicts. And let’s face it, every conflict you solve is like flipping a coin hoping it falls on the right side, so regression is a real issue here.</p>
+
+<p>Again modularisation softens the blow because if you split your app in a smart way, you can delegate the ownership of particular feature modules to particular teams/people. Completely avoiding concurrent modifications, or at least limiting those problems to a smaller set of modules.</p>
+
+<p>But this isn’t the only kind of scaling that modularisation enables: you can even outsource development of particular feature modules to an external company as your app won’t be affected by the (lower) quality of the code inside of those modules.</p>
+
+<h3 id="7-enables-refactoring">7. Enables refactoring</h3>
+<p>Monolithic apps are usually very hard to change or improve (see above). This is mainly because cleaning up code in one place can easily have unforeseen side effects somewhere else.</p>
+
+<p>But there is a second reason why monoliths are hard to refactor: there is no easy way to gradually roll out your improvements!</p>
+
+<p>Ideally, you want to refactor or rebuilt all functionality behind a feature toggle, so you can first verify that everything works (at least on par) before rolling it out to everyone. Risk reduction like this is key, especially if your app directly impacts the revenue stream of your business.</p>
+
+<p>Gradually rolling out improvements will still be challenging, even in a fully modularized app. But with the right split (see below) you can at least solve this problem for some use cases.</p>
+
+<h3 id="8-simplifies-test-automation">8. Simplifies test automation</h3>
+<p>Besides unit tests and UI tests, it is also important to automate the key user flows to ensure they keep on working. On Android, we typically use Espresso for this kind of integration tests.</p>
+
+<p>Now imagine we want to test the payment flow in a taxi application. Do you really want every test to:</p>
+
+<ol>
+  <li>log in a user first first</li>
+  <li>enter a destination on the map</li>
+  <li>pick the preferred taxi</li>
+  <li>pay for the ride (👈 interesting part)</li>
+</ol>
+
+<p>No! Because this would not only make the test very slow (# steps), but it also makes them all fail when a bug appears in the login flow.</p>
+
+<p>On the other hand, modularization (if done well) can enable the payment flow to be tested without having to step through other parts of the app. This speeds up tests, simplifies test setup and increases their reliability.</p>
+
+<h2 id="wrap-up">Wrap-up</h2>
+<p>Modularization is incredibly powerful to speed up your builds, simplify development and fundamentally scale your team. On top of that, it enables interesting use cases such as instant apps and makes it easier to experiment with new technologies.</p>
+
+<p>Make sure to follow me on <span><a href="https://twitter.com/molsjeroen?source=modularization-whyyoushouldcare2019" class="ga-link" target="_blank">Twitter</a></span>
+ so you don’t miss the next articles in this series on modularization.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/architecture" class="page__taxonomy-item" rel="tag">architecture</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/modularization" class="page__taxonomy-item" rel="tag">modularization</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/software-engineering" class="page__taxonomy-item" rel="tag">software engineering</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/blog" class="page__taxonomy-item" rel="tag">blog</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-03-06T00:00:00+01:00">March 06, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=Modularization+-+Why+you+should+care%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2019%2F03%2F06%2Fmodularizationwhy%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2019%2F03%2F06%2Fmodularizationwhy%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://plus.google.com/share?url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2019%2F03%2F06%2Fmodularizationwhy%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fab fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2019%2F03%2F06%2Fmodularizationwhy%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      <section class="page__share">
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bottom-blog-responsive -->
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-9854541518226004"
+       data-ad-slot="4086741379"
+       data-ad-format="auto"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/blog/2019/02/20/tacklelegacy/" class="pagination--pager" title="Five tips to get your code base in shape
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a Comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/tacklelegacy/tacklelegacy.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2019/02/20/tacklelegacy/" rel="permalink">Five tips to get your code base in shape
+</a>
+        </h2>
+        <h3 class="archive__date">20 Feb 2019</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2019/02/20/tacklelegacy/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  7 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Are you living the dream? Is your code so clean it makes your eyes just tear a little? Can’t think of anything you would still like to refactor? Never have any bugs? Using all the latest technologies?
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/livedatajunit5/livedatajunit5.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2019/01/17/livedatajunit5/" rel="permalink">Testing LiveData in JUnit 4 and JUnit 5
+</a>
+        </h2>
+        <h3 class="archive__date">17 Jan 2019</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2019/01/17/livedatajunit5/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Architecture components are one of the most exciting things that happened to Android in the past years. But how do you effectively go about and testing this?
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/yearinreview18/yearinreview18.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2019/01/01/yearinreview/" rel="permalink">Year in review 2018
+</a>
+        </h2>
+        <h3 class="archive__date">01 Jan 2019</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2019/01/01/yearinreview/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Sitting in our own couch, in our own house, kids safely asleep upstairs,… The road here was brutal, but the result is extraordinary.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/fixthetest/fixthetest.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2018/12/06/fixthetest/" rel="permalink">Can you fix the test?
+</a>
+        </h2>
+        <h3 class="archive__date">06 Dec 2018</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2018/12/06/fixthetest/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  7 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Learning from analyzing code is one of the greatest ways to improve your skills. Can you spot the mistakes in the tests below?
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+    <div id="results" class="results"></div></div>
+      </div>
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+      <li><a href="https://twitter.com/molsjeroen"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+    
+    
+    
+      <li><a href="https://github.com/JeroenMols"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    
+    <li><a href="atom.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2019 Jeroen Mols. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-63356566-1', 'auto');
+  ga('set', 'anonymizeIp', false)
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://jeroenmols.com/blog/2019/03/06/modularizationwhy/";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = "/blog/2019/03/06/modularizationwhy"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jeroenmols.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+  </body>
+</html>

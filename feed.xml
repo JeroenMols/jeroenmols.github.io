@@ -1,4 +1,111 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2019-02-26T20:36:33+01:00</updated><id>https://jeroenmols.com/</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Five tips to get your code base in shape</title><link href="https://jeroenmols.com/blog/2019/02/20/tacklelegacy/" rel="alternate" type="text/html" title="Five tips to get your code base in shape" /><published>2019-02-20T00:00:00+01:00</published><updated>2019-02-20T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2019/02/20/tacklelegacy</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/02/20/tacklelegacy/">&lt;p&gt;Are you living the dream? Is your code so clean it makes your eyes just tear a little? Can’t think of anything you would still like to refactor? Never have any bugs? Using all the latest technologies?&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2019-03-07T01:18:04+01:00</updated><id>https://jeroenmols.com/</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Modularization - Why you should care</title><link href="https://jeroenmols.com/blog/2019/03/06/modularizationwhy/" rel="alternate" type="text/html" title="Modularization - Why you should care" /><published>2019-03-06T00:00:00+01:00</published><updated>2019-03-06T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2019/03/06/modularizationwhy</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/03/06/modularizationwhy/">&lt;p&gt;Modularizing your app seems to be all the hype these days. But why should you actually care? What are the benefits for you and your team? How should a modularized app look like? And how do you start splitting your app?&lt;/p&gt;
+
+&lt;p&gt;Part one of this blog post series will deep dive into the problems modularization solves and the unique opportunities it offers.&lt;/p&gt;
+
+&lt;h2 id=&quot;why&quot;&gt;Why&lt;/h2&gt;
+&lt;p&gt;There is no short answer to this question, modularisation really has a lot going for it:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Speeds up builds&lt;/li&gt;
+  &lt;li&gt;Enable dynamic delivery (instant apps)&lt;/li&gt;
+  &lt;li&gt;Simplify development&lt;/li&gt;
+  &lt;li&gt;Reuse modules across apps&lt;/li&gt;
+  &lt;li&gt;Experiment with new technologies&lt;/li&gt;
+  &lt;li&gt;Scale development teams&lt;/li&gt;
+  &lt;li&gt;Enables refactoring&lt;/li&gt;
+  &lt;li&gt;Simplifies test automation&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Let’s investigate these benefits more in depth.&lt;/p&gt;
+
+&lt;h3 id=&quot;1-speeds-up-builds&quot;&gt;1. Speeds up builds&lt;/h3&gt;
+&lt;p&gt;Highly simplified, Gradle does two things to speed up builds:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Cache work it did before so it doesn’t have to do it again&lt;/li&gt;
+  &lt;li&gt;Try to do as much work as possible in parallel&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Both of these strategies aren’t effective for single module apps as every code change, makes it impossible to reuse the already generated (cached) compiled code artifact and hence all code has to be recompiled again sequentially.&lt;/p&gt;
+
+&lt;p&gt;With multiple modules, however, Gradle can build several modules in parallel and avoid building modules that have no code changed it already has a cached artifact for. This speeds up your incremental builds and even your clean builds if you use the &lt;a href=&quot;https://gradle.com/build-cache/&quot;&gt;Gradle build cache&lt;/a&gt;.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note: modules sometimes need to be recompiled even if they don’t have direct code changes, but because a dependency changed. More info &lt;a href=&quot;https://jeroenmols.com/blog/2017/06/14/androidstudio3/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;2-enable-dynamic-delivery-instant-apps&quot;&gt;2. Enable dynamic delivery (instant apps)&lt;/h3&gt;
+&lt;p&gt;While you could argue that app size isn’t a major concern in most western countries, the same cannot be said for all parts of the world. &lt;a href=&quot;https://developer.android.com/topic/google-play-instant/&quot;&gt;Instant apps&lt;/a&gt; however break that line of thinking and ensure small apps are beneficial for everyone.&lt;/p&gt;
+
+&lt;p&gt;In order to become an instant app, your app must be under 4MB (or 10MB without direct deep links from search results). This means you have to aggressively scale down your app, reducing it to only its essentials for the instant app variant.&lt;/p&gt;
+
+&lt;p&gt;Having a modularized app will make it dramatically easier (and is almost inevitable) to get under those limits. Further, it allows you to use &lt;a href=&quot;https://developer.android.com/studio/projects/dynamic-delivery&quot;&gt;dynamic delivery&lt;/a&gt; to download new features on the fly when the user starts accessing those.&lt;/p&gt;
+
+&lt;h3 id=&quot;3-simplify-development&quot;&gt;3. Simplify development&lt;/h3&gt;
+&lt;p&gt;As covered in my &lt;a href=&quot;/blog/2019/02/20/tacklelegacy/&quot;&gt;previous post&lt;/a&gt;, modularization helps to get rid of or to avoid spaghetti code. In a modularized world you could still have spaghetti (within modules), but at least it would be multiple smaller, easily digestible portions.&lt;/p&gt;
+
+&lt;p&gt;A clear contract between the modules won’t just decouple everything, avoiding that one change causes side effects somewhere else. But it also forces you to group code in smaller coherent parts. That makes the code easier to read, understand and consequently, maintenance will also become a lot easier.&lt;/p&gt;
+
+&lt;p&gt;It’s always easier to build several small things than trying to build one huge thing.&lt;/p&gt;
+
+&lt;h3 id=&quot;4-reuse-modules-across-apps&quot;&gt;4. Reuse modules across apps&lt;/h3&gt;
+&lt;p&gt;Even if your business has no plans to launch several apps in the near future, preparing for that still makes sense:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;should your business be successful, you have a head start launching a second app/product!&lt;/li&gt;
+  &lt;li&gt;maybe someday you want to involve 3rd party developers on your platform and make an SDK&lt;/li&gt;
+  &lt;li&gt;or perhaps you want to expose full app flows to 3rd party developers. (e.g. Firebase remote login)&lt;br /&gt;At Philips Hue, for instance, our bridge discovery flow could potentially bootstrap any 3rd party Hue app)&lt;/li&gt;
+  &lt;li&gt;and why wouldn’t you step up your game and contribute a few of those shine modules back to the open source community?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Striving to make modules reusable across apps is a great thing to strive for, even if you never end up actually doing it.&lt;/p&gt;
+
+&lt;h3 id=&quot;5-experiment-with-new-technologies&quot;&gt;5. Experiment with new technologies&lt;/h3&gt;
+&lt;p&gt;The Android landscape is evolving at a rapid pace: just two years ago we didn’t have Kotlin, Jetpack, Architecture components, Navigation components, … and that’s just the official Google stuff!&lt;/p&gt;
+
+&lt;p&gt;How on earth can you keep up with that in your app, while avoiding &lt;a href=&quot;https://blog.daftcode.pl/hype-driven-development-3469fc2e9b22&quot;&gt;hype driven development&lt;/a&gt;? Because making the wrong technology or architecture choice could haunt you for several months or even years!&lt;/p&gt;
+
+&lt;p&gt;Again modularisation comes in to save the day. What if you just contain the new tech/architecture to a single module? That makes integrating the technology (e.g. RXJava) a lot easier and you can experience the full benefits of the technology by converting an entire module end to end. Hence you can rapidly experiment and if the choice turns out not to work for you, it won’t be that much work to revert it.&lt;/p&gt;
+
+&lt;p&gt;Enabling experimentation with new technologies isn’t the only benefit. Modules also help to avoid technology lock-in! What if you go all in react native and Facebook pulls official support? Containing technology choices to modules gives you room to see how a technology matures before going all in.&lt;/p&gt;
+
+&lt;h3 id=&quot;6-scale-development-teams&quot;&gt;6. Scale development teams&lt;/h3&gt;
+&lt;p&gt;The more people that work on a code base, the more files will be modified concurrently causing a hell of merge conflicts. And let’s face it, every conflict you solve is like flipping a coin hoping it falls on the right side, so regression is a real issue here.&lt;/p&gt;
+
+&lt;p&gt;Again modularisation softens the blow because if you split your app in a smart way, you can delegate the ownership of particular feature modules to particular teams/people. Completely avoiding concurrent modifications, or at least limiting those problems to a smaller set of modules.&lt;/p&gt;
+
+&lt;p&gt;But this isn’t the only kind of scaling that modularisation enables: you can even outsource development of particular feature modules to an external company as your app won’t be affected by the (lower) quality of the code inside of those modules.&lt;/p&gt;
+
+&lt;h3 id=&quot;7-enables-refactoring&quot;&gt;7. Enables refactoring&lt;/h3&gt;
+&lt;p&gt;Monolithic apps are usually very hard to change or improve (see above). This is mainly because cleaning up code in one place can easily have unforeseen side effects somewhere else.&lt;/p&gt;
+
+&lt;p&gt;But there is a second reason why monoliths are hard to refactor: there is no easy way to gradually roll out your improvements!&lt;/p&gt;
+
+&lt;p&gt;Ideally, you want to refactor or rebuilt all functionality behind a feature toggle, so you can first verify that everything works (at least on par) before rolling it out to everyone. Risk reduction like this is key, especially if your app directly impacts the revenue stream of your business.&lt;/p&gt;
+
+&lt;p&gt;Gradually rolling out improvements will still be challenging, even in a fully modularized app. But with the right split (see below) you can at least solve this problem for some use cases.&lt;/p&gt;
+
+&lt;h3 id=&quot;8-simplifies-test-automation&quot;&gt;8. Simplifies test automation&lt;/h3&gt;
+&lt;p&gt;Besides unit tests and UI tests, it is also important to automate the key user flows to ensure they keep on working. On Android, we typically use Espresso for this kind of integration tests.&lt;/p&gt;
+
+&lt;p&gt;Now imagine we want to test the payment flow in a taxi application. Do you really want every test to:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;log in a user first first&lt;/li&gt;
+  &lt;li&gt;enter a destination on the map&lt;/li&gt;
+  &lt;li&gt;pick the preferred taxi&lt;/li&gt;
+  &lt;li&gt;pay for the ride (👈 interesting part)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;No! Because this would not only make the test very slow (# steps), but it also makes them all fail when a bug appears in the login flow.&lt;/p&gt;
+
+&lt;p&gt;On the other hand, modularization (if done well) can enable the payment flow to be tested without having to step through other parts of the app. This speeds up tests, simplifies test setup and increases their reliability.&lt;/p&gt;
+
+&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
+&lt;p&gt;Modularization is incredibly powerful to speed up your builds, simplify development and fundamentally scale your team. On top of that, it enables interesting use cases such as instant apps and makes it easier to experiment with new technologies.&lt;/p&gt;
+
+&lt;p&gt;Make sure to follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=modularization-whyyoushouldcare2019&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
+ so you don’t miss the next articles in this series on modularization.&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="modularization" /><category term="architecture" /><category term="software engineering" /><summary type="html">Modularizing your app seems to be all the hype these days. But why should you actually care? What are the benefits for you and your team? How should a modularized app look like? And how do you start splitting your app?</summary></entry><entry><title type="html">Five tips to get your code base in shape</title><link href="https://jeroenmols.com/blog/2019/02/20/tacklelegacy/" rel="alternate" type="text/html" title="Five tips to get your code base in shape" /><published>2019-02-20T00:00:00+01:00</published><updated>2019-02-20T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2019/02/20/tacklelegacy</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/02/20/tacklelegacy/">&lt;p&gt;Are you living the dream? Is your code so clean it makes your eyes just tear a little? Can’t think of anything you would still like to refactor? Never have any bugs? Using all the latest technologies?&lt;/p&gt;
 
 &lt;p&gt;Unfortunately, most of us aren’t in this state. We have bugs that haunt us, crashes at inconvenient times and sometimes 💩 simply hits the fan… So how on earth do you get out of this mess?&lt;/p&gt;
 
@@ -1141,203 +1248,4 @@ reason: hue.libraries.translations has a targetSdkVersion &amp;lt; 4
 &lt;p&gt;This was the last part in my series to get the most out of Android Studio.&lt;/p&gt;
 
 &lt;p&gt;If you’ve made it this far you should probably follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=proandroidstudio-tamingtheinterface2018&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
-. Feel free leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="androidstudio" /><category term="tools" /><category term="shortcuts" /><category term="navigation" /><summary type="html">Not only can anything in Android Studio be controlled with a keyboard shortcut, it offers many more simple tricks to make you more productive.</summary></entry><entry><title type="html">Pro Android Studio - Refactoring</title><link href="https://jeroenmols.com/blog/2018/04/26/androidstudioshortcuts2/" rel="alternate" type="text/html" title="Pro Android Studio - Refactoring" /><published>2018-04-26T00:00:00+02:00</published><updated>2018-04-26T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2018/04/26/androidstudioshortcuts2</id><content type="html" xml:base="https://jeroenmols.com/blog/2018/04/26/androidstudioshortcuts2/">&lt;p&gt;Refactoring can be tedious and easily introduce bugs. The main reason for this is the number of manual steps involved: rename, move, copy-paste,… So wouldn’t it make sense to automate this and have Android Studio do all the work for you?&lt;/p&gt;
-
-&lt;p&gt;This post will zoom in on the most useful refactoring options of Android Studio. Enabling you to refactor more confidently, introduce fewer bugs and increase overall quality as also variables, documentation, etc. will be updated.&lt;/p&gt;
-
-&lt;blockquote&gt;
-
-  &lt;p&gt;This post is part of a series with practical examples on how you to get the most out of Android Studio:&lt;/p&gt;
-  &lt;ul&gt;
-    &lt;li&gt;&lt;a href=&quot;/blog/2018/02/22/androidstudioshortcuts/&quot;&gt;Part 1: Code navigation&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;/blog/2018/04/26/androidstudioshortcuts2/&quot;&gt;Part 2: Refactoring&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;/blog/2018/07/16/androidstudioshortcuts3/&quot;&gt;Part 3: Taming the interface&lt;/a&gt;&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;tldr&quot;&gt;TL;DR&lt;/h2&gt;
-&lt;p&gt;I strongly suggest you look at the examples below, but a quick reference is always useful.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + D&lt;/code&gt;: duplicate line&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + backspace&lt;/code&gt;: delete line&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + ↑&lt;/code&gt;: move line up&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + ↓&lt;/code&gt;: move line down&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⇧ + ⌘ + ↑&lt;/code&gt;: move method up&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⇧ + ⌘ + ↓&lt;/code&gt;: move method down&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⇧ + F6&lt;/code&gt;: rename&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + F6&lt;/code&gt;: change method signature&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;F6&lt;/code&gt;: move&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌥ + ⌘ + V&lt;/code&gt;: extract variable&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌥ + ⌘ + M&lt;/code&gt;: extract method&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌥ + ⌘ + P&lt;/code&gt;: extract method parameter&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌥ + ⌘ + F&lt;/code&gt;: extract property (or field)&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌥ + ⌘ + C&lt;/code&gt;: extract constant (java only)&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌥ + ⌘ + N&lt;/code&gt;: inline&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;^ + T&lt;/code&gt;: open refactoring menu&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌥ + enter&lt;/code&gt;: quick fix&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Windows equivalents can be found &lt;a href=&quot;https://developer.android.com/studio/intro/keyboard-shortcuts.html&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;code-manipulation&quot;&gt;Code manipulation&lt;/h2&gt;
-&lt;p&gt;In order to speed up development, you want to reduce the amount of typing to a minimum. While autocomplete definitely helps, sometimes it’s faster to directly manipulate lines:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + D&lt;/code&gt;: duplicate line&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + backspace&lt;/code&gt;: delete line&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;These shortcuts will work regardless of the cursor position in the line.&lt;/p&gt;
-
-&lt;figure&gt;
-  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts2/duplicatedelete.gif&quot; alt=&quot;Duplicate and delete lines&quot; /&gt;
-  &lt;figcaption&gt;Duplicate and delete lines&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;After duplicating you can simply move code up/down by using &lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + ↑&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + ↓&lt;/code&gt; for lines, or &lt;code class=&quot;highlighter-rouge&quot;&gt;⇧ + ⌘ + ↑&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;⇧ + ⌘ + ↓&lt;/code&gt; for methods.&lt;/p&gt;
-
-&lt;figure&gt;
-  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts2/movelineblock.gif&quot; alt=&quot;Move lines and methods up/down&quot; /&gt;
-  &lt;figcaption&gt;Move lines and methods up/down&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;Both combined provide a powerful way of extending code: you duplicate a line, edit it and move it to its location.&lt;/p&gt;
-
-&lt;figure&gt;
-  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts2/editlines.gif&quot; alt=&quot;Quick edit lines via duplicate and move&quot; /&gt;
-  &lt;figcaption&gt;Quick edit lines via duplicate and move&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;h2 id=&quot;rename-update-and-move&quot;&gt;Rename, update and move&lt;/h2&gt;
-&lt;p&gt;Renaming classes is very involved: rename class definition, rename the file and update all references and documentation. Fortunately &lt;code class=&quot;highlighter-rouge&quot;&gt;⇧ + F6&lt;/code&gt; does all of that for you.&lt;/p&gt;
-
-&lt;figure&gt;
-  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts2/renameclass.gif&quot; alt=&quot;Rename anything with ⇧ + F6&quot; /&gt;
-  &lt;figcaption&gt;Rename anything with ⇧ + F6&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;This doesn’t just work for classes, but also for methods, variables, fields,…&lt;/p&gt;
-
-&lt;p&gt;Similarly &lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + F6&lt;/code&gt; allows you to update the signature of a method. This is especially useful to add, remove or reorder new parameters to the method definition.&lt;/p&gt;
-
-&lt;figure&gt;
-  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts2/changesignature.gif&quot; alt=&quot;Change method signature with ⌘ + F6&quot; /&gt;
-  &lt;figcaption&gt;Change method signature with ⌘ + F6&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;Note how you can specify a default value so all existing method consumers will be updated by Android Studio! Use &lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + ↑&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;⌘ + ↓&lt;/code&gt; to quickly reorder parameters.&lt;/p&gt;
-
-&lt;p&gt;Finally, you can move classes to their own file or to another package using &lt;code class=&quot;highlighter-rouge&quot;&gt;F6&lt;/code&gt;. This works for all top-level declarations and Java static methods/constants.&lt;/p&gt;
-
-&lt;figure&gt;
-  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts2/moveclass.gif&quot; alt=&quot;Move classes with F6&quot; /&gt;
-  &lt;figcaption&gt;Move classes with F6&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;h2 id=&quot;refactoring&quot;&gt;Refactoring&lt;/h2&gt;
-&lt;p&gt;To clean up code it is often handy to convert values into variables with a meaningful name. This is easy using &lt;code class=&quot;highlighter-rouge&quot;&gt;⌥ + ⌘ + V&lt;/code&gt;.&lt;/p&gt;
-
-&lt;figure&gt;
-  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts2/extractvariable.gif&quot; alt=&quot;Extract variable with ⌥ + ⌘ + V&quot; /&gt;
-  &lt;figcaption&gt;Extract variable with ⌥ + ⌘ + V&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;Note that you can either replace one or all occurrences.&lt;/p&gt;
-
-&lt;p&gt;Similarly, you can extract code into a method with &lt;code class=&quot;highlighter-rouge&quot;&gt;⌥ + ⌘ + M&lt;/code&gt; and give it an easy to understand name.&lt;/p&gt;
-
-&lt;figure&gt;
-  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts2/extractmethod.gif&quot; alt=&quot;Extract method with ⌥ + ⌘ + M&quot; /&gt;
-  &lt;figcaption&gt;Extract method with ⌥ + ⌘ + M&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;You can even convert a variable to a parameter that is injected into the method using &lt;code class=&quot;highlighter-rouge&quot;&gt;⌥ + ⌘ + P&lt;/code&gt;.&lt;/p&gt;
-
-&lt;figure&gt;
-  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts2/extractparameter.gif&quot; alt=&quot;Extract parameter with ⌥ + ⌘ + P&quot; /&gt;
-  &lt;figcaption&gt;Extract parameter with ⌥ + ⌘ + P&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;If this makes another parameter obsolete, then it will be automatically removed from the method signature.&lt;/p&gt;
-
-&lt;p&gt;Same holds true to create properties, by using &lt;code class=&quot;highlighter-rouge&quot;&gt;⌥ + ⌘ + F&lt;/code&gt;.&lt;/p&gt;
-
-&lt;figure&gt;
-  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts2/extractproperty.gif&quot; alt=&quot;Extract property with ⌥ + ⌘ + F&quot; /&gt;
-  &lt;figcaption&gt;Extract property with ⌥ + ⌘ + F&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;Note that for Java you can also use &lt;code class=&quot;highlighter-rouge&quot;&gt;⌥ + ⌘ + C&lt;/code&gt; to extract a static final field. This isn’t available for Kotlin however.&lt;/p&gt;
-
-&lt;p&gt;Besides extracting, you can also do the inverse operation: inlining &lt;code class=&quot;highlighter-rouge&quot;&gt;⌥ + ⌘ + N&lt;/code&gt;. This is available for almost everything you can extract: methods, variables, properties,…&lt;/p&gt;
-
-&lt;figure&gt;
-  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts2/inlinevariablesmethods.gif&quot; alt=&quot;Inline method or variable with ⌥ + ⌘ + N&quot; /&gt;
-  &lt;figcaption&gt;Inline method or variable with ⌥ + ⌘ + N&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;Inlining gives you the option to inline it only in one place or everywhere. Plus you can optionally still keep the inlined variable or method.&lt;/p&gt;
-
-&lt;p&gt;While the above refactorings are the most commonly used ones, Android Studio actually offers quite a lot more if you press &lt;code class=&quot;highlighter-rouge&quot;&gt;^ + T&lt;/code&gt;:&lt;/p&gt;
-
-&lt;figure style=&quot;width: 50%&quot; class=&quot;align-center&quot;&gt;
-  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts2/refactoroptions.png&quot; alt=&quot;All refactoring options&quot; /&gt;
-  &lt;figcaption&gt;All refactoring options&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;I strongly encourage you to experiment with these and learn how they work. Good knowledge of these can dramatically speed up your development and reduce mistakes.&lt;/p&gt;
-
-&lt;h2 id=&quot;android-studio-quick-fixes&quot;&gt;Android studio quick fixes&lt;/h2&gt;
-&lt;p&gt;With &lt;code class=&quot;highlighter-rouge&quot;&gt;⌥ + enter&lt;/code&gt; Android Studio is able to quickly fix a number of common issues: add imports, remove unused method, remove unused parameter, restrict access modifiers,…&lt;/p&gt;
-
-&lt;figure&gt;
-  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts2/quickfixes.gif&quot; alt=&quot;Quick fix problems with ⌥ + enter&quot; /&gt;
-  &lt;figcaption&gt;Quick fix problems with ⌥ + enter&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;This quick fix option is significantly more powerful than you might think. Have a look at the function below:&lt;/p&gt;
-
-&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;shouldFollowAuthorOnTwitter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isBadBlogPost&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Boolean&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hasReadArticle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Boolean&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Boolean&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;isBlogJeroen&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;true&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isBlogJeroen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isBadBlogPost&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hasReadArticle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;true&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;false&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Not easy to understand, is it?&lt;/p&gt;
-
-&lt;p&gt;Let’s now use Android Studio to simplify this complex code for us.&lt;/p&gt;
-
-&lt;figure&gt;
-  &lt;img src=&quot;https://jeroenmols.com/img/blog/androidstudioshortcuts2/simplifyifs.gif&quot; alt=&quot;Simplify if statements&quot; /&gt;
-  &lt;figcaption&gt;Simplify if statements&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;Pretty cool, no?&lt;/p&gt;
-
-&lt;p&gt;Even better: this procedure is 100% safe!!! This is because we’ve offloaded all correctness checks and code changes to our IDE.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;If you’re interested in the next posts it’s probably best to follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=proandroidstudio-refactoring2018&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
-.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap up&lt;/h2&gt;
-&lt;p&gt;Refactoring can be tedious and easily introduce bugs. Therefore we should automate as much as we can using Android Studio.&lt;/p&gt;
-
-&lt;p&gt;This was part two of my series to get the most out of Android Studio.&lt;/p&gt;
-
-&lt;p&gt;If you’ve made it this far you should probably follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=proandroidstudio-refactoring2018&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
-. Feel free leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="androidstudio" /><category term="tools" /><category term="shortcuts" /><summary type="html">Refactoring can be tedious and easily introduce bugs. The main reason for this is the number of manual steps involved: rename, move, copy-paste,… So wouldn’t it make sense to automate this and have Android Studio do all the work for you?</summary></entry></feed>
+. Feel free leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="androidstudio" /><category term="tools" /><category term="shortcuts" /><category term="navigation" /><summary type="html">Not only can anything in Android Studio be controlled with a keyboard shortcut, it offers many more simple tricks to make you more productive.</summary></entry></feed>

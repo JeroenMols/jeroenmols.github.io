@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle>
- <updated>2019-02-26T20:36:33+01:00</updated>
+ <updated>2019-03-07T01:18:04+01:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,22 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>Modularization - Why you should care</title>
+   <link href="https://jeroenmols.com/blog/2019/03/06/modularizationwhy/"/>
+   <updated>2019-03-06T00:00:00+01:00</updated>
+   <id>https://jeroenmols.com/blog/2019/03/06/modularizationwhy</id>
+   <content type="html"><![CDATA[
+     
+     <p>Modularizing your app seems to be all the hype these days. But why should you actually care? What are the benefits for you and your team? How should a modularized app look like? And how do you start splitting your app?</p>
+
+<p>Part one of this blog post series will deep dive into the problems modularization solves and the unique opportunities it offers.</p>
+
+
+     <a href="https://jeroenmols.com/blog/2019/03/06/modularizationwhy/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>Five tips to get your code base in shape</title>
