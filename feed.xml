@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2019-03-07T01:18:04+01:00</updated><id>https://jeroenmols.com/</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Modularization - Why you should care</title><link href="https://jeroenmols.com/blog/2019/03/06/modularizationwhy/" rel="alternate" type="text/html" title="Modularization - Why you should care" /><published>2019-03-06T00:00:00+01:00</published><updated>2019-03-06T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2019/03/06/modularizationwhy</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/03/06/modularizationwhy/">&lt;p&gt;Modularizing your app seems to be all the hype these days. But why should you actually care? What are the benefits for you and your team? How should a modularized app look like? And how do you start splitting your app?&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2019-03-07T14:43:38+01:00</updated><id>https://jeroenmols.com/</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Modularization - Why you should care</title><link href="https://jeroenmols.com/blog/2019/03/06/modularizationwhy/" rel="alternate" type="text/html" title="Modularization - Why you should care" /><published>2019-03-06T00:00:00+01:00</published><updated>2019-03-06T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2019/03/06/modularizationwhy</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/03/06/modularizationwhy/">&lt;p&gt;Modularizing your app seems to be all the hype these days. But why should you actually care? What are the benefits for you and your team? How should a modularized app look like? And how do you start splitting your app?&lt;/p&gt;
 
 &lt;p&gt;Part one of this blog post series will deep dive into the problems modularization solves and the unique opportunities it offers.&lt;/p&gt;
 
@@ -7,7 +7,7 @@
 
 &lt;ol&gt;
   &lt;li&gt;Speeds up builds&lt;/li&gt;
-  &lt;li&gt;Enable dynamic delivery (instant apps)&lt;/li&gt;
+  &lt;li&gt;Enable on demand delivery&lt;/li&gt;
   &lt;li&gt;Simplify development&lt;/li&gt;
   &lt;li&gt;Reuse modules across apps&lt;/li&gt;
   &lt;li&gt;Experiment with new technologies&lt;/li&gt;
@@ -34,12 +34,17 @@
   &lt;p&gt;Note: modules sometimes need to be recompiled even if they don’t have direct code changes, but because a dependency changed. More info &lt;a href=&quot;https://jeroenmols.com/blog/2017/06/14/androidstudio3/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h3 id=&quot;2-enable-dynamic-delivery-instant-apps&quot;&gt;2. Enable dynamic delivery (instant apps)&lt;/h3&gt;
-&lt;p&gt;While you could argue that app size isn’t a major concern in most western countries, the same cannot be said for all parts of the world. &lt;a href=&quot;https://developer.android.com/topic/google-play-instant/&quot;&gt;Instant apps&lt;/a&gt; however break that line of thinking and ensure small apps are beneficial for everyone.&lt;/p&gt;
+&lt;h3 id=&quot;2-enable-on-demand-delivery&quot;&gt;2. Enable on demand delivery&lt;/h3&gt;
+&lt;p&gt;While you could argue that app size isn’t a major concern in most western countries, the same cannot be said for all parts of the world. But no matter where your users are, saving bandwidth and on device storage is a nice thing to do.&lt;/p&gt;
 
-&lt;p&gt;In order to become an instant app, your app must be under 4MB (or 10MB without direct deep links from search results). This means you have to aggressively scale down your app, reducing it to only its essentials for the instant app variant.&lt;/p&gt;
+&lt;p&gt;Recent years however, Android has added support for some interesting new deployment options:&lt;/p&gt;
 
-&lt;p&gt;Having a modularized app will make it dramatically easier (and is almost inevitable) to get under those limits. Further, it allows you to use &lt;a href=&quot;https://developer.android.com/studio/projects/dynamic-delivery&quot;&gt;dynamic delivery&lt;/a&gt; to download new features on the fly when the user starts accessing those.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://developer.android.com/topic/google-play-instant/&quot;&gt;Instant apps&lt;/a&gt; allow users to run apps without installing them.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://developer.android.com/studio/projects/dynamic-delivery&quot;&gt;On demand delivery&lt;/a&gt; allows to ship a smaller app with fewer features and download new features on the fly when the user starts accessing those&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Modularizing your app is the very first step in being able to add support for these. Even if you aren’t considering these use cases today, it’s a big win if your architecture is already prepared to add them later on.&lt;/p&gt;
 
 &lt;h3 id=&quot;3-simplify-development&quot;&gt;3. Simplify development&lt;/h3&gt;
 &lt;p&gt;As covered in my &lt;a href=&quot;/blog/2019/02/20/tacklelegacy/&quot;&gt;previous post&lt;/a&gt;, modularization helps to get rid of or to avoid spaghetti code. In a modularized world you could still have spaghetti (within modules), but at least it would be multiple smaller, easily digestible portions.&lt;/p&gt;

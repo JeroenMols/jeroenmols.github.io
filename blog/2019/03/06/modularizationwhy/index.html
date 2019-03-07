@@ -374,7 +374,7 @@ $(document).ready(function(){
 
 <ol>
   <li>Speeds up builds</li>
-  <li>Enable dynamic delivery (instant apps)</li>
+  <li>Enable on demand delivery</li>
   <li>Simplify development</li>
   <li>Reuse modules across apps</li>
   <li>Experiment with new technologies</li>
@@ -401,12 +401,17 @@ $(document).ready(function(){
   <p>Note: modules sometimes need to be recompiled even if they don’t have direct code changes, but because a dependency changed. More info <a href="https://jeroenmols.com/blog/2017/06/14/androidstudio3/">here</a>.</p>
 </blockquote>
 
-<h3 id="2-enable-dynamic-delivery-instant-apps">2. Enable dynamic delivery (instant apps)</h3>
-<p>While you could argue that app size isn’t a major concern in most western countries, the same cannot be said for all parts of the world. <a href="https://developer.android.com/topic/google-play-instant/">Instant apps</a> however break that line of thinking and ensure small apps are beneficial for everyone.</p>
+<h3 id="2-enable-on-demand-delivery">2. Enable on demand delivery</h3>
+<p>While you could argue that app size isn’t a major concern in most western countries, the same cannot be said for all parts of the world. But no matter where your users are, saving bandwidth and on device storage is a nice thing to do.</p>
 
-<p>In order to become an instant app, your app must be under 4MB (or 10MB without direct deep links from search results). This means you have to aggressively scale down your app, reducing it to only its essentials for the instant app variant.</p>
+<p>Recent years however, Android has added support for some interesting new deployment options:</p>
 
-<p>Having a modularized app will make it dramatically easier (and is almost inevitable) to get under those limits. Further, it allows you to use <a href="https://developer.android.com/studio/projects/dynamic-delivery">dynamic delivery</a> to download new features on the fly when the user starts accessing those.</p>
+<ul>
+  <li><a href="https://developer.android.com/topic/google-play-instant/">Instant apps</a> allow users to run apps without installing them.</li>
+  <li><a href="https://developer.android.com/studio/projects/dynamic-delivery">On demand delivery</a> allows to ship a smaller app with fewer features and download new features on the fly when the user starts accessing those</li>
+</ul>
+
+<p>Modularizing your app is the very first step in being able to add support for these. Even if you aren’t considering these use cases today, it’s a big win if your architecture is already prepared to add them later on.</p>
 
 <h3 id="3-simplify-development">3. Simplify development</h3>
 <p>As covered in my <a href="/blog/2019/02/20/tacklelegacy/">previous post</a>, modularization helps to get rid of or to avoid spaghetti code. In a modularized world you could still have spaghetti (within modules), but at least it would be multiple smaller, easily digestible portions.</p>
