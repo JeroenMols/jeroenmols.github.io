@@ -17,7 +17,7 @@ Part one of this blog post series will deep dive into the problems modularizatio
 There is no short answer to this question, modularisation really has a lot going for it:
 
 1. Speeds up builds
-2. Enable dynamic delivery (instant apps)
+2. Enable on demand delivery
 3. Simplify development
 4. Reuse modules across apps
 5. Experiment with new technologies
@@ -39,12 +39,15 @@ With multiple modules, however, Gradle can build several modules in parallel and
 
 > Note: modules sometimes need to be recompiled even if they don't have direct code changes, but because a dependency changed. More info [here](https://jeroenmols.com/blog/2017/06/14/androidstudio3/).
 
-### 2. Enable dynamic delivery (instant apps)
-While you could argue that app size isn't a major concern in most western countries, the same cannot be said for all parts of the world. [Instant apps](https://developer.android.com/topic/google-play-instant/) however break that line of thinking and ensure small apps are beneficial for everyone.
+### 2. Enable on demand delivery
+While you could argue that app size isn't a major concern in most western countries, the same cannot be said for all parts of the world. But no matter where your users are, saving bandwidth and on device storage is a nice thing to do.
 
-In order to become an instant app, your app must be under 4MB (or 10MB without direct deep links from search results). This means you have to aggressively scale down your app, reducing it to only its essentials for the instant app variant.
+Recent years however, Android has added support for some interesting new deployment options:
 
-Having a modularized app will make it dramatically easier (and is almost inevitable) to get under those limits. Further, it allows you to use [dynamic delivery](https://developer.android.com/studio/projects/dynamic-delivery) to download new features on the fly when the user starts accessing those.
+- [Instant apps](https://developer.android.com/topic/google-play-instant/) allow users to run apps without installing them.
+- [On demand delivery](https://developer.android.com/studio/projects/dynamic-delivery) allows to ship a smaller app with fewer features and download new features on the fly when the user starts accessing those
+
+Modularizing your app is the very first step in being able to add support for these. Even if you aren't considering these use cases today, it's a big win if your architecture is already prepared to add them later on.
 
 ### 3. Simplify development
 As covered in my [previous post]({{ site.baseurl }}{% link blog/_posts/2019-02-20-tacklelegacy.md %}), modularization helps to get rid of or to avoid spaghetti code. In a modularized world you could still have spaghetti (within modules), but at least it would be multiple smaller, easily digestible portions.
