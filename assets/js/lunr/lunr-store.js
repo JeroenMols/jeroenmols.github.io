@@ -203,4 +203,9 @@ var store = [{
         "excerpt":"Modularizing your app seems to be all the hype these days. But why should you actually care? What are the benefits for you and your team? How should a modularized app look like? And how do you start splitting your app? Part one of this blog post series will deep...","categories": ["blog"],
         "tags": ["modularization","architecture","software engineering"],
         "url": "https://jeroenmols.com/blog/2019/03/06/modularizationwhy/",
-        "teaser":"https://jeroenmols.com/img/blog/modularizationwhy/modularization_why.jpg"}]
+        "teaser":"https://jeroenmols.com/img/blog/modularizationwhy/modularization_why.jpg"},{
+        "title": "Modularization - A successful architecture",
+        "excerpt":"Now that we’ve established that modularization is a really good thing to strive for, how should a modularized app look like? How are the different modules connected? And how does this look for a real app? This second part will explore a simple, yet very effective approach to modularizing apps....","categories": ["blog"],
+        "tags": ["modularization","architecture","software engineering","navigation","android"],
+        "url": "https://jeroenmols.com/blog/2019/03/18/modularizationarchitecture/",
+        "teaser":"https://jeroenmols.com/img/blog/modularizationarchitecture/modularization_architecture.jpg"}]

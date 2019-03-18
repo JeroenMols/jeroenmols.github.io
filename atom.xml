@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle>
- <updated>2019-03-07T14:43:38+01:00</updated>
+ <updated>2019-03-18T22:38:24+01:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,31 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>Modularization - A successful architecture</title>
+   <link href="https://jeroenmols.com/blog/2019/03/18/modularizationarchitecture/"/>
+   <updated>2019-03-18T00:00:00+01:00</updated>
+   <id>https://jeroenmols.com/blog/2019/03/18/modularizationarchitecture</id>
+   <content type="html"><![CDATA[
+     
+     <p>Now that we’ve established that modularization is a really good thing to strive for, how should a modularized app look like? How are the different modules connected? And how does this look for a real app?</p>
+
+<p>This second part will explore a simple, yet very effective approach to modularizing apps. It will cover in depth the different kinds of modules and present the benefits of this approach.</p>
+
+<blockquote>
+
+  <p>This post is part of an in depth series on modularization:</p>
+  <ul>
+    <li><a href="/blog/2019/03/06/modularizationwhy/">Part 1: Why you should care</a></li>
+    <li><a href="/blog/2019/03/18/modularizationarchitecture/">Part 2: A successful multi-module architecture</a></li>
+  </ul>
+</blockquote>
+
+
+     <a href="https://jeroenmols.com/blog/2019/03/18/modularizationarchitecture/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>Modularization - Why you should care</title>
@@ -27,6 +52,15 @@
      <p>Modularizing your app seems to be all the hype these days. But why should you actually care? What are the benefits for you and your team? How should a modularized app look like? And how do you start splitting your app?</p>
 
 <p>Part one of this blog post series will deep dive into the problems modularization solves and the unique opportunities it offers.</p>
+
+<blockquote>
+
+  <p>This post is part of an in depth series on modularization:</p>
+  <ul>
+    <li><a href="/blog/2019/03/06/modularizationwhy/">Part 1: Why you should care</a></li>
+    <li><a href="/blog/2019/03/18/modularizationarchitecture/">Part 2: A successful multi-module architecture</a></li>
+  </ul>
+</blockquote>
 
 
      <a href="https://jeroenmols.com/blog/2019/03/06/modularizationwhy/">Continue reading</p>]]>
