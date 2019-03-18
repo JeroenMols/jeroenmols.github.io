@@ -13,6 +13,11 @@ Modularizing your app seems to be all the hype these days. But why should you ac
 
 Part one of this blog post series will deep dive into the problems modularization solves and the unique opportunities it offers.
 
+>
+This post is part of an in depth series on modularization:
+- [Part 1: Why you should care]({{ site.baseurl }}{% link blog/_posts/2019-03-06-modularizationwhy.md %})
+- [Part 2: A successful multi-module architecture]({{ site.baseurl }}{% link blog/_posts/2019-03-18-modularizationarchitecture.md %})
+
 ## Why
 There is no short answer to this question, modularisation really has a lot going for it:
 
@@ -108,4 +113,4 @@ On the other hand, modularization (if done well) can enable the payment flow to 
 ## Wrap-up
 Modularization is incredibly powerful to speed up your builds, simplify development and fundamentally scale your team. On top of that, it enables interesting use cases such as instant apps and makes it easier to experiment with new technologies.
 
-Make sure to follow me on {% include link_twitter.html %} so you don't miss the next articles in this series on modularization.
+Make sure to follow me on {% include link_twitter.html %} and learn how to architect a multi module app [by reading part 2]({{ site.baseurl }}{% link blog/_posts/2019-03-18-modularizationarchitecture.md %}).
