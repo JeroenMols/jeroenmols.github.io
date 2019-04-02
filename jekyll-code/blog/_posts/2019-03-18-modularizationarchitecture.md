@@ -145,4 +145,4 @@ Recapping, this simple, three-layered architecture of app, features and librarie
 - simplifies experimenting with new technologies: quickly achieve end-to-end benefits within feature + low cost of bad technology choice (isolated from rest of the app)
 - allows staged rollout of rewritten features using feature toggles
 
-Next blog post, we'll look at a detailed example of how this architecture looks like in practice. Make sure to follow me on {% include link_twitter.html %} so you don't miss it!
+Make sure to follow me on {% include link_twitter.html %} and let's study a detailed example of this architecture [in part 3]({{ site.baseurl }}{% link blog/_posts/2019-04-02-modularizationexample.md %}).
