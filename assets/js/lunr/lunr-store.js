@@ -211,6 +211,6 @@ var store = [{
         "teaser":"https://jeroenmols.com/img/blog/modularizationarchitecture/modularization_architecture.jpg"},{
         "title": "Modularization - Real-life example",
         "excerpt":"With a clear view on how multi-module apps should be architected, let’s dive into a real-life practical example. We’ll discover how the architecture results in a clear application structure, how navigation is handled, how to use staged rollouts, how to test everything and even look at a production app that...","categories": ["blog"],
-        "tags": ["modularization","architecture","software engineering"],
+        "tags": ["modularization","architecture","software engineering","sample"],
         "url": "https://jeroenmols.com/blog/2019/04/02/modularizationexample/",
         "teaser":"https://jeroenmols.com/img/blog/modularizationexample/modularization_example.jpg"}]
