@@ -17,6 +17,7 @@ Part one of this blog post series will deep dive into the problems modularizatio
 This post is part of an in depth series on modularization:
 - [Part 1: Why you should care]({{ site.baseurl }}{% link blog/_posts/2019-03-06-modularizationwhy.md %})
 - [Part 2: A successful multi-module architecture]({{ site.baseurl }}{% link blog/_posts/2019-03-18-modularizationarchitecture.md %})
+- [Part 3: Real-life example]({{ site.baseurl }}{% link blog/_posts/2019-04-02-modularizationexample.md %})
 
 ## Why
 There is no short answer to this question, modularisation really has a lot going for it:
