@@ -1,4 +1,327 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2019-03-18T22:38:24+01:00</updated><id>https://jeroenmols.com/</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Modularization - A successful architecture</title><link href="https://jeroenmols.com/blog/2019/03/18/modularizationarchitecture/" rel="alternate" type="text/html" title="Modularization - A successful architecture" /><published>2019-03-18T00:00:00+01:00</published><updated>2019-03-18T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2019/03/18/modularizationarchitecture</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/03/18/modularizationarchitecture/">&lt;p&gt;Now that we’ve established that modularization is a really good thing to strive for, how should a modularized app look like? How are the different modules connected? And how does this look for a real app?&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2019-04-02T23:07:53+02:00</updated><id>https://jeroenmols.com/</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Modularization - Real-life example</title><link href="https://jeroenmols.com/blog/2019/04/02/modularizationexample/" rel="alternate" type="text/html" title="Modularization - Real-life example" /><published>2019-04-02T00:00:00+02:00</published><updated>2019-04-02T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2019/04/02/modularizationexample</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/04/02/modularizationexample/">&lt;p&gt;With a clear view on how multi-module apps should be architected, let’s dive into a real-life practical example.&lt;/p&gt;
+
+&lt;p&gt;We’ll discover how the architecture results in a clear application structure, how navigation is handled, how to use staged rollouts, how to test everything and even look at a production app that is using this architecture.&lt;/p&gt;
+
+&lt;blockquote&gt;
+
+  &lt;p&gt;This post is part of an in depth series on modularization:&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href=&quot;/blog/2019/03/06/modularizationwhy/&quot;&gt;Part 1: Why you should care&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;/blog/2019/03/18/modularizationarchitecture/&quot;&gt;Part 2: A successful multi-module architecture&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;/blog/2019/04/02/modularizationexample/&quot;&gt;Part 3: Real-life example&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;source-code&quot;&gt;Source code&lt;/h2&gt;
+&lt;p&gt;All source code for this blog post is available on &lt;a href=&quot;https://github.com/JeroenMols/ModularizationExample&quot;&gt;Github&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;This is not a fully functional app, but rather a highly focussed example that only concentrates on demonstrating the &lt;a href=&quot;/blog/2019/03/18/modularizationarchitecture/&quot;&gt;modularization architecture&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;application-structure&quot;&gt;Application structure&lt;/h2&gt;
+&lt;p&gt;One of the key benefits of the three-layer app-features-libraries architecture is supposed to be clear navigation throughout the app and source code. So let’s investigate if that promise holds true.&lt;/p&gt;
+
+&lt;p&gt;Looking at the root folder of the project, the following structure becomes clear:&lt;/p&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;.
+├── app
+├── features
+│   ├── dashboard
+│   ├── login
+│   └── sharing
+└── libraries
+    ├── actions
+    └── ui-components
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Simple, right?&lt;/p&gt;
+
+&lt;p&gt;There is one app that consists out of three features: &lt;code class=&quot;highlighter-rouge&quot;&gt;dashboard&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;login&lt;/code&gt;, and &lt;code class=&quot;highlighter-rouge&quot;&gt;sharing&lt;/code&gt;. It is backed by a few libraries: &lt;code class=&quot;highlighter-rouge&quot;&gt;actions&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;ui-components&lt;/code&gt;. All feature and library modules are grouped within the features and libraries folder respectively.&lt;/p&gt;
+
+&lt;p&gt;But what do the features themselves do?&lt;/p&gt;
+
+&lt;p&gt;We’ll let’s have a look at their respective navigation graphs! First up is the &lt;a href=&quot;https://github.com/JeroenMols/ModularizationExample/blob/master/features/dashboard/src/main/res/navigation/dashboard_graph.xml&quot;&gt;dashboard&lt;/a&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/modularizationexample/graph_dashboard.jpg&quot; class=&quot;align-center&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/modularizationexample/graph_dashboard.jpg&quot; alt=&quot;Dashboard feature structure&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Clearly, this app seems to be about photos!&lt;/p&gt;
+
+&lt;p&gt;But the navigation graph looks a bit odd (no destinations), this is because this isn’t an actual functioning graph! The navigation components don’t support visualizing a graph for an activity with bottom tabs (yet?).&lt;/p&gt;
+
+&lt;p&gt;So let’s have a look at the &lt;a href=&quot;https://github.com/JeroenMols/ModularizationExample/blob/master/features/dashboard/src/main/res/layout/activity_dashboard.xml&quot;&gt;DashboardActivity&lt;/a&gt; more closely:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/modularizationexample/dashboard_activity.jpg&quot; class=&quot;align-center&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/modularizationexample/dashboard_activity.jpg&quot; alt=&quot;Dashboard activity has three tabs&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Here we go, the main dashboard consists out of three tabs: photos, albums and social.&lt;/p&gt;
+
+&lt;p&gt;Now let’s have a look at the &lt;a href=&quot;https://github.com/JeroenMols/ModularizationExample/blob/master/features/login/src/main/res/navigation/login_graph.xml&quot;&gt;Login feature&lt;/a&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/modularizationexample/graph_login.jpg&quot; class=&quot;align-center&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/modularizationexample/graph_login.jpg&quot; alt=&quot;Login feature structure&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;In one visual overview you can see that the login screen consists out of three screens that link together as a flow. The navigation graph even displays the nave of every screen on top so you can easily navigate to it!&lt;/p&gt;
+
+&lt;p&gt;Similarly, zooming into the &lt;a href=&quot;https://github.com/JeroenMols/ModularizationExample/blob/master/features/sharing/src/main/res/navigation/sharing_graph.xml&quot;&gt;Sharing module&lt;/a&gt; immediately explains what this feature is all about:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/modularizationexample/graph_sharing.jpg&quot; class=&quot;align-center&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/modularizationexample/graph_sharing.jpg&quot; alt=&quot;Sharing feature structure&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Again, a picture says more than a 1000 lines of code!&lt;/p&gt;
+
+&lt;p&gt;Due to the way feature modules are defined, this architecture splits your app hierarchically, similar to how a user navigates through your app. This in combination with a visual represenation of each feature (navigation graph) helps to understand the app structure, the navigation between screens and find back the name of screens.&lt;/p&gt;
+
+&lt;h2 id=&quot;navigation&quot;&gt;Navigation&lt;/h2&gt;
+&lt;p&gt;As navigation seems to be one of the key problems people are facing in multi-modules apps (see &lt;a href=&quot;/blog/2019/03/18/modularizationarchitecture/&quot;&gt;my previous article&lt;/a&gt;), let’s explore the two different modes of navigation:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;within a feature&lt;/li&gt;
+  &lt;li&gt;between features&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;1-within-a-feature&quot;&gt;1. Within a feature&lt;/h3&gt;
+&lt;p&gt;All navigation within a feature is handled by the navigation components. To do this, just add a &lt;code class=&quot;highlighter-rouge&quot;&gt;NavHostFragment&lt;/code&gt; to the &lt;code class=&quot;highlighter-rouge&quot;&gt;Activity&lt;/code&gt; layout and load it with a navigation graph.&lt;/p&gt;
+
+&lt;p&gt;Let’s have a look at the &lt;a href=&quot;https://github.com/JeroenMols/ModularizationExample/blob/master/features/login/src/main/res/layout/activity_login.xml&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;LoginActivity&lt;/code&gt;&lt;/a&gt; layout:&lt;/p&gt;
+
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;fragment&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:android=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.android.com/apk/res/android&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;xmlns:app=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.android.com/apk/res-auto&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;android:id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@+id/nav_host_fragment&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;android:name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;androidx.navigation.fragment.NavHostFragment&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;android:layout_width=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;match_parent&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;android:layout_height=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;match_parent&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;app:defaultNavHost=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;true&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;app:navGraph=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@navigation/login_graph&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Note how the fragment attribute instantiates a &lt;code class=&quot;highlighter-rouge&quot;&gt;NavHostFragment&lt;/code&gt; that gets loaded with the navigation graph from &lt;a href=&quot;(https://github.com/JeroenMols/ModularizationExample/blob/master/features/login/src/main/res/navigation/login_graph.xml)&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;login_graph.xml&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;This navigation graph doesn’t only describe the three screens that are in the login feature, but it also defines actions for navigation between screens.&lt;/p&gt;
+
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;navigation&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:android=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.android.com/apk/res/android&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;xmlns:app=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.android.com/apk/res-auto&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;android:id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@+id/login_graph&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;app:startDestination=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@id/welcomeFragment&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;fragment&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;android:id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@+id/welcomeFragment&quot;&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;android:name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;modularization.login.WelcomeFragment&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;action&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;android:id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@+id/action_welcomeFragment_to_loginFragment&quot;&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;app:destination=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@id/loginFragment&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/fragment&amp;gt;&lt;/span&gt;
+
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;fragment&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;android:id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@+id/loginFragment&quot;&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;android:name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;modularization.login.LoginFragment&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;action&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;android:id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@+id/action_loginFragment_to_avatarFragment&quot;&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;app:destination=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@id/avatarFragment&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/fragment&amp;gt;&lt;/span&gt;
+
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;fragment&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;android:id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@+id/avatarFragment&quot;&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;android:name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;modularization.login.AvatarFragment&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/navigation&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;In this graph, the &lt;code class=&quot;highlighter-rouge&quot;&gt;WelcomeFragment&lt;/code&gt; is the entrypoint of the feature and navigation to the next screens can simply be done by invoking a navigation action. E.g. &lt;a href=&quot;https://github.com/JeroenMols/ModularizationExample/blob/master/features/login/src/main/java/modularization/login/WelcomeFragment.kt&quot;&gt;navigating to the &lt;code class=&quot;highlighter-rouge&quot;&gt;LoginFragment&lt;/code&gt;&lt;/a&gt; is done by:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;findNavController()
+.navigate(R.id.action_welcomeFragment_to_loginFragment)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;AvatarFragment&lt;/code&gt;, on the other end, is the last screen from where navigation is triggered to a different feature.&lt;/p&gt;
+
+&lt;h3 id=&quot;2-between-features&quot;&gt;2. Between features&lt;/h3&gt;
+&lt;p&gt;Recall that features are full screen (entry point is an &lt;code class=&quot;highlighter-rouge&quot;&gt;Activity&lt;/code&gt;) and different features aren’t allowed to rely on each other.&lt;/p&gt;
+
+&lt;p&gt;This means that the login feature cannot start the dashboard feature using an explicit &lt;code class=&quot;highlighter-rouge&quot;&gt;Intent&lt;/code&gt; (e.g. by defining the exact class of the &lt;code class=&quot;highlighter-rouge&quot;&gt;Activity&lt;/code&gt; to start):&lt;/p&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;startActivity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Intent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;activity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DashboardActivity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;java&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;But has to use an implicit &lt;code class=&quot;highlighter-rouge&quot;&gt;Intent&lt;/code&gt; instead, where you basically ask for some &lt;code class=&quot;highlighter-rouge&quot;&gt;Activity&lt;/code&gt; that can handle the &lt;code class=&quot;highlighter-rouge&quot;&gt;action.opendashboard&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;startActivity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Intent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;action.dashboard.open&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Which will start the &lt;code class=&quot;highlighter-rouge&quot;&gt;DashBoardActivity&lt;/code&gt; as it defines it will respond to that action in the &lt;a href=&quot;https://github.com/JeroenMols/ModularizationExample/blob/master/features/dashboard/src/main/AndroidManifest.xml&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;manifest.xml&lt;/code&gt;&lt;/a&gt; of the &lt;code class=&quot;highlighter-rouge&quot;&gt;dashboard&lt;/code&gt; feature:&lt;/p&gt;
+
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;manifest&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:android=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.android.com/apk/res/android&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;package=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;modularization.dashboard&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;application&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;android:theme=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@style/AppTheme&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;activity&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;android:name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;.DashboardActivity&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;intent-filter&amp;gt;&lt;/span&gt;
+                &lt;span class=&quot;nt&quot;&gt;&amp;lt;action&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;android:name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;action.dashboard.open&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+                &lt;span class=&quot;nt&quot;&gt;&amp;lt;category&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;android:name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;android.intent.category.DEFAULT&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;/intent-filter&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/activity&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/application&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/manifest&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note that in theory, multiple activities can offer to handle this action causing a chooser dialog to be displayed. (e.g. multiple apps could offer to take a picture when asking for the implicit action &lt;a href=&quot;https://developer.android.com/training/camera/photobasics#TaskCaptureIntent&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;MediaStore.ACTION_IMAGE_CAPTURE&lt;/code&gt;&lt;/a&gt;)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;However, implicit intents alone don’t fully solve how to navigate between features:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;duplication of action &lt;code class=&quot;highlighter-rouge&quot;&gt;String&lt;/code&gt; “action.opendashboard” in the feature manifest and every feature that wants to create an intent with that action&lt;/li&gt;
+  &lt;li&gt;in-depth knowledge required of how to create &lt;code class=&quot;highlighter-rouge&quot;&gt;Intent&lt;/code&gt; with extras when passing data into a feature (e.g. name of extras)&lt;/li&gt;
+  &lt;li&gt;another app can define the same action causing a chooser dialog to pop up (also possible between multiple build flavors)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The first two can be solved by introducing an &lt;code class=&quot;highlighter-rouge&quot;&gt;actions&lt;/code&gt; module that is responsible for generating properly formatted intents to start feature &lt;code class=&quot;highlighter-rouge&quot;&gt;Activities&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Actions&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;openLoginIntent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Intent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;action.login.open&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;openDashboardIntent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Intent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;action.dashboard.open&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;openSharingIntent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Intent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;action.sharing.open&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Starting the next feature can then simply be done by:&lt;/p&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;activity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;startActivity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Actions&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;openDashboardIntent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Not only is this a very descriptive way of linking to the next feature, but this principle can also be used to make passing data into the new feature type safe:&lt;/p&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Actions&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;openDashboardIntent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;userId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;Intent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;action.dashboard.open&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;putExtra&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;EXTRA_USER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;UserArgs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;userId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now the login feature no longer needs to know how the data is passed into the dashboard, it simply has to call:&lt;/p&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;activity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;startActivity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Actions&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;openDashboardIntent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;userId&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Neat, right?&lt;/p&gt;
+
+&lt;p&gt;Finally, relying on implicit &lt;code class=&quot;highlighter-rouge&quot;&gt;Intent&lt;/code&gt;s can cause chooser dialogs to pop up. While a collision with a 3rd party app is unlikely, it can easily happen for different build flavors.&lt;/p&gt;
+
+&lt;center&gt;&lt;img style=&quot;width: 75%&quot; src=&quot;https://jeroenmols.com/img/blog/modularizationexample/chooser_dialog.png&quot; alt=&quot;Chooser dialog pops up when using different build flavors e.g. debug and release&quot; /&gt;&lt;/center&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;This can easily be avoided by restricting the intents to the current package:&lt;/p&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Actions&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;openLoginIntent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;internalIntent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;action.login.open&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;internalIntent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;action&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;Intent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;action&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;setPackage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;packageName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;feature-rewritesrefactors&quot;&gt;Feature rewrites/refactors&lt;/h2&gt;
+&lt;p&gt;As you probably already know, &lt;a href=&quot;/blog/2019/02/20/tacklelegacy/&quot;&gt;I don’t believe in-app rewrites&lt;/a&gt;. However, refactoring by itself can also be frustrating and take a long time to provide results. So how do you get your app in better shape?&lt;/p&gt;
+
+&lt;p&gt;Wouldn’t it be nice if you could aggressively refactor or even rewrite parts of your app without having to worry about a risky release?&lt;/p&gt;
+
+&lt;p&gt;Well, this architecture actually allows you to easily do exactly that! E.g. you can rewrite a completely new login module and ship both the old and new one in your app. Using the actions module you can now very easily choose what feature to start:&lt;/p&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Actions&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;openLoginIntent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FeatureFlag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;loginRewrite&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;Intent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;action.login2.open&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Intent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;action.login.open&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;With the right analytics in place and a remote feature toggle framework such as &lt;a href=&quot;https://firebase.google.com/docs/remote-config/&quot;&gt;Firebase remote config&lt;/a&gt;, you can now gradually roll out the rewrite.&lt;/p&gt;
+
+&lt;p&gt;This allows you to build up confidence in the new code, mitigate risks of breaking a crucial user flow (e.g. Login) and hence refactor/rewrite parts of your app way more aggressively.&lt;/p&gt;
+
+&lt;h2 id=&quot;testing&quot;&gt;Testing&lt;/h2&gt;
+&lt;p&gt;The strategy to test this architecture consists of three key parts:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;unit tests: super fast, test classes in isolation&lt;/li&gt;
+  &lt;li&gt;feature tests: espresso tests for features in isolation&lt;/li&gt;
+  &lt;li&gt;app tests: test key user flows across different features&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;First of all, unit tests should be added for all business logic: both for logic internal to the feature modules as for all business logic of libraries. The app module likely doesn’t require any unit tests as there is no business logic in that module.&lt;/p&gt;
+
+&lt;p&gt;Next, all features can be tested using Espresso in isolation from the rest of the app! No need to step from the start screen throughout the entire app towards the screen you want to test first. Just start the feature activity directly via an &lt;code class=&quot;highlighter-rouge&quot;&gt;ActivityTestRule&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Look at &lt;a href=&quot;https://github.com/JeroenMols/ModularizationExample/blob/master/features/login/src/androidTest/java/modularization/login/LoginFlowTest.kt&quot;&gt;how simple&lt;/a&gt; life can be:&lt;/p&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;LoginFlowTest&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;@Rule&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;@JvmField&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;mActivityTestRule&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ActivityTestRule&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;LoginActivity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;java&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;@Test&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;loginFlowTest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;onView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;withId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;button_login_start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;perform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;click&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;onView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;withId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;button_login_signin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;perform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;click&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;onView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;withId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;button_login_toapp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;check&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;matches&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isDisplayed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()))&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Such feature tests are fast, way more reliable (can’t fail due to bugs in other features) and don’t require much setup.&lt;/p&gt;
+
+&lt;p&gt;With all business logic unit tested and features tested in isolation, the missing link is to test “real world app usage” in terms of long, typical user flows.&lt;/p&gt;
+
+&lt;p&gt;These scenarios are tested in the app module. Take for instance &lt;a href=&quot;https://github.com/JeroenMols/ModularizationExample/blob/master/app/src/androidTest/java/com/jeroenmols/modularization/AppFlowTest.kt&quot;&gt;the following test&lt;/a&gt; where a user logs in, navigates to the sharing screen and does something meaningful there:&lt;/p&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AppFlowTest&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;@Rule&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;@JvmField&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;mActivityTestRule&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ActivityTestRule&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MainActivity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;java&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;@Test&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;test_criticalUserFlow_throughoutEntireApp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;onView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;withId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;modularization&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;login&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;button_login_start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;perform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;click&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;onView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;withId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;modularization&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;login&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;button_login_signin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;perform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;click&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;onView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;withId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;modularization&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;login&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;button_login_toapp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;perform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;click&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;onView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;withId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;action_albums&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;perform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;click&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;onView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;withId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;action_sharing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;perform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;click&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;onView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;withId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;button_social_facebook&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;perform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;click&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;onView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;withId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;recyclerView_sharing_contacts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;check&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ViewAssertions&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;matches&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ViewMatchers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isDisplayed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()))&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The app module tests will be the most difficult ones to write and stabilize, but due to the split in feature modules, the largest chunk of tests can run in isolation per feature. So this provides a really nice balance between reducing repetitive manual testing, while keeping development/maintenance cost under control.&lt;/p&gt;
+
+&lt;h2 id=&quot;production-example&quot;&gt;Production example&lt;/h2&gt;
+&lt;p&gt;While this architecture sounds good in theory and the example looks nice on paper, it still isn’t a full fidelity app. Are you sure this will actually work in production?&lt;/p&gt;
+
+&lt;p&gt;Well, I’m glad you ask! Because this is exactly the way that the &lt;a href=&quot;https://play.google.com/store/apps/details?id=com.philips.lighting.hue2&quot;&gt;Philips Hue app&lt;/a&gt; is modularized:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/modularizationexample/modularized_example.png&quot; alt=&quot;Modularized app example&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;All features are independent, self-contained and they don’t rely on each other. There is only one single app module.&lt;/p&gt;
+
+&lt;p&gt;Note that due to the large legacy code base of Philips Hue, it hasn’t fully migrated to this architecture yet: currently, there are 8 feature modules and 14 libraries. Rewriting features with a feature toggle and gradually rolling them out happens on a regular basis.&lt;/p&gt;
+
+&lt;p&gt;It’s also interesting to look into some decisions taken on the library level:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;UI components: components reused across features + themes and styles&lt;/li&gt;
+  &lt;li&gt;Analytics: most of the “horizontal service layers” are already extracted from the app as a library&lt;/li&gt;
+  &lt;li&gt;Translations: ideally each feature should contain its own translations, but for Philips Hue, this would require to dynamically split the monolithic translation files from our translation agency for each feature. Simply not the biggest fish to fry at the moment.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
+&lt;p&gt;The three-layer app-features-libraries architecture addresses quite some fundamental app/modularization issues: project structure, navigation, staged rollouts and testability.&lt;/p&gt;
+
+&lt;p&gt;All source code is available on &lt;a href=&quot;https://github.com/JeroenMols/ModularizationExample&quot;&gt;Github&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Next blog post, we’ll investigate how you can start modularizing an existing app. Make sure to follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=modularization-real-lifeexample2019&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
+ so you don’t miss it!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="modularization" /><category term="architecture" /><category term="software engineering" /><summary type="html">With a clear view on how multi-module apps should be architected, let’s dive into a real-life practical example.</summary></entry><entry><title type="html">Modularization - A successful architecture</title><link href="https://jeroenmols.com/blog/2019/03/18/modularizationarchitecture/" rel="alternate" type="text/html" title="Modularization - A successful architecture" /><published>2019-03-18T00:00:00+01:00</published><updated>2019-03-18T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2019/03/18/modularizationarchitecture</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/03/18/modularizationarchitecture/">&lt;p&gt;Now that we’ve established that modularization is a really good thing to strive for, how should a modularized app look like? How are the different modules connected? And how does this look for a real app?&lt;/p&gt;
 
 &lt;p&gt;This second part will explore a simple, yet very effective approach to modularizing apps. It will cover in depth the different kinds of modules and present the benefits of this approach.&lt;/p&gt;
 
@@ -8,6 +331,7 @@
   &lt;ul&gt;
     &lt;li&gt;&lt;a href=&quot;/blog/2019/03/06/modularizationwhy/&quot;&gt;Part 1: Why you should care&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;&lt;a href=&quot;/blog/2019/03/18/modularizationarchitecture/&quot;&gt;Part 2: A successful multi-module architecture&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;/blog/2019/04/02/modularizationexample/&quot;&gt;Part 3: Real-life example&lt;/a&gt;&lt;/li&gt;
   &lt;/ul&gt;
 &lt;/blockquote&gt;
 
@@ -165,6 +489,7 @@
   &lt;ul&gt;
     &lt;li&gt;&lt;a href=&quot;/blog/2019/03/06/modularizationwhy/&quot;&gt;Part 1: Why you should care&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;&lt;a href=&quot;/blog/2019/03/18/modularizationarchitecture/&quot;&gt;Part 2: A successful multi-module architecture&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;/blog/2019/04/02/modularizationexample/&quot;&gt;Part 3: Real-life example&lt;/a&gt;&lt;/li&gt;
   &lt;/ul&gt;
 &lt;/blockquote&gt;
 
@@ -1199,105 +1524,4 @@ a rule in JUnit 4 or an extension in JUnit 5.&lt;/p&gt;
 &lt;p&gt;A very subtle difference in syntax (&lt;code class=&quot;highlighter-rouge&quot;&gt;{}&lt;/code&gt; instead of &lt;code class=&quot;highlighter-rouge&quot;&gt;()&lt;/code&gt;) can make a huge difference in what the code actually does. Kotlin is a very powerful programming language, but with great power comes great…&lt;/p&gt;
 
 &lt;p&gt;If you’ve made it this far you should probably follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=alittlekotlinpuzzler2018&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
-. Feel free leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="kotlin" /><category term="lambda" /><category term="puzzle" /><summary type="html">Kotlin is an incredibly enjoyable, concise and powerful programming language. Yet sometimes also a bit confusing…</summary></entry><entry><title type="html">How dangerous permissions sneak into apps</title><link href="https://jeroenmols.com/blog/2018/08/02/phonestatepermission/" rel="alternate" type="text/html" title="How dangerous permissions sneak into apps" /><published>2018-08-02T00:00:00+02:00</published><updated>2018-08-02T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2018/08/02/phonestatepermission</id><content type="html" xml:base="https://jeroenmols.com/blog/2018/08/02/phonestatepermission/">&lt;p&gt;This is a post-mortem where the very dangerous permission, &lt;code class=&quot;highlighter-rouge&quot;&gt;READ_PHONE_STATE&lt;/code&gt;, unintentionally sneaked into our app. Here’s how this could happen, how we debugged and finally how we solved it.&lt;/p&gt;
-
-&lt;h2 id=&quot;prologue&quot;&gt;Prologue&lt;/h2&gt;
-&lt;p&gt;Sprint comes to an end and we’re happy to deliver a new release of our app. After rolling it out to our beta community without issues, we move ahead to production.&lt;/p&gt;
-
-&lt;p&gt;While everything looks fine at first, after a while we see users complaining:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/phonestatepermission/userreview.png&quot; alt=&quot;Users complaining: Why does this app want to know if I'm in a phone call and who I'm calling?&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Honestly we were completely taken aback by this… But sure enough looking at the play store:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/phonestatepermission/permissionsoverview.png&quot; alt=&quot;Google play store permissions&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;root-cause&quot;&gt;Root cause&lt;/h2&gt;
-&lt;p&gt;If you ever run into a similar issue, the Android Studio merged manifest view is the way to go. Just open your manifest and click the &lt;code class=&quot;highlighter-rouge&quot;&gt;Merged manifest&lt;/code&gt; tab at the bottom.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/phonestatepermission/mergedmanifest.png&quot; alt=&quot;Google play store permissions&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Sure enough, the &lt;code class=&quot;highlighter-rouge&quot;&gt;READ_PHONE_STATE&lt;/code&gt; permission is there.&lt;/p&gt;
-
-&lt;p&gt;Unfortunately, this view couldn’t help us find where the permission was merged from:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Double-clicking the permission led us back to normal manifest view&lt;/li&gt;
-  &lt;li&gt;Color coding palette is so subtle that we couldn’t see what color the permission was highlighted in&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;img style=&quot;width: 85%&quot; src=&quot;https://jeroenmols.com/img/blog/phonestatepermission/mergedmanifestcolors.png&quot; alt=&quot;Color highlighting of manifest merger needs an extremely trained eye to map it on the legend&quot; /&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;Fortunately, the manifest merger also prints a log file to &lt;code class=&quot;highlighter-rouge&quot;&gt;build/outputs/logs&lt;/code&gt; that describes where everything is merged from.&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;&lt;img style=&quot;width: 85%&quot; src=&quot;https://jeroenmols.com/img/blog/phonestatepermission/manifestmerger.png&quot; alt=&quot;Output logs of the manifest merger are located at build/outputs/logs&quot; /&gt;&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;This file gave a clear answer:&lt;/p&gt;
-
-&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;uses-permission#android.permission.READ_PHONE_STATE
-IMPLIED from /app/src/debug/AndroidManifest.xml:8:1-15:12
-reason: hue.libraries.translations has a targetSdkVersion &amp;lt; 4
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Wow… That’s nasty!&lt;/p&gt;
-
-&lt;p&gt;A while ago we decided to move all our translations to a new module, with an empty manifest and a bare-bones &lt;code class=&quot;highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; file:&lt;/p&gt;
-
-&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;apply&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;plugin:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'com.android.library'&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;android&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;compileSdkVersion&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Config&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;compileSdk&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;And because we didn’t explicitly set the targetSdk, a targetSdk of 1 is assumed and hence we end up with a &lt;a href=&quot;https://developer.android.com/reference/android/Manifest.permission.html#READ_PHONE_STATE&quot;&gt;dangerous permission&lt;/a&gt;!&lt;/p&gt;
-
-&lt;p&gt;To be fair, the documentation does warn you about this:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/phonestatepermission/permissiondisclaimer.png&quot; alt=&quot;Google play store permissions&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;But still… wow!&lt;/p&gt;
-
-&lt;h2 id=&quot;solution&quot;&gt;Solution&lt;/h2&gt;
-&lt;p&gt;While a solution could be to simply set the targetSdk in our translations module. This wouldn’t prevent something similar from happening in the future.&lt;/p&gt;
-
-&lt;p&gt;Therefore we decided to set the targetSdk (and others) for all our modules in the top level &lt;code class=&quot;highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; file. This also keeps submodule &lt;code class=&quot;highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; files lean.&lt;/p&gt;
-
-&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;subprojects&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;afterEvaluate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;project&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;project&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;plugins&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;findPlugin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'android'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;?:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;project&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;plugins&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;findPlugin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'android-library'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;android&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;buildToolsVersion&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Config&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;buildTools&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;compileSdkVersion&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Config&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;compileSdk&lt;/span&gt;
-
-                &lt;span class=&quot;n&quot;&gt;defaultConfig&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;minSdkVersion&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Config&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;minSdk&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;targetSdkVersion&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Config&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;compileSdk&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-                &lt;span class=&quot;n&quot;&gt;compileOptions&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;sourceCompatibility&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Config&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;javaVersion&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;targetCompatibility&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Config&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;javaVersion&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Additionally, we also wanted to protect ourselves against 3rd party library developers that could make this mistake. To do so, you can inform the manifest merger to remove the permission while merging by adding the following to your manifest:&lt;/p&gt;
-
-&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;uses-permission&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;android:name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;android.permission.READ_PHONE_STATE&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;tools:node=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;remove&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;That is overkill you say?&lt;/p&gt;
-
-&lt;p&gt;Well, &lt;a href=&quot;https://github.com/firebase/quickstart-unity/issues/68&quot;&gt;Firebase&lt;/a&gt; AND &lt;a href=&quot;https://developers.google.com/android/guides/releases#november_2016_version_100&quot;&gt;Google play services&lt;/a&gt; already made this booboo in the past.&lt;/p&gt;
-
-&lt;p&gt;… wow!&lt;/p&gt;
-
-&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
-&lt;p&gt;Not explicitly setting your target SDK version will cause a dangerous permission to sneak into your app. Make sure you set the target SDK in every module and protect yourself from 3rd party libraries.&lt;/p&gt;
-
-&lt;p&gt;If you’ve made it this far you should probably follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=howdangerouspermissionssneakintoapps2018&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
-. Feel free leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="android" /><category term="permissions" /><category term="modules" /><category term="manifest" /><category term="post-mortem" /><summary type="html">This is a post-mortem where the very dangerous permission, READ_PHONE_STATE, unintentionally sneaked into our app. Here’s how this could happen, how we debugged and finally how we solved it.</summary></entry></feed>
+. Feel free leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="kotlin" /><category term="lambda" /><category term="puzzle" /><summary type="html">Kotlin is an incredibly enjoyable, concise and powerful programming language. Yet sometimes also a bit confusing…</summary></entry></feed>

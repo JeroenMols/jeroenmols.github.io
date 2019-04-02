@@ -208,4 +208,9 @@ var store = [{
         "excerpt":"Now that we’ve established that modularization is a really good thing to strive for, how should a modularized app look like? How are the different modules connected? And how does this look for a real app? This second part will explore a simple, yet very effective approach to modularizing apps....","categories": ["blog"],
         "tags": ["modularization","architecture","software engineering","navigation","android"],
         "url": "https://jeroenmols.com/blog/2019/03/18/modularizationarchitecture/",
-        "teaser":"https://jeroenmols.com/img/blog/modularizationarchitecture/modularization_architecture.jpg"}]
+        "teaser":"https://jeroenmols.com/img/blog/modularizationarchitecture/modularization_architecture.jpg"},{
+        "title": "Modularization - Real-life example",
+        "excerpt":"With a clear view on how multi-module apps should be architected, let’s dive into a real-life practical example. We’ll discover how the architecture results in a clear application structure, how navigation is handled, how to use staged rollouts, how to test everything and even look at a production app that...","categories": ["blog"],
+        "tags": ["modularization","architecture","software engineering"],
+        "url": "https://jeroenmols.com/blog/2019/04/02/modularizationexample/",
+        "teaser":"https://jeroenmols.com/img/blog/modularizationexample/modularization_example.jpg"}]
