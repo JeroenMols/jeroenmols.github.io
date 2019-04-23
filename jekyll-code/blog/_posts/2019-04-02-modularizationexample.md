@@ -8,6 +8,7 @@ tags:
   - modularization
   - architecture
   - software engineering
+  - sample
 ---
 With a clear view on how multi-module apps should be architected, let's dive into a real-life practical example.
 
