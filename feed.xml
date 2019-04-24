@@ -1,4 +1,109 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2019-04-02T23:12:06+02:00</updated><id>https://jeroenmols.com/</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Modularization - Real-life example</title><link href="https://jeroenmols.com/blog/2019/04/02/modularizationexample/" rel="alternate" type="text/html" title="Modularization - Real-life example" /><published>2019-04-02T00:00:00+02:00</published><updated>2019-04-02T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2019/04/02/modularizationexample</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/04/02/modularizationexample/">&lt;p&gt;With a clear view on how multi-module apps should be architected, let’s dive into a real-life practical example.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2019-04-24T21:34:27+02:00</updated><id>https://jeroenmols.com/</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Modularization - How to approach</title><link href="https://jeroenmols.com/blog/2019/04/24/modularizationhow/" rel="alternate" type="text/html" title="Modularization - How to approach" /><published>2019-04-24T00:00:00+02:00</published><updated>2019-04-24T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2019/04/24/modularizationhow</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/04/24/modularizationhow/">&lt;p&gt;Now that we have a clear idea on how a modularized app could look like how can this be applied to an existing app?&lt;/p&gt;
+
+&lt;p&gt;Part four will dive deeper into how existing apps can be sliced and how you can gradually migrate to a fully modularized architecture.&lt;/p&gt;
+
+&lt;blockquote&gt;
+
+  &lt;p&gt;This post is part of an in depth series on modularization:&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href=&quot;/blog/2019/03/06/modularizationwhy/&quot;&gt;Part 1: Why you should care&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;/blog/2019/03/18/modularizationarchitecture/&quot;&gt;Part 2: A successful multi-module architecture&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;/blog/2019/04/02/modularizationexample/&quot;&gt;Part 3: Real-life example&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;/blog/2019/04/24/modularizationhow/&quot;&gt;Part 4: How to approach&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;modularization-strategy&quot;&gt;Modularization strategy&lt;/h2&gt;
+&lt;p&gt;Roughly speaking there are two strategies you can take:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;convert the old app to a library and pull code up&lt;/li&gt;
+  &lt;li&gt;keep the old app and push code down&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;pull-code-up&quot;&gt;Pull code up&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/modularizationhow/modularisation_pullup.png&quot; alt=&quot;Modularized app example&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In this approach, the old app gets converted to an Android library module and a new app module is created on top of that. This allows to gradually pull up code (features and libraries) from the old app module into a new module.&lt;/p&gt;
+
+&lt;p&gt;When all code is pulled up, the old app module is removed and what’s left is the &lt;a href=&quot;/blog/2019/03/18/modularizationarchitecture/&quot;&gt;architecture&lt;/a&gt; we were striving for.&lt;/p&gt;
+
+&lt;p&gt;Conceptually this is very simple and it has one huge advantage: (almost) no dependency problems!&lt;/p&gt;
+
+&lt;p&gt;All old code is in the &lt;code class=&quot;highlighter-rouge&quot;&gt;old app module&lt;/code&gt; and new modules are only created on top of that. Hence, those modules will always have access to all legacy files they depend on, even if those files weren’t migrated to a proper module yet.&lt;/p&gt;
+
+&lt;p&gt;E.g. a new feature can easily access the analytics framework, even if there isn’t an analytics module yet. This is because all old analytics code is already in the &lt;code class=&quot;highlighter-rouge&quot;&gt;old app module&lt;/code&gt; that the feature depends on.&lt;/p&gt;
+
+&lt;p&gt;There are also some disadvantages, unfortunately:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;renaming/moving the old app module is a huge upfront change and could cause a lot of merge conflicts =&amp;gt; can be avoided by not moving/renaming the app module&lt;/li&gt;
+  &lt;li&gt;need to convert all references to view IDs from &lt;code class=&quot;highlighter-rouge&quot;&gt;R.id.***&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;R2.id.***&lt;/code&gt; when using &lt;a href=&quot;https://github.com/JakeWharton/butterknife&quot;&gt;Butterknife&lt;/a&gt;. This is because the Android build system dynamically changes IDs of resources in libraries to avoid ID conflicts while merging libraries together in the app&lt;/li&gt;
+  &lt;li&gt;features need to be modularized first and only after libraries can be extracted. E.g. hard to extract all analytics up to an &lt;code class=&quot;highlighter-rouge&quot;&gt;analytics library&lt;/code&gt; when some features that are still in &lt;code class=&quot;highlighter-rouge&quot;&gt;old app module&lt;/code&gt; still need to access that.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;At Philips Hue, we heavily used Butterknife so this approach turned out to be impractical for us. Mainly due to the large amount of upfront changes to prepare the &lt;code class=&quot;highlighter-rouge&quot;&gt;old app module&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;push-code-down&quot;&gt;Push code down&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/modularizationhow/modularisation_pushdown.png&quot; alt=&quot;Modularized app example&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Alternatively, the old &lt;code class=&quot;highlighter-rouge&quot;&gt;app module&lt;/code&gt; can also just remain in place and modules are extracted from that downwards one by one.&lt;/p&gt;
+
+&lt;p&gt;At first, this is quite a bit more challenging because all the common plumbing (UI components, analytics, storage,… ) is still in the upper &lt;code class=&quot;highlighter-rouge&quot;&gt;app module&lt;/code&gt; and isn’t accessible by lower modules. e.g. It’s hard to pull out a feature that relies on analytics if the analytics code is still in the &lt;code class=&quot;highlighter-rouge&quot;&gt;app module&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;On the plus side, this method aggressively forces you to modularize: you will easily run into actual dependency problems that must be solved before you can continue. E.g. add a new or extract a &lt;code class=&quot;highlighter-rouge&quot;&gt;feature module&lt;/code&gt; will force you to extract common logic first (e.g. network layer)&lt;/p&gt;
+
+&lt;p&gt;Hence common plumbing must be modularized on the short term and cannot be parked in a single huge core module for a long time. But once these key &lt;code class=&quot;highlighter-rouge&quot;&gt;plumbing modules&lt;/code&gt; are extracted, the rest of the modularization will become a lot easier.&lt;/p&gt;
+
+&lt;p&gt;And because moving code down is harder than moving it up, only the essential code parts will be moved down at first. Resulting in smaller steps, enabling a better grip on the entire modularisation process.&lt;/p&gt;
+
+&lt;p&gt;Finally, this way of modularisation allows to clean up the code base bottom up: move part code down -&amp;gt; convert to Kotlin -&amp;gt; make idiomatic -&amp;gt; rinse and repeat. It’s a lot easier to set architecture goals (e.g. % kotlin, % test coverage,…) for smaller parts of your code base than for huge monolithic modules.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note: Introducing new technologies (e.g. coroutines, rxjava) is usually also easier bottom up. This is because modules making use of these can directly access “cleaned up interfaces” instead of wrapping old ones to fit the new paradigms. So you start benefitting from the end-to-end benefits of the new technologies sooner in your app.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;At Philips Hue, we decided to go for this approach, mainly because it forced us to think better about our &lt;code class=&quot;highlighter-rouge&quot;&gt;library modules&lt;/code&gt; upfront and it also avoided a huge refactoring due to Butterknife.&lt;/p&gt;
+
+&lt;h2 id=&quot;considerations&quot;&gt;Considerations&lt;/h2&gt;
+&lt;p&gt;Regardless of what strategy you decide two follow, here are a few things you should take into consideration:&lt;/p&gt;
+
+&lt;h3 id=&quot;try-to-make-a-big-initial-push&quot;&gt;Try to make a big initial push&lt;/h3&gt;
+&lt;p&gt;Only once you reach a critical mass of modules, you will start reaping the benefits. (build times, easier to understand code,…) Therefore try to define a few key modules and put them in place as soon as possible.&lt;/p&gt;
+
+&lt;p&gt;At Philips Hue these were:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;UI components (incl themes and styles)&lt;/li&gt;
+  &lt;li&gt;SDK wrapper (Hue system domain model)&lt;/li&gt;
+  &lt;li&gt;Translations&lt;/li&gt;
+  &lt;li&gt;Analytics&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;api-clean-up&quot;&gt;Api clean up&lt;/h3&gt;
+&lt;p&gt;Modularizing an existing app will be quite the challenge and you will uncover dependencies between classes that shouldn’t be have been there. Cutting these might be non-trivial and could result in splitting classes, introducing adapters,…&lt;/p&gt;
+
+&lt;p&gt;Hence clean up work cannot be avoided while modularizing. But try to keep that cleanup work focussed as much as possible to the api of the modules. Once they are clean/fixed you’ll be able to refactor/replace their internals easily later on.&lt;/p&gt;
+
+&lt;p&gt;Also try to aggressively restrict the visibility of the non-public interface to private or internal. This decouples modules and again facilitates doing an internal module clean up later without affecting the rest of the code base.&lt;/p&gt;
+
+&lt;p&gt;Sometimes, however, a simple interface clean up can blow up and result in tons of code changes somewhere. At this point it could become impractical to completely clean up the entire interface when all you need at is just to extract a simple module.&lt;/p&gt;
+
+&lt;p&gt;That’s fine, just mark the old api as deprecated and provide a new api next to that one. Don’t be afraid to postpone other problems when you are trying to solve the modularization one.&lt;/p&gt;
+
+&lt;h3 id=&quot;general-code-improvements&quot;&gt;General code improvements&lt;/h3&gt;
+&lt;p&gt;While doing all this work, nearly all parts of the code will be touched at some point. This generates a unique opportunity to finally do some of the improvements that were on your backlog for quite some time like:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;conversion to Kotlin&lt;/li&gt;
+  &lt;li&gt;add (more) unit tests&lt;/li&gt;
+  &lt;li&gt;…&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
+&lt;p&gt;Generally speaking there are two strategies to modularize an existing app: pull code up or push code down. Make sure to make a big initial push towards modularization to reap the benefits as soon as possible, clean up the module apis and see if you can take some code improvements along.&lt;/p&gt;
+
+&lt;p&gt;Next blog post, I’ll share some tips and lessons learned while modularizing. Make sure to follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=modularization-howtoapproach2019&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
+ so you don’t miss it!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="modularization" /><category term="architecture" /><category term="software engineering" /><category term="how to" /><summary type="html">Now that we have a clear idea on how a modularized app could look like how can this be applied to an existing app?</summary></entry><entry><title type="html">Modularization - Real-life example</title><link href="https://jeroenmols.com/blog/2019/04/02/modularizationexample/" rel="alternate" type="text/html" title="Modularization - Real-life example" /><published>2019-04-02T00:00:00+02:00</published><updated>2019-04-02T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2019/04/02/modularizationexample</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/04/02/modularizationexample/">&lt;p&gt;With a clear view on how multi-module apps should be architected, let’s dive into a real-life practical example.&lt;/p&gt;
 
 &lt;p&gt;We’ll discover how the architecture results in a clear application structure, how navigation is handled, how to use staged rollouts, how to test everything and even look at a production app that is using this architecture.&lt;/p&gt;
 
@@ -9,6 +114,7 @@
     &lt;li&gt;&lt;a href=&quot;/blog/2019/03/06/modularizationwhy/&quot;&gt;Part 1: Why you should care&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;&lt;a href=&quot;/blog/2019/03/18/modularizationarchitecture/&quot;&gt;Part 2: A successful multi-module architecture&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;&lt;a href=&quot;/blog/2019/04/02/modularizationexample/&quot;&gt;Part 3: Real-life example&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;/blog/2019/04/24/modularizationhow/&quot;&gt;Part 4: How to approach&lt;/a&gt;&lt;/li&gt;
   &lt;/ul&gt;
 &lt;/blockquote&gt;
 
@@ -332,6 +438,7 @@
     &lt;li&gt;&lt;a href=&quot;/blog/2019/03/06/modularizationwhy/&quot;&gt;Part 1: Why you should care&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;&lt;a href=&quot;/blog/2019/03/18/modularizationarchitecture/&quot;&gt;Part 2: A successful multi-module architecture&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;&lt;a href=&quot;/blog/2019/04/02/modularizationexample/&quot;&gt;Part 3: Real-life example&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;/blog/2019/04/24/modularizationhow/&quot;&gt;Part 4: How to approach&lt;/a&gt;&lt;/li&gt;
   &lt;/ul&gt;
 &lt;/blockquote&gt;
 
@@ -490,6 +597,7 @@
     &lt;li&gt;&lt;a href=&quot;/blog/2019/03/06/modularizationwhy/&quot;&gt;Part 1: Why you should care&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;&lt;a href=&quot;/blog/2019/03/18/modularizationarchitecture/&quot;&gt;Part 2: A successful multi-module architecture&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;&lt;a href=&quot;/blog/2019/04/02/modularizationexample/&quot;&gt;Part 3: Real-life example&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;/blog/2019/04/24/modularizationhow/&quot;&gt;Part 4: How to approach&lt;/a&gt;&lt;/li&gt;
   &lt;/ul&gt;
 &lt;/blockquote&gt;
 
@@ -1416,112 +1524,4 @@ a rule in JUnit 4 or an extension in JUnit 5.&lt;/p&gt;
 &lt;p&gt;Hope to see you all next year!&lt;/p&gt;
 
 &lt;p&gt;Helpful? Got extra slides? Hit me up on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=kotlinconf2018slides2018&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
-.&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="android" /><category term="conference" /><category term="kotlinconf" /><summary type="html">Was really great visiting Kotlinconf this year and I wanted to do a quick post to link to all of it’s wonderful content.</summary></entry><entry><title type="html">A little Kotlin puzzler</title><link href="https://jeroenmols.com/blog/2018/09/25/kotlinpuzzler/" rel="alternate" type="text/html" title="A little Kotlin puzzler" /><published>2018-09-25T00:00:00+02:00</published><updated>2018-09-25T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2018/09/25/kotlinpuzzler</id><content type="html" xml:base="https://jeroenmols.com/blog/2018/09/25/kotlinpuzzler/">&lt;p&gt;Kotlin is an incredibly enjoyable, concise and powerful programming language. Yet sometimes also a bit confusing…&lt;/p&gt;
-
-&lt;h2 id=&quot;puzzle&quot;&gt;Puzzle&lt;/h2&gt;
-&lt;p&gt;Have a look at the simple class below. It simulates an ongoing operation by smoothly moving a progress bar from 0 to 100 over the course of 30 seconds:&lt;/p&gt;
-
-&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ProgressbarAnimator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;progressBar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ProgressBar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AnimatorUpdateListener&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;lateinit&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;animator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ValueAnimator&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;init&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;configureAnimator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;animator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;addUpdateListener&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;animator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;configureAnimator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;endValue&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FPS&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DURATION&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;toInt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;progressBar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;max&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;endValue&lt;/span&gt;
-
-        &lt;span class=&quot;n&quot;&gt;animator&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ValueAnimator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ofInt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;endValue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;animator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;duration&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DURATION&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;animator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;interpolator&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LinearInterpolator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;onAnimationUpdate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ValueAnimator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;progressBar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;progress&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;animator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;animatedValue&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Int&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;companion&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;FPS&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0.06&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;DURATION&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;30&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1000L&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;What do you think will happen if we instantiate one of these with a given progress bar?&lt;/p&gt;
-
-&lt;p&gt;Well… nothing! The progress bar doesn’t move at all.&lt;/p&gt;
-
-&lt;p&gt;Can you spot what’s wrong? The error is in the following lines:&lt;/p&gt;
-
-&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;init&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;configureAnimator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;animator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;addUpdateListener&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;animator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Any luck?&lt;/p&gt;
-
-&lt;p&gt;…&lt;/p&gt;
-
-&lt;p&gt;…&lt;/p&gt;
-
-&lt;p&gt;…&lt;/p&gt;
-
-&lt;p&gt;Well this is the actual culprit:&lt;/p&gt;
-
-&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;animator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;addUpdateListener&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;There is syntactically a very subtle, yet incredibly important difference between that line and this:&lt;/p&gt;
-
-&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;animator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;addUpdateListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;If we change our init to the latter, then the progress bar works as expected!&lt;/p&gt;
-
-&lt;h1 id=&quot;explanation&quot;&gt;Explanation&lt;/h1&gt;
-&lt;p&gt;One of the Kotlin features is that if the last argument of a method call is a lambda, you can move the lambda outside of the method invocation. (which is great for building &lt;a href=&quot;https://proandroiddev.com/writing-dsls-in-kotlin-part-1-7f5d2193f277&quot;&gt;DSLs&lt;/a&gt;)&lt;/p&gt;
-
-&lt;p&gt;Consequently,&lt;/p&gt;
-
-&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;animator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;addUpdateListener&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;is equivalent to&lt;/p&gt;
-
-&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;animator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;addUpdateListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;and even&lt;/p&gt;
-
-&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;animator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;addUpdateListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;and by expanding the lambda, this&lt;/p&gt;
-
-&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;animator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;addUpdateListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;So the reason why the progress bar wasn’t working is simple. Instead of registering itself as an &lt;code class=&quot;highlighter-rouge&quot;&gt;AnimationUpdateListener&lt;/code&gt;, it actually registered a lambda, a new function to handle the animation updates.&lt;/p&gt;
-
-&lt;p&gt;So every animation update the lambda &lt;code class=&quot;highlighter-rouge&quot;&gt;{ _ -&amp;gt; this }&lt;/code&gt; was invoked instead of the &lt;code class=&quot;highlighter-rouge&quot;&gt;onAnimationUpdate&lt;/code&gt; method. Thereby not doing anything, it just has the &lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt; object without any invocation on it.&lt;/p&gt;
-
-&lt;p&gt;Equivalent to writing the following function:&lt;/p&gt;
-
-&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;doNothing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;m&quot;&gt;5&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Perfectly valid syntax, but otherwise completely useless.&lt;/p&gt;
-
-&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
-&lt;p&gt;A very subtle difference in syntax (&lt;code class=&quot;highlighter-rouge&quot;&gt;{}&lt;/code&gt; instead of &lt;code class=&quot;highlighter-rouge&quot;&gt;()&lt;/code&gt;) can make a huge difference in what the code actually does. Kotlin is a very powerful programming language, but with great power comes great…&lt;/p&gt;
-
-&lt;p&gt;If you’ve made it this far you should probably follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=alittlekotlinpuzzler2018&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
-. Feel free leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="kotlin" /><category term="lambda" /><category term="puzzle" /><summary type="html">Kotlin is an incredibly enjoyable, concise and powerful programming language. Yet sometimes also a bit confusing…</summary></entry></feed>
+.&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="android" /><category term="conference" /><category term="kotlinconf" /><summary type="html">Was really great visiting Kotlinconf this year and I wanted to do a quick post to link to all of it’s wonderful content.</summary></entry></feed>

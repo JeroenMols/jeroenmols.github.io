@@ -213,4 +213,9 @@ var store = [{
         "excerpt":"With a clear view on how multi-module apps should be architected, let’s dive into a real-life practical example. We’ll discover how the architecture results in a clear application structure, how navigation is handled, how to use staged rollouts, how to test everything and even look at a production app that...","categories": ["blog"],
         "tags": ["modularization","architecture","software engineering","sample"],
         "url": "https://jeroenmols.com/blog/2019/04/02/modularizationexample/",
-        "teaser":"https://jeroenmols.com/img/blog/modularizationexample/modularization_example.jpg"}]
+        "teaser":"https://jeroenmols.com/img/blog/modularizationexample/modularization_example.jpg"},{
+        "title": "Modularization - How to approach",
+        "excerpt":"Now that we have a clear idea on how a modularized app could look like how can this be applied to an existing app? Part four will dive deeper into how existing apps can be sliced and how you can gradually migrate to a fully modularized architecture. This post is...","categories": ["blog"],
+        "tags": ["modularization","architecture","software engineering","how to"],
+        "url": "https://jeroenmols.com/blog/2019/04/24/modularizationhow/",
+        "teaser":"https://jeroenmols.com/img/blog/modularizationhow/modularization_how.jpg"}]
