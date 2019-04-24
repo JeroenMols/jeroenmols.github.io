@@ -20,6 +20,7 @@ This post is part of an in depth series on modularization:
 - [Part 1: Why you should care]({{ site.baseurl }}{% link blog/_posts/2019-03-06-modularizationwhy.md %})
 - [Part 2: A successful multi-module architecture]({{ site.baseurl }}{% link blog/_posts/2019-03-18-modularizationarchitecture.md %})
 - [Part 3: Real-life example]({{ site.baseurl }}{% link blog/_posts/2019-04-02-modularizationexample.md %})
+- [Part 4: How to approach]({{ site.baseurl }}{% link blog/_posts/2019-04-24-modularizationhow.md %})
 
 ## Disclaimer
 This is by no means the only way to modularize an app, but it does offer some key benefits that we will touch upon later.
