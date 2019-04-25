@@ -10,9 +10,11 @@ header:
 I'm always eager to share my technical knowledge with fellow developers. Don't hesitate to <a href="https://twitter.com/molsjeroen" target="blank">contact me on Twitter</a> if you would like me to speak at your event!
 
 Upcoming talks:
-- Android makers - Journey to painless releases: Continuous delivery for Philips Hue Android
+- Mobiconf - How & why to modularize
+- mDevCamp Prague - Journey to painless releases: Continuous delivery for Philips Hue Android
 
 2019:
+- Android makers - [Journey to painless releases: Continuous delivery for Philips Hue Android](https://speakerdeck.com/jeroenmols/journey-to-painless-releases-continuous-delivery-for-philips-hue-android)
 - Fragmented Podcast - [Should I Rewrite My App?](https://fragmentedpodcast.com/episodes/152/)
 
 2018:
