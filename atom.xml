@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle>
- <updated>2019-04-24T21:34:27+02:00</updated>
+ <updated>2019-04-25T20:32:04+02:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -24,7 +24,7 @@
    <id>https://jeroenmols.com/blog/2019/04/24/modularizationhow</id>
    <content type="html"><![CDATA[
      
-     <p>Now that we have a clear idea on how a modularized app could look like how can this be applied to an existing app?</p>
+     <p>Now that we have a clear idea of how a modularized app could look like how can this be applied to an existing app?</p>
 
 <p>Part four will dive deeper into how existing apps can be sliced and how you can gradually migrate to a fully modularized architecture.</p>
 

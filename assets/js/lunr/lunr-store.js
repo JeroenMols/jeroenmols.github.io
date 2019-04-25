@@ -215,7 +215,7 @@ var store = [{
         "url": "https://jeroenmols.com/blog/2019/04/02/modularizationexample/",
         "teaser":"https://jeroenmols.com/img/blog/modularizationexample/modularization_example.jpg"},{
         "title": "Modularization - How to approach",
-        "excerpt":"Now that we have a clear idea on how a modularized app could look like how can this be applied to an existing app? Part four will dive deeper into how existing apps can be sliced and how you can gradually migrate to a fully modularized architecture. This post is...","categories": ["blog"],
+        "excerpt":"Now that we have a clear idea of how a modularized app could look like how can this be applied to an existing app? Part four will dive deeper into how existing apps can be sliced and how you can gradually migrate to a fully modularized architecture. This post is...","categories": ["blog"],
         "tags": ["modularization","architecture","software engineering","how to"],
         "url": "https://jeroenmols.com/blog/2019/04/24/modularizationhow/",
         "teaser":"https://jeroenmols.com/img/blog/modularizationhow/modularization_how.jpg"}]
