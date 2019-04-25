@@ -10,7 +10,7 @@ tags:
   - software engineering
   - how to
 ---
-Now that we have a clear idea on how a modularized app could look like how can this be applied to an existing app?
+Now that we have a clear idea of how a modularized app could look like how can this be applied to an existing app?
 
 Part four will dive deeper into how existing apps can be sliced and how you can gradually migrate to a fully modularized architecture.
 
@@ -46,7 +46,7 @@ There are also some disadvantages, unfortunately:
 - need to convert all references to view IDs from `R.id.***` to `R2.id.***` when using [Butterknife](https://github.com/JakeWharton/butterknife). This is because the Android build system dynamically changes IDs of resources in libraries to avoid ID conflicts while merging libraries together in the app
 - features need to be modularized first and only after libraries can be extracted. E.g. hard to extract all analytics up to an `analytics library` when some features that are still in `old app module` still need to access that.
 
-At Philips Hue, we heavily used Butterknife so this approach turned out to be impractical for us. Mainly due to the large amount of upfront changes to prepare the `old app module`.
+At Philips Hue, we heavily used Butterknife so this approach turned out to be impractical for us. Mainly due to the large number of upfront changes to prepare the `old app module`.
 
 ### Push code down
 ![Modularized app example]({{ site.url }}{{ site.baseurl }}/img/blog/modularizationhow/modularisation_pushdown.png){: .align-center}
@@ -61,7 +61,7 @@ Hence common plumbing must be modularized on the short term and cannot be parked
 
 And because moving code down is harder than moving it up, only the essential code parts will be moved down at first. Resulting in smaller steps, enabling a better grip on the entire modularisation process.
 
-Finally, this way of modularisation allows to clean up the code base bottom up: move part code down -> convert to Kotlin -> make idiomatic -> rinse and repeat. It's a lot easier to set architecture goals (e.g. % kotlin, % test coverage,...) for smaller parts of your code base than for huge monolithic modules.
+Finally, this way of modularisation allows to clean up the code base bottom up: move part code down -> convert to Kotlin -> make idiomatic -> rinse and repeat. It's a lot easier to set architecture goals (e.g. % Kotlin, % test coverage,...) for smaller parts of your code base than for huge monolithic modules.
 
 > Note: Introducing new technologies (e.g. coroutines, rxjava) is usually also easier bottom up. This is because modules making use of these can directly access "cleaned up interfaces" instead of wrapping old ones to fit the new paradigms. So you start benefitting from the end-to-end benefits of the new technologies sooner in your app.
 
@@ -82,13 +82,13 @@ At Philips Hue these were:
 ### Api clean up
 Modularizing an existing app will be quite the challenge and you will uncover dependencies between classes that shouldn't be have been there. Cutting these might be non-trivial and could result in splitting classes, introducing adapters,...
 
-Hence clean up work cannot be avoided while modularizing. But try to keep that cleanup work focussed as much as possible to the api of the modules. Once they are clean/fixed you'll be able to refactor/replace their internals easily later on.
+Hence clean up work cannot be avoided while modularizing. But try to keep that cleanup work focussed as much as possible to the API of the modules. Once they are clean/fixed you'll be able to refactor/replace their internals easily later on.
 
-Also try to aggressively restrict the visibility of the non-public interface to private or internal. This decouples modules and again facilitates doing an internal module clean up later without affecting the rest of the code base.
+Also, try to aggressively restrict the visibility of the non-public interface to private or internal. This decouples modules and again facilitates doing an internal module clean up later without affecting the rest of the code base.
 
-Sometimes, however, a simple interface clean up can blow up and result in tons of code changes somewhere. At this point it could become impractical to completely clean up the entire interface when all you need at is just to extract a simple module.
+Sometimes, however, a simple interface clean up can blow up and result in tons of code changes somewhere. At this point, it could become impractical to completely clean up the entire interface when all you need is just to extract a simple module.
 
-That's fine, just mark the old api as deprecated and provide a new api next to that one. Don't be afraid to postpone other problems when you are trying to solve the modularization one.
+That's fine, just mark the old API as deprecated and provide a new API next to that one. Don't be afraid to postpone other problems when you are trying to solve the modularization one.
 
 ### General code improvements
 While doing all this work, nearly all parts of the code will be touched at some point. This generates a unique opportunity to finally do some of the improvements that were on your backlog for quite some time like:
@@ -98,6 +98,6 @@ While doing all this work, nearly all parts of the code will be touched at some 
 - ...
 
 ## Wrap-up
-Generally speaking there are two strategies to modularize an existing app: pull code up or push code down. Make sure to make a big initial push towards modularization to reap the benefits as soon as possible, clean up the module apis and see if you can take some code improvements along.
+Generally speaking, there are two strategies to modularize an existing app: pull code up or push code down. Make sure to make a big initial push towards modularization to reap the benefits as soon as possible, clean up the module APIs and see if you can take some code improvements along.
 
 Next blog post, I'll share some tips and lessons learned while modularizing. Make sure to follow me on {% include link_twitter.html %} so you don't miss it!
