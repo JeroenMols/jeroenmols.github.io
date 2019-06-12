@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle>
- <updated>2019-04-25T20:32:04+02:00</updated>
+ <updated>2019-06-12T20:47:09+02:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,34 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>Modularization - Lessons learned</title>
+   <link href="https://jeroenmols.com/blog/2019/06/12/modularizationtips/"/>
+   <updated>2019-06-12T00:00:00+02:00</updated>
+   <id>https://jeroenmols.com/blog/2019/06/12/modularizationtips</id>
+   <content type="html"><![CDATA[
+     
+     <p>Wrapping up this series on modularization I’d like to share some of the things we’ve learned at Philips Hue while going through this process the past year.</p>
+
+<p>Part five of this series will share quite a few useful tips and tricks for modularizing apps.</p>
+
+<blockquote>
+
+  <p>This post is part of an in depth series on modularization:</p>
+  <ul>
+    <li><a href="/blog/2019/03/06/modularizationwhy/">Part 1: Why you should care</a></li>
+    <li><a href="/blog/2019/03/18/modularizationarchitecture/">Part 2: A successful multi-module architecture</a></li>
+    <li><a href="/blog/2019/04/02/modularizationexample/">Part 3: Real-life example</a></li>
+    <li><a href="/blog/2019/04/24/modularizationhow/">Part 4: How to approach</a></li>
+    <li><a href="/blog/2019/06/12/modularizationtips/">Part 5: Lessons learned</a></li>
+  </ul>
+</blockquote>
+
+
+     <a href="https://jeroenmols.com/blog/2019/06/12/modularizationtips/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>Modularization - How to approach</title>
@@ -36,6 +64,7 @@
     <li><a href="/blog/2019/03/18/modularizationarchitecture/">Part 2: A successful multi-module architecture</a></li>
     <li><a href="/blog/2019/04/02/modularizationexample/">Part 3: Real-life example</a></li>
     <li><a href="/blog/2019/04/24/modularizationhow/">Part 4: How to approach</a></li>
+    <li><a href="/blog/2019/06/12/modularizationtips/">Part 5: Lessons learned</a></li>
   </ul>
 </blockquote>
 
@@ -63,6 +92,7 @@
     <li><a href="/blog/2019/03/18/modularizationarchitecture/">Part 2: A successful multi-module architecture</a></li>
     <li><a href="/blog/2019/04/02/modularizationexample/">Part 3: Real-life example</a></li>
     <li><a href="/blog/2019/04/24/modularizationhow/">Part 4: How to approach</a></li>
+    <li><a href="/blog/2019/06/12/modularizationtips/">Part 5: Lessons learned</a></li>
   </ul>
 </blockquote>
 
@@ -90,10 +120,8 @@
     <li><a href="/blog/2019/03/18/modularizationarchitecture/">Part 2: A successful multi-module architecture</a></li>
     <li><a href="/blog/2019/04/02/modularizationexample/">Part 3: Real-life example</a></li>
     <li><a href="/blog/2019/04/24/modularizationhow/">Part 4: How to approach</a></li>
-  </ul>
-</blockquote>
-
-
+    <li><a href="/blog/2019/06/12/modularizationtips/">Part 5: Lessons learned</a>
+      
      <a href="https://jeroenmols.com/blog/2019/03/18/modularizationarchitecture/">Continue reading</p>]]>
    </content>
  </entry>
@@ -117,6 +145,7 @@
     <li><a href="/blog/2019/03/18/modularizationarchitecture/">Part 2: A successful multi-module architecture</a></li>
     <li><a href="/blog/2019/04/02/modularizationexample/">Part 3: Real-life example</a></li>
     <li><a href="/blog/2019/04/24/modularizationhow/">Part 4: How to approach</a></li>
+    <li><a href="/blog/2019/06/12/modularizationtips/">Part 5: Lessons learned</a></li>
   </ul>
 </blockquote>
 

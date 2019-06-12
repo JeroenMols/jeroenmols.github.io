@@ -218,4 +218,9 @@ var store = [{
         "excerpt":"Now that we have a clear idea of how a modularized app could look like how can this be applied to an existing app? Part four will dive deeper into how existing apps can be sliced and how you can gradually migrate to a fully modularized architecture. This post is...","categories": ["blog"],
         "tags": ["modularization","architecture","software engineering","how to"],
         "url": "https://jeroenmols.com/blog/2019/04/24/modularizationhow/",
-        "teaser":"https://jeroenmols.com/img/blog/modularizationhow/modularization_how.jpg"}]
+        "teaser":"https://jeroenmols.com/img/blog/modularizationhow/modularization_how.jpg"},{
+        "title": "Modularization - Lessons learned",
+        "excerpt":"Wrapping up this series on modularization I’d like to share some of the things we’ve learned at Philips Hue while going through this process the past year. Part five of this series will share quite a few useful tips and tricks for modularizing apps. This post is part of an...","categories": ["blog"],
+        "tags": ["modularization","architecture","software engineering","tips"],
+        "url": "https://jeroenmols.com/blog/2019/06/12/modularizationtips/",
+        "teaser":"https://jeroenmols.com/img/blog/modularizationtips/modularization_tips.jpg"}]
