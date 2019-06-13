@@ -279,7 +279,7 @@ The following dependencies have later milestone versions:
 ## Speed up builds
 Remember that speeding up builds was an important [reason to modularize]({{ site.baseurl }}{% link blog/_posts/2019-03-06-modularizationwhy.md %}) apps. One of the most intriguing ways Gradle accomplishes this is by being smart about whether a code change will also require other modules to be recompiled.
 
-While you can find the [full explanation here](({{ site.baseurl }}{% link blog/_posts/2017-06-14-androidstudio3.md %})), it suffices to say here that you should always strive to `implementation` dependencies instead of `api`.
+While you can find the [full explanation here]({{ site.baseurl }}{% link blog/_posts/2017-06-14-androidstudio3.md %}), it suffices to say here that you should always strive to `implementation` dependencies instead of `api`.
 
 ```groovy
 dependencies {
