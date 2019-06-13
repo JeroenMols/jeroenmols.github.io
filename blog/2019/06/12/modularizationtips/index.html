@@ -633,7 +633,7 @@ The following dependencies have later milestone versions:
 <h2 id="speed-up-builds">Speed up builds</h2>
 <p>Remember that speeding up builds was an important <a href="/blog/2019/03/06/modularizationwhy/">reason to modularize</a> apps. One of the most intriguing ways Gradle accomplishes this is by being smart about whether a code change will also require other modules to be recompiled.</p>
 
-<p>While you can find the <a href="(/blog/2017/06/14/androidstudio3/)">full explanation here</a>, it suffices to say here that you should always strive to <code class="highlighter-rouge">implementation</code> dependencies instead of <code class="highlighter-rouge">api</code>.</p>
+<p>While you can find the <a href="/blog/2017/06/14/androidstudio3/">full explanation here</a>, it suffices to say here that you should always strive to <code class="highlighter-rouge">implementation</code> dependencies instead of <code class="highlighter-rouge">api</code>.</p>
 
 <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dependencies</span> <span class="o">{</span>
     <span class="c1">// Don't do this</span>
