@@ -389,11 +389,11 @@ $(document).ready(function(){
   <li>maintaining module configurations must be easy</li>
 </ul>
 
-<p>Both of these can be accomplished via a nice little trick in the project level <code class="highlighter-rouge">build.gradle</code> file:</p>
+<p>Both of these can be accomplished via a nice little trick in the project level <code class="highlighter-rouge">build.gradle</code> file (thanks to <a href="https://twitter.com/o_patry">Olivier Patry</a> for the simplification):</p>
 
 <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">subprojects</span> <span class="o">{</span>
     <span class="n">afterEvaluate</span> <span class="o">{</span> <span class="n">project</span> <span class="o">-&gt;</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">project</span><span class="o">.</span><span class="na">plugins</span><span class="o">.</span><span class="na">findPlugin</span><span class="o">(</span><span class="s1">'android'</span><span class="o">)</span> <span class="o">?:</span> <span class="n">project</span><span class="o">.</span><span class="na">plugins</span><span class="o">.</span><span class="na">findPlugin</span><span class="o">(</span><span class="s1">'android-library'</span><span class="o">))</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">project</span><span class="o">.</span><span class="na">hasProperty</span><span class="o">(</span><span class="s1">'android'</span><span class="o">))</span> <span class="o">{</span>
             <span class="n">android</span> <span class="o">{</span>
                 <span class="n">buildToolsVersion</span> <span class="n">Config</span><span class="o">.</span><span class="na">buildTools</span>
                 <span class="n">compileSdkVersion</span> <span class="n">Config</span><span class="o">.</span><span class="na">compileSdk</span>
@@ -633,7 +633,7 @@ The following dependencies have later milestone versions:
 <h2 id="speed-up-builds">Speed up builds</h2>
 <p>Remember that speeding up builds was an important <a href="/blog/2019/03/06/modularizationwhy/">reason to modularize</a> apps. One of the most intriguing ways Gradle accomplishes this is by being smart about whether a code change will also require other modules to be recompiled.</p>
 
-<p>While you can find the <a href="/blog/2017/06/14/androidstudio3/">full explanation here</a>, it suffices to say here that you should always strive to <code class="highlighter-rouge">implementation</code> dependencies instead of <code class="highlighter-rouge">api</code>.</p>
+<p>While you can find the <a href="x§x§/blog/2017/06/14/androidstudio3/">full explanation here</a>, it suffices to say here that you should always strive to <code class="highlighter-rouge">implementation</code> dependencies instead of <code class="highlighter-rouge">api</code>.</p>
 
 <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dependencies</span> <span class="o">{</span>
     <span class="c1">// Don't do this</span>
