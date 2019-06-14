@@ -28,12 +28,12 @@ In order to drive modularization it's very important to make creating a new modu
 - adding a new module must be easy (so it will happen often)
 - maintaining module configurations must be easy
 
-Both of these can be accomplished via a nice little trick in the project level `build.gradle` file:
+Both of these can be accomplished via a nice little trick in the project level `build.gradle` file (thanks to [Olivier Patry](https://twitter.com/o_patry) for the simplification):
 
 ```groovy
 subprojects {
     afterEvaluate { project ->
-        if (project.plugins.findPlugin('android') ?: project.plugins.findPlugin('android-library')) {
+        if (project.hasProperty('android')) {
             android {
                 buildToolsVersion Config.buildTools
                 compileSdkVersion Config.compileSdk
@@ -279,7 +279,7 @@ The following dependencies have later milestone versions:
 ## Speed up builds
 Remember that speeding up builds was an important [reason to modularize]({{ site.baseurl }}{% link blog/_posts/2019-03-06-modularizationwhy.md %}) apps. One of the most intriguing ways Gradle accomplishes this is by being smart about whether a code change will also require other modules to be recompiled.
 
-While you can find the [full explanation here]({{ site.baseurl }}{% link blog/_posts/2017-06-14-androidstudio3.md %}), it suffices to say here that you should always strive to `implementation` dependencies instead of `api`.
+While you can find the [full explanation here](x§x§{{ site.baseurl }}{% link blog/_posts/2017-06-14-androidstudio3.md %}), it suffices to say here that you should always strive to `implementation` dependencies instead of `api`.
 
 ```groovy
 dependencies {
