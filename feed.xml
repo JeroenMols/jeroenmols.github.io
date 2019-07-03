@@ -1,4 +1,76 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2019-06-14T12:25:23+02:00</updated><id>https://jeroenmols.com/</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Modularization - Lessons learned</title><link href="https://jeroenmols.com/blog/2019/06/12/modularizationtips/" rel="alternate" type="text/html" title="Modularization - Lessons learned" /><published>2019-06-12T00:00:00+02:00</published><updated>2019-06-12T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2019/06/12/modularizationtips</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/06/12/modularizationtips/">&lt;p&gt;Wrapping up this series on modularization I’d like to share some of the things we’ve learned at Philips Hue while going through this process the past year.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2019-07-03T21:18:42+02:00</updated><id>https://jeroenmols.com/</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Philips Hue adaptive icon</title><link href="https://jeroenmols.com/blog/2019/07/03/adaptiveicon/" rel="alternate" type="text/html" title="Philips Hue adaptive icon" /><published>2019-07-03T00:00:00+02:00</published><updated>2019-07-03T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2019/07/03/adaptiveicon</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/07/03/adaptiveicon/">&lt;p&gt;Your icon is one of the most important assets in your app. With a bit of luck, users might even put it on their main launcher screen!&lt;/p&gt;
+
+&lt;p&gt;As various Android launchers, versions or devices might resize/reshape your icon to make them look consistent, you’ll need to be robust against this kind of changes. Learn how we did that at Philips Hue.&lt;/p&gt;
+
+&lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
+&lt;p&gt;For various years, different device manufacturers have been reshaping icons to make them fit their custom skin of Android. Unfortunately, there wasn’t a clear contract in place to do that reshaping, leading to some pretty bad results:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/adaptiveicon/poor_icon_shapes.png&quot; alt=&quot;Badly resized Philips Hue icons&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Shadows overlayed on top of the Philips wordmark, part of the Hue text cut off and a teardrop shape that looked really weird are just a few of the problems.&lt;/p&gt;
+
+&lt;p&gt;Fortunately, in Android O, adaptive icons came to the rescue to solve this problem.&lt;/p&gt;
+
+&lt;h2 id=&quot;icon-design&quot;&gt;Icon design&lt;/h2&gt;
+&lt;p&gt;Inspired by &lt;a href=&quot;https://medium.com/google-design/designing-adaptive-icons-515af294c783&quot;&gt;this blog post from Nick Butcher&lt;/a&gt;, we wanted to create a depth effect in our icon. Wouldn’t it be cool if our icon could change color just like our lights?&lt;/p&gt;
+
+&lt;p&gt;Hence we decided to use a gradient as the background layer:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/adaptiveicon/icon_background.png&quot; alt=&quot;Adaptive icon background&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Notice how the gradient gets lighter towards the top and darker towards the bottom. It also contains a darker shade of red on the left side and a darker shade of blue on the right.&lt;/p&gt;
+
+&lt;p&gt;The foreground of the icon, however, consists out of a static blue “Philips” word mark and a plain white background with “Hue” cut out from that:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/adaptiveicon/icon_foreground.png&quot; alt=&quot;Adaptive icon foreground&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now when the icon will be dragged or pressed, the foreground will move independently of the background causing the “Hue” cutout to hover over different parts of the gradient. This creates a very nice effect where the Hue logo slightly changes colors!&lt;/p&gt;
+
+&lt;h2 id=&quot;implementation&quot;&gt;Implementation&lt;/h2&gt;
+&lt;p&gt;In Android Studio, right-click your project and select “New &amp;gt; Image asset”.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/adaptiveicon/create_image_asset.png&quot; alt=&quot;Create image asset&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;For the best scaling quality and minimal icon size, we use a vector asset as the foreground layer. This wasn’t possible for the gradient though due to the complexity of that asset, so for that we use a webp background.&lt;/p&gt;
+
+&lt;p&gt;Notice how both “Hue” and “Philips” fit nicely within the safe zone indicated by the circle area. This is the zone that is guaranteed to be always displayed and never cut off.&lt;/p&gt;
+
+&lt;p&gt;Make sure to also generate a round icon for Android N and plain image assets for older Android versions. Click next and review the assets being generated, and finish to complete the icon creation.&lt;/p&gt;
+
+&lt;p&gt;You’ll see that in &lt;code class=&quot;highlighter-rouge&quot;&gt;mipmap-anydpi-v26&lt;/code&gt; two resources get generated &lt;code class=&quot;highlighter-rouge&quot;&gt;ic_launcher.xml&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;ic_launcher_round.xml&lt;/code&gt;. Both these files simply indicate what resource to use for the icon foreground and background:&lt;/p&gt;
+
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;adaptive-icon&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:android=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.android.com/apk/res/android&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;background&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;android:drawable=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@mipmap/ic_launcher_background&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;foreground&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;android:drawable=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@drawable/ic_launcher_foreground&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/adaptive-icon&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;In the Android manifest you simply reference both resources in order to use them:&lt;/p&gt;
+
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;application&lt;/span&gt;
+       &lt;span class=&quot;err&quot;&gt;...&lt;/span&gt;
+       &lt;span class=&quot;na&quot;&gt;android:icon=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@mipmap/ic_launcher&quot;&lt;/span&gt;
+       &lt;span class=&quot;na&quot;&gt;android:roundIcon=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@mipmap/ic_launcher_round&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note: &lt;code class=&quot;highlighter-rouge&quot;&gt;ic_launcher_round.xml&lt;/code&gt; got introduced with the launch of the Google Pixel (Android N) and has since been replaced with the more powerful adaptive icon. &lt;br /&gt; However you can still provide a rounded icon to avoid that Android N devices show your square item in a round bounding box:
+&lt;img src=&quot;https://jeroenmols.com/img/blog/adaptiveicon/boxed_icon.png&quot; alt=&quot;Boxed icon when no round variant is provided&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;end-result&quot;&gt;End result&lt;/h2&gt;
+&lt;p&gt;Bringing it all together, we now have an icon that not only adapts to any device launcher, but also has a nice subtle color effect on the Hue letters while moving.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/adaptiveicon/adaptive_icon.gif&quot; alt=&quot;Adaptive icon Philips Hue&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Notice for instance how the letter “e” changes from green to blue while moving right.&lt;/p&gt;
+
+&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
+&lt;p&gt;The launcher icon is one of the most important assets of your app and therefore it is key to make it look perfect on any device. Adaptive icons make that possible and also allow you to add a nice little extra touch to your app.&lt;/p&gt;
+
+&lt;p&gt;If you’ve made it this far you should probably follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=philipshueadaptiveicon2019&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
+. Feel free to leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="ui" /><category term="android" /><category term="adaptive icon" /><summary type="html">Your icon is one of the most important assets in your app. With a bit of luck, users might even put it on their main launcher screen!</summary></entry><entry><title type="html">Modularization - Lessons learned</title><link href="https://jeroenmols.com/blog/2019/06/12/modularizationtips/" rel="alternate" type="text/html" title="Modularization - Lessons learned" /><published>2019-06-12T00:00:00+02:00</published><updated>2019-06-12T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2019/06/12/modularizationtips</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/06/12/modularizationtips/">&lt;p&gt;Wrapping up this series on modularization I’d like to share some of the things we’ve learned at Philips Hue while going through this process the past year.&lt;/p&gt;
 
 &lt;p&gt;Part five of this series will share quite a few useful tips and tricks for modularizing apps.&lt;/p&gt;
 
@@ -1656,113 +1728,4 @@ a rule in JUnit 4 or an extension in JUnit 5.&lt;/p&gt;
 &lt;p&gt;Check out my slides/video to learn more about &lt;a href=&quot;https://speakerdeck.com/jeroenmols/write-awesome-unit-tests&quot;&gt;awesome unit tests&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;If you’ve made it this far you should probably follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=canyoufixthetest?2018&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
-. Feel free leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="testing" /><category term="kotlin" /><category term="cleancode" /><summary type="html">Learning from analyzing code is one of the greatest ways to improve your skills. Can you spot the mistakes in the tests below?</summary></entry><entry><title type="html">Kotlin Stackoverflow error</title><link href="https://jeroenmols.com/blog/2018/11/01/kotlinstackoverflow/" rel="alternate" type="text/html" title="Kotlin Stackoverflow error" /><published>2018-11-01T00:00:00+01:00</published><updated>2018-11-01T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2018/11/01/kotlinstackoverflow</id><content type="html" xml:base="https://jeroenmols.com/blog/2018/11/01/kotlinstackoverflow/">&lt;p&gt;Java interop is one of the best features of the Kotlin language, yet sometimes this also can cause unforeseen issues…&lt;/p&gt;
-
-&lt;h2 id=&quot;puzzle&quot;&gt;Puzzle&lt;/h2&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Disclaimer, the example below is a consequence of legacy code and only serves to demonstrate a Kotlin puzzler.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Have a look at the simple test class below. It subclasses the subject under test (&lt;code class=&quot;highlighter-rouge&quot;&gt;BaseFragment&lt;/code&gt;) to inject a mocked &lt;code class=&quot;highlighter-rouge&quot;&gt;Repository&lt;/code&gt; that is used by the &lt;code class=&quot;highlighter-rouge&quot;&gt;getDataOperation()&lt;/code&gt; method in the test.&lt;/p&gt;
-
-&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;BaseFragmentTest&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;@get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Rule&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;mockitoRule&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MockitoJUnit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rule&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;@Mock&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;lateinit&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;repository&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Repository&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;@Test&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;should&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;be&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expected&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;actual&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TestFragment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getDataOperation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-
-        &lt;span class=&quot;n&quot;&gt;assertEquals&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;actual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;expected&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;inner&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TestFragment&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;BaseFragment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getRepository&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Repository&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;repository&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;What do you think will happen we run the test?&lt;/p&gt;
-
-&lt;p&gt;…&lt;/p&gt;
-
-&lt;p&gt;Well…&lt;/p&gt;
-
-&lt;p&gt;…&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;java.lang.StackOverflowError
-    at com.jeroenmols.BaseFragmentTest$TestFragment.getRepository(BaseFragmentTest.kt:26)
-    at com.jeroenmols.BaseFragmentTest$TestFragment.getRepository(BaseFragmentTest.kt:26)
-    at com.jeroenmols.BaseFragmentTest$TestFragment.getRepository(BaseFragmentTest.kt:26)
-    at com.jeroenmols.BaseFragmentTest$TestFragment.getRepository(BaseFragmentTest.kt:26)
-    at com.jeroenmols.BaseFragmentTest$TestFragment.getRepository(BaseFragmentTest.kt:26)
-    at com.jeroenmols.BaseFragmentTest$TestFragment.getRepository(BaseFragmentTest.kt:26)
-    at com.jeroenmols.BaseFragmentTest$TestFragment.getRepository(BaseFragmentTest.kt:26)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Wait, what???&lt;/p&gt;
-
-&lt;p&gt;This trace indicates that the line &lt;code class=&quot;highlighter-rouge&quot;&gt;return repository&lt;/code&gt; (line 26) is called recursively… How is that even possible? That line just return a value, right?&lt;/p&gt;
-
-&lt;p&gt;Well…&lt;/p&gt;
-
-&lt;h1 id=&quot;explanation&quot;&gt;Explanation&lt;/h1&gt;
-&lt;p&gt;This is actually a very interesting case of Java/Kotlin interop. Because a Kotlin property is compiled down to the following Java elements:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;a getter method with &lt;code class=&quot;highlighter-rouge&quot;&gt;get&lt;/code&gt; prefix&lt;/li&gt;
-  &lt;li&gt;a setter method with &lt;code class=&quot;highlighter-rouge&quot;&gt;set&lt;/code&gt; prefix&lt;/li&gt;
-  &lt;li&gt;a private field backing the property&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Hence the &lt;code class=&quot;highlighter-rouge&quot;&gt;return repository&lt;/code&gt; statement actually ends up executing &lt;code class=&quot;highlighter-rouge&quot;&gt;return getRepository()&lt;/code&gt; and hence recursively calling itself!&lt;/p&gt;
-
-&lt;p&gt;Now the really interesting detail here is that this only happens when &lt;code class=&quot;highlighter-rouge&quot;&gt;BaseFragment&lt;/code&gt; is a Java class! When converting the class to Kotlin this doesn’t happen.&lt;/p&gt;
-
-&lt;p&gt;So let’s have a look at the decompiled bytecode:&lt;/p&gt;
-
-&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Decompiled when BaseFragment in Java&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TestFragment&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;BaseFragment&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-   &lt;span class=&quot;n&quot;&gt;@NotNull&lt;/span&gt;
-   &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Repository&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getRepository&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getRepository&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-   &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// Decompiled when BaseFragment in Kotlin&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TestFragment&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;BaseFragment&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-   &lt;span class=&quot;n&quot;&gt;@NotNull&lt;/span&gt;
-   &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Repository&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getRepository&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;BaseFragmentTest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getRepository&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-   &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Sure enough, the decompiled Java code recursively links to the &lt;code class=&quot;highlighter-rouge&quot;&gt;TestFragment&lt;/code&gt; when &lt;code class=&quot;highlighter-rouge&quot;&gt;BaseFragment&lt;/code&gt; is in java and properly links to the right method when &lt;code class=&quot;highlighter-rouge&quot;&gt;BaseFragment&lt;/code&gt; is in Kotlin.&lt;/p&gt;
-
-&lt;p&gt;A simple way to fix this is to strongly refer the overridden method to point at the &lt;code class=&quot;highlighter-rouge&quot;&gt;BaseFragmentTest&lt;/code&gt; class:&lt;/p&gt;
-
-&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;inner&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TestFragment&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;BaseFragment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getRepository&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Repository&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;@BaseFragmentTest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;repository&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Fortunately Android Studio also warns you about recursion with an indicator:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/kotlinstackoverflow/androidstudio_warning.png&quot; alt=&quot;Android Studio recursive function indicator&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
-&lt;p&gt;This post indicates an interesting case where methods/properties get linked incorrectly when inheriting from a Java class in Kotlin. Fortunately, Android Studio and the decompiled bytecode clearly indicate what is going wrong.&lt;/p&gt;
-
-&lt;p&gt;If you’ve made it this far you should probably follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=kotlinstackoverflowerror2018&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
-. Feel free leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="kotlin" /><category term="stackoverflow" /><category term="puzzle" /><summary type="html">Java interop is one of the best features of the Kotlin language, yet sometimes this also can cause unforeseen issues…</summary></entry></feed>
+. Feel free leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="testing" /><category term="kotlin" /><category term="cleancode" /><summary type="html">Learning from analyzing code is one of the greatest ways to improve your skills. Can you spot the mistakes in the tests below?</summary></entry></feed>

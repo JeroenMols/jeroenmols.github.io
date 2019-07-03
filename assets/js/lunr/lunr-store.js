@@ -223,4 +223,9 @@ var store = [{
         "excerpt":"Wrapping up this series on modularization I’d like to share some of the things we’ve learned at Philips Hue while going through this process the past year. Part five of this series will share quite a few useful tips and tricks for modularizing apps. This post is part of an...","categories": ["blog"],
         "tags": ["modularization","architecture","software engineering","tips"],
         "url": "https://jeroenmols.com/blog/2019/06/12/modularizationtips/",
-        "teaser":"https://jeroenmols.com/img/blog/modularizationtips/modularization_tips.jpg"}]
+        "teaser":"https://jeroenmols.com/img/blog/modularizationtips/modularization_tips.jpg"},{
+        "title": "Philips Hue adaptive icon",
+        "excerpt":"Your icon is one of the most important assets in your app. With a bit of luck, users might even put it on their main launcher screen! As various Android launchers, versions or devices might resize/reshape your icon to make them look consistent, you’ll need to be robust against this...","categories": ["blog"],
+        "tags": ["ui","android","adaptive icon"],
+        "url": "https://jeroenmols.com/blog/2019/07/03/adaptiveicon/",
+        "teaser":"https://jeroenmols.com/img/blog/adaptiveicon/adaptive_icon.png"}]

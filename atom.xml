@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle>
- <updated>2019-06-14T12:25:23+02:00</updated>
+ <updated>2019-07-03T21:18:42+02:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,22 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>Philips Hue adaptive icon</title>
+   <link href="https://jeroenmols.com/blog/2019/07/03/adaptiveicon/"/>
+   <updated>2019-07-03T00:00:00+02:00</updated>
+   <id>https://jeroenmols.com/blog/2019/07/03/adaptiveicon</id>
+   <content type="html"><![CDATA[
+     
+     <p>Your icon is one of the most important assets in your app. With a bit of luck, users might even put it on their main launcher screen!</p>
+
+<p>As various Android launchers, versions or devices might resize/reshape your icon to make them look consistent, you’ll need to be robust against this kind of changes. Learn how we did that at Philips Hue.</p>
+
+
+     <a href="https://jeroenmols.com/blog/2019/07/03/adaptiveicon/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>Modularization - Lessons learned</title>
