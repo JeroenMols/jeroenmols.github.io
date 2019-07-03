@@ -1,6 +1,6 @@
 ---
 title: Philips Hue adaptive icon
-published: false
+published: true
 header:
   teaser: img/blog/adaptiveicon/adaptive_icon.png
   imgcredit: Philips Hue app icon, http://signify.com/, placed on dark background
@@ -11,7 +11,7 @@ tags:
 ---
 Your icon is one of the most important assets in your app. With a bit of luck, users might even put it on their main launcher screen!
 
-As various Android versions or devices might resize/reshape your icon to make them look consistent on that device, you'll need to be robust against these kind of changes. Learn how we did that at Philips Hue.
+As various Android launchers, versions or devices might resize/reshape your icon to make them look consistent, you'll need to be robust against this kind of changes. Learn how we did that at Philips Hue.
 
 ## Background
 For various years, different device manufacturers have been reshaping icons to make them fit their custom skin of Android. Unfortunately, there wasn't a clear contract in place to do that reshaping, leading to some pretty bad results:
@@ -20,10 +20,10 @@ For various years, different device manufacturers have been reshaping icons to m
 
 Shadows overlayed on top of the Philips wordmark, part of the Hue text cut off and a teardrop shape that looked really weird are just a few of the problems.
 
-Fortunately in Android O, adaptive icons came to the rescue to solve this problem.
+Fortunately, in Android O, adaptive icons came to the rescue to solve this problem.
 
 ## Icon design
-Inspired by the blogpost from Nick Butcher, we wanted to create a depth effect in our icon. Wouldn't it be cool if our icon could change color just like our lights?
+Inspired by [this blog post from Nick Butcher](https://medium.com/google-design/designing-adaptive-icons-515af294c783), we wanted to create a depth effect in our icon. Wouldn't it be cool if our icon could change color just like our lights?
 
 Hence we decided to use a gradient as the background layer:
 
@@ -31,14 +31,14 @@ Hence we decided to use a gradient as the background layer:
 
 Notice how the gradient gets lighter towards the top and darker towards the bottom. It also contains a darker shade of red on the left side and a darker shade of blue on the right.
 
-The foreground of the icon however consists out of a static "Philips" word mark and a plain white background with "Hue" cut out from that:
+The foreground of the icon, however, consists out of a static blue "Philips" word mark and a plain white background with "Hue" cut out from that:
 
 ![Adaptive icon foreground]({{ site.url }}{{ site.baseurl }}/img/blog/adaptiveicon/icon_foreground.png){: .align-center}
 
 Now when the icon will be dragged or pressed, the foreground will move independently of the background causing the "Hue" cutout to hover over different parts of the gradient. This creates a very nice effect where the Hue logo slightly changes colors!
 
 ## Implementation
-In Android studio, right click your project and select "New > Image asset".
+In Android Studio, right-click your project and select "New > Image asset".
 
 ![Create image asset]({{ site.url }}{{ site.baseurl }}/img/blog/adaptiveicon/create_image_asset.png){: .align-center}
 
@@ -67,11 +67,8 @@ In the Android manifest you simply reference both resources in order to use them
        android:roundIcon="@mipmap/ic_launcher_round">
 ```
 
-Make sure to provide both icons for backwards compatibility. Otherwise some phones might place your square item in a round bounding box in order to make it fit with the system.
-
+> Note: `ic_launcher_round.xml` got introduced with the launch of the Google Pixel (Android N) and has since been replaced with the more powerful adaptive icon. <br /> However you can still provide a rounded icon to avoid that Android N devices show your square item in a round bounding box:
 ![Boxed icon when no round variant is provided]({{ site.url }}{{ site.baseurl }}/img/blog/adaptiveicon/boxed_icon.png){: .align-center}
-
-> Note: `ic_launcher_round.xml` got introduced with the launch of the Google Pixel (Android N) and has since been replaced with the more powerful adaptive icon.
 
 ## End result
 Bringing it all together, we now have an icon that not only adapts to any device launcher, but also has a nice subtle color effect on the Hue letters while moving.
@@ -83,4 +80,4 @@ Notice for instance how the letter "e" changes from green to blue while moving r
 ## Wrap-up
 The launcher icon is one of the most important assets of your app and therefore it is key to make it look perfect on any device. Adaptive icons make that possible and also allow you to add a nice little extra touch to your app.
 
-If you've made it this far you should probably follow me on {% include link_twitter.html %}. Feel free leave a comment below!
+If you've made it this far you should probably follow me on {% include link_twitter.html %}. Feel free to leave a comment below!
