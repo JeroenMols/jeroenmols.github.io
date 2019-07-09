@@ -334,4 +334,4 @@ The three-layer app-features-libraries architecture addresses quite some fundame
 
 All source code is available on [Github](https://github.com/JeroenMols/ModularizationExample).
 
-Next blog post, we'll investigate how you can start modularizing an existing app. Make sure to follow me on {% include link_twitter.html %} so you don't miss it!
+Make sure to follow me on {% include link_twitter.html %} and let's investigate how you can start modularizing an existing app [in part 4]({{ site.baseurl }}{% link blog/_posts/2019-04-24-modularizationhow.md %}).

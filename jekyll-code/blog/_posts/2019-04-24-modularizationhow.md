@@ -101,4 +101,4 @@ While doing all this work, nearly all parts of the code will be touched at some 
 ## Wrap-up
 Generally speaking, there are two strategies to modularize an existing app: pull code up or push code down. Make sure to make a big initial push towards modularization to reap the benefits as soon as possible, clean up the module APIs and see if you can take some code improvements along.
 
-Next blog post, I'll share some tips and lessons learned while modularizing. Make sure to follow me on {% include link_twitter.html %} so you don't miss it!
+Make sure to follow me on {% include link_twitter.html %} and read on to learn some tips and lessons learned while modularizing [in part 5]({{ site.baseurl }}{% link blog/_posts/2019-06-12-modularizationtips.md %}).
