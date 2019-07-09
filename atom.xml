@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"
-      xmlns:webfeeds="http://webfeeds.org/rss/1.0">
+<feed xmlns="http://www.w3.org/2005/Atom">
 
  <title>Jeroen Mols</title>
- <link href="https://jeroenmols.com/atom.xml" rel="self"/>
- <link href="https://jeroenmols.com/"/>
+ <link href="https://jeroenmols.com/atom.xml" rel="self" type="application/atom+xml"/>
+ <link href="https://jeroenmols.com/" rel="alternate" type="text/html"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle>
- <updated>2019-07-03T21:18:42+02:00</updated>
+ <updated>2019-07-09T13:03:53+02:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
