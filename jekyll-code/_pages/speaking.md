@@ -10,10 +10,10 @@ header:
 I'm always eager to share my technical knowledge with fellow developers. Don't hesitate to <a href="https://twitter.com/molsjeroen" target="blank">contact me on Twitter</a> if you would like me to speak at your event!
 
 Upcoming talks:
-- Droidcon Berlin - Write awesome unit tests
 - Mobiconf - Successfully modularising your app
 
 2019:
+- Droidcon Berlin - [Write awesome unit tests](https://speakerdeck.com/jeroenmols/write-awesome-unit-tests)
 - mDevCamp Prague - [Journey to painless releases: Continuous delivery for Philips Hue Android](https://speakerdeck.com/jeroenmols/journey-to-painless-releases-continuous-delivery-for-philips-hue-android)
 - Android makers - [Journey to painless releases: Continuous delivery for Philips Hue Android](https://speakerdeck.com/jeroenmols/journey-to-painless-releases-continuous-delivery-for-philips-hue-android)
 - Fragmented Podcast - [Should I Rewrite My App?](https://fragmentedpodcast.com/episodes/152/)
