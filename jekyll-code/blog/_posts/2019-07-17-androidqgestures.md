@@ -10,20 +10,20 @@ tags:
   - navigation
   - gestures
 ---
-From Android Q onwards devices can now operate in a fully gestural system navigation mode. In that mode, there is no longer an on-screen back button, but users can instead swipe from both edges to navigate back.
+From Android Q onwards devices can now operate in a fully gestural system navigation mode. In that mode, there is no longer an on-screen back button, instead users can swipe from both edges to navigate back.
 
 In this blog post, we'll look at a case study on how we added support for these back gestures in the Philips Hue app.
 
 ## Unique Challenge
-At Philips Hue we've heavily optimized the information density so users can control a maximum amount of rooms/zones (cards) within one screen:
+At Philips Hue we've heavily optimized the information density so users can control the maximum amount of rooms/zones (cards) within one screen:
 
 ![Philips Hue home screen design]({{ site.url }}{{ site.baseurl }}/img/blog/androidqgestures/hue_homescreen.png){: .align-center .width-half}
 
-There are three main optimizations to make the maximum amount of cards fit:
+There are three main optimizations we made to allow the maximum amount of cards to fit:
 
 1. The brightness slider is aligned with the bottom of the card
 2. Card height is smaller when a room/zone is off
-3. Brightness slider only responds to swiping the handle, not clicking on a position in the slider. This is done to avoid confusion with a card click to enter a room/zone.
+3. Brightness slider only responds to swiping the thumb, not clicking on a position in the slider. This is done to avoid confusion when clicking on the card to enter a room/zone.
 
 Let's investigate how these created some unique challenges to prepare our app for Android Q gesture navigation.
 
@@ -46,7 +46,7 @@ brightnessSlider.doOnLayout {
 
 In the example above, we exclude both the minimum and maximum area of the brightness slider from navigation gestures.
 
-Important to know is that you should define the `systemGestureExclusionRects` in coordinates relative to the `View`/`ViewGroup` you are applying the exclusion `Rect`s on!
+Important to know is that you should define the `systemGestureExclusionRects` in coordinates relative to the `View`/`ViewGroup` you are applying the exclusion `Rects` on!
 
 In the example above we apply them on the brightness slider so we use coordinates relative to the slider (notice the use of `width` and `height`). But we can also apply the exclusion to the parent (notice the use of `left` and `right`):
 
@@ -62,11 +62,25 @@ parent.doOnLayout {
 }
 ```
 
-At any rate, we can only apply the exclusion `Rect`s once the view is laid out, hence we wrap the `setSystemGestureExclusionRects` with the awesome [`doOnLayout` method](https://developer.android.com/reference/kotlin/androidx/core/view/package-summary#doonlayout) from Android KTX.
+At any rate, we can only apply the exclusion `Rects` once the view is laid out, hence we wrap the `setSystemGestureExclusionRects` with the awesome [`doOnLayout` method](https://developer.android.com/reference/kotlin/androidx/core/view/package-summary#doonlayout) from Android KTX.
 
-While the width of the exclusion area can be determined by adding an `OnApplyWindowInsetsListener` and taking the `getSystemGestureInsets` from the returned insets, you can also simplify this and use a hardcoded dimension that is at least 20dp.
+To get the width of the exclusion area `exclusionWidth`, we should add an `OnApplyWindowInsetsListener` and ask the returned insets for the `getSystemGestureInsets`. There is one problem though: this listener is only called when the edge to edge system UI flags (`View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN`) are set!
 
-Finally, note that you need to use at least androidx.core version 1.2.0 or higher in order for the [ViewCompat API](https://developer.android.com/reference/androidx/core/view/ViewCompat#getSystemGestureExclusionRects(android.view.View)) to be available. If you're not ready to jump on 1.2.0 yet, you can always surround it with an API level check (make sure to use compile SDK Q).
+So as an alternative we can take the `WindowInsets` from the root view, which can easily be done in the following way:
+
+```kotlin
+seekbar.doOnAttach {
+    val insets = WindowInsetsCompat.wrap(view.rootWindowInsets)
+    val minExclusionWidth = insets.systemGestureInsets.left
+    val maxExclusionWidth = insets.systemGestureInsets.right
+
+    applySystemGestureExclusionRects(minExclusionWidth, maxExclusionWidth)
+}
+```
+
+> Note that [`doOnAttach`](https://android-review.googlesource.com/c/platform/frameworks/support/+/983823/) and [`WindowInsetsCompat.wrap()`]() have yet to be released in an upcoming support library
+
+Finally, note that you need to use at least androidx.core version 1.2.0 or higher in order for the [ViewCompat `setSystemGestureExclusionRects` API](https://developer.android.com/reference/androidx/core/view/ViewCompat#setSystemGestureExclusionRects(android.view.View,%2520java.util.List%3Candroid.graphics.Rect%3E))) to be available. If you're not ready to jump on 1.2.0 yet, you can always surround it with an API level check (make sure to use compile SDK Q).
 
 ```kotlin
 if (Build.VERSION.SDK_INT >= Q) {
@@ -81,11 +95,11 @@ if (Build.VERSION.SDK_INT >= Q) {
 ```
 
 ## Exclusion limitations
-Android Q only allows excluding a maximum of 200dp from each edge from back navigation. Otherwise, apps could exclude both full edges and completely break the back navigation.
+Android Q will only excluding a maximum of 200dp from each edge from back navigation (effective from Q beta 6 onwards). Otherwise, apps could exclude both full edges and completely break the back navigation.
 
 Unfortunately, this creates a problem for us as our screen can show up to 8 cards at any given point in time. Hence we would require almost double the allowed maximum assuming our brightness slider has a 48dp height!!!
 
-Requesting too much area exclusion area, will cause the topmost cards not to have any exclusion as Android grants the exclusions from top to bottom:
+Requesting too much area exclusion area will cause the topmost cards not to have any exclusion as Android grants the exclusions from bottom to top:
 
 <script async class="speakerdeck-embed" data-slide="82" data-id="62721c9fa7ca493aad3dd38f978dacf9" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
 
@@ -123,13 +137,13 @@ The end result is pretty neat:
 - When thumb is not near max/min: you can swipe back from both edges
 
 ## Crosstalk with brightness sliders
-Unfortunately, all isn't good just yet in, because in very rare cases back navigation would still accidentally causee `onTouchEvent` of our custom brightness slider to also be called:
+Unfortunately, all isn't good just yet, because in very rare cases back navigation would still accidentally cause `onTouchEvent` of our custom brightness slider to also be called:
 
 ![Back navigation gestures first causes brightness slider to jump to max before navigating back]({{ site.url }}{{ site.baseurl }}/img/blog/androidqgestures/crosstalk_exclusion.gif){: .align-center}
 
 Imagine a user opening our app, lowering the brightness of a room and then navigating back just to see the brightness jumping back to 100% right before the app exits... infuriating!
 
-To fix this we decided to detect whether a swipe gesture is being performed near the min/max of the brightness slider while the thumb isn't there. In that case, the system should handle the navigate back and we should ignore the touch:
+To fix this we decided to detect whether a swipe gesture is being performed near the min/max of the brightness slider while the thumb isn't there. In that case, the system should handle the back gesture and we should ignore the touch:
 
 ```kotlin
 private fun isTouchInterferingWithBackNavigation(touchX: Float): Boolean {
@@ -161,4 +175,4 @@ Finally, we have the exact behavior we were looking for!
 ## Wrap-up
 Android Q gesture navigation will impact how users interact with our apps. For most apps, this should work out of the box, but in rare cases, the system gesture exclusion API can help whitelist parts of your app where touch is required to work near the edges.
 
-Hopefully, you had an interesting read! If you want to get notified when I post new interesting content, you should probably follow me on {% include link_twitter.html %}. Feel free to leave a comment below!
+Follow me on {% include link_twitter.html %} to get notified when I post more interesting content! Feel free to leave a comment below.
