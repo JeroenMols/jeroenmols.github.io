@@ -1,0 +1,906 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.12.0 by Michael Rose
+  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Supporting Android Q gestural navigation - Jeroen Mols</title>
+<meta name="description" content="From Android Q onwards devices can now operate in a fully gestural system navigation mode. In that mode, there is no longer an on-screen back button, instead users can swipe from both edges to navigate back.">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="Jeroen Mols">
+<meta property="og:title" content="Supporting Android Q gestural navigation">
+<meta property="og:url" content="https://jeroenmols.com/blog/2019/07/17/androidqgestures/">
+
+
+  <meta property="og:description" content="From Android Q onwards devices can now operate in a fully gestural system navigation mode. In that mode, there is no longer an on-screen back button, instead users can swipe from both edges to navigate back.">
+
+
+
+  <meta property="og:image" content="https://jeroenmols.com/img/blog/androidqgestures/androidqgestures.png">
+
+
+
+  <meta name="twitter:site" content="@molsjeroen">
+  <meta name="twitter:title" content="Supporting Android Q gestural navigation">
+  <meta name="twitter:description" content="From Android Q onwards devices can now operate in a fully gestural system navigation mode. In that mode, there is no longer an on-screen back button, instead users can swipe from both edges to navigate back.">
+  <meta name="twitter:url" content="https://jeroenmols.com/blog/2019/07/17/androidqgestures/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+      <meta name="twitter:image" content="https://jeroenmols.com/img/blog/androidqgestures/androidqgestures.png">
+    
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2019-07-17T00:00:00+02:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://jeroenmols.com/blog/2019/07/17/androidqgestures/">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "Jeroen Mols",
+      "url": "https://jeroenmols.com",
+      "sameAs": ["https://twitter.com/molsjeroen","https://www.linkedin.com/in/jeroenmols/","https://plus.google.com/+JeroenMols","https://github.com/JeroenMols","https://speakerdeck.com/jeroenmols","https://stackoverflow.com/users/2771851/jmols"]
+    }
+  </script>
+
+
+
+  <meta name="google-site-verification" content="8E8HUpExgyNFdLuFMWmkSUl08gISnOF3UWexA55aNrk" />
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$('.ga-link').on('click', function(){
+		if (typeof(ga)!=="undefined"){
+			ga('send',{
+				hitType: 'event',
+				eventCategory: 'Outbound link',
+				eventAction: 'click',
+				eventLabel: event.target.href
+			});
+	  	}
+	});
+})	;
+</script>
+
+<meta name="theme-color" content="#2c3e50">
+
+<link href="atom.xml" type="application/atom+xml" rel="alternate" title="Jeroen Mols Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="https://jeroenmols.com/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="/">Jeroen Mols</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://jeroenmols.com/blog/" >Blog</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://jeroenmols.com/speaking/" >Speaking</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://jeroenmols.com/hireme/" >Hire me</a>
+            </li>
+          
+        </ul>
+        
+        <button class="search__toggle" type="button">
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="/img/profile.jpg" alt="Jeroen Mols" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Jeroen Mols</h3>
+    
+    
+      <p class="author__bio" itemprop="description">
+        Android GDE & Lead Android developer at Philips Hue
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Mol, Belgium</span>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://twitter.com/@molsjeroen" itemprop="sameAs">
+            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+          </a>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="https://plus.google.com/JeroenMols" itemprop="sameAs">
+            <i class="fab fa-fw fa-google-plus-square" aria-hidden="true"></i> Google+
+          </a>
+        </li>
+      
+
+      
+        <li>
+          <a href="https://www.linkedin.com/in/jeroenmols" itemprop="sameAs">
+            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/JeroenMols" itemprop="sameAs">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="https://www.stackoverflow.com/users/2771851/jmols" itemprop="sameAs">
+            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i> Stack Overflow
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        
+          <li>
+            <a href="https://www.youtube.com/channel/UC34Vt1lo8T15_rgc3e3Jsew" itemprop="sameAs">
+              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i> YouTube
+            </a>
+          </li>
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+  <li>
+    <a href="https://speakerdeck.com/jeroenmols" itemprop="sameAs">
+      <i class="fa fa-line-chart" aria-hidden="true"></i> Speaker Deck
+    </a>
+  </li>
+
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Supporting Android Q gestural navigation">
+    <meta itemprop="description" content="From Android Q onwards devices can now operate in a fully gestural system navigation mode. In that mode, there is no longer an on-screen back button, instead users can swipe from both edges to navigate back.">
+    <meta itemprop="datePublished" content="July 17, 2019">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Supporting Android Q gestural navigation
+</h1>
+          <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  17 Jul 2019</p>
+
+          
+            <img src="https://jeroenmols.com/img/blog/androidqgestures/androidqgestures.png" alt="Supporting Android Q gestural navigation" title="Philips Hue app app screenshot, https://play.google.com/store/apps/details?id=com.philips.lighting.hue2, cropped and placed on dark background">
+          
+
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  5 minute read
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>From Android Q onwards devices can now operate in a fully gestural system navigation mode. In that mode, there is no longer an on-screen back button, instead users can swipe from both edges to navigate back.</p>
+
+<p>In this blog post, we’ll look at a case study on how we added support for these back gestures in the Philips Hue app.</p>
+
+<h2 id="unique-challenge">Unique Challenge</h2>
+<p>At Philips Hue we’ve heavily optimized the information density so users can control the maximum amount of rooms/zones (cards) within one screen:</p>
+
+<p><img src="https://jeroenmols.com/img/blog/androidqgestures/hue_homescreen.png" alt="Philips Hue home screen design" class="align-center width-half" /></p>
+
+<p>There are three main optimizations we made to allow the maximum amount of cards to fit:</p>
+
+<ol>
+  <li>The brightness slider is aligned with the bottom of the card</li>
+  <li>Card height is smaller when a room/zone is off</li>
+  <li>Brightness slider only responds to swiping the thumb, not clicking on a position in the slider. This is done to avoid confusion when clicking on the card to enter a room/zone.</li>
+</ol>
+
+<p>Let’s investigate how these created some unique challenges to prepare our app for Android Q gesture navigation.</p>
+
+<h2 id="edge-to-edge-brightness-sliders">Edge to edge Brightness sliders</h2>
+<p>To start, as the cards go nearly edge to edge, moving the bottom aligned brightness slider isn’t possible when the thumb is near the min or max. Instead, the back gesture is triggered:</p>
+
+<p><img src="https://jeroenmols.com/img/blog/androidqgestures/no_exclusions.gif" alt="Back navigation gestures prevent from moving the brightness slider" class="align-center" /></p>
+
+<p>Fortunately, Android Q offers a way to tell the Android system that it shouldn’t intercept gestures in a particular area of the screen using <a href="https://developer.android.com/reference/android/view/View#setSystemGestureExclusionRects(java.util.List%3Candroid.graphics.Rect%3E)"><code class="highlighter-rouge">setSystemGestureExclusionRects</code></a>:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">brightnessSlider</span><span class="p">.</span><span class="n">doOnLayout</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">exclusions</span> <span class="p">=</span> <span class="n">listOf</span><span class="p">(</span>
+            <span class="n">Rect</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">exclusionWidth</span><span class="p">,</span> <span class="n">it</span><span class="p">.</span><span class="n">height</span><span class="p">),</span> <span class="c1">// min area</span>
+            <span class="n">Rect</span><span class="p">(</span><span class="n">it</span><span class="p">.</span><span class="n">width</span> <span class="p">-</span> <span class="n">exclusionWidth</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">it</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="n">it</span><span class="p">.</span><span class="n">height</span><span class="p">)</span> <span class="c1">// max area</span>
+        <span class="p">)</span>
+    <span class="n">ViewCompat</span><span class="p">.</span><span class="n">setSystemGestureExclusionRects</span><span class="p">(</span><span class="n">brightnessSlider</span><span class="p">,</span> <span class="n">exclusions</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>In the example above, we exclude both the minimum and maximum area of the brightness slider from navigation gestures.</p>
+
+<p>Important to know is that you should define the <code class="highlighter-rouge">systemGestureExclusionRects</code> in coordinates relative to the <code class="highlighter-rouge">View</code>/<code class="highlighter-rouge">ViewGroup</code> you are applying the exclusion <code class="highlighter-rouge">Rects</code> on!</p>
+
+<p>In the example above we apply them on the brightness slider so we use coordinates relative to the slider (notice the use of <code class="highlighter-rouge">width</code> and <code class="highlighter-rouge">height</code>). But we can also apply the exclusion to the parent (notice the use of <code class="highlighter-rouge">left</code> and <code class="highlighter-rouge">right</code>):</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">parent</span><span class="p">.</span><span class="n">doOnLayout</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">exclusions</span> <span class="p">=</span> <span class="n">with</span><span class="p">(</span><span class="n">brightnessSlider</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">listOf</span><span class="p">(</span>
+            <span class="n">Rect</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">exclusionWidth</span><span class="p">,</span> <span class="n">bottom</span><span class="p">),</span> <span class="c1">// min area</span>
+            <span class="n">Rect</span><span class="p">(</span><span class="n">right</span> <span class="p">-</span> <span class="n">exclusionWidth</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">bottom</span><span class="p">)</span> <span class="c1">// max area</span>
+        <span class="p">)</span>
+    <span class="p">}</span>
+    <span class="n">ViewCompat</span><span class="p">.</span><span class="n">setSystemGestureExclusionRects</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">exclusions</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>At any rate, we can only apply the exclusion <code class="highlighter-rouge">Rects</code> once the view is laid out, hence we wrap the <code class="highlighter-rouge">setSystemGestureExclusionRects</code> with the awesome <a href="https://developer.android.com/reference/kotlin/androidx/core/view/package-summary#doonlayout"><code class="highlighter-rouge">doOnLayout</code> method</a> from Android KTX.</p>
+
+<p>To get the width of the exclusion area <code class="highlighter-rouge">exclusionWidth</code>, we should add an <code class="highlighter-rouge">OnApplyWindowInsetsListener</code> and ask the returned insets for the <code class="highlighter-rouge">getSystemGestureInsets</code>. There is one problem though: this listener is only called when the edge to edge system UI flags (<code class="highlighter-rouge">View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN</code>) are set!</p>
+
+<p>So as an alternative we can take the <code class="highlighter-rouge">WindowInsets</code> from the root view, which can easily be done in the following way:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">seekbar</span><span class="p">.</span><span class="n">doOnAttach</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">insets</span> <span class="p">=</span> <span class="n">WindowInsetsCompat</span><span class="p">.</span><span class="n">wrap</span><span class="p">(</span><span class="n">view</span><span class="p">.</span><span class="n">rootWindowInsets</span><span class="p">)</span>
+    <span class="kd">val</span> <span class="py">minExclusionWidth</span> <span class="p">=</span> <span class="n">insets</span><span class="p">.</span><span class="n">systemGestureInsets</span><span class="p">.</span><span class="n">left</span>
+    <span class="kd">val</span> <span class="py">maxExclusionWidth</span> <span class="p">=</span> <span class="n">insets</span><span class="p">.</span><span class="n">systemGestureInsets</span><span class="p">.</span><span class="n">right</span>
+
+    <span class="n">applySystemGestureExclusionRects</span><span class="p">(</span><span class="n">minExclusionWidth</span><span class="p">,</span> <span class="n">maxExclusionWidth</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>Note that <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/983823/"><code class="highlighter-rouge">doOnAttach</code></a> and <a href=""><code class="highlighter-rouge">WindowInsetsCompat.wrap()</code></a> have yet to be released in an upcoming support library</p>
+</blockquote>
+
+<p>Finally, note that you need to use at least androidx.core version 1.2.0 or higher in order for the <a href="https://developer.android.com/reference/androidx/core/view/ViewCompat#setSystemGestureExclusionRects(android.view.View,%2520java.util.List%3Candroid.graphics.Rect%3E)">ViewCompat <code class="highlighter-rouge">setSystemGestureExclusionRects</code> API</a>) to be available. If you’re not ready to jump on 1.2.0 yet, you can always surround it with an API level check (make sure to use compile SDK Q).</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="n">Build</span><span class="p">.</span><span class="n">VERSION</span><span class="p">.</span><span class="n">SDK_INT</span> <span class="p">&gt;=</span> <span class="n">Q</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">exclusions</span> <span class="p">=</span> <span class="n">with</span><span class="p">(</span><span class="n">brightnessSlider</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">listOf</span><span class="p">(</span>
+            <span class="n">Rect</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">exclusionWidth</span><span class="p">,</span> <span class="n">height</span><span class="p">),</span>
+            <span class="n">Rect</span><span class="p">(</span><span class="n">width</span> <span class="p">-</span> <span class="n">exclusionWidth</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+        <span class="p">)</span>
+    <span class="p">}</span>
+    <span class="n">brightnessSlider</span><span class="p">.</span><span class="n">setSystemGestureExclusionRects</span><span class="p">(</span><span class="n">exclusions</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="exclusion-limitations">Exclusion limitations</h2>
+<p>Android Q will only excluding a maximum of 200dp from each edge from back navigation (effective from Q beta 6 onwards). Otherwise, apps could exclude both full edges and completely break the back navigation.</p>
+
+<p>Unfortunately, this creates a problem for us as our screen can show up to 8 cards at any given point in time. Hence we would require almost double the allowed maximum assuming our brightness slider has a 48dp height!!!</p>
+
+<p>Requesting too much area exclusion area will cause the topmost cards not to have any exclusion as Android grants the exclusions from bottom to top:</p>
+
+<script async="" class="speakerdeck-embed" data-slide="82" data-id="62721c9fa7ca493aad3dd38f978dacf9" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>So how do we solve this?</p>
+
+<p>First of all, the thumb of the brightness slider can only be at one edge at any given point in time, so the very first thing we can do is only exclude a brightness slider edge when the thumb is there:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">brightnessSlider</span><span class="p">.</span><span class="n">doOnLayout</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">isThumbNearMin</span><span class="p">())</span> <span class="p">{</span>
+        <span class="n">ViewCompat</span><span class="p">.</span><span class="n">setSystemGestureExclusionRects</span><span class="p">(</span><span class="n">it</span><span class="p">,</span> <span class="n">getMinExclustionRect</span><span class="p">())</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">isThumbNearMax</span><span class="p">())</span> <span class="p">{</span>
+        <span class="n">ViewCompat</span><span class="p">.</span><span class="n">setSystemGestureExclusionRects</span><span class="p">(</span><span class="n">it</span><span class="p">,</span> <span class="n">getMaxExclusionRect</span><span class="p">())</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">ViewCompat</span><span class="p">.</span><span class="n">setSystemGestureExclusionRects</span><span class="p">(</span><span class="n">it</span><span class="p">,</span> <span class="n">emptyList</span><span class="p">())</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This doesn’t just improve the user experience (by supporting back gestures on most cards), but it also significantly reduces the likelihood that we request more than the max exclusion area. Only when more than 5 cards are at full brightness or minimum brightness we would still exceed!</p>
+
+<p>Secondly, when cards are off (and the brightness slider is at 0 alpha), we also shouldn’t ask for any exclusions of such a slider:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if (!switch.checked) {
+    ViewCompat.setSystemGestureExclusionRects(brightnessSlider, emptyList())
+}
+</code></pre></div></div>
+
+<p>The end result is pretty neat:</p>
+
+<p><img src="https://jeroenmols.com/img/blog/androidqgestures/minmax_exclusions.gif" alt="Back navigation gestures with min/max exclusions for brightness slider" class="align-center" /></p>
+
+<ul>
+  <li>When thumb is near max/min: you can swipe back from the opposite edge</li>
+  <li>When thumb is not near max/min: you can swipe back from both edges</li>
+</ul>
+
+<h2 id="crosstalk-with-brightness-sliders">Crosstalk with brightness sliders</h2>
+<p>Unfortunately, all isn’t good just yet, because in very rare cases back navigation would still accidentally cause <code class="highlighter-rouge">onTouchEvent</code> of our custom brightness slider to also be called:</p>
+
+<p><img src="https://jeroenmols.com/img/blog/androidqgestures/crosstalk_exclusion.gif" alt="Back navigation gestures first causes brightness slider to jump to max before navigating back" class="align-center" /></p>
+
+<p>Imagine a user opening our app, lowering the brightness of a room and then navigating back just to see the brightness jumping back to 100% right before the app exits… infuriating!</p>
+
+<p>To fix this we decided to detect whether a swipe gesture is being performed near the min/max of the brightness slider while the thumb isn’t there. In that case, the system should handle the back gesture and we should ignore the touch:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">private</span> <span class="k">fun</span> <span class="n">isTouchInterferingWithBackNavigation</span><span class="p">(</span><span class="n">touchX</span><span class="p">:</span> <span class="n">Float</span><span class="p">):</span> <span class="n">Boolean</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">Build</span><span class="p">.</span><span class="n">VERSION</span><span class="p">.</span><span class="n">SDK_INT</span> <span class="p">&lt;</span> <span class="n">Q</span><span class="p">)</span> <span class="k">return</span> <span class="k">false</span>
+
+    <span class="kd">val</span> <span class="py">positionOnSlider</span> <span class="p">=</span> <span class="p">(</span><span class="n">getProgressForXPosition</span><span class="p">(</span><span class="n">touchX</span><span class="p">)</span> <span class="p">-</span> <span class="n">min</span><span class="p">).</span><span class="n">toFloat</span><span class="p">()</span> <span class="p">/</span> <span class="p">(</span><span class="n">max</span> <span class="p">-</span> <span class="n">min</span><span class="p">)</span>
+    <span class="kd">val</span> <span class="py">slideGestureNearMinNotOnThumb</span> <span class="p">=</span> <span class="n">positionOnSlider</span> <span class="p">&lt;</span> <span class="m">0.1f</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="n">isThumbNearMin</span>
+    <span class="kd">val</span> <span class="py">slideGestureNearMaxNotOnThumb</span> <span class="p">=</span> <span class="n">positionOnSlider</span> <span class="p">&gt;</span> <span class="m">0.9f</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="n">isThumbNearMax</span>
+    <span class="k">return</span> <span class="n">slideGestureNearMinNotOnThumb</span> <span class="p">||</span> <span class="n">slideGestureNearMaxNotOnThumb</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Ignoring the touch is as easy as just returning false in the <code class="highlighter-rouge">onTouchEvent</code> method:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">when</span> <span class="p">(</span><span class="n">ev</span><span class="p">.</span><span class="n">getAction</span><span class="p">()</span> <span class="n">and</span> <span class="n">MotionEvent</span><span class="p">.</span><span class="n">ACTION_MASK</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">MotionEvent</span><span class="p">.</span><span class="n">ACTION_DOWN</span> <span class="p">-&gt;</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">isTouchInterferingWithBackNavigation</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">false</span>
+        <span class="p">}</span>
+        <span class="o">..</span><span class="p">.</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Note that this does impact the UX of our brightness slider as touch only works near the edges when the thumb is there. But this is a trade-off we made to avoid the thumb from accidentally jumping to the wrong position while navigating back.</p>
+
+<p>Finally, we have the exact behavior we were looking for!</p>
+
+<h2 id="wrap-up">Wrap-up</h2>
+<p>Android Q gesture navigation will impact how users interact with our apps. For most apps, this should work out of the box, but in rare cases, the system gesture exclusion API can help whitelist parts of your app where touch is required to work near the edges.</p>
+
+<p>Follow me on <span><a href="https://twitter.com/molsjeroen?source=supportingandroidqgesturalnavigation2019" class="ga-link" target="_blank">Twitter</a></span>
+ to get notified when I post more interesting content! Feel free to leave a comment below.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/androidq" class="page__taxonomy-item" rel="tag">androidq</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/gestures" class="page__taxonomy-item" rel="tag">gestures</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/navigation" class="page__taxonomy-item" rel="tag">navigation</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/ui" class="page__taxonomy-item" rel="tag">ui</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/blog" class="page__taxonomy-item" rel="tag">blog</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-07-17T00:00:00+02:00">July 17, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=Supporting+Android+Q+gestural+navigation%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2019%2F07%2F17%2Fandroidqgestures%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2019%2F07%2F17%2Fandroidqgestures%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://plus.google.com/share?url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2019%2F07%2F17%2Fandroidqgestures%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fab fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2019%2F07%2F17%2Fandroidqgestures%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      <section class="page__share">
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bottom-blog-responsive -->
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-9854541518226004"
+       data-ad-slot="4086741379"
+       data-ad-format="auto"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/blog/2019/07/03/adaptiveicon/" class="pagination--pager" title="Philips Hue adaptive icon
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a Comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/adaptiveicon/adaptive_icon.png)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2019/07/03/adaptiveicon/" rel="permalink">Philips Hue adaptive icon
+</a>
+        </h2>
+        <h3 class="archive__date">03 Jul 2019</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2019/07/03/adaptiveicon/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Your icon is one of the most important assets in your app. With a bit of luck, users might even put it on their main launcher screen!
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/modularizationtips/modularization_tips.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2019/06/12/modularizationtips/" rel="permalink">Modularization - Lessons learned
+</a>
+        </h2>
+        <h3 class="archive__date">12 Jun 2019</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2019/06/12/modularizationtips/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  7 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Wrapping up this series on modularization I’d like to share some of the things we’ve learned at Philips Hue while going through this process the past year.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/modularizationhow/modularization_how.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2019/04/24/modularizationhow/" rel="permalink">Modularization - How to approach
+</a>
+        </h2>
+        <h3 class="archive__date">24 Apr 2019</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2019/04/24/modularizationhow/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  5 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Now that we have a clear idea of how a modularized app could look like how can this be applied to an existing app?
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/modularizationexample/modularization_example.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2019/04/02/modularizationexample/" rel="permalink">Modularization - Real-life example
+</a>
+        </h2>
+        <h3 class="archive__date">02 Apr 2019</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2019/04/02/modularizationexample/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  8 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">With a clear view on how multi-module apps should be architected, let’s dive into a real-life practical example.
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+    <div id="results" class="results"></div></div>
+      </div>
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+      <li><a href="https://twitter.com/molsjeroen"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+    
+    
+    
+      <li><a href="https://github.com/JeroenMols"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    
+    <li><a href="atom.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2019 Jeroen Mols. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-63356566-1', 'auto');
+  ga('set', 'anonymizeIp', false)
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://jeroenmols.com/blog/2019/07/17/androidqgestures/";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = "/blog/2019/07/17/androidqgestures"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jeroenmols.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+  </body>
+</html>

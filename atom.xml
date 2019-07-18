@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/" rel="alternate" type="text/html"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle>
- <updated>2019-07-09T13:11:50+02:00</updated>
+ <updated>2019-07-18T10:31:46+02:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,22 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>Supporting Android Q gestural navigation</title>
+   <link href="https://jeroenmols.com/blog/2019/07/17/androidqgestures/"/>
+   <updated>2019-07-17T00:00:00+02:00</updated>
+   <id>https://jeroenmols.com/blog/2019/07/17/androidqgestures</id>
+   <content type="html"><![CDATA[
+     
+     <p>From Android Q onwards devices can now operate in a fully gestural system navigation mode. In that mode, there is no longer an on-screen back button, instead users can swipe from both edges to navigate back.</p>
+
+<p>In this blog post, we’ll look at a case study on how we added support for these back gestures in the Philips Hue app.</p>
+
+
+     <a href="https://jeroenmols.com/blog/2019/07/17/androidqgestures/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>Philips Hue adaptive icon</title>

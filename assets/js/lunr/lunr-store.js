@@ -228,4 +228,9 @@ var store = [{
         "excerpt":"Your icon is one of the most important assets in your app. With a bit of luck, users might even put it on their main launcher screen! As various Android launchers, versions or devices might resize/reshape your icon to make them look consistent, you’ll need to be robust against this...","categories": ["blog"],
         "tags": ["ui","android","adaptive icon"],
         "url": "https://jeroenmols.com/blog/2019/07/03/adaptiveicon/",
-        "teaser":"https://jeroenmols.com/img/blog/adaptiveicon/adaptive_icon.png"}]
+        "teaser":"https://jeroenmols.com/img/blog/adaptiveicon/adaptive_icon.png"},{
+        "title": "Supporting Android Q gestural navigation",
+        "excerpt":"From Android Q onwards devices can now operate in a fully gestural system navigation mode. In that mode, there is no longer an on-screen back button, instead users can swipe from both edges to navigate back. In this blog post, we’ll look at a case study on how we added...","categories": ["blog"],
+        "tags": ["ui","androidq","navigation","gestures"],
+        "url": "https://jeroenmols.com/blog/2019/07/17/androidqgestures/",
+        "teaser":"https://jeroenmols.com/img/blog/androidqgestures/androidqgestures.png"}]
