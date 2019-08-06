@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/" rel="alternate" type="text/html"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle>
- <updated>2019-07-18T10:31:46+02:00</updated>
+ <updated>2019-08-06T21:12:33+02:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,27 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>Lessons learned being a lead developer</title>
+   <link href="https://jeroenmols.com/blog/2019/08/06/lessonsleaddeveloper/"/>
+   <updated>2019-08-06T00:00:00+02:00</updated>
+   <id>https://jeroenmols.com/blog/2019/08/06/lessonsleaddeveloper</id>
+   <content type="html"><![CDATA[
+     
+     <p>Three years ago, we decided ramp up internal app development at Philips Hue. After interviewing candidates (78!) for six months, I became the lead Android developer of the freshly hired Android team.</p>
+
+<p>In this non-tech post (for a change), I’d like to openly share my experiences being a team lead. It’s been a bumpy ride, but I came out with quite some new perspectives that make me a stronger lead and a better person.</p>
+
+<h1 id="part-1-team-and-project">Part 1: Team and project</h1>
+<p>To put my experiences into perspective, I think it’s important to first cover the team set up, my role and some of the project history.</p>
+
+<p>Feel free to skip this part and jump to the learnings instead 👇!</p>
+
+
+     <a href="https://jeroenmols.com/blog/2019/08/06/lessonsleaddeveloper/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>Supporting Android Q gestural navigation</title>

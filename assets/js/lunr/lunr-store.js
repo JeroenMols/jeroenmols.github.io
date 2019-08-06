@@ -233,4 +233,9 @@ var store = [{
         "excerpt":"From Android Q onwards devices can now operate in a fully gestural system navigation mode. In that mode, there is no longer an on-screen back button, instead users can swipe from both edges to navigate back. In this blog post, we’ll look at a case study on how we added...","categories": ["blog"],
         "tags": ["ui","androidq","navigation","gestures"],
         "url": "https://jeroenmols.com/blog/2019/07/17/androidqgestures/",
-        "teaser":"https://jeroenmols.com/img/blog/androidqgestures/androidqgestures.png"}]
+        "teaser":"https://jeroenmols.com/img/blog/androidqgestures/androidqgestures.png"},{
+        "title": "Lessons learned being a lead developer",
+        "excerpt":"Three years ago, we decided ramp up internal app development at Philips Hue. After interviewing candidates (78!) for six months, I became the lead Android developer of the freshly hired Android team. In this non-tech post (for a change), I’d like to openly share my experiences being a team lead....","categories": ["blog"],
+        "tags": ["team lead","software engineering","lessonslearned"],
+        "url": "https://jeroenmols.com/blog/2019/08/06/lessonsleaddeveloper/",
+        "teaser":"https://jeroenmols.com/img/blog/lessonsleaddeveloper/lessonsleaddeveloper.jpg"}]

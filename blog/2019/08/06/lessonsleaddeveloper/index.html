@@ -1,0 +1,998 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.12.0 by Michael Rose
+  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Lessons learned being a lead developer - Jeroen Mols</title>
+<meta name="description" content="Three years ago, we decided ramp up internal app development at Philips Hue. After interviewing candidates (78!) for six months, I became the lead Android developer of the freshly hired Android team.">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="Jeroen Mols">
+<meta property="og:title" content="Lessons learned being a lead developer">
+<meta property="og:url" content="https://jeroenmols.com/blog/2019/08/06/lessonsleaddeveloper/">
+
+
+  <meta property="og:description" content="Three years ago, we decided ramp up internal app development at Philips Hue. After interviewing candidates (78!) for six months, I became the lead Android developer of the freshly hired Android team.">
+
+
+
+  <meta property="og:image" content="https://jeroenmols.com/img/blog/lessonsleaddeveloper/lessonsleaddeveloper.jpg">
+
+
+
+  <meta name="twitter:site" content="@molsjeroen">
+  <meta name="twitter:title" content="Lessons learned being a lead developer">
+  <meta name="twitter:description" content="Three years ago, we decided ramp up internal app development at Philips Hue. After interviewing candidates (78!) for six months, I became the lead Android developer of the freshly hired Android team.">
+  <meta name="twitter:url" content="https://jeroenmols.com/blog/2019/08/06/lessonsleaddeveloper/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+      <meta name="twitter:image" content="https://jeroenmols.com/img/blog/lessonsleaddeveloper/lessonsleaddeveloper.jpg">
+    
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2019-08-06T00:00:00+02:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://jeroenmols.com/blog/2019/08/06/lessonsleaddeveloper/">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "Jeroen Mols",
+      "url": "https://jeroenmols.com",
+      "sameAs": ["https://twitter.com/molsjeroen","https://www.linkedin.com/in/jeroenmols/","https://plus.google.com/+JeroenMols","https://github.com/JeroenMols","https://speakerdeck.com/jeroenmols","https://stackoverflow.com/users/2771851/jmols"]
+    }
+  </script>
+
+
+
+  <meta name="google-site-verification" content="8E8HUpExgyNFdLuFMWmkSUl08gISnOF3UWexA55aNrk" />
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$('.ga-link').on('click', function(){
+		if (typeof(ga)!=="undefined"){
+			ga('send',{
+				hitType: 'event',
+				eventCategory: 'Outbound link',
+				eventAction: 'click',
+				eventLabel: event.target.href
+			});
+	  	}
+	});
+})	;
+</script>
+
+<meta name="theme-color" content="#2c3e50">
+
+<link href="atom.xml" type="application/atom+xml" rel="alternate" title="Jeroen Mols Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="https://jeroenmols.com/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="/">Jeroen Mols</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://jeroenmols.com/blog/" >Blog</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://jeroenmols.com/speaking/" >Speaking</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://jeroenmols.com/hireme/" >Hire me</a>
+            </li>
+          
+        </ul>
+        
+        <button class="search__toggle" type="button">
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="/img/profile.jpg" alt="Jeroen Mols" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Jeroen Mols</h3>
+    
+    
+      <p class="author__bio" itemprop="description">
+        Android GDE & Lead Android developer at Philips Hue
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Mol, Belgium</span>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://twitter.com/@molsjeroen" itemprop="sameAs">
+            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+          </a>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="https://plus.google.com/JeroenMols" itemprop="sameAs">
+            <i class="fab fa-fw fa-google-plus-square" aria-hidden="true"></i> Google+
+          </a>
+        </li>
+      
+
+      
+        <li>
+          <a href="https://www.linkedin.com/in/jeroenmols" itemprop="sameAs">
+            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/JeroenMols" itemprop="sameAs">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="https://www.stackoverflow.com/users/2771851/jmols" itemprop="sameAs">
+            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i> Stack Overflow
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        
+          <li>
+            <a href="https://www.youtube.com/channel/UC34Vt1lo8T15_rgc3e3Jsew" itemprop="sameAs">
+              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i> YouTube
+            </a>
+          </li>
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+  <li>
+    <a href="https://speakerdeck.com/jeroenmols" itemprop="sameAs">
+      <i class="fa fa-line-chart" aria-hidden="true"></i> Speaker Deck
+    </a>
+  </li>
+
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Lessons learned being a lead developer">
+    <meta itemprop="description" content="Three years ago, we decided ramp up internal app development at Philips Hue. After interviewing candidates (78!) for six months, I became the lead Android developer of the freshly hired Android team.">
+    <meta itemprop="datePublished" content="August 06, 2019">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Lessons learned being a lead developer
+</h1>
+          <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  06 Aug 2019</p>
+
+          
+            <img src="https://jeroenmols.com/img/blog/lessonsleaddeveloper/lessonsleaddeveloper.jpg" alt="Lessons learned being a lead developer" title="Photo by Signify, https://signify.com/, cropped">
+          
+
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  16 minute read
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>Three years ago, we decided ramp up internal app development at Philips Hue. After interviewing candidates (78!) for six months, I became the lead Android developer of the freshly hired Android team.</p>
+
+<p>In this non-tech post (for a change), I’d like to openly share my experiences being a team lead. It’s been a bumpy ride, but I came out with quite some new perspectives that make me a stronger lead and a better person.</p>
+
+<h1 id="part-1-team-and-project">Part 1: Team and project</h1>
+<p>To put my experiences into perspective, I think it’s important to first cover the team set up, my role and some of the project history.</p>
+
+<p>Feel free to skip this part and jump to the learnings instead 👇!</p>
+
+<h2 id="team-setup-and-my-role">Team setup and my role</h2>
+<p>Our team was a component team, responsible for building the Philips Hue Android app. Consisting of both quality assurance (QA) and developers, the team size was significant.</p>
+
+<p>Now to be clear, I wasn’t the team manager and hence didn’t do many typical managers related activities:</p>
+
+<ul>
+  <li>I didn’t ensure people follow corporate processes (e.g. time writing)</li>
+  <li>I didn’t make practical arrangements for people (e.g. order hardware)</li>
+  <li>I didn’t approve leave/conferences/…</li>
+  <li>I didn’t do evaluation and career planning meetings</li>
+  <li>…</li>
+</ul>
+
+<p>This was a very deliberate choice to be a part of the team instead of boss-of, I strongly wanted to stay on the technical career path.</p>
+
+<blockquote>
+  <p>I write code, not manage people.</p>
+</blockquote>
+
+<p>Instead, my role was to write code (!), drive the Android app structurally forward (tech debt/architecture) and coach team members to help them grow.</p>
+
+<h2 id="a-rough-start">A rough start</h2>
+<p>From day one, the project was met with many different challenges.</p>
+
+<p>First of all, the existing source code stemmed from our start up days and had a very weak architecture with a very high coupling between classes. Hence, refactoring often created side effects in other parts of the code.</p>
+
+<blockquote>
+  <p>How on Earth do we make this app better if every change we make has unintended side effects?</p>
+</blockquote>
+
+<p>To make matters worse, this happened at a time where the tech stack on Android was changing rapidly: Kotlin, architecture components, modularization, RXJava… So which one of these should we adopt? How do we build up the knowledge in the team? And with which one do we start?</p>
+
+<blockquote>
+  <p>How on Earth do we make this app better if we don’t know where to start?</p>
+</blockquote>
+
+<p>Secondly, our build infrastructure was slow and unstable. These slow and flaky builds made it very painful to integrate new changes. On top of that, we had the habit of creating extremely huge pull requests (for various reasons) which were nearly impossible to review.</p>
+
+<blockquote>
+  <p>How on Earth do we make this app better if integrating pull requests is tedious?</p>
+</blockquote>
+
+<p>Thirdly, the Philips Hue business was incredibly ambitious and wanted features to be delivered fast. This resulted in many projects being executed in parallel (including a full app UI makeover by a different team!). But as a team, we were still struggling to agree on a future vision/architecture for the app.</p>
+
+<blockquote>
+  <p>How on Earth do we make this app better if we can’t agree on a clear architecture vision?</p>
+</blockquote>
+
+<p>And to make matters worse, we didn’t have a grip on the app quality! Hence a lot of slow manual testing was required that would find a lot of regression bugs. These bugs would often be found late, making it very difficult to fix them without breaking something else.</p>
+
+<blockquote>
+  <p>How on Earth do we make this app better if we struggle to release?</p>
+</blockquote>
+
+<p>Finally, we had chosen to refactor our app instead of rewriting it. But because of the sheer amount of technical depth we had this refactoring was only providing limited results. For sure our codebase was (slowly) improving, but to put it bluntly, the results weren’t motivating the team.</p>
+
+<blockquote>
+  <p>How on Earth do we make this app better if people lose their motivation?</p>
+</blockquote>
+
+<h1 id="part-2-lessons-learned">Part 2: Lessons learned</h1>
+<p>While we managed to solve all of these challenges (and more), I don’t want to cover the solutions to these in this post. Rather I’d like to talk about what I learned as a lead along the way as these learnings will be more universally applicable.</p>
+
+<h2 id="1-acknowledge-the-bad">1. Acknowledge the bad</h2>
+<p>All of these challenges were frustrating people… and with reason. However, as a team, this pushed us into a negative, complaining mode which wasn’t very motivating either. Arguably, complaining was even making it worse… even causing a downwards spiral.</p>
+
+<p>On the other hand though, we were making things better and being able to successfully push back on many business decisions that would have made our lives even more challenging.</p>
+
+<p>As the negative was clearly overshadowing the positive, I always tried to spin it positively and emphasize our successes (as small as they may have been). And the harder people complained, the more I tried to spin it…</p>
+
+<p>But despite my good intentions however, in my spinning I came across as dismissive of other people’s complaints. It’s not because we had a few minor successes that all our other challenges weren’t real anymore. Even worse, I made people feel as if they didn’t have the right to complain.</p>
+
+<blockquote>
+  <p>Learning 1: When something is bad or someone complains, acknowledge it and empathize. People have the right to complain. Stuff sometimes simply sucks.</p>
+</blockquote>
+
+<p>Once the dust settles down, try to open a constructive conversation on how to make things better. One of my favorite questions here is: “What will we do differently tomorrow to make this better?”</p>
+
+<h2 id="2-focus-on-your-happiness">2. Focus on your happiness</h2>
+<p>Another thing I used to do is try and shield the team from all distractions that were happening around them. So I would attend the reporting meetings, write all documentation myself, pick up the dull tasks nobody else wanted to do,… All just so the team could do what they love doing most: writing awesome code!</p>
+
+<p>However, by always putting myself last I wasn’t getting a lot of job satisfaction anymore. Being overloaded with “dull work” wasn’t just demotivating, but by not involving others you also miss the opportunity to get their buy-in. For instance, if you document something, others will be more inclined to keep the documentation up to date if they co-authored it in the first place.</p>
+
+<p>And it turns out that having low energy levels myself, also influences how I’m able to impact the rest of the team. So I decided to drop quite a few of my tasks or delegate them to others so that I could also focus on writing more code. This brought me closer to the team, made me feel happier and increased my energy level to empower people to drive things forward.</p>
+
+<blockquote>
+  <p>Learning 2: You can’t do your job well if you’re low on energy, make sure to also do challenging/exciting tasks.</p>
+</blockquote>
+
+<p>Examples of tasks I delegated are architecture documentation, architecture plans, attending feature team meetings, redirect external questions to other team members, giving access to tools, high-level estimations…</p>
+
+<p>Examples of tasks I stopped doing: one on ones. That was a tough decision, but at some point, I realized that trying to help individual members in the team wasn’t helping the team as a whole. Instead, I created a culture where any one from the team could interrupt me and ask questions at any time.</p>
+
+<p>I do want to stress that helping team members was always my highest priority and I would instantly drop anything to help them out. However, doing structural one on ones was the responsibility of their manager.</p>
+
+<h2 id="3-be-transparent">3. Be transparent</h2>
+<p>As part of my role I had quite some non developer related work, whether it was reporting to upper management, early-stage planning of new features, aligning between teams, high-level estimates…</p>
+
+<p>Usually, I didn’t want to bother the team with this information. E.g. My thinking was that people could feel extra pressured once they knew management was asking for regular status updates.</p>
+
+<p>There are actually two big drawbacks doing so:</p>
+
+<ol>
+  <li>If you don’t tell people what’s up, they will start assuming themselves.</li>
+  <li>My stand up reports often made it look like I wasn’t doing anything.</li>
+</ol>
+
+<p>So instead I decided to just be completely open and transparent about everything. Even top-level decisions like: “we need to let go of some of our (contractor) team members” or “management isn’t happy with the current speed of development”, I would communicate as quickly and openly as possible and offer people to ask any questions about it.</p>
+
+<p>To give you an idea of how far I took this: I even disclosed to my team that I felt I struggled in my role and decided to find some help. So, one day, during stand up I shared that I started following coaching to do my job better and that I would be spending a considerable amount of time doing so.</p>
+
+<p>Opening up like that made me feel very vulnerable (and my direct approach definitely surprised some team members). But the team really appreciated the openness and respected me for taking my job seriously.</p>
+
+<blockquote>
+  <p>Learning 3: Be open and transparent, especially about bad news or difficult matters. Openness is a key cornerstone of building trust between people.</p>
+</blockquote>
+
+<h2 id="4-lead-by-example">4. Lead by example</h2>
+<p>During our standup, I would say I was going to do X, but because I had so many interruptions and meetings, I often never got around to actually doing it. This was especially inconvenient during times where we struggled to get things done and make our codebase better.</p>
+
+<p>Actually, this even made it seem like special rules applied to me! How can I expect us as a team to deliver on our committed work if I don’t deliver on my commitments myself?</p>
+
+<blockquote>
+  <p>Learning 4: Exhibit the good behaviors yourself that you expect from others.</p>
+</blockquote>
+
+<p>While this is (in retrospect) my most obvious learning, in practice it hit me quite hard when I got this feedback… But I learned and even though it was hard to turn around, I now deliver on what I say I will. Which, in my case, involves saying no or postponing/delegating other work.</p>
+
+<h2 id="5-team-building">5. Team building</h2>
+<p>Something I strongly believe in is that a happy team is (almost) all you need to be successful as a team. When people are having fun and get fulfillment from their work, they take pride and ownership in what they do and will do things right.</p>
+
+<p>One very important aspect of that is to ensure that people also hang out in a non-work context. This doesn’t just build trust between them, but it also increases the fun!</p>
+
+<p>And this can be done in very simple ways! I would trigger the team at least once per week to all walk over to the coffee bar on our campus together. Or we also organized cultural lunches (as we have a lot of different nationalities in the team), where a team member would book lunch in a restaurant the country of origin.</p>
+
+<p>Getting closer together as a team increased the trust between people and the fun we were having. To me this is probably the biggest reason why we ended up being successful. We managed to fully integrate testers and developers, everyone took their share of dull work and we made everyone jointly accountable for app quality.</p>
+
+<blockquote>
+  <p>Learning 5: Focus on the fun, plan regular activities that bring people closer together. It doesn’t need to be big: small ad hoc events during work time work really well.</p>
+</blockquote>
+
+<p>Interestingly, “building a team” wasn’t part of my original role. Over time though, I realized that this is also a key part of being a lead. However, I made sure not to organize most events myself, I just made sure someone was.</p>
+
+<h2 id="6-leverage-the-power-of-the-team">6. Leverage the power of the team</h2>
+<p>There’s so much more that you can get done as a team than you can accomplish by yourself. So don’t be afraid to ask team members for help, advice and even delegate things.</p>
+
+<p>Sure, the delegated work doesn’t get done exactly as you would have done it, but that’s exactly the strength! At the very least it’s an opportunity to coach and help a team member. Whereas at the other end of the spectrum the result is way better than what you would have done in the first place. E.g. I was blown away by the business case one of our testers made to scale up our Firebase test lab tests to more devices.</p>
+
+<p>What might seem dull to you (as you’ve done it so many times), could actually be an opportunity for another team member, a way for them to step up and take on more responsibility.</p>
+
+<p>I’ve learned that my team is really the most valuable asset I have as a lead, as such they are also the primary indicator to tell me how things are going.</p>
+
+<p>But how can I know that I’m being a good lead? Is there maybe something I could do better? Or even… what does the team expect their lead to do in the first place? Well… just ask them.</p>
+
+<p>I asked my team a while ago what they expected me to do (see below) and interestingly enough, nobody expected me to solve our technical problems. Instead, they wanted me to facilitate decision making and ensure we have a clear architecture goal to work towards.</p>
+
+<p>So I took their advice and changed my priorities.</p>
+
+<p><img src="https://jeroenmols.com/img/blog/lessonsleaddeveloper/team_survey.png" alt="Answers to what my team expected of me" /></p>
+
+<blockquote>
+  <p>Learning 6: Leverage the power of the team, they can help you get more things done and have valuable insights about the project and your role.</p>
+</blockquote>
+
+<h2 id="7-have-faith">7. Have faith</h2>
+<p>To be fair, my tenure as a lead developer definitely wasn’t a walk in the park. The legacy code and inconvenient timings of internal projects proved to be a real challenge and strongly affected our team mindset. And once a team gets in a negative vibe, it is very hard to turn that around.</p>
+
+<p>Personally, I struggled with this for quite some time and tried hundreds of ideas to make things better. One of such was biweekly workshops to learn something new. This came from the insight that different team members felt they weren’t learning enough. That ended up boosting team spirit and accelerating our Architecture components, RXJava, and Kotlin adoption.</p>
+
+<p>But in the end, I, no matter how hard I tried, I wasn’t able to turn things around fast enough… And frankly, we lost quite some amazing developers along the way. Seeing people leave as a lead is… well… very painful.</p>
+
+<p>I’m very happy to have reached out for help and to have found a great coach. For six months, we did monthly sessions which I prepared and took homework from. And that opened my mind to a lot of different perspectives and exposed me to even more of my own flaws.</p>
+
+<p>Thanks to the coaching, my always positive attitude and a lot of perseverance, we managed to book our first successes:</p>
+
+<ul>
+  <li>Move over to biweekly releases</li>
+  <li>Start using Architecture components &amp; Kotlin</li>
+  <li>Get a stable set of Espresso tests</li>
+</ul>
+
+<p>And funny thing, because of these successes, people actually slowly but surely started to believe! Almost like a self-fulfilling prophecy we were able to stack up success after success:</p>
+
+<ul>
+  <li>Build, test and upload releases in under 12 min</li>
+  <li>Rewrote the key screens of our app</li>
+  <li>Dramatically sped up app startup</li>
+  <li>Decreased app size by 65%</li>
+  <li>over 30 modules and 35% Kotlin</li>
+  <li>close to 200 stable integration tests</li>
+  <li>…</li>
+</ul>
+
+<blockquote>
+  <p>Learning 7: getting to a cohesive, highly performant and fun team can be quite challenging. But have faith, stay positive, persist and reach out for help. Together as a team, you can do this!</p>
+</blockquote>
+
+<p>I’m incredibly proud of what we’ve accomplished as a team and humbled that I got the opportunity to lead such an amazing group of people.</p>
+
+<h2 id="-other-learnings">*. Other learnings</h2>
+<p>To keep the length of this post under control, I’m just going to briefly mention my runner-up learnings:</p>
+
+<ul>
+  <li>Refactoring isn’t a very motivating activity
+    <ul>
+      <li>➡️ We tackled this by splitting our app in modules (“vertical slices”). This allows to aggressively rewrite parts of our app or isolate legacy code in dedicated modules.</li>
+    </ul>
+  </li>
+  <li>Avoid rehashing the same discussions over and over
+    <ul>
+      <li>➡️ We tackled this by very concisely documenting decisions and their rationale. Next time we would start rehashing the same discussion, I would intervene and say: “last time we decided this for that reason, do we have any new insights to reopen this discussion?”</li>
+    </ul>
+  </li>
+  <li>All team members are equal
+    <ul>
+      <li>➡️ Doesn’t matter whether they are contractors or on the payroll, anyone gets the same opportunity to make their mark on the project and gets proper feedback and support from me.</li>
+      <li>➡️ Also as a team lead I don’t have any more to say than any other developer, nor do they have any more to say than one of our QA engineers. We are all jointly accountable for app quality and releasing on time. Either we all fail or success together.</li>
+    </ul>
+  </li>
+  <li>Celebrate success
+    <ul>
+      <li>➡️ It’s so easy to get dragged along in the day to day operations that you fail to appreciate what you accomplish as a team. Therefore I keep a dedicated confluence page where I keep track of every success (e.g. high app version rating, sped up app startup,…). I regularly share this with the team (on Slack) and even the rest of the organization.</li>
+    </ul>
+  </li>
+  <li>Leverage existing solutions
+    <ul>
+      <li>➡️ While tackling our technical challenges, we cooked up some custom solutions to already solved problems (e.g. a custom MVP implementation optimized for A/B testing). But this introduced a lot of complexity and increased the learning curve. Eventually, we just settled with vanilla Android architecture components, a simple solution that worked well out of the box.</li>
+    </ul>
+  </li>
+  <li>It’s totally fine not to do things
+    <ul>
+      <li>➡️ Quite regularly, we would say we were going to do a particular thing (e.g. more pair programming), but we never ended up doing it. That’s totally fine. A key reason why some things don’t happen is often that people don’t fundamentally believe in them, but instead think we should do them to please others. Well, you shouldn’t. Just try to be open and explicit about what you actually will and won’t do.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="whats-next">What’s next</h2>
+<p>With everything we’ve learned building our mobile engineering culture at Philips Hue, we’ve got some very exciting stuff in the pipeline. Make sure to follow the Philips Hue engineering medium to catch it!</p>
+
+<h2 id="wrap-up">Wrap-up</h2>
+<p>Two years in being a team lead, I’m incredibly proud of what we accomplished as a team: we can release ridiculously fast, dramatically improved our codebase, streamlined our processes and increased our output by a factor of 4x. This isn’t just visible in the joy/pride the team takes in working on our app, but user sentiment is also going up fast.</p>
+
+<blockquote>
+  <p>We’re on track to hit our original team goal that we set 2 years ago of being a 4 ⭐️ rated app (4.4!) in August!</p>
+</blockquote>
+
+<p>The ride to get there was rough though and despite my good intentions, I made many mistakes. However, by keeping on investing in the team and myself we were able to get our app on track!</p>
+
+<p>One of my long open career goals was to work in a high performant team on a world-class product. And I’m happy to say that I can now finally check that box!!! Though, I didn’t expect to be leading that team.</p>
+
+<p>Hopefully, you liked this honest retrospective, feel free to leave a comment below or follow me on <span><a href="https://twitter.com/molsjeroen?source=lessonslearnedbeingaleaddeveloper2019" class="ga-link" target="_blank">Twitter</a></span>
+.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/lessonslearned" class="page__taxonomy-item" rel="tag">lessonslearned</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/software-engineering" class="page__taxonomy-item" rel="tag">software engineering</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/team-lead" class="page__taxonomy-item" rel="tag">team lead</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/blog" class="page__taxonomy-item" rel="tag">blog</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-08-06T00:00:00+02:00">August 06, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=Lessons+learned+being+a+lead+developer%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2019%2F08%2F06%2Flessonsleaddeveloper%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2019%2F08%2F06%2Flessonsleaddeveloper%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://plus.google.com/share?url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2019%2F08%2F06%2Flessonsleaddeveloper%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fab fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2019%2F08%2F06%2Flessonsleaddeveloper%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      <section class="page__share">
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bottom-blog-responsive -->
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-9854541518226004"
+       data-ad-slot="4086741379"
+       data-ad-format="auto"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/blog/2019/07/17/androidqgestures/" class="pagination--pager" title="Supporting Android Q gestural navigation
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a Comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/androidqgestures/androidqgestures.png)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2019/07/17/androidqgestures/" rel="permalink">Supporting Android Q gestural navigation
+</a>
+        </h2>
+        <h3 class="archive__date">17 Jul 2019</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2019/07/17/androidqgestures/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  5 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">From Android Q onwards devices can now operate in a fully gestural system navigation mode. In that mode, there is no longer an on-screen back button, instead users can swipe from both edges to navigate back.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/adaptiveicon/adaptive_icon.png)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2019/07/03/adaptiveicon/" rel="permalink">Philips Hue adaptive icon
+</a>
+        </h2>
+        <h3 class="archive__date">03 Jul 2019</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2019/07/03/adaptiveicon/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Your icon is one of the most important assets in your app. With a bit of luck, users might even put it on their main launcher screen!
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/modularizationtips/modularization_tips.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2019/06/12/modularizationtips/" rel="permalink">Modularization - Lessons learned
+</a>
+        </h2>
+        <h3 class="archive__date">12 Jun 2019</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2019/06/12/modularizationtips/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  7 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Wrapping up this series on modularization I’d like to share some of the things we’ve learned at Philips Hue while going through this process the past year.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/modularizationhow/modularization_how.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2019/04/24/modularizationhow/" rel="permalink">Modularization - How to approach
+</a>
+        </h2>
+        <h3 class="archive__date">24 Apr 2019</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2019/04/24/modularizationhow/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  5 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Now that we have a clear idea of how a modularized app could look like how can this be applied to an existing app?
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+    <div id="results" class="results"></div></div>
+      </div>
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+      <li><a href="https://twitter.com/molsjeroen"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+    
+    
+    
+      <li><a href="https://github.com/JeroenMols"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    
+    <li><a href="atom.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2019 Jeroen Mols. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-63356566-1', 'auto');
+  ga('set', 'anonymizeIp', false)
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://jeroenmols.com/blog/2019/08/06/lessonsleaddeveloper/";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = "/blog/2019/08/06/lessonsleaddeveloper"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jeroenmols.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+  </body>
+</html>

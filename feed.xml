@@ -1,4 +1,264 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2019-07-18T10:31:46+02:00</updated><id>https://jeroenmols.com/</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Supporting Android Q gestural navigation</title><link href="https://jeroenmols.com/blog/2019/07/17/androidqgestures/" rel="alternate" type="text/html" title="Supporting Android Q gestural navigation" /><published>2019-07-17T00:00:00+02:00</published><updated>2019-07-17T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2019/07/17/androidqgestures</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/07/17/androidqgestures/">&lt;p&gt;From Android Q onwards devices can now operate in a fully gestural system navigation mode. In that mode, there is no longer an on-screen back button, instead users can swipe from both edges to navigate back.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2019-08-06T21:12:33+02:00</updated><id>https://jeroenmols.com/</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Lessons learned being a lead developer</title><link href="https://jeroenmols.com/blog/2019/08/06/lessonsleaddeveloper/" rel="alternate" type="text/html" title="Lessons learned being a lead developer" /><published>2019-08-06T00:00:00+02:00</published><updated>2019-08-06T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2019/08/06/lessonsleaddeveloper</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/08/06/lessonsleaddeveloper/">&lt;p&gt;Three years ago, we decided ramp up internal app development at Philips Hue. After interviewing candidates (78!) for six months, I became the lead Android developer of the freshly hired Android team.&lt;/p&gt;
+
+&lt;p&gt;In this non-tech post (for a change), I’d like to openly share my experiences being a team lead. It’s been a bumpy ride, but I came out with quite some new perspectives that make me a stronger lead and a better person.&lt;/p&gt;
+
+&lt;h1 id=&quot;part-1-team-and-project&quot;&gt;Part 1: Team and project&lt;/h1&gt;
+&lt;p&gt;To put my experiences into perspective, I think it’s important to first cover the team set up, my role and some of the project history.&lt;/p&gt;
+
+&lt;p&gt;Feel free to skip this part and jump to the learnings instead 👇!&lt;/p&gt;
+
+&lt;h2 id=&quot;team-setup-and-my-role&quot;&gt;Team setup and my role&lt;/h2&gt;
+&lt;p&gt;Our team was a component team, responsible for building the Philips Hue Android app. Consisting of both quality assurance (QA) and developers, the team size was significant.&lt;/p&gt;
+
+&lt;p&gt;Now to be clear, I wasn’t the team manager and hence didn’t do many typical managers related activities:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;I didn’t ensure people follow corporate processes (e.g. time writing)&lt;/li&gt;
+  &lt;li&gt;I didn’t make practical arrangements for people (e.g. order hardware)&lt;/li&gt;
+  &lt;li&gt;I didn’t approve leave/conferences/…&lt;/li&gt;
+  &lt;li&gt;I didn’t do evaluation and career planning meetings&lt;/li&gt;
+  &lt;li&gt;…&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This was a very deliberate choice to be a part of the team instead of boss-of, I strongly wanted to stay on the technical career path.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;I write code, not manage people.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Instead, my role was to write code (!), drive the Android app structurally forward (tech debt/architecture) and coach team members to help them grow.&lt;/p&gt;
+
+&lt;h2 id=&quot;a-rough-start&quot;&gt;A rough start&lt;/h2&gt;
+&lt;p&gt;From day one, the project was met with many different challenges.&lt;/p&gt;
+
+&lt;p&gt;First of all, the existing source code stemmed from our start up days and had a very weak architecture with a very high coupling between classes. Hence, refactoring often created side effects in other parts of the code.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;How on Earth do we make this app better if every change we make has unintended side effects?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;To make matters worse, this happened at a time where the tech stack on Android was changing rapidly: Kotlin, architecture components, modularization, RXJava… So which one of these should we adopt? How do we build up the knowledge in the team? And with which one do we start?&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;How on Earth do we make this app better if we don’t know where to start?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Secondly, our build infrastructure was slow and unstable. These slow and flaky builds made it very painful to integrate new changes. On top of that, we had the habit of creating extremely huge pull requests (for various reasons) which were nearly impossible to review.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;How on Earth do we make this app better if integrating pull requests is tedious?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Thirdly, the Philips Hue business was incredibly ambitious and wanted features to be delivered fast. This resulted in many projects being executed in parallel (including a full app UI makeover by a different team!). But as a team, we were still struggling to agree on a future vision/architecture for the app.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;How on Earth do we make this app better if we can’t agree on a clear architecture vision?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;And to make matters worse, we didn’t have a grip on the app quality! Hence a lot of slow manual testing was required that would find a lot of regression bugs. These bugs would often be found late, making it very difficult to fix them without breaking something else.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;How on Earth do we make this app better if we struggle to release?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Finally, we had chosen to refactor our app instead of rewriting it. But because of the sheer amount of technical depth we had this refactoring was only providing limited results. For sure our codebase was (slowly) improving, but to put it bluntly, the results weren’t motivating the team.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;How on Earth do we make this app better if people lose their motivation?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;part-2-lessons-learned&quot;&gt;Part 2: Lessons learned&lt;/h1&gt;
+&lt;p&gt;While we managed to solve all of these challenges (and more), I don’t want to cover the solutions to these in this post. Rather I’d like to talk about what I learned as a lead along the way as these learnings will be more universally applicable.&lt;/p&gt;
+
+&lt;h2 id=&quot;1-acknowledge-the-bad&quot;&gt;1. Acknowledge the bad&lt;/h2&gt;
+&lt;p&gt;All of these challenges were frustrating people… and with reason. However, as a team, this pushed us into a negative, complaining mode which wasn’t very motivating either. Arguably, complaining was even making it worse… even causing a downwards spiral.&lt;/p&gt;
+
+&lt;p&gt;On the other hand though, we were making things better and being able to successfully push back on many business decisions that would have made our lives even more challenging.&lt;/p&gt;
+
+&lt;p&gt;As the negative was clearly overshadowing the positive, I always tried to spin it positively and emphasize our successes (as small as they may have been). And the harder people complained, the more I tried to spin it…&lt;/p&gt;
+
+&lt;p&gt;But despite my good intentions however, in my spinning I came across as dismissive of other people’s complaints. It’s not because we had a few minor successes that all our other challenges weren’t real anymore. Even worse, I made people feel as if they didn’t have the right to complain.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Learning 1: When something is bad or someone complains, acknowledge it and empathize. People have the right to complain. Stuff sometimes simply sucks.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Once the dust settles down, try to open a constructive conversation on how to make things better. One of my favorite questions here is: “What will we do differently tomorrow to make this better?”&lt;/p&gt;
+
+&lt;h2 id=&quot;2-focus-on-your-happiness&quot;&gt;2. Focus on your happiness&lt;/h2&gt;
+&lt;p&gt;Another thing I used to do is try and shield the team from all distractions that were happening around them. So I would attend the reporting meetings, write all documentation myself, pick up the dull tasks nobody else wanted to do,… All just so the team could do what they love doing most: writing awesome code!&lt;/p&gt;
+
+&lt;p&gt;However, by always putting myself last I wasn’t getting a lot of job satisfaction anymore. Being overloaded with “dull work” wasn’t just demotivating, but by not involving others you also miss the opportunity to get their buy-in. For instance, if you document something, others will be more inclined to keep the documentation up to date if they co-authored it in the first place.&lt;/p&gt;
+
+&lt;p&gt;And it turns out that having low energy levels myself, also influences how I’m able to impact the rest of the team. So I decided to drop quite a few of my tasks or delegate them to others so that I could also focus on writing more code. This brought me closer to the team, made me feel happier and increased my energy level to empower people to drive things forward.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Learning 2: You can’t do your job well if you’re low on energy, make sure to also do challenging/exciting tasks.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Examples of tasks I delegated are architecture documentation, architecture plans, attending feature team meetings, redirect external questions to other team members, giving access to tools, high-level estimations…&lt;/p&gt;
+
+&lt;p&gt;Examples of tasks I stopped doing: one on ones. That was a tough decision, but at some point, I realized that trying to help individual members in the team wasn’t helping the team as a whole. Instead, I created a culture where any one from the team could interrupt me and ask questions at any time.&lt;/p&gt;
+
+&lt;p&gt;I do want to stress that helping team members was always my highest priority and I would instantly drop anything to help them out. However, doing structural one on ones was the responsibility of their manager.&lt;/p&gt;
+
+&lt;h2 id=&quot;3-be-transparent&quot;&gt;3. Be transparent&lt;/h2&gt;
+&lt;p&gt;As part of my role I had quite some non developer related work, whether it was reporting to upper management, early-stage planning of new features, aligning between teams, high-level estimates…&lt;/p&gt;
+
+&lt;p&gt;Usually, I didn’t want to bother the team with this information. E.g. My thinking was that people could feel extra pressured once they knew management was asking for regular status updates.&lt;/p&gt;
+
+&lt;p&gt;There are actually two big drawbacks doing so:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;If you don’t tell people what’s up, they will start assuming themselves.&lt;/li&gt;
+  &lt;li&gt;My stand up reports often made it look like I wasn’t doing anything.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;So instead I decided to just be completely open and transparent about everything. Even top-level decisions like: “we need to let go of some of our (contractor) team members” or “management isn’t happy with the current speed of development”, I would communicate as quickly and openly as possible and offer people to ask any questions about it.&lt;/p&gt;
+
+&lt;p&gt;To give you an idea of how far I took this: I even disclosed to my team that I felt I struggled in my role and decided to find some help. So, one day, during stand up I shared that I started following coaching to do my job better and that I would be spending a considerable amount of time doing so.&lt;/p&gt;
+
+&lt;p&gt;Opening up like that made me feel very vulnerable (and my direct approach definitely surprised some team members). But the team really appreciated the openness and respected me for taking my job seriously.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Learning 3: Be open and transparent, especially about bad news or difficult matters. Openness is a key cornerstone of building trust between people.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;4-lead-by-example&quot;&gt;4. Lead by example&lt;/h2&gt;
+&lt;p&gt;During our standup, I would say I was going to do X, but because I had so many interruptions and meetings, I often never got around to actually doing it. This was especially inconvenient during times where we struggled to get things done and make our codebase better.&lt;/p&gt;
+
+&lt;p&gt;Actually, this even made it seem like special rules applied to me! How can I expect us as a team to deliver on our committed work if I don’t deliver on my commitments myself?&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Learning 4: Exhibit the good behaviors yourself that you expect from others.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;While this is (in retrospect) my most obvious learning, in practice it hit me quite hard when I got this feedback… But I learned and even though it was hard to turn around, I now deliver on what I say I will. Which, in my case, involves saying no or postponing/delegating other work.&lt;/p&gt;
+
+&lt;h2 id=&quot;5-team-building&quot;&gt;5. Team building&lt;/h2&gt;
+&lt;p&gt;Something I strongly believe in is that a happy team is (almost) all you need to be successful as a team. When people are having fun and get fulfillment from their work, they take pride and ownership in what they do and will do things right.&lt;/p&gt;
+
+&lt;p&gt;One very important aspect of that is to ensure that people also hang out in a non-work context. This doesn’t just build trust between them, but it also increases the fun!&lt;/p&gt;
+
+&lt;p&gt;And this can be done in very simple ways! I would trigger the team at least once per week to all walk over to the coffee bar on our campus together. Or we also organized cultural lunches (as we have a lot of different nationalities in the team), where a team member would book lunch in a restaurant the country of origin.&lt;/p&gt;
+
+&lt;p&gt;Getting closer together as a team increased the trust between people and the fun we were having. To me this is probably the biggest reason why we ended up being successful. We managed to fully integrate testers and developers, everyone took their share of dull work and we made everyone jointly accountable for app quality.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Learning 5: Focus on the fun, plan regular activities that bring people closer together. It doesn’t need to be big: small ad hoc events during work time work really well.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Interestingly, “building a team” wasn’t part of my original role. Over time though, I realized that this is also a key part of being a lead. However, I made sure not to organize most events myself, I just made sure someone was.&lt;/p&gt;
+
+&lt;h2 id=&quot;6-leverage-the-power-of-the-team&quot;&gt;6. Leverage the power of the team&lt;/h2&gt;
+&lt;p&gt;There’s so much more that you can get done as a team than you can accomplish by yourself. So don’t be afraid to ask team members for help, advice and even delegate things.&lt;/p&gt;
+
+&lt;p&gt;Sure, the delegated work doesn’t get done exactly as you would have done it, but that’s exactly the strength! At the very least it’s an opportunity to coach and help a team member. Whereas at the other end of the spectrum the result is way better than what you would have done in the first place. E.g. I was blown away by the business case one of our testers made to scale up our Firebase test lab tests to more devices.&lt;/p&gt;
+
+&lt;p&gt;What might seem dull to you (as you’ve done it so many times), could actually be an opportunity for another team member, a way for them to step up and take on more responsibility.&lt;/p&gt;
+
+&lt;p&gt;I’ve learned that my team is really the most valuable asset I have as a lead, as such they are also the primary indicator to tell me how things are going.&lt;/p&gt;
+
+&lt;p&gt;But how can I know that I’m being a good lead? Is there maybe something I could do better? Or even… what does the team expect their lead to do in the first place? Well… just ask them.&lt;/p&gt;
+
+&lt;p&gt;I asked my team a while ago what they expected me to do (see below) and interestingly enough, nobody expected me to solve our technical problems. Instead, they wanted me to facilitate decision making and ensure we have a clear architecture goal to work towards.&lt;/p&gt;
+
+&lt;p&gt;So I took their advice and changed my priorities.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/lessonsleaddeveloper/team_survey.png&quot; alt=&quot;Answers to what my team expected of me&quot; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Learning 6: Leverage the power of the team, they can help you get more things done and have valuable insights about the project and your role.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;7-have-faith&quot;&gt;7. Have faith&lt;/h2&gt;
+&lt;p&gt;To be fair, my tenure as a lead developer definitely wasn’t a walk in the park. The legacy code and inconvenient timings of internal projects proved to be a real challenge and strongly affected our team mindset. And once a team gets in a negative vibe, it is very hard to turn that around.&lt;/p&gt;
+
+&lt;p&gt;Personally, I struggled with this for quite some time and tried hundreds of ideas to make things better. One of such was biweekly workshops to learn something new. This came from the insight that different team members felt they weren’t learning enough. That ended up boosting team spirit and accelerating our Architecture components, RXJava, and Kotlin adoption.&lt;/p&gt;
+
+&lt;p&gt;But in the end, I, no matter how hard I tried, I wasn’t able to turn things around fast enough… And frankly, we lost quite some amazing developers along the way. Seeing people leave as a lead is… well… very painful.&lt;/p&gt;
+
+&lt;p&gt;I’m very happy to have reached out for help and to have found a great coach. For six months, we did monthly sessions which I prepared and took homework from. And that opened my mind to a lot of different perspectives and exposed me to even more of my own flaws.&lt;/p&gt;
+
+&lt;p&gt;Thanks to the coaching, my always positive attitude and a lot of perseverance, we managed to book our first successes:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Move over to biweekly releases&lt;/li&gt;
+  &lt;li&gt;Start using Architecture components &amp;amp; Kotlin&lt;/li&gt;
+  &lt;li&gt;Get a stable set of Espresso tests&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;And funny thing, because of these successes, people actually slowly but surely started to believe! Almost like a self-fulfilling prophecy we were able to stack up success after success:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Build, test and upload releases in under 12 min&lt;/li&gt;
+  &lt;li&gt;Rewrote the key screens of our app&lt;/li&gt;
+  &lt;li&gt;Dramatically sped up app startup&lt;/li&gt;
+  &lt;li&gt;Decreased app size by 65%&lt;/li&gt;
+  &lt;li&gt;over 30 modules and 35% Kotlin&lt;/li&gt;
+  &lt;li&gt;close to 200 stable integration tests&lt;/li&gt;
+  &lt;li&gt;…&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Learning 7: getting to a cohesive, highly performant and fun team can be quite challenging. But have faith, stay positive, persist and reach out for help. Together as a team, you can do this!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I’m incredibly proud of what we’ve accomplished as a team and humbled that I got the opportunity to lead such an amazing group of people.&lt;/p&gt;
+
+&lt;h2 id=&quot;-other-learnings&quot;&gt;*. Other learnings&lt;/h2&gt;
+&lt;p&gt;To keep the length of this post under control, I’m just going to briefly mention my runner-up learnings:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Refactoring isn’t a very motivating activity
+    &lt;ul&gt;
+      &lt;li&gt;➡️ We tackled this by splitting our app in modules (“vertical slices”). This allows to aggressively rewrite parts of our app or isolate legacy code in dedicated modules.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Avoid rehashing the same discussions over and over
+    &lt;ul&gt;
+      &lt;li&gt;➡️ We tackled this by very concisely documenting decisions and their rationale. Next time we would start rehashing the same discussion, I would intervene and say: “last time we decided this for that reason, do we have any new insights to reopen this discussion?”&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;All team members are equal
+    &lt;ul&gt;
+      &lt;li&gt;➡️ Doesn’t matter whether they are contractors or on the payroll, anyone gets the same opportunity to make their mark on the project and gets proper feedback and support from me.&lt;/li&gt;
+      &lt;li&gt;➡️ Also as a team lead I don’t have any more to say than any other developer, nor do they have any more to say than one of our QA engineers. We are all jointly accountable for app quality and releasing on time. Either we all fail or success together.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Celebrate success
+    &lt;ul&gt;
+      &lt;li&gt;➡️ It’s so easy to get dragged along in the day to day operations that you fail to appreciate what you accomplish as a team. Therefore I keep a dedicated confluence page where I keep track of every success (e.g. high app version rating, sped up app startup,…). I regularly share this with the team (on Slack) and even the rest of the organization.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Leverage existing solutions
+    &lt;ul&gt;
+      &lt;li&gt;➡️ While tackling our technical challenges, we cooked up some custom solutions to already solved problems (e.g. a custom MVP implementation optimized for A/B testing). But this introduced a lot of complexity and increased the learning curve. Eventually, we just settled with vanilla Android architecture components, a simple solution that worked well out of the box.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;It’s totally fine not to do things
+    &lt;ul&gt;
+      &lt;li&gt;➡️ Quite regularly, we would say we were going to do a particular thing (e.g. more pair programming), but we never ended up doing it. That’s totally fine. A key reason why some things don’t happen is often that people don’t fundamentally believe in them, but instead think we should do them to please others. Well, you shouldn’t. Just try to be open and explicit about what you actually will and won’t do.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;whats-next&quot;&gt;What’s next&lt;/h2&gt;
+&lt;p&gt;With everything we’ve learned building our mobile engineering culture at Philips Hue, we’ve got some very exciting stuff in the pipeline. Make sure to follow the Philips Hue engineering medium to catch it!&lt;/p&gt;
+
+&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
+&lt;p&gt;Two years in being a team lead, I’m incredibly proud of what we accomplished as a team: we can release ridiculously fast, dramatically improved our codebase, streamlined our processes and increased our output by a factor of 4x. This isn’t just visible in the joy/pride the team takes in working on our app, but user sentiment is also going up fast.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;We’re on track to hit our original team goal that we set 2 years ago of being a 4 ⭐️ rated app (4.4!) in August!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The ride to get there was rough though and despite my good intentions, I made many mistakes. However, by keeping on investing in the team and myself we were able to get our app on track!&lt;/p&gt;
+
+&lt;p&gt;One of my long open career goals was to work in a high performant team on a world-class product. And I’m happy to say that I can now finally check that box!!! Though, I didn’t expect to be leading that team.&lt;/p&gt;
+
+&lt;p&gt;Hopefully, you liked this honest retrospective, feel free to leave a comment below or follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=lessonslearnedbeingaleaddeveloper2019&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
+.&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="team lead" /><category term="software engineering" /><category term="lessonslearned" /><summary type="html">Three years ago, we decided ramp up internal app development at Philips Hue. After interviewing candidates (78!) for six months, I became the lead Android developer of the freshly hired Android team.</summary></entry><entry><title type="html">Supporting Android Q gestural navigation</title><link href="https://jeroenmols.com/blog/2019/07/17/androidqgestures/" rel="alternate" type="text/html" title="Supporting Android Q gestural navigation" /><published>2019-07-17T00:00:00+02:00</published><updated>2019-07-17T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2019/07/17/androidqgestures</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/07/17/androidqgestures/">&lt;p&gt;From Android Q onwards devices can now operate in a fully gestural system navigation mode. In that mode, there is no longer an on-screen back button, instead users can swipe from both edges to navigate back.&lt;/p&gt;
 
 &lt;p&gt;In this blog post, we’ll look at a case study on how we added support for these back gestures in the Philips Hue app.&lt;/p&gt;
 
@@ -1494,34 +1754,4 @@ at androidx.arch.core.executor.DefaultTaskExecutor.isMainThread(DefaultTaskExecu
 a rule in JUnit 4 or an extension in JUnit 5.&lt;/p&gt;
 
 &lt;p&gt;If you’ve made it this far you should probably follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=testinglivedatainjunit4andjunit52019&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
-. Feel free leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="testing" /><category term="architecture" /><category term="livedata" /><summary type="html">Architecture components are one of the most exciting things that happened to Android in the past years. But how do you effectively go about and testing this?</summary></entry><entry><title type="html">Year in review 2018</title><link href="https://jeroenmols.com/blog/2019/01/01/yearinreview/" rel="alternate" type="text/html" title="Year in review 2018" /><published>2019-01-01T00:00:00+01:00</published><updated>2019-01-01T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2019/01/01/yearinreview</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/01/01/yearinreview/">&lt;p&gt;Sitting in our own couch, in our own house, kids safely asleep upstairs,… The road here was brutal, but the result is extraordinary.&lt;/p&gt;
-
-&lt;p&gt;The past year was (hopefully) the busiest year of my entire life. In the midst of raising two amazing kids, a challenging full-time job and being an active GDE, we built our dream house!&lt;/p&gt;
-
-&lt;p&gt;Looking back I honestly don’t know how we managed to pull all of this off… Choosing everything for the house, selecting and planning all contractors and even doing some (a lot more than anticipated) work myself… Anyways, I won’t bother you with the details, but if not for my wife and kids I would have broken down completely. The goal justifies the means.&lt;/p&gt;
-
-&lt;p&gt;Also at work, it was a non-trivial and very demanding year. I used to pride myself for being great at keeping a work-life balance, but… being a responsible for a team of people can really be quite intense.&lt;/p&gt;
-
-&lt;p&gt;Our team had quite some challenges thrown at us, and we really made the best of it: sometimes massively successful, but we also struggled… All in all, we did get a tight grip on our regression, laid the groundwork to improve our architecture and migrated to continuous deployment. (talk coming 2019 ;) )&lt;/p&gt;
-
-&lt;p&gt;In 2018, I/we mostly invested in our family’s future and:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Built and moved into our dream house&lt;/li&gt;
-  &lt;li&gt;Helped our daughter go to school and taught our son how to walk&lt;/li&gt;
-  &lt;li&gt;Spoke at &lt;a href=&quot;https://jeroenmols.com/speaking/&quot;&gt;4 big conferences&lt;/a&gt; and 1 meetup.&lt;/li&gt;
-  &lt;li&gt;Wrote &lt;a href=&quot;http://jeroenmols.com/blog/&quot;&gt;9 blog posts&lt;/a&gt;, not making my goal of 1 per month&lt;/li&gt;
-  &lt;li&gt;Almost double my &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;Twitter&lt;/a&gt; followers to more than 3620&lt;/li&gt;
-  &lt;li&gt;Got 6 times featured in &lt;a href=&quot;http://androidweekly.net/search?keyword=jeroen+mols&amp;amp;commit=Search&quot;&gt;Android weekly&lt;/a&gt; and several times in &lt;a href=&quot;http://mailchi.mp/kotlinweekly/kotlin-weekly-118&quot;&gt;Kotlin weekly&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Exclusively used Kotlin for every blog post and slide deck&lt;/li&gt;
-  &lt;li&gt;Helped Pluralsight built a &lt;a href=&quot;https://app.pluralsight.com/score/skill-assessment/kotlin-app-fundamentals/intro?context=skills#/v2/landing&quot;&gt;Kotlin: App Fundamentals&lt;/a&gt; assessment&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/yearinreview18/christmas_tree.jpg&quot; alt=&quot;Garden view&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Looking forward to next year, I’m planning on living more! I’ve bought quite a few Lego’s I’d like to build, want to bring my kids to school by bike, spend more quality time with my wife and just professionally waste time on occasion. :)&lt;/p&gt;
-
-&lt;p&gt;I’m going to try and increase my community efforts back to 2017 level and maybe experiment with some new formats, such as &lt;a href=&quot;https://jeroenmols.com/blog/2018/12/06/fixthetest/&quot;&gt;my last blog post&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;As always you can reach me &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=yearinreview20182019&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;@molsjeroen&lt;/a&gt;&lt;/span&gt;
- on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="review" /><summary type="html">Sitting in our own couch, in our own house, kids safely asleep upstairs,… The road here was brutal, but the result is extraordinary.</summary></entry></feed>
+. Feel free leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="testing" /><category term="architecture" /><category term="livedata" /><summary type="html">Architecture components are one of the most exciting things that happened to Android in the past years. But how do you effectively go about and testing this?</summary></entry></feed>
