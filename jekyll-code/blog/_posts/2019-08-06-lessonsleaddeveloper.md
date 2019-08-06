@@ -1,6 +1,6 @@
 ---
 title: Lessons learned being a lead developer
-published: false
+published: true
 header:
   teaser: img/blog/lessonsleaddeveloper/lessonsleaddeveloper.jpg
   imgcredit: Photo by Signify, https://signify.com/, cropped
