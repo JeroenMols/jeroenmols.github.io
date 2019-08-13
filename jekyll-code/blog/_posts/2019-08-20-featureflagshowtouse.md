@@ -36,7 +36,7 @@ if (isFeatureEnabled(POWER_ON_BEHAVIOR)) {
 }
 ```
 
-![Feature flagging a new feature by showing or hiding a menu item]({{ site.url }}{{ site.baseurl }}/img/blog/featureflags/featureflag_menuitem.png)
+![Feature flagging a new feature by showing or hiding a menu item]({{ site.url }}{{ site.baseurl }}/img/blog/featureflagshowtouse/featureflag_menuitem.png)
 
 The same principle can also be used for showing an extra tab or an extra UI element that gives access to the new feature. Some features might even require several if statements in several locations, but try to avoid that if you can.
 
@@ -91,7 +91,7 @@ To combine the best of both worlds, you can strive to roll out as many features 
 
 A key aspect in doing this successfully is adding extra analytics events, defining clear KPIs and putting a dashboard in place to monitor everything.
 
-![Dashboard to monitor the roll out of a new feature]({{ site.url }}{{ site.baseurl }}/img/blog/featureflags/dashboard.png)
+![Dashboard to monitor the roll out of a new feature]({{ site.url }}{{ site.baseurl }}/img/blog/featureflagshowtouse/dashboard.png)
 
 When you can't roll out a feature gradually, you can still derisk its launch using remote feature flags. Just make sure to wrap up feature development early so you have time to use a remote feature flag to test it in your beta community. This allows learning how the code behaves in the wild, while still allowing you to promote that exact build to production (with feature flag turned off).
 
