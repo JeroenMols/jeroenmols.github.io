@@ -238,4 +238,9 @@ var store = [{
         "excerpt":"Three years ago, we decided ramp up internal app development at Philips Hue. After interviewing candidates (78!) for six months, I became the lead Android developer of the freshly hired Android team. In this non-tech post (for a change), I’d like to openly share my experiences being a team lead....","categories": ["blog"],
         "tags": ["team lead","software engineering","lessonslearned"],
         "url": "https://jeroenmols.com/blog/2019/08/06/lessonsleaddeveloper/",
-        "teaser":"https://jeroenmols.com/img/blog/lessonsleaddeveloper/lessonsleaddeveloper.jpg"}]
+        "teaser":"https://jeroenmols.com/img/blog/lessonsleaddeveloper/lessonsleaddeveloper.jpg"},{
+        "title": "Feature Flags - Why you should care",
+        "excerpt":"A key ingredient to speed up modern software development is feature flags. But what is a feature flag precisely? Why should you care about them? How do you integrate them into your codebase? And how can we make them easy to use? This mini-series will explain the benefits of using...","categories": ["blog"],
+        "tags": ["android","firebase","feature flags","software engineering","tools"],
+        "url": "https://jeroenmols.com/blog/2019/08/13/featureflags/",
+        "teaser":"https://jeroenmols.com/img/blog/featureflags/featureflags.jpg"}]

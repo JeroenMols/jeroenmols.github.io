@@ -1,0 +1,862 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.12.0 by Michael Rose
+  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Feature Flags - Why you should care - Jeroen Mols</title>
+<meta name="description" content="A key ingredient to speed up modern software development is feature flags. But what is a feature flag precisely? Why should you care about them? How do you integrate them into your codebase? And how can we make them easy to use?">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="Jeroen Mols">
+<meta property="og:title" content="Feature Flags - Why you should care">
+<meta property="og:url" content="https://jeroenmols.com/blog/2019/08/13/featureflags/">
+
+
+  <meta property="og:description" content="A key ingredient to speed up modern software development is feature flags. But what is a feature flag precisely? Why should you care about them? How do you integrate them into your codebase? And how can we make them easy to use?">
+
+
+
+  <meta property="og:image" content="https://jeroenmols.com/img/blog/featureflags/featureflags.jpg">
+
+
+
+  <meta name="twitter:site" content="@molsjeroen">
+  <meta name="twitter:title" content="Feature Flags - Why you should care">
+  <meta name="twitter:description" content="A key ingredient to speed up modern software development is feature flags. But what is a feature flag precisely? Why should you care about them? How do you integrate them into your codebase? And how can we make them easy to use?">
+  <meta name="twitter:url" content="https://jeroenmols.com/blog/2019/08/13/featureflags/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+      <meta name="twitter:image" content="https://jeroenmols.com/img/blog/featureflags/featureflags.jpg">
+    
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2019-08-13T00:00:00+02:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://jeroenmols.com/blog/2019/08/13/featureflags/">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "Jeroen Mols",
+      "url": "https://jeroenmols.com",
+      "sameAs": ["https://twitter.com/molsjeroen","https://www.linkedin.com/in/jeroenmols/","https://plus.google.com/+JeroenMols","https://github.com/JeroenMols","https://speakerdeck.com/jeroenmols","https://stackoverflow.com/users/2771851/jmols"]
+    }
+  </script>
+
+
+
+  <meta name="google-site-verification" content="8E8HUpExgyNFdLuFMWmkSUl08gISnOF3UWexA55aNrk" />
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$('.ga-link').on('click', function(){
+		if (typeof(ga)!=="undefined"){
+			ga('send',{
+				hitType: 'event',
+				eventCategory: 'Outbound link',
+				eventAction: 'click',
+				eventLabel: event.target.href
+			});
+	  	}
+	});
+})	;
+</script>
+
+<meta name="theme-color" content="#2c3e50">
+
+<link href="atom.xml" type="application/atom+xml" rel="alternate" title="Jeroen Mols Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="https://jeroenmols.com/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="/">Jeroen Mols</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://jeroenmols.com/blog/" >Blog</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://jeroenmols.com/speaking/" >Speaking</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://jeroenmols.com/hireme/" >Hire me</a>
+            </li>
+          
+        </ul>
+        
+        <button class="search__toggle" type="button">
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="/img/profile.jpg" alt="Jeroen Mols" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Jeroen Mols</h3>
+    
+    
+      <p class="author__bio" itemprop="description">
+        Android GDE & Lead Android developer at Philips Hue
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Mol, Belgium</span>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://twitter.com/@molsjeroen" itemprop="sameAs">
+            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+          </a>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="https://plus.google.com/JeroenMols" itemprop="sameAs">
+            <i class="fab fa-fw fa-google-plus-square" aria-hidden="true"></i> Google+
+          </a>
+        </li>
+      
+
+      
+        <li>
+          <a href="https://www.linkedin.com/in/jeroenmols" itemprop="sameAs">
+            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/JeroenMols" itemprop="sameAs">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="https://www.stackoverflow.com/users/2771851/jmols" itemprop="sameAs">
+            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i> Stack Overflow
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        
+          <li>
+            <a href="https://www.youtube.com/channel/UC34Vt1lo8T15_rgc3e3Jsew" itemprop="sameAs">
+              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i> YouTube
+            </a>
+          </li>
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+  <li>
+    <a href="https://speakerdeck.com/jeroenmols" itemprop="sameAs">
+      <i class="fa fa-line-chart" aria-hidden="true"></i> Speaker Deck
+    </a>
+  </li>
+
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Feature Flags - Why you should care">
+    <meta itemprop="description" content="A key ingredient to speed up modern software development is feature flags. But what is a feature flag precisely? Why should you care about them? How do you integrate them into your codebase? And how can we make them easy to use?">
+    <meta itemprop="datePublished" content="August 13, 2019">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Feature Flags - Why you should care
+</h1>
+          <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  13 Aug 2019</p>
+
+          
+            <img src="https://jeroenmols.com/img/blog/featureflags/featureflags.jpg" alt="Feature Flags - Why you should care" title="Photo by Gabriel on Unsplash, https://unsplash.com/photos/iynyPZ8shPk, cropped">
+          
+
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  6 minute read
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>A key ingredient to speed up modern software development is feature flags. But what is a feature flag precisely? Why should you care about them? How do you integrate them into your codebase? And how can we make them easy to use?</p>
+
+<p>This mini-series will explain the benefits of using feature flags and propose a handy architecture that enables local feature flag configuration, remote configuration, and easy testability.</p>
+
+<blockquote>
+  <p>This blog post is of a series on feature flags:</p>
+  <ul>
+    <li>Part 1: <a href="/blog/2019/08/13/featureflags/">Why you should care</a></li>
+    <li>Part 2: How to use</li>
+    <li>Part 3: A successful architecture</li>
+  </ul>
+</blockquote>
+
+<h2 id="what-is-a-feature-flag">What is a feature flag</h2>
+<p>In essence, a feature flag is simply a <code class="highlighter-rouge">Boolean</code> that determines whether something is “on” or “of”:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="n">isFeatureOn</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// give access to something</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// prevent access to something</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This “something” can be many things:</p>
+
+<ul>
+  <li>a new user-facing feature in your app (e.g. enable dark theme)</li>
+  <li>a non-user-facing feature (e.g. new analytics provider)</li>
+  <li>a replacement for existing feature (e.g. rewrite of some screen)</li>
+  <li>a refactoring of business logic (e.g. conversion of SQL to Room)</li>
+  <li>…</li>
+</ul>
+
+<p>Basically, a feature flag decides whether a particular code path will be executed or not. As such it can make both very small (e.g. new button color) as very large things (e.g. new multi-screen feature) available to users. The mechanics are always the same.</p>
+
+<p>There are two types of feature flags: static and dynamic.</p>
+
+<p>A static feature flag gets hardcoded into the app at build time and hence you decide during compilation what will be “on” or “off”. Because of its inflexibility at runtime, it’s benefits are mostly limited to the development process itself.</p>
+
+<p>A dynamic feature flag, on the other hand, can still be changed at runtime. This happens either via a secret settings screen in the debug variant or via a remote tool (e.g. <a href="https://firebase.google.com/docs/remote-config">Firebase Remote Config</a>) when the app is in production. This enables some very interesting use cases such as gradual feature rollout and A/B testing.</p>
+
+<p>Finally, note that feature flags don’t affect the code that is bundled into your app binary! All they do is change the code path that is executed. This is in contrast to tools like <a href="https://www.guardsquare.com/en/products/proguard">ProGuard</a> that can actually strip out parts of your code.</p>
+
+<h2 id="why-use-feature-flags">Why use feature flags</h2>
+<p>The key benefit of using feature flags is that they decouple development from app releases. This means two things:</p>
+
+<ul>
+  <li>features can be merged before they are fully implemented</li>
+  <li>fully implemented features can remain hidden until you are ready to release them.</li>
+</ul>
+
+<p>First and foremost, feature flags help developers because incomplete features can be merged! This allows to split a feature into many small increments and merge those branches one by one.</p>
+
+<p><img src="https://jeroenmols.com/img/blog/featureflags/smaller_branches.png" alt="Thanks to feature flags, development of new features can be split into many small increments" /></p>
+
+<p>These smaller branches aren’t just easier to review (fewer files), but they are also easier to merge. This is because their difference with master is small causing a lot less merge conflicts. When merging is painless, it will happen more often and hence development will speed up.</p>
+
+<p>Secondly, feature flags also help with releasing. In the old days, an app release could get blocked when finding a last-minute issue on a new feature. Thanks to feature flags, this can no longer happen! If a feature isn’t fully ready, it can just be temporarily disabled.</p>
+
+<p>Even more, when a feature is ready to ship, you no longer have to do a big bang roll out to all users. Instead, you can gradually roll out and make a data-driven decision on to roll out further or maybe even roll back! That dramatically de-risks rolling out new features. At Philips Hue, we recently rewrote one of our most important screens and rolled it out over 10 days to make sure users weren’t negatively impacted.</p>
+
+<p>Also, there are commercial benefits: time-critical new features can be built ahead of time and only made available when you are ready to announce them. This was especially useful at Philips Hue where we need to time app launches together with new product introductions (e.g. a new lamp or accessory).</p>
+
+<p>Finally, improvements to new features can be built side by side the old feature and using A/B tests you can then decide which feature should remain. This allows optimizing user engagement in your app.</p>
+
+<blockquote>
+  <p>Benefits of feature flags:</p>
+  <ul>
+    <li>speed up development by integrating incomplete features</li>
+    <li>allow releasing when a new feature is not yet ready</li>
+    <li>enable to derisk releases using gradual feature rollout</li>
+    <li>enable roll back when production issue found in feature</li>
+    <li>time the release of new features to the market</li>
+    <li>enable A/B testing</li>
+  </ul>
+</blockquote>
+
+<h2 id="requirements-of-good-feature-flags">Requirements of good feature flags</h2>
+<p>Now that we know that feature flags can be quite useful, let’s take a minute and think about what we need to make feature flags work.</p>
+
+<p>First and foremost: it must be incredibly easy to add a new feature flag. The easier that is, the more you will do it and the more you’ll benefit from them. In the next posts, we’ll see how we can define feature flags using one single line of code!</p>
+
+<p>Next, we need to be able to toggle feature flags both locally and remotely. For developer (debug) builds, you want predictable, easy access to feature flags. Hence there should be some screen in the app where you can see the current state of all feature flags and toggle them. Ideally, this UI should even be auto-generated.</p>
+
+<p>On the other hand, for production (release) builds, you want to be able to remotely toggle the feature flags. Hence they should also be remotely available, which is typically provided by a framework like <a href="https://firebase.google.com/docs/remote-config">Firebase Remote Config</a>.</p>
+
+<p>In terms of feature flag values, we are going to restrict ourselves to just boolean flags. Having binary values keeps things simple, both from a development perspective as conceptually: something is either on or off. Using many feature flags can already be quite confusing with just binary values, let alone if strings or integers are allowed. This simplification also allows to elegantly generate the UI for our feature flags later on.</p>
+
+<p>We do need more than just feature flags though! Apps typically also have a dynamic configuration that you only use in the debug build type: logging, leak canary, espresso idling resources, development backend, bypass onboarding, simulate a crash… All of these are “test settings” that facilitate testing or debugging your app. Wouldn’t it be nice if you could also turn these on or off using a built-in UI?</p>
+
+<p><img src="https://jeroenmols.com/img/blog/featureflags/testsettings.png" alt="Feature flags allow to toggle features on or off, whereas test stettings allow to dynamically configure the behavior of the app" class="align-center width-half" /></p>
+
+<p>Tests settings don’t just ease development and testing, but they also reduce the need to build flavors. Instead of having a separate flavor for leak canary or logging or espresso idling resources or … these now become a configuration that you can turn on or off on demand!</p>
+
+<p>This allows having predictable debug builds that never behave differently due to a remote feature flag change (that would also cause test flakiness). And at the same time enables to turn the remote feature flagging on to actual test whether remote feature flags still work.</p>
+
+<p>Contrary to feature flags, test settings are long-lived and are never shipped directly to users.</p>
+
+<p>Finally, we should be able to easily toggle feature flags on/off in automated tests and we don’t want to lock ourselves into a particular framework. So it should be easy to swap to a different remote feature flag tool later on.</p>
+
+<blockquote>
+  <p>Wrapping it all up, feature flags should be:</p>
+  <ul>
+    <li>very easy to add</li>
+    <li>locally and remotely available</li>
+    <li>binary in value</li>
+    <li>cater for both features and test settings</li>
+    <li>configurable for automated tests</li>
+    <li>agnostic of the used remote feature flag tool</li>
+  </ul>
+</blockquote>
+
+<h2 id="wrap-up">Wrap-up</h2>
+<p>Feature flags are an incredibly powerful tool to speed up development: they allow to merge incomplete features and derisk app release by allowing gradual rollouts. They should be incredibly easy to add, usable in automated tests and you should be able to toggle them remotely for production use and locally for development and testing.</p>
+
+<p>Make sure you follow me on <span><a href="https://twitter.com/molsjeroen?source=featureflags-whyyoushouldcare2019" class="ga-link" target="_blank">Twitter</a></span>
+ so you don’t miss part 2 that covers an how you can use and release feature flags.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/android" class="page__taxonomy-item" rel="tag">android</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/feature-flags" class="page__taxonomy-item" rel="tag">feature flags</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/firebase" class="page__taxonomy-item" rel="tag">firebase</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/software-engineering" class="page__taxonomy-item" rel="tag">software engineering</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/tools" class="page__taxonomy-item" rel="tag">tools</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/blog" class="page__taxonomy-item" rel="tag">blog</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-08-13T00:00:00+02:00">August 13, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=Feature+Flags+-+Why+you+should+care%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2019%2F08%2F13%2Ffeatureflags%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2019%2F08%2F13%2Ffeatureflags%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://plus.google.com/share?url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2019%2F08%2F13%2Ffeatureflags%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fab fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2019%2F08%2F13%2Ffeatureflags%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      <section class="page__share">
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bottom-blog-responsive -->
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-9854541518226004"
+       data-ad-slot="4086741379"
+       data-ad-format="auto"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/blog/2019/08/06/lessonsleaddeveloper/" class="pagination--pager" title="Lessons learned being a lead developer
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a Comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/lessonsleaddeveloper/lessonsleaddeveloper.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2019/08/06/lessonsleaddeveloper/" rel="permalink">Lessons learned being a lead developer
+</a>
+        </h2>
+        <h3 class="archive__date">06 Aug 2019</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2019/08/06/lessonsleaddeveloper/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  16 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Three years ago, we decided ramp up internal app development at Philips Hue. After interviewing candidates (78!) for six months, I became the lead Android developer of the freshly hired Android team.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/androidqgestures/androidqgestures.png)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2019/07/17/androidqgestures/" rel="permalink">Supporting Android Q gestural navigation
+</a>
+        </h2>
+        <h3 class="archive__date">17 Jul 2019</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2019/07/17/androidqgestures/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  5 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">From Android Q onwards devices can now operate in a fully gestural system navigation mode. In that mode, there is no longer an on-screen back button, instead users can swipe from both edges to navigate back.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/adaptiveicon/adaptive_icon.png)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2019/07/03/adaptiveicon/" rel="permalink">Philips Hue adaptive icon
+</a>
+        </h2>
+        <h3 class="archive__date">03 Jul 2019</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2019/07/03/adaptiveicon/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Your icon is one of the most important assets in your app. With a bit of luck, users might even put it on their main launcher screen!
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/modularizationtips/modularization_tips.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2019/06/12/modularizationtips/" rel="permalink">Modularization - Lessons learned
+</a>
+        </h2>
+        <h3 class="archive__date">12 Jun 2019</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2019/06/12/modularizationtips/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  7 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Wrapping up this series on modularization I’d like to share some of the things we’ve learned at Philips Hue while going through this process the past year.
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+    <div id="results" class="results"></div></div>
+      </div>
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+      <li><a href="https://twitter.com/molsjeroen"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+    
+    
+    
+      <li><a href="https://github.com/JeroenMols"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    
+    <li><a href="atom.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2019 Jeroen Mols. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-63356566-1', 'auto');
+  ga('set', 'anonymizeIp', false)
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://jeroenmols.com/blog/2019/08/13/featureflags/";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = "/blog/2019/08/13/featureflags"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jeroenmols.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+  </body>
+</html>

@@ -1,4 +1,120 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2019-08-06T21:12:33+02:00</updated><id>https://jeroenmols.com/</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Lessons learned being a lead developer</title><link href="https://jeroenmols.com/blog/2019/08/06/lessonsleaddeveloper/" rel="alternate" type="text/html" title="Lessons learned being a lead developer" /><published>2019-08-06T00:00:00+02:00</published><updated>2019-08-06T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2019/08/06/lessonsleaddeveloper</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/08/06/lessonsleaddeveloper/">&lt;p&gt;Three years ago, we decided ramp up internal app development at Philips Hue. After interviewing candidates (78!) for six months, I became the lead Android developer of the freshly hired Android team.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2019-08-14T01:34:39+02:00</updated><id>https://jeroenmols.com/</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Feature Flags - Why you should care</title><link href="https://jeroenmols.com/blog/2019/08/13/featureflags/" rel="alternate" type="text/html" title="Feature Flags - Why you should care" /><published>2019-08-13T00:00:00+02:00</published><updated>2019-08-13T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2019/08/13/featureflags</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/08/13/featureflags/">&lt;p&gt;A key ingredient to speed up modern software development is feature flags. But what is a feature flag precisely? Why should you care about them? How do you integrate them into your codebase? And how can we make them easy to use?&lt;/p&gt;
+
+&lt;p&gt;This mini-series will explain the benefits of using feature flags and propose a handy architecture that enables local feature flag configuration, remote configuration, and easy testability.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;This blog post is of a series on feature flags:&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Part 1: &lt;a href=&quot;/blog/2019/08/13/featureflags/&quot;&gt;Why you should care&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;Part 2: How to use&lt;/li&gt;
+    &lt;li&gt;Part 3: A successful architecture&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;what-is-a-feature-flag&quot;&gt;What is a feature flag&lt;/h2&gt;
+&lt;p&gt;In essence, a feature flag is simply a &lt;code class=&quot;highlighter-rouge&quot;&gt;Boolean&lt;/code&gt; that determines whether something is “on” or “of”:&lt;/p&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isFeatureOn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// give access to something&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// prevent access to something&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This “something” can be many things:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;a new user-facing feature in your app (e.g. enable dark theme)&lt;/li&gt;
+  &lt;li&gt;a non-user-facing feature (e.g. new analytics provider)&lt;/li&gt;
+  &lt;li&gt;a replacement for existing feature (e.g. rewrite of some screen)&lt;/li&gt;
+  &lt;li&gt;a refactoring of business logic (e.g. conversion of SQL to Room)&lt;/li&gt;
+  &lt;li&gt;…&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Basically, a feature flag decides whether a particular code path will be executed or not. As such it can make both very small (e.g. new button color) as very large things (e.g. new multi-screen feature) available to users. The mechanics are always the same.&lt;/p&gt;
+
+&lt;p&gt;There are two types of feature flags: static and dynamic.&lt;/p&gt;
+
+&lt;p&gt;A static feature flag gets hardcoded into the app at build time and hence you decide during compilation what will be “on” or “off”. Because of its inflexibility at runtime, it’s benefits are mostly limited to the development process itself.&lt;/p&gt;
+
+&lt;p&gt;A dynamic feature flag, on the other hand, can still be changed at runtime. This happens either via a secret settings screen in the debug variant or via a remote tool (e.g. &lt;a href=&quot;https://firebase.google.com/docs/remote-config&quot;&gt;Firebase Remote Config&lt;/a&gt;) when the app is in production. This enables some very interesting use cases such as gradual feature rollout and A/B testing.&lt;/p&gt;
+
+&lt;p&gt;Finally, note that feature flags don’t affect the code that is bundled into your app binary! All they do is change the code path that is executed. This is in contrast to tools like &lt;a href=&quot;https://www.guardsquare.com/en/products/proguard&quot;&gt;ProGuard&lt;/a&gt; that can actually strip out parts of your code.&lt;/p&gt;
+
+&lt;h2 id=&quot;why-use-feature-flags&quot;&gt;Why use feature flags&lt;/h2&gt;
+&lt;p&gt;The key benefit of using feature flags is that they decouple development from app releases. This means two things:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;features can be merged before they are fully implemented&lt;/li&gt;
+  &lt;li&gt;fully implemented features can remain hidden until you are ready to release them.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;First and foremost, feature flags help developers because incomplete features can be merged! This allows to split a feature into many small increments and merge those branches one by one.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/featureflags/smaller_branches.png&quot; alt=&quot;Thanks to feature flags, development of new features can be split into many small increments&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;These smaller branches aren’t just easier to review (fewer files), but they are also easier to merge. This is because their difference with master is small causing a lot less merge conflicts. When merging is painless, it will happen more often and hence development will speed up.&lt;/p&gt;
+
+&lt;p&gt;Secondly, feature flags also help with releasing. In the old days, an app release could get blocked when finding a last-minute issue on a new feature. Thanks to feature flags, this can no longer happen! If a feature isn’t fully ready, it can just be temporarily disabled.&lt;/p&gt;
+
+&lt;p&gt;Even more, when a feature is ready to ship, you no longer have to do a big bang roll out to all users. Instead, you can gradually roll out and make a data-driven decision on to roll out further or maybe even roll back! That dramatically de-risks rolling out new features. At Philips Hue, we recently rewrote one of our most important screens and rolled it out over 10 days to make sure users weren’t negatively impacted.&lt;/p&gt;
+
+&lt;p&gt;Also, there are commercial benefits: time-critical new features can be built ahead of time and only made available when you are ready to announce them. This was especially useful at Philips Hue where we need to time app launches together with new product introductions (e.g. a new lamp or accessory).&lt;/p&gt;
+
+&lt;p&gt;Finally, improvements to new features can be built side by side the old feature and using A/B tests you can then decide which feature should remain. This allows optimizing user engagement in your app.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Benefits of feature flags:&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;speed up development by integrating incomplete features&lt;/li&gt;
+    &lt;li&gt;allow releasing when a new feature is not yet ready&lt;/li&gt;
+    &lt;li&gt;enable to derisk releases using gradual feature rollout&lt;/li&gt;
+    &lt;li&gt;enable roll back when production issue found in feature&lt;/li&gt;
+    &lt;li&gt;time the release of new features to the market&lt;/li&gt;
+    &lt;li&gt;enable A/B testing&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;requirements-of-good-feature-flags&quot;&gt;Requirements of good feature flags&lt;/h2&gt;
+&lt;p&gt;Now that we know that feature flags can be quite useful, let’s take a minute and think about what we need to make feature flags work.&lt;/p&gt;
+
+&lt;p&gt;First and foremost: it must be incredibly easy to add a new feature flag. The easier that is, the more you will do it and the more you’ll benefit from them. In the next posts, we’ll see how we can define feature flags using one single line of code!&lt;/p&gt;
+
+&lt;p&gt;Next, we need to be able to toggle feature flags both locally and remotely. For developer (debug) builds, you want predictable, easy access to feature flags. Hence there should be some screen in the app where you can see the current state of all feature flags and toggle them. Ideally, this UI should even be auto-generated.&lt;/p&gt;
+
+&lt;p&gt;On the other hand, for production (release) builds, you want to be able to remotely toggle the feature flags. Hence they should also be remotely available, which is typically provided by a framework like &lt;a href=&quot;https://firebase.google.com/docs/remote-config&quot;&gt;Firebase Remote Config&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;In terms of feature flag values, we are going to restrict ourselves to just boolean flags. Having binary values keeps things simple, both from a development perspective as conceptually: something is either on or off. Using many feature flags can already be quite confusing with just binary values, let alone if strings or integers are allowed. This simplification also allows to elegantly generate the UI for our feature flags later on.&lt;/p&gt;
+
+&lt;p&gt;We do need more than just feature flags though! Apps typically also have a dynamic configuration that you only use in the debug build type: logging, leak canary, espresso idling resources, development backend, bypass onboarding, simulate a crash… All of these are “test settings” that facilitate testing or debugging your app. Wouldn’t it be nice if you could also turn these on or off using a built-in UI?&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/featureflags/testsettings.png&quot; alt=&quot;Feature flags allow to toggle features on or off, whereas test stettings allow to dynamically configure the behavior of the app&quot; class=&quot;align-center width-half&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Tests settings don’t just ease development and testing, but they also reduce the need to build flavors. Instead of having a separate flavor for leak canary or logging or espresso idling resources or … these now become a configuration that you can turn on or off on demand!&lt;/p&gt;
+
+&lt;p&gt;This allows having predictable debug builds that never behave differently due to a remote feature flag change (that would also cause test flakiness). And at the same time enables to turn the remote feature flagging on to actual test whether remote feature flags still work.&lt;/p&gt;
+
+&lt;p&gt;Contrary to feature flags, test settings are long-lived and are never shipped directly to users.&lt;/p&gt;
+
+&lt;p&gt;Finally, we should be able to easily toggle feature flags on/off in automated tests and we don’t want to lock ourselves into a particular framework. So it should be easy to swap to a different remote feature flag tool later on.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Wrapping it all up, feature flags should be:&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;very easy to add&lt;/li&gt;
+    &lt;li&gt;locally and remotely available&lt;/li&gt;
+    &lt;li&gt;binary in value&lt;/li&gt;
+    &lt;li&gt;cater for both features and test settings&lt;/li&gt;
+    &lt;li&gt;configurable for automated tests&lt;/li&gt;
+    &lt;li&gt;agnostic of the used remote feature flag tool&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
+&lt;p&gt;Feature flags are an incredibly powerful tool to speed up development: they allow to merge incomplete features and derisk app release by allowing gradual rollouts. They should be incredibly easy to add, usable in automated tests and you should be able to toggle them remotely for production use and locally for development and testing.&lt;/p&gt;
+
+&lt;p&gt;Make sure you follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=featureflags-whyyoushouldcare2019&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
+ so you don’t miss part 2 that covers an how you can use and release feature flags.&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="android" /><category term="firebase" /><category term="feature flags" /><category term="software engineering" /><category term="tools" /><summary type="html">A key ingredient to speed up modern software development is feature flags. But what is a feature flag precisely? Why should you care about them? How do you integrate them into your codebase? And how can we make them easy to use?</summary></entry><entry><title type="html">Lessons learned being a lead developer</title><link href="https://jeroenmols.com/blog/2019/08/06/lessonsleaddeveloper/" rel="alternate" type="text/html" title="Lessons learned being a lead developer" /><published>2019-08-06T00:00:00+02:00</published><updated>2019-08-06T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2019/08/06/lessonsleaddeveloper</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/08/06/lessonsleaddeveloper/">&lt;p&gt;Three years ago, we decided ramp up internal app development at Philips Hue. After interviewing candidates (78!) for six months, I became the lead Android developer of the freshly hired Android team.&lt;/p&gt;
 
 &lt;p&gt;In this non-tech post (for a change), I’d like to openly share my experiences being a team lead. It’s been a bumpy ride, but I came out with quite some new perspectives that make me a stronger lead and a better person.&lt;/p&gt;
 
@@ -1627,131 +1743,4 @@ The following dependencies have later milestone versions:
   &lt;li&gt;&lt;a href=&quot;https://www.amazon.com/gp/product/0131177052/ref=as_li_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;creativeASIN=0131177052&amp;amp;linkCode=as2&amp;amp;tag=jrnmls-20&amp;amp;linkId=e757dc2fcc803f637c8cd5c3d89c281e&quot;&gt;Working effectively with legacy code&lt;/a&gt; by Michael Feathers: Excellent book on how to refactor legacy code with amazing chapter names like “I Don’t Have Much Time and I Have to Change It” and “I Need to Make a Change, but I Don’t Know What Tests to Write”&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.amazon.com/gp/product/0321601912/ref=as_li_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;creativeASIN=0321601912&amp;amp;linkCode=as2&amp;amp;tag=jrnmls-20&amp;amp;linkId=6118692c28efd4239f6e14c430bbd871&quot;&gt;Continuous Delivery: Reliable Software Releases Through Build, Test, and Deployment Automation&lt;/a&gt; by Jez Humble and David Farley: Great book if you’d like to learn more about continuous delivery and what the benefits could be for your team/organization.&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.amazon.com/gp/product/0321146530/ref=as_li_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;creativeASIN=0321146530&amp;amp;linkCode=as2&amp;amp;tag=jrnmls-20&amp;amp;linkId=b785589aa73d26e7dcddfb1a1d70d3d0&quot;&gt;Test Driven Development: By Example&lt;/a&gt; by Kent Beck: While tackling legacy code, writing automated tests is of the utmost importance. This book provides a really nice introduction to test-driven development from its inventor Kent Beck.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Jeroen Mols</name></author><category term="refactoring" /><category term="architecture" /><category term="software engineering" /><summary type="html">Are you living the dream? Is your code so clean it makes your eyes just tear a little? Can’t think of anything you would still like to refactor? Never have any bugs? Using all the latest technologies?</summary></entry><entry><title type="html">Testing LiveData in JUnit 4 and JUnit 5</title><link href="https://jeroenmols.com/blog/2019/01/17/livedatajunit5/" rel="alternate" type="text/html" title="Testing LiveData in JUnit 4 and JUnit 5" /><published>2019-01-17T00:00:00+01:00</published><updated>2019-01-17T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2019/01/17/livedatajunit5</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/01/17/livedatajunit5/">&lt;p&gt;Architecture components are one of the most exciting things that happened to Android in the past years. But how do you effectively go about and testing this?&lt;/p&gt;
-
-&lt;h2 id=&quot;problem-statement&quot;&gt;Problem statement&lt;/h2&gt;
-&lt;p&gt;One of the interesting problems LiveData solves is to ensure the observer is always called on the main thread. This happens in the following ways:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;setValue()&lt;/code&gt;: crashes if not called from main thread&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;postValue()&lt;/code&gt;: swaps to main thread and is safe to be called from any background thread&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Now what happens if you call any of these methods in a junit test?&lt;/p&gt;
-
-&lt;p&gt;When calling &lt;code class=&quot;highlighter-rouge&quot;&gt;livedata.setValue()&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;livedata.value =&lt;/code&gt; you get:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;java.lang.RuntimeException:
-Method getMainLooper in android.os.Looper not mocked.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Or alternatively when &lt;code class=&quot;highlighter-rouge&quot;&gt;unitTests.returnDefaultValues = true&lt;/code&gt; is on:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;java.lang.NullPointerException
-at androidx.arch.core.executor.DefaultTaskExecutor.isMainThread(DefaultTaskExecutor.java:74)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;This makes sense, because JVM unit tests don’t know anything about the Android main thread! Hence all unit test are executed on a random (background) thread.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Note that this is true in general. The main Thread is just a concept provided by most UI frameworks to avoid race conditions while updating the UI. E.g. on Android the main thread is provided by the Android Framework, for Java applications the main thread is provided by Swing (for instance).&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;When calling &lt;code class=&quot;highlighter-rouge&quot;&gt;livedata.postValue()&lt;/code&gt;, you get similar results.&lt;/p&gt;
-
-&lt;p&gt;However here the problem is even more fundamental as this can never work. Even if the main thread would exist in the test, then the actual value update would happen asynchronously from the test, causing the asserts to happen before the value is actually updated.&lt;/p&gt;
-
-&lt;h2 id=&quot;junit-4&quot;&gt;JUnit 4&lt;/h2&gt;
-&lt;p&gt;Solving this means doing two things:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;don’t update live data on the main thread&lt;/li&gt;
-  &lt;li&gt;update live data immediately (don’t post value)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Fortunately the architecture components team has provided a JUnit rule to do exactly that:&lt;/p&gt;
-
-&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ExampleUnitTest&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;@get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Rule&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;rule&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;InstantTaskExecutorRule&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;@Test&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;my&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;mutableLiveData&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MutableLiveData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;()&lt;/span&gt;
-
-        &lt;span class=&quot;n&quot;&gt;mutableLiveData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;postValue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-        &lt;span class=&quot;n&quot;&gt;assertEquals&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mutableLiveData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;All you have to do is add a &lt;code class=&quot;highlighter-rouge&quot;&gt;InstantTaskExecutorRule()&lt;/code&gt; to the class containing ViewModel and add the following Gradle dependency:&lt;/p&gt;
-
-&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;testImplementation&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'android.arch.core:core-testing:1.1.1'&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;junit-5&quot;&gt;JUnit 5&lt;/h2&gt;
-&lt;p&gt;This doesn’t work for JUnit 5 however as the concept of &lt;code class=&quot;highlighter-rouge&quot;&gt;Rule&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;TestRunner&lt;/code&gt; are merged into one single concept of &lt;a href=&quot;https://junit.org/junit5/docs/current/user-guide/#extensions&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Extensions&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Hence we can create a similar extension like the &lt;code class=&quot;highlighter-rouge&quot;&gt;InstantTaskExecutorRule&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;androidx.arch.core.executor.ArchTaskExecutor&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;androidx.arch.core.executor.TaskExecutor&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.junit.jupiter.api.extension.AfterEachCallback&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.junit.jupiter.api.extension.BeforeEachCallback&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.junit.jupiter.api.extension.ExtensionContext&lt;/span&gt;
-
-&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;InstantExecutorExtension&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;BeforeEachCallback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AfterEachCallback&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;beforeEach&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ExtensionContext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;ArchTaskExecutor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-            &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;setDelegate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;: &lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;TaskExecutor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;executeOnDiskIO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;runnable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Runnable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;runnable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-
-                &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;postToMainThread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;runnable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Runnable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;runnable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-
-                &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;isMainThread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Boolean&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;true&lt;/span&gt;
-            &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;afterEach&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ExtensionContext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;ArchTaskExecutor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;setDelegate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;This basically does two things:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;set a delegate before each test that updates live data values immediately on the calling thread&lt;/li&gt;
-  &lt;li&gt;remove the delegate after each tests to avoid influencing other tests.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Using this, the JUnit 4 test can easily be converted to JUnit 5:&lt;/p&gt;
-
-&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;@ExtendWith&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;InstantExecutorExtension&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PhotosViewModelTest&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;@Test&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;my&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;mutableLiveData&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MutableLiveData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;()&lt;/span&gt;
-
-        &lt;span class=&quot;n&quot;&gt;mutableLiveData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;postValue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-        &lt;span class=&quot;n&quot;&gt;assertEquals&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mutableLiveData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Voila! That’s it.&lt;/p&gt;
-
-&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
-&lt;p&gt;In order to test LiveData, it’s values need to be directly updated on the calling thread. This can be done using
-a rule in JUnit 4 or an extension in JUnit 5.&lt;/p&gt;
-
-&lt;p&gt;If you’ve made it this far you should probably follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=testinglivedatainjunit4andjunit52019&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
-. Feel free leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="testing" /><category term="architecture" /><category term="livedata" /><summary type="html">Architecture components are one of the most exciting things that happened to Android in the past years. But how do you effectively go about and testing this?</summary></entry></feed>
+&lt;/ul&gt;</content><author><name>Jeroen Mols</name></author><category term="refactoring" /><category term="architecture" /><category term="software engineering" /><summary type="html">Are you living the dream? Is your code so clean it makes your eyes just tear a little? Can’t think of anything you would still like to refactor? Never have any bugs? Using all the latest technologies?</summary></entry></feed>
