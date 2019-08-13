@@ -10,16 +10,17 @@ tags:
   - firebase
   - feature flags
 ---
-//TODO migrate unit tests and open source example
-
 Now that we know how feature flags can help us release faster, it's time to dive into the actual implementation details. How can we easily define feature flags? How to configure them both locally as remotely? And use them in our testing?
 
+This post will present a simple, powerful architecture to manage feature flags and comes with a full example on Github.
+
 > This blog post is of a series on feature flags:
-- Part 1: Why you should care
-- Part 2: A successful architecture
+- Part 1: [Why you should care]({{ site.baseurl }}{% link blog/_posts/2019-08-13-featureflags.md %})
+- Part 2: How to use
+- Part 3: A successful architecture
 
 ## Creating new feature flags
-As discussed in part 1, the easier it is to add feature flags, the more likely developers will use the system. At its core a `Feature` is something very simple:
+As discussed in [part 1]({{ site.baseurl }}{% link blog/_posts/2019-08-13-featureflags.md %}), the easier it is to add feature flags, the more likely developers will use the system. At its core a `Feature` is something very simple:
 
 ```kotlin
 interface Feature {
@@ -30,7 +31,7 @@ interface Feature {
 }
 ```
 
-It needs to have a unique `key` to reference it on your remote feature flagging tool. A `title` and `description` to help people using it understand what it is all about. And optionally a default value, which is handy if you're using both `FeatureFlags` and `TestSettings`.
+It needs to have a unique `key` to reference it on your remote feature flagging tool. A `title` and `description` to help understand what it is all about. And optionally a default value, which is handy if you're using both `FeatureFlags` and `TestSettings`.
 
 This interface can now be implemented by both a `FeatureFlag` and `TestSetting` enum:
 
@@ -64,7 +65,7 @@ Both `FeatureFlag` and `TestSetting` are enums so that when you create a `when` 
 > Mission accomplished: adding a new `FeatureFlag`/`TestSetting` is as easy as adding a one-liner!
 
 ## Consuming feature flags
-Next, our app needs to be able to read out what value (true/false) a `Feature` is currently set to. This can be done by requesting one of the `FeatureFlagProvider` for the current value:
+Next, our app needs to be able to read out what value (true/false) a `Feature` is currently set to. This can be done by requesting one of the `FeatureFlagProviders` for the current value:
 
 ```kotlin
 interface FeatureFlagProvider {
@@ -76,7 +77,10 @@ interface FeatureFlagProvider {
 
 This interface will have several implementations with different priorities attached to it so that they can override each other. (more on that later)
 
-Note how implementations don't need to provide a value for every `Feature`! This ensures that we don't accidentally rely on build-in defaults of the feature flag tool you are using (e.g. Firebase remote config returns false when it doesn't have a value) and allows to have a chain of providers (e.g. we can have a feature flag that is only locally available, not remotely).
+Note how implementations don't need to provide a value for every `Feature`! This has two benefits:
+
+- you don't accidentally rely on build-in defaults of the feature flag tool you are using (e.g. Firebase remote config returns false when it doesn't have a value)
+- you can have a chain of providers (e.g. we can have a feature flag that is only locally available, not remotely).
 
 The `RuntimeBehavior` links all `FeatureFlagProviders` together and exposes the API that should be used from within the application:
 
@@ -174,7 +178,7 @@ class StoreFeatureFlagProvider : FeatureFlagProvider {
 
 Notice how you must provide an explicit value for every feature toggle! This is because you never want to accidentally (=implicitly) ship an unfinished feature to users.
 
-Finally, this makes it very easy to check what features are on or off in any given app release. And since all of this is just Kotlin code, it can even be used to generate a release report with what feature toggles exist and their value.
+Finally, this makes it very easy to check what features are on or off in any given app release. And since all of this is just Kotlin code, it's easy to write a script to generate a release report with what feature toggles exist and their value.
 
 > The `StoreFeatureFlagProvider` defines for every `Feature` whether it is on or off in the release build
 
@@ -443,7 +447,18 @@ While that might seem a bit overwhelming, it consists of a lot of very small cla
 
 And based on these classes, a local UI is automagically generated to toggle the `Features` on/off in debug builds!
 
-I've created a full Github sample project where you can see all code in action here: <insert link>
+I've created a full Github sample project where you can see all code in action [here](https://github.com/JeroenMols/FeatureFlagExample)
+
+## Bonus
+When combining this Feature Flag architecture with my previous [modularization architecture]({{ site.baseurl }}{% link blog/_posts/2019-03-18-modularizationarchitecture.md %}), all UI classes can be moved to their own feature module `test-settings` that is only included into the `app` module for debug builds:
+
+```groovy
+dependencies {
+    debugImplementation project(':features:test-settings')
+}
+```
+
+This does require all feature flag business logic to move to a library module `feature-flags`, but the end result is a very clean!
 
 ## Wrap-up
 With just a few simple classes we've been able to build a powerful feature flagging architecture. In that it's very easy to add new features, there is support for both local and remote feature flags, feature flags are testable and a local UI for enabling/disabling feature flags is automatically generated.
