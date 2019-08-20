@@ -243,4 +243,9 @@ var store = [{
         "excerpt":"A key ingredient to speed up modern software development is feature flags. But what is a feature flag precisely? Why should you care about them? How do you integrate them into your codebase? And how can we make them easy to use? This mini-series will explain the benefits of using...","categories": ["blog"],
         "tags": ["android","firebase","feature flags","software engineering","tools"],
         "url": "https://jeroenmols.com/blog/2019/08/13/featureflags/",
-        "teaser":"https://jeroenmols.com/img/blog/featureflags/featureflags.jpg"}]
+        "teaser":"https://jeroenmols.com/img/blog/featureflags/featureflags.jpg"},{
+        "title": "Feature Flags - How to use",
+        "excerpt":"Empowered with what feature flags are and why they are useful, let’s see how we can actually integrate them into an app. And how can we roll them out to our users? This mini-series will explain the benefits of using feature flags and propose a handy architecture that enables local...","categories": ["blog"],
+        "tags": ["android","firebase","feature flags","software engineering","tools"],
+        "url": "https://jeroenmols.com/blog/2019/08/20/featureflagshowtouse/",
+        "teaser":"https://jeroenmols.com/img/blog/featureflagshowtouse/featureflagshowtouse.jpg"}]

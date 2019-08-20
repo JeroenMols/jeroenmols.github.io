@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/" rel="alternate" type="text/html"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle>
- <updated>2019-08-14T01:34:39+02:00</updated>
+ <updated>2019-08-21T01:00:43+02:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,31 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>Feature Flags - How to use</title>
+   <link href="https://jeroenmols.com/blog/2019/08/20/featureflagshowtouse/"/>
+   <updated>2019-08-20T00:00:00+02:00</updated>
+   <id>https://jeroenmols.com/blog/2019/08/20/featureflagshowtouse</id>
+   <content type="html"><![CDATA[
+     
+     <p>Empowered with what feature flags are and why they are useful, let’s see how we can actually integrate them into an app. And how can we roll them out to our users?</p>
+
+<p>This mini-series will explain the benefits of using feature flags and propose a handy architecture that enables local feature flag configuration, remote configuration, and easy testability.</p>
+
+<blockquote>
+  <p>This blog post is part of a series on feature flags:</p>
+  <ul>
+    <li>Part 1: <a href="/blog/2019/08/13/featureflags/">Why you should care</a></li>
+    <li>Part 2: <a href="/blog/2019/08/20/featureflagshowtouse/">How to use</a></li>
+    <li>Part 3: A successful architecture</li>
+  </ul>
+</blockquote>
+
+
+     <a href="https://jeroenmols.com/blog/2019/08/20/featureflagshowtouse/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>Feature Flags - Why you should care</title>
@@ -29,10 +54,10 @@
 <p>This mini-series will explain the benefits of using feature flags and propose a handy architecture that enables local feature flag configuration, remote configuration, and easy testability.</p>
 
 <blockquote>
-  <p>This blog post is of a series on feature flags:</p>
+  <p>This blog post is part of a series on feature flags:</p>
   <ul>
     <li>Part 1: <a href="/blog/2019/08/13/featureflags/">Why you should care</a></li>
-    <li>Part 2: How to use</li>
+    <li>Part 2: <a href="/blog/2019/08/20/featureflagshowtouse/">How to use</a></li>
     <li>Part 3: A successful architecture</li>
   </ul>
 </blockquote>
