@@ -15,9 +15,9 @@ Empowered with what feature flags are and why they are useful, let's see how we 
 
 This mini-series will explain the benefits of using feature flags and propose a handy architecture that enables local feature flag configuration, remote configuration, and easy testability.
 
-> This blog post is of a series on feature flags:
+> This blog post is part of a series on feature flags:
 - Part 1: [Why you should care]({{ site.baseurl }}{% link blog/_posts/2019-08-13-featureflags.md %})
-- Part 2: How to use
+- Part 2: [How to use]({{ site.baseurl }}{% link blog/_posts/2019-08-20-featureflagshowtouse.md %})
 - Part 3: A successful architecture
 
 ## Integrating feature flags

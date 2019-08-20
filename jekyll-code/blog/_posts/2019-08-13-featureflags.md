@@ -15,9 +15,9 @@ A key ingredient to speed up modern software development is feature flags. But w
 
 This mini-series will explain the benefits of using feature flags and propose a handy architecture that enables local feature flag configuration, remote configuration, and easy testability.
 
-> This blog post is of a series on feature flags:
+> This blog post is part of a series on feature flags:
 - Part 1: [Why you should care]({{ site.baseurl }}{% link blog/_posts/2019-08-13-featureflags.md %})
-- Part 2: How to use
+- Part 2: [How to use]({{ site.baseurl }}{% link blog/_posts/2019-08-20-featureflagshowtouse.md %})
 - Part 3: A successful architecture
 
 ## What is a feature flag
@@ -111,4 +111,4 @@ Finally, we should be able to easily toggle feature flags on/off in automated te
 ## Wrap-up
 Feature flags are an incredibly powerful tool to speed up development: they allow to merge incomplete features and derisk app release by allowing gradual rollouts. They should be incredibly easy to add, usable in automated tests and you should be able to toggle them remotely for production use and locally for development and testing.
 
-Make sure you follow me on {% include link_twitter.html %} so you don't miss part 2 that covers an how you can use and release feature flags.
+Make sure you follow me on {% include link_twitter.html %} and read on in [part 2]({{ site.baseurl }}{% link blog/_posts/2019-08-20-featureflagshowtouse.md %}) that covers how you can use and release feature flags.

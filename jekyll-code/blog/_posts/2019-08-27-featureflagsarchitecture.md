@@ -14,7 +14,7 @@ Now that we know how feature flags can help us release faster, it's time to dive
 
 This post will present a simple, powerful architecture to manage feature flags and comes with a full example on Github.
 
-> This blog post is of a series on feature flags:
+> This blog post is part of a series on feature flags:
 - Part 1: [Why you should care]({{ site.baseurl }}{% link blog/_posts/2019-08-13-featureflags.md %})
 - Part 2: How to use
 - Part 3: A successful architecture
