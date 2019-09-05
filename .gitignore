@@ -2,3 +2,4 @@ _site
 .DS_Store
 secret
 _secret
+jekyll-code/.jekyll-cache
