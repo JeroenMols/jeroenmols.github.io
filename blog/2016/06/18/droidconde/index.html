@@ -1,9 +1,9 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.12.0 by Michael Rose
-  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+  Minimal Mistakes Jekyll Theme 4.16.6 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
-  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
 -->
 <html lang="en" class="no-js">
   <head>
@@ -12,6 +12,8 @@
 <!-- begin _includes/seo.html --><title>Droidcon Berlin recap - Jeroen Mols</title>
 <meta name="description" content="Having founded the entire Droidcon franchise in 2009, Droidcon Berlin is a magical conference to be at. Not only do they have an awesome lineup of speakers (including yours truly). But they also organize great after hour events. Further they’re the first conference ever where I didn’t have any Wi-Fi issues (looking at you #io16).">
 
+
+  <meta name="author" content="Jeroen Mols">
 
 
 <meta property="og:type" content="article">
@@ -42,6 +44,8 @@
   
 
   
+    <meta name="twitter:creator" content="@molsjeroen">
+  
 
 
 
@@ -61,19 +65,17 @@
 
 
 
-
-
-
-  <script type="application/ld+json">
-    {
-      "@context": "http://schema.org",
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
       "@type": "Person",
       "name": "Jeroen Mols",
-      "url": "https://jeroenmols.com",
+      "url": "https://jeroenmols.com/",
       "sameAs": ["https://twitter.com/molsjeroen","https://www.linkedin.com/in/jeroenmols/","https://plus.google.com/+JeroenMols","https://github.com/JeroenMols","https://speakerdeck.com/jeroenmols","https://stackoverflow.com/users/2771851/jmols"]
-    }
-  </script>
-
+    
+  }
+</script>
 
 
   <meta name="google-site-verification" content="8E8HUpExgyNFdLuFMWmkSUl08gISnOF3UWexA55aNrk" />
@@ -143,36 +145,40 @@ $(document).ready(function(){
   </head>
 
   <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
 
     <!--[if lt IE 9]>
 <div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
 <![endif]-->
 
-    <div class="masthead">
+    
+
+<div class="masthead">
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
-        <a class="site-title" href="/">Jeroen Mols</a>
-        <ul class="visible-links">
+        
+        <a class="site-title" href="/">
+          Jeroen Mols
           
-            
-            <li class="masthead__menu-item">
-              <a href="https://jeroenmols.com/blog/" >Blog</a>
-            </li>
-          
-            
-            <li class="masthead__menu-item">
-              <a href="https://jeroenmols.com/speaking/" >Speaking</a>
-            </li>
-          
-            
-            <li class="masthead__menu-item">
-              <a href="https://jeroenmols.com/hireme/" >Hire me</a>
-            </li>
-          
-        </ul>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/blog/" >Blog</a>
+            </li><li class="masthead__menu-item">
+              <a href="/speaking/" >Speaking</a>
+            </li><li class="masthead__menu-item">
+              <a href="/hireme/" >Hire me</a>
+            </li></ul>
         
         <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
           <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
             <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
           </svg>
@@ -188,6 +194,7 @@ $(document).ready(function(){
   </div>
 </div>
 
+
     <div class="initial-content">
       
 
@@ -199,7 +206,7 @@ $(document).ready(function(){
   
 
 
-<div itemscope itemtype="http://schema.org/Person">
+<div itemscope itemtype="https://schema.org/Person">
 
   
     <div class="author__avatar">
@@ -216,9 +223,10 @@ $(document).ready(function(){
       <h3 class="author__name" itemprop="name">Jeroen Mols</h3>
     
     
-      <p class="author__bio" itemprop="description">
-        Android GDE & Lead Android developer at Philips Hue
-      </p>
+      <div class="author__bio" itemprop="description">
+        <p>Android GDE &amp; Lead Android developer at Philips Hue</p>
+
+      </div>
     
   </div>
 
@@ -226,7 +234,7 @@ $(document).ready(function(){
     <button class="btn btn--inverse">Follow</button>
     <ul class="author__urls social-icons">
       
-        <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
           <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Mol, Belgium</span>
         </li>
       
@@ -238,8 +246,10 @@ $(document).ready(function(){
       
 
       
+
+      
         <li>
-          <a href="https://twitter.com/@molsjeroen" itemprop="sameAs">
+          <a href="https://twitter.com/@molsjeroen" itemprop="sameAs" rel="nofollow noopener noreferrer">
             <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
           </a>
         </li>
@@ -249,15 +259,7 @@ $(document).ready(function(){
 
       
         <li>
-          <a href="https://plus.google.com/JeroenMols" itemprop="sameAs">
-            <i class="fab fa-fw fa-google-plus-square" aria-hidden="true"></i> Google+
-          </a>
-        </li>
-      
-
-      
-        <li>
-          <a href="https://www.linkedin.com/in/jeroenmols" itemprop="sameAs">
+          <a href="https://www.linkedin.com/in/jeroenmols" itemprop="sameAs" rel="nofollow noopener noreferrer">
             <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn
           </a>
         </li>
@@ -273,7 +275,7 @@ $(document).ready(function(){
 
       
         <li>
-          <a href="https://github.com/JeroenMols" itemprop="sameAs">
+          <a href="https://github.com/JeroenMols" itemprop="sameAs" rel="nofollow noopener noreferrer">
             <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
           </a>
         </li>
@@ -283,7 +285,7 @@ $(document).ready(function(){
 
       
         <li>
-          <a href="https://www.stackoverflow.com/users/2771851/jmols" itemprop="sameAs">
+          <a href="https://stackoverflow.com/users/2771851/jmols" itemprop="sameAs" rel="nofollow noopener noreferrer">
             <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i> Stack Overflow
           </a>
         </li>
@@ -302,7 +304,7 @@ $(document).ready(function(){
       
         
           <li>
-            <a href="https://www.youtube.com/channel/UC34Vt1lo8T15_rgc3e3Jsew" itemprop="sameAs">
+            <a href="https://www.youtube.com/channel/UC34Vt1lo8T15_rgc3e3Jsew" itemprop="sameAs" rel="nofollow noopener noreferrer">
               <i class="fab fa-fw fa-youtube" aria-hidden="true"></i> YouTube
             </a>
           </li>
@@ -550,8 +552,6 @@ Danny Preussler</li>
 
   <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2016%2F06%2F18%2Fdroidconde%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://plus.google.com/share?url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2016%2F06%2F18%2Fdroidconde%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fab fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
-
   <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2016%2F06%2F18%2Fdroidconde%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
@@ -592,6 +592,7 @@ Danny Preussler</li>
       <section id="disqus_thread"></section>
     
 </div>
+
     
   </article>
 
@@ -634,7 +635,6 @@ Danny Preussler</li>
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">Empowered with what feature flags are and why they are useful, let’s see how we can actually integrate them into an app. And how can we roll them out to our users?
-
 </p>
   </article>
 </div>
@@ -710,7 +710,6 @@ Danny Preussler</li>
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">Three years ago, we decided ramp up internal app development at Philips Hue. After interviewing candidates (78!) for six months, I became the lead Android developer of the freshly hired Android team.
-
 </p>
   </article>
 </div>
@@ -749,7 +748,6 @@ Danny Preussler</li>
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">From Android Q onwards devices can now operate in a fully gestural system navigation mode. In that mode, there is no longer an on-screen back button, instead users can swipe from both edges to navigate back.
-
 </p>
   </article>
 </div>
@@ -765,12 +763,18 @@ Danny Preussler</li>
 
     
       <div class="search-content">
-        <div class="search-content__inner-wrap"><input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
-    <div id="results" class="results"></div></div>
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
       </div>
     
 
-    <div class="page__footer">
+    <div id="footer" class="page__footer">
       <footer>
         <!-- start custom footer snippets -->
 
@@ -780,15 +784,9 @@ Danny Preussler</li>
     
       <li><strong>Follow:</strong></li>
     
+
     
-      <li><a href="https://twitter.com/molsjeroen"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
-    
-    
-    
-      <li><a href="https://github.com/JeroenMols"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
-    
-    
-    
+
     <li><a href="atom.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
   </ul>
 </div>
@@ -800,7 +798,7 @@ Danny Preussler</li>
 
     
   <script src="/assets/js/main.min.js"></script>
-  <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
 
 
 
@@ -813,15 +811,12 @@ Danny Preussler</li>
 
 
   <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-63356566-1', 'auto');
-  ga('set', 'anonymizeIp', false)
-  ga('send', 'pageview');
+  window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+  ga('create','UA-63356566-1','auto');
+  ga('set', 'anonymizeIp', false);
+  ga('send','pageview')
 </script>
+<script src="https://www.google-analytics.com/analytics.js" async></script>
 
 
 
@@ -845,6 +840,8 @@ Danny Preussler</li>
 
 
   
+
+
 
 
 

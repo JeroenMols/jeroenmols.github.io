@@ -25,7 +25,7 @@ var store = [{
         "url": "https://jeroenmols.com/blog/2016/01/29/yearinreview/",
         "teaser":"https://jeroenmols.com/img/blog/yearinreview15/yearinreview15.png"},{
         "title": "Git as a secure private Maven repository",
-        "excerpt":"As my previous blogposts already covered how to set up a private Maven repository, you might wonder “Why again a Maven blogpost?”. Well that’s a fair question and the answer is twofold: Backup mechanism, to ensure you never ever loose releases. Remote access outside of your local network (intranet).And Git...","categories": ["blog"],
+        "excerpt":"As my previous blogposts already covered how to set up a private Maven repository, you might wonder “Why again a Maven blogpost?”. Well that’s a fair question and the answer is twofold: Backup mechanism, to ensure you never ever loose releases. Remote access outside of your local network (intranet). And...","categories": ["blog"],
         "tags": ["android","maven","bitbucket"],
         "url": "https://jeroenmols.com/blog/2016/02/05/wagongit/",
         "teaser":"https://jeroenmols.com/img/blog/wagongit/wagongit.png"},{
