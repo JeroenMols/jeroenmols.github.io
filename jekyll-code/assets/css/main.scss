@@ -187,3 +187,53 @@ h3.archive__date {
 .width-half {
     width: 50%
 }
+
+/*
+   SEARCHING JOB BANNER
+   ========================================================================== */
+.page__alert {
+  position: relative;
+
+  @include clearfix;
+  -webkit-animation: $intro-transition;
+  animation: $intro-transition;
+  -webkit-animation-delay: 0.25s;
+  animation-delay: 0.25s;
+
+  &--overlay {
+    position: relative;
+    padding: 2em;
+    margin-bottom: 2em;
+    @include clearfix;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-animation: $intro-transition;
+    animation: $intro-transition;
+    -webkit-animation-delay: 0.25s;
+    animation-delay: 0.25s;
+
+    a {
+      color: #fff;
+    }
+
+    .wrapper {
+      @include breakpoint($x-large) {
+        max-width: $x-large;
+      }
+    }
+
+    .page__title,
+    .page__meta,
+    .page__lead,
+    .btn {
+      color: #fff;
+      line-height: 1.5;
+    }
+
+    .page__lead {
+      max-width: $medium;
+    }
+
+  }
+}
