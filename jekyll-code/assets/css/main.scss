@@ -130,6 +130,10 @@ h3.archive__date {
 .archive__item-title {
   margin-top: 0em;
   color: white;
+
+  a {
+    color: white;
+  }
 }
 
 .archive__item_titlecontainer {
@@ -162,8 +166,11 @@ h3.archive__date {
 
 .archive__item:hover {
   .archive__item-title {
-    color: $lighter-gray  ;
+    color: $light-gray;
     text-decoration: none;
+    a {
+      color: $light-gray;
+    }
   }
 }
 
