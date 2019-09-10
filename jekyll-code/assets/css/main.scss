@@ -198,7 +198,7 @@ h3.archive__date {
 /*
    SEARCHING JOB BANNER
    ========================================================================== */
-.searching_job {
+.page__alert {
   position: relative;
 
   @include clearfix;
@@ -206,9 +206,19 @@ h3.archive__date {
   animation: $intro-transition;
   -webkit-animation-delay: 0.25s;
   animation-delay: 0.25s;
-  padding: 2em;
-  margin-bottom: 2em;
-  margin-top: 1em;
+
+  &--overlay {
+    position: relative;
+    padding: 2em;
+    margin-bottom: 2em;
+    @include clearfix;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-animation: $intro-transition;
+    animation: $intro-transition;
+    -webkit-animation-delay: 0.25s;
+    animation-delay: 0.25s;
 
     a {
       color: #fff;
@@ -232,4 +242,5 @@ h3.archive__date {
       max-width: $medium;
     }
 
+  }
 }
