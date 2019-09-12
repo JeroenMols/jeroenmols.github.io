@@ -18,7 +18,7 @@ This mini-series will explain the benefits of using feature flags and propose a 
 > This blog post is part of a series on feature flags:
 - Part 1: [Why you should care]({{ site.baseurl }}{% link blog/_posts/2019-08-13-featureflags.md %})
 - Part 2: [How to use]({{ site.baseurl }}{% link blog/_posts/2019-08-20-featureflagshowtouse.md %})
-- Part 3: A successful architecture
+- Part 3: [A successful architecture]({{ site.baseurl }}{% link blog/_posts/2019-09-12-featureflagsarchitecture.md %})
 
 ## What is a feature flag
 In essence, a feature flag is simply a `Boolean` that determines whether something is "on" or "of":

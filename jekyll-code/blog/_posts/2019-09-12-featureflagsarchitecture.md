@@ -1,6 +1,6 @@
 ---
 title: Feature flags - A successful architecture
-published: false
+published: true
 header:
   teaser: img/blog/featureflagarchitecture/featureflagarchitecture.jpg
   imgcredit: Background photo by Miguel Á. Padriñán (from Pexels), https://www.pexels.com/photo/defocused-image-of-lights-255379/, cropped with app screenshot on top
@@ -12,12 +12,12 @@ tags:
 ---
 Now that we know how feature flags can help us release faster, it's time to dive into the actual implementation details. How can we easily define feature flags? How to configure them both locally as remotely? And use them in our testing?
 
-This post will present a simple, powerful architecture to manage feature flags and comes with a full example on Github.
+This post will present a simple, powerful architecture to manage feature flags and comes with a [full example on Github](https://github.com/JeroenMols/FeatureFlagExample).
 
 > This blog post is part of a series on feature flags:
 - Part 1: [Why you should care]({{ site.baseurl }}{% link blog/_posts/2019-08-13-featureflags.md %})
-- Part 2: How to use
-- Part 3: A successful architecture
+- Part 2: [How to use]({{ site.baseurl }}{% link blog/_posts/2019-08-20-featureflagshowtouse.md %})
+- Part 3: [A successful architecture]({{ site.baseurl }}{% link blog/_posts/2019-09-12-featureflagsarchitecture.md %})
 
 ## Creating new feature flags
 As discussed in [part 1]({{ site.baseurl }}{% link blog/_posts/2019-08-13-featureflags.md %}), the easier it is to add feature flags, the more likely developers will use the system. At its core a `Feature` is something very simple:
@@ -60,9 +60,12 @@ enum class TestSetting(
 
 Note how a `FeatureFlag` is on by default so that it is immediately visible in developer builds, whereas `TestSettings` are off by default as they usually put the app in a specific condition to help with testing.
 
-Both `FeatureFlag` and `TestSetting` are enums so that when you create a `when` statement over them, the Kotlin compiler can force you to handle each case explicitly. At the same time, they are not sealed classes, because we need to be able to enumerate all items, later on, to automatically generate a UI from it. (There is no way to ask a sealed class to list all it's subclasses)
+Both `FeatureFlag` and `TestSetting` are enums so that the Kotlin compiler can force you to handle each case explicitly in a `when` statement. At the same time, they are not sealed classes, because we need to be able to enumerate all items, later on, to automatically generate a UI from it. (There is no way to ask a sealed class to list all it's subclasses)
 
-> Mission accomplished: adding a new `FeatureFlag`/`TestSetting` is as easy as adding a one-liner!
+> Mission accomplished: adding a new `FeatureFlag` / `TestSetting` is as easy as adding a one-liner!
+```kotlin
+AWESOME("feature.awesome", "Awesome", "Does something awesome")
+```
 
 ## Consuming feature flags
 Next, our app needs to be able to read out what value (true/false) a `Feature` is currently set to. This can be done by requesting one of the `FeatureFlagProviders` for the current value:
@@ -77,9 +80,9 @@ interface FeatureFlagProvider {
 
 This interface will have several implementations with different priorities attached to it so that they can override each other. (more on that later)
 
-Note how implementations don't need to provide a value for every `Feature`! This has two benefits:
+Note how implementations don't need to provide a value for every `Feature` thanks to the `hasFeature()` method! This has two benefits:
 
-- you don't accidentally rely on build-in defaults of the feature flag tool you are using (e.g. Firebase remote config returns false when it doesn't have a value)
+- you can prevent accidentally relying on build-in defaults of the feature flag tool you are using by requiring an explicit opt-in for that tool (e.g. Firebase remote config returns false when it doesn't have a value)
 - you can have a chain of providers (e.g. we can have a feature flag that is only locally available, not remotely).
 
 The `RuntimeBehavior` links all `FeatureFlagProviders` together and exposes the API that should be used from within the application:
@@ -104,7 +107,7 @@ object RuntimeBehavior {
 }
 ```
 
-Note how it takes all `FeatureFlagProviders`, removes those that don't provide a value for the `Feature` and takes the value of the first one or the default value if no provider has any.
+Note how it takes all `FeatureFlagProviders`, removes those that don't provide a value for the `Feature` and then takes the value of the highest priority provider. If no one provides a value, the default value is returned.
 
 Thanks to all of this we can now call from anywhere in the app:
 
@@ -117,12 +120,20 @@ if (RuntimeBehavior.isFeatureEnabled(FeatureFlag.DARK_MODE)) {
 ```
 
 > Consuming `FeatureFlag`/`TestSetting` is as easy as asking the `RuntimeBehavior`
+```kotlin
+if (isFeatureEnabled(AWESOME)) {
+    // code here
+}
+```
+
 
 ## Providing feature flag values
 Let's have a look at the several different `FeatureFlagProviders`, why we need them and how they work.
 
 ### RuntimeFeatureFlagProvider
-This provider only exists in the debug version of the app and allows to dynamically turn features on or off. It does this by keeping a `SharedPreferences` internally where it automatically stores a value for each `Feature` using its key.
+This provider only exists in the debug version of the app and allows to dynamically turn features on or off.
+
+It does this by keeping a `SharedPreferences` internally where it automatically stores a value for each `Feature` using its key.
 
 ```kotlin
 class RuntimeFeatureFlagProvider : FeatureFlagProvider {
@@ -145,7 +156,7 @@ class RuntimeFeatureFlagProvider : FeatureFlagProvider {
 }
 ```
 
-Notice how this provider has a public API `setFeatureEnabled` to change the current value of a `Feature` and how every `Feature` is always configurable at runtime. (more on how that works later on)
+Notice how this provider has a public API `setFeatureEnabled` to change the current value of a `Feature` and how every `Feature` is always configurable at runtime. (i.e. `hasFeature()` returns true for every feature)
 
 > The `RuntimeFeatureFlagProvider` allows to locally turn any `FeatureFlag`/`TestSetting` on or off.
 
@@ -160,7 +171,8 @@ class StoreFeatureFlagProvider : FeatureFlagProvider {
     @Suppress("ComplexMethod")
     override fun isFeatureEnabled(feature: Feature): Boolean {
         if (feature is FeatureFlag) {
-           // No "else" branch here -> choosing the default option for release must be an explicit choice
+           // No "else" branch here -> choosing the default
+           // option for release must be an explicit choice
             return when (feature) {
                 DARK_MODE -> false
             }
@@ -176,14 +188,14 @@ class StoreFeatureFlagProvider : FeatureFlagProvider {
 }
 ```
 
-Notice how you must provide an explicit value for every feature toggle! This is because you never want to accidentally (=implicitly) ship an unfinished feature to users.
+Notice how you must provide an explicit value for every feature toggle! This is because you never want to accidentally ship an unfinished feature to users. Non gradual rollout of a feature requires an explicit change to the `StoreFeatureFlagProvider`.
 
-Finally, this makes it very easy to check what features are on or off in any given app release. And since all of this is just Kotlin code, it's easy to write a script to generate a release report with what feature toggles exist and their value.
+Finally, this makes it very easy to check what features are on or off in any given app release. And since all of this is just Kotlin code, it's easy to write a script to generate a release report with what feature toggles exist and their value for that app version.
 
 > The `StoreFeatureFlagProvider` defines for every `Feature` whether it is on or off in the release build
 
 ### FirebaseFeatureFlagProvider
-One of the most interesting things about `FeatureFlags` is that you can gradually roll them out using a remote feature flagging tool. We'll look at [Firebase Remote Config](https://firebase.google.com/docs/remote-config) as an example, but this architecture allows to use any tool.
+One of the most interesting things about `FeatureFlags` is that you can gradually roll them out using a remote feature flagging tool. We'll look at [Firebase Remote Config](https://firebase.google.com/docs/remote-config) as an example, but this architecture supports any tool.
 
 ```kotlin
 class FirebaseFeatureFlagProvider(private val isDevModeEnabled: Boolean) : FeatureFlagProvider {
@@ -210,7 +222,7 @@ class FirebaseFeatureFlagProvider(private val isDevModeEnabled: Boolean) : Featu
 
 The most important thing to note here is that the `FirebaseFeatureFlagProvider` has the maximum priority, which means it takes precedence over any other `FeatureFlagProvider`.
 
-However, it doesn't provide a value for all feature flags! That is because a `FeatureFlag` should only be made available to the remote feature flag tool once development for the feature is done. Otherwise, someone could accidentally expose an unfinished/broken feature to users.
+However, it doesn't provide a value for all feature flags! That is because a `FeatureFlag` should only be remotely toggled once development for the feature is done. We don't want anyone accidentally expose an unfinished/broken feature to users from the feature flag tool console.
 
 Typically the lifecycle of a `FeatureFlag` is:
 
@@ -218,10 +230,10 @@ Typically the lifecycle of a `FeatureFlag` is:
 - While development ongoing -> `FeatureFlag` locally available
 - Development done
   - Either toggle `FeatureFlag` in `StoreFeatureFlagProvider` and roll it out to all users at once. (typically if you have a marketing campaign attached to the feature)
-  - Either add the `FeatureFlag` to the `FirebaseFeatureFlagProvider` and gradually roll it out
+  - Or add the `FeatureFlag` to the `FirebaseFeatureFlagProvider` and gradually roll it out
 - Rollout done -> remove `FeatureFlag` and clean up unused code
 
-> The `RemoteFeatureFlagProvider` allows to gradually roll out finished features to users
+> The `<tool name> - FeatureFlagProvider` allows to gradually roll out finished features to users
 
 ### How the different providers work together
 Whenever the `RuntimeBehavior` is initialized, it will initialize all providers:
@@ -235,6 +247,7 @@ object RuntimeBehavior {
         if (isDebugBuild) {
             val runtimeFeatureFlagProvider = RuntimeFeatureFlagProvider(context)
             addProvider(RuntimeFeatureFlagProvider(context))
+
             if (runtimeFeatureFlagProvider.isFeatureEnabled(TestSetting.DEBUG_FIREBASE)) {
                 addProvider(FirebaseFeatureFlagProvider(true))
             }
@@ -246,9 +259,11 @@ object RuntimeBehavior {
 }
 ```
 
-For debug builds, usually only the `RuntimeFeatureFlagProvider` is enabled, but optionally you can also enable the `FirebaseFeatureFlagProvider` so the remote feature flags can be tested.
+For debug builds, usually only the `RuntimeFeatureFlagProvider` is enabled so feature flags can be toggled from the test settings screen (more on that next).
 
-In release, however, the `FeatureFlag` value is taken from Firebase when the `FeatureFlag` was made remotely available, otherwise, the `StoreFeatureFlagProvider` is used.
+But you can even enable the `FirebaseFeatureFlagProvider` in the debug build. This allows to also easily test the remote feature flag tool.
+
+In release, however, the `FeatureFlag` value is taken from Firebase when the `FeatureFlag` was made remotely available (using `hasFeature()` in `FirebaseFeatureFlagProvider`). If not, the value from `StoreFeatureFlagProvider` is used.
 
 ![Different FeatureFlagProviders and their priority for every build type]({{ site.url }}{{ site.baseurl }}/img/blog/featureflagarchitecture/featureflagprovider_priority.png)
 
@@ -278,7 +293,9 @@ private class FeatureFlagAdapter<T : Feature>(
 }
 ```
 
-Here we leverage the fact that `FeatureFlags` and `TestSettings` are enums and pass the `FeatureFlagAdapter` either `FeatureFlag.values()` or `TestSetting.values()` so it can generate the entire list. Additionally we hand it the `RuntimeFeatureFlagProvider` to look up the current values of each `Feature` and a listener to listen when an item gets enabled/disabled.
+Now it becomes clear why `FeatureFlags` and `TestSettings` had to be enums, because this allows to pass the `FeatureFlagAdapter` either `FeatureFlag.values()` or `TestSetting.values()` and automatically generate the UI for all defined `FeatureFlags` or `TestSettings`.
+
+Additionally we hand it the `RuntimeFeatureFlagProvider` to look up the current values of each `Feature`. Finally it needs a listener to respond when an item gets enabled/disabled.
 
 The `FeatureFlagViewHolder` simply binds the properties of the `Feature` to the view, requests the current value from the `FeatureFlagProvider` and connects a listener to the switch:
 
@@ -299,7 +316,7 @@ private class FeatureFlagViewHolder<T : Feature>(
 }
 ```
 
-The listener passed into the `FeatureFlagAdapter` simply changes the value of the `Feature` on the `RuntimeFeatureFlagProvider` and show a `SnackBar` to restart the app so the new value is properly applied:
+The listener passed into the `FeatureFlagAdapter` simply changes the value of the `Feature` on the `RuntimeFeatureFlagProvider` and shows a `SnackBar` to restart the app to ensure the new value is properly applied:
 
 ```kotlin
 val checkedListener = { feature: Feature, enabled: Boolean ->
@@ -318,13 +335,11 @@ private fun requestRestart() {
 }
 ```
 
-All that's left is wrapping all this into a `TestSettingsActivity` with a separate launch icon and move these UI classes to the debug build type (or a module that is only included as a debug dependency) so the `Activity` isn't available in release builds.
+Now we just wrap all of this into a `TestSettingsActivity` with a separate launch icon and make sure this activity isn't available in release builds. The simplest way to do this is by moving all UI classes to the `debug` source folder.
 
-Now we have a very powerful, easy to use UI framework to dynamically configure the behavior of our app. By just adding a single line `FeatureFlag` or `TestSetting` it instantly shows up in our UI.
+Now we have a very powerful, easy to use UI framework to dynamically configure the behavior of our app! By just adding a single line `FeatureFlag` or `TestSetting` it instantly shows up in our UI.
 
 > Debug builds have a UI to toggle all `FeatureFlags` and `TestSettings` on or off that gets fully automatically generated.
-
-Note that we use a `RecyclerView` instead of a `PreferenceFragmentCompat` which makes the UI looks inconsistent for a settings screen. We do this because the androidx preference library is optimized for showing preferences defined in XML and connecting them to shared preferences. Whereas we want to show preferences defined in code and connect them to a `FeatureFlagProvider`.
 
 ## Remote feature flags
 Whilst talking about the `FirebaseFeatureFlagProvider` before, there is one important aspect that we didn't cover: how to refresh the local `FeatureFlag` cache with new remote values. Some feature flag tools do that for you automatically, but for others (like Firebase Remote Config), you need to trigger that process manually.

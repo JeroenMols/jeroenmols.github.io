@@ -18,7 +18,7 @@ This mini-series will explain the benefits of using feature flags and propose a 
 > This blog post is part of a series on feature flags:
 - Part 1: [Why you should care]({{ site.baseurl }}{% link blog/_posts/2019-08-13-featureflags.md %})
 - Part 2: [How to use]({{ site.baseurl }}{% link blog/_posts/2019-08-20-featureflagshowtouse.md %})
-- Part 3: A successful architecture
+- Part 3: [A successful architecture]({{ site.baseurl }}{% link blog/_posts/2019-09-12-featureflagsarchitecture.md %})
 
 ## Integrating feature flags
 Roughly there are two ways you could use a feature flag: for new features and existing features.
@@ -106,4 +106,4 @@ Finally, note that it's crucial to roll out features as quickly as possible. Thi
 ## Wrap-up
 Feature flags can help in releasing new features and improvements on existing functionality. Always try to roll out features gradually, if that's not possible, rely on your beta community to test the feature prior to release,
 
-Make sure you follow me on {% include link_twitter.html %} so you don't miss part 3 that covers an architecture to integrate feature flags into your app.
+Make sure you follow me on {% include link_twitter.html %} or continue to [part 3]({{ site.baseurl }}{% link blog/_posts/2019-09-12-featureflagsarchitecture.md %}) to learn more about an architecture to integrate feature flags into your app.
