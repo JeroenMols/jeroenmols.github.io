@@ -248,4 +248,9 @@ var store = [{
         "excerpt":"Empowered with what feature flags are and why they are useful, let’s see how we can actually integrate them into an app. And how can we roll them out to our users? This mini-series will explain the benefits of using feature flags and propose a handy architecture that enables local...","categories": ["blog"],
         "tags": ["android","firebase","feature flags","software engineering","tools"],
         "url": "https://jeroenmols.com/blog/2019/08/20/featureflagshowtouse/",
-        "teaser":"https://jeroenmols.com/img/blog/featureflagshowtouse/featureflagshowtouse.jpg"}]
+        "teaser":"https://jeroenmols.com/img/blog/featureflagshowtouse/featureflagshowtouse.jpg"},{
+        "title": "Feature flags - A successful architecture",
+        "excerpt":"Now that we know how feature flags can help us release faster, it’s time to dive into the actual implementation details. How can we easily define feature flags? How to configure them both locally as remotely? And use them in our testing? This post will present a simple, powerful architecture...","categories": ["blog"],
+        "tags": ["architecture","android","firebase","feature flags"],
+        "url": "https://jeroenmols.com/blog/2019/09/12/featureflagsarchitecture/",
+        "teaser":"https://jeroenmols.com/img/blog/featureflagarchitecture/featureflagarchitecture.jpg"}]

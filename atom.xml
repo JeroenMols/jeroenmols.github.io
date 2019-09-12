@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/" rel="alternate" type="text/html"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle>
- <updated>2019-09-10T10:18:11+02:00</updated>
+ <updated>2019-09-12T11:43:53+02:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,31 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>Feature flags - A successful architecture</title>
+   <link href="https://jeroenmols.com/blog/2019/09/12/featureflagsarchitecture/"/>
+   <updated>2019-09-12T00:00:00+02:00</updated>
+   <id>https://jeroenmols.com/blog/2019/09/12/featureflagsarchitecture</id>
+   <content type="html"><![CDATA[
+     
+     <p>Now that we know how feature flags can help us release faster, it’s time to dive into the actual implementation details. How can we easily define feature flags? How to configure them both locally as remotely? And use them in our testing?</p>
+
+<p>This post will present a simple, powerful architecture to manage feature flags and comes with a <a href="https://github.com/JeroenMols/FeatureFlagExample">full example on Github</a>.</p>
+
+<blockquote>
+  <p>This blog post is part of a series on feature flags:</p>
+  <ul>
+    <li>Part 1: <a href="/blog/2019/08/13/featureflags/">Why you should care</a></li>
+    <li>Part 2: <a href="/blog/2019/08/20/featureflagshowtouse/">How to use</a></li>
+    <li>Part 3: <a href="/blog/2019/09/12/featureflagsarchitecture/">A successful architecture</a></li>
+  </ul>
+</blockquote>
+
+
+     <a href="https://jeroenmols.com/blog/2019/09/12/featureflagsarchitecture/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>Feature Flags - How to use</title>
@@ -33,7 +58,7 @@
   <ul>
     <li>Part 1: <a href="/blog/2019/08/13/featureflags/">Why you should care</a></li>
     <li>Part 2: <a href="/blog/2019/08/20/featureflagshowtouse/">How to use</a></li>
-    <li>Part 3: A successful architecture</li>
+    <li>Part 3: <a href="/blog/2019/09/12/featureflagsarchitecture/">A successful architecture</a></li>
   </ul>
 </blockquote>
 
@@ -58,7 +83,7 @@
   <ul>
     <li>Part 1: <a href="/blog/2019/08/13/featureflags/">Why you should care</a></li>
     <li>Part 2: <a href="/blog/2019/08/20/featureflagshowtouse/">How to use</a></li>
-    <li>Part 3: A successful architecture</li>
+    <li>Part 3: <a href="/blog/2019/09/12/featureflagsarchitecture/">A successful architecture</a></li>
   </ul>
 </blockquote>
 

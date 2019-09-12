@@ -1,4 +1,478 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2019-09-10T10:18:11+02:00</updated><id>https://jeroenmols.com/feed.xml</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Feature Flags - How to use</title><link href="https://jeroenmols.com/blog/2019/08/20/featureflagshowtouse/" rel="alternate" type="text/html" title="Feature Flags - How to use" /><published>2019-08-20T00:00:00+02:00</published><updated>2019-08-20T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2019/08/20/featureflagshowtouse</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/08/20/featureflagshowtouse/">&lt;p&gt;Empowered with what feature flags are and why they are useful, let’s see how we can actually integrate them into an app. And how can we roll them out to our users?&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2019-09-12T11:43:53+02:00</updated><id>https://jeroenmols.com/feed.xml</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, the Android developer you should hire.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Feature flags - A successful architecture</title><link href="https://jeroenmols.com/blog/2019/09/12/featureflagsarchitecture/" rel="alternate" type="text/html" title="Feature flags - A successful architecture" /><published>2019-09-12T00:00:00+02:00</published><updated>2019-09-12T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2019/09/12/featureflagsarchitecture</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/09/12/featureflagsarchitecture/">&lt;p&gt;Now that we know how feature flags can help us release faster, it’s time to dive into the actual implementation details. How can we easily define feature flags? How to configure them both locally as remotely? And use them in our testing?&lt;/p&gt;
+
+&lt;p&gt;This post will present a simple, powerful architecture to manage feature flags and comes with a &lt;a href=&quot;https://github.com/JeroenMols/FeatureFlagExample&quot;&gt;full example on Github&lt;/a&gt;.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;This blog post is part of a series on feature flags:&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Part 1: &lt;a href=&quot;/blog/2019/08/13/featureflags/&quot;&gt;Why you should care&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;Part 2: &lt;a href=&quot;/blog/2019/08/20/featureflagshowtouse/&quot;&gt;How to use&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;Part 3: &lt;a href=&quot;/blog/2019/09/12/featureflagsarchitecture/&quot;&gt;A successful architecture&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;creating-new-feature-flags&quot;&gt;Creating new feature flags&lt;/h2&gt;
+&lt;p&gt;As discussed in &lt;a href=&quot;/blog/2019/08/13/featureflags/&quot;&gt;part 1&lt;/a&gt;, the easier it is to add feature flags, the more likely developers will use the system. At its core a &lt;code class=&quot;highlighter-rouge&quot;&gt;Feature&lt;/code&gt; is something very simple:&lt;/p&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Feature&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;explanation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;defaultValue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Boolean&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;It needs to have a unique &lt;code class=&quot;highlighter-rouge&quot;&gt;key&lt;/code&gt; to reference it on your remote feature flagging tool. A &lt;code class=&quot;highlighter-rouge&quot;&gt;title&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;description&lt;/code&gt; to help understand what it is all about. And optionally a default value, which is handy if you’re using both &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlags&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;TestSettings&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;This interface can now be implemented by both a &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;TestSetting&lt;/code&gt; enum:&lt;/p&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;enum&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;FeatureFlag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;explanation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;defaultValue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Boolean&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;true&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Feature&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;DARK_MODE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;feature.darkmode&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Dark theme&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Enabled dark mode&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;enum&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TestSetting&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;explanation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;defaultValue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Boolean&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;false&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Feature&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;USE_DEVELOP_PORTAL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;testsetting.usedevelopportal&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Development portal&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Use developer REST endpoint&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;DEBUG_LOGGING&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;testsetting.debuglogging&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Enable logging&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Print all app logging to console&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;defaultValue&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Note how a &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; is on by default so that it is immediately visible in developer builds, whereas &lt;code class=&quot;highlighter-rouge&quot;&gt;TestSettings&lt;/code&gt; are off by default as they usually put the app in a specific condition to help with testing.&lt;/p&gt;
+
+&lt;p&gt;Both &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;TestSetting&lt;/code&gt; are enums so that the Kotlin compiler can force you to handle each case explicitly in a &lt;code class=&quot;highlighter-rouge&quot;&gt;when&lt;/code&gt; statement. At the same time, they are not sealed classes, because we need to be able to enumerate all items, later on, to automatically generate a UI from it. (There is no way to ask a sealed class to list all it’s subclasses)&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Mission accomplished: adding a new &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; / &lt;code class=&quot;highlighter-rouge&quot;&gt;TestSetting&lt;/code&gt; is as easy as adding a one-liner!&lt;/p&gt;
+  &lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;AWESOME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;feature.awesome&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Awesome&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Does something awesome&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;  &lt;/div&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;consuming-feature-flags&quot;&gt;Consuming feature flags&lt;/h2&gt;
+&lt;p&gt;Next, our app needs to be able to read out what value (true/false) a &lt;code class=&quot;highlighter-rouge&quot;&gt;Feature&lt;/code&gt; is currently set to. This can be done by requesting one of the &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlagProviders&lt;/code&gt; for the current value:&lt;/p&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;FeatureFlagProvider&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;priority&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Int&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;isFeatureEnabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Boolean&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hasFeature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Boolean&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This interface will have several implementations with different priorities attached to it so that they can override each other. (more on that later)&lt;/p&gt;
+
+&lt;p&gt;Note how implementations don’t need to provide a value for every &lt;code class=&quot;highlighter-rouge&quot;&gt;Feature&lt;/code&gt; thanks to the &lt;code class=&quot;highlighter-rouge&quot;&gt;hasFeature()&lt;/code&gt; method! This has two benefits:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;you can prevent accidentally relying on build-in defaults of the feature flag tool you are using by requiring an explicit opt-in for that tool (e.g. Firebase remote config returns false when it doesn’t have a value)&lt;/li&gt;
+  &lt;li&gt;you can have a chain of providers (e.g. we can have a feature flag that is only locally available, not remotely).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;RuntimeBehavior&lt;/code&gt; links all &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlagProviders&lt;/code&gt; together and exposes the API that should be used from within the application:&lt;/p&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;RuntimeBehavior&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@VisibleForTesting&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;internal&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;providers&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CopyOnWriteArrayList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FeatureFlagProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;()&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@JvmStatic&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;isFeatureEnabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Boolean&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;providers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filter&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hasFeature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+                &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sortedBy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FeatureFlagProvider&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;priority&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;firstOrNull&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;?.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isFeatureEnabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;?:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;defaultValue&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@JvmStatic&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;addProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;provider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;FeatureFlagProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;providers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;provider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Note how it takes all &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlagProviders&lt;/code&gt;, removes those that don’t provide a value for the &lt;code class=&quot;highlighter-rouge&quot;&gt;Feature&lt;/code&gt; and then takes the value of the highest priority provider. If no one provides a value, the default value is returned.&lt;/p&gt;
+
+&lt;p&gt;Thanks to all of this we can now call from anywhere in the app:&lt;/p&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;RuntimeBehavior&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isFeatureEnabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FeatureFlag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DARK_MODE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// set dark theme&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// set light them&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Consuming &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt;/&lt;code class=&quot;highlighter-rouge&quot;&gt;TestSetting&lt;/code&gt; is as easy as asking the &lt;code class=&quot;highlighter-rouge&quot;&gt;RuntimeBehavior&lt;/code&gt;&lt;/p&gt;
+  &lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isFeatureEnabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AWESOME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// code here&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;  &lt;/div&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;providing-feature-flag-values&quot;&gt;Providing feature flag values&lt;/h2&gt;
+&lt;p&gt;Let’s have a look at the several different &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlagProviders&lt;/code&gt;, why we need them and how they work.&lt;/p&gt;
+
+&lt;h3 id=&quot;runtimefeatureflagprovider&quot;&gt;RuntimeFeatureFlagProvider&lt;/h3&gt;
+&lt;p&gt;This provider only exists in the debug version of the app and allows to dynamically turn features on or off.&lt;/p&gt;
+
+&lt;p&gt;It does this by keeping a &lt;code class=&quot;highlighter-rouge&quot;&gt;SharedPreferences&lt;/code&gt; internally where it automatically stores a value for each &lt;code class=&quot;highlighter-rouge&quot;&gt;Feature&lt;/code&gt; using its key.&lt;/p&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;RuntimeFeatureFlagProvider&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FeatureFlagProvider&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;preferences&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SharedPreferences&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;priority&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MEDIUM_PRIORITY&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;applicationContext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;preferences&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;applicationContext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getSharedPreferences&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;runtime.featureflags&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MODE_PRIVATE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;isFeatureEnabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Boolean&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;preferences&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getBoolean&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;defaultValue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hasFeature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Boolean&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;true&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setFeatureEnabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Boolean&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;preferences&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;edit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;putBoolean&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;apply&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Notice how this provider has a public API &lt;code class=&quot;highlighter-rouge&quot;&gt;setFeatureEnabled&lt;/code&gt; to change the current value of a &lt;code class=&quot;highlighter-rouge&quot;&gt;Feature&lt;/code&gt; and how every &lt;code class=&quot;highlighter-rouge&quot;&gt;Feature&lt;/code&gt; is always configurable at runtime. (i.e. &lt;code class=&quot;highlighter-rouge&quot;&gt;hasFeature()&lt;/code&gt; returns true for every feature)&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;RuntimeFeatureFlagProvider&lt;/code&gt; allows to locally turn any &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt;/&lt;code class=&quot;highlighter-rouge&quot;&gt;TestSetting&lt;/code&gt; on or off.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;storefeatureflagprovider&quot;&gt;StoreFeatureFlagProvider&lt;/h3&gt;
+&lt;p&gt;This provider only exists in the release version of the app and defines the baseline of what &lt;code class=&quot;highlighter-rouge&quot;&gt;Features&lt;/code&gt; are on or off. &lt;code class=&quot;highlighter-rouge&quot;&gt;TestSettings&lt;/code&gt; aren’t exposed in the release version of an app and are always off.&lt;/p&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;StoreFeatureFlagProvider&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FeatureFlagProvider&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;priority&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MIN_PRIORITY&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Suppress&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ComplexMethod&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;isFeatureEnabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Boolean&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;feature&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FeatureFlag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+           &lt;span class=&quot;c1&quot;&gt;// No &quot;else&quot; branch here -&amp;gt; choosing the default&lt;/span&gt;
+           &lt;span class=&quot;c1&quot;&gt;// option for release must be an explicit choice&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;DARK_MODE&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;false&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;// TestSettings should never be shipped to users&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;feature&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TestSetting&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;false&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hasFeature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Boolean&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;true&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Notice how you must provide an explicit value for every feature toggle! This is because you never want to accidentally ship an unfinished feature to users. Non gradual rollout of a feature requires an explicit change to the &lt;code class=&quot;highlighter-rouge&quot;&gt;StoreFeatureFlagProvider&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Finally, this makes it very easy to check what features are on or off in any given app release. And since all of this is just Kotlin code, it’s easy to write a script to generate a release report with what feature toggles exist and their value for that app version.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;StoreFeatureFlagProvider&lt;/code&gt; defines for every &lt;code class=&quot;highlighter-rouge&quot;&gt;Feature&lt;/code&gt; whether it is on or off in the release build&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;firebasefeatureflagprovider&quot;&gt;FirebaseFeatureFlagProvider&lt;/h3&gt;
+&lt;p&gt;One of the most interesting things about &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlags&lt;/code&gt; is that you can gradually roll them out using a remote feature flagging tool. We’ll look at &lt;a href=&quot;https://firebase.google.com/docs/remote-config&quot;&gt;Firebase Remote Config&lt;/a&gt; as an example, but this architecture supports any tool.&lt;/p&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;FirebaseFeatureFlagProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;isDevModeEnabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Boolean&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;FeatureFlagProvider&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;remoteConfig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FirebaseRemoteConfig&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FirebaseRemoteConfig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;init&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;configSettings&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FirebaseRemoteConfigSettings&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Builder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;setDeveloperModeEnabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isDevModeEnabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;remoteConfig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;setConfigSettings&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;configSettings&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;priority&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Int&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MAX_PRIORITY&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;isFeatureEnabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Boolean&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;remoteConfig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getBoolean&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hasFeature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Boolean&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;FeatureFlag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DARK_MODE&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;true&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;false&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The most important thing to note here is that the &lt;code class=&quot;highlighter-rouge&quot;&gt;FirebaseFeatureFlagProvider&lt;/code&gt; has the maximum priority, which means it takes precedence over any other &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlagProvider&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;However, it doesn’t provide a value for all feature flags! That is because a &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; should only be remotely toggled once development for the feature is done. We don’t want anyone accidentally expose an unfinished/broken feature to users from the feature flag tool console.&lt;/p&gt;
+
+&lt;p&gt;Typically the lifecycle of a &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; is:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Development started on new feature -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; added&lt;/li&gt;
+  &lt;li&gt;While development ongoing -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; locally available&lt;/li&gt;
+  &lt;li&gt;Development done
+    &lt;ul&gt;
+      &lt;li&gt;Either toggle &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; in &lt;code class=&quot;highlighter-rouge&quot;&gt;StoreFeatureFlagProvider&lt;/code&gt; and roll it out to all users at once. (typically if you have a marketing campaign attached to the feature)&lt;/li&gt;
+      &lt;li&gt;Or add the &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; to the &lt;code class=&quot;highlighter-rouge&quot;&gt;FirebaseFeatureFlagProvider&lt;/code&gt; and gradually roll it out&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Rollout done -&amp;gt; remove &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; and clean up unused code&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;tool name&amp;gt; - FeatureFlagProvider&lt;/code&gt; allows to gradually roll out finished features to users&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;how-the-different-providers-work-together&quot;&gt;How the different providers work together&lt;/h3&gt;
+&lt;p&gt;Whenever the &lt;code class=&quot;highlighter-rouge&quot;&gt;RuntimeBehavior&lt;/code&gt; is initialized, it will initialize all providers:&lt;/p&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;RuntimeBehavior&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;..&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@JvmStatic&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;initialize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;isDebugBuild&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Boolean&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isDebugBuild&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;runtimeFeatureFlagProvider&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RuntimeFeatureFlagProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;addProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;RuntimeFeatureFlagProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;runtimeFeatureFlagProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isFeatureEnabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TestSetting&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DEBUG_FIREBASE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;addProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FirebaseFeatureFlagProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;addProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;StoreFeatureFlagProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;addProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FirebaseFeatureFlagProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;For debug builds, usually only the &lt;code class=&quot;highlighter-rouge&quot;&gt;RuntimeFeatureFlagProvider&lt;/code&gt; is enabled so feature flags can be toggled from the test settings screen (more on that next).&lt;/p&gt;
+
+&lt;p&gt;But you can even enable the &lt;code class=&quot;highlighter-rouge&quot;&gt;FirebaseFeatureFlagProvider&lt;/code&gt; in the debug build. This allows to also easily test the remote feature flag tool.&lt;/p&gt;
+
+&lt;p&gt;In release, however, the &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; value is taken from Firebase when the &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; was made remotely available (using &lt;code class=&quot;highlighter-rouge&quot;&gt;hasFeature()&lt;/code&gt; in &lt;code class=&quot;highlighter-rouge&quot;&gt;FirebaseFeatureFlagProvider&lt;/code&gt;). If not, the value from &lt;code class=&quot;highlighter-rouge&quot;&gt;StoreFeatureFlagProvider&lt;/code&gt; is used.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/featureflagarchitecture/featureflagprovider_priority.png&quot; alt=&quot;Different FeatureFlagProviders and their priority for every build type&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;showing-the-flags-in-a-ui&quot;&gt;Showing the flags in a UI&lt;/h2&gt;
+&lt;p&gt;Within the developer version of our app, we want to be able to both see the status of all &lt;code class=&quot;highlighter-rouge&quot;&gt;Features&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;TestSettings&lt;/code&gt; and also toggle each one on or off. Basically, we want to automatically generate a UI like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/featureflagarchitecture/testsettings.png&quot; alt=&quot;Test settings activity to dynamically configure behavior in the app&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;To show all of the &lt;code class=&quot;highlighter-rouge&quot;&gt;Features&lt;/code&gt;, we can simply define a custom &lt;code class=&quot;highlighter-rouge&quot;&gt;RecyclerView&lt;/code&gt; that displays an &lt;code class=&quot;highlighter-rouge&quot;&gt;Array&lt;/code&gt; of &lt;code class=&quot;highlighter-rouge&quot;&gt;Features&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;FeatureFlagAdapter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;(&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;,&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;provider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FeatureFlagProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;checkedListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Function2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Boolean&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Unit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;RecyclerView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Adapter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FeatureFlagViewHolder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&amp;gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getItemCount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Int&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onBindViewHolder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;holder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;FeatureFlagViewHolder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;holder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onCreateViewHolder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ViewGroup&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;viewType&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;FeatureFlagViewHolder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;itemView&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LayoutInflater&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;inflate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;layout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;item_featureflag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FeatureFlagViewHolder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;itemView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;provider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;checkedListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now it becomes clear why &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlags&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;TestSettings&lt;/code&gt; had to be enums, because this allows to pass the &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlagAdapter&lt;/code&gt; either &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlag.values()&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;TestSetting.values()&lt;/code&gt; and automatically generate the UI for all defined &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlags&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;TestSettings&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Additionally we hand it the &lt;code class=&quot;highlighter-rouge&quot;&gt;RuntimeFeatureFlagProvider&lt;/code&gt; to look up the current values of each &lt;code class=&quot;highlighter-rouge&quot;&gt;Feature&lt;/code&gt;. Finally it needs a listener to respond when an item gets enabled/disabled.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlagViewHolder&lt;/code&gt; simply binds the properties of the &lt;code class=&quot;highlighter-rouge&quot;&gt;Feature&lt;/code&gt; to the view, requests the current value from the &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlagProvider&lt;/code&gt; and connects a listener to the switch:&lt;/p&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;FeatureFlagViewHolder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;(&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;View&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;provider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FeatureFlagProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;checkedListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Function2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Boolean&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Unit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;RecyclerView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ViewHolder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;explanation&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;switch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isChecked&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;provider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isFeatureEnabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;switch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;setOnCheckedChangeListener&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;switch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;isChecked&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;-&amp;gt;&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;switch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isPressed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;checkedListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;invoke&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;isChecked&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The listener passed into the &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlagAdapter&lt;/code&gt; simply changes the value of the &lt;code class=&quot;highlighter-rouge&quot;&gt;Feature&lt;/code&gt; on the &lt;code class=&quot;highlighter-rouge&quot;&gt;RuntimeFeatureFlagProvider&lt;/code&gt; and shows a &lt;code class=&quot;highlighter-rouge&quot;&gt;SnackBar&lt;/code&gt; to restart the app to ensure the new value is properly applied:&lt;/p&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;checkedListener&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Boolean&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;-&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;runtimeFeatureFlagProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;setFeatureEnabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;requestRestart&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;requestRestart&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;msg&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;In order for changes to reflect please restart the app via settings&quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Snackbar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;make&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!!&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Snackbar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;LENGTH_INDEFINITE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;setActionTextColor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;RED&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;setAction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Force Stop&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;exitProcess&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(-&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now we just wrap all of this into a &lt;code class=&quot;highlighter-rouge&quot;&gt;TestSettingsActivity&lt;/code&gt; with a separate launch icon and make sure this activity isn’t available in release builds. The simplest way to do this is by moving all UI classes to the &lt;code class=&quot;highlighter-rouge&quot;&gt;debug&lt;/code&gt; source folder.&lt;/p&gt;
+
+&lt;p&gt;Now we have a very powerful, easy to use UI framework to dynamically configure the behavior of our app! By just adding a single line &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;TestSetting&lt;/code&gt; it instantly shows up in our UI.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Debug builds have a UI to toggle all &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlags&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;TestSettings&lt;/code&gt; on or off that gets fully automatically generated.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;remote-feature-flags&quot;&gt;Remote feature flags&lt;/h2&gt;
+&lt;p&gt;Whilst talking about the &lt;code class=&quot;highlighter-rouge&quot;&gt;FirebaseFeatureFlagProvider&lt;/code&gt; before, there is one important aspect that we didn’t cover: how to refresh the local &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; cache with new remote values. Some feature flag tools do that for you automatically, but for others (like Firebase Remote Config), you need to trigger that process manually.&lt;/p&gt;
+
+&lt;p&gt;A way to make that fit into our architecture is to define an additional interface &lt;code class=&quot;highlighter-rouge&quot;&gt;RemoteFeatureFlagProvider&lt;/code&gt; that every &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlagProvider&lt;/code&gt; for a remote tool should implement.&lt;/p&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;RemoteFeatureFlagProvider&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;refreshFeatureFlags&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now we just need to expand the &lt;code class=&quot;highlighter-rouge&quot;&gt;FirebaseFeatureFlagProvider&lt;/code&gt; with this interface and implement &lt;code class=&quot;highlighter-rouge&quot;&gt;refreshFeatureFlags&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;FirebaseFeatureFlagProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;isDevModeEnabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Boolean&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;nc&quot;&gt;FeatureFlagProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RemoteFeatureFlagProvider&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;..&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;refreshFeatureFlags&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;remoteConfig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fetch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getCacheExpirationSeconds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isDevModeEnabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;addOnCompleteListener&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;task&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;-&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isSuccessful&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;c1&quot;&gt;// After config data is successfully fetched, it must be activated before newly fetched values are returned.&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;remoteConfig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;activateFetched&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getCacheExpirationSeconds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;isDevModeEnabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Boolean&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isDevModeEnabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ONE_SECOND&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ONE_HOUR&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then we expose a new function on the &lt;code class=&quot;highlighter-rouge&quot;&gt;RuntimeBehavior&lt;/code&gt; to refresh all remote feature flag providers at the same time whenever you want in your app lifecycle.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;object RuntimeBehavior {
+    fun refreshFeatureFlags() {
+        providers.filter { it is RemoteFeatureFlagProvider }.forEach { (it as RemoteFeatureFlagProvider).refreshFeatureFlags() }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Since Firebase Remote Config internally throttles refresh requests, it’s safe to call the &lt;code class=&quot;highlighter-rouge&quot;&gt;refreshFeatureFlags&lt;/code&gt; method on every app resume.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;RemoteFeatureFlagProvider&lt;/code&gt; offers the generic ability to refresh values for all remote feature flagging tools.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;testing-feature-flags&quot;&gt;Testing feature flags&lt;/h2&gt;
+&lt;p&gt;During automated unit or espresso tests, you sometimes need to enable/disable particular features. Even that is simple with this architecture, just make a &lt;code class=&quot;highlighter-rouge&quot;&gt;TestFeatureFlagProvider&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TestFeatureFlagProvider&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FeatureFlagProvider&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;features&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;HashMap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Boolean&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;()&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;priority&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TEST_PRIORITY&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;isFeatureEnabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Boolean&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;features&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!!&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hasFeature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Boolean&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;features&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;containsKey&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setFeatureEnabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Boolean&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;features&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;put&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;clearFeatures&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;features&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;clear&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;With its &lt;code class=&quot;highlighter-rouge&quot;&gt;TEST_PRIORITY&lt;/code&gt; it takes precedence over all other &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlagProviders&lt;/code&gt; and exposes an API to dynamically enable/disable features and to clear its state after each test.&lt;/p&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Test&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;withFeatureFlags&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;TestFeatureFlagProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;enableFeature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DARK_MODE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// do test here&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nd&quot;&gt;@After&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;tearDown&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;TestFeatureFlagProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;clearFeatures&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And this extra provider gets added during the debug initialization in the &lt;code class=&quot;highlighter-rouge&quot;&gt;RuntimeBehavior&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;RuntimeBehavior&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@VisibleForTesting&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;internal&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;providers&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CopyOnWriteArrayList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FeatureFlagProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;()&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;initialize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;isDebugBuild&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Boolean&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isDebugBuild&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;runtimeFeatureFlagProvider&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RuntimeFeatureFlagProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;addProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;runtimeFeatureFlagProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;addProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TestFeatureFlagProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;runtimeFeatureFlagProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isFeatureEnabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TestSetting&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DEBUG_FIREBASE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;addProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FirebaseFeatureFlagProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;addProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;StoreFeatureFlagProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;addProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FirebaseFeatureFlagProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;TestFeatureFlagProvider&lt;/code&gt; allows to turn &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlags&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;TestSettings&lt;/code&gt; on during unit/instrumentation tests.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;putting-it-all-together&quot;&gt;Putting it all together&lt;/h2&gt;
+&lt;p&gt;When we look at all of the classes involved we get the following overview:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/featureflagarchitecture/featureflag_architecture.png&quot; alt=&quot;Feature flag architecture&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;While that might seem a bit overwhelming, it consists of a lot of very small classes that are very easy to understand:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;RuntimeBehavior&lt;/code&gt;: to easily consume feature flags&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlagProvider&lt;/code&gt;: to provide values during debug, release or testing&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Feature&lt;/code&gt;: one-line definition of &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlags&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;TestSettings&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;And based on these classes, a local UI is automagically generated to toggle the &lt;code class=&quot;highlighter-rouge&quot;&gt;Features&lt;/code&gt; on/off in debug builds!&lt;/p&gt;
+
+&lt;p&gt;I’ve created a full Github sample project where you can see all code in action &lt;a href=&quot;https://github.com/JeroenMols/FeatureFlagExample&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;bonus&quot;&gt;Bonus&lt;/h2&gt;
+&lt;p&gt;When combining this Feature Flag architecture with my previous &lt;a href=&quot;/blog/2019/03/18/modularizationarchitecture/&quot;&gt;modularization architecture&lt;/a&gt;, all UI classes can be moved to their own feature module &lt;code class=&quot;highlighter-rouge&quot;&gt;test-settings&lt;/code&gt; that is only included into the &lt;code class=&quot;highlighter-rouge&quot;&gt;app&lt;/code&gt; module for debug builds:&lt;/p&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;debugImplementation&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;project&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;':features:test-settings'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This does require all feature flag business logic to move to a library module &lt;code class=&quot;highlighter-rouge&quot;&gt;feature-flags&lt;/code&gt;, but the end result is a very clean!&lt;/p&gt;
+
+&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
+&lt;p&gt;With just a few simple classes we’ve been able to build a powerful feature flagging architecture. In that it’s very easy to add new features, there is support for both local and remote feature flags, feature flags are testable and a local UI for enabling/disabling feature flags is automatically generated.&lt;/p&gt;
+
+&lt;p&gt;If you’ve made it this far you should probably follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=featureflags-asuccessfularchitecture2019&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
+. Feel free leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="architecture" /><category term="android" /><category term="firebase" /><category term="feature flags" /><summary type="html">Now that we know how feature flags can help us release faster, it’s time to dive into the actual implementation details. How can we easily define feature flags? How to configure them both locally as remotely? And use them in our testing?</summary></entry><entry><title type="html">Feature Flags - How to use</title><link href="https://jeroenmols.com/blog/2019/08/20/featureflagshowtouse/" rel="alternate" type="text/html" title="Feature Flags - How to use" /><published>2019-08-20T00:00:00+02:00</published><updated>2019-08-20T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2019/08/20/featureflagshowtouse</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/08/20/featureflagshowtouse/">&lt;p&gt;Empowered with what feature flags are and why they are useful, let’s see how we can actually integrate them into an app. And how can we roll them out to our users?&lt;/p&gt;
 
 &lt;p&gt;This mini-series will explain the benefits of using feature flags and propose a handy architecture that enables local feature flag configuration, remote configuration, and easy testability.&lt;/p&gt;
 
@@ -7,7 +481,7 @@
   &lt;ul&gt;
     &lt;li&gt;Part 1: &lt;a href=&quot;/blog/2019/08/13/featureflags/&quot;&gt;Why you should care&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;Part 2: &lt;a href=&quot;/blog/2019/08/20/featureflagshowtouse/&quot;&gt;How to use&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;Part 3: A successful architecture&lt;/li&gt;
+    &lt;li&gt;Part 3: &lt;a href=&quot;/blog/2019/09/12/featureflagsarchitecture/&quot;&gt;A successful architecture&lt;/a&gt;&lt;/li&gt;
   &lt;/ul&gt;
 &lt;/blockquote&gt;
 
@@ -97,7 +571,7 @@
 &lt;p&gt;Feature flags can help in releasing new features and improvements on existing functionality. Always try to roll out features gradually, if that’s not possible, rely on your beta community to test the feature prior to release,&lt;/p&gt;
 
 &lt;p&gt;Make sure you follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=featureflags-howtouse2019&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
- so you don’t miss part 3 that covers an architecture to integrate feature flags into your app.&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="android" /><category term="firebase" /><category term="feature flags" /><category term="software engineering" /><category term="tools" /><summary type="html">Empowered with what feature flags are and why they are useful, let’s see how we can actually integrate them into an app. And how can we roll them out to our users?</summary></entry><entry><title type="html">Feature Flags - Why you should care</title><link href="https://jeroenmols.com/blog/2019/08/13/featureflags/" rel="alternate" type="text/html" title="Feature Flags - Why you should care" /><published>2019-08-13T00:00:00+02:00</published><updated>2019-08-13T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2019/08/13/featureflags</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/08/13/featureflags/">&lt;p&gt;A key ingredient to speed up modern software development is feature flags. But what is a feature flag precisely? Why should you care about them? How do you integrate them into your codebase? And how can we make them easy to use?&lt;/p&gt;
+ or continue to &lt;a href=&quot;/blog/2019/09/12/featureflagsarchitecture/&quot;&gt;part 3&lt;/a&gt; to learn more about an architecture to integrate feature flags into your app.&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="android" /><category term="firebase" /><category term="feature flags" /><category term="software engineering" /><category term="tools" /><summary type="html">Empowered with what feature flags are and why they are useful, let’s see how we can actually integrate them into an app. And how can we roll them out to our users?</summary></entry><entry><title type="html">Feature Flags - Why you should care</title><link href="https://jeroenmols.com/blog/2019/08/13/featureflags/" rel="alternate" type="text/html" title="Feature Flags - Why you should care" /><published>2019-08-13T00:00:00+02:00</published><updated>2019-08-13T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2019/08/13/featureflags</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/08/13/featureflags/">&lt;p&gt;A key ingredient to speed up modern software development is feature flags. But what is a feature flag precisely? Why should you care about them? How do you integrate them into your codebase? And how can we make them easy to use?&lt;/p&gt;
 
 &lt;p&gt;This mini-series will explain the benefits of using feature flags and propose a handy architecture that enables local feature flag configuration, remote configuration, and easy testability.&lt;/p&gt;
 
@@ -106,7 +580,7 @@
   &lt;ul&gt;
     &lt;li&gt;Part 1: &lt;a href=&quot;/blog/2019/08/13/featureflags/&quot;&gt;Why you should care&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;Part 2: &lt;a href=&quot;/blog/2019/08/20/featureflagshowtouse/&quot;&gt;How to use&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;Part 3: A successful architecture&lt;/li&gt;
+    &lt;li&gt;Part 3: &lt;a href=&quot;/blog/2019/09/12/featureflagsarchitecture/&quot;&gt;A successful architecture&lt;/a&gt;&lt;/li&gt;
   &lt;/ul&gt;
 &lt;/blockquote&gt;
 
@@ -1585,128 +2059,4 @@ The following dependencies have later milestone versions:
 &lt;/ul&gt;
 
 &lt;p&gt;Make sure to follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=modularization-asuccessfularchitecture2019&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
- and let’s study a detailed example of this architecture &lt;a href=&quot;/blog/2019/04/02/modularizationexample/&quot;&gt;in part 3&lt;/a&gt;.&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="modularization" /><category term="architecture" /><category term="software engineering" /><category term="navigation" /><category term="android" /><summary type="html">Now that we’ve established that modularization is a really good thing to strive for, how should a modularized app look like? How are the different modules connected? And how does this look for a real app?</summary></entry><entry><title type="html">Modularization - Why you should care</title><link href="https://jeroenmols.com/blog/2019/03/06/modularizationwhy/" rel="alternate" type="text/html" title="Modularization - Why you should care" /><published>2019-03-06T00:00:00+01:00</published><updated>2019-03-06T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2019/03/06/modularizationwhy</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/03/06/modularizationwhy/">&lt;p&gt;Modularizing your app seems to be all the hype these days. But why should you actually care? What are the benefits for you and your team? How should a modularized app look like? And how do you start splitting your app?&lt;/p&gt;
-
-&lt;p&gt;Part one of this blog post series will deep dive into the problems modularization solves and the unique opportunities it offers.&lt;/p&gt;
-
-&lt;blockquote&gt;
-
-  &lt;p&gt;This post is part of an in depth series on modularization:&lt;/p&gt;
-  &lt;ul&gt;
-    &lt;li&gt;&lt;a href=&quot;/blog/2019/03/06/modularizationwhy/&quot;&gt;Part 1: Why you should care&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;/blog/2019/03/18/modularizationarchitecture/&quot;&gt;Part 2: A successful multi-module architecture&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;/blog/2019/04/02/modularizationexample/&quot;&gt;Part 3: Real-life example&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;/blog/2019/04/24/modularizationhow/&quot;&gt;Part 4: How to approach&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;/blog/2019/06/12/modularizationtips/&quot;&gt;Part 5: Lessons learned&lt;/a&gt;&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;why&quot;&gt;Why&lt;/h2&gt;
-&lt;p&gt;There is no short answer to this question, modularisation really has a lot going for it:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Speeds up builds&lt;/li&gt;
-  &lt;li&gt;Enable on demand delivery&lt;/li&gt;
-  &lt;li&gt;Simplify development&lt;/li&gt;
-  &lt;li&gt;Reuse modules across apps&lt;/li&gt;
-  &lt;li&gt;Experiment with new technologies&lt;/li&gt;
-  &lt;li&gt;Scale development teams&lt;/li&gt;
-  &lt;li&gt;Enables refactoring&lt;/li&gt;
-  &lt;li&gt;Simplifies test automation&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Let’s investigate these benefits more in depth.&lt;/p&gt;
-
-&lt;h3 id=&quot;1-speeds-up-builds&quot;&gt;1. Speeds up builds&lt;/h3&gt;
-&lt;p&gt;Highly simplified, Gradle does two things to speed up builds:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Cache work it did before so it doesn’t have to do it again&lt;/li&gt;
-  &lt;li&gt;Try to do as much work as possible in parallel&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Both of these strategies aren’t effective for single module apps as every code change, makes it impossible to reuse the already generated (cached) compiled code artifact and hence all code has to be recompiled again sequentially.&lt;/p&gt;
-
-&lt;p&gt;With multiple modules, however, Gradle can build several modules in parallel and avoid building modules that have no code changed it already has a cached artifact for. This speeds up your incremental builds and even your clean builds if you use the &lt;a href=&quot;https://gradle.com/build-cache/&quot;&gt;Gradle build cache&lt;/a&gt;.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Note: modules sometimes need to be recompiled even if they don’t have direct code changes, but because a dependency changed. More info &lt;a href=&quot;https://jeroenmols.com/blog/2017/06/14/androidstudio3/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;2-enable-on-demand-delivery&quot;&gt;2. Enable on demand delivery&lt;/h3&gt;
-&lt;p&gt;While you could argue that app size isn’t a major concern in most western countries, the same cannot be said for all parts of the world. But no matter where your users are, saving bandwidth and on device storage is a nice thing to do.&lt;/p&gt;
-
-&lt;p&gt;Recent years however, Android has added support for some interesting new deployment options:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://developer.android.com/topic/google-play-instant/&quot;&gt;Instant apps&lt;/a&gt; allow users to run apps without installing them.&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://developer.android.com/studio/projects/dynamic-delivery&quot;&gt;On demand delivery&lt;/a&gt; allows to ship a smaller app with fewer features and download new features on the fly when the user starts accessing those&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Modularizing your app is the very first step in being able to add support for these. Even if you aren’t considering these use cases today, it’s a big win if your architecture is already prepared to add them later on.&lt;/p&gt;
-
-&lt;h3 id=&quot;3-simplify-development&quot;&gt;3. Simplify development&lt;/h3&gt;
-&lt;p&gt;As covered in my &lt;a href=&quot;/blog/2019/02/20/tacklelegacy/&quot;&gt;previous post&lt;/a&gt;, modularization helps to get rid of or to avoid spaghetti code. In a modularized world you could still have spaghetti (within modules), but at least it would be multiple smaller, easily digestible portions.&lt;/p&gt;
-
-&lt;p&gt;A clear contract between the modules won’t just decouple everything, avoiding that one change causes side effects somewhere else. But it also forces you to group code in smaller coherent parts. That makes the code easier to read, understand and consequently, maintenance will also become a lot easier.&lt;/p&gt;
-
-&lt;p&gt;It’s always easier to build several small things than trying to build one huge thing.&lt;/p&gt;
-
-&lt;h3 id=&quot;4-reuse-modules-across-apps&quot;&gt;4. Reuse modules across apps&lt;/h3&gt;
-&lt;p&gt;Even if your business has no plans to launch several apps in the near future, preparing for that still makes sense:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;should your business be successful, you have a head start launching a second app/product!&lt;/li&gt;
-  &lt;li&gt;maybe someday you want to involve 3rd party developers on your platform and make an SDK&lt;/li&gt;
-  &lt;li&gt;or perhaps you want to expose full app flows to 3rd party developers. (e.g. Firebase remote login)&lt;br /&gt;At Philips Hue, for instance, our bridge discovery flow could potentially bootstrap any 3rd party Hue app)&lt;/li&gt;
-  &lt;li&gt;and why wouldn’t you step up your game and contribute a few of those shine modules back to the open source community?&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Striving to make modules reusable across apps is a great thing to strive for, even if you never end up actually doing it.&lt;/p&gt;
-
-&lt;h3 id=&quot;5-experiment-with-new-technologies&quot;&gt;5. Experiment with new technologies&lt;/h3&gt;
-&lt;p&gt;The Android landscape is evolving at a rapid pace: just two years ago we didn’t have Kotlin, Jetpack, Architecture components, Navigation components, … and that’s just the official Google stuff!&lt;/p&gt;
-
-&lt;p&gt;How on earth can you keep up with that in your app, while avoiding &lt;a href=&quot;https://blog.daftcode.pl/hype-driven-development-3469fc2e9b22&quot;&gt;hype driven development&lt;/a&gt;? Because making the wrong technology or architecture choice could haunt you for several months or even years!&lt;/p&gt;
-
-&lt;p&gt;Again modularisation comes in to save the day. What if you just contain the new tech/architecture to a single module? That makes integrating the technology (e.g. RXJava) a lot easier and you can experience the full benefits of the technology by converting an entire module end to end. Hence you can rapidly experiment and if the choice turns out not to work for you, it won’t be that much work to revert it.&lt;/p&gt;
-
-&lt;p&gt;Enabling experimentation with new technologies isn’t the only benefit. Modules also help to avoid technology lock-in! What if you go all in react native and Facebook pulls official support? Containing technology choices to modules gives you room to see how a technology matures before going all in.&lt;/p&gt;
-
-&lt;h3 id=&quot;6-scale-development-teams&quot;&gt;6. Scale development teams&lt;/h3&gt;
-&lt;p&gt;The more people that work on a code base, the more files will be modified concurrently causing a hell of merge conflicts. And let’s face it, every conflict you solve is like flipping a coin hoping it falls on the right side, so regression is a real issue here.&lt;/p&gt;
-
-&lt;p&gt;Again modularisation softens the blow because if you split your app in a smart way, you can delegate the ownership of particular feature modules to particular teams/people. Completely avoiding concurrent modifications, or at least limiting those problems to a smaller set of modules.&lt;/p&gt;
-
-&lt;p&gt;But this isn’t the only kind of scaling that modularisation enables: you can even outsource development of particular feature modules to an external company as your app won’t be affected by the (lower) quality of the code inside of those modules.&lt;/p&gt;
-
-&lt;h3 id=&quot;7-enables-refactoring&quot;&gt;7. Enables refactoring&lt;/h3&gt;
-&lt;p&gt;Monolithic apps are usually very hard to change or improve (see above). This is mainly because cleaning up code in one place can easily have unforeseen side effects somewhere else.&lt;/p&gt;
-
-&lt;p&gt;But there is a second reason why monoliths are hard to refactor: there is no easy way to gradually roll out your improvements!&lt;/p&gt;
-
-&lt;p&gt;Ideally, you want to refactor or rebuilt all functionality behind a feature toggle, so you can first verify that everything works (at least on par) before rolling it out to everyone. Risk reduction like this is key, especially if your app directly impacts the revenue stream of your business.&lt;/p&gt;
-
-&lt;p&gt;Gradually rolling out improvements will still be challenging, even in a fully modularized app. But with the right split (see below) you can at least solve this problem for some use cases.&lt;/p&gt;
-
-&lt;h3 id=&quot;8-simplifies-test-automation&quot;&gt;8. Simplifies test automation&lt;/h3&gt;
-&lt;p&gt;Besides unit tests and UI tests, it is also important to automate the key user flows to ensure they keep on working. On Android, we typically use Espresso for this kind of integration tests.&lt;/p&gt;
-
-&lt;p&gt;Now imagine we want to test the payment flow in a taxi application. Do you really want every test to:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;log in a user first first&lt;/li&gt;
-  &lt;li&gt;enter a destination on the map&lt;/li&gt;
-  &lt;li&gt;pick the preferred taxi&lt;/li&gt;
-  &lt;li&gt;pay for the ride (👈 interesting part)&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;No! Because this would not only make the test very slow (# steps), but it also makes them all fail when a bug appears in the login flow.&lt;/p&gt;
-
-&lt;p&gt;On the other hand, modularization (if done well) can enable the payment flow to be tested without having to step through other parts of the app. This speeds up tests, simplifies test setup and increases their reliability.&lt;/p&gt;
-
-&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
-&lt;p&gt;Modularization is incredibly powerful to speed up your builds, simplify development and fundamentally scale your team. On top of that, it enables interesting use cases such as instant apps and makes it easier to experiment with new technologies.&lt;/p&gt;
-
-&lt;p&gt;Make sure to follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=modularization-whyyoushouldcare2019&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
- and learn how to architect a multi module app &lt;a href=&quot;/blog/2019/03/18/modularizationarchitecture/&quot;&gt;by reading part 2&lt;/a&gt;.&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="modularization" /><category term="architecture" /><category term="software engineering" /><summary type="html">Modularizing your app seems to be all the hype these days. But why should you actually care? What are the benefits for you and your team? How should a modularized app look like? And how do you start splitting your app?</summary></entry></feed>
+ and let’s study a detailed example of this architecture &lt;a href=&quot;/blog/2019/04/02/modularizationexample/&quot;&gt;in part 3&lt;/a&gt;.&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="modularization" /><category term="architecture" /><category term="software engineering" /><category term="navigation" /><category term="android" /><summary type="html">Now that we’ve established that modularization is a really good thing to strive for, how should a modularized app look like? How are the different modules connected? And how does this look for a real app?</summary></entry></feed>
