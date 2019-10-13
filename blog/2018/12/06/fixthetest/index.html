@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.16.6 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.17.0 by Michael Rose
   Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
@@ -360,6 +360,7 @@ $(document).ready(function(){
 
 
   7 minute read
+
 </p>
           
         </header>
@@ -373,13 +374,13 @@ $(document).ready(function(){
 
 <h2 id="case-1-sugary">Case 1: sugary</h2>
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Instrumented test, run on Android device.</span>
-<span class="nd">@RunWith</span><span class="p">(</span><span class="n">AndroidJUnit4</span><span class="o">::</span><span class="k">class</span><span class="p">)</span>
-<span class="kd">class</span> <span class="nc">CalculatorTest</span> <span class="p">:</span> <span class="n">TestCase</span><span class="p">()</span> <span class="p">{</span>
+<span class="nd">@RunWith</span><span class="p">(</span><span class="nc">AndroidJUnit4</span><span class="o">::</span><span class="k">class</span><span class="p">)</span>
+<span class="kd">class</span> <span class="nc">CalculatorTest</span> <span class="p">:</span> <span class="nc">TestCase</span><span class="p">()</span> <span class="p">{</span>
 
     <span class="k">fun</span> <span class="nf">test_sumShouldAddNumbers</span><span class="p">()</span> <span class="p">{</span>
-        <span class="kd">val</span> <span class="py">sum</span> <span class="p">=</span> <span class="n">Calculator</span><span class="p">().</span><span class="n">sum</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
+        <span class="kd">val</span> <span class="py">sum</span> <span class="p">=</span> <span class="nc">Calculator</span><span class="p">().</span><span class="nf">sum</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
 
-        <span class="n">assertThat</span><span class="p">(</span><span class="n">sum</span><span class="p">).</span><span class="n">isEqualTo</span><span class="p">(</span><span class="m">3</span><span class="p">)</span>
+        <span class="nf">assertThat</span><span class="p">(</span><span class="n">sum</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="m">3</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -406,14 +407,14 @@ $(document).ready(function(){
 <p>In these newer frameworks, the inheritance and prefixing are not required. All you have to do is annotate each test method with <code class="highlighter-rouge">@Test</code>.</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Instrumented test, run on Android device.</span>
-<span class="nd">@RunWith</span><span class="p">(</span><span class="n">AndroidJUnit4</span><span class="o">::</span><span class="k">class</span><span class="p">)</span>
+<span class="nd">@RunWith</span><span class="p">(</span><span class="nc">AndroidJUnit4</span><span class="o">::</span><span class="k">class</span><span class="p">)</span>
 <span class="kd">class</span> <span class="nc">CalculatorTest</span> <span class="p">{</span>
 
     <span class="nd">@Test</span>
     <span class="k">fun</span> <span class="nf">sumShouldAddNumbers</span><span class="p">()</span> <span class="p">{</span>
-        <span class="kd">val</span> <span class="py">sum</span> <span class="p">=</span> <span class="n">Calculator</span><span class="p">().</span><span class="n">sum</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
+        <span class="kd">val</span> <span class="py">sum</span> <span class="p">=</span> <span class="nc">Calculator</span><span class="p">().</span><span class="nf">sum</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
 
-        <span class="n">assertThat</span><span class="p">(</span><span class="n">sum</span><span class="p">).</span><span class="n">isEqualTo</span><span class="p">(</span><span class="m">3</span><span class="p">)</span>
+        <span class="nf">assertThat</span><span class="p">(</span><span class="n">sum</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="m">3</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -430,10 +431,10 @@ $(document).ready(function(){
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">CalculatorTest</span> <span class="p">{</span>
 
     <span class="nd">@Test</span>
-    <span class="k">fun</span> <span class="err">`</span><span class="nf">sum</span> <span class="n">of</span> <span class="m">1</span> <span class="n">and</span> <span class="m">2</span> <span class="n">should</span> <span class="n">equal</span> <span class="m">3</span><span class="err">`</span><span class="p">()</span> <span class="p">{</span>
-        <span class="kd">val</span> <span class="py">sum</span> <span class="p">=</span> <span class="n">Calculator</span><span class="p">().</span><span class="n">sum</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
+    <span class="k">fun</span> <span class="nf">`sum</span> <span class="n">of</span> <span class="m">1</span> <span class="n">and</span> <span class="m">2</span> <span class="n">should</span> <span class="n">equal</span> <span class="m">3</span><span class="err">`</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">val</span> <span class="py">sum</span> <span class="p">=</span> <span class="nc">Calculator</span><span class="p">().</span><span class="nf">sum</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
 
-        <span class="n">assertThat</span><span class="p">(</span><span class="n">sum</span><span class="p">).</span><span class="n">isEqualTo</span><span class="p">(</span><span class="m">3</span><span class="p">)</span>
+        <span class="nf">assertThat</span><span class="p">(</span><span class="n">sum</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="m">3</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -448,11 +449,11 @@ $(document).ready(function(){
 
 <h2 id="case-2-exceptional">Case 2: exceptional</h2>
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
-<span class="k">fun</span> <span class="err">`</span><span class="nf">divide</span> <span class="k">by</span> <span class="n">zero</span> <span class="n">should</span> <span class="k">throw</span> <span class="n">an</span> <span class="n">exception</span><span class="err">`</span><span class="p">()</span> <span class="p">{</span>
+<span class="k">fun</span> <span class="nf">`divide</span> <span class="k">by</span> <span class="n">zero</span> <span class="n">should</span> <span class="k">throw</span> <span class="n">an</span> <span class="nf">exception`</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">try</span> <span class="p">{</span>
-        <span class="n">Calculator</span><span class="p">().</span><span class="n">divide</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span>
-        <span class="n">fail</span><span class="p">(</span><span class="s">"No exception thrown"</span><span class="p">)</span>
-    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nv">e</span><span class="p">:</span> <span class="nc">RuntimeException</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nc">Calculator</span><span class="p">().</span><span class="nf">divide</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span>
+        <span class="nf">fail</span><span class="p">(</span><span class="s">"No exception thrown"</span><span class="p">)</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">e</span><span class="p">:</span> <span class="nc">RuntimeException</span><span class="p">)</span> <span class="p">{</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -469,9 +470,9 @@ $(document).ready(function(){
 
 <p>There is actually a better way of doing this, by using the <code class="highlighter-rouge">expected</code> annotation.</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span> <span class="p">(</span><span class="n">expected</span> <span class="p">=</span> <span class="n">RuntimeException</span><span class="o">::</span><span class="k">class</span><span class="p">)</span>
-<span class="k">fun</span> <span class="err">`</span><span class="nf">divide</span> <span class="k">by</span> <span class="n">zero</span> <span class="n">should</span> <span class="k">throw</span> <span class="n">an</span> <span class="n">exception</span><span class="err">`</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">Calculator</span><span class="p">().</span><span class="n">divide</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span> <span class="p">(</span><span class="n">expected</span> <span class="p">=</span> <span class="nc">RuntimeException</span><span class="o">::</span><span class="k">class</span><span class="p">)</span>
+<span class="k">fun</span> <span class="nf">`divide</span> <span class="k">by</span> <span class="n">zero</span> <span class="n">should</span> <span class="k">throw</span> <span class="n">an</span> <span class="nf">exception`</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nc">Calculator</span><span class="p">().</span><span class="nf">divide</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -486,11 +487,11 @@ $(document).ready(function(){
 
 <h2 id="case-3-assertive">Case 3: assertive</h2>
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
-<span class="k">fun</span> <span class="err">`</span><span class="nf">should</span> <span class="n">ask</span> <span class="n">WebService</span> <span class="n">to</span> <span class="n">login</span><span class="err">`</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">val</span> <span class="py">result</span> <span class="p">=</span> <span class="n">User</span><span class="p">(</span><span class="n">mockWebService</span><span class="p">).</span><span class="n">login</span><span class="p">()</span>
+<span class="k">fun</span> <span class="nf">`should</span> <span class="n">ask</span> <span class="nc">WebService</span> <span class="n">to</span> <span class="nf">login`</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">result</span> <span class="p">=</span> <span class="nc">User</span><span class="p">(</span><span class="n">mockWebService</span><span class="p">).</span><span class="nf">login</span><span class="p">()</span>
 
-    <span class="n">verify</span><span class="p">(</span><span class="n">mockWebService</span><span class="p">).</span><span class="n">login</span><span class="p">()</span>
-    <span class="n">verify</span><span class="p">(</span><span class="n">mockWebService</span><span class="p">,</span> <span class="n">never</span><span class="p">()).</span><span class="n">logout</span><span class="p">()</span>
+    <span class="nf">verify</span><span class="p">(</span><span class="n">mockWebService</span><span class="p">).</span><span class="nf">login</span><span class="p">()</span>
+    <span class="nf">verify</span><span class="p">(</span><span class="n">mockWebService</span><span class="p">,</span> <span class="nf">never</span><span class="p">()).</span><span class="nf">logout</span><span class="p">()</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -517,17 +518,17 @@ $(document).ready(function(){
 <p>Wouldn’t it be nice if every tests would just fail for one single reason?</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
-<span class="k">fun</span> <span class="err">`</span><span class="nf">login</span> <span class="n">should</span> <span class="n">ask</span> <span class="n">WebService</span> <span class="n">to</span> <span class="n">login</span><span class="err">`</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">val</span> <span class="py">result</span> <span class="p">=</span> <span class="n">User</span><span class="p">(</span><span class="n">mockWebService</span><span class="p">).</span><span class="n">login</span><span class="p">()</span>
+<span class="k">fun</span> <span class="nf">`login</span> <span class="n">should</span> <span class="n">ask</span> <span class="nc">WebService</span> <span class="n">to</span> <span class="nf">login`</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">result</span> <span class="p">=</span> <span class="nc">User</span><span class="p">(</span><span class="n">mockWebService</span><span class="p">).</span><span class="nf">login</span><span class="p">()</span>
 
-    <span class="n">verify</span><span class="p">(</span><span class="n">mockWebService</span><span class="p">).</span><span class="n">login</span><span class="p">()</span>
+    <span class="nf">verify</span><span class="p">(</span><span class="n">mockWebService</span><span class="p">).</span><span class="nf">login</span><span class="p">()</span>
 <span class="p">}</span>
 
 <span class="nd">@Test</span>
-<span class="k">fun</span> <span class="err">`</span><span class="nf">login</span> <span class="n">shouldn</span><span class="err">'</span><span class="n">t</span> <span class="n">ask</span> <span class="n">WebService</span> <span class="n">to</span> <span class="n">logout</span><span class="err">`</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">val</span> <span class="py">result</span> <span class="p">=</span> <span class="n">User</span><span class="p">(</span><span class="n">mockWebService</span><span class="p">).</span><span class="n">login</span><span class="p">()</span>
+<span class="k">fun</span> <span class="nf">`login</span> <span class="n">shouldn</span><span class="err">'</span><span class="n">t</span> <span class="n">ask</span> <span class="nc">WebService</span> <span class="n">to</span> <span class="nf">logout`</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">result</span> <span class="p">=</span> <span class="nc">User</span><span class="p">(</span><span class="n">mockWebService</span><span class="p">).</span><span class="nf">login</span><span class="p">()</span>
 
-    <span class="n">verify</span><span class="p">(</span><span class="n">mockWebService</span><span class="p">,</span> <span class="n">never</span><span class="p">()).</span><span class="n">logout</span><span class="p">()</span>
+    <span class="nf">verify</span><span class="p">(</span><span class="n">mockWebService</span><span class="p">,</span> <span class="nf">never</span><span class="p">()).</span><span class="nf">logout</span><span class="p">()</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -550,13 +551,13 @@ $(document).ready(function(){
 
 <h2 id="case-4-divided">Case 4: divided</h2>
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
-<span class="k">fun</span> <span class="err">`</span><span class="nf">should</span> <span class="k">do</span> <span class="n">multiple</span> <span class="n">calculations</span><span class="err">`</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">val</span> <span class="py">calculator</span> <span class="p">=</span> <span class="n">Calculator</span><span class="p">()</span>
-    <span class="kd">val</span> <span class="py">sum</span> <span class="p">=</span> <span class="n">calculator</span><span class="p">.</span><span class="n">sum</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
+<span class="k">fun</span> <span class="nf">`should</span> <span class="k">do</span> <span class="n">multiple</span> <span class="nf">calculations`</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">calculator</span> <span class="p">=</span> <span class="nc">Calculator</span><span class="p">()</span>
+    <span class="kd">val</span> <span class="py">sum</span> <span class="p">=</span> <span class="n">calculator</span><span class="p">.</span><span class="nf">sum</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
 
-    <span class="kd">val</span> <span class="py">division</span> <span class="p">=</span> <span class="n">calculator</span><span class="p">.</span><span class="n">divide</span><span class="p">(</span><span class="n">sum</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span>
+    <span class="kd">val</span> <span class="py">division</span> <span class="p">=</span> <span class="n">calculator</span><span class="p">.</span><span class="nf">divide</span><span class="p">(</span><span class="n">sum</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span>
 
-    <span class="n">assertThat</span><span class="p">(</span><span class="n">division</span><span class="p">).</span><span class="n">isEqualTo</span><span class="p">(</span><span class="m">1f</span><span class="p">)</span>
+    <span class="nf">assertThat</span><span class="p">(</span><span class="n">division</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="m">1f</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -586,17 +587,17 @@ $(document).ready(function(){
 <p>Hence this test should be split it two:</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
-<span class="k">fun</span> <span class="err">`</span><span class="nf">sum</span> <span class="n">of</span> <span class="m">1</span> <span class="n">and</span> <span class="m">2</span> <span class="n">should</span> <span class="n">be</span> <span class="m">3</span><span class="err">`</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">val</span> <span class="py">sum</span> <span class="p">=</span> <span class="n">Calculator</span><span class="p">().</span><span class="n">sum</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
+<span class="k">fun</span> <span class="nf">`sum</span> <span class="n">of</span> <span class="m">1</span> <span class="n">and</span> <span class="m">2</span> <span class="n">should</span> <span class="n">be</span> <span class="m">3</span><span class="err">`</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">sum</span> <span class="p">=</span> <span class="nc">Calculator</span><span class="p">().</span><span class="nf">sum</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
 
-    <span class="n">assertThat</span><span class="p">(</span><span class="n">sum</span><span class="p">).</span><span class="n">isEqualTo</span><span class="p">(</span><span class="m">3</span><span class="p">)</span>
+    <span class="nf">assertThat</span><span class="p">(</span><span class="n">sum</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="m">3</span><span class="p">)</span>
 <span class="p">}</span>
 
 <span class="nd">@Test</span>
-<span class="k">fun</span> <span class="err">`</span><span class="nf">division</span> <span class="n">of</span> <span class="m">3</span> <span class="n">and</span> <span class="m">3</span> <span class="n">should</span> <span class="n">be</span> <span class="m">1f</span><span class="err">`</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">val</span> <span class="py">division</span> <span class="p">=</span> <span class="n">Calculator</span><span class="p">().</span><span class="n">divide</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span>
+<span class="k">fun</span> <span class="nf">`division</span> <span class="n">of</span> <span class="m">3</span> <span class="n">and</span> <span class="m">3</span> <span class="n">should</span> <span class="n">be</span> <span class="m">1f</span><span class="err">`</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">division</span> <span class="p">=</span> <span class="nc">Calculator</span><span class="p">().</span><span class="nf">divide</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span>
 
-    <span class="n">assertThat</span><span class="p">(</span><span class="n">division</span><span class="p">).</span><span class="n">isEqualTo</span><span class="p">(</span><span class="m">1f</span><span class="p">)</span>
+    <span class="nf">assertThat</span><span class="p">(</span><span class="n">division</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="m">1f</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -607,17 +608,17 @@ $(document).ready(function(){
 <h2 id="case-5-readable">Case 5: readable</h2>
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">WebServiceTest</span> <span class="p">{</span>
 
-    <span class="k">lateinit</span> <span class="kd">var</span> <span class="py">webService</span><span class="p">:</span> <span class="n">WebService</span>
+    <span class="k">lateinit</span> <span class="kd">var</span> <span class="py">webService</span><span class="p">:</span> <span class="nc">WebService</span>
 
     <span class="nd">@Before</span>
     <span class="k">fun</span> <span class="nf">setUp</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">webService</span> <span class="p">=</span> <span class="n">WebServiceTestHelper</span><span class="p">.</span><span class="n">createWebService</span><span class="p">()</span>
+        <span class="n">webService</span> <span class="p">=</span> <span class="nc">WebServiceTestHelper</span><span class="p">.</span><span class="nf">createWebService</span><span class="p">()</span>
     <span class="p">}</span>
 
     <span class="nd">@Test</span>
-    <span class="k">fun</span> <span class="err">`</span><span class="nf">login</span> <span class="n">should</span> <span class="n">fail</span> <span class="k">when</span> <span class="n">wrong</span> <span class="n">password</span><span class="err">`</span><span class="p">()</span> <span class="p">{</span>
-        <span class="kd">val</span> <span class="py">result</span> <span class="p">=</span> <span class="n">webService</span><span class="p">.</span><span class="n">login</span><span class="p">()</span>
-        <span class="n">checkLoginFailed</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+    <span class="k">fun</span> <span class="nf">`login</span> <span class="n">should</span> <span class="n">fail</span> <span class="k">when</span> <span class="n">wrong</span> <span class="nf">password`</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">val</span> <span class="py">result</span> <span class="p">=</span> <span class="n">webService</span><span class="p">.</span><span class="nf">login</span><span class="p">()</span>
+        <span class="nf">checkLoginFailed</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -650,12 +651,12 @@ $(document).ready(function(){
 
     <span class="nd">@Test</span>
     <span class="k">fun</span> <span class="nf">`loginHasFailed`</span><span class="p">()</span> <span class="p">{</span>
-<span class="kd">var</span> <span class="py">webService</span> <span class="p">=</span> <span class="n">WebService</span><span class="p">()</span>
-        <span class="n">webService</span><span class="p">.</span><span class="n">setUserCredentials</span><span class="p">(</span><span class="s">"email@google.com"</span><span class="p">,</span> <span class="err">“</span><span class="n">wrong_pwd</span><span class="err">”</span><span class="p">)</span>
+<span class="kd">var</span> <span class="py">webService</span> <span class="p">=</span> <span class="nc">WebService</span><span class="p">()</span>
+        <span class="n">webService</span><span class="p">.</span><span class="nf">setUserCredentials</span><span class="p">(</span><span class="s">"email@google.com"</span><span class="p">,</span> <span class="err">“</span><span class="n">wrong_pwd</span><span class="err">”</span><span class="p">)</span>
 
-        <span class="kd">val</span> <span class="py">result</span> <span class="p">=</span> <span class="n">webService</span><span class="p">.</span><span class="n">login</span><span class="p">()</span>
+        <span class="kd">val</span> <span class="py">result</span> <span class="p">=</span> <span class="n">webService</span><span class="p">.</span><span class="nf">login</span><span class="p">()</span>
 
-        <span class="n">assertThat</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">isSuccess</span><span class="p">).</span><span class="n">isFalse</span><span class="p">()</span>
+        <span class="nf">assertThat</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">isSuccess</span><span class="p">).</span><span class="nf">isFalse</span><span class="p">()</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -672,16 +673,16 @@ $(document).ready(function(){
 
 <h2 id="case-6-trustworthy">Case 6: trustworthy</h2>
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
-<span class="k">fun</span> <span class="err">`</span><span class="nf">should</span> <span class="n">properly</span> <span class="n">format</span> <span class="n">time</span><span class="err">`</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">val</span> <span class="py">expectedTime</span> <span class="p">=</span> <span class="n">FORMAT</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="n">Date</span><span class="p">())</span>
+<span class="k">fun</span> <span class="nf">`should</span> <span class="n">properly</span> <span class="n">format</span> <span class="nf">time`</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">expectedTime</span> <span class="p">=</span> <span class="nc">FORMAT</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="nc">Date</span><span class="p">())</span>
 
-    <span class="kd">val</span> <span class="py">formattedTime</span> <span class="p">=</span> <span class="n">TimeFormatter</span><span class="p">().</span><span class="n">currentFormattedTime</span>
+    <span class="kd">val</span> <span class="py">formattedTime</span> <span class="p">=</span> <span class="nc">TimeFormatter</span><span class="p">().</span><span class="n">currentFormattedTime</span>
 
-    <span class="n">assertEquals</span><span class="p">(</span><span class="n">expectedTime</span><span class="p">,</span> <span class="n">formattedTime</span><span class="p">)</span>
+    <span class="nf">assertEquals</span><span class="p">(</span><span class="n">expectedTime</span><span class="p">,</span> <span class="n">formattedTime</span><span class="p">)</span>
 <span class="p">}</span>
 
 <span class="k">companion</span> <span class="k">object</span> <span class="p">{</span>
-    <span class="k">private</span> <span class="kd">val</span> <span class="py">FORMAT</span> <span class="p">=</span> <span class="n">SimpleDateFormat</span><span class="p">(</span><span class="s">"HH:mm:ss:SSS"</span><span class="p">)</span>
+    <span class="k">private</span> <span class="kd">val</span> <span class="py">FORMAT</span> <span class="p">=</span> <span class="nc">SimpleDateFormat</span><span class="p">(</span><span class="s">"HH:mm:ss:SSS"</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -702,17 +703,17 @@ $(document).ready(function(){
 <p>Fortunately this can easily be fixed by passing the current time into the <code class="highlighter-rouge">TimeFormatter</code>.</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
-<span class="k">fun</span> <span class="err">`</span><span class="nf">should</span> <span class="n">properly</span> <span class="n">format</span> <span class="n">time</span><span class="err">`</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">val</span> <span class="py">now</span> <span class="p">=</span> <span class="n">Date</span><span class="p">()</span>
-    <span class="kd">val</span> <span class="py">expectedTime</span> <span class="p">=</span> <span class="n">FORMAT</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="n">now</span><span class="p">)</span>
+<span class="k">fun</span> <span class="nf">`should</span> <span class="n">properly</span> <span class="n">format</span> <span class="nf">time`</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">now</span> <span class="p">=</span> <span class="nc">Date</span><span class="p">()</span>
+    <span class="kd">val</span> <span class="py">expectedTime</span> <span class="p">=</span> <span class="nc">FORMAT</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="n">now</span><span class="p">)</span>
 
-    <span class="kd">val</span> <span class="py">formattedTime</span> <span class="p">=</span> <span class="n">TimeFormatter</span><span class="p">(</span><span class="n">now</span><span class="p">).</span><span class="n">currentFormattedTime</span>
+    <span class="kd">val</span> <span class="py">formattedTime</span> <span class="p">=</span> <span class="nc">TimeFormatter</span><span class="p">(</span><span class="n">now</span><span class="p">).</span><span class="n">currentFormattedTime</span>
 
-    <span class="n">assertEquals</span><span class="p">(</span><span class="n">expectedTime</span><span class="p">,</span> <span class="n">formattedTime</span><span class="p">)</span>
+    <span class="nf">assertEquals</span><span class="p">(</span><span class="n">expectedTime</span><span class="p">,</span> <span class="n">formattedTime</span><span class="p">)</span>
 <span class="p">}</span>
 
 <span class="k">companion</span> <span class="k">object</span> <span class="p">{</span>
-    <span class="k">private</span> <span class="kd">val</span> <span class="py">FORMAT</span> <span class="p">=</span> <span class="n">SimpleDateFormat</span><span class="p">(</span><span class="s">"HH:mm:ss:SSS"</span><span class="p">)</span>
+    <span class="k">private</span> <span class="kd">val</span> <span class="py">FORMAT</span> <span class="p">=</span> <span class="nc">SimpleDateFormat</span><span class="p">(</span><span class="s">"HH:mm:ss:SSS"</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -885,6 +886,7 @@ $(document).ready(function(){
 
 
   13 minute read
+
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">Now that we know how feature flags can help us release faster, it’s time to dive into the actual implementation details. How can we easily define feature flags? How to configure them both locally as remotely? And use them in...</p>
@@ -922,6 +924,7 @@ $(document).ready(function(){
 
 
   5 minute read
+
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">Empowered with what feature flags are and why they are useful, let’s see how we can actually integrate them into an app. And how can we roll them out to our users?
@@ -960,6 +963,7 @@ $(document).ready(function(){
 
 
   7 minute read
+
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">A key ingredient to speed up modern software development is feature flags. But what is a feature flag precisely? Why should you care about them? How do you integrate them into your codebase? And how can we make them easy...</p>
@@ -997,6 +1001,7 @@ $(document).ready(function(){
 
 
   16 minute read
+
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">Three years ago, we decided ramp up internal app development at Philips Hue. After interviewing candidates (78!) for six months, I became the lead Android developer of the freshly hired Android team.

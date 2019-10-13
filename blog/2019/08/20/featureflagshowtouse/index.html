@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.16.6 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.17.0 by Michael Rose
   Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
@@ -360,6 +360,7 @@ $(document).ready(function(){
 
 
   5 minute read
+
 </p>
           
         </header>
@@ -388,10 +389,10 @@ $(document).ready(function(){
 
 <p>For instance, at Philips Hue, we built a new feature to configure the start-up behavior of your lights and the feature toggle just showed/hid the menu item that gave access to the feature.</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="n">isFeatureEnabled</span><span class="p">(</span><span class="n">POWER_ON_BEHAVIOR</span><span class="p">))</span> <span class="p">{</span>
-    <span class="n">menuitem</span><span class="p">.</span><span class="n">visibility</span> <span class="p">=</span> <span class="n">View</span><span class="p">.</span><span class="n">VISIBLE</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="nf">isFeatureEnabled</span><span class="p">(</span><span class="nc">POWER_ON_BEHAVIOR</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">menuitem</span><span class="p">.</span><span class="n">visibility</span> <span class="p">=</span> <span class="nc">View</span><span class="p">.</span><span class="nc">VISIBLE</span>
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="n">menuitem</span><span class="p">.</span><span class="n">visibility</span> <span class="p">=</span> <span class="n">View</span><span class="p">.</span><span class="n">GONE</span>
+    <span class="n">menuitem</span><span class="p">.</span><span class="n">visibility</span> <span class="p">=</span> <span class="nc">View</span><span class="p">.</span><span class="nc">GONE</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -403,12 +404,12 @@ $(document).ready(function(){
 <p>While refactoring existing code, on the other hand, the situation is slightly more complex. In the ideal case, there is an old code path that you simply replace with a new one:</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">withLegacy</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">isFeatureEnabled</span><span class="p">(</span><span class="n">LOGIC_REFACTOR</span><span class="p">))</span> <span class="p">{</span>
-        <span class="kd">var</span> <span class="py">code</span> <span class="p">=</span> <span class="n">NewLogic</span><span class="p">()</span>
-        <span class="n">code</span><span class="p">.</span><span class="n">with</span><span class="p">(</span><span class="n">UnitTests</span><span class="p">())</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nf">isFeatureEnabled</span><span class="p">(</span><span class="nc">LOGIC_REFACTOR</span><span class="p">))</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="py">code</span> <span class="p">=</span> <span class="nc">NewLogic</span><span class="p">()</span>
+        <span class="n">code</span><span class="p">.</span><span class="nf">with</span><span class="p">(</span><span class="nc">UnitTests</span><span class="p">())</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="kd">var</span> <span class="py">code</span> <span class="p">=</span> <span class="n">LegacyLogic</span><span class="p">()</span>
-        <span class="n">code</span><span class="p">.</span><span class="n">with</span><span class="p">(</span><span class="n">OutUnitTests</span><span class="p">())</span>
+        <span class="kd">var</span> <span class="py">code</span> <span class="p">=</span> <span class="nc">LegacyLogic</span><span class="p">()</span>
+        <span class="n">code</span><span class="p">.</span><span class="nf">with</span><span class="p">(</span><span class="nc">OutUnitTests</span><span class="p">())</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -422,13 +423,13 @@ $(document).ready(function(){
 <p>To give you an example, at Philips Hue we replaced our Geofence implementation with a new one a while ago. Here the <code class="highlighter-rouge">IntentService</code> handling the geofence starts with an if statement that runs either the old or new code. Note that there are also extra analytics in place to monitor and compare the behavior.</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-<span class="kd">class</span> <span class="nc">GeofenceIntentService</span> <span class="p">:</span> <span class="n">IntentService</span><span class="p">()</span> <span class="p">{</span>
+<span class="kd">class</span> <span class="nc">GeofenceIntentService</span> <span class="p">:</span> <span class="nc">IntentService</span><span class="p">()</span> <span class="p">{</span>
 
-    <span class="k">override</span> <span class="k">fun</span> <span class="nf">onHandleIntent</span><span class="p">(</span><span class="nv">intent</span><span class="p">:</span> <span class="nc">Intent</span><span class="p">?)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">isFeatureEnabled</span><span class="p">(</span><span class="n">GEOFENCE_REWRITE</span><span class="p">))</span> <span class="p">{</span>
-            <span class="n">GeofenceRewrite</span><span class="p">.</span><span class="n">onHandleIntent</span><span class="p">(</span><span class="n">intent</span><span class="p">)</span>
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">onHandleIntent</span><span class="p">(</span><span class="n">intent</span><span class="p">:</span> <span class="nc">Intent</span><span class="p">?)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nf">isFeatureEnabled</span><span class="p">(</span><span class="nc">GEOFENCE_REWRITE</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nc">GeofenceRewrite</span><span class="p">.</span><span class="nf">onHandleIntent</span><span class="p">(</span><span class="n">intent</span><span class="p">)</span>
         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="n">LegacyGeofence</span><span class="p">.</span><span class="n">onHandleIntent</span><span class="p">(</span><span class="n">intent</span><span class="p">)</span>
+            <span class="nc">LegacyGeofence</span><span class="p">.</span><span class="nf">onHandleIntent</span><span class="p">(</span><span class="n">intent</span><span class="p">)</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -624,6 +625,7 @@ $(document).ready(function(){
 
 
   13 minute read
+
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">Now that we know how feature flags can help us release faster, it’s time to dive into the actual implementation details. How can we easily define feature flags? How to configure them both locally as remotely? And use them in...</p>
@@ -661,6 +663,7 @@ $(document).ready(function(){
 
 
   6 minute read
+
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">A key ingredient to speed up modern software development is feature flags. But what is a feature flag precisely? Why should you care about them? How do you integrate them into your codebase? And how can we make them easy...</p>
@@ -698,6 +701,7 @@ $(document).ready(function(){
 
 
   16 minute read
+
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">Three years ago, we decided ramp up internal app development at Philips Hue. After interviewing candidates (78!) for six months, I became the lead Android developer of the freshly hired Android team.
@@ -736,6 +740,7 @@ $(document).ready(function(){
 
 
   5 minute read
+
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">From Android Q onwards devices can now operate in a fully gestural system navigation mode. In that mode, there is no longer an on-screen back button, instead users can swipe from both edges to navigate back.

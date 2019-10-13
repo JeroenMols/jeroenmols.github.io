@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.16.6 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.17.0 by Michael Rose
   Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
@@ -360,6 +360,7 @@ $(document).ready(function(){
 
 
   2 minute read
+
 </p>
           
         </header>
@@ -413,16 +414,16 @@ at androidx.arch.core.executor.DefaultTaskExecutor.isMainThread(DefaultTaskExecu
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">ExampleUnitTest</span> <span class="p">{</span>
 
-    <span class="nd">@get</span><span class="p">:</span><span class="n">Rule</span>
-    <span class="kd">val</span> <span class="py">rule</span> <span class="p">=</span> <span class="n">InstantTaskExecutorRule</span><span class="p">()</span>
+    <span class="err">@</span><span class="k">get</span><span class="p">:</span><span class="nc">Rule</span>
+    <span class="kd">val</span> <span class="py">rule</span> <span class="p">=</span> <span class="nc">InstantTaskExecutorRule</span><span class="p">()</span>
 
     <span class="nd">@Test</span>
-    <span class="k">fun</span> <span class="err">`</span><span class="nf">my</span> <span class="n">test</span><span class="err">`</span><span class="p">()</span> <span class="p">{</span>
-        <span class="kd">val</span> <span class="py">mutableLiveData</span> <span class="p">=</span> <span class="n">MutableLiveData</span><span class="p">&lt;</span><span class="n">String</span><span class="p">&gt;()</span>
+    <span class="k">fun</span> <span class="nf">`my</span> <span class="nf">test`</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">val</span> <span class="py">mutableLiveData</span> <span class="p">=</span> <span class="nc">MutableLiveData</span><span class="p">&lt;</span><span class="nc">String</span><span class="p">&gt;()</span>
 
-        <span class="n">mutableLiveData</span><span class="p">.</span><span class="n">postValue</span><span class="p">(</span><span class="s">"test"</span><span class="p">)</span>
+        <span class="n">mutableLiveData</span><span class="p">.</span><span class="nf">postValue</span><span class="p">(</span><span class="s">"test"</span><span class="p">)</span>
 
-        <span class="n">assertEquals</span><span class="p">(</span><span class="s">"test"</span><span class="p">,</span> <span class="n">mutableLiveData</span><span class="p">.</span><span class="n">value</span><span class="p">)</span>
+        <span class="nf">assertEquals</span><span class="p">(</span><span class="s">"test"</span><span class="p">,</span> <span class="n">mutableLiveData</span><span class="p">.</span><span class="n">value</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -445,21 +446,21 @@ at androidx.arch.core.executor.DefaultTaskExecutor.isMainThread(DefaultTaskExecu
 <span class="k">import</span> <span class="nn">org.junit.jupiter.api.extension.BeforeEachCallback</span>
 <span class="k">import</span> <span class="nn">org.junit.jupiter.api.extension.ExtensionContext</span>
 
-<span class="kd">class</span> <span class="nc">InstantExecutorExtension</span> <span class="p">:</span> <span class="n">BeforeEachCallback</span><span class="p">,</span> <span class="n">AfterEachCallback</span> <span class="p">{</span>
+<span class="kd">class</span> <span class="nc">InstantExecutorExtension</span> <span class="p">:</span> <span class="nc">BeforeEachCallback</span><span class="p">,</span> <span class="nc">AfterEachCallback</span> <span class="p">{</span>
 
-    <span class="k">override</span> <span class="k">fun</span> <span class="nf">beforeEach</span><span class="p">(</span><span class="nv">context</span><span class="p">:</span> <span class="nc">ExtensionContext</span><span class="p">?)</span> <span class="p">{</span>
-        <span class="n">ArchTaskExecutor</span><span class="p">.</span><span class="n">getInstance</span><span class="p">()</span>
-            <span class="p">.</span><span class="n">setDelegate</span><span class="p">(</span><span class="kd">object</span> <span class="err">: </span><span class="nc">TaskExecutor</span><span class="p">()</span> <span class="p">{</span>
-                <span class="k">override</span> <span class="k">fun</span> <span class="nf">executeOnDiskIO</span><span class="p">(</span><span class="nv">runnable</span><span class="p">:</span> <span class="nc">Runnable</span><span class="p">)</span> <span class="p">=</span> <span class="n">runnable</span><span class="p">.</span><span class="n">run</span><span class="p">()</span>
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">beforeEach</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="nc">ExtensionContext</span><span class="p">?)</span> <span class="p">{</span>
+        <span class="nc">ArchTaskExecutor</span><span class="p">.</span><span class="nf">getInstance</span><span class="p">()</span>
+            <span class="p">.</span><span class="nf">setDelegate</span><span class="p">(</span><span class="kd">object</span> <span class="err">: </span><span class="nc">TaskExecutor</span><span class="p">()</span> <span class="p">{</span>
+                <span class="k">override</span> <span class="k">fun</span> <span class="nf">executeOnDiskIO</span><span class="p">(</span><span class="n">runnable</span><span class="p">:</span> <span class="nc">Runnable</span><span class="p">)</span> <span class="p">=</span> <span class="n">runnable</span><span class="p">.</span><span class="nf">run</span><span class="p">()</span>
 
-                <span class="k">override</span> <span class="k">fun</span> <span class="nf">postToMainThread</span><span class="p">(</span><span class="nv">runnable</span><span class="p">:</span> <span class="nc">Runnable</span><span class="p">)</span> <span class="p">=</span> <span class="n">runnable</span><span class="p">.</span><span class="n">run</span><span class="p">()</span>
+                <span class="k">override</span> <span class="k">fun</span> <span class="nf">postToMainThread</span><span class="p">(</span><span class="n">runnable</span><span class="p">:</span> <span class="nc">Runnable</span><span class="p">)</span> <span class="p">=</span> <span class="n">runnable</span><span class="p">.</span><span class="nf">run</span><span class="p">()</span>
 
                 <span class="k">override</span> <span class="k">fun</span> <span class="nf">isMainThread</span><span class="p">():</span> <span class="nc">Boolean</span> <span class="p">=</span> <span class="k">true</span>
             <span class="p">})</span>
     <span class="p">}</span>
 
-    <span class="k">override</span> <span class="k">fun</span> <span class="nf">afterEach</span><span class="p">(</span><span class="nv">context</span><span class="p">:</span> <span class="nc">ExtensionContext</span><span class="p">?)</span> <span class="p">{</span>
-        <span class="n">ArchTaskExecutor</span><span class="p">.</span><span class="n">getInstance</span><span class="p">().</span><span class="n">setDelegate</span><span class="p">(</span><span class="k">null</span><span class="p">)</span>
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">afterEach</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="nc">ExtensionContext</span><span class="p">?)</span> <span class="p">{</span>
+        <span class="nc">ArchTaskExecutor</span><span class="p">.</span><span class="nf">getInstance</span><span class="p">().</span><span class="nf">setDelegate</span><span class="p">(</span><span class="k">null</span><span class="p">)</span>
     <span class="p">}</span>
 
 <span class="p">}</span>
@@ -474,16 +475,16 @@ at androidx.arch.core.executor.DefaultTaskExecutor.isMainThread(DefaultTaskExecu
 
 <p>Using this, the JUnit 4 test can easily be converted to JUnit 5:</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ExtendWith</span><span class="p">(</span><span class="n">InstantExecutorExtension</span><span class="o">::</span><span class="k">class</span><span class="p">)</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ExtendWith</span><span class="p">(</span><span class="nc">InstantExecutorExtension</span><span class="o">::</span><span class="k">class</span><span class="p">)</span>
 <span class="kd">class</span> <span class="nc">PhotosViewModelTest</span> <span class="p">{</span>
 
     <span class="nd">@Test</span>
-    <span class="k">fun</span> <span class="err">`</span><span class="nf">my</span> <span class="n">test</span><span class="err">`</span><span class="p">()</span> <span class="p">{</span>
-        <span class="kd">val</span> <span class="py">mutableLiveData</span> <span class="p">=</span> <span class="n">MutableLiveData</span><span class="p">&lt;</span><span class="n">String</span><span class="p">&gt;()</span>
+    <span class="k">fun</span> <span class="nf">`my</span> <span class="nf">test`</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">val</span> <span class="py">mutableLiveData</span> <span class="p">=</span> <span class="nc">MutableLiveData</span><span class="p">&lt;</span><span class="nc">String</span><span class="p">&gt;()</span>
 
-        <span class="n">mutableLiveData</span><span class="p">.</span><span class="n">postValue</span><span class="p">(</span><span class="s">"test"</span><span class="p">)</span>
+        <span class="n">mutableLiveData</span><span class="p">.</span><span class="nf">postValue</span><span class="p">(</span><span class="s">"test"</span><span class="p">)</span>
 
-        <span class="n">assertEquals</span><span class="p">(</span><span class="s">"test"</span><span class="p">,</span> <span class="n">mutableLiveData</span><span class="p">.</span><span class="n">value</span><span class="p">)</span>
+        <span class="nf">assertEquals</span><span class="p">(</span><span class="s">"test"</span><span class="p">,</span> <span class="n">mutableLiveData</span><span class="p">.</span><span class="n">value</span><span class="p">)</span>
     <span class="p">}</span>
 </code></pre></div></div>
 
@@ -644,6 +645,7 @@ a rule in JUnit 4 or an extension in JUnit 5.</p>
 
 
   13 minute read
+
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">Now that we know how feature flags can help us release faster, it’s time to dive into the actual implementation details. How can we easily define feature flags? How to configure them both locally as remotely? And use them in...</p>
@@ -681,6 +683,7 @@ a rule in JUnit 4 or an extension in JUnit 5.</p>
 
 
   5 minute read
+
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">Empowered with what feature flags are and why they are useful, let’s see how we can actually integrate them into an app. And how can we roll them out to our users?
@@ -719,6 +722,7 @@ a rule in JUnit 4 or an extension in JUnit 5.</p>
 
 
   7 minute read
+
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">A key ingredient to speed up modern software development is feature flags. But what is a feature flag precisely? Why should you care about them? How do you integrate them into your codebase? And how can we make them easy...</p>
@@ -756,6 +760,7 @@ a rule in JUnit 4 or an extension in JUnit 5.</p>
 
 
   16 minute read
+
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">Three years ago, we decided ramp up internal app development at Philips Hue. After interviewing candidates (78!) for six months, I became the lead Android developer of the freshly hired Android team.

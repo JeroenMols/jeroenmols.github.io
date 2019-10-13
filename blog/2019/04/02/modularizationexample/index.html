@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.16.6 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.17.0 by Michael Rose
   Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
@@ -360,6 +360,7 @@ $(document).ready(function(){
 
 
   8 minute read
+
 </p>
           
         </header>
@@ -505,12 +506,12 @@ $(document).ready(function(){
 
 <p>This means that the login feature cannot start the dashboard feature using an explicit <code class="highlighter-rouge">Intent</code> (e.g. by defining the exact class of the <code class="highlighter-rouge">Activity</code> to start):</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">startActivity</span><span class="p">(</span><span class="n">Intent</span><span class="p">(</span><span class="n">activity</span><span class="p">,</span> <span class="n">DashboardActivity</span><span class="o">::</span><span class="k">class</span><span class="p">.</span><span class="n">java</span><span class="p">))</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">startActivity</span><span class="p">(</span><span class="nc">Intent</span><span class="p">(</span><span class="n">activity</span><span class="p">,</span> <span class="nc">DashboardActivity</span><span class="o">::</span><span class="k">class</span><span class="p">.</span><span class="n">java</span><span class="p">))</span>
 </code></pre></div></div>
 
 <p>But has to use an implicit <code class="highlighter-rouge">Intent</code> instead, where you basically ask for some <code class="highlighter-rouge">Activity</code> that can handle the <code class="highlighter-rouge">action.opendashboard</code>:</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">startActivity</span><span class="p">(</span><span class="n">Intent</span><span class="p">(</span><span class="s">"action.dashboard.open"</span><span class="p">))</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">startActivity</span><span class="p">(</span><span class="nc">Intent</span><span class="p">(</span><span class="s">"action.dashboard.open"</span><span class="p">))</span>
 </code></pre></div></div>
 
 <p>Which will start the <code class="highlighter-rouge">DashBoardActivity</code> as it defines it will respond to that action in the <a href="https://github.com/JeroenMols/ModularizationExample/blob/master/features/dashboard/src/main/AndroidManifest.xml"><code class="highlighter-rouge">manifest.xml</code></a> of the <code class="highlighter-rouge">dashboard</code> feature:</p>
@@ -545,29 +546,29 @@ $(document).ready(function(){
 <p>The first two can be solved by introducing an <code class="highlighter-rouge">actions</code> module that is responsible for generating properly formatted intents to start feature <code class="highlighter-rouge">Activities</code>:</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">object</span> <span class="nc">Actions</span> <span class="p">{</span>
-    <span class="k">fun</span> <span class="nf">openLoginIntent</span><span class="p">()</span> <span class="p">=</span> <span class="n">Intent</span><span class="p">(</span><span class="s">"action.login.open"</span><span class="p">)</span>
-    <span class="k">fun</span> <span class="nf">openDashboardIntent</span><span class="p">()</span> <span class="p">=</span> <span class="n">Intent</span><span class="p">(</span><span class="s">"action.dashboard.open"</span><span class="p">)</span>
-    <span class="k">fun</span> <span class="nf">openSharingIntent</span><span class="p">()</span> <span class="p">=</span> <span class="n">Intent</span><span class="p">(</span><span class="s">"action.sharing.open"</span><span class="p">)</span>
+    <span class="k">fun</span> <span class="nf">openLoginIntent</span><span class="p">()</span> <span class="p">=</span> <span class="nc">Intent</span><span class="p">(</span><span class="s">"action.login.open"</span><span class="p">)</span>
+    <span class="k">fun</span> <span class="nf">openDashboardIntent</span><span class="p">()</span> <span class="p">=</span> <span class="nc">Intent</span><span class="p">(</span><span class="s">"action.dashboard.open"</span><span class="p">)</span>
+    <span class="k">fun</span> <span class="nf">openSharingIntent</span><span class="p">()</span> <span class="p">=</span> <span class="nc">Intent</span><span class="p">(</span><span class="s">"action.sharing.open"</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
 <p>Starting the next feature can then simply be done by:</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">activity</span><span class="p">.</span><span class="n">startActivity</span><span class="p">(</span><span class="n">Actions</span><span class="p">.</span><span class="n">openDashboardIntent</span><span class="p">())</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">activity</span><span class="p">.</span><span class="nf">startActivity</span><span class="p">(</span><span class="nc">Actions</span><span class="p">.</span><span class="nf">openDashboardIntent</span><span class="p">())</span>
 </code></pre></div></div>
 
 <p>Not only is this a very descriptive way of linking to the next feature, but this principle can also be used to make passing data into the new feature type safe:</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">object</span> <span class="nc">Actions</span> <span class="p">{</span>
-    <span class="k">fun</span> <span class="nf">openDashboardIntent</span><span class="p">(</span><span class="nv">userId</span><span class="p">:</span> <span class="nc">String</span><span class="p">)</span> <span class="p">=</span>
-        <span class="n">Intent</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="s">"action.dashboard.open"</span><span class="p">)</span>
-            <span class="p">.</span><span class="n">putExtra</span><span class="p">(</span><span class="n">EXTRA_USER</span><span class="p">,</span> <span class="n">UserArgs</span><span class="p">(</span><span class="n">userId</span><span class="p">))</span>
+    <span class="k">fun</span> <span class="nf">openDashboardIntent</span><span class="p">(</span><span class="n">userId</span><span class="p">:</span> <span class="nc">String</span><span class="p">)</span> <span class="p">=</span>
+        <span class="nc">Intent</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="s">"action.dashboard.open"</span><span class="p">)</span>
+            <span class="p">.</span><span class="nf">putExtra</span><span class="p">(</span><span class="nc">EXTRA_USER</span><span class="p">,</span> <span class="nc">UserArgs</span><span class="p">(</span><span class="n">userId</span><span class="p">))</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
 <p>Now the login feature no longer needs to know how the data is passed into the dashboard, it simply has to call:</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">activity</span><span class="p">.</span><span class="n">startActivity</span><span class="p">(</span><span class="n">Actions</span><span class="p">.</span><span class="n">openDashboardIntent</span><span class="p">(</span><span class="s">"userId"</span><span class="p">))</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">activity</span><span class="p">.</span><span class="nf">startActivity</span><span class="p">(</span><span class="nc">Actions</span><span class="p">.</span><span class="nf">openDashboardIntent</span><span class="p">(</span><span class="s">"userId"</span><span class="p">))</span>
 </code></pre></div></div>
 
 <p>Neat, right?</p>
@@ -580,11 +581,11 @@ $(document).ready(function(){
 <p>This can easily be avoided by restricting the intents to the current package:</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">object</span> <span class="nc">Actions</span> <span class="p">{</span>
-    <span class="k">fun</span> <span class="nf">openLoginIntent</span><span class="p">(</span><span class="nv">context</span><span class="p">:</span> <span class="nc">Context</span><span class="p">)</span> <span class="p">=</span>
-        <span class="n">internalIntent</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="s">"action.login.open"</span><span class="p">)</span>
+    <span class="k">fun</span> <span class="nf">openLoginIntent</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="nc">Context</span><span class="p">)</span> <span class="p">=</span>
+        <span class="nf">internalIntent</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="s">"action.login.open"</span><span class="p">)</span>
 
-    <span class="k">private</span> <span class="k">fun</span> <span class="nf">internalIntent</span><span class="p">(</span><span class="nv">context</span><span class="p">:</span> <span class="nc">Context</span><span class="p">,</span> <span class="nv">action</span><span class="p">:</span> <span class="nc">String</span><span class="p">)</span> <span class="p">=</span>
-        <span class="n">Intent</span><span class="p">(</span><span class="n">action</span><span class="p">).</span><span class="n">setPackage</span><span class="p">(</span><span class="n">context</span><span class="p">.</span><span class="n">packageName</span><span class="p">)</span>
+    <span class="k">private</span> <span class="k">fun</span> <span class="nf">internalIntent</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="nc">Context</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="nc">String</span><span class="p">)</span> <span class="p">=</span>
+        <span class="nc">Intent</span><span class="p">(</span><span class="n">action</span><span class="p">).</span><span class="nf">setPackage</span><span class="p">(</span><span class="n">context</span><span class="p">.</span><span class="n">packageName</span><span class="p">)</span>
   <span class="p">}</span>
 </code></pre></div></div>
 
@@ -597,9 +598,9 @@ $(document).ready(function(){
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">object</span> <span class="nc">Actions</span> <span class="p">{</span>
     <span class="k">fun</span> <span class="nf">openLoginIntent</span><span class="p">()</span> <span class="p">=</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">FeatureFlag</span><span class="p">.</span><span class="n">loginRewrite</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">Intent</span><span class="p">(</span><span class="s">"action.login2.open"</span><span class="p">)</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="n">Intent</span><span class="p">(</span><span class="s">"action.login.open"</span><span class="p">)</span> <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nc">FeatureFlag</span><span class="p">.</span><span class="n">loginRewrite</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nc">Intent</span><span class="p">(</span><span class="s">"action.login2.open"</span><span class="p">)</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="nc">Intent</span><span class="p">(</span><span class="s">"action.login.open"</span><span class="p">)</span> <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -626,14 +627,14 @@ $(document).ready(function(){
 
     <span class="nd">@Rule</span>
     <span class="nd">@JvmField</span>
-    <span class="kd">var</span> <span class="py">mActivityTestRule</span> <span class="p">=</span> <span class="n">ActivityTestRule</span><span class="p">(</span><span class="n">LoginActivity</span><span class="o">::</span><span class="k">class</span><span class="p">.</span><span class="n">java</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="py">mActivityTestRule</span> <span class="p">=</span> <span class="nc">ActivityTestRule</span><span class="p">(</span><span class="nc">LoginActivity</span><span class="o">::</span><span class="k">class</span><span class="p">.</span><span class="n">java</span><span class="p">)</span>
 
     <span class="nd">@Test</span>
     <span class="k">fun</span> <span class="nf">loginFlowTest</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">onView</span><span class="p">(</span><span class="n">withId</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">button_login_start</span><span class="p">)).</span><span class="n">perform</span><span class="p">(</span><span class="n">click</span><span class="p">())</span>
-        <span class="n">onView</span><span class="p">(</span><span class="n">withId</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">button_login_signin</span><span class="p">)).</span><span class="n">perform</span><span class="p">(</span><span class="n">click</span><span class="p">())</span>
+        <span class="nf">onView</span><span class="p">(</span><span class="nf">withId</span><span class="p">(</span><span class="nc">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">button_login_start</span><span class="p">)).</span><span class="nf">perform</span><span class="p">(</span><span class="nf">click</span><span class="p">())</span>
+        <span class="nf">onView</span><span class="p">(</span><span class="nf">withId</span><span class="p">(</span><span class="nc">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">button_login_signin</span><span class="p">)).</span><span class="nf">perform</span><span class="p">(</span><span class="nf">click</span><span class="p">())</span>
 
-        <span class="n">onView</span><span class="p">(</span><span class="n">withId</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">button_login_toapp</span><span class="p">)).</span><span class="n">check</span><span class="p">(</span><span class="n">matches</span><span class="p">(</span><span class="n">isDisplayed</span><span class="p">()))</span>
+        <span class="nf">onView</span><span class="p">(</span><span class="nf">withId</span><span class="p">(</span><span class="nc">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">button_login_toapp</span><span class="p">)).</span><span class="nf">check</span><span class="p">(</span><span class="nf">matches</span><span class="p">(</span><span class="nf">isDisplayed</span><span class="p">()))</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -648,19 +649,19 @@ $(document).ready(function(){
 
     <span class="nd">@Rule</span>
     <span class="nd">@JvmField</span>
-    <span class="kd">var</span> <span class="py">mActivityTestRule</span> <span class="p">=</span> <span class="n">ActivityTestRule</span><span class="p">(</span><span class="n">MainActivity</span><span class="o">::</span><span class="k">class</span><span class="p">.</span><span class="n">java</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="py">mActivityTestRule</span> <span class="p">=</span> <span class="nc">ActivityTestRule</span><span class="p">(</span><span class="nc">MainActivity</span><span class="o">::</span><span class="k">class</span><span class="p">.</span><span class="n">java</span><span class="p">)</span>
 
     <span class="nd">@Test</span>
     <span class="k">fun</span> <span class="nf">test_criticalUserFlow_throughoutEntireApp</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">onView</span><span class="p">(</span><span class="n">withId</span><span class="p">(</span><span class="n">modularization</span><span class="p">.</span><span class="n">login</span><span class="p">.</span><span class="n">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">button_login_start</span><span class="p">)).</span><span class="n">perform</span><span class="p">(</span><span class="n">click</span><span class="p">())</span>
-        <span class="n">onView</span><span class="p">(</span><span class="n">withId</span><span class="p">(</span><span class="n">modularization</span><span class="p">.</span><span class="n">login</span><span class="p">.</span><span class="n">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">button_login_signin</span><span class="p">)).</span><span class="n">perform</span><span class="p">(</span><span class="n">click</span><span class="p">())</span>
-        <span class="n">onView</span><span class="p">(</span><span class="n">withId</span><span class="p">(</span><span class="n">modularization</span><span class="p">.</span><span class="n">login</span><span class="p">.</span><span class="n">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">button_login_toapp</span><span class="p">)).</span><span class="n">perform</span><span class="p">(</span><span class="n">click</span><span class="p">())</span>
+        <span class="nf">onView</span><span class="p">(</span><span class="nf">withId</span><span class="p">(</span><span class="n">modularization</span><span class="p">.</span><span class="n">login</span><span class="p">.</span><span class="nc">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">button_login_start</span><span class="p">)).</span><span class="nf">perform</span><span class="p">(</span><span class="nf">click</span><span class="p">())</span>
+        <span class="nf">onView</span><span class="p">(</span><span class="nf">withId</span><span class="p">(</span><span class="n">modularization</span><span class="p">.</span><span class="n">login</span><span class="p">.</span><span class="nc">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">button_login_signin</span><span class="p">)).</span><span class="nf">perform</span><span class="p">(</span><span class="nf">click</span><span class="p">())</span>
+        <span class="nf">onView</span><span class="p">(</span><span class="nf">withId</span><span class="p">(</span><span class="n">modularization</span><span class="p">.</span><span class="n">login</span><span class="p">.</span><span class="nc">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">button_login_toapp</span><span class="p">)).</span><span class="nf">perform</span><span class="p">(</span><span class="nf">click</span><span class="p">())</span>
 
-        <span class="n">onView</span><span class="p">(</span><span class="n">withId</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">action_albums</span><span class="p">)).</span><span class="n">perform</span><span class="p">(</span><span class="n">click</span><span class="p">())</span>
-        <span class="n">onView</span><span class="p">(</span><span class="n">withId</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">action_sharing</span><span class="p">)).</span><span class="n">perform</span><span class="p">(</span><span class="n">click</span><span class="p">())</span>
-        <span class="n">onView</span><span class="p">(</span><span class="n">withId</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">button_social_facebook</span><span class="p">)).</span><span class="n">perform</span><span class="p">(</span><span class="n">click</span><span class="p">())</span>
+        <span class="nf">onView</span><span class="p">(</span><span class="nf">withId</span><span class="p">(</span><span class="nc">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">action_albums</span><span class="p">)).</span><span class="nf">perform</span><span class="p">(</span><span class="nf">click</span><span class="p">())</span>
+        <span class="nf">onView</span><span class="p">(</span><span class="nf">withId</span><span class="p">(</span><span class="nc">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">action_sharing</span><span class="p">)).</span><span class="nf">perform</span><span class="p">(</span><span class="nf">click</span><span class="p">())</span>
+        <span class="nf">onView</span><span class="p">(</span><span class="nf">withId</span><span class="p">(</span><span class="nc">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">button_social_facebook</span><span class="p">)).</span><span class="nf">perform</span><span class="p">(</span><span class="nf">click</span><span class="p">())</span>
 
-        <span class="n">onView</span><span class="p">(</span><span class="n">withId</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">recyclerView_sharing_contacts</span><span class="p">)).</span><span class="n">check</span><span class="p">(</span><span class="n">ViewAssertions</span><span class="p">.</span><span class="n">matches</span><span class="p">(</span><span class="n">ViewMatchers</span><span class="p">.</span><span class="n">isDisplayed</span><span class="p">()))</span>
+        <span class="nf">onView</span><span class="p">(</span><span class="nf">withId</span><span class="p">(</span><span class="nc">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">recyclerView_sharing_contacts</span><span class="p">)).</span><span class="nf">check</span><span class="p">(</span><span class="nc">ViewAssertions</span><span class="p">.</span><span class="nf">matches</span><span class="p">(</span><span class="nc">ViewMatchers</span><span class="p">.</span><span class="nf">isDisplayed</span><span class="p">()))</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -846,6 +847,7 @@ $(document).ready(function(){
 
 
   13 minute read
+
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">Now that we know how feature flags can help us release faster, it’s time to dive into the actual implementation details. How can we easily define feature flags? How to configure them both locally as remotely? And use them in...</p>
@@ -883,6 +885,7 @@ $(document).ready(function(){
 
 
   5 minute read
+
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">Empowered with what feature flags are and why they are useful, let’s see how we can actually integrate them into an app. And how can we roll them out to our users?
@@ -921,6 +924,7 @@ $(document).ready(function(){
 
 
   7 minute read
+
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">A key ingredient to speed up modern software development is feature flags. But what is a feature flag precisely? Why should you care about them? How do you integrate them into your codebase? And how can we make them easy...</p>
@@ -958,6 +962,7 @@ $(document).ready(function(){
 
 
   16 minute read
+
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">Three years ago, we decided ramp up internal app development at Philips Hue. After interviewing candidates (78!) for six months, I became the lead Android developer of the freshly hired Android team.

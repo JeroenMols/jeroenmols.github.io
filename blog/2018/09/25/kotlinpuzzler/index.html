@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.16.6 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.17.0 by Michael Rose
   Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
@@ -360,6 +360,7 @@ $(document).ready(function(){
 
 
   2 minute read
+
 </p>
           
         </header>
@@ -372,27 +373,27 @@ $(document).ready(function(){
 <h2 id="puzzle">Puzzle</h2>
 <p>Have a look at the simple class below. It simulates an ongoing operation by smoothly moving a progress bar from 0 to 100 over the course of 30 seconds:</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">ProgressbarAnimator</span><span class="p">(</span><span class="k">private</span> <span class="kd">val</span> <span class="py">progressBar</span><span class="p">:</span> <span class="n">ProgressBar</span><span class="p">)</span> <span class="p">:</span> <span class="nc">AnimatorUpdateListener</span> <span class="p">{</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">ProgressbarAnimator</span><span class="p">(</span><span class="k">private</span> <span class="kd">val</span> <span class="py">progressBar</span><span class="p">:</span> <span class="nc">ProgressBar</span><span class="p">)</span> <span class="p">:</span> <span class="nc">AnimatorUpdateListener</span> <span class="p">{</span>
 
-    <span class="k">private</span> <span class="k">lateinit</span> <span class="kd">var</span> <span class="py">animator</span><span class="p">:</span> <span class="n">ValueAnimator</span>
+    <span class="k">private</span> <span class="k">lateinit</span> <span class="kd">var</span> <span class="py">animator</span><span class="p">:</span> <span class="nc">ValueAnimator</span>
 
-    <span class="n">init</span> <span class="p">{</span>
-        <span class="n">configureAnimator</span><span class="p">()</span>
-        <span class="n">animator</span><span class="p">.</span><span class="n">addUpdateListener</span> <span class="p">{</span> <span class="k">this</span> <span class="p">}</span>
-        <span class="n">animator</span><span class="p">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="nf">init</span> <span class="p">{</span>
+        <span class="nf">configureAnimator</span><span class="p">()</span>
+        <span class="n">animator</span><span class="p">.</span><span class="nf">addUpdateListener</span> <span class="p">{</span> <span class="k">this</span> <span class="p">}</span>
+        <span class="n">animator</span><span class="p">.</span><span class="nf">start</span><span class="p">()</span>
     <span class="p">}</span>
 
     <span class="k">fun</span> <span class="nf">configureAnimator</span><span class="p">()</span> <span class="p">{</span>
-        <span class="kd">val</span> <span class="py">endValue</span> <span class="p">=</span> <span class="p">(</span><span class="n">FPS</span> <span class="p">*</span> <span class="n">DURATION</span><span class="p">).</span><span class="n">toInt</span><span class="p">()</span>
+        <span class="kd">val</span> <span class="py">endValue</span> <span class="p">=</span> <span class="p">(</span><span class="nc">FPS</span> <span class="p">*</span> <span class="nc">DURATION</span><span class="p">).</span><span class="nf">toInt</span><span class="p">()</span>
         <span class="n">progressBar</span><span class="p">.</span><span class="n">max</span> <span class="p">=</span> <span class="n">endValue</span>
 
-        <span class="n">animator</span> <span class="p">=</span> <span class="n">ValueAnimator</span><span class="p">.</span><span class="n">ofInt</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">endValue</span><span class="p">)</span>
-        <span class="n">animator</span><span class="p">.</span><span class="n">duration</span> <span class="p">=</span> <span class="n">DURATION</span>
-        <span class="n">animator</span><span class="p">.</span><span class="n">interpolator</span> <span class="p">=</span> <span class="n">LinearInterpolator</span><span class="p">()</span>
+        <span class="n">animator</span> <span class="p">=</span> <span class="nc">ValueAnimator</span><span class="p">.</span><span class="nf">ofInt</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">endValue</span><span class="p">)</span>
+        <span class="n">animator</span><span class="p">.</span><span class="n">duration</span> <span class="p">=</span> <span class="nc">DURATION</span>
+        <span class="n">animator</span><span class="p">.</span><span class="n">interpolator</span> <span class="p">=</span> <span class="nc">LinearInterpolator</span><span class="p">()</span>
     <span class="p">}</span>
 
-    <span class="k">override</span> <span class="k">fun</span> <span class="nf">onAnimationUpdate</span><span class="p">(</span><span class="nv">p</span><span class="p">:</span> <span class="nc">ValueAnimator</span><span class="p">?)</span> <span class="p">{</span>
-        <span class="n">progressBar</span><span class="p">.</span><span class="n">progress</span> <span class="p">=</span> <span class="n">animator</span><span class="p">.</span><span class="n">animatedValue</span> <span class="k">as</span> <span class="n">Int</span>
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">onAnimationUpdate</span><span class="p">(</span><span class="n">p</span><span class="p">:</span> <span class="nc">ValueAnimator</span><span class="p">?)</span> <span class="p">{</span>
+        <span class="n">progressBar</span><span class="p">.</span><span class="n">progress</span> <span class="p">=</span> <span class="n">animator</span><span class="p">.</span><span class="n">animatedValue</span> <span class="k">as</span> <span class="nc">Int</span>
     <span class="p">}</span>
 
     <span class="k">companion</span> <span class="k">object</span> <span class="p">{</span>
@@ -409,10 +410,10 @@ $(document).ready(function(){
 
 <p>Can you spot what’s wrong? The error is in the following lines:</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">init</span> <span class="p">{</span>
-    <span class="n">configureAnimator</span><span class="p">()</span>
-    <span class="n">animator</span><span class="p">.</span><span class="n">addUpdateListener</span> <span class="p">{</span> <span class="k">this</span> <span class="p">}</span>
-    <span class="n">animator</span><span class="p">.</span><span class="n">start</span><span class="p">()</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">init</span> <span class="p">{</span>
+    <span class="nf">configureAnimator</span><span class="p">()</span>
+    <span class="n">animator</span><span class="p">.</span><span class="nf">addUpdateListener</span> <span class="p">{</span> <span class="k">this</span> <span class="p">}</span>
+    <span class="n">animator</span><span class="p">.</span><span class="nf">start</span><span class="p">()</span>
 <span class="p">}</span>
 </code></pre></div></div>
 <p>Any luck?</p>
@@ -425,12 +426,12 @@ $(document).ready(function(){
 
 <p>Well this is the actual culprit:</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">animator</span><span class="p">.</span><span class="n">addUpdateListener</span> <span class="p">{</span> <span class="k">this</span> <span class="p">}</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">animator</span><span class="p">.</span><span class="nf">addUpdateListener</span> <span class="p">{</span> <span class="k">this</span> <span class="p">}</span>
 </code></pre></div></div>
 
 <p>There is syntactically a very subtle, yet incredibly important difference between that line and this:</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">animator</span><span class="p">.</span><span class="n">addUpdateListener</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">animator</span><span class="p">.</span><span class="nf">addUpdateListener</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>If we change our init to the latter, then the progress bar works as expected!</p>
@@ -440,22 +441,22 @@ $(document).ready(function(){
 
 <p>Consequently,</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">animator</span><span class="p">.</span><span class="n">addUpdateListener</span> <span class="p">{</span> <span class="k">this</span> <span class="p">}</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">animator</span><span class="p">.</span><span class="nf">addUpdateListener</span> <span class="p">{</span> <span class="k">this</span> <span class="p">}</span>
 </code></pre></div></div>
 
 <p>is equivalent to</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">animator</span><span class="p">.</span><span class="n">addUpdateListener</span><span class="p">()</span> <span class="p">{</span> <span class="k">this</span> <span class="p">}</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">animator</span><span class="p">.</span><span class="nf">addUpdateListener</span><span class="p">()</span> <span class="p">{</span> <span class="k">this</span> <span class="p">}</span>
 </code></pre></div></div>
 
 <p>and even</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">animator</span><span class="p">.</span><span class="n">addUpdateListener</span><span class="p">({</span> <span class="k">this</span> <span class="p">})</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">animator</span><span class="p">.</span><span class="nf">addUpdateListener</span><span class="p">({</span> <span class="k">this</span> <span class="p">})</span>
 </code></pre></div></div>
 
 <p>and by expanding the lambda, this</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">animator</span><span class="p">.</span><span class="n">addUpdateListener</span><span class="p">({</span> <span class="n">_</span> <span class="p">-&gt;</span> <span class="k">this</span> <span class="p">})</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">animator</span><span class="p">.</span><span class="nf">addUpdateListener</span><span class="p">({</span> <span class="n">_</span> <span class="p">-&gt;</span> <span class="k">this</span> <span class="p">})</span>
 </code></pre></div></div>
 
 <p>So the reason why the progress bar wasn’t working is simple. Instead of registering itself as an <code class="highlighter-rouge">AnimationUpdateListener</code>, it actually registered a lambda, a new function to handle the animation updates.</p>
@@ -625,6 +626,7 @@ $(document).ready(function(){
 
 
   13 minute read
+
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">Now that we know how feature flags can help us release faster, it’s time to dive into the actual implementation details. How can we easily define feature flags? How to configure them both locally as remotely? And use them in...</p>
@@ -662,6 +664,7 @@ $(document).ready(function(){
 
 
   5 minute read
+
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">Empowered with what feature flags are and why they are useful, let’s see how we can actually integrate them into an app. And how can we roll them out to our users?
@@ -700,6 +703,7 @@ $(document).ready(function(){
 
 
   7 minute read
+
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">A key ingredient to speed up modern software development is feature flags. But what is a feature flag precisely? Why should you care about them? How do you integrate them into your codebase? And how can we make them easy...</p>
@@ -737,6 +741,7 @@ $(document).ready(function(){
 
 
   16 minute read
+
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">Three years ago, we decided ramp up internal app development at Philips Hue. After interviewing candidates (78!) for six months, I became the lead Android developer of the freshly hired Android team.

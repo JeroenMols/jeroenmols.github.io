@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.16.6 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.17.0 by Michael Rose
   Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
@@ -360,6 +360,7 @@ $(document).ready(function(){
 
 
   12 minute read
+
 </p>
           
         </header>
@@ -384,10 +385,10 @@ $(document).ready(function(){
 <p>As discussed in <a href="/blog/2019/08/13/featureflags/">part 1</a>, the easier it is to add feature flags, the more likely developers will use the system. At its core a <code class="highlighter-rouge">Feature</code> is something very simple:</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">interface</span> <span class="nc">Feature</span> <span class="p">{</span>
-    <span class="kd">val</span> <span class="py">key</span><span class="p">:</span> <span class="n">String</span>
-    <span class="kd">val</span> <span class="py">title</span><span class="p">:</span> <span class="n">String</span>
-    <span class="kd">val</span> <span class="py">explanation</span><span class="p">:</span> <span class="n">String</span>
-    <span class="kd">val</span> <span class="py">defaultValue</span><span class="p">:</span> <span class="n">Boolean</span>
+    <span class="kd">val</span> <span class="py">key</span><span class="p">:</span> <span class="nc">String</span>
+    <span class="kd">val</span> <span class="py">title</span><span class="p">:</span> <span class="nc">String</span>
+    <span class="kd">val</span> <span class="py">explanation</span><span class="p">:</span> <span class="nc">String</span>
+    <span class="kd">val</span> <span class="py">defaultValue</span><span class="p">:</span> <span class="nc">Boolean</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -396,23 +397,23 @@ $(document).ready(function(){
 <p>This interface can now be implemented by both a <code class="highlighter-rouge">FeatureFlag</code> and <code class="highlighter-rouge">TestSetting</code> enum:</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">enum</span> <span class="kd">class</span> <span class="nc">FeatureFlag</span><span class="p">(</span>
-        <span class="k">override</span> <span class="kd">val</span> <span class="py">key</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
-        <span class="k">override</span> <span class="kd">val</span> <span class="py">title</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
-        <span class="k">override</span> <span class="kd">val</span> <span class="py">explanation</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
-        <span class="k">override</span> <span class="kd">val</span> <span class="py">defaultValue</span><span class="p">:</span> <span class="n">Boolean</span> <span class="p">=</span> <span class="k">true</span>
+        <span class="k">override</span> <span class="kd">val</span> <span class="py">key</span><span class="p">:</span> <span class="nc">String</span><span class="p">,</span>
+        <span class="k">override</span> <span class="kd">val</span> <span class="py">title</span><span class="p">:</span> <span class="nc">String</span><span class="p">,</span>
+        <span class="k">override</span> <span class="kd">val</span> <span class="py">explanation</span><span class="p">:</span> <span class="nc">String</span><span class="p">,</span>
+        <span class="k">override</span> <span class="kd">val</span> <span class="py">defaultValue</span><span class="p">:</span> <span class="nc">Boolean</span> <span class="p">=</span> <span class="k">true</span>
 <span class="p">)</span> <span class="p">:</span> <span class="nc">Feature</span> <span class="p">{</span>
-    <span class="n">DARK_MODE</span><span class="p">(</span><span class="s">"feature.darkmode"</span><span class="p">,</span> <span class="s">"Dark theme"</span><span class="p">,</span> <span class="s">"Enabled dark mode"</span><span class="p">)</span>
+    <span class="nc">DARK_MODE</span><span class="p">(</span><span class="s">"feature.darkmode"</span><span class="p">,</span> <span class="s">"Dark theme"</span><span class="p">,</span> <span class="s">"Enabled dark mode"</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">enum</span> <span class="kd">class</span> <span class="nc">TestSetting</span><span class="p">(</span>
-        <span class="k">override</span> <span class="kd">val</span> <span class="py">key</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
-        <span class="k">override</span> <span class="kd">val</span> <span class="py">title</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
-        <span class="k">override</span> <span class="kd">val</span> <span class="py">explanation</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
-        <span class="k">override</span> <span class="kd">val</span> <span class="py">defaultValue</span><span class="p">:</span> <span class="n">Boolean</span> <span class="p">=</span> <span class="k">false</span>
+        <span class="k">override</span> <span class="kd">val</span> <span class="py">key</span><span class="p">:</span> <span class="nc">String</span><span class="p">,</span>
+        <span class="k">override</span> <span class="kd">val</span> <span class="py">title</span><span class="p">:</span> <span class="nc">String</span><span class="p">,</span>
+        <span class="k">override</span> <span class="kd">val</span> <span class="py">explanation</span><span class="p">:</span> <span class="nc">String</span><span class="p">,</span>
+        <span class="k">override</span> <span class="kd">val</span> <span class="py">defaultValue</span><span class="p">:</span> <span class="nc">Boolean</span> <span class="p">=</span> <span class="k">false</span>
 <span class="p">)</span> <span class="p">:</span> <span class="nc">Feature</span> <span class="p">{</span>
-    <span class="n">USE_DEVELOP_PORTAL</span><span class="p">(</span><span class="s">"testsetting.usedevelopportal"</span><span class="p">,</span> <span class="s">"Development portal"</span><span class="p">,</span> <span class="s">"Use developer REST endpoint"</span><span class="p">),</span>
-    <span class="n">DEBUG_LOGGING</span><span class="p">(</span><span class="s">"testsetting.debuglogging"</span><span class="p">,</span> <span class="s">"Enable logging"</span><span class="p">,</span> <span class="s">"Print all app logging to console"</span><span class="p">,</span> <span class="n">defaultValue</span> <span class="p">=</span> <span class="k">true</span><span class="p">)</span>
+    <span class="nc">USE_DEVELOP_PORTAL</span><span class="p">(</span><span class="s">"testsetting.usedevelopportal"</span><span class="p">,</span> <span class="s">"Development portal"</span><span class="p">,</span> <span class="s">"Use developer REST endpoint"</span><span class="p">),</span>
+    <span class="nc">DEBUG_LOGGING</span><span class="p">(</span><span class="s">"testsetting.debuglogging"</span><span class="p">,</span> <span class="s">"Enable logging"</span><span class="p">,</span> <span class="s">"Print all app logging to console"</span><span class="p">,</span> <span class="n">defaultValue</span> <span class="p">=</span> <span class="k">true</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -422,7 +423,7 @@ $(document).ready(function(){
 
 <blockquote>
   <p>Mission accomplished: adding a new <code class="highlighter-rouge">FeatureFlag</code> / <code class="highlighter-rouge">TestSetting</code> is as easy as adding a one-liner!</p>
-  <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">AWESOME</span><span class="p">(</span><span class="s">"feature.awesome"</span><span class="p">,</span> <span class="s">"Awesome"</span><span class="p">,</span> <span class="s">"Does something awesome"</span><span class="p">)</span>
+  <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">AWESOME</span><span class="p">(</span><span class="s">"feature.awesome"</span><span class="p">,</span> <span class="s">"Awesome"</span><span class="p">,</span> <span class="s">"Does something awesome"</span><span class="p">)</span>
 </code></pre></div>  </div>
 </blockquote>
 
@@ -430,9 +431,9 @@ $(document).ready(function(){
 <p>Next, our app needs to be able to read out what value (true/false) a <code class="highlighter-rouge">Feature</code> is currently set to. This can be done by requesting one of the <code class="highlighter-rouge">FeatureFlagProviders</code> for the current value:</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">interface</span> <span class="nc">FeatureFlagProvider</span> <span class="p">{</span>
-    <span class="kd">val</span> <span class="py">priority</span><span class="p">:</span> <span class="n">Int</span>
-    <span class="k">fun</span> <span class="nf">isFeatureEnabled</span><span class="p">(</span><span class="nv">feature</span><span class="p">:</span> <span class="nc">Feature</span><span class="p">):</span> <span class="nc">Boolean</span>
-    <span class="k">fun</span> <span class="nf">hasFeature</span><span class="p">(</span><span class="nv">feature</span><span class="p">:</span> <span class="nc">Feature</span><span class="p">):</span> <span class="nc">Boolean</span>
+    <span class="kd">val</span> <span class="py">priority</span><span class="p">:</span> <span class="nc">Int</span>
+    <span class="k">fun</span> <span class="nf">isFeatureEnabled</span><span class="p">(</span><span class="n">feature</span><span class="p">:</span> <span class="nc">Feature</span><span class="p">):</span> <span class="nc">Boolean</span>
+    <span class="k">fun</span> <span class="nf">hasFeature</span><span class="p">(</span><span class="n">feature</span><span class="p">:</span> <span class="nc">Feature</span><span class="p">):</span> <span class="nc">Boolean</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -450,19 +451,19 @@ $(document).ready(function(){
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">object</span> <span class="nc">RuntimeBehavior</span> <span class="p">{</span>
 
     <span class="nd">@VisibleForTesting</span>
-    <span class="k">internal</span> <span class="kd">val</span> <span class="py">providers</span> <span class="p">=</span> <span class="n">CopyOnWriteArrayList</span><span class="p">&lt;</span><span class="n">FeatureFlagProvider</span><span class="p">&gt;()</span>
+    <span class="k">internal</span> <span class="kd">val</span> <span class="py">providers</span> <span class="p">=</span> <span class="nc">CopyOnWriteArrayList</span><span class="p">&lt;</span><span class="nc">FeatureFlagProvider</span><span class="p">&gt;()</span>
 
     <span class="nd">@JvmStatic</span>
-    <span class="k">fun</span> <span class="nf">isFeatureEnabled</span><span class="p">(</span><span class="nv">feature</span><span class="p">:</span> <span class="nc">Feature</span><span class="p">):</span> <span class="nc">Boolean</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">providers</span><span class="p">.</span><span class="n">filter</span> <span class="p">{</span> <span class="n">it</span><span class="p">.</span><span class="n">hasFeature</span><span class="p">(</span><span class="n">feature</span><span class="p">)</span> <span class="p">}</span>
-                <span class="p">.</span><span class="n">sortedBy</span><span class="p">(</span><span class="n">FeatureFlagProvider</span><span class="o">::</span><span class="n">priority</span><span class="p">)</span>
-                <span class="p">.</span><span class="n">firstOrNull</span><span class="p">()</span>
-                <span class="o">?.</span><span class="n">isFeatureEnabled</span><span class="p">(</span><span class="n">feature</span><span class="p">)</span>
+    <span class="k">fun</span> <span class="nf">isFeatureEnabled</span><span class="p">(</span><span class="n">feature</span><span class="p">:</span> <span class="nc">Feature</span><span class="p">):</span> <span class="nc">Boolean</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">providers</span><span class="p">.</span><span class="nf">filter</span> <span class="p">{</span> <span class="n">it</span><span class="p">.</span><span class="nf">hasFeature</span><span class="p">(</span><span class="n">feature</span><span class="p">)</span> <span class="p">}</span>
+                <span class="p">.</span><span class="nf">sortedBy</span><span class="p">(</span><span class="nc">FeatureFlagProvider</span><span class="o">::</span><span class="n">priority</span><span class="p">)</span>
+                <span class="p">.</span><span class="nf">firstOrNull</span><span class="p">()</span>
+                <span class="o">?.</span><span class="nf">isFeatureEnabled</span><span class="p">(</span><span class="n">feature</span><span class="p">)</span>
                 <span class="o">?:</span> <span class="n">feature</span><span class="p">.</span><span class="n">defaultValue</span>
     <span class="p">}</span>
 
     <span class="nd">@JvmStatic</span>
-    <span class="k">fun</span> <span class="nf">addProvider</span><span class="p">(</span><span class="nv">provider</span><span class="p">:</span> <span class="nc">FeatureFlagProvider</span><span class="p">)</span> <span class="p">=</span> <span class="n">providers</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">provider</span><span class="p">)</span>
+    <span class="k">fun</span> <span class="nf">addProvider</span><span class="p">(</span><span class="n">provider</span><span class="p">:</span> <span class="nc">FeatureFlagProvider</span><span class="p">)</span> <span class="p">=</span> <span class="n">providers</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="n">provider</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -470,7 +471,7 @@ $(document).ready(function(){
 
 <p>Thanks to all of this we can now call from anywhere in the app:</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="n">RuntimeBehavior</span><span class="p">.</span><span class="n">isFeatureEnabled</span><span class="p">(</span><span class="n">FeatureFlag</span><span class="p">.</span><span class="n">DARK_MODE</span><span class="p">))</span> <span class="p">{</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="nc">RuntimeBehavior</span><span class="p">.</span><span class="nf">isFeatureEnabled</span><span class="p">(</span><span class="nc">FeatureFlag</span><span class="p">.</span><span class="nc">DARK_MODE</span><span class="p">))</span> <span class="p">{</span>
   <span class="c1">// set dark theme</span>
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
   <span class="c1">// set light them</span>
@@ -479,7 +480,7 @@ $(document).ready(function(){
 
 <blockquote>
   <p>Consuming <code class="highlighter-rouge">FeatureFlag</code>/<code class="highlighter-rouge">TestSetting</code> is as easy as asking the <code class="highlighter-rouge">RuntimeBehavior</code></p>
-  <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="n">isFeatureEnabled</span><span class="p">(</span><span class="n">AWESOME</span><span class="p">))</span> <span class="p">{</span>
+  <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="nf">isFeatureEnabled</span><span class="p">(</span><span class="nc">AWESOME</span><span class="p">))</span> <span class="p">{</span>
     <span class="c1">// code here</span>
 <span class="p">}</span>
 </code></pre></div>  </div>
@@ -493,23 +494,23 @@ $(document).ready(function(){
 
 <p>It does this by keeping a <code class="highlighter-rouge">SharedPreferences</code> internally where it automatically stores a value for each <code class="highlighter-rouge">Feature</code> using its key.</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">RuntimeFeatureFlagProvider</span> <span class="p">:</span> <span class="n">FeatureFlagProvider</span> <span class="p">{</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">RuntimeFeatureFlagProvider</span> <span class="p">:</span> <span class="nc">FeatureFlagProvider</span> <span class="p">{</span>
 
-    <span class="k">private</span> <span class="kd">val</span> <span class="py">preferences</span><span class="p">:</span> <span class="n">SharedPreferences</span>
+    <span class="k">private</span> <span class="kd">val</span> <span class="py">preferences</span><span class="p">:</span> <span class="nc">SharedPreferences</span>
 
-    <span class="k">override</span> <span class="kd">val</span> <span class="py">priority</span> <span class="p">=</span> <span class="n">MEDIUM_PRIORITY</span>
+    <span class="k">override</span> <span class="kd">val</span> <span class="py">priority</span> <span class="p">=</span> <span class="nc">MEDIUM_PRIORITY</span>
 
-    <span class="k">constructor</span><span class="p">(</span><span class="nv">applicationContext</span><span class="p">:</span> <span class="nc">Context</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">preferences</span> <span class="p">=</span> <span class="n">applicationContext</span><span class="p">.</span><span class="n">getSharedPreferences</span><span class="p">(</span><span class="s">"runtime.featureflags"</span><span class="p">,</span> <span class="n">Context</span><span class="p">.</span><span class="n">MODE_PRIVATE</span><span class="p">)</span>
+    <span class="k">constructor</span><span class="p">(</span><span class="n">applicationContext</span><span class="p">:</span> <span class="nc">Context</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">preferences</span> <span class="p">=</span> <span class="n">applicationContext</span><span class="p">.</span><span class="nf">getSharedPreferences</span><span class="p">(</span><span class="s">"runtime.featureflags"</span><span class="p">,</span> <span class="nc">Context</span><span class="p">.</span><span class="nc">MODE_PRIVATE</span><span class="p">)</span>
     <span class="p">}</span>
 
-    <span class="k">override</span> <span class="k">fun</span> <span class="nf">isFeatureEnabled</span><span class="p">(</span><span class="nv">feature</span><span class="p">:</span> <span class="nc">Feature</span><span class="p">):</span> <span class="nc">Boolean</span> <span class="p">=</span>
-        <span class="n">preferences</span><span class="p">.</span><span class="n">getBoolean</span><span class="p">(</span><span class="n">feature</span><span class="p">.</span><span class="n">key</span><span class="p">,</span> <span class="n">feature</span><span class="p">.</span><span class="n">defaultValue</span><span class="p">)</span>
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">isFeatureEnabled</span><span class="p">(</span><span class="n">feature</span><span class="p">:</span> <span class="nc">Feature</span><span class="p">):</span> <span class="nc">Boolean</span> <span class="p">=</span>
+        <span class="n">preferences</span><span class="p">.</span><span class="nf">getBoolean</span><span class="p">(</span><span class="n">feature</span><span class="p">.</span><span class="n">key</span><span class="p">,</span> <span class="n">feature</span><span class="p">.</span><span class="n">defaultValue</span><span class="p">)</span>
 
-    <span class="k">override</span> <span class="k">fun</span> <span class="nf">hasFeature</span><span class="p">(</span><span class="nv">feature</span><span class="p">:</span> <span class="nc">Feature</span><span class="p">):</span> <span class="nc">Boolean</span> <span class="p">=</span> <span class="k">true</span>
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">hasFeature</span><span class="p">(</span><span class="n">feature</span><span class="p">:</span> <span class="nc">Feature</span><span class="p">):</span> <span class="nc">Boolean</span> <span class="p">=</span> <span class="k">true</span>
 
-    <span class="k">fun</span> <span class="nf">setFeatureEnabled</span><span class="p">(</span><span class="nv">feature</span><span class="p">:</span> <span class="nc">Feature</span><span class="p">,</span> <span class="nv">enabled</span><span class="p">:</span> <span class="nc">Boolean</span><span class="p">)</span> <span class="p">=</span>
-        <span class="n">preferences</span><span class="p">.</span><span class="n">edit</span><span class="p">().</span><span class="n">putBoolean</span><span class="p">(</span><span class="n">feature</span><span class="p">.</span><span class="n">key</span><span class="p">,</span> <span class="n">enabled</span><span class="p">).</span><span class="n">apply</span><span class="p">()</span>
+    <span class="k">fun</span> <span class="nf">setFeatureEnabled</span><span class="p">(</span><span class="n">feature</span><span class="p">:</span> <span class="nc">Feature</span><span class="p">,</span> <span class="n">enabled</span><span class="p">:</span> <span class="nc">Boolean</span><span class="p">)</span> <span class="p">=</span>
+        <span class="n">preferences</span><span class="p">.</span><span class="nf">edit</span><span class="p">().</span><span class="nf">putBoolean</span><span class="p">(</span><span class="n">feature</span><span class="p">.</span><span class="n">key</span><span class="p">,</span> <span class="n">enabled</span><span class="p">).</span><span class="nf">apply</span><span class="p">()</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -522,27 +523,27 @@ $(document).ready(function(){
 <h3 id="storefeatureflagprovider">StoreFeatureFlagProvider</h3>
 <p>This provider only exists in the release version of the app and defines the baseline of what <code class="highlighter-rouge">Features</code> are on or off. <code class="highlighter-rouge">TestSettings</code> aren’t exposed in the release version of an app and are always off.</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">StoreFeatureFlagProvider</span> <span class="p">:</span> <span class="n">FeatureFlagProvider</span> <span class="p">{</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">StoreFeatureFlagProvider</span> <span class="p">:</span> <span class="nc">FeatureFlagProvider</span> <span class="p">{</span>
 
-    <span class="k">override</span> <span class="kd">val</span> <span class="py">priority</span> <span class="p">=</span> <span class="n">MIN_PRIORITY</span>
+    <span class="k">override</span> <span class="kd">val</span> <span class="py">priority</span> <span class="p">=</span> <span class="nc">MIN_PRIORITY</span>
 
     <span class="nd">@Suppress</span><span class="p">(</span><span class="s">"ComplexMethod"</span><span class="p">)</span>
-    <span class="k">override</span> <span class="k">fun</span> <span class="nf">isFeatureEnabled</span><span class="p">(</span><span class="nv">feature</span><span class="p">:</span> <span class="nc">Feature</span><span class="p">):</span> <span class="nc">Boolean</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">feature</span> <span class="k">is</span> <span class="n">FeatureFlag</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">isFeatureEnabled</span><span class="p">(</span><span class="n">feature</span><span class="p">:</span> <span class="nc">Feature</span><span class="p">):</span> <span class="nc">Boolean</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">feature</span> <span class="k">is</span> <span class="nc">FeatureFlag</span><span class="p">)</span> <span class="p">{</span>
            <span class="c1">// No "else" branch here -&gt; choosing the default</span>
            <span class="c1">// option for release must be an explicit choice</span>
             <span class="k">return</span> <span class="k">when</span> <span class="p">(</span><span class="n">feature</span><span class="p">)</span> <span class="p">{</span>
-                <span class="n">DARK_MODE</span> <span class="p">-&gt;</span> <span class="k">false</span>
+                <span class="nc">DARK_MODE</span> <span class="p">-&gt;</span> <span class="k">false</span>
             <span class="p">}</span>
         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
             <span class="c1">// TestSettings should never be shipped to users</span>
-            <span class="k">return</span> <span class="k">when</span> <span class="p">(</span><span class="n">feature</span> <span class="k">as</span> <span class="n">TestSetting</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">when</span> <span class="p">(</span><span class="n">feature</span> <span class="k">as</span> <span class="nc">TestSetting</span><span class="p">)</span> <span class="p">{</span>
                 <span class="k">else</span> <span class="p">-&gt;</span> <span class="k">false</span>
             <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">}</span>
 
-    <span class="k">override</span> <span class="k">fun</span> <span class="nf">hasFeature</span><span class="p">(</span><span class="nv">feature</span><span class="p">:</span> <span class="nc">Feature</span><span class="p">):</span> <span class="nc">Boolean</span> <span class="p">=</span> <span class="k">true</span>
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">hasFeature</span><span class="p">(</span><span class="n">feature</span><span class="p">:</span> <span class="nc">Feature</span><span class="p">):</span> <span class="nc">Boolean</span> <span class="p">=</span> <span class="k">true</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -557,22 +558,22 @@ $(document).ready(function(){
 <h3 id="firebasefeatureflagprovider">FirebaseFeatureFlagProvider</h3>
 <p>One of the most interesting things about <code class="highlighter-rouge">FeatureFlags</code> is that you can gradually roll them out using a remote feature flagging tool. We’ll look at <a href="https://firebase.google.com/docs/remote-config">Firebase Remote Config</a> as an example, but this architecture supports any tool.</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">FirebaseFeatureFlagProvider</span><span class="p">(</span><span class="k">private</span> <span class="kd">val</span> <span class="py">isDevModeEnabled</span><span class="p">:</span> <span class="n">Boolean</span><span class="p">)</span> <span class="p">:</span> <span class="nc">FeatureFlagProvider</span> <span class="p">{</span>
-    <span class="k">private</span> <span class="kd">val</span> <span class="py">remoteConfig</span><span class="p">:</span> <span class="n">FirebaseRemoteConfig</span> <span class="p">=</span> <span class="n">FirebaseRemoteConfig</span><span class="p">.</span><span class="n">getInstance</span><span class="p">()</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">FirebaseFeatureFlagProvider</span><span class="p">(</span><span class="k">private</span> <span class="kd">val</span> <span class="py">isDevModeEnabled</span><span class="p">:</span> <span class="nc">Boolean</span><span class="p">)</span> <span class="p">:</span> <span class="nc">FeatureFlagProvider</span> <span class="p">{</span>
+    <span class="k">private</span> <span class="kd">val</span> <span class="py">remoteConfig</span><span class="p">:</span> <span class="nc">FirebaseRemoteConfig</span> <span class="p">=</span> <span class="nc">FirebaseRemoteConfig</span><span class="p">.</span><span class="nf">getInstance</span><span class="p">()</span>
 
-    <span class="n">init</span> <span class="p">{</span>
-        <span class="kd">val</span> <span class="py">configSettings</span> <span class="p">=</span> <span class="n">FirebaseRemoteConfigSettings</span><span class="p">.</span><span class="n">Builder</span><span class="p">().</span><span class="n">setDeveloperModeEnabled</span><span class="p">(</span><span class="n">isDevModeEnabled</span><span class="p">).</span><span class="n">build</span><span class="p">()</span>
-        <span class="n">remoteConfig</span><span class="p">.</span><span class="n">setConfigSettings</span><span class="p">(</span><span class="n">configSettings</span><span class="p">)</span>
+    <span class="nf">init</span> <span class="p">{</span>
+        <span class="kd">val</span> <span class="py">configSettings</span> <span class="p">=</span> <span class="nc">FirebaseRemoteConfigSettings</span><span class="p">.</span><span class="nc">Builder</span><span class="p">().</span><span class="nf">setDeveloperModeEnabled</span><span class="p">(</span><span class="n">isDevModeEnabled</span><span class="p">).</span><span class="nf">build</span><span class="p">()</span>
+        <span class="n">remoteConfig</span><span class="p">.</span><span class="nf">setConfigSettings</span><span class="p">(</span><span class="n">configSettings</span><span class="p">)</span>
     <span class="p">}</span>
 
-    <span class="k">override</span> <span class="kd">val</span> <span class="py">priority</span><span class="p">:</span> <span class="n">Int</span> <span class="p">=</span> <span class="n">MAX_PRIORITY</span>
+    <span class="k">override</span> <span class="kd">val</span> <span class="py">priority</span><span class="p">:</span> <span class="nc">Int</span> <span class="p">=</span> <span class="nc">MAX_PRIORITY</span>
 
-    <span class="k">override</span> <span class="k">fun</span> <span class="nf">isFeatureEnabled</span><span class="p">(</span><span class="nv">feature</span><span class="p">:</span> <span class="nc">Feature</span><span class="p">):</span> <span class="nc">Boolean</span> <span class="p">=</span>
-        <span class="n">remoteConfig</span><span class="p">.</span><span class="n">getBoolean</span><span class="p">(</span><span class="n">feature</span><span class="p">.</span><span class="n">key</span><span class="p">)</span>
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">isFeatureEnabled</span><span class="p">(</span><span class="n">feature</span><span class="p">:</span> <span class="nc">Feature</span><span class="p">):</span> <span class="nc">Boolean</span> <span class="p">=</span>
+        <span class="n">remoteConfig</span><span class="p">.</span><span class="nf">getBoolean</span><span class="p">(</span><span class="n">feature</span><span class="p">.</span><span class="n">key</span><span class="p">)</span>
 
-    <span class="k">override</span> <span class="k">fun</span> <span class="nf">hasFeature</span><span class="p">(</span><span class="nv">feature</span><span class="p">:</span> <span class="nc">Feature</span><span class="p">):</span> <span class="nc">Boolean</span> <span class="p">{</span>
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">hasFeature</span><span class="p">(</span><span class="n">feature</span><span class="p">:</span> <span class="nc">Feature</span><span class="p">):</span> <span class="nc">Boolean</span> <span class="p">{</span>
         <span class="k">return</span> <span class="k">when</span> <span class="p">(</span><span class="n">feature</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">FeatureFlag</span><span class="p">.</span><span class="n">DARK_MODE</span> <span class="p">-&gt;</span> <span class="k">true</span>
+            <span class="nc">FeatureFlag</span><span class="p">.</span><span class="nc">DARK_MODE</span> <span class="p">-&gt;</span> <span class="k">true</span>
             <span class="k">else</span> <span class="p">-&gt;</span> <span class="k">false</span>
         <span class="p">}</span>
     <span class="p">}</span>
@@ -608,17 +609,17 @@ $(document).ready(function(){
     <span class="o">..</span><span class="p">.</span>
 
     <span class="nd">@JvmStatic</span>
-    <span class="k">fun</span> <span class="nf">initialize</span><span class="p">(</span><span class="nv">context</span><span class="p">:</span> <span class="nc">Context</span><span class="p">,</span> <span class="nv">isDebugBuild</span><span class="p">:</span> <span class="nc">Boolean</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">fun</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="nc">Context</span><span class="p">,</span> <span class="n">isDebugBuild</span><span class="p">:</span> <span class="nc">Boolean</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">isDebugBuild</span><span class="p">)</span> <span class="p">{</span>
-            <span class="kd">val</span> <span class="py">runtimeFeatureFlagProvider</span> <span class="p">=</span> <span class="n">RuntimeFeatureFlagProvider</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
-            <span class="n">addProvider</span><span class="p">(</span><span class="n">RuntimeFeatureFlagProvider</span><span class="p">(</span><span class="n">context</span><span class="p">))</span>
+            <span class="kd">val</span> <span class="py">runtimeFeatureFlagProvider</span> <span class="p">=</span> <span class="nc">RuntimeFeatureFlagProvider</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+            <span class="nf">addProvider</span><span class="p">(</span><span class="nc">RuntimeFeatureFlagProvider</span><span class="p">(</span><span class="n">context</span><span class="p">))</span>
 
-            <span class="k">if</span> <span class="p">(</span><span class="n">runtimeFeatureFlagProvider</span><span class="p">.</span><span class="n">isFeatureEnabled</span><span class="p">(</span><span class="n">TestSetting</span><span class="p">.</span><span class="n">DEBUG_FIREBASE</span><span class="p">))</span> <span class="p">{</span>
-                <span class="n">addProvider</span><span class="p">(</span><span class="n">FirebaseFeatureFlagProvider</span><span class="p">(</span><span class="k">true</span><span class="p">))</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">runtimeFeatureFlagProvider</span><span class="p">.</span><span class="nf">isFeatureEnabled</span><span class="p">(</span><span class="nc">TestSetting</span><span class="p">.</span><span class="nc">DEBUG_FIREBASE</span><span class="p">))</span> <span class="p">{</span>
+                <span class="nf">addProvider</span><span class="p">(</span><span class="nc">FirebaseFeatureFlagProvider</span><span class="p">(</span><span class="k">true</span><span class="p">))</span>
             <span class="p">}</span>
         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="n">addProvider</span><span class="p">(</span><span class="n">StoreFeatureFlagProvider</span><span class="p">())</span>
-            <span class="n">addProvider</span><span class="p">(</span><span class="n">FirebaseFeatureFlagProvider</span><span class="p">(</span><span class="k">false</span><span class="p">))</span>
+            <span class="nf">addProvider</span><span class="p">(</span><span class="nc">StoreFeatureFlagProvider</span><span class="p">())</span>
+            <span class="nf">addProvider</span><span class="p">(</span><span class="nc">FirebaseFeatureFlagProvider</span><span class="p">(</span><span class="k">false</span><span class="p">))</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -639,20 +640,20 @@ $(document).ready(function(){
 
 <p>To show all of the <code class="highlighter-rouge">Features</code>, we can simply define a custom <code class="highlighter-rouge">RecyclerView</code> that displays an <code class="highlighter-rouge">Array</code> of <code class="highlighter-rouge">Features</code>.</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">private</span> <span class="kd">class</span> <span class="nc">FeatureFlagAdapter</span><span class="p">&lt;</span><span class="n">T</span> <span class="p">:</span> <span class="n">Feature</span><span class="p">&gt;(</span>
-    <span class="kd">val</span> <span class="py">items</span><span class="p">:</span> <span class="n">Array</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;,</span>
-    <span class="kd">val</span> <span class="py">provider</span><span class="p">:</span> <span class="n">FeatureFlagProvider</span><span class="p">,</span>
-    <span class="kd">val</span> <span class="py">checkedListener</span><span class="p">:</span> <span class="n">Function2</span><span class="p">&lt;</span><span class="n">Feature</span><span class="p">,</span> <span class="n">Boolean</span><span class="p">,</span> <span class="n">Unit</span><span class="p">&gt;</span>
-<span class="p">)</span> <span class="p">:</span> <span class="nc">RecyclerView</span><span class="p">.</span><span class="n">Adapter</span><span class="p">&lt;</span><span class="n">FeatureFlagViewHolder</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;&gt;()</span> <span class="p">{</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">private</span> <span class="kd">class</span> <span class="nc">FeatureFlagAdapter</span><span class="p">&lt;</span><span class="nc">T</span> <span class="p">:</span> <span class="nc">Feature</span><span class="p">&gt;(</span>
+    <span class="kd">val</span> <span class="py">items</span><span class="p">:</span> <span class="nc">Array</span><span class="p">&lt;</span><span class="nc">T</span><span class="p">&gt;,</span>
+    <span class="kd">val</span> <span class="py">provider</span><span class="p">:</span> <span class="nc">FeatureFlagProvider</span><span class="p">,</span>
+    <span class="kd">val</span> <span class="py">checkedListener</span><span class="p">:</span> <span class="nc">Function2</span><span class="p">&lt;</span><span class="nc">Feature</span><span class="p">,</span> <span class="nc">Boolean</span><span class="p">,</span> <span class="nc">Unit</span><span class="p">&gt;</span>
+<span class="p">)</span> <span class="p">:</span> <span class="nc">RecyclerView</span><span class="p">.</span><span class="nc">Adapter</span><span class="p">&lt;</span><span class="nc">FeatureFlagViewHolder</span><span class="p">&lt;</span><span class="nc">T</span><span class="p">&gt;&gt;()</span> <span class="p">{</span>
 
     <span class="k">override</span> <span class="k">fun</span> <span class="nf">getItemCount</span><span class="p">():</span> <span class="nc">Int</span> <span class="p">=</span> <span class="n">items</span><span class="p">.</span><span class="n">size</span>
 
-    <span class="k">override</span> <span class="k">fun</span> <span class="nf">onBindViewHolder</span><span class="p">(</span><span class="nv">holder</span><span class="p">:</span> <span class="nc">FeatureFlagViewHolder</span><span class="p">&lt;</span><span class="nc">T</span><span class="p">&gt;,</span> <span class="nv">position</span><span class="p">:</span> <span class="nc">Int</span><span class="p">)</span> <span class="p">=</span>
-        <span class="n">holder</span><span class="p">.</span><span class="n">bind</span><span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="n">position</span><span class="p">])</span>
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">onBindViewHolder</span><span class="p">(</span><span class="n">holder</span><span class="p">:</span> <span class="nc">FeatureFlagViewHolder</span><span class="p">&lt;</span><span class="nc">T</span><span class="p">&gt;,</span> <span class="n">position</span><span class="p">:</span> <span class="nc">Int</span><span class="p">)</span> <span class="p">=</span>
+        <span class="n">holder</span><span class="p">.</span><span class="nf">bind</span><span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="n">position</span><span class="p">])</span>
 
-    <span class="k">override</span> <span class="k">fun</span> <span class="nf">onCreateViewHolder</span><span class="p">(</span><span class="nv">parent</span><span class="p">:</span> <span class="nc">ViewGroup</span><span class="p">,</span> <span class="nv">viewType</span><span class="p">:</span> <span class="nc">Int</span><span class="p">):</span> <span class="nc">FeatureFlagViewHolder</span><span class="p">&lt;</span><span class="nc">T</span><span class="p">&gt;</span> <span class="p">{</span>
-        <span class="kd">val</span> <span class="py">itemView</span> <span class="p">=</span> <span class="n">LayoutInflater</span><span class="p">.</span><span class="n">from</span><span class="p">(</span><span class="n">parent</span><span class="p">.</span><span class="n">context</span><span class="p">).</span><span class="n">inflate</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">layout</span><span class="p">.</span><span class="n">item_featureflag</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="k">false</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">FeatureFlagViewHolder</span><span class="p">(</span><span class="n">itemView</span><span class="p">,</span> <span class="n">provider</span><span class="p">,</span> <span class="n">checkedListener</span><span class="p">)</span>
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">onCreateViewHolder</span><span class="p">(</span><span class="n">parent</span><span class="p">:</span> <span class="nc">ViewGroup</span><span class="p">,</span> <span class="n">viewType</span><span class="p">:</span> <span class="nc">Int</span><span class="p">):</span> <span class="nc">FeatureFlagViewHolder</span><span class="p">&lt;</span><span class="nc">T</span><span class="p">&gt;</span> <span class="p">{</span>
+        <span class="kd">val</span> <span class="py">itemView</span> <span class="p">=</span> <span class="nc">LayoutInflater</span><span class="p">.</span><span class="nf">from</span><span class="p">(</span><span class="n">parent</span><span class="p">.</span><span class="n">context</span><span class="p">).</span><span class="nf">inflate</span><span class="p">(</span><span class="nc">R</span><span class="p">.</span><span class="n">layout</span><span class="p">.</span><span class="n">item_featureflag</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="k">false</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nc">FeatureFlagViewHolder</span><span class="p">(</span><span class="n">itemView</span><span class="p">,</span> <span class="n">provider</span><span class="p">,</span> <span class="n">checkedListener</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -663,36 +664,36 @@ $(document).ready(function(){
 
 <p>The <code class="highlighter-rouge">FeatureFlagViewHolder</code> simply binds the properties of the <code class="highlighter-rouge">Feature</code> to the view, requests the current value from the <code class="highlighter-rouge">FeatureFlagProvider</code> and connects a listener to the switch:</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">private</span> <span class="kd">class</span> <span class="nc">FeatureFlagViewHolder</span><span class="p">&lt;</span><span class="n">T</span> <span class="p">:</span> <span class="n">Feature</span><span class="p">&gt;(</span>
-    <span class="nv">view</span><span class="p">:</span> <span class="nc">View</span><span class="p">,</span>
-    <span class="kd">val</span> <span class="py">provider</span><span class="p">:</span> <span class="n">FeatureFlagProvider</span><span class="p">,</span>
-    <span class="kd">val</span> <span class="py">checkedListener</span><span class="p">:</span> <span class="n">Function2</span><span class="p">&lt;</span><span class="n">Feature</span><span class="p">,</span> <span class="n">Boolean</span><span class="p">,</span> <span class="n">Unit</span><span class="p">&gt;</span>
-<span class="p">)</span> <span class="p">:</span> <span class="nc">RecyclerView</span><span class="p">.</span><span class="n">ViewHolder</span><span class="p">(</span><span class="n">view</span><span class="p">)</span> <span class="p">{</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">private</span> <span class="kd">class</span> <span class="nc">FeatureFlagViewHolder</span><span class="p">&lt;</span><span class="nc">T</span> <span class="p">:</span> <span class="nc">Feature</span><span class="p">&gt;(</span>
+    <span class="n">view</span><span class="p">:</span> <span class="nc">View</span><span class="p">,</span>
+    <span class="kd">val</span> <span class="py">provider</span><span class="p">:</span> <span class="nc">FeatureFlagProvider</span><span class="p">,</span>
+    <span class="kd">val</span> <span class="py">checkedListener</span><span class="p">:</span> <span class="nc">Function2</span><span class="p">&lt;</span><span class="nc">Feature</span><span class="p">,</span> <span class="nc">Boolean</span><span class="p">,</span> <span class="nc">Unit</span><span class="p">&gt;</span>
+<span class="p">)</span> <span class="p">:</span> <span class="nc">RecyclerView</span><span class="p">.</span><span class="nc">ViewHolder</span><span class="p">(</span><span class="n">view</span><span class="p">)</span> <span class="p">{</span>
 
-    <span class="k">fun</span> <span class="nf">bind</span><span class="p">(</span><span class="nv">feature</span><span class="p">:</span> <span class="nc">T</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">fun</span> <span class="nf">bind</span><span class="p">(</span><span class="n">feature</span><span class="p">:</span> <span class="nc">T</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">title</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="n">feature</span><span class="p">.</span><span class="n">title</span>
         <span class="n">description</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="n">feature</span><span class="p">.</span><span class="n">explanation</span>
-        <span class="n">switch</span><span class="p">.</span><span class="n">isChecked</span> <span class="p">=</span> <span class="n">provider</span><span class="p">.</span><span class="n">isFeatureEnabled</span><span class="p">(</span><span class="n">feature</span><span class="p">)</span>
-        <span class="n">switch</span><span class="p">.</span><span class="n">setOnCheckedChangeListener</span> <span class="p">{</span> <span class="n">switch</span><span class="p">,</span> <span class="n">isChecked</span> <span class="p">-&gt;</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">switch</span><span class="p">.</span><span class="n">isPressed</span><span class="p">)</span> <span class="n">checkedListener</span><span class="p">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="n">isChecked</span><span class="p">)</span> <span class="p">}</span>
+        <span class="n">switch</span><span class="p">.</span><span class="n">isChecked</span> <span class="p">=</span> <span class="n">provider</span><span class="p">.</span><span class="nf">isFeatureEnabled</span><span class="p">(</span><span class="n">feature</span><span class="p">)</span>
+        <span class="n">switch</span><span class="p">.</span><span class="nf">setOnCheckedChangeListener</span> <span class="p">{</span> <span class="n">switch</span><span class="p">,</span> <span class="n">isChecked</span> <span class="p">-&gt;</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">switch</span><span class="p">.</span><span class="n">isPressed</span><span class="p">)</span> <span class="n">checkedListener</span><span class="p">.</span><span class="nf">invoke</span><span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="n">isChecked</span><span class="p">)</span> <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
 <p>The listener passed into the <code class="highlighter-rouge">FeatureFlagAdapter</code> simply changes the value of the <code class="highlighter-rouge">Feature</code> on the <code class="highlighter-rouge">RuntimeFeatureFlagProvider</code> and shows a <code class="highlighter-rouge">SnackBar</code> to restart the app to ensure the new value is properly applied:</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">val</span> <span class="py">checkedListener</span> <span class="p">=</span> <span class="p">{</span> <span class="nv">feature</span><span class="p">:</span> <span class="nc">Feature</span><span class="p">,</span> <span class="nv">enabled</span><span class="p">:</span> <span class="nc">Boolean</span> <span class="p">-&gt;</span>
-    <span class="n">runtimeFeatureFlagProvider</span><span class="p">.</span><span class="n">setFeatureEnabled</span><span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="n">enabled</span><span class="p">)</span>
-    <span class="n">requestRestart</span><span class="p">()</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">val</span> <span class="py">checkedListener</span> <span class="p">=</span> <span class="p">{</span> <span class="n">feature</span><span class="p">:</span> <span class="nc">Feature</span><span class="p">,</span> <span class="n">enabled</span><span class="p">:</span> <span class="nc">Boolean</span> <span class="p">-&gt;</span>
+    <span class="n">runtimeFeatureFlagProvider</span><span class="p">.</span><span class="nf">setFeatureEnabled</span><span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="n">enabled</span><span class="p">)</span>
+    <span class="nf">requestRestart</span><span class="p">()</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">private</span> <span class="k">fun</span> <span class="nf">requestRestart</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">val</span> <span class="py">msg</span> <span class="p">=</span> <span class="s">"In order for changes to reflect please restart the app via settings"</span>
-    <span class="n">Snackbar</span><span class="p">.</span><span class="n">make</span><span class="p">(</span><span class="n">view</span><span class="o">!!</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">Snackbar</span><span class="p">.</span><span class="n">LENGTH_INDEFINITE</span><span class="p">)</span>
-        <span class="p">.</span><span class="n">setActionTextColor</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="n">RED</span><span class="p">)</span>
-        <span class="p">.</span><span class="n">setAction</span><span class="p">(</span><span class="s">"Force Stop"</span><span class="p">)</span> <span class="p">{</span> <span class="n">exitProcess</span><span class="p">(-</span><span class="m">1</span><span class="p">)</span> <span class="p">}</span>
-        <span class="p">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="nc">Snackbar</span><span class="p">.</span><span class="nf">make</span><span class="p">(</span><span class="n">view</span><span class="o">!!</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="nc">Snackbar</span><span class="p">.</span><span class="nc">LENGTH_INDEFINITE</span><span class="p">)</span>
+        <span class="p">.</span><span class="nf">setActionTextColor</span><span class="p">(</span><span class="nc">Color</span><span class="p">.</span><span class="nc">RED</span><span class="p">)</span>
+        <span class="p">.</span><span class="nf">setAction</span><span class="p">(</span><span class="s">"Force Stop"</span><span class="p">)</span> <span class="p">{</span> <span class="nf">exitProcess</span><span class="p">(-</span><span class="m">1</span><span class="p">)</span> <span class="p">}</span>
+        <span class="p">.</span><span class="nf">show</span><span class="p">()</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -716,21 +717,21 @@ $(document).ready(function(){
 
 <p>Now we just need to expand the <code class="highlighter-rouge">FirebaseFeatureFlagProvider</code> with this interface and implement <code class="highlighter-rouge">refreshFeatureFlags</code>:</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">FirebaseFeatureFlagProvider</span><span class="p">(</span><span class="k">private</span> <span class="kd">val</span> <span class="py">isDevModeEnabled</span><span class="p">:</span> <span class="n">Boolean</span><span class="p">)</span> <span class="p">:</span>
-    <span class="nc">FeatureFlagProvider</span><span class="p">,</span> <span class="n">RemoteFeatureFlagProvider</span> <span class="p">{</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">FirebaseFeatureFlagProvider</span><span class="p">(</span><span class="k">private</span> <span class="kd">val</span> <span class="py">isDevModeEnabled</span><span class="p">:</span> <span class="nc">Boolean</span><span class="p">)</span> <span class="p">:</span>
+    <span class="nc">FeatureFlagProvider</span><span class="p">,</span> <span class="nc">RemoteFeatureFlagProvider</span> <span class="p">{</span>
     <span class="o">..</span><span class="p">.</span>
 
     <span class="k">override</span> <span class="k">fun</span> <span class="nf">refreshFeatureFlags</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">remoteConfig</span><span class="p">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">getCacheExpirationSeconds</span><span class="p">(</span><span class="n">isDevModeEnabled</span><span class="p">)).</span><span class="n">addOnCompleteListener</span> <span class="p">{</span> <span class="n">task</span> <span class="p">-&gt;</span>
+        <span class="n">remoteConfig</span><span class="p">.</span><span class="nf">fetch</span><span class="p">(</span><span class="nf">getCacheExpirationSeconds</span><span class="p">(</span><span class="n">isDevModeEnabled</span><span class="p">)).</span><span class="nf">addOnCompleteListener</span> <span class="p">{</span> <span class="n">task</span> <span class="p">-&gt;</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">task</span><span class="p">.</span><span class="n">isSuccessful</span><span class="p">)</span> <span class="p">{</span>
                 <span class="c1">// After config data is successfully fetched, it must be activated before newly fetched values are returned.</span>
-                <span class="n">remoteConfig</span><span class="p">.</span><span class="n">activateFetched</span><span class="p">()</span>
+                <span class="n">remoteConfig</span><span class="p">.</span><span class="nf">activateFetched</span><span class="p">()</span>
             <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">}</span>
 
-    <span class="k">private</span> <span class="k">fun</span> <span class="nf">getCacheExpirationSeconds</span><span class="p">(</span><span class="nv">isDevModeEnabled</span><span class="p">:</span> <span class="nc">Boolean</span><span class="p">):</span> <span class="nc">Long</span> <span class="p">=</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">isDevModeEnabled</span><span class="p">)</span> <span class="n">ONE_SECOND</span> <span class="k">else</span> <span class="n">ONE_HOUR</span>
+    <span class="k">private</span> <span class="k">fun</span> <span class="nf">getCacheExpirationSeconds</span><span class="p">(</span><span class="n">isDevModeEnabled</span><span class="p">:</span> <span class="nc">Boolean</span><span class="p">):</span> <span class="nc">Long</span> <span class="p">=</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">isDevModeEnabled</span><span class="p">)</span> <span class="nc">ONE_SECOND</span> <span class="k">else</span> <span class="nc">ONE_HOUR</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -752,19 +753,19 @@ $(document).ready(function(){
 <h2 id="testing-feature-flags">Testing feature flags</h2>
 <p>During automated unit or espresso tests, you sometimes need to enable/disable particular features. Even that is simple with this architecture, just make a <code class="highlighter-rouge">TestFeatureFlagProvider</code>:</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">object</span> <span class="nc">TestFeatureFlagProvider</span> <span class="p">:</span> <span class="n">FeatureFlagProvider</span> <span class="p">{</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">object</span> <span class="nc">TestFeatureFlagProvider</span> <span class="p">:</span> <span class="nc">FeatureFlagProvider</span> <span class="p">{</span>
 
-    <span class="k">private</span> <span class="kd">val</span> <span class="py">features</span> <span class="p">=</span> <span class="n">HashMap</span><span class="p">&lt;</span><span class="n">Feature</span><span class="p">,</span> <span class="n">Boolean</span><span class="p">&gt;()</span>
+    <span class="k">private</span> <span class="kd">val</span> <span class="py">features</span> <span class="p">=</span> <span class="nc">HashMap</span><span class="p">&lt;</span><span class="nc">Feature</span><span class="p">,</span> <span class="nc">Boolean</span><span class="p">&gt;()</span>
 
-    <span class="k">override</span> <span class="kd">val</span> <span class="py">priority</span> <span class="p">=</span> <span class="n">TEST_PRIORITY</span>
+    <span class="k">override</span> <span class="kd">val</span> <span class="py">priority</span> <span class="p">=</span> <span class="nc">TEST_PRIORITY</span>
 
-    <span class="k">override</span> <span class="k">fun</span> <span class="nf">isFeatureEnabled</span><span class="p">(</span><span class="nv">feature</span><span class="p">:</span> <span class="nc">Feature</span><span class="p">):</span> <span class="nc">Boolean</span> <span class="p">=</span> <span class="n">features</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span><span class="o">!!</span>
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">isFeatureEnabled</span><span class="p">(</span><span class="n">feature</span><span class="p">:</span> <span class="nc">Feature</span><span class="p">):</span> <span class="nc">Boolean</span> <span class="p">=</span> <span class="n">features</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span><span class="o">!!</span>
 
-    <span class="k">override</span> <span class="k">fun</span> <span class="nf">hasFeature</span><span class="p">(</span><span class="nv">feature</span><span class="p">:</span> <span class="nc">Feature</span><span class="p">):</span> <span class="nc">Boolean</span> <span class="p">=</span> <span class="n">features</span><span class="p">.</span><span class="n">containsKey</span><span class="p">(</span><span class="n">feature</span><span class="p">)</span>
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">hasFeature</span><span class="p">(</span><span class="n">feature</span><span class="p">:</span> <span class="nc">Feature</span><span class="p">):</span> <span class="nc">Boolean</span> <span class="p">=</span> <span class="n">features</span><span class="p">.</span><span class="nf">containsKey</span><span class="p">(</span><span class="n">feature</span><span class="p">)</span>
 
-    <span class="k">fun</span> <span class="nf">setFeatureEnabled</span><span class="p">(</span><span class="nv">feature</span><span class="p">:</span> <span class="nc">Feature</span><span class="p">,</span> <span class="nv">enabled</span><span class="p">:</span> <span class="nc">Boolean</span><span class="p">)</span> <span class="p">=</span> <span class="n">features</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="n">enabled</span><span class="p">)</span>
+    <span class="k">fun</span> <span class="nf">setFeatureEnabled</span><span class="p">(</span><span class="n">feature</span><span class="p">:</span> <span class="nc">Feature</span><span class="p">,</span> <span class="n">enabled</span><span class="p">:</span> <span class="nc">Boolean</span><span class="p">)</span> <span class="p">=</span> <span class="n">features</span><span class="p">.</span><span class="nf">put</span><span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="n">enabled</span><span class="p">)</span>
 
-    <span class="k">fun</span> <span class="nf">clearFeatures</span><span class="p">()</span> <span class="p">=</span> <span class="n">features</span><span class="p">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="k">fun</span> <span class="nf">clearFeatures</span><span class="p">()</span> <span class="p">=</span> <span class="n">features</span><span class="p">.</span><span class="nf">clear</span><span class="p">()</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -772,14 +773,14 @@ $(document).ready(function(){
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
 <span class="k">fun</span> <span class="nf">withFeatureFlags</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">TestFeatureFlagProvider</span><span class="p">.</span><span class="n">enableFeature</span><span class="p">(</span><span class="n">DARK_MODE</span><span class="p">)</span>
+    <span class="nc">TestFeatureFlagProvider</span><span class="p">.</span><span class="nf">enableFeature</span><span class="p">(</span><span class="nc">DARK_MODE</span><span class="p">)</span>
 
     <span class="c1">// do test here</span>
 <span class="p">}</span>
 
 <span class="nd">@After</span>
 <span class="k">fun</span> <span class="nf">tearDown</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">TestFeatureFlagProvider</span><span class="p">.</span><span class="n">clearFeatures</span><span class="p">()</span>
+    <span class="nc">TestFeatureFlagProvider</span><span class="p">.</span><span class="nf">clearFeatures</span><span class="p">()</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -788,19 +789,19 @@ $(document).ready(function(){
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">object</span> <span class="nc">RuntimeBehavior</span> <span class="p">{</span>
 
     <span class="nd">@VisibleForTesting</span>
-    <span class="k">internal</span> <span class="kd">val</span> <span class="py">providers</span> <span class="p">=</span> <span class="n">CopyOnWriteArrayList</span><span class="p">&lt;</span><span class="n">FeatureFlagProvider</span><span class="p">&gt;()</span>
+    <span class="k">internal</span> <span class="kd">val</span> <span class="py">providers</span> <span class="p">=</span> <span class="nc">CopyOnWriteArrayList</span><span class="p">&lt;</span><span class="nc">FeatureFlagProvider</span><span class="p">&gt;()</span>
 
-    <span class="k">fun</span> <span class="nf">initialize</span><span class="p">(</span><span class="nv">context</span><span class="p">:</span> <span class="nc">Context</span><span class="p">,</span> <span class="nv">isDebugBuild</span><span class="p">:</span> <span class="nc">Boolean</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">fun</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="nc">Context</span><span class="p">,</span> <span class="n">isDebugBuild</span><span class="p">:</span> <span class="nc">Boolean</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">isDebugBuild</span><span class="p">)</span> <span class="p">{</span>
-            <span class="kd">val</span> <span class="py">runtimeFeatureFlagProvider</span> <span class="p">=</span> <span class="n">RuntimeFeatureFlagProvider</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
-            <span class="n">addProvider</span><span class="p">(</span><span class="n">runtimeFeatureFlagProvider</span><span class="p">)</span>
-            <span class="n">addProvider</span><span class="p">(</span><span class="n">TestFeatureFlagProvider</span><span class="p">)</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">runtimeFeatureFlagProvider</span><span class="p">.</span><span class="n">isFeatureEnabled</span><span class="p">(</span><span class="n">TestSetting</span><span class="p">.</span><span class="n">DEBUG_FIREBASE</span><span class="p">))</span> <span class="p">{</span>
-                <span class="n">addProvider</span><span class="p">(</span><span class="n">FirebaseFeatureFlagProvider</span><span class="p">(</span><span class="k">true</span><span class="p">))</span>
+            <span class="kd">val</span> <span class="py">runtimeFeatureFlagProvider</span> <span class="p">=</span> <span class="nc">RuntimeFeatureFlagProvider</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+            <span class="nf">addProvider</span><span class="p">(</span><span class="n">runtimeFeatureFlagProvider</span><span class="p">)</span>
+            <span class="nf">addProvider</span><span class="p">(</span><span class="nc">TestFeatureFlagProvider</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">runtimeFeatureFlagProvider</span><span class="p">.</span><span class="nf">isFeatureEnabled</span><span class="p">(</span><span class="nc">TestSetting</span><span class="p">.</span><span class="nc">DEBUG_FIREBASE</span><span class="p">))</span> <span class="p">{</span>
+                <span class="nf">addProvider</span><span class="p">(</span><span class="nc">FirebaseFeatureFlagProvider</span><span class="p">(</span><span class="k">true</span><span class="p">))</span>
             <span class="p">}</span>
         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="n">addProvider</span><span class="p">(</span><span class="n">StoreFeatureFlagProvider</span><span class="p">())</span>
-            <span class="n">addProvider</span><span class="p">(</span><span class="n">FirebaseFeatureFlagProvider</span><span class="p">(</span><span class="k">false</span><span class="p">))</span>
+            <span class="nf">addProvider</span><span class="p">(</span><span class="nc">StoreFeatureFlagProvider</span><span class="p">())</span>
+            <span class="nf">addProvider</span><span class="p">(</span><span class="nc">FirebaseFeatureFlagProvider</span><span class="p">(</span><span class="k">false</span><span class="p">))</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -994,6 +995,7 @@ $(document).ready(function(){
 
 
   5 minute read
+
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">Empowered with what feature flags are and why they are useful, let’s see how we can actually integrate them into an app. And how can we roll them out to our users?
@@ -1032,6 +1034,7 @@ $(document).ready(function(){
 
 
   6 minute read
+
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">A key ingredient to speed up modern software development is feature flags. But what is a feature flag precisely? Why should you care about them? How do you integrate them into your codebase? And how can we make them easy...</p>
@@ -1069,6 +1072,7 @@ $(document).ready(function(){
 
 
   16 minute read
+
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">Three years ago, we decided ramp up internal app development at Philips Hue. After interviewing candidates (78!) for six months, I became the lead Android developer of the freshly hired Android team.
@@ -1107,6 +1111,7 @@ $(document).ready(function(){
 
 
   5 minute read
+
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">From Android Q onwards devices can now operate in a fully gestural system navigation mode. In that mode, there is no longer an on-screen back button, instead users can swipe from both edges to navigate back.

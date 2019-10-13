@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.16.6 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.17.0 by Michael Rose
   Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
@@ -360,6 +360,7 @@ $(document).ready(function(){
 
 
   5 minute read
+
 </p>
           
         </header>
@@ -393,12 +394,12 @@ $(document).ready(function(){
 
 <p>Fortunately, Android Q offers a way to tell the Android system that it shouldn’t intercept gestures in a particular area of the screen using <a href="https://developer.android.com/reference/android/view/View#setSystemGestureExclusionRects(java.util.List%3Candroid.graphics.Rect%3E)"><code class="highlighter-rouge">setSystemGestureExclusionRects</code></a>:</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">brightnessSlider</span><span class="p">.</span><span class="n">doOnLayout</span> <span class="p">{</span>
-    <span class="kd">val</span> <span class="py">exclusions</span> <span class="p">=</span> <span class="n">listOf</span><span class="p">(</span>
-            <span class="n">Rect</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">exclusionWidth</span><span class="p">,</span> <span class="n">it</span><span class="p">.</span><span class="n">height</span><span class="p">),</span> <span class="c1">// min area</span>
-            <span class="n">Rect</span><span class="p">(</span><span class="n">it</span><span class="p">.</span><span class="n">width</span> <span class="p">-</span> <span class="n">exclusionWidth</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">it</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="n">it</span><span class="p">.</span><span class="n">height</span><span class="p">)</span> <span class="c1">// max area</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">brightnessSlider</span><span class="p">.</span><span class="nf">doOnLayout</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">exclusions</span> <span class="p">=</span> <span class="nf">listOf</span><span class="p">(</span>
+            <span class="nc">Rect</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">exclusionWidth</span><span class="p">,</span> <span class="n">it</span><span class="p">.</span><span class="n">height</span><span class="p">),</span> <span class="c1">// min area</span>
+            <span class="nc">Rect</span><span class="p">(</span><span class="n">it</span><span class="p">.</span><span class="n">width</span> <span class="p">-</span> <span class="n">exclusionWidth</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">it</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="n">it</span><span class="p">.</span><span class="n">height</span><span class="p">)</span> <span class="c1">// max area</span>
         <span class="p">)</span>
-    <span class="n">ViewCompat</span><span class="p">.</span><span class="n">setSystemGestureExclusionRects</span><span class="p">(</span><span class="n">brightnessSlider</span><span class="p">,</span> <span class="n">exclusions</span><span class="p">)</span>
+    <span class="nc">ViewCompat</span><span class="p">.</span><span class="nf">setSystemGestureExclusionRects</span><span class="p">(</span><span class="n">brightnessSlider</span><span class="p">,</span> <span class="n">exclusions</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -408,14 +409,14 @@ $(document).ready(function(){
 
 <p>In the example above we apply them on the brightness slider so we use coordinates relative to the slider (notice the use of <code class="highlighter-rouge">width</code> and <code class="highlighter-rouge">height</code>). But we can also apply the exclusion to the parent (notice the use of <code class="highlighter-rouge">left</code> and <code class="highlighter-rouge">right</code>):</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">parent</span><span class="p">.</span><span class="n">doOnLayout</span> <span class="p">{</span>
-    <span class="kd">val</span> <span class="py">exclusions</span> <span class="p">=</span> <span class="n">with</span><span class="p">(</span><span class="n">brightnessSlider</span><span class="p">)</span> <span class="p">{</span>
-      <span class="n">listOf</span><span class="p">(</span>
-            <span class="n">Rect</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">exclusionWidth</span><span class="p">,</span> <span class="n">bottom</span><span class="p">),</span> <span class="c1">// min area</span>
-            <span class="n">Rect</span><span class="p">(</span><span class="n">right</span> <span class="p">-</span> <span class="n">exclusionWidth</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">bottom</span><span class="p">)</span> <span class="c1">// max area</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">parent</span><span class="p">.</span><span class="nf">doOnLayout</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">exclusions</span> <span class="p">=</span> <span class="nf">with</span><span class="p">(</span><span class="n">brightnessSlider</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nf">listOf</span><span class="p">(</span>
+            <span class="nc">Rect</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">exclusionWidth</span><span class="p">,</span> <span class="n">bottom</span><span class="p">),</span> <span class="c1">// min area</span>
+            <span class="nc">Rect</span><span class="p">(</span><span class="n">right</span> <span class="p">-</span> <span class="n">exclusionWidth</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">bottom</span><span class="p">)</span> <span class="c1">// max area</span>
         <span class="p">)</span>
     <span class="p">}</span>
-    <span class="n">ViewCompat</span><span class="p">.</span><span class="n">setSystemGestureExclusionRects</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">exclusions</span><span class="p">)</span>
+    <span class="nc">ViewCompat</span><span class="p">.</span><span class="nf">setSystemGestureExclusionRects</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">exclusions</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -425,12 +426,12 @@ $(document).ready(function(){
 
 <p>So as an alternative we can take the <code class="highlighter-rouge">WindowInsets</code> from the root view, which can easily be done in the following way:</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">seekbar</span><span class="p">.</span><span class="n">doOnAttach</span> <span class="p">{</span>
-    <span class="kd">val</span> <span class="py">insets</span> <span class="p">=</span> <span class="n">WindowInsetsCompat</span><span class="p">.</span><span class="n">wrap</span><span class="p">(</span><span class="n">view</span><span class="p">.</span><span class="n">rootWindowInsets</span><span class="p">)</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">seekbar</span><span class="p">.</span><span class="nf">doOnAttach</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">insets</span> <span class="p">=</span> <span class="nc">WindowInsetsCompat</span><span class="p">.</span><span class="nf">wrap</span><span class="p">(</span><span class="n">view</span><span class="p">.</span><span class="n">rootWindowInsets</span><span class="p">)</span>
     <span class="kd">val</span> <span class="py">minExclusionWidth</span> <span class="p">=</span> <span class="n">insets</span><span class="p">.</span><span class="n">systemGestureInsets</span><span class="p">.</span><span class="n">left</span>
     <span class="kd">val</span> <span class="py">maxExclusionWidth</span> <span class="p">=</span> <span class="n">insets</span><span class="p">.</span><span class="n">systemGestureInsets</span><span class="p">.</span><span class="n">right</span>
 
-    <span class="n">applySystemGestureExclusionRects</span><span class="p">(</span><span class="n">minExclusionWidth</span><span class="p">,</span> <span class="n">maxExclusionWidth</span><span class="p">)</span>
+    <span class="nf">applySystemGestureExclusionRects</span><span class="p">(</span><span class="n">minExclusionWidth</span><span class="p">,</span> <span class="n">maxExclusionWidth</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -440,14 +441,14 @@ $(document).ready(function(){
 
 <p>Finally, note that you need to use at least androidx.core version 1.2.0 or higher in order for the <a href="https://developer.android.com/reference/androidx/core/view/ViewCompat#setSystemGestureExclusionRects(android.view.View,%2520java.util.List%3Candroid.graphics.Rect%3E)">ViewCompat <code class="highlighter-rouge">setSystemGestureExclusionRects</code> API</a>) to be available. If you’re not ready to jump on 1.2.0 yet, you can always surround it with an API level check (make sure to use compile SDK Q).</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="n">Build</span><span class="p">.</span><span class="n">VERSION</span><span class="p">.</span><span class="n">SDK_INT</span> <span class="p">&gt;=</span> <span class="n">Q</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">val</span> <span class="py">exclusions</span> <span class="p">=</span> <span class="n">with</span><span class="p">(</span><span class="n">brightnessSlider</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">listOf</span><span class="p">(</span>
-            <span class="n">Rect</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">exclusionWidth</span><span class="p">,</span> <span class="n">height</span><span class="p">),</span>
-            <span class="n">Rect</span><span class="p">(</span><span class="n">width</span> <span class="p">-</span> <span class="n">exclusionWidth</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="nc">Build</span><span class="p">.</span><span class="nc">VERSION</span><span class="p">.</span><span class="nc">SDK_INT</span> <span class="p">&gt;=</span> <span class="nc">Q</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">exclusions</span> <span class="p">=</span> <span class="nf">with</span><span class="p">(</span><span class="n">brightnessSlider</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nf">listOf</span><span class="p">(</span>
+            <span class="nc">Rect</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">exclusionWidth</span><span class="p">,</span> <span class="n">height</span><span class="p">),</span>
+            <span class="nc">Rect</span><span class="p">(</span><span class="n">width</span> <span class="p">-</span> <span class="n">exclusionWidth</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
         <span class="p">)</span>
     <span class="p">}</span>
-    <span class="n">brightnessSlider</span><span class="p">.</span><span class="n">setSystemGestureExclusionRects</span><span class="p">(</span><span class="n">exclusions</span><span class="p">)</span>
+    <span class="n">brightnessSlider</span><span class="p">.</span><span class="nf">setSystemGestureExclusionRects</span><span class="p">(</span><span class="n">exclusions</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -464,13 +465,13 @@ $(document).ready(function(){
 
 <p>First of all, the thumb of the brightness slider can only be at one edge at any given point in time, so the very first thing we can do is only exclude a brightness slider edge when the thumb is there:</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">brightnessSlider</span><span class="p">.</span><span class="n">doOnLayout</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">isThumbNearMin</span><span class="p">())</span> <span class="p">{</span>
-        <span class="n">ViewCompat</span><span class="p">.</span><span class="n">setSystemGestureExclusionRects</span><span class="p">(</span><span class="n">it</span><span class="p">,</span> <span class="n">getMinExclustionRect</span><span class="p">())</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">isThumbNearMax</span><span class="p">())</span> <span class="p">{</span>
-        <span class="n">ViewCompat</span><span class="p">.</span><span class="n">setSystemGestureExclusionRects</span><span class="p">(</span><span class="n">it</span><span class="p">,</span> <span class="n">getMaxExclusionRect</span><span class="p">())</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">brightnessSlider</span><span class="p">.</span><span class="nf">doOnLayout</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nf">isThumbNearMin</span><span class="p">())</span> <span class="p">{</span>
+        <span class="nc">ViewCompat</span><span class="p">.</span><span class="nf">setSystemGestureExclusionRects</span><span class="p">(</span><span class="n">it</span><span class="p">,</span> <span class="nf">getMinExclustionRect</span><span class="p">())</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nf">isThumbNearMax</span><span class="p">())</span> <span class="p">{</span>
+        <span class="nc">ViewCompat</span><span class="p">.</span><span class="nf">setSystemGestureExclusionRects</span><span class="p">(</span><span class="n">it</span><span class="p">,</span> <span class="nf">getMaxExclusionRect</span><span class="p">())</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="n">ViewCompat</span><span class="p">.</span><span class="n">setSystemGestureExclusionRects</span><span class="p">(</span><span class="n">it</span><span class="p">,</span> <span class="n">emptyList</span><span class="p">())</span>
+        <span class="nc">ViewCompat</span><span class="p">.</span><span class="nf">setSystemGestureExclusionRects</span><span class="p">(</span><span class="n">it</span><span class="p">,</span> <span class="nf">emptyList</span><span class="p">())</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -502,10 +503,10 @@ $(document).ready(function(){
 
 <p>To fix this we decided to detect whether a swipe gesture is being performed near the min/max of the brightness slider while the thumb isn’t there. In that case, the system should handle the back gesture and we should ignore the touch:</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">private</span> <span class="k">fun</span> <span class="nf">isTouchInterferingWithBackNavigation</span><span class="p">(</span><span class="nv">touchX</span><span class="p">:</span> <span class="nc">Float</span><span class="p">):</span> <span class="nc">Boolean</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">Build</span><span class="p">.</span><span class="n">VERSION</span><span class="p">.</span><span class="n">SDK_INT</span> <span class="p">&lt;</span> <span class="n">Q</span><span class="p">)</span> <span class="k">return</span> <span class="k">false</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">private</span> <span class="k">fun</span> <span class="nf">isTouchInterferingWithBackNavigation</span><span class="p">(</span><span class="n">touchX</span><span class="p">:</span> <span class="nc">Float</span><span class="p">):</span> <span class="nc">Boolean</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nc">Build</span><span class="p">.</span><span class="nc">VERSION</span><span class="p">.</span><span class="nc">SDK_INT</span> <span class="p">&lt;</span> <span class="nc">Q</span><span class="p">)</span> <span class="k">return</span> <span class="k">false</span>
 
-    <span class="kd">val</span> <span class="py">positionOnSlider</span> <span class="p">=</span> <span class="p">(</span><span class="n">getProgressForXPosition</span><span class="p">(</span><span class="n">touchX</span><span class="p">)</span> <span class="p">-</span> <span class="n">min</span><span class="p">).</span><span class="n">toFloat</span><span class="p">()</span> <span class="p">/</span> <span class="p">(</span><span class="n">max</span> <span class="p">-</span> <span class="n">min</span><span class="p">)</span>
+    <span class="kd">val</span> <span class="py">positionOnSlider</span> <span class="p">=</span> <span class="p">(</span><span class="nf">getProgressForXPosition</span><span class="p">(</span><span class="n">touchX</span><span class="p">)</span> <span class="p">-</span> <span class="n">min</span><span class="p">).</span><span class="nf">toFloat</span><span class="p">()</span> <span class="p">/</span> <span class="p">(</span><span class="n">max</span> <span class="p">-</span> <span class="n">min</span><span class="p">)</span>
     <span class="kd">val</span> <span class="py">slideGestureNearMinNotOnThumb</span> <span class="p">=</span> <span class="n">positionOnSlider</span> <span class="p">&lt;</span> <span class="m">0.1f</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="n">isThumbNearMin</span>
     <span class="kd">val</span> <span class="py">slideGestureNearMaxNotOnThumb</span> <span class="p">=</span> <span class="n">positionOnSlider</span> <span class="p">&gt;</span> <span class="m">0.9f</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="n">isThumbNearMax</span>
     <span class="k">return</span> <span class="n">slideGestureNearMinNotOnThumb</span> <span class="p">||</span> <span class="n">slideGestureNearMaxNotOnThumb</span>
@@ -514,9 +515,9 @@ $(document).ready(function(){
 
 <p>Ignoring the touch is as easy as just returning false in the <code class="highlighter-rouge">onTouchEvent</code> method:</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">when</span> <span class="p">(</span><span class="n">ev</span><span class="p">.</span><span class="n">getAction</span><span class="p">()</span> <span class="n">and</span> <span class="n">MotionEvent</span><span class="p">.</span><span class="n">ACTION_MASK</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">MotionEvent</span><span class="p">.</span><span class="n">ACTION_DOWN</span> <span class="p">-&gt;</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">isTouchInterferingWithBackNavigation</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="p">{</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">when</span> <span class="p">(</span><span class="n">ev</span><span class="p">.</span><span class="nf">getAction</span><span class="p">()</span> <span class="n">and</span> <span class="nc">MotionEvent</span><span class="p">.</span><span class="nc">ACTION_MASK</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nc">MotionEvent</span><span class="p">.</span><span class="nc">ACTION_DOWN</span> <span class="p">-&gt;</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nf">isTouchInterferingWithBackNavigation</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="p">{</span>
             <span class="k">return</span> <span class="k">false</span>
         <span class="p">}</span>
         <span class="o">..</span><span class="p">.</span>
@@ -685,6 +686,7 @@ $(document).ready(function(){
 
 
   13 minute read
+
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">Now that we know how feature flags can help us release faster, it’s time to dive into the actual implementation details. How can we easily define feature flags? How to configure them both locally as remotely? And use them in...</p>
@@ -722,6 +724,7 @@ $(document).ready(function(){
 
 
   5 minute read
+
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">Empowered with what feature flags are and why they are useful, let’s see how we can actually integrate them into an app. And how can we roll them out to our users?
@@ -760,6 +763,7 @@ $(document).ready(function(){
 
 
   7 minute read
+
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">A key ingredient to speed up modern software development is feature flags. But what is a feature flag precisely? Why should you care about them? How do you integrate them into your codebase? And how can we make them easy...</p>
@@ -797,6 +801,7 @@ $(document).ready(function(){
 
 
   16 minute read
+
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">Three years ago, we decided ramp up internal app development at Philips Hue. After interviewing candidates (78!) for six months, I became the lead Android developer of the freshly hired Android team.
