@@ -12,7 +12,7 @@ locale                   : "en"
 title                    : "Jeroen Mols"
 title_separator          : "-"
 name                     : "Jeroen Mols"
-description              : "Blog and portfolio of Jeroen Mols, the Android developer you should hire."
+description              : "Blog and portfolio of Jeroen Mols, Android freelancer and Google Developer Expert."
 url                      : "https://jeroenmols.com"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "JeroenMols/jeroenmols.github.io"
@@ -88,8 +88,8 @@ analytics:
 author:
   name             : "Jeroen Mols"
   avatar           : "/img/profile.jpg"
-  bio              : "Android GDE & Lead Android developer at Philips Hue"
-  location         : "Mol, Belgium"
+  bio              : "Android freelancer and Google Developer Expert"
+  location         : "Geel, Belgium"
   email            :
   uri              :
   bitbucket        :
