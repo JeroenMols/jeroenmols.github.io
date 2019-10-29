@@ -7,11 +7,18 @@ header:
   image: img/hireme.jpg
   hero: true
 ---
-Jeroen Mols is a Google Developer Expert (GDE) in Android, the former lead Android developer at Philips Hue and an international recognised speaker. With a passion for complex systems and highly technical apps, Jeroen has helped realise four connected products and over 15 Android applications.
+Looking for help with:
 
-In total, he has over 8 years of experience professionally building Android apps of which two years leading a 10+ people team at Philips Hue.
+- taking your existing Android app to new heights?
+- building a new app from scratch?
+- training your existing Android team?
+- improving the performance/processes of your team?
 
-I'm actively looking for a new opportunity as a Android developer or Android lead. This could be either fully remote or partially remote in Belgium/(South) Netherlands. While I prefer to work as an employee, I would also consider freelancing for the right project.
+Let's talk!
+
+I'm full time available from January 1st 2019 onwards. 🚀
+
+Note that I'm a remote first developer and hence only pass by your office occasionally.
 
 <form class="page__contact" method="POST" action="https://formspree.io/contact@jeroenmols.com">
   <input type="email" name="email" placeholder="Your email">
