@@ -6,15 +6,17 @@
 
 
 // Color tweaks
-$theme-orange               : #d28445 !default;
-$theme-grey                 : #2c3e50 !default;
+$theme-orange               : #e07a5f !default;
+$theme-grey                 : #3d405b !default;
+$theme-white                : #f4f1de !default;
 
-$body-color                 : #fff !default;
+$body-color                 : $theme-white !default;
 $navigation-color           : $theme-grey !default;
 $link-color                 : $theme-orange !default;
 $link-color-hover           : $theme-orange !default;
-$masthead-link-color        : #fff !default;
+$masthead-link-color        : $theme-white !default;
 $masthead-link-color-hover  : $theme-orange !default;
+$text-color-onorange        : #fff;
 
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
@@ -242,5 +244,60 @@ h3.archive__date {
       max-width: $medium;
     }
 
+  }
+}
+
+
+/*
+   HERO IMAGE HEADER
+   ========================================================================== */
+.page__hero--overlay {
+  background-color: $theme-orange;
+  padding: 1em 0;
+}
+.hero-container {
+  display: flex;
+  width: 90%;
+  justify-content: center;
+    margin: auto;
+}
+
+.hero-image {
+  width: 20%;
+  height: 20%;
+  align-self: center;
+}
+
+.hero-text {
+  align-self: center;
+  padding: 0 0 0 3em;
+  color: $text-color-onorange ;
+  font-size: $type-size-5;
+  h1 {
+    color: $text-color-onorange;
+    font-size: 3.5em;
+    margin-bottom: 0em
+  }
+  a {
+    color: $text-color-onorange ;
+    font-size: $type-size-5;
+  }
+}
+.hero-subtitle {
+    align-self: center;
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .hero-container {
+    flex-direction: column;
+  }
+  .hero-image {
+    width: auto;
+    padding: 0 5em 0 5em
+  }
+  .hero-text {
+    width: auto;
+    padding: 2em 0 0 0;
   }
 }
