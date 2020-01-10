@@ -1,4 +1,49 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2019-11-05T10:50:02+01:00</updated><id>https://jeroenmols.com/feed.xml</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, Android freelancer and Google Developer Expert.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Feature flags - A successful architecture</title><link href="https://jeroenmols.com/blog/2019/09/12/featureflagsarchitecture/" rel="alternate" type="text/html" title="Feature flags - A successful architecture" /><published>2019-09-12T00:00:00+02:00</published><updated>2019-09-12T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2019/09/12/featureflagsarchitecture</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/09/12/featureflagsarchitecture/">&lt;p&gt;Now that we know how feature flags can help us release faster, it’s time to dive into the actual implementation details. How can we easily define feature flags? How to configure them both locally as remotely? And use them in our testing?&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2020-01-10T15:11:11+01:00</updated><id>https://jeroenmols.com/feed.xml</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, Android freelancer and Google Developer Expert.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Year in review 2019</title><link href="https://jeroenmols.com/blog/2020/01/09/yearinreview/" rel="alternate" type="text/html" title="Year in review 2019" /><published>2020-01-09T00:00:00+01:00</published><updated>2020-01-09T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2020/01/09/yearinreview</id><content type="html" xml:base="https://jeroenmols.com/blog/2020/01/09/yearinreview/">&lt;p&gt;Getting up without being rushed, cycling my kids to school, cooking healthy salads for lunch, kids running into my arms when they get home… I’m quite happy with my new daily routine!&lt;/p&gt;
+
+&lt;p&gt;Without a doubt, 2019 was the highlight of my career!&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;At Philips Hue, we quadrupled (!!! 🚀) our team output and increased our app rating to 4.4 stars (up from 2.8 stars).&lt;/li&gt;
+  &lt;li&gt;After a year of searching, I transitioned to remote work to spend more time with my kids.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;However, not everything went according to plan: my new employer ran out of money and I found myself unemployed for the very first time in my life.&lt;/p&gt;
+
+&lt;p&gt;This caused quite a bit of anxiety and stress for my wife and I, especially given our mortgage and two kids…&lt;/p&gt;
+
+&lt;p&gt;And then something amazing happened:&lt;/p&gt;
+
+&lt;center&gt;&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;Looking for a new job! 🚀&lt;br /&gt;&lt;br /&gt;Due to a financial setback, my new employer cancelled my contract right before joining. Hence looking for a remote opportunity as &lt;a href=&quot;https://twitter.com/hashtag/AndroidDev?src=hash&amp;amp;ref_src=twsrc%5Etfw&quot;&gt;#AndroidDev&lt;/a&gt; or Android lead, either employee or &lt;a href=&quot;https://twitter.com/hashtag/freelancer?src=hash&amp;amp;ref_src=twsrc%5Etfw&quot;&gt;#freelancer&lt;/a&gt;.&lt;br /&gt;&lt;br /&gt;My DM&amp;#39;s are open, thanks for RT! 🙌&lt;a href=&quot;https://t.co/HdVjotJalX&quot;&gt;https://t.co/HdVjotJalX&lt;/a&gt; &lt;a href=&quot;https://t.co/JSNX4rjNzf&quot;&gt;pic.twitter.com/JSNX4rjNzf&lt;/a&gt;&lt;/p&gt;&amp;mdash; Jeroen Mols (@molsjeroen) &lt;a href=&quot;https://twitter.com/molsjeroen/status/1169578344125480962?ref_src=twsrc%5Etfw&quot;&gt;September 5, 2019&lt;/a&gt;&lt;/blockquote&gt; &lt;script async=&quot;&quot; src=&quot;https://platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/center&gt;
+
+&lt;p&gt;I reached out for help on twitter and the response was so overwhelming…  it really moved us.&lt;/p&gt;
+
+&lt;p&gt;So thanks to everyone for sharing the message, providing leads and support! 🙇‍&lt;/p&gt;
+
+&lt;p&gt;While all those job interviews were quite demanding, I ended up finding a stellar freelance gig at TransferWise and a very exciting new position at Plaid. I’m stoked to share more about those on my blog later this year.&lt;/p&gt;
+
+&lt;p&gt;Further 2019 highlights include:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Teaching my daughter how to cycle and my son to tell his mother “I love you”&lt;/li&gt;
+  &lt;li&gt;Spoke at &lt;a href=&quot;https://jeroenmols.com/speaking/&quot;&gt;5 big conferences&lt;/a&gt; and 2 meetups.&lt;/li&gt;
+  &lt;li&gt;Wrote &lt;a href=&quot;http://jeroenmols.com/blog/&quot;&gt;14 blog posts&lt;/a&gt;, including two quite ambitious in-depth series&lt;/li&gt;
+  &lt;li&gt;Gave my first &lt;a href=&quot;https://speakerdeck.com/jeroenmols/inclusive-communication&quot;&gt;talk on inclusion&lt;/a&gt; at the GDE summit&lt;/li&gt;
+  &lt;li&gt;Open-sourced two &lt;a href=&quot;https://github.com/JeroenMols&quot;&gt;sample apps&lt;/a&gt; on Github&lt;/li&gt;
+  &lt;li&gt;Wrote an &lt;a href=&quot;/blog/2019/08/06/lessonsleaddeveloper/&quot;&gt;honest, self critical retrospective&lt;/a&gt; on my experiences leading the team at Philips Hue&lt;/li&gt;
+  &lt;li&gt;Doubled my &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;Twitter&lt;/a&gt; followers to more than 6300&lt;/li&gt;
+  &lt;li&gt;Got featured a whopping 11 times in &lt;a href=&quot;http://androidweekly.net/search?keyword=jeroen+mols&amp;amp;commit=Search&quot;&gt;Android weekly&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Started working remotely&lt;/li&gt;
+  &lt;li&gt;Took many steps to reduce my impact on the environment: cycle more, remote work, carry reusable cup, avoid single-use items,…&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/yearinreview19/cargobike.jpg&quot; alt=&quot;Cycling kids to school&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In 2020, I’m going to focus on living a healthier lifestyle: exercise more, eat healthier and get better sleep. Further, I want to continue enjoying the little things in life and do silly stuff with my kids.&lt;/p&gt;
+
+&lt;p&gt;I don’t plan on increasing my community contributions, in fact, I might even do slightly less. However, I would also like to explore alternative ways to give back such as one-on-one mentoring or speaking at a remote conference.&lt;/p&gt;
+
+&lt;p&gt;As always you can reach me &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=yearinreview20192020&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;@molsjeroen&lt;/a&gt;&lt;/span&gt;
+ on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="review" /><summary type="html">Getting up without being rushed, cycling my kids to school, cooking healthy salads for lunch, kids running into my arms when they get home… I’m quite happy with my new daily routine!</summary></entry><entry><title type="html">Feature flags - A successful architecture</title><link href="https://jeroenmols.com/blog/2019/09/12/featureflagsarchitecture/" rel="alternate" type="text/html" title="Feature flags - A successful architecture" /><published>2019-09-12T00:00:00+02:00</published><updated>2019-09-12T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2019/09/12/featureflagsarchitecture</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/09/12/featureflagsarchitecture/">&lt;p&gt;Now that we know how feature flags can help us release faster, it’s time to dive into the actual implementation details. How can we easily define feature flags? How to configure them both locally as remotely? And use them in our testing?&lt;/p&gt;
 
 &lt;p&gt;This post will present a simple, powerful architecture to manage feature flags and comes with a &lt;a href=&quot;https://github.com/JeroenMols/FeatureFlagExample&quot;&gt;full example on Github&lt;/a&gt;.&lt;/p&gt;
 
@@ -1899,164 +1944,4 @@ The following dependencies have later milestone versions:
 &lt;p&gt;All source code is available on &lt;a href=&quot;https://github.com/JeroenMols/ModularizationExample&quot;&gt;Github&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Make sure to follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=modularization-real-lifeexample2019&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
- and let’s investigate how you can start modularizing an existing app &lt;a href=&quot;/blog/2019/04/24/modularizationhow/&quot;&gt;in part 4&lt;/a&gt;.&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="modularization" /><category term="architecture" /><category term="software engineering" /><category term="sample" /><summary type="html">With a clear view on how multi-module apps should be architected, let’s dive into a real-life practical example.</summary></entry><entry><title type="html">Modularization - A successful architecture</title><link href="https://jeroenmols.com/blog/2019/03/18/modularizationarchitecture/" rel="alternate" type="text/html" title="Modularization - A successful architecture" /><published>2019-03-18T00:00:00+01:00</published><updated>2019-03-18T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2019/03/18/modularizationarchitecture</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/03/18/modularizationarchitecture/">&lt;p&gt;Now that we’ve established that modularization is a really good thing to strive for, how should a modularized app look like? How are the different modules connected? And how does this look for a real app?&lt;/p&gt;
-
-&lt;p&gt;This second part will explore a simple, yet very effective approach to modularizing apps. It will cover in depth the different kinds of modules and present the benefits of this approach.&lt;/p&gt;
-
-&lt;blockquote&gt;
-
-  &lt;p&gt;This post is part of an in depth series on modularization:&lt;/p&gt;
-  &lt;ul&gt;
-    &lt;li&gt;&lt;a href=&quot;/blog/2019/03/06/modularizationwhy/&quot;&gt;Part 1: Why you should care&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;/blog/2019/03/18/modularizationarchitecture/&quot;&gt;Part 2: A successful multi-module architecture&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;/blog/2019/04/02/modularizationexample/&quot;&gt;Part 3: Real-life example&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;/blog/2019/04/24/modularizationhow/&quot;&gt;Part 4: How to approach&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;/blog/2019/06/12/modularizationtips/&quot;&gt;Part 5: Lessons learned&lt;/a&gt;
-      &lt;h2 id=&quot;disclaimer&quot;&gt;Disclaimer&lt;/h2&gt;
-      &lt;p&gt;This is by no means the only way to modularize an app, but it does offer some key benefits that we will touch upon later.&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;app-structure&quot;&gt;App structure&lt;/h2&gt;
-&lt;p&gt;Let’s start by looking at the app you are working on:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Does it consists out of a main screen with several tabs/clickable elements?&lt;/li&gt;
-  &lt;li&gt;What happens when users click those elements?&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Chances are high that will open a new full-screen part of the app, often consisting out of several sub-screens to perform a particular action.&lt;/p&gt;
-
-&lt;p&gt;Have a look at gmail for instance:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/modularizationarchitecture/gmail_structure.jpg&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/modularizationarchitecture/gmail_structure.jpg&quot; alt=&quot;Modularized architecture&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Simplified, it consists of a main screen (inbox) with an app drawer, a compose button and email items in the inbox. Clicking one of these elements leads you to a new full screen “feature”:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;clicking an email -&amp;gt; read email feature (one screen)&lt;/li&gt;
-  &lt;li&gt;clicking compose -&amp;gt; write email feature (several screens)&lt;/li&gt;
-  &lt;li&gt;clicking settings (in drawer) -&amp;gt; settings (several screens)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Highly simplified, apps are just a tree of (fullscreen) screens, where multiple screens often form a user flow together.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Let’s call all these “user flows” features.&lt;/p&gt;
-
-&lt;p&gt;Now let’s think about how the Android OS is designed to work: multiple apps can interact with each other via intents. This is actually pretty cool, as any app can request an action to be performed (e.g. take a picture) without having to know who will process that request and how it will be processed.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;The Android system simply links multiple apps together via a system of implicit intents.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;What if we were to take advantage of both these observations and split our app into several completely independent feature modules? Where each feature is decoupled using a simple “startActivityForResult” contract?&lt;/p&gt;
-
-&lt;h2 id=&quot;modularized-architecture&quot;&gt;Modularized Architecture&lt;/h2&gt;
-&lt;p&gt;While splitting your app into several features, all of those features will likely depend on some common business logic or UI components. Hence we need to introduce a third level of “library modules”.&lt;/p&gt;
-
-&lt;p&gt;Bringing that all together yields:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/modularizationarchitecture/modularized_architecture.png&quot; alt=&quot;Modularized architecture with one App module, several features modules and several library modules&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;This architecture basically splits an app into three levels of modules:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;App: links together features modules (usually only one)&lt;/li&gt;
-  &lt;li&gt;Features: self-contained, full-screen UI level features that include Espresso tests. Each feature consists of at least one activity and optionally a navigation graph. Feature modules never directly depend on each other.&lt;/li&gt;
-  &lt;li&gt;Libraries: functionality shared across multiple features. Different libraries can depend on each other&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Let’s investigate these three levels in depth.&lt;/p&gt;
-
-&lt;h2 id=&quot;feature-modules&quot;&gt;Feature modules&lt;/h2&gt;
-&lt;p&gt;Probably the most important modules are feature modules. These have the following characteristics:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;an android-library module&lt;/li&gt;
-  &lt;li&gt;single activity with (optional) navigation graph &lt;br /&gt;(multiple activities are allowed)&lt;/li&gt;
-  &lt;li&gt;respond to implicit intents and pass back a result&lt;/li&gt;
-  &lt;li&gt;never depend on other features or app&lt;/li&gt;
-  &lt;li&gt;depend on several library modules&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Feature modules correspond with full screen, coherent user facing functionality in the app: e.g. user login, app settings, picture cropping,…&lt;/p&gt;
-
-&lt;h3 id=&quot;navigation&quot;&gt;Navigation&lt;/h3&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Note that navigation in apps is identified as a &lt;a href=&quot;https://medium.com/@emmaguy/android-modularisation-the-results-58a4bf17602e&quot;&gt;big challenge&lt;/a&gt; in a public poll by &lt;a href=&quot;https://twitter.com/@emmaguy&quot;&gt;@emmaguy&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;The first key benefit is that feature modules make navigation within an app significantly easier. This is because they split the navigation problem into smaller parts:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;navigation within a feature -&amp;gt; handled by the feature itself&lt;/li&gt;
-  &lt;li&gt;navigation between features -&amp;gt; handled by the app module&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Hence there is no need for very large and complex navigation controllers! Features simply split an app in logical, coherent flows.&lt;/p&gt;
-
-&lt;p&gt;Even more, the navigation component gives every feature a clear visual representation of its UI flow. That allows to quickly figure out what a feature does. E.g. What does the game feature do?&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/modularizationarchitecture/feature_navigation.png&quot; alt=&quot;Navigation within a feature&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Finally no more guessing how a particular screen was named, just jump to the right feature, look for the screen and you’ll find the fragment/views without having to guess/remember their name.&lt;/p&gt;
-
-&lt;h3 id=&quot;scaling&quot;&gt;Scaling&lt;/h3&gt;
-&lt;p&gt;Second, making features independent like this completely decouples their implementations. Hence eliminating merge conflicts across different feature teams by design!&lt;/p&gt;
-
-&lt;p&gt;Experimenting with new technologies also becomes a lot easier: you can easily benefit from new tech end to end within a single feature. Evaluate if it’s beneficial for your team and in case of a bad choice, all effects are contained within a single modules!&lt;/p&gt;
-
-&lt;p&gt;And should you ever decide to launch a second app (or SDK), you can simply package existing features together with new ones in a new app module.&lt;/p&gt;
-
-&lt;h3 id=&quot;testing&quot;&gt;Testing&lt;/h3&gt;
-&lt;p&gt;Because all features can be started directly using an intent, there is no need for Espresso to step through other parts of the app to arrive at the feature to test.&lt;/p&gt;
-
-&lt;p&gt;This not only makes tests simpler and faster, but fewer steps also make them more reliable and tests can no longer break due to bugs in other features!&lt;/p&gt;
-
-&lt;h2 id=&quot;library-modules&quot;&gt;Library modules&lt;/h2&gt;
-&lt;p&gt;Libraries provide shared plumbing that is reused across several or all features. Their characteristics are:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;android library, pure Java or pure Kotlin module&lt;/li&gt;
-  &lt;li&gt;never depend on features or app&lt;/li&gt;
-  &lt;li&gt;can (but don’t have to) depend on other libraries&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Consequently, libraries can be very diverse: e.g. UI components, data storage, network communication, std lib,…&lt;/p&gt;
-
-&lt;p&gt;Where features are a “vertical slice” of the app, libraries are a “horizontal slice”, providing functionality to several other modules.&lt;/p&gt;
-
-&lt;h2 id=&quot;app-module&quot;&gt;App module&lt;/h2&gt;
-&lt;p&gt;In order to ship an app to users, something has to link all features together: the app module.&lt;/p&gt;
-
-&lt;p&gt;In doing so the app module orchestrates the navigation from between features. It uses feature toggles to determine what should be enabled and what not.&lt;/p&gt;
-
-&lt;p&gt;These feature toggles are incredibly powerful because by shipping multiple versions of the same feature in one app (e.g. the old and rewritten version), the app module allows to gradually roll out the rewritten feature to users.&lt;/p&gt;
-
-&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isRewriteFeatureEnabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nf&quot;&gt;startActivityForResult&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Intent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;rewritten_feature&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nf&quot;&gt;startActivityForResult&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Intent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;feature&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Finally, launching several apps and sharing features between them is as easy as creating a new app module.&lt;/p&gt;
-
-&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
-&lt;p&gt;Recapping, this simple, three-layered architecture of app, features and libraries has the the following benefits:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;simplifies navigation by splitting the in-feature and across feature navigation&lt;/li&gt;
-  &lt;li&gt;makes it easy to find back screens and understand features (especially when using the navigation graph)&lt;/li&gt;
-  &lt;li&gt;enables scaling teams: fewer merge conflicts between feature teams as features are decoupled&lt;/li&gt;
-  &lt;li&gt;makes test automation easier: features can be started directly, no need to step through the app to the feature first&lt;/li&gt;
-  &lt;li&gt;simplifies experimenting with new technologies: quickly achieve end-to-end benefits within feature + low cost of bad technology choice (isolated from rest of the app)&lt;/li&gt;
-  &lt;li&gt;allows staged rollout of rewritten features using feature toggles&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Make sure to follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=modularization-asuccessfularchitecture2019&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
- and let’s study a detailed example of this architecture &lt;a href=&quot;/blog/2019/04/02/modularizationexample/&quot;&gt;in part 3&lt;/a&gt;.&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="modularization" /><category term="architecture" /><category term="software engineering" /><category term="navigation" /><category term="android" /><summary type="html">Now that we’ve established that modularization is a really good thing to strive for, how should a modularized app look like? How are the different modules connected? And how does this look for a real app?</summary></entry></feed>
+ and let’s investigate how you can start modularizing an existing app &lt;a href=&quot;/blog/2019/04/24/modularizationhow/&quot;&gt;in part 4&lt;/a&gt;.&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="modularization" /><category term="architecture" /><category term="software engineering" /><category term="sample" /><summary type="html">With a clear view on how multi-module apps should be architected, let’s dive into a real-life practical example.</summary></entry></feed>

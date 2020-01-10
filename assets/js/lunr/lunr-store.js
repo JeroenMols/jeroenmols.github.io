@@ -253,4 +253,9 @@ var store = [{
         "excerpt":"Now that we know how feature flags can help us release faster, it’s time to dive into the actual implementation details. How can we easily define feature flags? How to configure them both locally as remotely? And use them in our testing? This post will present a simple, powerful architecture...","categories": ["blog"],
         "tags": ["architecture","android","firebase","feature flags"],
         "url": "https://jeroenmols.com/blog/2019/09/12/featureflagsarchitecture/",
-        "teaser":"https://jeroenmols.com/img/blog/featureflagarchitecture/featureflagarchitecture.jpg"}]
+        "teaser":"https://jeroenmols.com/img/blog/featureflagarchitecture/featureflagarchitecture.jpg"},{
+        "title": "Year in review 2019",
+        "excerpt":"Getting up without being rushed, cycling my kids to school, cooking healthy salads for lunch, kids running into my arms when they get home… I’m quite happy with my new daily routine! Without a doubt, 2019 was the highlight of my career! At Philips Hue, we quadrupled (!!! 🚀) our...","categories": ["blog"],
+        "tags": ["review"],
+        "url": "https://jeroenmols.com/blog/2020/01/09/yearinreview/",
+        "teaser":"https://jeroenmols.com/img/blog/yearinreview19/yearinreview19.jpg"}]

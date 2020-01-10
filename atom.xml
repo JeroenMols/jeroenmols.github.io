@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/" rel="alternate" type="text/html"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, Android freelancer and Google Developer Expert.</subtitle>
- <updated>2019-11-05T10:50:02+01:00</updated>
+ <updated>2020-01-10T15:11:11+01:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,64 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>Year in review 2019</title>
+   <link href="https://jeroenmols.com/blog/2020/01/09/yearinreview/"/>
+   <updated>2020-01-09T00:00:00+01:00</updated>
+   <id>https://jeroenmols.com/blog/2020/01/09/yearinreview</id>
+   <content type="html"><![CDATA[
+     
+     <p>Getting up without being rushed, cycling my kids to school, cooking healthy salads for lunch, kids running into my arms when they get home… I’m quite happy with my new daily routine!</p>
+
+<p>Without a doubt, 2019 was the highlight of my career!</p>
+
+<ul>
+  <li>At Philips Hue, we quadrupled (!!! 🚀) our team output and increased our app rating to 4.4 stars (up from 2.8 stars).</li>
+  <li>After a year of searching, I transitioned to remote work to spend more time with my kids.</li>
+</ul>
+
+<p>However, not everything went according to plan: my new employer ran out of money and I found myself unemployed for the very first time in my life.</p>
+
+<p>This caused quite a bit of anxiety and stress for my wife and I, especially given our mortgage and two kids…</p>
+
+<p>And then something amazing happened:</p>
+
+<center><blockquote class="twitter-tweet"><p lang="en" dir="ltr">Looking for a new job! 🚀<br /><br />Due to a financial setback, my new employer cancelled my contract right before joining. Hence looking for a remote opportunity as <a href="https://twitter.com/hashtag/AndroidDev?src=hash&amp;ref_src=twsrc%5Etfw">#AndroidDev</a> or Android lead, either employee or <a href="https://twitter.com/hashtag/freelancer?src=hash&amp;ref_src=twsrc%5Etfw">#freelancer</a>.<br /><br />My DM&#39;s are open, thanks for RT! 🙌<a href="https://t.co/HdVjotJalX">https://t.co/HdVjotJalX</a> <a href="https://t.co/JSNX4rjNzf">pic.twitter.com/JSNX4rjNzf</a></p>&mdash; Jeroen Mols (@molsjeroen) <a href="https://twitter.com/molsjeroen/status/1169578344125480962?ref_src=twsrc%5Etfw">September 5, 2019</a></blockquote> <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></center>
+
+<p>I reached out for help on twitter and the response was so overwhelming…  it really moved us.</p>
+
+<p>So thanks to everyone for sharing the message, providing leads and support! 🙇‍</p>
+
+<p>While all those job interviews were quite demanding, I ended up finding a stellar freelance gig at TransferWise and a very exciting new position at Plaid. I’m stoked to share more about those on my blog later this year.</p>
+
+<p>Further 2019 highlights include:</p>
+
+<ul>
+  <li>Teaching my daughter how to cycle and my son to tell his mother “I love you”</li>
+  <li>Spoke at <a href="https://jeroenmols.com/speaking/">5 big conferences</a> and 2 meetups.</li>
+  <li>Wrote <a href="http://jeroenmols.com/blog/">14 blog posts</a>, including two quite ambitious in-depth series</li>
+  <li>Gave my first <a href="https://speakerdeck.com/jeroenmols/inclusive-communication">talk on inclusion</a> at the GDE summit</li>
+  <li>Open-sourced two <a href="https://github.com/JeroenMols">sample apps</a> on Github</li>
+  <li>Wrote an <a href="/blog/2019/08/06/lessonsleaddeveloper/">honest, self critical retrospective</a> on my experiences leading the team at Philips Hue</li>
+  <li>Doubled my <a href="https://twitter.com/molsjeroen">Twitter</a> followers to more than 6300</li>
+  <li>Got featured a whopping 11 times in <a href="http://androidweekly.net/search?keyword=jeroen+mols&amp;commit=Search">Android weekly</a></li>
+  <li>Started working remotely</li>
+  <li>Took many steps to reduce my impact on the environment: cycle more, remote work, carry reusable cup, avoid single-use items,…</li>
+</ul>
+
+<p><img src="https://jeroenmols.com/img/blog/yearinreview19/cargobike.jpg" alt="Cycling kids to school" class="align-center" /></p>
+
+<p>In 2020, I’m going to focus on living a healthier lifestyle: exercise more, eat healthier and get better sleep. Further, I want to continue enjoying the little things in life and do silly stuff with my kids.</p>
+
+<p>I don’t plan on increasing my community contributions, in fact, I might even do slightly less. However, I would also like to explore alternative ways to give back such as one-on-one mentoring or speaking at a remote conference.</p>
+
+<p>As always you can reach me <span><a href="https://twitter.com/molsjeroen?source=yearinreview20192020" class="ga-link" target="_blank">@molsjeroen</a></span>
+ on twitter, or leave a comment below!</p>
+
+     <a href="https://jeroenmols.com/blog/2020/01/09/yearinreview/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>Feature flags - A successful architecture</title>
