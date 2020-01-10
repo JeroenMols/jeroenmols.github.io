@@ -16,8 +16,6 @@ Looking for help with:
 
 Let's talk!
 
-I'm full time available from January 1st 2020 onwards. 🚀
-
 Note that I'm a remote first developer and hence only pass by your office occasionally.
 
 <form class="page__contact" method="POST" action="https://formspree.io/contact@jeroenmols.com">
