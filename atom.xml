@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/" rel="alternate" type="text/html"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, Android freelancer and Google Developer Expert.</subtitle>
- <updated>2020-01-10T15:11:11+01:00</updated>
+ <updated>2020-02-20T08:53:29+01:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,22 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>Kdoc for Android libraries using Dokka</title>
+   <link href="https://jeroenmols.com/blog/2020/02/19/dokka-code-documentation/"/>
+   <updated>2020-02-19T00:00:00+01:00</updated>
+   <id>https://jeroenmols.com/blog/2020/02/19/dokka-code-documentation</id>
+   <content type="html"><![CDATA[
+     
+     <p>A great way to make your library easier to use it to generate code documentation for its public interface. The default way to do this in Kotlin is to generate KDoc using the official Dokka plugin.</p>
+
+<p>This post will cover some challenges in configuring Dokka and explain some neat tricks to improve your documentation.</p>
+
+
+     <a href="https://jeroenmols.com/blog/2020/02/19/dokka-code-documentation/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>Year in review 2019</title>

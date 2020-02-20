@@ -1,0 +1,1068 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.17.0 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Kdoc for Android libraries using Dokka - Jeroen Mols</title>
+<meta name="description" content="A great way to make your library easier to use it to generate code documentation for its public interface. The default way to do this in Kotlin is to generate KDoc using the official Dokka plugin.">
+
+
+  <meta name="author" content="Jeroen Mols">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="Jeroen Mols">
+<meta property="og:title" content="Kdoc for Android libraries using Dokka">
+<meta property="og:url" content="https://jeroenmols.com/blog/2020/02/19/dokka-code-documentation/">
+
+
+  <meta property="og:description" content="A great way to make your library easier to use it to generate code documentation for its public interface. The default way to do this in Kotlin is to generate KDoc using the official Dokka plugin.">
+
+
+
+  <meta property="og:image" content="https://jeroenmols.com/img/blog/dokkacodedocumentation/kdoc.jpg">
+
+
+
+  <meta name="twitter:site" content="@molsjeroen">
+  <meta name="twitter:title" content="Kdoc for Android libraries using Dokka">
+  <meta name="twitter:description" content="A great way to make your library easier to use it to generate code documentation for its public interface. The default way to do this in Kotlin is to generate KDoc using the official Dokka plugin.">
+  <meta name="twitter:url" content="https://jeroenmols.com/blog/2020/02/19/dokka-code-documentation/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+      <meta name="twitter:image" content="https://jeroenmols.com/img/blog/dokkacodedocumentation/kdoc.jpg">
+    
+  
+
+  
+    <meta name="twitter:creator" content="@molsjeroen">
+  
+
+
+
+  <meta property="article:published_time" content="2020-02-19T00:00:00+01:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://jeroenmols.com/blog/2020/02/19/dokka-code-documentation/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Jeroen Mols",
+      "url": "https://jeroenmols.com/",
+      "sameAs": ["https://twitter.com/molsjeroen","https://www.linkedin.com/in/jeroenmols/","https://plus.google.com/+JeroenMols","https://github.com/JeroenMols","https://speakerdeck.com/jeroenmols","https://stackoverflow.com/users/2771851/jmols"]
+    
+  }
+</script>
+
+
+  <meta name="google-site-verification" content="8E8HUpExgyNFdLuFMWmkSUl08gISnOF3UWexA55aNrk" />
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$('.ga-link').on('click', function(){
+		if (typeof(ga)!=="undefined"){
+			ga('send',{
+				hitType: 'event',
+				eventCategory: 'Outbound link',
+				eventAction: 'click',
+				eventLabel: event.target.href
+			});
+	  	}
+	});
+})	;
+</script>
+
+<meta name="theme-color" content="#3d405b">
+
+<link href="atom.xml" type="application/atom+xml" rel="alternate" title="Jeroen Mols Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="https://jeroenmols.com/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Jeroen Mols
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/blog/" >Blog</a>
+            </li><li class="masthead__menu-item">
+              <a href="/speaking/" >Speaking</a>
+            </li><li class="masthead__menu-item">
+              <a href="/hireme/" >Hire me</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="/img/profile.jpg" alt="Jeroen Mols" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Jeroen Mols</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Android freelancer and Google Developer Expert</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Geel, Belgium</span>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://twitter.com/@molsjeroen" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+          </a>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="https://www.linkedin.com/in/jeroenmols" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/JeroenMols" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="https://stackoverflow.com/users/2771851/jmols" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i> Stack Overflow
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        
+          <li>
+            <a href="https://www.youtube.com/channel/UC34Vt1lo8T15_rgc3e3Jsew" itemprop="sameAs" rel="nofollow noopener noreferrer">
+              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i> YouTube
+            </a>
+          </li>
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+  <li>
+    <a href="https://speakerdeck.com/jeroenmols" itemprop="sameAs">
+      <i class="fab fa-fw fa-speaker-deck" aria-hidden="true"></i> Speaker Deck
+    </a>
+  </li>
+
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Kdoc for Android libraries using Dokka">
+    <meta itemprop="description" content="A great way to make your library easier to use it to generate code documentation for its public interface. The default way to do this in Kotlin is to generate KDoc using the official Dokka plugin.">
+    <meta itemprop="datePublished" content="February 19, 2020">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Kdoc for Android libraries using Dokka
+</h1>
+          <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  19 Feb 2020</p>
+
+          
+            <img src="https://jeroenmols.com/img/blog/dokkacodedocumentation/kdoc.jpg" alt="Kdoc for Android libraries using Dokka" title="Photo by picjumbo.com from Pexels, https://www.pexels.com/photo/white-printer-paper-196645/, cropped and resized">
+          
+
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  6 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>A great way to make your library easier to use it to generate code documentation for its public interface. The default way to do this in Kotlin is to generate KDoc using the official Dokka plugin.</p>
+
+<p>This post will cover some challenges in configuring Dokka and explain some neat tricks to improve your documentation.</p>
+
+<h2 id="introduction">Introduction</h2>
+<p>The equivalent of JavaDoc for Kotlin is called <a href="https://kotlinlang.org/docs/reference/kotlin-doc.html">KDoc</a>. While it is very similar to the former, it also supports inline Markup and allows to easily link to other elements using <code class="highlighter-rouge">[ ]</code> brackets.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**</span><span class="err">
+</span><span class="cm"> * A group of *members*.</span><span class="err">
+</span><span class="cm"> *</span><span class="err">
+</span><span class="cm"> * This class has no useful logic;</span><span class="err">
+</span><span class="cm"> * it's just a documentation example.</span><span class="err">
+</span><span class="cm"> *</span><span class="err">
+</span><span class="cm"> * @param T the type of a member in this group.</span><span class="err">
+</span><span class="cm"> * @property name the name of this group.</span><span class="err">
+</span><span class="cm"> * @constructor Creates an empty group.</span><span class="err">
+</span><span class="cm"> */</span>
+<span class="kd">class</span> <span class="nc">Group</span><span class="p">&lt;</span><span class="nc">T</span><span class="p">&gt;(</span><span class="kd">val</span> <span class="py">name</span><span class="p">:</span> <span class="nc">String</span><span class="p">)</span> <span class="p">{</span>
+    <span class="cm">/**</span><span class="err">
+</span><span class="cm">     * Adds a [member] to this group.</span><span class="err">
+</span><span class="cm">     * @return the new size of the group.</span><span class="err">
+</span><span class="cm">     */</span>
+    <span class="k">fun</span> <span class="nf">add</span><span class="p">(</span><span class="n">member</span><span class="p">:</span> <span class="nc">T</span><span class="p">):</span> <span class="nc">Int</span> <span class="p">{</span> <span class="o">..</span><span class="p">.</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The documentation generation tool is called <a href="https://github.com/Kotlin/dokka">Dokka</a>. It comes with a Gradle plugin and can generate documentation in multiple formats such as JavaDoc, HTML and even Markdown optimized for Github pages! Neat!</p>
+
+<h2 id="basic-dokka-configuration">Basic Dokka configuration</h2>
+<p>Adding Dokka requires to define a dependency in your top-level <code class="highlighter-rouge">build.gradle</code> file:</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">buildscript</span> <span class="o">{</span>
+    <span class="n">repositories</span> <span class="o">{</span>
+        <span class="n">jcenter</span><span class="o">()</span>
+    <span class="o">}</span>
+    <span class="n">dependencies</span> <span class="o">{</span>
+        <span class="n">classpath</span> <span class="s2">"org.jetbrains.dokka:dokka-gradle-plugin:0.10.1"</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+<span class="n">repositories</span> <span class="o">{</span>
+    <span class="n">jcenter</span><span class="o">()</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>And applying the plugin to the <code class="highlighter-rouge">build.gradle</code> of the module(s) for which you would like to generate documentation:</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">'org.jetbrains.dokka'</span>
+
+<span class="n">dokka</span> <span class="o">{</span>
+    <span class="n">outputFormat</span> <span class="o">=</span> <span class="s1">'html'</span> <span class="c1">// use 'javadoc' to get standard java docs</span>
+    <span class="n">outputDirectory</span> <span class="o">=</span> <span class="s2">"$buildDir/javadoc"</span>
+
+    <span class="n">configuration</span> <span class="o">{</span>
+        <span class="n">includeNonPublic</span> <span class="o">=</span> <span class="kc">false</span>
+        <span class="n">skipEmptyPackages</span> <span class="o">=</span> <span class="kc">true</span>
+        <span class="n">skipDeprecated</span> <span class="o">=</span> <span class="kc">true</span>
+        <span class="n">reportUndocumented</span> <span class="o">=</span> <span class="kc">true</span>
+        <span class="n">jdkVersion</span> <span class="o">=</span> <span class="mi">8</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Congratulations, you can now start generating documentation for your code:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./gradlew :library:dokka
+</code></pre></div></div>
+
+<h2 id="challenges">Challenges</h2>
+<p>However, when your library contains several modules, there are a few interesting challenges:</p>
+
+<ol>
+  <li>Required to use a fat AAR plugin to include all modules in the AAR artifact</li>
+  <li>There is no visibility modifier to make classes only visible within the project</li>
+</ol>
+
+<p>The first challenge causes Dokka not to include the sources of all submodules. Consequently the resulting [KDoc] only contains documentation for your main <code class="highlighter-rouge">library</code> module.</p>
+
+<blockquote>
+  <p>Note: this is because the <a href="https://github.com/kezong/fat-aar-android">fat AAR plugin</a> includes the submodules as <code class="highlighter-rouge">compileOnly</code> dependencies when using the <code class="highlighter-rouge">embed</code> dependency. (See <a href="https://github.com/kezong/fat-aar-android/blob/ab85005f7fdf37ed9802da104bcb63f9f944aee7/source/src/main/groovy/com/kezong/fataar/FatLibraryPlugin.groovy#L65">source code</a>)</p>
+</blockquote>
+
+<p>The second challenge bloats the documentation with a lot of classes that shouldn’t be part of the API:</p>
+
+<ul>
+  <li>the <code class="highlighter-rouge">internal</code> modifier is too restrictive as it doesn’t allow modules within the library to use each other’s classes.</li>
+  <li>the <code class="highlighter-rouge">public</code> modifier is not restrictive enough and exposes classes to any other project using your library.</li>
+</ul>
+
+<p>Unfortunately, using public modifiers is currently the only way to have multiple module libraries until <a href="https://issuetracker.google.com/issues/62121508">issue 62121508 gets fixed</a>.</p>
+
+<h2 id="multi-module-libraries">Multi-module libraries</h2>
+<p>Luckily there is a way to directly tell Dokka what sources it should include in the documentation via the <code class="highlighter-rouge">sourceRoots</code> attribute.</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dokka</span> <span class="o">{</span>
+    <span class="n">configuration</span> <span class="o">{</span>
+        <span class="o">...</span>
+
+        <span class="n">sourceRoots</span> <span class="o">=</span> <span class="o">...</span> <span class="c1">// ENTER SOURCE ROOTS HERE</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Though this doesn’t take a <code class="highlighter-rouge">String</code> pointing to the sources, instead it requires a wrapper object a <code class="highlighter-rouge">SourceRoot</code>, which has an attribute <code class="highlighter-rouge">path</code>. 🤔</p>
+
+<p>The easiest way to create a <code class="highlighter-rouge">SourceRoot</code> is to create a <a href="https://github.com/Kotlin/dokka/blob/0d0d41f594f1095b4ccc999cffe01a6ef9a22dbb/runners/gradle-plugin/src/main/kotlin/org/jetbrains/dokka/gradle/configurationImplementations.kt#L18"><code class="highlighter-rouge">GradleSourceRootImpl</code></a> and set it’s path:</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">org.jetbrains.dokka.gradle.GradleSourceRootImpl</span>
+
+<span class="kt">def</span> <span class="n">sourceRoot</span> <span class="o">=</span> <span class="k">new</span> <span class="n">GradleSourceRootImpl</span><span class="o">()</span>
+<span class="n">sourceRoot</span><span class="o">.</span><span class="na">path</span> <span class="o">=</span> <span class="n">it</span>
+</code></pre></div></div>
+
+<p>And with a bit of business logic on top, we can easily extract all sources from our directories:</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Converts the source path Strings into SourceRoot</span>
+<span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">GradleSourceRootImpl</span><span class="o">&gt;</span> <span class="n">getSourceRootsToDocument</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="nf">getSourceRootsToDocumentAsStrings</span><span class="o">().</span><span class="na">collect</span> <span class="o">{</span>
+        <span class="kt">def</span> <span class="n">impl</span> <span class="o">=</span> <span class="k">new</span> <span class="n">GradleSourceRootImpl</span><span class="o">()</span>
+        <span class="n">impl</span><span class="o">.</span><span class="na">path</span> <span class="o">=</span> <span class="n">it</span>
+        <span class="n">impl</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">getSourceRootsToDocumentAsStrings</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kt">def</span> <span class="n">sources</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;()</span>
+    <span class="n">sources</span> <span class="o">+=</span> <span class="s2">"$rootDir/app/src/main/java"</span>
+    <span class="n">sources</span> <span class="o">+=</span> <span class="n">getSourceDirs</span><span class="o">(</span><span class="s2">"$rootDir/features"</span><span class="o">)</span>
+    <span class="n">sources</span> <span class="o">+=</span> <span class="n">getSourceDirs</span><span class="o">(</span><span class="s2">"$rootDir/libraries"</span><span class="o">)</span>
+    <span class="c1">// add other locations of sources here</span>
+    <span class="n">sources</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">getSourceDirs</span><span class="o">(</span><span class="n">String</span> <span class="n">directoryPath</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">file</span><span class="o">(</span><span class="n">directoryPath</span><span class="o">).</span><span class="na">listFiles</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">findAll</span> <span class="o">{</span> <span class="n">it</span><span class="o">.</span><span class="na">isDirectory</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">it</span><span class="o">.</span><span class="na">name</span> <span class="o">!=</span> <span class="s2">"build"</span> <span class="o">}</span> <span class="c1">// Non build subfolders</span>
+            <span class="o">.</span><span class="na">collect</span> <span class="o">{</span> <span class="s2">"${it.path}/src/main/java"</span> <span class="o">}</span> <span class="c1">// path of main sources</span>
+            <span class="o">.</span><span class="na">findAll</span> <span class="o">{</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">it</span><span class="o">).</span><span class="na">exists</span><span class="o">()</span> <span class="o">}</span> <span class="c1">// only include if path exists</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Note that these methods only look in the <code class="highlighter-rouge">main</code> source folders and that <code class="highlighter-rouge">getSourceDirs</code> only looks at direct subfolders.</p>
+
+<p>Sadly, this doesn’t work and causes compilation issues when running Dokka. (╯°□°）╯︵ ┻━┻</p>
+
+<p>This can be solved by creating a new Android library module, without any source code and apply the Dokka plugin with reference to all sources there:</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">org.jetbrains.dokka.gradle.GradleSourceRootImpl</span>
+
+<span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">'com.android.library'</span>
+<span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">'org.jetbrains.dokka'</span>
+
+<span class="n">android</span> <span class="o">{</span>
+    <span class="n">buildToolsVersion</span> <span class="n">BuildConfig</span><span class="o">.</span><span class="na">buildTools</span>
+    <span class="n">compileSdkVersion</span> <span class="n">BuildConfig</span><span class="o">.</span><span class="na">compileSdk</span>
+
+    <span class="n">defaultConfig</span> <span class="o">{</span>
+        <span class="n">minSdkVersion</span> <span class="n">BuildConfig</span><span class="o">.</span><span class="na">minSdk</span>
+        <span class="n">targetSdkVersion</span> <span class="n">BuildConfig</span><span class="o">.</span><span class="na">targetSdk</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="n">dokka</span> <span class="o">{</span>
+    <span class="n">configuration</span> <span class="o">{</span>
+        <span class="o">...</span>
+
+        <span class="n">sourceRoots</span> <span class="o">=</span> <span class="n">getSourceRootsToDocument</span><span class="o">()</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>In summary, with a bit of logic, we can make sure source files of new modules are automatically included in the documentation.</p>
+
+<h2 id="excluding-public-classes">Excluding public classes</h2>
+<p>Since Kotlin doesn’t have a <code class="highlighter-rouge">project internal</code> visibility modifier, we need a way to exclude <code class="highlighter-rouge">public</code> classes from our documentation that shouldn’t be exposed.</p>
+
+<p>One way of doing that is moving all classes that are internal to your SDK to a package name ending with <code class="highlighter-rouge">internal</code>.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="nn">com.jeroenmols.internal</span>
+<span class="k">package</span> <span class="nn">com.jeroenmols.api.models.internal</span>
+</code></pre></div></div>
+
+<p>This also gives a clear indication to users of your SDK that these classes aren’t supposed to be used.</p>
+
+<blockquote>
+  <p>Note that you could use proguard on your final AAR to hide non-public classes using obfuscation.</p>
+</blockquote>
+
+<p>Now that all classes that should be internal are grouped, they can also be excluded from the documentation:</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dokka</span> <span class="o">{</span>
+    <span class="n">configuration</span> <span class="o">{</span>
+        <span class="o">...</span>
+
+
+        <span class="n">perPackageOption</span> <span class="o">{</span>
+            <span class="n">prefix</span> <span class="o">=</span> <span class="s2">"com.jeroenmols.internal"</span>
+            <span class="n">suppress</span> <span class="o">=</span> <span class="kc">true</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>And more generically, all packages in each source root that end with <code class="highlighter-rouge">internal</code> can be filtered:</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">groovy.io.FileType</span>
+
+<span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">getInternalPackages</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kt">def</span> <span class="n">sourceRoots</span> <span class="o">=</span> <span class="n">getSourceRootsToDocumentAsStrings</span><span class="o">()</span>
+    <span class="kt">def</span> <span class="n">internalPackages</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;()</span>
+
+    <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">root</span> <span class="k">in</span> <span class="n">sourceRoots</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">def</span> <span class="n">subPackages</span> <span class="o">=</span> <span class="n">getAllSubDirectories</span><span class="o">(</span><span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">root</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">findAll</span> <span class="o">{</span> <span class="n">it</span><span class="o">.</span><span class="na">path</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="s2">"internal"</span><span class="o">)</span> <span class="o">}</span>
+                <span class="o">.</span><span class="na">collect</span> <span class="o">{</span> <span class="n">it</span><span class="o">.</span><span class="na">path</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s2">"src/main/java/"</span><span class="o">)[</span><span class="mi">1</span><span class="o">].</span><span class="na">replaceAll</span><span class="o">(</span><span class="s2">"/"</span><span class="o">,</span> <span class="s2">"."</span><span class="o">)</span> <span class="o">}</span>
+        <span class="n">internalPackages</span><span class="o">.</span><span class="na">addAll</span><span class="o">(</span><span class="n">subPackages</span><span class="o">)</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">internalPackages</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">File</span><span class="o">&gt;</span> <span class="n">getAllSubDirectories</span><span class="o">(</span><span class="n">File</span> <span class="n">directory</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">def</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;()</span>
+    <span class="n">directory</span><span class="o">.</span><span class="na">eachFileRecurse</span> <span class="o">(</span><span class="n">FileType</span><span class="o">.</span><span class="na">DIRECTORIES</span><span class="o">)</span> <span class="o">{</span> <span class="n">file</span> <span class="o">-&gt;</span>
+        <span class="n">list</span> <span class="o">&lt;&lt;</span> <span class="n">file</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">list</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>And hooking this all together will make sure all <code class="highlighter-rouge">internal</code> classes are excluded:</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dokka</span> <span class="o">{</span>
+    <span class="n">configuration</span> <span class="o">{</span>
+        <span class="o">...</span>
+
+        <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">p</span> <span class="k">in</span> <span class="n">getInternalPackages</span><span class="o">())</span> <span class="o">{</span>
+            <span class="n">perPackageOption</span> <span class="o">{</span>
+                <span class="n">prefix</span> <span class="o">=</span> <span class="n">p</span>
+                <span class="n">suppress</span> <span class="o">=</span> <span class="kc">true</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="bringing-it-all-together">Bringing it all together</h2>
+<p>Here’s the full example of a Dokka configuration that includes all source from each submodule and excludes internal classes:</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">org.jetbrains.dokka.gradle.GradleSourceRootImpl</span>
+
+<span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">'org.jetbrains.dokka'</span>
+
+<span class="n">dokka</span> <span class="o">{</span>
+    <span class="n">outputFormat</span> <span class="o">=</span> <span class="s1">'html'</span> <span class="c1">// use 'javadoc' to get standard java docs</span>
+    <span class="n">outputDirectory</span> <span class="o">=</span> <span class="s2">"$buildDir/javadoc"</span>
+
+    <span class="n">configuration</span> <span class="o">{</span>
+        <span class="n">includeNonPublic</span> <span class="o">=</span> <span class="kc">false</span>
+        <span class="n">skipEmptyPackages</span> <span class="o">=</span> <span class="kc">true</span>
+        <span class="n">skipDeprecated</span> <span class="o">=</span> <span class="kc">true</span>
+        <span class="n">reportUndocumented</span> <span class="o">=</span> <span class="kc">true</span>
+        <span class="n">jdkVersion</span> <span class="o">=</span> <span class="mi">8</span>
+
+        <span class="n">sourceRoots</span> <span class="o">=</span> <span class="n">getSourceRootsToDocument</span><span class="o">()</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">p</span> <span class="k">in</span> <span class="n">getInternalPackages</span><span class="o">())</span> <span class="o">{</span>
+            <span class="n">perPackageOption</span> <span class="o">{</span>
+                <span class="n">prefix</span> <span class="o">=</span> <span class="n">p</span>
+                <span class="n">suppress</span> <span class="o">=</span> <span class="kc">true</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">getInternalPackages</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kt">def</span> <span class="n">sourceRoots</span> <span class="o">=</span> <span class="n">getSourceRootsToDocumentAsStrings</span><span class="o">()</span>
+    <span class="kt">def</span> <span class="n">internalPackages</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;()</span>
+
+    <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">root</span> <span class="k">in</span> <span class="n">sourceRoots</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">def</span> <span class="n">subPackages</span> <span class="o">=</span> <span class="n">getAllSubDirectories</span><span class="o">(</span><span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">root</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">findAll</span> <span class="o">{</span> <span class="n">it</span><span class="o">.</span><span class="na">path</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="s2">"internal"</span><span class="o">)</span> <span class="o">}</span>
+                <span class="o">.</span><span class="na">collect</span> <span class="o">{</span> <span class="n">it</span><span class="o">.</span><span class="na">path</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s2">"src/main/java/"</span><span class="o">)[</span><span class="mi">1</span><span class="o">].</span><span class="na">replaceAll</span><span class="o">(</span><span class="s2">"/"</span><span class="o">,</span> <span class="s2">"."</span><span class="o">)</span> <span class="o">}</span>
+        <span class="n">internalPackages</span><span class="o">.</span><span class="na">addAll</span><span class="o">(</span><span class="n">subPackages</span><span class="o">)</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">internalPackages</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">File</span><span class="o">&gt;</span> <span class="n">getAllSubDirectories</span><span class="o">(</span><span class="n">File</span> <span class="n">directory</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">def</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;()</span>
+    <span class="n">directory</span><span class="o">.</span><span class="na">eachFileRecurse</span> <span class="o">(</span><span class="n">FileType</span><span class="o">.</span><span class="na">DIRECTORIES</span><span class="o">)</span> <span class="o">{</span> <span class="n">file</span> <span class="o">-&gt;</span>
+        <span class="n">list</span> <span class="o">&lt;&lt;</span> <span class="n">file</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">list</span>
+<span class="o">}</span>
+
+<span class="c1">// Converts the source path Strings into SourceRoot</span>
+<span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">GradleSourceRootImpl</span><span class="o">&gt;</span> <span class="n">getSourceRootsToDocument</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="nf">getSourceRootsToDocumentAsStrings</span><span class="o">().</span><span class="na">collect</span> <span class="o">{</span>
+        <span class="kt">def</span> <span class="n">impl</span> <span class="o">=</span> <span class="k">new</span> <span class="n">GradleSourceRootImpl</span><span class="o">()</span>
+        <span class="n">impl</span><span class="o">.</span><span class="na">path</span> <span class="o">=</span> <span class="n">it</span>
+        <span class="n">impl</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">getSourceRootsToDocumentAsStrings</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kt">def</span> <span class="n">sources</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;()</span>
+    <span class="n">sources</span> <span class="o">+=</span> <span class="s2">"$rootDir/app/src/main/java"</span>
+    <span class="n">sources</span> <span class="o">+=</span> <span class="n">getSourceDirs</span><span class="o">(</span><span class="s2">"$rootDir/features"</span><span class="o">)</span>
+    <span class="n">sources</span> <span class="o">+=</span> <span class="n">getSourceDirs</span><span class="o">(</span><span class="s2">"$rootDir/libraries"</span><span class="o">)</span>
+    <span class="c1">// add other locations of sources here</span>
+    <span class="n">sources</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">getSourceDirs</span><span class="o">(</span><span class="n">String</span> <span class="n">directoryPath</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">file</span><span class="o">(</span><span class="n">directoryPath</span><span class="o">).</span><span class="na">listFiles</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">findAll</span> <span class="o">{</span> <span class="n">it</span><span class="o">.</span><span class="na">isDirectory</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">it</span><span class="o">.</span><span class="na">name</span> <span class="o">!=</span> <span class="s2">"build"</span> <span class="o">}</span> <span class="c1">// Non build subfolders</span>
+            <span class="o">.</span><span class="na">collect</span> <span class="o">{</span> <span class="s2">"${it.path}/src/main/java"</span> <span class="o">}</span> <span class="c1">// path of main sources</span>
+            <span class="o">.</span><span class="na">findAll</span> <span class="o">{</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">it</span><span class="o">).</span><span class="na">exists</span><span class="o">()</span> <span class="o">}</span> <span class="c1">// only include if path exists</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="wrap-up">Wrap-up</h2>
+<p>This post covered how to configure <a href="https://github.com/Kotlin/dokka">Dokka</a> to generate <a href="https://kotlinlang.org/docs/reference/kotlin-doc.html">KDoc</a> documentation. It explained how Dokka can be used for multi-module libraries and how public classes of submodules can be excluded.</p>
+
+<p>If you’ve made it this far you should probably follow me on <span><a href="https://twitter.com/molsjeroen?source=kdocforandroidlibrariesusingdokka2020" class="ga-link" target="_blank">Twitter</a></span>
+. Feel free to leave a comment below!</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/documentation" class="page__taxonomy-item" rel="tag">documentation</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/dokka" class="page__taxonomy-item" rel="tag">dokka</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/gradle" class="page__taxonomy-item" rel="tag">gradle</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/kdoc" class="page__taxonomy-item" rel="tag">kdoc</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/kotlin" class="page__taxonomy-item" rel="tag">kotlin</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/blog" class="page__taxonomy-item" rel="tag">blog</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-02-19T00:00:00+01:00">February 19, 2020</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=Kdoc+for+Android+libraries+using+Dokka%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2020%2F02%2F19%2Fdokka-code-documentation%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2020%2F02%2F19%2Fdokka-code-documentation%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2020%2F02%2F19%2Fdokka-code-documentation%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      <section class="page__share">
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bottom-blog-responsive -->
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-9854541518226004"
+       data-ad-slot="4086741379"
+       data-ad-format="auto"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/blog/2020/01/09/yearinreview/" class="pagination--pager" title="Year in review 2019
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a Comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/yearinreview19/yearinreview19.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2020/01/09/yearinreview/" rel="permalink">Year in review 2019
+</a>
+        </h2>
+        <h3 class="archive__date">09 Jan 2020</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2020/01/09/yearinreview/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Getting up without being rushed, cycling my kids to school, cooking healthy salads for lunch, kids running into my arms when they get home… I’m quite happy with my new daily routine!
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/featureflagarchitecture/featureflagarchitecture.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2019/09/12/featureflagsarchitecture/" rel="permalink">Feature flags - A successful architecture
+</a>
+        </h2>
+        <h3 class="archive__date">12 Sep 2019</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2019/09/12/featureflagsarchitecture/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  12 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Now that we know how feature flags can help us release faster, it’s time to dive into the actual implementation details. How can we easily define feature flags? How to configure them both locally as remotely? And use them in...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/featureflagshowtouse/featureflagshowtouse.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2019/08/20/featureflagshowtouse/" rel="permalink">Feature Flags - How to use
+</a>
+        </h2>
+        <h3 class="archive__date">20 Aug 2019</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2019/08/20/featureflagshowtouse/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  5 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Empowered with what feature flags are and why they are useful, let’s see how we can actually integrate them into an app. And how can we roll them out to our users?
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/featureflags/featureflags.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2019/08/13/featureflags/" rel="permalink">Feature Flags - Why you should care
+</a>
+        </h2>
+        <h3 class="archive__date">13 Aug 2019</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2019/08/13/featureflags/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  6 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">A key ingredient to speed up modern software development is feature flags. But what is a feature flag precisely? Why should you care about them? How do you integrate them into your codebase? And how can we make them easy...</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+
+    <li><a href="atom.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 Jeroen Mols. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <script>
+  window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+  ga('create','UA-63356566-1','auto');
+  ga('set', 'anonymizeIp', false);
+  ga('send','pageview')
+</script>
+<script src="https://www.google-analytics.com/analytics.js" async></script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://jeroenmols.com/blog/2020/02/19/dokka-code-documentation/";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = "/blog/2020/02/19/dokka-code-documentation"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jeroenmols.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

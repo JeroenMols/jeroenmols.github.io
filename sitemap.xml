@@ -209,6 +209,10 @@
 <lastmod>2020-01-09T00:00:00+01:00</lastmod>
 </url>
 <url>
+<loc>https://jeroenmols.com/blog/2020/02/19/dokka-code-documentation/</loc>
+<lastmod>2020-02-19T00:00:00+01:00</lastmod>
+</url>
+<url>
 <loc>https://jeroenmols.com/categories/</loc>
 </url>
 <url>
@@ -402,6 +406,15 @@
 </url>
 <url>
 <loc>https://jeroenmols.com/tags/feature-flags/</loc>
+</url>
+<url>
+<loc>https://jeroenmols.com/tags/documentation/</loc>
+</url>
+<url>
+<loc>https://jeroenmols.com/tags/kdoc/</loc>
+</url>
+<url>
+<loc>https://jeroenmols.com/tags/dokka/</loc>
 </url>
 <url>
 <loc>https://jeroenmols.com/categories/blog/</loc>

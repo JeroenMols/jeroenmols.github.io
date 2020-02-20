@@ -258,4 +258,9 @@ var store = [{
         "excerpt":"Getting up without being rushed, cycling my kids to school, cooking healthy salads for lunch, kids running into my arms when they get home… I’m quite happy with my new daily routine! Without a doubt, 2019 was the highlight of my career! At Philips Hue, we quadrupled (!!! 🚀) our...","categories": ["blog"],
         "tags": ["review"],
         "url": "https://jeroenmols.com/blog/2020/01/09/yearinreview/",
-        "teaser":"https://jeroenmols.com/img/blog/yearinreview19/yearinreview19.jpg"}]
+        "teaser":"https://jeroenmols.com/img/blog/yearinreview19/yearinreview19.jpg"},{
+        "title": "Kdoc for Android libraries using Dokka",
+        "excerpt":"A great way to make your library easier to use it to generate code documentation for its public interface. The default way to do this in Kotlin is to generate KDoc using the official Dokka plugin. This post will cover some challenges in configuring Dokka and explain some neat tricks...","categories": ["blog"],
+        "tags": ["documentation","kdoc","dokka","gradle","kotlin"],
+        "url": "https://jeroenmols.com/blog/2020/02/19/dokka-code-documentation/",
+        "teaser":"https://jeroenmols.com/img/blog/dokkacodedocumentation/kdoc.jpg"}]
