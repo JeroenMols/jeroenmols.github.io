@@ -11,7 +11,13 @@ I'm always eager to share my technical knowledge with fellow developers. Don't h
 
 Upcoming talks:
 
-- To be announced
+- Mumbai App Developers Meetup (GDG) - The big rewrite
+- GDG Jeddah - Getting the most out of Android KTX
+- Dutch Android User Group - Getting the most out of Android KTX
+
+2020:
+- Android Makers Paris - [Getting the most out of Android KTX](https://speakerdeck.com/jeroenmols/getting-the-most-out-of-android-ktx)
+- Async Android - [Powerful layout previews](https://speakerdeck.com/jeroenmols/powerful-layout-previews)
 
 2019:
 - Full Stack meetup Antwerp - [Journey to painless releases: Continuous delivery for Philips Hue Android](https://speakerdeck.com/jeroenmols/journey-to-painless-releases-continuous-delivery-for-philips-hue-android)
