@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.17.0 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.19.3 by Michael Rose
   Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
@@ -170,11 +170,11 @@ $(document).ready(function(){
           
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/blog/" >Blog</a>
+              <a href="/blog/">Blog</a>
             </li><li class="masthead__menu-item">
-              <a href="/speaking/" >Speaking</a>
+              <a href="/speaking/">Speaking</a>
             </li><li class="masthead__menu-item">
-              <a href="/hireme/" >Hire me</a>
+              <a href="/hireme/">Hire me</a>
             </li></ul>
         
         <button class="search__toggle" type="button">
@@ -210,8 +210,6 @@ $(document).ready(function(){
 
   
     <div class="author__avatar">
-      
-
       
         <img src="/img/profile.jpg" alt="Jeroen Mols" itemprop="image">
       
@@ -250,7 +248,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://twitter.com/@molsjeroen" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span>
           </a>
         </li>
       
@@ -260,7 +258,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://www.linkedin.com/in/jeroenmols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn
+            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span>
           </a>
         </li>
       
@@ -276,7 +274,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://github.com/JeroenMols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span>
           </a>
         </li>
       
@@ -286,7 +284,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://stackoverflow.com/users/2771851/jmols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i> Stack Overflow
+            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i><span class="label">Stack Overflow</span>
           </a>
         </li>
       
@@ -305,7 +303,7 @@ $(document).ready(function(){
         
           <li>
             <a href="https://www.youtube.com/channel/UC34Vt1lo8T15_rgc3e3Jsew" itemprop="sameAs" rel="nofollow noopener noreferrer">
-              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i> YouTube
+              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span>
             </a>
           </li>
         
@@ -334,6 +332,7 @@ $(document).ready(function(){
 
   
   </div>
+
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
@@ -380,10 +379,10 @@ $(document).ready(function(){
 <p>My key takeaways:</p>
 
 <ul>
-  <li>Learn and optimize your app launch time:<code class="highlighter-rouge">adb shell am start -W &lt;packagename&gt;/. &lt;activityname&gt;</code></li>
+  <li>Learn and optimize your app launch time:<code class="language-plaintext highlighter-rouge">adb shell am start -W &lt;packagename&gt;/. &lt;activityname&gt;</code></li>
   <li>Never share a file directly via an intent, always copy it first</li>
-  <li>Prefer <code class="highlighter-rouge">https://</code> as the scheme for direct links</li>
-  <li>Hard-coded encryption keys can be easily found in byte code: grep for <code class="highlighter-rouge">Ljavax/crypto</code></li>
+  <li>Prefer <code class="language-plaintext highlighter-rouge">https://</code> as the scheme for direct links</li>
+  <li>Hard-coded encryption keys can be easily found in byte code: grep for <code class="language-plaintext highlighter-rouge">Ljavax/crypto</code></li>
   <li>API design is basically designing future regrets</li>
 </ul>
 
@@ -804,10 +803,10 @@ $(document).ready(function(){
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://jeroenmols.com/blog/2017/04/11/androidmakers17/";  // Replace PAGE_URL with your page's canonical URL variable
-      this.page.identifier = "/blog/2017/04/11/androidmakers17"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      this.page.url = "https://jeroenmols.com/blog/2017/04/11/androidmakers17/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/blog/2017/04/11/androidmakers17"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
     };
-    (function() { // DON'T EDIT BELOW THIS LINE
+    (function() { /* DON'T EDIT BELOW THIS LINE */
       var d = document, s = d.createElement('script');
       s.src = 'https://jeroenmols.disqus.com/embed.js';
       s.setAttribute('data-timestamp', +new Date());

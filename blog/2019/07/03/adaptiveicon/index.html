@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.17.0 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.19.3 by Michael Rose
   Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
@@ -170,11 +170,11 @@ $(document).ready(function(){
           
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/blog/" >Blog</a>
+              <a href="/blog/">Blog</a>
             </li><li class="masthead__menu-item">
-              <a href="/speaking/" >Speaking</a>
+              <a href="/speaking/">Speaking</a>
             </li><li class="masthead__menu-item">
-              <a href="/hireme/" >Hire me</a>
+              <a href="/hireme/">Hire me</a>
             </li></ul>
         
         <button class="search__toggle" type="button">
@@ -210,8 +210,6 @@ $(document).ready(function(){
 
   
     <div class="author__avatar">
-      
-
       
         <img src="/img/profile.jpg" alt="Jeroen Mols" itemprop="image">
       
@@ -250,7 +248,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://twitter.com/@molsjeroen" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span>
           </a>
         </li>
       
@@ -260,7 +258,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://www.linkedin.com/in/jeroenmols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn
+            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span>
           </a>
         </li>
       
@@ -276,7 +274,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://github.com/JeroenMols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span>
           </a>
         </li>
       
@@ -286,7 +284,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://stackoverflow.com/users/2771851/jmols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i> Stack Overflow
+            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i><span class="label">Stack Overflow</span>
           </a>
         </li>
       
@@ -305,7 +303,7 @@ $(document).ready(function(){
         
           <li>
             <a href="https://www.youtube.com/channel/UC34Vt1lo8T15_rgc3e3Jsew" itemprop="sameAs" rel="nofollow noopener noreferrer">
-              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i> YouTube
+              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span>
             </a>
           </li>
         
@@ -334,6 +332,7 @@ $(document).ready(function(){
 
   
   </div>
+
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
@@ -407,7 +406,7 @@ $(document).ready(function(){
 
 <p>Make sure to also generate a round icon for Android N and plain image assets for older Android versions. Click next and review the assets being generated, and finish to complete the icon creation.</p>
 
-<p>You’ll see that in <code class="highlighter-rouge">mipmap-anydpi-v26</code> two resources get generated <code class="highlighter-rouge">ic_launcher.xml</code> and <code class="highlighter-rouge">ic_launcher_round.xml</code>. Both these files simply indicate what resource to use for the icon foreground and background:</p>
+<p>You’ll see that in <code class="language-plaintext highlighter-rouge">mipmap-anydpi-v26</code> two resources get generated <code class="language-plaintext highlighter-rouge">ic_launcher.xml</code> and <code class="language-plaintext highlighter-rouge">ic_launcher_round.xml</code>. Both these files simply indicate what resource to use for the icon foreground and background:</p>
 
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
 <span class="nt">&lt;adaptive-icon</span> <span class="na">xmlns:android=</span><span class="s">"http://schemas.android.com/apk/res/android"</span><span class="nt">&gt;</span>
@@ -425,7 +424,7 @@ $(document).ready(function(){
 </code></pre></div></div>
 
 <blockquote>
-  <p>Note: <code class="highlighter-rouge">ic_launcher_round.xml</code> got introduced with the launch of the Google Pixel (Android N) and has since been replaced with the more powerful adaptive icon. <br /> However you can still provide a rounded icon to avoid that Android N devices show your square item in a round bounding box:
+  <p>Note: <code class="language-plaintext highlighter-rouge">ic_launcher_round.xml</code> got introduced with the launch of the Google Pixel (Android N) and has since been replaced with the more powerful adaptive icon. <br /> However you can still provide a rounded icon to avoid that Android N devices show your square item in a round bounding box:
 <img src="https://jeroenmols.com/img/blog/adaptiveicon/boxed_icon.png" alt="Boxed icon when no round variant is provided" class="align-center" /></p>
 </blockquote>
 
@@ -788,10 +787,10 @@ $(document).ready(function(){
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://jeroenmols.com/blog/2019/07/03/adaptiveicon/";  // Replace PAGE_URL with your page's canonical URL variable
-      this.page.identifier = "/blog/2019/07/03/adaptiveicon"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      this.page.url = "https://jeroenmols.com/blog/2019/07/03/adaptiveicon/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/blog/2019/07/03/adaptiveicon"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
     };
-    (function() { // DON'T EDIT BELOW THIS LINE
+    (function() { /* DON'T EDIT BELOW THIS LINE */
       var d = document, s = d.createElement('script');
       s.src = 'https://jeroenmols.disqus.com/embed.js';
       s.setAttribute('data-timestamp', +new Date());

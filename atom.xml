@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/" rel="alternate" type="text/html"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, Android freelancer and Google Developer Expert.</subtitle>
- <updated>2020-02-20T08:53:29+01:00</updated>
+ <updated>2020-07-21T20:58:15+02:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -496,7 +496,7 @@
    <id>https://jeroenmols.com/blog/2018/08/02/phonestatepermission</id>
    <content type="html"><![CDATA[
      
-     <p>This is a post-mortem where the very dangerous permission, <code class="highlighter-rouge">READ_PHONE_STATE</code>, unintentionally sneaked into our app. Here’s how this could happen, how we debugged and finally how we solved it.</p>
+     <p>This is a post-mortem where the very dangerous permission, <code class="language-plaintext highlighter-rouge">READ_PHONE_STATE</code>, unintentionally sneaked into our app. Here’s how this could happen, how we debugged and finally how we solved it.</p>
 
 
      <a href="https://jeroenmols.com/blog/2018/08/02/phonestatepermission/">Continue reading</p>]]>
@@ -590,7 +590,7 @@
    <id>https://jeroenmols.com/blog/2018/01/01/yearinreview</id>
    <content type="html"><![CDATA[
      
-     <p>For the first time ever I have my <code class="highlighter-rouge">year in review</code> ready in time.</p>
+     <p>For the first time ever I have my <code class="language-plaintext highlighter-rouge">year in review</code> ready in time.</p>
 
 <p>I’m sure I’ll never forget 2017. Not only did we start building our dream house, but more importantly, our family grew to 4 people! Our baby girl Lene - ahum Toddler - became the big sister of our newborn son Wout. While having two kids is definitely very, very intense, it’s extraordinary to see them grow and a privilege to experience how fond they already are of each other.</p>
 
@@ -999,7 +999,7 @@
    <id>https://jeroenmols.com/blog/2016/03/07/resourcenaming</id>
    <content type="html"><![CDATA[
      
-     <p>Do you remember the last time you had to dig into <code class="highlighter-rouge">strings.xml</code> to find the right String to use? Or that you manually had to go over all drawables to find the one you needed?</p>
+     <p>Do you remember the last time you had to dig into <code class="language-plaintext highlighter-rouge">strings.xml</code> to find the right String to use? Or that you manually had to go over all drawables to find the one you needed?</p>
 
 <p>Whenever we start a new project, we take a lot of care in setting up our architecture, CI, build flavors,… But do you also have a strategy to name your resources?</p>
 
@@ -1051,9 +1051,9 @@
    <id>https://jeroenmols.com/blog/2016/01/29/yearinreview</id>
    <content type="html"><![CDATA[
      
-     <p>Finally found the time to write my <code class="highlighter-rouge">year in review</code>. #insomnia</p>
+     <p>Finally found the time to write my <code class="language-plaintext highlighter-rouge">year in review</code>. #insomnia</p>
 
-<p>2015 was a huge year for me! I even dare to say the biggest one of my life so far as I became a father of a lovely daughter Lene. Its really hard to over state how big of an impact that has on your life and how fantastic it is to see your own baby grow (and recognize parts of yourself in her). This obviously also explains my late <code class="highlighter-rouge">year in review</code> post. #perfectexcuse</p>
+<p>2015 was a huge year for me! I even dare to say the biggest one of my life so far as I became a father of a lovely daughter Lene. Its really hard to over state how big of an impact that has on your life and how fantastic it is to see your own baby grow (and recognize parts of yourself in her). This obviously also explains my late <code class="language-plaintext highlighter-rouge">year in review</code> post. #perfectexcuse</p>
 
 <p>On a technical level I also fared well and I’m very happy with what I’ve been able to accomplish:</p>
 
@@ -1066,7 +1066,7 @@
   <li>Gained &gt;1000 reputation on <a href="https://stackoverflow.com/users/2771851/jmols">stackoverflow</a></li>
   <li>Landed a new job at Philips Hue</li>
   <li>Learned Xamarin and built a cross platform app</li>
-  <li>Wrote the worlds latest <code class="highlighter-rouge">year in review</code> post</li>
+  <li>Wrote the worlds latest <code class="language-plaintext highlighter-rouge">year in review</code> post</li>
 </ul>
 
 <p>Next year will be more challenging as my daughter has become a lot more effective at grabbing my attention than my laptop. However I want to increase my efforts contributing back to the community by speaking at more conferences and writing more blogposts. Finally I also want to visit Google IO, which is about time I got there, don’t you agree? ;)</p>

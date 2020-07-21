@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.17.0 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.19.3 by Michael Rose
   Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
@@ -170,11 +170,11 @@ $(document).ready(function(){
           
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/blog/" >Blog</a>
+              <a href="/blog/">Blog</a>
             </li><li class="masthead__menu-item">
-              <a href="/speaking/" >Speaking</a>
+              <a href="/speaking/">Speaking</a>
             </li><li class="masthead__menu-item">
-              <a href="/hireme/" >Hire me</a>
+              <a href="/hireme/">Hire me</a>
             </li></ul>
         
         <button class="search__toggle" type="button">
@@ -210,8 +210,6 @@ $(document).ready(function(){
 
   
     <div class="author__avatar">
-      
-
       
         <img src="/img/profile.jpg" alt="Jeroen Mols" itemprop="image">
       
@@ -250,7 +248,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://twitter.com/@molsjeroen" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span>
           </a>
         </li>
       
@@ -260,7 +258,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://www.linkedin.com/in/jeroenmols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn
+            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span>
           </a>
         </li>
       
@@ -276,7 +274,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://github.com/JeroenMols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span>
           </a>
         </li>
       
@@ -286,7 +284,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://stackoverflow.com/users/2771851/jmols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i> Stack Overflow
+            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i><span class="label">Stack Overflow</span>
           </a>
         </li>
       
@@ -305,7 +303,7 @@ $(document).ready(function(){
         
           <li>
             <a href="https://www.youtube.com/channel/UC34Vt1lo8T15_rgc3e3Jsew" itemprop="sameAs" rel="nofollow noopener noreferrer">
-              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i> YouTube
+              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span>
             </a>
           </li>
         
@@ -334,6 +332,7 @@ $(document).ready(function(){
 
   
   </div>
+
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
@@ -374,21 +373,21 @@ $(document).ready(function(){
 <p>One of the interesting problems LiveData solves is to ensure the observer is always called on the main thread. This happens in the following ways:</p>
 
 <ul>
-  <li><code class="highlighter-rouge">setValue()</code>: crashes if not called from main thread</li>
-  <li><code class="highlighter-rouge">postValue()</code>: swaps to main thread and is safe to be called from any background thread</li>
+  <li><code class="language-plaintext highlighter-rouge">setValue()</code>: crashes if not called from main thread</li>
+  <li><code class="language-plaintext highlighter-rouge">postValue()</code>: swaps to main thread and is safe to be called from any background thread</li>
 </ul>
 
 <p>Now what happens if you call any of these methods in a junit test?</p>
 
-<p>When calling <code class="highlighter-rouge">livedata.setValue()</code> or <code class="highlighter-rouge">livedata.value =</code> you get:</p>
+<p>When calling <code class="language-plaintext highlighter-rouge">livedata.setValue()</code> or <code class="language-plaintext highlighter-rouge">livedata.value =</code> you get:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>java.lang.RuntimeException:
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>java.lang.RuntimeException:
 Method getMainLooper in android.os.Looper not mocked.
 </code></pre></div></div>
 
-<p>Or alternatively when <code class="highlighter-rouge">unitTests.returnDefaultValues = true</code> is on:</p>
+<p>Or alternatively when <code class="language-plaintext highlighter-rouge">unitTests.returnDefaultValues = true</code> is on:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>java.lang.NullPointerException
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>java.lang.NullPointerException
 at androidx.arch.core.executor.DefaultTaskExecutor.isMainThread(DefaultTaskExecutor.java:74)
 </code></pre></div></div>
 
@@ -398,7 +397,7 @@ at androidx.arch.core.executor.DefaultTaskExecutor.isMainThread(DefaultTaskExecu
   <p>Note that this is true in general. The main Thread is just a concept provided by most UI frameworks to avoid race conditions while updating the UI. E.g. on Android the main thread is provided by the Android Framework, for Java applications the main thread is provided by Swing (for instance).</p>
 </blockquote>
 
-<p>When calling <code class="highlighter-rouge">livedata.postValue()</code>, you get similar results.</p>
+<p>When calling <code class="language-plaintext highlighter-rouge">livedata.postValue()</code>, you get similar results.</p>
 
 <p>However here the problem is even more fundamental as this can never work. Even if the main thread would exist in the test, then the actual value update would happen asynchronously from the test, causing the asserts to happen before the value is actually updated.</p>
 
@@ -428,7 +427,7 @@ at androidx.arch.core.executor.DefaultTaskExecutor.isMainThread(DefaultTaskExecu
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>All you have to do is add a <code class="highlighter-rouge">InstantTaskExecutorRule()</code> to the class containing ViewModel and add the following Gradle dependency:</p>
+<p>All you have to do is add a <code class="language-plaintext highlighter-rouge">InstantTaskExecutorRule()</code> to the class containing ViewModel and add the following Gradle dependency:</p>
 
 <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dependencies</span> <span class="o">{</span>
     <span class="n">testImplementation</span> <span class="s1">'android.arch.core:core-testing:1.1.1'</span>
@@ -436,9 +435,9 @@ at androidx.arch.core.executor.DefaultTaskExecutor.isMainThread(DefaultTaskExecu
 </code></pre></div></div>
 
 <h2 id="junit-5">JUnit 5</h2>
-<p>This doesn’t work for JUnit 5 however as the concept of <code class="highlighter-rouge">Rule</code> and <code class="highlighter-rouge">TestRunner</code> are merged into one single concept of <a href="https://junit.org/junit5/docs/current/user-guide/#extensions"><code class="highlighter-rouge">Extensions</code></a>.</p>
+<p>This doesn’t work for JUnit 5 however as the concept of <code class="language-plaintext highlighter-rouge">Rule</code> and <code class="language-plaintext highlighter-rouge">TestRunner</code> are merged into one single concept of <a href="https://junit.org/junit5/docs/current/user-guide/#extensions"><code class="language-plaintext highlighter-rouge">Extensions</code></a>.</p>
 
-<p>Hence we can create a similar extension like the <code class="highlighter-rouge">InstantTaskExecutorRule</code>:</p>
+<p>Hence we can create a similar extension like the <code class="language-plaintext highlighter-rouge">InstantTaskExecutorRule</code>:</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nn">androidx.arch.core.executor.ArchTaskExecutor</span>
 <span class="k">import</span> <span class="nn">androidx.arch.core.executor.TaskExecutor</span>
@@ -843,10 +842,10 @@ a rule in JUnit 4 or an extension in JUnit 5.</p>
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://jeroenmols.com/blog/2019/01/17/livedatajunit5/";  // Replace PAGE_URL with your page's canonical URL variable
-      this.page.identifier = "/blog/2019/01/17/livedatajunit5"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      this.page.url = "https://jeroenmols.com/blog/2019/01/17/livedatajunit5/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/blog/2019/01/17/livedatajunit5"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
     };
-    (function() { // DON'T EDIT BELOW THIS LINE
+    (function() { /* DON'T EDIT BELOW THIS LINE */
       var d = document, s = d.createElement('script');
       s.src = 'https://jeroenmols.disqus.com/embed.js';
       s.setAttribute('data-timestamp', +new Date());

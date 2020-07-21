@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.17.0 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.19.3 by Michael Rose
   Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
@@ -170,11 +170,11 @@ $(document).ready(function(){
           
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/blog/" >Blog</a>
+              <a href="/blog/">Blog</a>
             </li><li class="masthead__menu-item">
-              <a href="/speaking/" >Speaking</a>
+              <a href="/speaking/">Speaking</a>
             </li><li class="masthead__menu-item">
-              <a href="/hireme/" >Hire me</a>
+              <a href="/hireme/">Hire me</a>
             </li></ul>
         
         <button class="search__toggle" type="button">
@@ -210,8 +210,6 @@ $(document).ready(function(){
 
   
     <div class="author__avatar">
-      
-
       
         <img src="/img/profile.jpg" alt="Jeroen Mols" itemprop="image">
       
@@ -250,7 +248,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://twitter.com/@molsjeroen" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span>
           </a>
         </li>
       
@@ -260,7 +258,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://www.linkedin.com/in/jeroenmols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn
+            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span>
           </a>
         </li>
       
@@ -276,7 +274,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://github.com/JeroenMols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span>
           </a>
         </li>
       
@@ -286,7 +284,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://stackoverflow.com/users/2771851/jmols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i> Stack Overflow
+            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i><span class="label">Stack Overflow</span>
           </a>
         </li>
       
@@ -305,7 +303,7 @@ $(document).ready(function(){
         
           <li>
             <a href="https://www.youtube.com/channel/UC34Vt1lo8T15_rgc3e3Jsew" itemprop="sameAs" rel="nofollow noopener noreferrer">
-              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i> YouTube
+              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span>
             </a>
           </li>
         
@@ -334,6 +332,7 @@ $(document).ready(function(){
 
   
   </div>
+
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
@@ -401,30 +400,30 @@ $(document).ready(function(){
 
 <p>Conceptually this is very simple and it has one huge advantage: (almost) no dependency problems!</p>
 
-<p>All old code is in the <code class="highlighter-rouge">old app module</code> and new modules are only created on top of that. Hence, those modules will always have access to all legacy files they depend on, even if those files weren’t migrated to a proper module yet.</p>
+<p>All old code is in the <code class="language-plaintext highlighter-rouge">old app module</code> and new modules are only created on top of that. Hence, those modules will always have access to all legacy files they depend on, even if those files weren’t migrated to a proper module yet.</p>
 
-<p>E.g. a new feature can easily access the analytics framework, even if there isn’t an analytics module yet. This is because all old analytics code is already in the <code class="highlighter-rouge">old app module</code> that the feature depends on.</p>
+<p>E.g. a new feature can easily access the analytics framework, even if there isn’t an analytics module yet. This is because all old analytics code is already in the <code class="language-plaintext highlighter-rouge">old app module</code> that the feature depends on.</p>
 
 <p>There are also some disadvantages, unfortunately:</p>
 
 <ul>
   <li>renaming/moving the old app module is a huge upfront change and could cause a lot of merge conflicts =&gt; can be avoided by not moving/renaming the app module</li>
-  <li>need to convert all references to view IDs from <code class="highlighter-rouge">R.id.***</code> to <code class="highlighter-rouge">R2.id.***</code> when using <a href="https://github.com/JakeWharton/butterknife">Butterknife</a>. This is because the Android build system dynamically changes IDs of resources in libraries to avoid ID conflicts while merging libraries together in the app</li>
-  <li>features need to be modularized first and only after libraries can be extracted. E.g. hard to extract all analytics up to an <code class="highlighter-rouge">analytics library</code> when some features that are still in <code class="highlighter-rouge">old app module</code> still need to access that.</li>
+  <li>need to convert all references to view IDs from <code class="language-plaintext highlighter-rouge">R.id.***</code> to <code class="language-plaintext highlighter-rouge">R2.id.***</code> when using <a href="https://github.com/JakeWharton/butterknife">Butterknife</a>. This is because the Android build system dynamically changes IDs of resources in libraries to avoid ID conflicts while merging libraries together in the app</li>
+  <li>features need to be modularized first and only after libraries can be extracted. E.g. hard to extract all analytics up to an <code class="language-plaintext highlighter-rouge">analytics library</code> when some features that are still in <code class="language-plaintext highlighter-rouge">old app module</code> still need to access that.</li>
 </ul>
 
-<p>At Philips Hue, we heavily used Butterknife so this approach turned out to be impractical for us. Mainly due to the large number of upfront changes to prepare the <code class="highlighter-rouge">old app module</code>.</p>
+<p>At Philips Hue, we heavily used Butterknife so this approach turned out to be impractical for us. Mainly due to the large number of upfront changes to prepare the <code class="language-plaintext highlighter-rouge">old app module</code>.</p>
 
 <h3 id="push-code-down">Push code down</h3>
 <p><img src="https://jeroenmols.com/img/blog/modularizationhow/modularisation_pushdown.png" alt="Modularized app example" class="align-center" /></p>
 
-<p>Alternatively, the old <code class="highlighter-rouge">app module</code> can also just remain in place and modules are extracted from that downwards one by one.</p>
+<p>Alternatively, the old <code class="language-plaintext highlighter-rouge">app module</code> can also just remain in place and modules are extracted from that downwards one by one.</p>
 
-<p>At first, this is quite a bit more challenging because all the common plumbing (UI components, analytics, storage,… ) is still in the upper <code class="highlighter-rouge">app module</code> and isn’t accessible by lower modules. e.g. It’s hard to pull out a feature that relies on analytics if the analytics code is still in the <code class="highlighter-rouge">app module</code>.</p>
+<p>At first, this is quite a bit more challenging because all the common plumbing (UI components, analytics, storage,… ) is still in the upper <code class="language-plaintext highlighter-rouge">app module</code> and isn’t accessible by lower modules. e.g. It’s hard to pull out a feature that relies on analytics if the analytics code is still in the <code class="language-plaintext highlighter-rouge">app module</code>.</p>
 
-<p>On the plus side, this method aggressively forces you to modularize: you will easily run into actual dependency problems that must be solved before you can continue. E.g. add a new or extract a <code class="highlighter-rouge">feature module</code> will force you to extract common logic first (e.g. network layer)</p>
+<p>On the plus side, this method aggressively forces you to modularize: you will easily run into actual dependency problems that must be solved before you can continue. E.g. add a new or extract a <code class="language-plaintext highlighter-rouge">feature module</code> will force you to extract common logic first (e.g. network layer)</p>
 
-<p>Hence common plumbing must be modularized on the short term and cannot be parked in a single huge core module for a long time. But once these key <code class="highlighter-rouge">plumbing modules</code> are extracted, the rest of the modularization will become a lot easier.</p>
+<p>Hence common plumbing must be modularized on the short term and cannot be parked in a single huge core module for a long time. But once these key <code class="language-plaintext highlighter-rouge">plumbing modules</code> are extracted, the rest of the modularization will become a lot easier.</p>
 
 <p>And because moving code down is harder than moving it up, only the essential code parts will be moved down at first. Resulting in smaller steps, enabling a better grip on the entire modularisation process.</p>
 
@@ -434,7 +433,7 @@ $(document).ready(function(){
   <p>Note: Introducing new technologies (e.g. coroutines, rxjava) is usually also easier bottom up. This is because modules making use of these can directly access “cleaned up interfaces” instead of wrapping old ones to fit the new paradigms. So you start benefitting from the end-to-end benefits of the new technologies sooner in your app.</p>
 </blockquote>
 
-<p>At Philips Hue, we decided to go for this approach, mainly because it forced us to think better about our <code class="highlighter-rouge">library modules</code> upfront and it also avoided a huge refactoring due to Butterknife.</p>
+<p>At Philips Hue, we decided to go for this approach, mainly because it forced us to think better about our <code class="language-plaintext highlighter-rouge">library modules</code> upfront and it also avoided a huge refactoring due to Butterknife.</p>
 
 <h2 id="considerations">Considerations</h2>
 <p>Regardless of what strategy you decide two follow, here are a few things you should take into consideration:</p>
@@ -826,10 +825,10 @@ $(document).ready(function(){
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://jeroenmols.com/blog/2019/04/24/modularizationhow/";  // Replace PAGE_URL with your page's canonical URL variable
-      this.page.identifier = "/blog/2019/04/24/modularizationhow"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      this.page.url = "https://jeroenmols.com/blog/2019/04/24/modularizationhow/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/blog/2019/04/24/modularizationhow"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
     };
-    (function() { // DON'T EDIT BELOW THIS LINE
+    (function() { /* DON'T EDIT BELOW THIS LINE */
       var d = document, s = d.createElement('script');
       s.src = 'https://jeroenmols.disqus.com/embed.js';
       s.setAttribute('data-timestamp', +new Date());

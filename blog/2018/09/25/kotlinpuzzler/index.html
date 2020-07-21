@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.17.0 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.19.3 by Michael Rose
   Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
@@ -170,11 +170,11 @@ $(document).ready(function(){
           
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/blog/" >Blog</a>
+              <a href="/blog/">Blog</a>
             </li><li class="masthead__menu-item">
-              <a href="/speaking/" >Speaking</a>
+              <a href="/speaking/">Speaking</a>
             </li><li class="masthead__menu-item">
-              <a href="/hireme/" >Hire me</a>
+              <a href="/hireme/">Hire me</a>
             </li></ul>
         
         <button class="search__toggle" type="button">
@@ -210,8 +210,6 @@ $(document).ready(function(){
 
   
     <div class="author__avatar">
-      
-
       
         <img src="/img/profile.jpg" alt="Jeroen Mols" itemprop="image">
       
@@ -250,7 +248,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://twitter.com/@molsjeroen" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span>
           </a>
         </li>
       
@@ -260,7 +258,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://www.linkedin.com/in/jeroenmols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn
+            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span>
           </a>
         </li>
       
@@ -276,7 +274,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://github.com/JeroenMols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span>
           </a>
         </li>
       
@@ -286,7 +284,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://stackoverflow.com/users/2771851/jmols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i> Stack Overflow
+            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i><span class="label">Stack Overflow</span>
           </a>
         </li>
       
@@ -305,7 +303,7 @@ $(document).ready(function(){
         
           <li>
             <a href="https://www.youtube.com/channel/UC34Vt1lo8T15_rgc3e3Jsew" itemprop="sameAs" rel="nofollow noopener noreferrer">
-              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i> YouTube
+              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span>
             </a>
           </li>
         
@@ -334,6 +332,7 @@ $(document).ready(function(){
 
   
   </div>
+
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
@@ -387,7 +386,7 @@ $(document).ready(function(){
         <span class="kd">val</span> <span class="py">endValue</span> <span class="p">=</span> <span class="p">(</span><span class="nc">FPS</span> <span class="p">*</span> <span class="nc">DURATION</span><span class="p">).</span><span class="nf">toInt</span><span class="p">()</span>
         <span class="n">progressBar</span><span class="p">.</span><span class="n">max</span> <span class="p">=</span> <span class="n">endValue</span>
 
-        <span class="n">animator</span> <span class="p">=</span> <span class="nc">ValueAnimator</span><span class="p">.</span><span class="nf">ofInt</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">endValue</span><span class="p">)</span>
+        <span class="n">animator</span> <span class="p">=</span> <span class="nc">ValueAnimator</span><span class="p">.</span><span class="nf">ofInt</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">endValue</span><span class="p">)</span>
         <span class="n">animator</span><span class="p">.</span><span class="n">duration</span> <span class="p">=</span> <span class="nc">DURATION</span>
         <span class="n">animator</span><span class="p">.</span><span class="n">interpolator</span> <span class="p">=</span> <span class="nc">LinearInterpolator</span><span class="p">()</span>
     <span class="p">}</span>
@@ -397,8 +396,8 @@ $(document).ready(function(){
     <span class="p">}</span>
 
     <span class="k">companion</span> <span class="k">object</span> <span class="p">{</span>
-        <span class="k">private</span> <span class="k">const</span> <span class="kd">val</span> <span class="py">FPS</span> <span class="p">=</span> <span class="m">0.06</span>
-        <span class="k">private</span> <span class="k">const</span> <span class="kd">val</span> <span class="py">DURATION</span> <span class="p">=</span> <span class="m">30</span> <span class="p">*</span> <span class="m">1000L</span>
+        <span class="k">private</span> <span class="k">const</span> <span class="kd">val</span> <span class="py">FPS</span> <span class="p">=</span> <span class="mf">0.06</span>
+        <span class="k">private</span> <span class="k">const</span> <span class="kd">val</span> <span class="py">DURATION</span> <span class="p">=</span> <span class="mi">30</span> <span class="p">*</span> <span class="mi">1000L</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
@@ -459,21 +458,21 @@ $(document).ready(function(){
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">animator</span><span class="p">.</span><span class="nf">addUpdateListener</span><span class="p">({</span> <span class="n">_</span> <span class="p">-&gt;</span> <span class="k">this</span> <span class="p">})</span>
 </code></pre></div></div>
 
-<p>So the reason why the progress bar wasn’t working is simple. Instead of registering itself as an <code class="highlighter-rouge">AnimationUpdateListener</code>, it actually registered a lambda, a new function to handle the animation updates.</p>
+<p>So the reason why the progress bar wasn’t working is simple. Instead of registering itself as an <code class="language-plaintext highlighter-rouge">AnimationUpdateListener</code>, it actually registered a lambda, a new function to handle the animation updates.</p>
 
-<p>So every animation update the lambda <code class="highlighter-rouge">{ _ -&gt; this }</code> was invoked instead of the <code class="highlighter-rouge">onAnimationUpdate</code> method. Thereby not doing anything, it just has the <code class="highlighter-rouge">this</code> object without any invocation on it.</p>
+<p>So every animation update the lambda <code class="language-plaintext highlighter-rouge">{ _ -&gt; this }</code> was invoked instead of the <code class="language-plaintext highlighter-rouge">onAnimationUpdate</code> method. Thereby not doing anything, it just has the <code class="language-plaintext highlighter-rouge">this</code> object without any invocation on it.</p>
 
 <p>Equivalent to writing the following function:</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">doNothing</span><span class="p">()</span> <span class="p">{</span>
-  <span class="m">5</span>
+  <span class="mi">5</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
 <p>Perfectly valid syntax, but otherwise completely useless.</p>
 
 <h2 id="wrap-up">Wrap-up</h2>
-<p>A very subtle difference in syntax (<code class="highlighter-rouge">{}</code> instead of <code class="highlighter-rouge">()</code>) can make a huge difference in what the code actually does. Kotlin is a very powerful programming language, but with great power comes great…</p>
+<p>A very subtle difference in syntax (<code class="language-plaintext highlighter-rouge">{}</code> instead of <code class="language-plaintext highlighter-rouge">()</code>) can make a huge difference in what the code actually does. Kotlin is a very powerful programming language, but with great power comes great…</p>
 
 <p>If you’ve made it this far you should probably follow me on <span><a href="https://twitter.com/molsjeroen?source=alittlekotlinpuzzler2018" class="ga-link" target="_blank">Twitter</a></span>
 . Feel free leave a comment below!</p>
@@ -824,10 +823,10 @@ $(document).ready(function(){
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://jeroenmols.com/blog/2018/09/25/kotlinpuzzler/";  // Replace PAGE_URL with your page's canonical URL variable
-      this.page.identifier = "/blog/2018/09/25/kotlinpuzzler"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      this.page.url = "https://jeroenmols.com/blog/2018/09/25/kotlinpuzzler/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/blog/2018/09/25/kotlinpuzzler"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
     };
-    (function() { // DON'T EDIT BELOW THIS LINE
+    (function() { /* DON'T EDIT BELOW THIS LINE */
       var d = document, s = d.createElement('script');
       s.src = 'https://jeroenmols.disqus.com/embed.js';
       s.setAttribute('data-timestamp', +new Date());

@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.17.0 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.19.3 by Michael Rose
   Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
@@ -170,11 +170,11 @@ $(document).ready(function(){
           
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/blog/" >Blog</a>
+              <a href="/blog/">Blog</a>
             </li><li class="masthead__menu-item">
-              <a href="/speaking/" >Speaking</a>
+              <a href="/speaking/">Speaking</a>
             </li><li class="masthead__menu-item">
-              <a href="/hireme/" >Hire me</a>
+              <a href="/hireme/">Hire me</a>
             </li></ul>
         
         <button class="search__toggle" type="button">
@@ -210,8 +210,6 @@ $(document).ready(function(){
 
   
     <div class="author__avatar">
-      
-
       
         <img src="/img/profile.jpg" alt="Jeroen Mols" itemprop="image">
       
@@ -250,7 +248,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://twitter.com/@molsjeroen" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span>
           </a>
         </li>
       
@@ -260,7 +258,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://www.linkedin.com/in/jeroenmols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn
+            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span>
           </a>
         </li>
       
@@ -276,7 +274,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://github.com/JeroenMols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span>
           </a>
         </li>
       
@@ -286,7 +284,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://stackoverflow.com/users/2771851/jmols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i> Stack Overflow
+            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i><span class="label">Stack Overflow</span>
           </a>
         </li>
       
@@ -305,7 +303,7 @@ $(document).ready(function(){
         
           <li>
             <a href="https://www.youtube.com/channel/UC34Vt1lo8T15_rgc3e3Jsew" itemprop="sameAs" rel="nofollow noopener noreferrer">
-              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i> YouTube
+              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span>
             </a>
           </li>
         
@@ -334,6 +332,7 @@ $(document).ready(function(){
 
   
   </div>
+
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
@@ -392,12 +391,12 @@ $(document).ready(function(){
 
 <p><img src="https://jeroenmols.com/img/blog/androidqgestures/no_exclusions.gif" alt="Back navigation gestures prevent from moving the brightness slider" class="align-center" /></p>
 
-<p>Fortunately, Android Q offers a way to tell the Android system that it shouldn’t intercept gestures in a particular area of the screen using <a href="https://developer.android.com/reference/android/view/View#setSystemGestureExclusionRects(java.util.List%3Candroid.graphics.Rect%3E)"><code class="highlighter-rouge">setSystemGestureExclusionRects</code></a>:</p>
+<p>Fortunately, Android Q offers a way to tell the Android system that it shouldn’t intercept gestures in a particular area of the screen using <a href="https://developer.android.com/reference/android/view/View#setSystemGestureExclusionRects(java.util.List%3Candroid.graphics.Rect%3E)"><code class="language-plaintext highlighter-rouge">setSystemGestureExclusionRects</code></a>:</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">brightnessSlider</span><span class="p">.</span><span class="nf">doOnLayout</span> <span class="p">{</span>
     <span class="kd">val</span> <span class="py">exclusions</span> <span class="p">=</span> <span class="nf">listOf</span><span class="p">(</span>
-            <span class="nc">Rect</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">exclusionWidth</span><span class="p">,</span> <span class="n">it</span><span class="p">.</span><span class="n">height</span><span class="p">),</span> <span class="c1">// min area</span>
-            <span class="nc">Rect</span><span class="p">(</span><span class="n">it</span><span class="p">.</span><span class="n">width</span> <span class="p">-</span> <span class="n">exclusionWidth</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">it</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="n">it</span><span class="p">.</span><span class="n">height</span><span class="p">)</span> <span class="c1">// max area</span>
+            <span class="nc">Rect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">exclusionWidth</span><span class="p">,</span> <span class="n">it</span><span class="p">.</span><span class="n">height</span><span class="p">),</span> <span class="c1">// min area</span>
+            <span class="nc">Rect</span><span class="p">(</span><span class="n">it</span><span class="p">.</span><span class="n">width</span> <span class="p">-</span> <span class="n">exclusionWidth</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">it</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="n">it</span><span class="p">.</span><span class="n">height</span><span class="p">)</span> <span class="c1">// max area</span>
         <span class="p">)</span>
     <span class="nc">ViewCompat</span><span class="p">.</span><span class="nf">setSystemGestureExclusionRects</span><span class="p">(</span><span class="n">brightnessSlider</span><span class="p">,</span> <span class="n">exclusions</span><span class="p">)</span>
 <span class="p">}</span>
@@ -405,9 +404,9 @@ $(document).ready(function(){
 
 <p>In the example above, we exclude both the minimum and maximum area of the brightness slider from navigation gestures.</p>
 
-<p>Important to know is that you should define the <code class="highlighter-rouge">systemGestureExclusionRects</code> in coordinates relative to the <code class="highlighter-rouge">View</code>/<code class="highlighter-rouge">ViewGroup</code> you are applying the exclusion <code class="highlighter-rouge">Rects</code> on!</p>
+<p>Important to know is that you should define the <code class="language-plaintext highlighter-rouge">systemGestureExclusionRects</code> in coordinates relative to the <code class="language-plaintext highlighter-rouge">View</code>/<code class="language-plaintext highlighter-rouge">ViewGroup</code> you are applying the exclusion <code class="language-plaintext highlighter-rouge">Rects</code> on!</p>
 
-<p>In the example above we apply them on the brightness slider so we use coordinates relative to the slider (notice the use of <code class="highlighter-rouge">width</code> and <code class="highlighter-rouge">height</code>). But we can also apply the exclusion to the parent (notice the use of <code class="highlighter-rouge">left</code> and <code class="highlighter-rouge">right</code>):</p>
+<p>In the example above we apply them on the brightness slider so we use coordinates relative to the slider (notice the use of <code class="language-plaintext highlighter-rouge">width</code> and <code class="language-plaintext highlighter-rouge">height</code>). But we can also apply the exclusion to the parent (notice the use of <code class="language-plaintext highlighter-rouge">left</code> and <code class="language-plaintext highlighter-rouge">right</code>):</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">parent</span><span class="p">.</span><span class="nf">doOnLayout</span> <span class="p">{</span>
     <span class="kd">val</span> <span class="py">exclusions</span> <span class="p">=</span> <span class="nf">with</span><span class="p">(</span><span class="n">brightnessSlider</span><span class="p">)</span> <span class="p">{</span>
@@ -420,11 +419,11 @@ $(document).ready(function(){
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>At any rate, we can only apply the exclusion <code class="highlighter-rouge">Rects</code> once the view is laid out, hence we wrap the <code class="highlighter-rouge">setSystemGestureExclusionRects</code> with the awesome <a href="https://developer.android.com/reference/kotlin/androidx/core/view/package-summary#doonlayout"><code class="highlighter-rouge">doOnLayout</code> method</a> from Android KTX.</p>
+<p>At any rate, we can only apply the exclusion <code class="language-plaintext highlighter-rouge">Rects</code> once the view is laid out, hence we wrap the <code class="language-plaintext highlighter-rouge">setSystemGestureExclusionRects</code> with the awesome <a href="https://developer.android.com/reference/kotlin/androidx/core/view/package-summary#doonlayout"><code class="language-plaintext highlighter-rouge">doOnLayout</code> method</a> from Android KTX.</p>
 
-<p>To get the width of the exclusion area <code class="highlighter-rouge">exclusionWidth</code>, we should add an <code class="highlighter-rouge">OnApplyWindowInsetsListener</code> and ask the returned insets for the <code class="highlighter-rouge">getSystemGestureInsets</code>. There is one problem though: this listener is only called when the edge to edge system UI flags (<code class="highlighter-rouge">View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN</code>) are set!</p>
+<p>To get the width of the exclusion area <code class="language-plaintext highlighter-rouge">exclusionWidth</code>, we should add an <code class="language-plaintext highlighter-rouge">OnApplyWindowInsetsListener</code> and ask the returned insets for the <code class="language-plaintext highlighter-rouge">getSystemGestureInsets</code>. There is one problem though: this listener is only called when the edge to edge system UI flags (<code class="language-plaintext highlighter-rouge">View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN</code>) are set!</p>
 
-<p>So as an alternative we can take the <code class="highlighter-rouge">WindowInsets</code> from the root view, which can easily be done in the following way:</p>
+<p>So as an alternative we can take the <code class="language-plaintext highlighter-rouge">WindowInsets</code> from the root view, which can easily be done in the following way:</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">seekbar</span><span class="p">.</span><span class="nf">doOnAttach</span> <span class="p">{</span>
     <span class="kd">val</span> <span class="py">insets</span> <span class="p">=</span> <span class="nc">WindowInsetsCompat</span><span class="p">.</span><span class="nf">wrap</span><span class="p">(</span><span class="n">view</span><span class="p">.</span><span class="n">rootWindowInsets</span><span class="p">)</span>
@@ -436,16 +435,16 @@ $(document).ready(function(){
 </code></pre></div></div>
 
 <blockquote>
-  <p>Note that <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/983823/"><code class="highlighter-rouge">doOnAttach</code></a> and <a href=""><code class="highlighter-rouge">WindowInsetsCompat.wrap()</code></a> have yet to be released in an upcoming support library</p>
+  <p>Note that <a href="https://android-review.googlesource.com/c/platform/frameworks/support/+/983823/"><code class="language-plaintext highlighter-rouge">doOnAttach</code></a> and <a href=""><code class="language-plaintext highlighter-rouge">WindowInsetsCompat.wrap()</code></a> have yet to be released in an upcoming support library</p>
 </blockquote>
 
-<p>Finally, note that you need to use at least androidx.core version 1.2.0 or higher in order for the <a href="https://developer.android.com/reference/androidx/core/view/ViewCompat#setSystemGestureExclusionRects(android.view.View,%2520java.util.List%3Candroid.graphics.Rect%3E)">ViewCompat <code class="highlighter-rouge">setSystemGestureExclusionRects</code> API</a>) to be available. If you’re not ready to jump on 1.2.0 yet, you can always surround it with an API level check (make sure to use compile SDK Q).</p>
+<p>Finally, note that you need to use at least androidx.core version 1.2.0 or higher in order for the <a href="https://developer.android.com/reference/androidx/core/view/ViewCompat#setSystemGestureExclusionRects(android.view.View,%2520java.util.List%3Candroid.graphics.Rect%3E)">ViewCompat <code class="language-plaintext highlighter-rouge">setSystemGestureExclusionRects</code> API</a>) to be available. If you’re not ready to jump on 1.2.0 yet, you can always surround it with an API level check (make sure to use compile SDK Q).</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="nc">Build</span><span class="p">.</span><span class="nc">VERSION</span><span class="p">.</span><span class="nc">SDK_INT</span> <span class="p">&gt;=</span> <span class="nc">Q</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">val</span> <span class="py">exclusions</span> <span class="p">=</span> <span class="nf">with</span><span class="p">(</span><span class="n">brightnessSlider</span><span class="p">)</span> <span class="p">{</span>
         <span class="nf">listOf</span><span class="p">(</span>
-            <span class="nc">Rect</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">exclusionWidth</span><span class="p">,</span> <span class="n">height</span><span class="p">),</span>
-            <span class="nc">Rect</span><span class="p">(</span><span class="n">width</span> <span class="p">-</span> <span class="n">exclusionWidth</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+            <span class="nc">Rect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">exclusionWidth</span><span class="p">,</span> <span class="n">height</span><span class="p">),</span>
+            <span class="nc">Rect</span><span class="p">(</span><span class="n">width</span> <span class="p">-</span> <span class="n">exclusionWidth</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
         <span class="p">)</span>
     <span class="p">}</span>
     <span class="n">brightnessSlider</span><span class="p">.</span><span class="nf">setSystemGestureExclusionRects</span><span class="p">(</span><span class="n">exclusions</span><span class="p">)</span>
@@ -480,7 +479,7 @@ $(document).ready(function(){
 
 <p>Secondly, when cards are off (and the brightness slider is at 0 alpha), we also shouldn’t ask for any exclusions of such a slider:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if (!switch.checked) {
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if (!switch.checked) {
     ViewCompat.setSystemGestureExclusionRects(brightnessSlider, emptyList())
 }
 </code></pre></div></div>
@@ -495,7 +494,7 @@ $(document).ready(function(){
 </ul>
 
 <h2 id="crosstalk-with-brightness-sliders">Crosstalk with brightness sliders</h2>
-<p>Unfortunately, all isn’t good just yet, because in very rare cases back navigation would still accidentally cause <code class="highlighter-rouge">onTouchEvent</code> of our custom brightness slider to also be called:</p>
+<p>Unfortunately, all isn’t good just yet, because in very rare cases back navigation would still accidentally cause <code class="language-plaintext highlighter-rouge">onTouchEvent</code> of our custom brightness slider to also be called:</p>
 
 <p><img src="https://jeroenmols.com/img/blog/androidqgestures/crosstalk_exclusion.gif" alt="Back navigation gestures first causes brightness slider to jump to max before navigating back" class="align-center" /></p>
 
@@ -507,13 +506,13 @@ $(document).ready(function(){
     <span class="k">if</span> <span class="p">(</span><span class="nc">Build</span><span class="p">.</span><span class="nc">VERSION</span><span class="p">.</span><span class="nc">SDK_INT</span> <span class="p">&lt;</span> <span class="nc">Q</span><span class="p">)</span> <span class="k">return</span> <span class="k">false</span>
 
     <span class="kd">val</span> <span class="py">positionOnSlider</span> <span class="p">=</span> <span class="p">(</span><span class="nf">getProgressForXPosition</span><span class="p">(</span><span class="n">touchX</span><span class="p">)</span> <span class="p">-</span> <span class="n">min</span><span class="p">).</span><span class="nf">toFloat</span><span class="p">()</span> <span class="p">/</span> <span class="p">(</span><span class="n">max</span> <span class="p">-</span> <span class="n">min</span><span class="p">)</span>
-    <span class="kd">val</span> <span class="py">slideGestureNearMinNotOnThumb</span> <span class="p">=</span> <span class="n">positionOnSlider</span> <span class="p">&lt;</span> <span class="m">0.1f</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="n">isThumbNearMin</span>
-    <span class="kd">val</span> <span class="py">slideGestureNearMaxNotOnThumb</span> <span class="p">=</span> <span class="n">positionOnSlider</span> <span class="p">&gt;</span> <span class="m">0.9f</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="n">isThumbNearMax</span>
+    <span class="kd">val</span> <span class="py">slideGestureNearMinNotOnThumb</span> <span class="p">=</span> <span class="n">positionOnSlider</span> <span class="p">&lt;</span> <span class="mf">0.1f</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="n">isThumbNearMin</span>
+    <span class="kd">val</span> <span class="py">slideGestureNearMaxNotOnThumb</span> <span class="p">=</span> <span class="n">positionOnSlider</span> <span class="p">&gt;</span> <span class="mf">0.9f</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="n">isThumbNearMax</span>
     <span class="k">return</span> <span class="n">slideGestureNearMinNotOnThumb</span> <span class="p">||</span> <span class="n">slideGestureNearMaxNotOnThumb</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>Ignoring the touch is as easy as just returning false in the <code class="highlighter-rouge">onTouchEvent</code> method:</p>
+<p>Ignoring the touch is as easy as just returning false in the <code class="language-plaintext highlighter-rouge">onTouchEvent</code> method:</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">when</span> <span class="p">(</span><span class="n">ev</span><span class="p">.</span><span class="nf">getAction</span><span class="p">()</span> <span class="n">and</span> <span class="nc">MotionEvent</span><span class="p">.</span><span class="nc">ACTION_MASK</span><span class="p">)</span> <span class="p">{</span>
     <span class="nc">MotionEvent</span><span class="p">.</span><span class="nc">ACTION_DOWN</span> <span class="p">-&gt;</span> <span class="p">{</span>
@@ -884,10 +883,10 @@ $(document).ready(function(){
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://jeroenmols.com/blog/2019/07/17/androidqgestures/";  // Replace PAGE_URL with your page's canonical URL variable
-      this.page.identifier = "/blog/2019/07/17/androidqgestures"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      this.page.url = "https://jeroenmols.com/blog/2019/07/17/androidqgestures/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/blog/2019/07/17/androidqgestures"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
     };
-    (function() { // DON'T EDIT BELOW THIS LINE
+    (function() { /* DON'T EDIT BELOW THIS LINE */
       var d = document, s = d.createElement('script');
       s.src = 'https://jeroenmols.disqus.com/embed.js';
       s.setAttribute('data-timestamp', +new Date());

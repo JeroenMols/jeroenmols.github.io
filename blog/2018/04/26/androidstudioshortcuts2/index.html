@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.17.0 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.19.3 by Michael Rose
   Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
@@ -170,11 +170,11 @@ $(document).ready(function(){
           
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/blog/" >Blog</a>
+              <a href="/blog/">Blog</a>
             </li><li class="masthead__menu-item">
-              <a href="/speaking/" >Speaking</a>
+              <a href="/speaking/">Speaking</a>
             </li><li class="masthead__menu-item">
-              <a href="/hireme/" >Hire me</a>
+              <a href="/hireme/">Hire me</a>
             </li></ul>
         
         <button class="search__toggle" type="button">
@@ -210,8 +210,6 @@ $(document).ready(function(){
 
   
     <div class="author__avatar">
-      
-
       
         <img src="/img/profile.jpg" alt="Jeroen Mols" itemprop="image">
       
@@ -250,7 +248,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://twitter.com/@molsjeroen" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span>
           </a>
         </li>
       
@@ -260,7 +258,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://www.linkedin.com/in/jeroenmols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn
+            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span>
           </a>
         </li>
       
@@ -276,7 +274,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://github.com/JeroenMols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span>
           </a>
         </li>
       
@@ -286,7 +284,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://stackoverflow.com/users/2771851/jmols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i> Stack Overflow
+            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i><span class="label">Stack Overflow</span>
           </a>
         </li>
       
@@ -305,7 +303,7 @@ $(document).ready(function(){
         
           <li>
             <a href="https://www.youtube.com/channel/UC34Vt1lo8T15_rgc3e3Jsew" itemprop="sameAs" rel="nofollow noopener noreferrer">
-              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i> YouTube
+              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span>
             </a>
           </li>
         
@@ -334,6 +332,7 @@ $(document).ready(function(){
 
   
   </div>
+
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
@@ -386,29 +385,29 @@ $(document).ready(function(){
 <p>I strongly suggest you look at the examples below, but a quick reference is always useful.</p>
 
 <ul>
-  <li><code class="highlighter-rouge">⌘ + D</code>: duplicate line</li>
-  <li><code class="highlighter-rouge">⌘ + backspace</code>: delete line</li>
-  <li><code class="highlighter-rouge">⌘ + ↑</code>: move line up</li>
-  <li><code class="highlighter-rouge">⌘ + ↓</code>: move line down</li>
-  <li><code class="highlighter-rouge">⇧ + ⌘ + ↑</code>: move method up</li>
+  <li><code class="language-plaintext highlighter-rouge">⌘ + D</code>: duplicate line</li>
+  <li><code class="language-plaintext highlighter-rouge">⌘ + backspace</code>: delete line</li>
+  <li><code class="language-plaintext highlighter-rouge">⌘ + ↑</code>: move line up</li>
+  <li><code class="language-plaintext highlighter-rouge">⌘ + ↓</code>: move line down</li>
+  <li><code class="language-plaintext highlighter-rouge">⇧ + ⌘ + ↑</code>: move method up</li>
   <li>
-    <p><code class="highlighter-rouge">⇧ + ⌘ + ↓</code>: move method down</p>
+    <p><code class="language-plaintext highlighter-rouge">⇧ + ⌘ + ↓</code>: move method down</p>
   </li>
-  <li><code class="highlighter-rouge">⇧ + F6</code>: rename</li>
-  <li><code class="highlighter-rouge">⌘ + F6</code>: change method signature</li>
+  <li><code class="language-plaintext highlighter-rouge">⇧ + F6</code>: rename</li>
+  <li><code class="language-plaintext highlighter-rouge">⌘ + F6</code>: change method signature</li>
   <li>
-    <p><code class="highlighter-rouge">F6</code>: move</p>
+    <p><code class="language-plaintext highlighter-rouge">F6</code>: move</p>
   </li>
-  <li><code class="highlighter-rouge">⌥ + ⌘ + V</code>: extract variable</li>
-  <li><code class="highlighter-rouge">⌥ + ⌘ + M</code>: extract method</li>
-  <li><code class="highlighter-rouge">⌥ + ⌘ + P</code>: extract method parameter</li>
-  <li><code class="highlighter-rouge">⌥ + ⌘ + F</code>: extract property (or field)</li>
-  <li><code class="highlighter-rouge">⌥ + ⌘ + C</code>: extract constant (java only)</li>
-  <li><code class="highlighter-rouge">⌥ + ⌘ + N</code>: inline</li>
+  <li><code class="language-plaintext highlighter-rouge">⌥ + ⌘ + V</code>: extract variable</li>
+  <li><code class="language-plaintext highlighter-rouge">⌥ + ⌘ + M</code>: extract method</li>
+  <li><code class="language-plaintext highlighter-rouge">⌥ + ⌘ + P</code>: extract method parameter</li>
+  <li><code class="language-plaintext highlighter-rouge">⌥ + ⌘ + F</code>: extract property (or field)</li>
+  <li><code class="language-plaintext highlighter-rouge">⌥ + ⌘ + C</code>: extract constant (java only)</li>
+  <li><code class="language-plaintext highlighter-rouge">⌥ + ⌘ + N</code>: inline</li>
   <li>
-    <p><code class="highlighter-rouge">^ + T</code>: open refactoring menu</p>
+    <p><code class="language-plaintext highlighter-rouge">^ + T</code>: open refactoring menu</p>
   </li>
-  <li><code class="highlighter-rouge">⌥ + enter</code>: quick fix</li>
+  <li><code class="language-plaintext highlighter-rouge">⌥ + enter</code>: quick fix</li>
 </ul>
 
 <p>Windows equivalents can be found <a href="https://developer.android.com/studio/intro/keyboard-shortcuts.html">here</a>.</p>
@@ -417,8 +416,8 @@ $(document).ready(function(){
 <p>In order to speed up development, you want to reduce the amount of typing to a minimum. While autocomplete definitely helps, sometimes it’s faster to directly manipulate lines:</p>
 
 <ul>
-  <li><code class="highlighter-rouge">⌘ + D</code>: duplicate line</li>
-  <li><code class="highlighter-rouge">⌘ + backspace</code>: delete line</li>
+  <li><code class="language-plaintext highlighter-rouge">⌘ + D</code>: duplicate line</li>
+  <li><code class="language-plaintext highlighter-rouge">⌘ + backspace</code>: delete line</li>
 </ul>
 
 <p>These shortcuts will work regardless of the cursor position in the line.</p>
@@ -428,7 +427,7 @@ $(document).ready(function(){
   <figcaption>Duplicate and delete lines</figcaption>
 </figure>
 
-<p>After duplicating you can simply move code up/down by using <code class="highlighter-rouge">⌘ + ↑</code> and <code class="highlighter-rouge">⌘ + ↓</code> for lines, or <code class="highlighter-rouge">⇧ + ⌘ + ↑</code> and <code class="highlighter-rouge">⇧ + ⌘ + ↓</code> for methods.</p>
+<p>After duplicating you can simply move code up/down by using <code class="language-plaintext highlighter-rouge">⌘ + ↑</code> and <code class="language-plaintext highlighter-rouge">⌘ + ↓</code> for lines, or <code class="language-plaintext highlighter-rouge">⇧ + ⌘ + ↑</code> and <code class="language-plaintext highlighter-rouge">⇧ + ⌘ + ↓</code> for methods.</p>
 
 <figure>
   <img src="https://jeroenmols.com/img/blog/androidstudioshortcuts2/movelineblock.gif" alt="Move lines and methods up/down" />
@@ -443,7 +442,7 @@ $(document).ready(function(){
 </figure>
 
 <h2 id="rename-update-and-move">Rename, update and move</h2>
-<p>Renaming classes is very involved: rename class definition, rename the file and update all references and documentation. Fortunately <code class="highlighter-rouge">⇧ + F6</code> does all of that for you.</p>
+<p>Renaming classes is very involved: rename class definition, rename the file and update all references and documentation. Fortunately <code class="language-plaintext highlighter-rouge">⇧ + F6</code> does all of that for you.</p>
 
 <figure>
   <img src="https://jeroenmols.com/img/blog/androidstudioshortcuts2/renameclass.gif" alt="Rename anything with ⇧ + F6" />
@@ -452,16 +451,16 @@ $(document).ready(function(){
 
 <p>This doesn’t just work for classes, but also for methods, variables, fields,…</p>
 
-<p>Similarly <code class="highlighter-rouge">⌘ + F6</code> allows you to update the signature of a method. This is especially useful to add, remove or reorder new parameters to the method definition.</p>
+<p>Similarly <code class="language-plaintext highlighter-rouge">⌘ + F6</code> allows you to update the signature of a method. This is especially useful to add, remove or reorder new parameters to the method definition.</p>
 
 <figure>
   <img src="https://jeroenmols.com/img/blog/androidstudioshortcuts2/changesignature.gif" alt="Change method signature with ⌘ + F6" />
   <figcaption>Change method signature with ⌘ + F6</figcaption>
 </figure>
 
-<p>Note how you can specify a default value so all existing method consumers will be updated by Android Studio! Use <code class="highlighter-rouge">⌘ + ↑</code> and <code class="highlighter-rouge">⌘ + ↓</code> to quickly reorder parameters.</p>
+<p>Note how you can specify a default value so all existing method consumers will be updated by Android Studio! Use <code class="language-plaintext highlighter-rouge">⌘ + ↑</code> and <code class="language-plaintext highlighter-rouge">⌘ + ↓</code> to quickly reorder parameters.</p>
 
-<p>Finally, you can move classes to their own file or to another package using <code class="highlighter-rouge">F6</code>. This works for all top-level declarations and Java static methods/constants.</p>
+<p>Finally, you can move classes to their own file or to another package using <code class="language-plaintext highlighter-rouge">F6</code>. This works for all top-level declarations and Java static methods/constants.</p>
 
 <figure>
   <img src="https://jeroenmols.com/img/blog/androidstudioshortcuts2/moveclass.gif" alt="Move classes with F6" />
@@ -469,7 +468,7 @@ $(document).ready(function(){
 </figure>
 
 <h2 id="refactoring">Refactoring</h2>
-<p>To clean up code it is often handy to convert values into variables with a meaningful name. This is easy using <code class="highlighter-rouge">⌥ + ⌘ + V</code>.</p>
+<p>To clean up code it is often handy to convert values into variables with a meaningful name. This is easy using <code class="language-plaintext highlighter-rouge">⌥ + ⌘ + V</code>.</p>
 
 <figure>
   <img src="https://jeroenmols.com/img/blog/androidstudioshortcuts2/extractvariable.gif" alt="Extract variable with ⌥ + ⌘ + V" />
@@ -478,14 +477,14 @@ $(document).ready(function(){
 
 <p>Note that you can either replace one or all occurrences.</p>
 
-<p>Similarly, you can extract code into a method with <code class="highlighter-rouge">⌥ + ⌘ + M</code> and give it an easy to understand name.</p>
+<p>Similarly, you can extract code into a method with <code class="language-plaintext highlighter-rouge">⌥ + ⌘ + M</code> and give it an easy to understand name.</p>
 
 <figure>
   <img src="https://jeroenmols.com/img/blog/androidstudioshortcuts2/extractmethod.gif" alt="Extract method with ⌥ + ⌘ + M" />
   <figcaption>Extract method with ⌥ + ⌘ + M</figcaption>
 </figure>
 
-<p>You can even convert a variable to a parameter that is injected into the method using <code class="highlighter-rouge">⌥ + ⌘ + P</code>.</p>
+<p>You can even convert a variable to a parameter that is injected into the method using <code class="language-plaintext highlighter-rouge">⌥ + ⌘ + P</code>.</p>
 
 <figure>
   <img src="https://jeroenmols.com/img/blog/androidstudioshortcuts2/extractparameter.gif" alt="Extract parameter with ⌥ + ⌘ + P" />
@@ -494,16 +493,16 @@ $(document).ready(function(){
 
 <p>If this makes another parameter obsolete, then it will be automatically removed from the method signature.</p>
 
-<p>Same holds true to create properties, by using <code class="highlighter-rouge">⌥ + ⌘ + F</code>.</p>
+<p>Same holds true to create properties, by using <code class="language-plaintext highlighter-rouge">⌥ + ⌘ + F</code>.</p>
 
 <figure>
   <img src="https://jeroenmols.com/img/blog/androidstudioshortcuts2/extractproperty.gif" alt="Extract property with ⌥ + ⌘ + F" />
   <figcaption>Extract property with ⌥ + ⌘ + F</figcaption>
 </figure>
 
-<p>Note that for Java you can also use <code class="highlighter-rouge">⌥ + ⌘ + C</code> to extract a static final field. This isn’t available for Kotlin however.</p>
+<p>Note that for Java you can also use <code class="language-plaintext highlighter-rouge">⌥ + ⌘ + C</code> to extract a static final field. This isn’t available for Kotlin however.</p>
 
-<p>Besides extracting, you can also do the inverse operation: inlining <code class="highlighter-rouge">⌥ + ⌘ + N</code>. This is available for almost everything you can extract: methods, variables, properties,…</p>
+<p>Besides extracting, you can also do the inverse operation: inlining <code class="language-plaintext highlighter-rouge">⌥ + ⌘ + N</code>. This is available for almost everything you can extract: methods, variables, properties,…</p>
 
 <figure>
   <img src="https://jeroenmols.com/img/blog/androidstudioshortcuts2/inlinevariablesmethods.gif" alt="Inline method or variable with ⌥ + ⌘ + N" />
@@ -512,7 +511,7 @@ $(document).ready(function(){
 
 <p>Inlining gives you the option to inline it only in one place or everywhere. Plus you can optionally still keep the inlined variable or method.</p>
 
-<p>While the above refactorings are the most commonly used ones, Android Studio actually offers quite a lot more if you press <code class="highlighter-rouge">^ + T</code>:</p>
+<p>While the above refactorings are the most commonly used ones, Android Studio actually offers quite a lot more if you press <code class="language-plaintext highlighter-rouge">^ + T</code>:</p>
 
 <figure style="width: 50%" class="align-center">
   <img src="https://jeroenmols.com/img/blog/androidstudioshortcuts2/refactoroptions.png" alt="All refactoring options" />
@@ -522,7 +521,7 @@ $(document).ready(function(){
 <p>I strongly encourage you to experiment with these and learn how they work. Good knowledge of these can dramatically speed up your development and reduce mistakes.</p>
 
 <h2 id="android-studio-quick-fixes">Android studio quick fixes</h2>
-<p>With <code class="highlighter-rouge">⌥ + enter</code> Android Studio is able to quickly fix a number of common issues: add imports, remove unused method, remove unused parameter, restrict access modifiers,…</p>
+<p>With <code class="language-plaintext highlighter-rouge">⌥ + enter</code> Android Studio is able to quickly fix a number of common issues: add imports, remove unused method, remove unused parameter, restrict access modifiers,…</p>
 
 <figure>
   <img src="https://jeroenmols.com/img/blog/androidstudioshortcuts2/quickfixes.gif" alt="Quick fix problems with ⌥ + enter" />
@@ -915,10 +914,10 @@ $(document).ready(function(){
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://jeroenmols.com/blog/2018/04/26/androidstudioshortcuts2/";  // Replace PAGE_URL with your page's canonical URL variable
-      this.page.identifier = "/blog/2018/04/26/androidstudioshortcuts2"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      this.page.url = "https://jeroenmols.com/blog/2018/04/26/androidstudioshortcuts2/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/blog/2018/04/26/androidstudioshortcuts2"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
     };
-    (function() { // DON'T EDIT BELOW THIS LINE
+    (function() { /* DON'T EDIT BELOW THIS LINE */
       var d = document, s = d.createElement('script');
       s.src = 'https://jeroenmols.disqus.com/embed.js';
       s.setAttribute('data-timestamp', +new Date());

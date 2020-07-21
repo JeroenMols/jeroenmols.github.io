@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.17.0 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.19.3 by Michael Rose
   Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
@@ -170,11 +170,11 @@ $(document).ready(function(){
           
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/blog/" >Blog</a>
+              <a href="/blog/">Blog</a>
             </li><li class="masthead__menu-item">
-              <a href="/speaking/" >Speaking</a>
+              <a href="/speaking/">Speaking</a>
             </li><li class="masthead__menu-item">
-              <a href="/hireme/" >Hire me</a>
+              <a href="/hireme/">Hire me</a>
             </li></ul>
         
         <button class="search__toggle" type="button">
@@ -210,8 +210,6 @@ $(document).ready(function(){
 
   
     <div class="author__avatar">
-      
-
       
         <img src="/img/profile.jpg" alt="Jeroen Mols" itemprop="image">
       
@@ -250,7 +248,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://twitter.com/@molsjeroen" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span>
           </a>
         </li>
       
@@ -260,7 +258,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://www.linkedin.com/in/jeroenmols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn
+            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span>
           </a>
         </li>
       
@@ -276,7 +274,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://github.com/JeroenMols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span>
           </a>
         </li>
       
@@ -286,7 +284,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://stackoverflow.com/users/2771851/jmols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i> Stack Overflow
+            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i><span class="label">Stack Overflow</span>
           </a>
         </li>
       
@@ -305,7 +303,7 @@ $(document).ready(function(){
         
           <li>
             <a href="https://www.youtube.com/channel/UC34Vt1lo8T15_rgc3e3Jsew" itemprop="sameAs" rel="nofollow noopener noreferrer">
-              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i> YouTube
+              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span>
             </a>
           </li>
         
@@ -334,6 +332,7 @@ $(document).ready(function(){
 
   
   </div>
+
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
@@ -373,7 +372,7 @@ $(document).ready(function(){
 <p>Today I would like to show how you can visualize your current method count and understand what libraries are eating up the largest part of that. Next it’s time to reduce said method count and remove that nasty multidex solution once and for all.</p>
 
 <h2 id="visualizing-method-count">Visualizing method count</h2>
-<p>The easiest and most attractive way (imho) to visualize the method count is by using the <a href="https://github.com/KeepSafe/dexcount-gradle-plugin">Dexcount Gradle Plugin</a>. Applying it to your project is as easy as adding a classpath dependency to your root <code class="highlighter-rouge">build.gradle</code> and applying the plugin to your App <code class="highlighter-rouge">build.gradle</code>.</p>
+<p>The easiest and most attractive way (imho) to visualize the method count is by using the <a href="https://github.com/KeepSafe/dexcount-gradle-plugin">Dexcount Gradle Plugin</a>. Applying it to your project is as easy as adding a classpath dependency to your root <code class="language-plaintext highlighter-rouge">build.gradle</code> and applying the plugin to your App <code class="language-plaintext highlighter-rouge">build.gradle</code>.</p>
 
 <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// root build.gradle file</span>
 <span class="n">buildscript</span> <span class="o">{</span>
@@ -391,11 +390,11 @@ $(document).ready(function(){
 <span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">'com.getkeepsafe.dexcount'</span>
 </code></pre></div></div>
 
-<p>Running a normal project build <code class="highlighter-rouge">./gradlew assembleDebug</code> will now print out the current method count in the console:</p>
+<p>Running a normal project build <code class="language-plaintext highlighter-rouge">./gradlew assembleDebug</code> will now print out the current method count in the console:</p>
 
 <p><a href="https://jeroenmols.com/img/blog/methodcount/methodcount_output.png"><img src="https://jeroenmols.com/img/blog/methodcount/methodcount_output.png" alt="Method count output of template project with full Google Play Services" class="align-center" /></a></p>
 
-<p>and generate an interactive graphical report in the outputs folder <code class="highlighter-rouge">build/outputs/dexcount/debugChart</code>:</p>
+<p>and generate an interactive graphical report in the outputs folder <code class="language-plaintext highlighter-rouge">build/outputs/dexcount/debugChart</code>:</p>
 
 <p><a href="https://jeroenmols.com/img/blog/methodcount/dexcount-googleplayservices/debugChart/index.html"><img src="https://jeroenmols.com/img/blog/methodcount/methodcount_graphic.gif" alt="Method count graphical output of template project with full Google Play Services" class="align-center" /></a></p>
 
@@ -410,7 +409,7 @@ $(document).ready(function(){
 
 <ol>
   <li>Replacing libraries in existing apps can be very challenging, if not almost impossible.</li>
-  <li>Many developers are using huge libraries just to do simple things. (<code class="highlighter-rouge">Strings.isNullOrEmpty()</code> anyone?) Note that you don’t need to use a library for everything!</li>
+  <li>Many developers are using huge libraries just to do simple things. (<code class="language-plaintext highlighter-rouge">Strings.isNullOrEmpty()</code> anyone?) Note that you don’t need to use a library for everything!</li>
 </ol>
 
 <p>Fortunately there is a great website <a href="http://www.methodscount.com/">methodscount.com</a> that tells you the method count of a library before you start using it. This can really be helpful to avoid using “large libraries” which only add limited benefit to your app.</p>
@@ -469,12 +468,12 @@ $(document).ready(function(){
 
 <p><a href="https://jeroenmols.com/img/blog/methodcount/dexcount-guava/debugChart/index.html"><img src="https://jeroenmols.com/img/blog/methodcount/methodcount_graphic_guava.gif" alt="Method count graphical output of sample project with Guava" class="align-center" /></a></p>
 
-<p>First of all you need to know what parts of the library the app was actually using. This can easily be done by running the following command in your <code class="highlighter-rouge">src</code> folder.</p>
+<p>First of all you need to know what parts of the library the app was actually using. This can easily be done by running the following command in your <code class="language-plaintext highlighter-rouge">src</code> folder.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">grep</span> <span class="nt">-roh</span> <span class="nb">.</span> <span class="nt">-e</span> <span class="s1">'com.google.common.*'</span> | <span class="nb">sort</span> | <span class="nb">uniq</span>
 </code></pre></div></div>
 
-<p>This simply looks for all import statements starting with the library prefix (for Guava that is <code class="highlighter-rouge">com.google.common</code>), removes all clutter from the grep output, sorts it and takes all unique references.</p>
+<p>This simply looks for all import statements starting with the library prefix (for Guava that is <code class="language-plaintext highlighter-rouge">com.google.common</code>), removes all clutter from the grep output, sorts it and takes all unique references.</p>
 
 <p><a href="https://jeroenmols.com/img/blog/methodcount/grep_output.png"><img src="https://jeroenmols.com/img/blog/methodcount/grep_output.png" alt="Grep output for references to Guava in an existing project" class="align-center" /></a></p>
 
@@ -506,7 +505,7 @@ $(document).ready(function(){
 
 <p><a href="https://jeroenmols.com/img/blog/methodcount/dexcount-packageshrink/debugChart/index.html"><img src="https://jeroenmols.com/img/blog/methodcount/methodcount_graphic_packageshrink.gif" alt="Method count graphical output of sample project with stripped out Guava" class="align-center" /></a></p>
 
-<p>Back to the drawing board, because this isn’t nearly enough! Turns out the <code class="highlighter-rouge">collect</code> package by itself has over 8000 methods, so I decided to just keep certain classes instead of the entire package.</p>
+<p>Back to the drawing board, because this isn’t nearly enough! Turns out the <code class="language-plaintext highlighter-rouge">collect</code> package by itself has over 8000 methods, so I decided to just keep certain classes instead of the entire package.</p>
 
 <p>This more aggressive approach will most likely cause some compile errors when you try to use the library in your app, so I had to iterate and add some extra classes until all of those were solved. The resulting Proguard configuration looks like this:</p>
 
@@ -944,10 +943,10 @@ $(document).ready(function(){
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://jeroenmols.com/blog/2016/05/06/methodcount/";  // Replace PAGE_URL with your page's canonical URL variable
-      this.page.identifier = "/blog/2016/05/06/methodcount"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      this.page.url = "https://jeroenmols.com/blog/2016/05/06/methodcount/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/blog/2016/05/06/methodcount"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
     };
-    (function() { // DON'T EDIT BELOW THIS LINE
+    (function() { /* DON'T EDIT BELOW THIS LINE */
       var d = document, s = d.createElement('script');
       s.src = 'https://jeroenmols.disqus.com/embed.js';
       s.setAttribute('data-timestamp', +new Date());

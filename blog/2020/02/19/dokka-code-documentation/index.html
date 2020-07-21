@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.17.0 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.19.3 by Michael Rose
   Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
@@ -170,11 +170,11 @@ $(document).ready(function(){
           
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/blog/" >Blog</a>
+              <a href="/blog/">Blog</a>
             </li><li class="masthead__menu-item">
-              <a href="/speaking/" >Speaking</a>
+              <a href="/speaking/">Speaking</a>
             </li><li class="masthead__menu-item">
-              <a href="/hireme/" >Hire me</a>
+              <a href="/hireme/">Hire me</a>
             </li></ul>
         
         <button class="search__toggle" type="button">
@@ -210,8 +210,6 @@ $(document).ready(function(){
 
   
     <div class="author__avatar">
-      
-
       
         <img src="/img/profile.jpg" alt="Jeroen Mols" itemprop="image">
       
@@ -250,7 +248,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://twitter.com/@molsjeroen" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span>
           </a>
         </li>
       
@@ -260,7 +258,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://www.linkedin.com/in/jeroenmols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn
+            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span>
           </a>
         </li>
       
@@ -276,7 +274,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://github.com/JeroenMols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span>
           </a>
         </li>
       
@@ -286,7 +284,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://stackoverflow.com/users/2771851/jmols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i> Stack Overflow
+            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i><span class="label">Stack Overflow</span>
           </a>
         </li>
       
@@ -305,7 +303,7 @@ $(document).ready(function(){
         
           <li>
             <a href="https://www.youtube.com/channel/UC34Vt1lo8T15_rgc3e3Jsew" itemprop="sameAs" rel="nofollow noopener noreferrer">
-              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i> YouTube
+              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span>
             </a>
           </li>
         
@@ -334,6 +332,7 @@ $(document).ready(function(){
 
   
   </div>
+
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
@@ -373,7 +372,7 @@ $(document).ready(function(){
 <p>This post will cover some challenges in configuring Dokka and explain some neat tricks to improve your documentation.</p>
 
 <h2 id="introduction">Introduction</h2>
-<p>The equivalent of JavaDoc for Kotlin is called <a href="https://kotlinlang.org/docs/reference/kotlin-doc.html">KDoc</a>. While it is very similar to the former, it also supports inline Markup and allows to easily link to other elements using <code class="highlighter-rouge">[ ]</code> brackets.</p>
+<p>The equivalent of JavaDoc for Kotlin is called <a href="https://kotlinlang.org/docs/reference/kotlin-doc.html">KDoc</a>. While it is very similar to the former, it also supports inline Markup and allows to easily link to other elements using <code class="language-plaintext highlighter-rouge">[ ]</code> brackets.</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**</span><span class="err">
 </span><span class="cm"> * A group of *members*.</span><span class="err">
@@ -397,7 +396,7 @@ $(document).ready(function(){
 <p>The documentation generation tool is called <a href="https://github.com/Kotlin/dokka">Dokka</a>. It comes with a Gradle plugin and can generate documentation in multiple formats such as JavaDoc, HTML and even Markdown optimized for Github pages! Neat!</p>
 
 <h2 id="basic-dokka-configuration">Basic Dokka configuration</h2>
-<p>Adding Dokka requires to define a dependency in your top-level <code class="highlighter-rouge">build.gradle</code> file:</p>
+<p>Adding Dokka requires to define a dependency in your top-level <code class="language-plaintext highlighter-rouge">build.gradle</code> file:</p>
 
 <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">buildscript</span> <span class="o">{</span>
     <span class="n">repositories</span> <span class="o">{</span>
@@ -412,7 +411,7 @@ $(document).ready(function(){
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>And applying the plugin to the <code class="highlighter-rouge">build.gradle</code> of the module(s) for which you would like to generate documentation:</p>
+<p>And applying the plugin to the <code class="language-plaintext highlighter-rouge">build.gradle</code> of the module(s) for which you would like to generate documentation:</p>
 
 <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">'org.jetbrains.dokka'</span>
 
@@ -443,23 +442,23 @@ $(document).ready(function(){
   <li>There is no visibility modifier to make classes only visible within the project</li>
 </ol>
 
-<p>The first challenge causes Dokka not to include the sources of all submodules. Consequently the resulting [KDoc] only contains documentation for your main <code class="highlighter-rouge">library</code> module.</p>
+<p>The first challenge causes Dokka not to include the sources of all submodules. Consequently the resulting [KDoc] only contains documentation for your main <code class="language-plaintext highlighter-rouge">library</code> module.</p>
 
 <blockquote>
-  <p>Note: this is because the <a href="https://github.com/kezong/fat-aar-android">fat AAR plugin</a> includes the submodules as <code class="highlighter-rouge">compileOnly</code> dependencies when using the <code class="highlighter-rouge">embed</code> dependency. (See <a href="https://github.com/kezong/fat-aar-android/blob/ab85005f7fdf37ed9802da104bcb63f9f944aee7/source/src/main/groovy/com/kezong/fataar/FatLibraryPlugin.groovy#L65">source code</a>)</p>
+  <p>Note: this is because the <a href="https://github.com/kezong/fat-aar-android">fat AAR plugin</a> includes the submodules as <code class="language-plaintext highlighter-rouge">compileOnly</code> dependencies when using the <code class="language-plaintext highlighter-rouge">embed</code> dependency. (See <a href="https://github.com/kezong/fat-aar-android/blob/ab85005f7fdf37ed9802da104bcb63f9f944aee7/source/src/main/groovy/com/kezong/fataar/FatLibraryPlugin.groovy#L65">source code</a>)</p>
 </blockquote>
 
 <p>The second challenge bloats the documentation with a lot of classes that shouldn’t be part of the API:</p>
 
 <ul>
-  <li>the <code class="highlighter-rouge">internal</code> modifier is too restrictive as it doesn’t allow modules within the library to use each other’s classes.</li>
-  <li>the <code class="highlighter-rouge">public</code> modifier is not restrictive enough and exposes classes to any other project using your library.</li>
+  <li>the <code class="language-plaintext highlighter-rouge">internal</code> modifier is too restrictive as it doesn’t allow modules within the library to use each other’s classes.</li>
+  <li>the <code class="language-plaintext highlighter-rouge">public</code> modifier is not restrictive enough and exposes classes to any other project using your library.</li>
 </ul>
 
 <p>Unfortunately, using public modifiers is currently the only way to have multiple module libraries until <a href="https://issuetracker.google.com/issues/62121508">issue 62121508 gets fixed</a>.</p>
 
 <h2 id="multi-module-libraries">Multi-module libraries</h2>
-<p>Luckily there is a way to directly tell Dokka what sources it should include in the documentation via the <code class="highlighter-rouge">sourceRoots</code> attribute.</p>
+<p>Luckily there is a way to directly tell Dokka what sources it should include in the documentation via the <code class="language-plaintext highlighter-rouge">sourceRoots</code> attribute.</p>
 
 <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dokka</span> <span class="o">{</span>
     <span class="n">configuration</span> <span class="o">{</span>
@@ -470,9 +469,9 @@ $(document).ready(function(){
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>Though this doesn’t take a <code class="highlighter-rouge">String</code> pointing to the sources, instead it requires a wrapper object a <code class="highlighter-rouge">SourceRoot</code>, which has an attribute <code class="highlighter-rouge">path</code>. 🤔</p>
+<p>Though this doesn’t take a <code class="language-plaintext highlighter-rouge">String</code> pointing to the sources, instead it requires a wrapper object a <code class="language-plaintext highlighter-rouge">SourceRoot</code>, which has an attribute <code class="language-plaintext highlighter-rouge">path</code>. 🤔</p>
 
-<p>The easiest way to create a <code class="highlighter-rouge">SourceRoot</code> is to create a <a href="https://github.com/Kotlin/dokka/blob/0d0d41f594f1095b4ccc999cffe01a6ef9a22dbb/runners/gradle-plugin/src/main/kotlin/org/jetbrains/dokka/gradle/configurationImplementations.kt#L18"><code class="highlighter-rouge">GradleSourceRootImpl</code></a> and set it’s path:</p>
+<p>The easiest way to create a <code class="language-plaintext highlighter-rouge">SourceRoot</code> is to create a <a href="https://github.com/Kotlin/dokka/blob/0d0d41f594f1095b4ccc999cffe01a6ef9a22dbb/runners/gradle-plugin/src/main/kotlin/org/jetbrains/dokka/gradle/configurationImplementations.kt#L18"><code class="language-plaintext highlighter-rouge">GradleSourceRootImpl</code></a> and set it’s path:</p>
 
 <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">org.jetbrains.dokka.gradle.GradleSourceRootImpl</span>
 
@@ -508,7 +507,7 @@ $(document).ready(function(){
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>Note that these methods only look in the <code class="highlighter-rouge">main</code> source folders and that <code class="highlighter-rouge">getSourceDirs</code> only looks at direct subfolders.</p>
+<p>Note that these methods only look in the <code class="language-plaintext highlighter-rouge">main</code> source folders and that <code class="language-plaintext highlighter-rouge">getSourceDirs</code> only looks at direct subfolders.</p>
 
 <p>Sadly, this doesn’t work and causes compilation issues when running Dokka. (╯°□°）╯︵ ┻━┻</p>
 
@@ -541,9 +540,9 @@ $(document).ready(function(){
 <p>In summary, with a bit of logic, we can make sure source files of new modules are automatically included in the documentation.</p>
 
 <h2 id="excluding-public-classes">Excluding public classes</h2>
-<p>Since Kotlin doesn’t have a <code class="highlighter-rouge">project internal</code> visibility modifier, we need a way to exclude <code class="highlighter-rouge">public</code> classes from our documentation that shouldn’t be exposed.</p>
+<p>Since Kotlin doesn’t have a <code class="language-plaintext highlighter-rouge">project internal</code> visibility modifier, we need a way to exclude <code class="language-plaintext highlighter-rouge">public</code> classes from our documentation that shouldn’t be exposed.</p>
 
-<p>One way of doing that is moving all classes that are internal to your SDK to a package name ending with <code class="highlighter-rouge">internal</code>.</p>
+<p>One way of doing that is moving all classes that are internal to your SDK to a package name ending with <code class="language-plaintext highlighter-rouge">internal</code>.</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="nn">com.jeroenmols.internal</span>
 <span class="k">package</span> <span class="nn">com.jeroenmols.api.models.internal</span>
@@ -570,7 +569,7 @@ $(document).ready(function(){
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>And more generically, all packages in each source root that end with <code class="highlighter-rouge">internal</code> can be filtered:</p>
+<p>And more generically, all packages in each source root that end with <code class="language-plaintext highlighter-rouge">internal</code> can be filtered:</p>
 
 <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">groovy.io.FileType</span>
 
@@ -596,7 +595,7 @@ $(document).ready(function(){
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>And hooking this all together will make sure all <code class="highlighter-rouge">internal</code> classes are excluded:</p>
+<p>And hooking this all together will make sure all <code class="language-plaintext highlighter-rouge">internal</code> classes are excluded:</p>
 
 <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dokka</span> <span class="o">{</span>
     <span class="n">configuration</span> <span class="o">{</span>
@@ -1045,10 +1044,10 @@ $(document).ready(function(){
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://jeroenmols.com/blog/2020/02/19/dokka-code-documentation/";  // Replace PAGE_URL with your page's canonical URL variable
-      this.page.identifier = "/blog/2020/02/19/dokka-code-documentation"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      this.page.url = "https://jeroenmols.com/blog/2020/02/19/dokka-code-documentation/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/blog/2020/02/19/dokka-code-documentation"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
     };
-    (function() { // DON'T EDIT BELOW THIS LINE
+    (function() { /* DON'T EDIT BELOW THIS LINE */
       var d = document, s = d.createElement('script');
       s.src = 'https://jeroenmols.disqus.com/embed.js';
       s.setAttribute('data-timestamp', +new Date());

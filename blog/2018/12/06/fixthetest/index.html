@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.17.0 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.19.3 by Michael Rose
   Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
@@ -170,11 +170,11 @@ $(document).ready(function(){
           
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/blog/" >Blog</a>
+              <a href="/blog/">Blog</a>
             </li><li class="masthead__menu-item">
-              <a href="/speaking/" >Speaking</a>
+              <a href="/speaking/">Speaking</a>
             </li><li class="masthead__menu-item">
-              <a href="/hireme/" >Hire me</a>
+              <a href="/hireme/">Hire me</a>
             </li></ul>
         
         <button class="search__toggle" type="button">
@@ -210,8 +210,6 @@ $(document).ready(function(){
 
   
     <div class="author__avatar">
-      
-
       
         <img src="/img/profile.jpg" alt="Jeroen Mols" itemprop="image">
       
@@ -250,7 +248,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://twitter.com/@molsjeroen" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span>
           </a>
         </li>
       
@@ -260,7 +258,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://www.linkedin.com/in/jeroenmols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn
+            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span>
           </a>
         </li>
       
@@ -276,7 +274,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://github.com/JeroenMols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span>
           </a>
         </li>
       
@@ -286,7 +284,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://stackoverflow.com/users/2771851/jmols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i> Stack Overflow
+            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i><span class="label">Stack Overflow</span>
           </a>
         </li>
       
@@ -305,7 +303,7 @@ $(document).ready(function(){
         
           <li>
             <a href="https://www.youtube.com/channel/UC34Vt1lo8T15_rgc3e3Jsew" itemprop="sameAs" rel="nofollow noopener noreferrer">
-              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i> YouTube
+              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span>
             </a>
           </li>
         
@@ -334,6 +332,7 @@ $(document).ready(function(){
 
   
   </div>
+
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
@@ -378,9 +377,9 @@ $(document).ready(function(){
 <span class="kd">class</span> <span class="nc">CalculatorTest</span> <span class="p">:</span> <span class="nc">TestCase</span><span class="p">()</span> <span class="p">{</span>
 
     <span class="k">fun</span> <span class="nf">test_sumShouldAddNumbers</span><span class="p">()</span> <span class="p">{</span>
-        <span class="kd">val</span> <span class="py">sum</span> <span class="p">=</span> <span class="nc">Calculator</span><span class="p">().</span><span class="nf">sum</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
+        <span class="kd">val</span> <span class="py">sum</span> <span class="p">=</span> <span class="nc">Calculator</span><span class="p">().</span><span class="nf">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 
-        <span class="nf">assertThat</span><span class="p">(</span><span class="n">sum</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="m">3</span><span class="p">)</span>
+        <span class="nf">assertThat</span><span class="p">(</span><span class="n">sum</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -398,13 +397,13 @@ $(document).ready(function(){
 <p>Well there are actually quite some things wrong with this test, but the main problem is the syntax:</p>
 
 <ul>
-  <li><code class="highlighter-rouge">CalculatorTest</code> inherits from <code class="highlighter-rouge">TestCase</code></li>
-  <li><code class="highlighter-rouge">test_sumShouldAddNumbers()</code> is prefixed with <code class="highlighter-rouge">test</code></li>
+  <li><code class="language-plaintext highlighter-rouge">CalculatorTest</code> inherits from <code class="language-plaintext highlighter-rouge">TestCase</code></li>
+  <li><code class="language-plaintext highlighter-rouge">test_sumShouldAddNumbers()</code> is prefixed with <code class="language-plaintext highlighter-rouge">test</code></li>
 </ul>
 
 <p>This is actually the old <a href="http://junit.sourceforge.net/junit3.8.1/">JUnit3</a> syntax, whereas Android currently supports <a href="https://junit.org/junit4/">JUnit4</a> (and even <a href="https://junit.org/junit5/">JUnit5</a>).</p>
 
-<p>In these newer frameworks, the inheritance and prefixing are not required. All you have to do is annotate each test method with <code class="highlighter-rouge">@Test</code>.</p>
+<p>In these newer frameworks, the inheritance and prefixing are not required. All you have to do is annotate each test method with <code class="language-plaintext highlighter-rouge">@Test</code>.</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Instrumented test, run on Android device.</span>
 <span class="nd">@RunWith</span><span class="p">(</span><span class="nc">AndroidJUnit4</span><span class="o">::</span><span class="k">class</span><span class="p">)</span>
@@ -412,9 +411,9 @@ $(document).ready(function(){
 
     <span class="nd">@Test</span>
     <span class="k">fun</span> <span class="nf">sumShouldAddNumbers</span><span class="p">()</span> <span class="p">{</span>
-        <span class="kd">val</span> <span class="py">sum</span> <span class="p">=</span> <span class="nc">Calculator</span><span class="p">().</span><span class="nf">sum</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
+        <span class="kd">val</span> <span class="py">sum</span> <span class="p">=</span> <span class="nc">Calculator</span><span class="p">().</span><span class="nf">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 
-        <span class="nf">assertThat</span><span class="p">(</span><span class="n">sum</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="m">3</span><span class="p">)</span>
+        <span class="nf">assertThat</span><span class="p">(</span><span class="n">sum</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -422,8 +421,8 @@ $(document).ready(function(){
 <p>Interestingly enough the JUnit4 conversion enables two additional optimizations:</p>
 
 <ul>
-  <li>since <code class="highlighter-rouge">test</code> prefix is not required for test methods, we can use the backtick notation in Kotlin to make more descriptive test names (e.g. `sum of 1 and 2 should equal 3`)</li>
-  <li>since we are only using JUnit4 now, there is no need to declare <code class="highlighter-rouge">@RunWith(AndroidJUnit4::class)</code> as this is only required to run both JUnit3 and 4 tests in the same file</li>
+  <li>since <code class="language-plaintext highlighter-rouge">test</code> prefix is not required for test methods, we can use the backtick notation in Kotlin to make more descriptive test names (e.g. `sum of 1 and 2 should equal 3`)</li>
+  <li>since we are only using JUnit4 now, there is no need to declare <code class="language-plaintext highlighter-rouge">@RunWith(AndroidJUnit4::class)</code> as this is only required to run both JUnit3 and 4 tests in the same file</li>
 </ul>
 
 <p>This dramatically clarifies our test:</p>
@@ -431,17 +430,17 @@ $(document).ready(function(){
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">CalculatorTest</span> <span class="p">{</span>
 
     <span class="nd">@Test</span>
-    <span class="k">fun</span> <span class="nf">`sum</span> <span class="n">of</span> <span class="m">1</span> <span class="n">and</span> <span class="m">2</span> <span class="n">should</span> <span class="n">equal</span> <span class="m">3</span><span class="err">`</span><span class="p">()</span> <span class="p">{</span>
-        <span class="kd">val</span> <span class="py">sum</span> <span class="p">=</span> <span class="nc">Calculator</span><span class="p">().</span><span class="nf">sum</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
+    <span class="k">fun</span> <span class="nf">`sum</span> <span class="n">of</span> <span class="mi">1</span> <span class="n">and</span> <span class="mi">2</span> <span class="n">should</span> <span class="n">equal</span> <span class="mi">3</span><span class="err">`</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">val</span> <span class="py">sum</span> <span class="p">=</span> <span class="nc">Calculator</span><span class="p">().</span><span class="nf">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 
-        <span class="nf">assertThat</span><span class="p">(</span><span class="n">sum</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="m">3</span><span class="p">)</span>
+        <span class="nf">assertThat</span><span class="p">(</span><span class="n">sum</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
 <p>Note that the test above also doesn’t need to be run on an Android device as it doesn’t use the Instrumentation framework.</p>
 
-<p>The <code class="highlighter-rouge">@RunWith()</code> annotation was only added to be able to explain what <code class="highlighter-rouge">AndroidJunit4</code> does.</p>
+<p>The <code class="language-plaintext highlighter-rouge">@RunWith()</code> annotation was only added to be able to explain what <code class="language-plaintext highlighter-rouge">AndroidJunit4</code> does.</p>
 
 <blockquote>
   <p>TL;DR All you need is @Test annotations on test methods</p>
@@ -451,7 +450,7 @@ $(document).ready(function(){
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
 <span class="k">fun</span> <span class="nf">`divide</span> <span class="k">by</span> <span class="n">zero</span> <span class="n">should</span> <span class="k">throw</span> <span class="n">an</span> <span class="nf">exception`</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">try</span> <span class="p">{</span>
-        <span class="nc">Calculator</span><span class="p">().</span><span class="nf">divide</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span>
+        <span class="nc">Calculator</span><span class="p">().</span><span class="nf">divide</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
         <span class="nf">fail</span><span class="p">(</span><span class="s">"No exception thrown"</span><span class="p">)</span>
     <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">e</span><span class="p">:</span> <span class="nc">RuntimeException</span><span class="p">)</span> <span class="p">{</span>
     <span class="p">}</span>
@@ -468,11 +467,11 @@ $(document).ready(function(){
 
 <p>Trying to catch the exception yourself and making the test fail subsequently is quite verbose, no?</p>
 
-<p>There is actually a better way of doing this, by using the <code class="highlighter-rouge">expected</code> annotation.</p>
+<p>There is actually a better way of doing this, by using the <code class="language-plaintext highlighter-rouge">expected</code> annotation.</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span> <span class="p">(</span><span class="n">expected</span> <span class="p">=</span> <span class="nc">RuntimeException</span><span class="o">::</span><span class="k">class</span><span class="p">)</span>
 <span class="k">fun</span> <span class="nf">`divide</span> <span class="k">by</span> <span class="n">zero</span> <span class="n">should</span> <span class="k">throw</span> <span class="n">an</span> <span class="nf">exception`</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nc">Calculator</span><span class="p">().</span><span class="nf">divide</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span>
+    <span class="nc">Calculator</span><span class="p">().</span><span class="nf">divide</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -508,8 +507,8 @@ $(document).ready(function(){
 <p>There are actually a few different possibilities:</p>
 
 <ul>
-  <li>either <code class="highlighter-rouge">login()</code> was not called</li>
-  <li>or <code class="highlighter-rouge">logout()</code> was called</li>
+  <li>either <code class="language-plaintext highlighter-rouge">login()</code> was not called</li>
+  <li>or <code class="language-plaintext highlighter-rouge">logout()</code> was called</li>
   <li>or both of the above</li>
 </ul>
 
@@ -553,11 +552,11 @@ $(document).ready(function(){
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
 <span class="k">fun</span> <span class="nf">`should</span> <span class="k">do</span> <span class="n">multiple</span> <span class="nf">calculations`</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">val</span> <span class="py">calculator</span> <span class="p">=</span> <span class="nc">Calculator</span><span class="p">()</span>
-    <span class="kd">val</span> <span class="py">sum</span> <span class="p">=</span> <span class="n">calculator</span><span class="p">.</span><span class="nf">sum</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
+    <span class="kd">val</span> <span class="py">sum</span> <span class="p">=</span> <span class="n">calculator</span><span class="p">.</span><span class="nf">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 
-    <span class="kd">val</span> <span class="py">division</span> <span class="p">=</span> <span class="n">calculator</span><span class="p">.</span><span class="nf">divide</span><span class="p">(</span><span class="n">sum</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span>
+    <span class="kd">val</span> <span class="py">division</span> <span class="p">=</span> <span class="n">calculator</span><span class="p">.</span><span class="nf">divide</span><span class="p">(</span><span class="n">sum</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 
-    <span class="nf">assertThat</span><span class="p">(</span><span class="n">division</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="m">1f</span><span class="p">)</span>
+    <span class="nf">assertThat</span><span class="p">(</span><span class="n">division</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="mf">1f</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -571,9 +570,9 @@ $(document).ready(function(){
 
 <p>Why are we testing that sequence? Mathematical operations (add/divide) aren’t supposed to have side effects (and influence each other), right?</p>
 
-<p>Even more, the interface of <code class="highlighter-rouge">Calculator</code> makes that clear: both <code class="highlighter-rouge">sum()</code> and <code class="highlighter-rouge">divide()</code> take all parameters they need as an input to produce an output.</p>
+<p>Even more, the interface of <code class="language-plaintext highlighter-rouge">Calculator</code> makes that clear: both <code class="language-plaintext highlighter-rouge">sum()</code> and <code class="language-plaintext highlighter-rouge">divide()</code> take all parameters they need as an input to produce an output.</p>
 
-<p>So if <code class="highlighter-rouge">sum()</code> and <code class="highlighter-rouge">divide()</code> are already tested, there really isn’t an added benefit of testing the sequence, right?</p>
+<p>So if <code class="language-plaintext highlighter-rouge">sum()</code> and <code class="language-plaintext highlighter-rouge">divide()</code> are already tested, there really isn’t an added benefit of testing the sequence, right?</p>
 
 <p>Instead, there are quite some disadvantages:</p>
 
@@ -587,17 +586,17 @@ $(document).ready(function(){
 <p>Hence this test should be split it two:</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
-<span class="k">fun</span> <span class="nf">`sum</span> <span class="n">of</span> <span class="m">1</span> <span class="n">and</span> <span class="m">2</span> <span class="n">should</span> <span class="n">be</span> <span class="m">3</span><span class="err">`</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">val</span> <span class="py">sum</span> <span class="p">=</span> <span class="nc">Calculator</span><span class="p">().</span><span class="nf">sum</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
+<span class="k">fun</span> <span class="nf">`sum</span> <span class="n">of</span> <span class="mi">1</span> <span class="n">and</span> <span class="mi">2</span> <span class="n">should</span> <span class="n">be</span> <span class="mi">3</span><span class="err">`</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">sum</span> <span class="p">=</span> <span class="nc">Calculator</span><span class="p">().</span><span class="nf">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 
-    <span class="nf">assertThat</span><span class="p">(</span><span class="n">sum</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="m">3</span><span class="p">)</span>
+    <span class="nf">assertThat</span><span class="p">(</span><span class="n">sum</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 <span class="p">}</span>
 
 <span class="nd">@Test</span>
-<span class="k">fun</span> <span class="nf">`division</span> <span class="n">of</span> <span class="m">3</span> <span class="n">and</span> <span class="m">3</span> <span class="n">should</span> <span class="n">be</span> <span class="m">1f</span><span class="err">`</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">val</span> <span class="py">division</span> <span class="p">=</span> <span class="nc">Calculator</span><span class="p">().</span><span class="nf">divide</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span>
+<span class="k">fun</span> <span class="nf">`division</span> <span class="n">of</span> <span class="mi">3</span> <span class="n">and</span> <span class="mi">3</span> <span class="n">should</span> <span class="n">be</span> <span class="mf">1f</span><span class="err">`</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">division</span> <span class="p">=</span> <span class="nc">Calculator</span><span class="p">().</span><span class="nf">divide</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 
-    <span class="nf">assertThat</span><span class="p">(</span><span class="n">division</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="m">1f</span><span class="p">)</span>
+    <span class="nf">assertThat</span><span class="p">(</span><span class="n">division</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="mf">1f</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -636,16 +635,16 @@ $(document).ready(function(){
 <p>If you where to encounter the test above somewhere in a file with a lot more tests, it would take you quite some time to figure out what’s going on:</p>
 
 <ul>
-  <li>Need to look at <code class="highlighter-rouge">setUp()</code> method to understand where the WebService under test is coming from</li>
-  <li>Need to open <code class="highlighter-rouge">WebServiceTestHelper</code>to understand the WebService initialization</li>
-  <li>Need to open <code class="highlighter-rouge">checkLoginFailed()</code> method to see how a failed login is identified</li>
+  <li>Need to look at <code class="language-plaintext highlighter-rouge">setUp()</code> method to understand where the WebService under test is coming from</li>
+  <li>Need to open <code class="language-plaintext highlighter-rouge">WebServiceTestHelper</code>to understand the WebService initialization</li>
+  <li>Need to open <code class="language-plaintext highlighter-rouge">checkLoginFailed()</code> method to see how a failed login is identified</li>
 </ul>
 
 <p>That’s a lot of work!</p>
 
 <p>The problem here is that the reader constantly has to exit the test method to figure out what’s going on.</p>
 
-<p>Removing the <code class="highlighter-rouge">setUp</code> method, inlining the <code class="highlighter-rouge">WebServiceTestHelper</code> and the <code class="highlighter-rouge">checkLoginFailed()</code> method yields the following.</p>
+<p>Removing the <code class="language-plaintext highlighter-rouge">setUp</code> method, inlining the <code class="language-plaintext highlighter-rouge">WebServiceTestHelper</code> and the <code class="language-plaintext highlighter-rouge">checkLoginFailed()</code> method yields the following.</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">WebServiceTest</span> <span class="p">{</span>
 
@@ -696,11 +695,11 @@ $(document).ready(function(){
 
 <p>Simply put, this test is flaky. It will only fail very rarely, but still it will.</p>
 
-<p>Reason for this is that the <code class="highlighter-rouge">expectedTime</code> isn’t the time used by the <code class="highlighter-rouge">TimeFormatter</code> and hence there will be a slight difference (~ ns) between both. When rounding works against us, this could actually end up in a real formatted ms difference.</p>
+<p>Reason for this is that the <code class="language-plaintext highlighter-rouge">expectedTime</code> isn’t the time used by the <code class="language-plaintext highlighter-rouge">TimeFormatter</code> and hence there will be a slight difference (~ ns) between both. When rounding works against us, this could actually end up in a real formatted ms difference.</p>
 
 <p>And flakiness in tests, well… no matter how infrequent, we should have a <a href="/blog/2017/02/16/unittests/">zero tolerance policy</a> towards them. This is because flakiness can completely destroy the confidence of the team in the test suite.</p>
 
-<p>Fortunately this can easily be fixed by passing the current time into the <code class="highlighter-rouge">TimeFormatter</code>.</p>
+<p>Fortunately this can easily be fixed by passing the current time into the <code class="language-plaintext highlighter-rouge">TimeFormatter</code>.</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
 <span class="k">fun</span> <span class="nf">`should</span> <span class="n">properly</span> <span class="n">format</span> <span class="nf">time`</span><span class="p">()</span> <span class="p">{</span>
@@ -1084,10 +1083,10 @@ $(document).ready(function(){
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://jeroenmols.com/blog/2018/12/06/fixthetest/";  // Replace PAGE_URL with your page's canonical URL variable
-      this.page.identifier = "/blog/2018/12/06/fixthetest"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      this.page.url = "https://jeroenmols.com/blog/2018/12/06/fixthetest/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/blog/2018/12/06/fixthetest"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
     };
-    (function() { // DON'T EDIT BELOW THIS LINE
+    (function() { /* DON'T EDIT BELOW THIS LINE */
       var d = document, s = d.createElement('script');
       s.src = 'https://jeroenmols.disqus.com/embed.js';
       s.setAttribute('data-timestamp', +new Date());

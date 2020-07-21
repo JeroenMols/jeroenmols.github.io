@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.17.0 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.19.3 by Michael Rose
   Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
@@ -170,11 +170,11 @@ $(document).ready(function(){
           
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/blog/" >Blog</a>
+              <a href="/blog/">Blog</a>
             </li><li class="masthead__menu-item">
-              <a href="/speaking/" >Speaking</a>
+              <a href="/speaking/">Speaking</a>
             </li><li class="masthead__menu-item">
-              <a href="/hireme/" >Hire me</a>
+              <a href="/hireme/">Hire me</a>
             </li></ul>
         
         <button class="search__toggle" type="button">
@@ -210,8 +210,6 @@ $(document).ready(function(){
 
   
     <div class="author__avatar">
-      
-
       
         <img src="/img/profile.jpg" alt="Jeroen Mols" itemprop="image">
       
@@ -250,7 +248,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://twitter.com/@molsjeroen" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span>
           </a>
         </li>
       
@@ -260,7 +258,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://www.linkedin.com/in/jeroenmols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn
+            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span>
           </a>
         </li>
       
@@ -276,7 +274,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://github.com/JeroenMols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span>
           </a>
         </li>
       
@@ -286,7 +284,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://stackoverflow.com/users/2771851/jmols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i> Stack Overflow
+            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i><span class="label">Stack Overflow</span>
           </a>
         </li>
       
@@ -305,7 +303,7 @@ $(document).ready(function(){
         
           <li>
             <a href="https://www.youtube.com/channel/UC34Vt1lo8T15_rgc3e3Jsew" itemprop="sameAs" rel="nofollow noopener noreferrer">
-              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i> YouTube
+              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span>
             </a>
           </li>
         
@@ -334,6 +332,7 @@ $(document).ready(function(){
 
   
   </div>
+
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
@@ -375,7 +374,7 @@ $(document).ready(function(){
 <h2 id="enabling-java-8-features">Enabling java 8 features</h2>
 <p>While Android Studio already supported many features in the <a href="https://developer.android.com/guide/platform/j8-jack.html">Jack toolchain</a>, starting from Android Studio 3.0 they are supported in the default toolchain.</p>
 
-<p>First of all, make sure you disable Jack by removing the following from your main <code class="highlighter-rouge">build.gradle</code>:</p>
+<p>First of all, make sure you disable Jack by removing the following from your main <code class="language-plaintext highlighter-rouge">build.gradle</code>:</p>
 
 <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">android</span> <span class="o">{</span>
   <span class="o">...</span>
@@ -400,7 +399,7 @@ $(document).ready(function(){
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>Also make sure you have the latest Gradle plugin in your root <code class="highlighter-rouge">build.gradle</code> file:</p>
+<p>Also make sure you have the latest Gradle plugin in your root <code class="language-plaintext highlighter-rouge">build.gradle</code> file:</p>
 
 <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">buildscript</span> <span class="o">{</span>
   <span class="o">...</span>
@@ -417,7 +416,7 @@ $(document).ready(function(){
 </blockquote>
 
 <h2 id="lambdas">Lambda’s</h2>
-<p>Passing a listener to another class in Java 6 is quite verbose. A typical case would be where you add an <code class="highlighter-rouge">OnClickListener</code> to a <code class="highlighter-rouge">View</code>:</p>
+<p>Passing a listener to another class in Java 6 is quite verbose. A typical case would be where you add an <code class="language-plaintext highlighter-rouge">OnClickListener</code> to a <code class="language-plaintext highlighter-rouge">View</code>:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">button</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="k">new</span> <span class="nc">View</span><span class="o">.</span><span class="na">OnClickListener</span><span class="o">()</span> <span class="o">{</span>
     <span class="nd">@Override</span>
@@ -436,7 +435,7 @@ $(document).ready(function(){
 
 <p>Now how do lambda’s actually work?</p>
 
-<p>They are syntactic sugar that reduce the need for anonymous class creation whenever you have an interface with exactly one method. We call such interfaces functional interfaces and <code class="highlighter-rouge">OnClickListener</code> is an example:</p>
+<p>They are syntactic sugar that reduce the need for anonymous class creation whenever you have an interface with exactly one method. We call such interfaces functional interfaces and <code class="language-plaintext highlighter-rouge">OnClickListener</code> is an example:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// A functional interface has exactly one method</span>
 <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">OnClickListener</span> <span class="o">{</span>
@@ -450,12 +449,12 @@ $(document).ready(function(){
 </code></pre></div></div>
 
 <ol>
-  <li>declaration of all method arguments between brackets <code class="highlighter-rouge">()</code></li>
-  <li>an arrow <code class="highlighter-rouge">-&gt;</code></li>
-  <li>code that needs to execute between brackets <code class="highlighter-rouge">{}</code></li>
+  <li>declaration of all method arguments between brackets <code class="language-plaintext highlighter-rouge">()</code></li>
+  <li>an arrow <code class="language-plaintext highlighter-rouge">-&gt;</code></li>
+  <li>code that needs to execute between brackets <code class="language-plaintext highlighter-rouge">{}</code></li>
 </ol>
 
-<p>Note that in many cases even the brackets <code class="highlighter-rouge">()</code> and <code class="highlighter-rouge">{}</code> can be removed. For more details have a look at the <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html">official documentation</a>.</p>
+<p>Note that in many cases even the brackets <code class="language-plaintext highlighter-rouge">()</code> and <code class="language-plaintext highlighter-rouge">{}</code> can be removed. For more details have a look at the <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html">official documentation</a>.</p>
 
 <h2 id="method-references">Method references</h2>
 <p>Recall that lambda expressions remove a lot of boilerplate code for functional interfaces. Method references take that concept one step further when the lambda calls a method that already has a name.</p>
@@ -464,7 +463,7 @@ $(document).ready(function(){
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">button</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="n">view</span> <span class="o">-&gt;</span> <span class="n">doSomething</span><span class="o">(</span><span class="n">view</span><span class="o">));</span>
 </code></pre></div></div>
-<p>All the lambda does is redirecting the work to an existing <code class="highlighter-rouge">doSomething()</code> method. In such a case, a method reference simplifies things further to:</p>
+<p>All the lambda does is redirecting the work to an existing <code class="language-plaintext highlighter-rouge">doSomething()</code> method. In such a case, a method reference simplifies things further to:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">button</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="k">this</span><span class="o">::</span><span class="n">doSomething</span><span class="o">);</span>
 </code></pre></div></div>
@@ -512,7 +511,7 @@ $(document).ready(function(){
 <h2 id="default-interface-methods">Default interface Methods</h2>
 <p>Default methods make it possible to add new methods to an interface without breaking all classes that implement that interface.</p>
 
-<p>Imagine if you have a <code class="highlighter-rouge">MyView</code> interface that is implemented by a <code class="highlighter-rouge">MyFragment</code> (typical MVP scenario):</p>
+<p>Imagine if you have a <code class="language-plaintext highlighter-rouge">MyView</code> interface that is implemented by a <code class="language-plaintext highlighter-rouge">MyFragment</code> (typical MVP scenario):</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">MyView</span> <span class="o">{</span>
     <span class="kt">void</span> <span class="nf">showProgressbar</span><span class="o">();</span>
@@ -527,7 +526,7 @@ $(document).ready(function(){
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>When you now want to add an extra method to <code class="highlighter-rouge">MyView</code> your code will no longer compile, until <code class="highlighter-rouge">MyFragment</code> also implements that new method. This is annoying, and can be even problematic when many classes are implementing said interface.</p>
+<p>When you now want to add an extra method to <code class="language-plaintext highlighter-rouge">MyView</code> your code will no longer compile, until <code class="language-plaintext highlighter-rouge">MyFragment</code> also implements that new method. This is annoying, and can be even problematic when many classes are implementing said interface.</p>
 
 <p>Therefore Java 8 now allows you to define default methods that provide a standard implementation:</p>
 
@@ -541,14 +540,14 @@ $(document).ready(function(){
 
 <p>So how do default methods work?</p>
 
-<p>Just define a method with the <code class="highlighter-rouge">default</code> keyword in the interface and provide an actual default method body.</p>
+<p>Just define a method with the <code class="language-plaintext highlighter-rouge">default</code> keyword in the interface and provide an actual default method body.</p>
 
 <p>To learn more about this feature, have a look at the <a href="https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html">official documentation</a>.</p>
 
 <h2 id="how-to-get-started">How to get started</h2>
 <p>While this all might seem a bit overwhelming, Android Studio actually offers amazing quick fixes once you enable Java 8 features.</p>
 
-<p>Just use <code class="highlighter-rouge">alt/option</code> + <code class="highlighter-rouge">enter</code> to convert a functional interface to a lamba or a lambda to a method reference.</p>
+<p>Just use <code class="language-plaintext highlighter-rouge">alt/option</code> + <code class="language-plaintext highlighter-rouge">enter</code> to convert a functional interface to a lamba or a lambda to a method reference.</p>
 
 <p><img src="https://jeroenmols.com/img/blog/java8language/androidstudioconversion.gif" alt="Java 8 language quick fixes" class="align-center" /></p>
 
@@ -917,10 +916,10 @@ $(document).ready(function(){
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://jeroenmols.com/blog/2017/07/21/java8language/";  // Replace PAGE_URL with your page's canonical URL variable
-      this.page.identifier = "/blog/2017/07/21/java8language"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      this.page.url = "https://jeroenmols.com/blog/2017/07/21/java8language/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/blog/2017/07/21/java8language"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
     };
-    (function() { // DON'T EDIT BELOW THIS LINE
+    (function() { /* DON'T EDIT BELOW THIS LINE */
       var d = document, s = d.createElement('script');
       s.src = 'https://jeroenmols.disqus.com/embed.js';
       s.setAttribute('data-timestamp', +new Date());

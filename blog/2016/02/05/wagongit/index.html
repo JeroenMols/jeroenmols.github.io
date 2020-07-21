@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.17.0 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.19.3 by Michael Rose
   Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
@@ -170,11 +170,11 @@ $(document).ready(function(){
           
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/blog/" >Blog</a>
+              <a href="/blog/">Blog</a>
             </li><li class="masthead__menu-item">
-              <a href="/speaking/" >Speaking</a>
+              <a href="/speaking/">Speaking</a>
             </li><li class="masthead__menu-item">
-              <a href="/hireme/" >Hire me</a>
+              <a href="/hireme/">Hire me</a>
             </li></ul>
         
         <button class="search__toggle" type="button">
@@ -210,8 +210,6 @@ $(document).ready(function(){
 
   
     <div class="author__avatar">
-      
-
       
         <img src="/img/profile.jpg" alt="Jeroen Mols" itemprop="image">
       
@@ -250,7 +248,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://twitter.com/@molsjeroen" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span>
           </a>
         </li>
       
@@ -260,7 +258,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://www.linkedin.com/in/jeroenmols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn
+            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span>
           </a>
         </li>
       
@@ -276,7 +274,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://github.com/JeroenMols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span>
           </a>
         </li>
       
@@ -286,7 +284,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://stackoverflow.com/users/2771851/jmols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i> Stack Overflow
+            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i><span class="label">Stack Overflow</span>
           </a>
         </li>
       
@@ -305,7 +303,7 @@ $(document).ready(function(){
         
           <li>
             <a href="https://www.youtube.com/channel/UC34Vt1lo8T15_rgc3e3Jsew" itemprop="sameAs" rel="nofollow noopener noreferrer">
-              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i> YouTube
+              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span>
             </a>
           </li>
         
@@ -334,6 +332,7 @@ $(document).ready(function(){
 
   
   </div>
+
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
@@ -387,17 +386,17 @@ $(document).ready(function(){
 <h2 id="bitbucket">Bitbucket</h2>
 <p>Without any further a do, lets get to it and start configuring BitBucket.</p>
 
-<p>Login to Bitbucket and create a new private repository called <code class="highlighter-rouge">maven_repository</code>.</p>
+<p>Login to Bitbucket and create a new private repository called <code class="language-plaintext highlighter-rouge">maven_repository</code>.</p>
 
 <p><a href="https://jeroenmols.com/img/blog/wagongit/createrepository.png"><img src="https://jeroenmols.com/img/blog/wagongit/createrepository.png" alt="Create new BitBucket repository" class="align-center" /></a></p>
 
-<p>Checkout the repository locally, create a <code class="highlighter-rouge">README.md</code> file and commit that file to your local branch. Now push that branch to BitBucket, BUT make sure to push it to a remote branch called “releases”. (this is key, as the plugin we’ll use later on depends on this)</p>
+<p>Checkout the repository locally, create a <code class="language-plaintext highlighter-rouge">README.md</code> file and commit that file to your local branch. Now push that branch to BitBucket, BUT make sure to push it to a remote branch called “releases”. (this is key, as the plugin we’ll use later on depends on this)</p>
 
 <p><a href="https://jeroenmols.com/img/blog/wagongit/releasebranch.png"><img src="https://jeroenmols.com/img/blog/wagongit/releasebranch.png" alt="BitBucket repository with main branch releases." class="align-center" /></a></p>
 
 <blockquote>
   <p><strong>Troubleshooting releases branch</strong>
-If you accidentally push your local branch to a remote called <code class="highlighter-rouge">master</code>, create a new branch locally called releases, push that to a remote <code class="highlighter-rouge">releases</code> and change your main branch in the BitBucket settings for that repository.</p>
+If you accidentally push your local branch to a remote called <code class="language-plaintext highlighter-rouge">master</code>, create a new branch locally called releases, push that to a remote <code class="language-plaintext highlighter-rouge">releases</code> and change your main branch in the BitBucket settings for that repository.</p>
 
   <p><a href="https://jeroenmols.com/img/blog/wagongit/configuremainbranch.png"><img src="https://jeroenmols.com/img/blog/wagongit/configuremainbranch.png" alt="Change the main branch from master to releases" class="align-center" /></a></p>
 
@@ -425,7 +424,7 @@ If you accidentally push your local branch to a remote called <code class="highl
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>Where <code class="highlighter-rouge">COMPANY</code> is the name of your BitBucket organization and <code class="highlighter-rouge">REPOSITORY_NAME</code> is <code class="highlighter-rouge">maven_repository</code>.</p>
+<p>Where <code class="language-plaintext highlighter-rouge">COMPANY</code> is the name of your BitBucket organization and <code class="language-plaintext highlighter-rouge">REPOSITORY_NAME</code> is <code class="language-plaintext highlighter-rouge">maven_repository</code>.</p>
 
 <p>Now you can simply create a new release by running the following command:</p>
 
@@ -463,12 +462,12 @@ If you accidentally push your local branch to a remote called <code class="highl
 <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">uploadArchives</span><span class="o">.</span><span class="na">dependsOn</span> <span class="n">lookForArtifacts</span>
 </code></pre></div></div>
 
-<p>Running <code class="highlighter-rouge">./gradlew uploadArchives</code> now successfully creates a release.</p>
+<p>Running <code class="language-plaintext highlighter-rouge">./gradlew uploadArchives</code> now successfully creates a release.</p>
 
 <p><a href="https://jeroenmols.com/img/blog/wagongit/checkforartifacts.png"><img src="https://jeroenmols.com/img/blog/wagongit/checkforartifacts.png" alt="Check for existing artifacts before uploadArchives." class="align-center" /></a></p>
 
 <h2 id="consuming-artifacts">Consuming artifacts</h2>
-<p>Add your Maven repository to the list of repositories in your main <code class="highlighter-rouge">build.gradle</code> file:</p>
+<p>Add your Maven repository to the list of repositories in your main <code class="language-plaintext highlighter-rouge">build.gradle</code> file:</p>
 
 <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">allprojects</span> <span class="o">{</span>
     <span class="n">repositories</span> <span class="o">{</span>
@@ -485,12 +484,12 @@ If you accidentally push your local branch to a remote called <code class="highl
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>Note that we have to provide a <code class="highlighter-rouge">username</code> and <code class="highlighter-rouge">password</code> as we are connecting to a private repository.</p>
+<p>Note that we have to provide a <code class="language-plaintext highlighter-rouge">username</code> and <code class="language-plaintext highlighter-rouge">password</code> as we are connecting to a private repository.</p>
 
 <blockquote>
   <p><strong>Important</strong></p>
 
-  <p>Make sure not to put your username and password directly into the <code class="highlighter-rouge">build.gradle</code> file! That would be a major security risk. Instead have a look at <a href="http://jeroenmols.com/blog/2015/08/13/artifactory2/">this blogpost</a> to learn how to securely provide a username and password.</p>
+  <p>Make sure not to put your username and password directly into the <code class="language-plaintext highlighter-rouge">build.gradle</code> file! That would be a major security risk. Instead have a look at <a href="http://jeroenmols.com/blog/2015/08/13/artifactory2/">this blogpost</a> to learn how to securely provide a username and password.</p>
 </blockquote>
 
 <p>Now simply add a dependency on your library like you are used to and you’re ready.</p>
@@ -527,7 +526,7 @@ If you accidentally push your local branch to a remote called <code class="highl
 </code></pre></div></div>
 
 <ol>
-  <li>Create a <a href="https://github.com/JeroenMols/WagonGitExample/blob/master/gradle.properties">gradle.properties</a> file in the root of your project (or better in the global <code class="highlighter-rouge">.gradle</code> folder on your system) with the following parameters</li>
+  <li>Create a <a href="https://github.com/JeroenMols/WagonGitExample/blob/master/gradle.properties">gradle.properties</a> file in the root of your project (or better in the global <code class="language-plaintext highlighter-rouge">.gradle</code> folder on your system) with the following parameters</li>
 </ol>
 
 <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">USERNAME</span><span class="o">=&lt;</span><span class="n">username_here</span><span class="o">&gt;</span>
@@ -897,10 +896,10 @@ If you accidentally push your local branch to a remote called <code class="highl
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://jeroenmols.com/blog/2016/02/05/wagongit/";  // Replace PAGE_URL with your page's canonical URL variable
-      this.page.identifier = "/blog/2016/02/05/wagongit"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      this.page.url = "https://jeroenmols.com/blog/2016/02/05/wagongit/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/blog/2016/02/05/wagongit"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
     };
-    (function() { // DON'T EDIT BELOW THIS LINE
+    (function() { /* DON'T EDIT BELOW THIS LINE */
       var d = document, s = d.createElement('script');
       s.src = 'https://jeroenmols.disqus.com/embed.js';
       s.setAttribute('data-timestamp', +new Date());

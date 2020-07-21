@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2020-02-20T08:53:29+01:00</updated><id>https://jeroenmols.com/feed.xml</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, Android freelancer and Google Developer Expert.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Kdoc for Android libraries using Dokka</title><link href="https://jeroenmols.com/blog/2020/02/19/dokka-code-documentation/" rel="alternate" type="text/html" title="Kdoc for Android libraries using Dokka" /><published>2020-02-19T00:00:00+01:00</published><updated>2020-02-19T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2020/02/19/dokka-code-documentation</id><content type="html" xml:base="https://jeroenmols.com/blog/2020/02/19/dokka-code-documentation/">&lt;p&gt;A great way to make your library easier to use it to generate code documentation for its public interface. The default way to do this in Kotlin is to generate KDoc using the official Dokka plugin.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2020-07-21T20:58:15+02:00</updated><id>https://jeroenmols.com/feed.xml</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, Android freelancer and Google Developer Expert.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Kdoc for Android libraries using Dokka</title><link href="https://jeroenmols.com/blog/2020/02/19/dokka-code-documentation/" rel="alternate" type="text/html" title="Kdoc for Android libraries using Dokka" /><published>2020-02-19T00:00:00+01:00</published><updated>2020-02-19T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2020/02/19/dokka-code-documentation</id><content type="html" xml:base="https://jeroenmols.com/blog/2020/02/19/dokka-code-documentation/">&lt;p&gt;A great way to make your library easier to use it to generate code documentation for its public interface. The default way to do this in Kotlin is to generate KDoc using the official Dokka plugin.&lt;/p&gt;
 
 &lt;p&gt;This post will cover some challenges in configuring Dokka and explain some neat tricks to improve your documentation.&lt;/p&gt;
 
 &lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;The equivalent of JavaDoc for Kotlin is called &lt;a href=&quot;https://kotlinlang.org/docs/reference/kotlin-doc.html&quot;&gt;KDoc&lt;/a&gt;. While it is very similar to the former, it also supports inline Markup and allows to easily link to other elements using &lt;code class=&quot;highlighter-rouge&quot;&gt;[ ]&lt;/code&gt; brackets.&lt;/p&gt;
+&lt;p&gt;The equivalent of JavaDoc for Kotlin is called &lt;a href=&quot;https://kotlinlang.org/docs/reference/kotlin-doc.html&quot;&gt;KDoc&lt;/a&gt;. While it is very similar to the former, it also supports inline Markup and allows to easily link to other elements using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[ ]&lt;/code&gt; brackets.&lt;/p&gt;
 
 &lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cm&quot;&gt;/**&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
 &lt;/span&gt;&lt;span class=&quot;cm&quot;&gt; * A group of *members*.&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
@@ -27,7 +27,7 @@
 &lt;p&gt;The documentation generation tool is called &lt;a href=&quot;https://github.com/Kotlin/dokka&quot;&gt;Dokka&lt;/a&gt;. It comes with a Gradle plugin and can generate documentation in multiple formats such as JavaDoc, HTML and even Markdown optimized for Github pages! Neat!&lt;/p&gt;
 
 &lt;h2 id=&quot;basic-dokka-configuration&quot;&gt;Basic Dokka configuration&lt;/h2&gt;
-&lt;p&gt;Adding Dokka requires to define a dependency in your top-level &lt;code class=&quot;highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; file:&lt;/p&gt;
+&lt;p&gt;Adding Dokka requires to define a dependency in your top-level &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; file:&lt;/p&gt;
 
 &lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;buildscript&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;repositories&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
@@ -42,7 +42,7 @@
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;And applying the plugin to the &lt;code class=&quot;highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; of the module(s) for which you would like to generate documentation:&lt;/p&gt;
+&lt;p&gt;And applying the plugin to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; of the module(s) for which you would like to generate documentation:&lt;/p&gt;
 
 &lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;apply&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;plugin:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'org.jetbrains.dokka'&lt;/span&gt;
 
@@ -73,23 +73,23 @@
   &lt;li&gt;There is no visibility modifier to make classes only visible within the project&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;The first challenge causes Dokka not to include the sources of all submodules. Consequently the resulting [KDoc] only contains documentation for your main &lt;code class=&quot;highlighter-rouge&quot;&gt;library&lt;/code&gt; module.&lt;/p&gt;
+&lt;p&gt;The first challenge causes Dokka not to include the sources of all submodules. Consequently the resulting [KDoc] only contains documentation for your main &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt; module.&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Note: this is because the &lt;a href=&quot;https://github.com/kezong/fat-aar-android&quot;&gt;fat AAR plugin&lt;/a&gt; includes the submodules as &lt;code class=&quot;highlighter-rouge&quot;&gt;compileOnly&lt;/code&gt; dependencies when using the &lt;code class=&quot;highlighter-rouge&quot;&gt;embed&lt;/code&gt; dependency. (See &lt;a href=&quot;https://github.com/kezong/fat-aar-android/blob/ab85005f7fdf37ed9802da104bcb63f9f944aee7/source/src/main/groovy/com/kezong/fataar/FatLibraryPlugin.groovy#L65&quot;&gt;source code&lt;/a&gt;)&lt;/p&gt;
+  &lt;p&gt;Note: this is because the &lt;a href=&quot;https://github.com/kezong/fat-aar-android&quot;&gt;fat AAR plugin&lt;/a&gt; includes the submodules as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;compileOnly&lt;/code&gt; dependencies when using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;embed&lt;/code&gt; dependency. (See &lt;a href=&quot;https://github.com/kezong/fat-aar-android/blob/ab85005f7fdf37ed9802da104bcb63f9f944aee7/source/src/main/groovy/com/kezong/fataar/FatLibraryPlugin.groovy#L65&quot;&gt;source code&lt;/a&gt;)&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;The second challenge bloats the documentation with a lot of classes that shouldn’t be part of the API:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;the &lt;code class=&quot;highlighter-rouge&quot;&gt;internal&lt;/code&gt; modifier is too restrictive as it doesn’t allow modules within the library to use each other’s classes.&lt;/li&gt;
-  &lt;li&gt;the &lt;code class=&quot;highlighter-rouge&quot;&gt;public&lt;/code&gt; modifier is not restrictive enough and exposes classes to any other project using your library.&lt;/li&gt;
+  &lt;li&gt;the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;internal&lt;/code&gt; modifier is too restrictive as it doesn’t allow modules within the library to use each other’s classes.&lt;/li&gt;
+  &lt;li&gt;the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;public&lt;/code&gt; modifier is not restrictive enough and exposes classes to any other project using your library.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Unfortunately, using public modifiers is currently the only way to have multiple module libraries until &lt;a href=&quot;https://issuetracker.google.com/issues/62121508&quot;&gt;issue 62121508 gets fixed&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id=&quot;multi-module-libraries&quot;&gt;Multi-module libraries&lt;/h2&gt;
-&lt;p&gt;Luckily there is a way to directly tell Dokka what sources it should include in the documentation via the &lt;code class=&quot;highlighter-rouge&quot;&gt;sourceRoots&lt;/code&gt; attribute.&lt;/p&gt;
+&lt;p&gt;Luckily there is a way to directly tell Dokka what sources it should include in the documentation via the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sourceRoots&lt;/code&gt; attribute.&lt;/p&gt;
 
 &lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;dokka&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;configuration&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
@@ -100,9 +100,9 @@
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Though this doesn’t take a &lt;code class=&quot;highlighter-rouge&quot;&gt;String&lt;/code&gt; pointing to the sources, instead it requires a wrapper object a &lt;code class=&quot;highlighter-rouge&quot;&gt;SourceRoot&lt;/code&gt;, which has an attribute &lt;code class=&quot;highlighter-rouge&quot;&gt;path&lt;/code&gt;. 🤔&lt;/p&gt;
+&lt;p&gt;Though this doesn’t take a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;String&lt;/code&gt; pointing to the sources, instead it requires a wrapper object a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SourceRoot&lt;/code&gt;, which has an attribute &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;path&lt;/code&gt;. 🤔&lt;/p&gt;
 
-&lt;p&gt;The easiest way to create a &lt;code class=&quot;highlighter-rouge&quot;&gt;SourceRoot&lt;/code&gt; is to create a &lt;a href=&quot;https://github.com/Kotlin/dokka/blob/0d0d41f594f1095b4ccc999cffe01a6ef9a22dbb/runners/gradle-plugin/src/main/kotlin/org/jetbrains/dokka/gradle/configurationImplementations.kt#L18&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;GradleSourceRootImpl&lt;/code&gt;&lt;/a&gt; and set it’s path:&lt;/p&gt;
+&lt;p&gt;The easiest way to create a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SourceRoot&lt;/code&gt; is to create a &lt;a href=&quot;https://github.com/Kotlin/dokka/blob/0d0d41f594f1095b4ccc999cffe01a6ef9a22dbb/runners/gradle-plugin/src/main/kotlin/org/jetbrains/dokka/gradle/configurationImplementations.kt#L18&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GradleSourceRootImpl&lt;/code&gt;&lt;/a&gt; and set it’s path:&lt;/p&gt;
 
 &lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.jetbrains.dokka.gradle.GradleSourceRootImpl&lt;/span&gt;
 
@@ -138,7 +138,7 @@
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Note that these methods only look in the &lt;code class=&quot;highlighter-rouge&quot;&gt;main&lt;/code&gt; source folders and that &lt;code class=&quot;highlighter-rouge&quot;&gt;getSourceDirs&lt;/code&gt; only looks at direct subfolders.&lt;/p&gt;
+&lt;p&gt;Note that these methods only look in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;main&lt;/code&gt; source folders and that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getSourceDirs&lt;/code&gt; only looks at direct subfolders.&lt;/p&gt;
 
 &lt;p&gt;Sadly, this doesn’t work and causes compilation issues when running Dokka. (╯°□°）╯︵ ┻━┻&lt;/p&gt;
 
@@ -171,9 +171,9 @@
 &lt;p&gt;In summary, with a bit of logic, we can make sure source files of new modules are automatically included in the documentation.&lt;/p&gt;
 
 &lt;h2 id=&quot;excluding-public-classes&quot;&gt;Excluding public classes&lt;/h2&gt;
-&lt;p&gt;Since Kotlin doesn’t have a &lt;code class=&quot;highlighter-rouge&quot;&gt;project internal&lt;/code&gt; visibility modifier, we need a way to exclude &lt;code class=&quot;highlighter-rouge&quot;&gt;public&lt;/code&gt; classes from our documentation that shouldn’t be exposed.&lt;/p&gt;
+&lt;p&gt;Since Kotlin doesn’t have a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;project internal&lt;/code&gt; visibility modifier, we need a way to exclude &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;public&lt;/code&gt; classes from our documentation that shouldn’t be exposed.&lt;/p&gt;
 
-&lt;p&gt;One way of doing that is moving all classes that are internal to your SDK to a package name ending with &lt;code class=&quot;highlighter-rouge&quot;&gt;internal&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;One way of doing that is moving all classes that are internal to your SDK to a package name ending with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;internal&lt;/code&gt;.&lt;/p&gt;
 
 &lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;com.jeroenmols.internal&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;com.jeroenmols.api.models.internal&lt;/span&gt;
@@ -200,7 +200,7 @@
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;And more generically, all packages in each source root that end with &lt;code class=&quot;highlighter-rouge&quot;&gt;internal&lt;/code&gt; can be filtered:&lt;/p&gt;
+&lt;p&gt;And more generically, all packages in each source root that end with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;internal&lt;/code&gt; can be filtered:&lt;/p&gt;
 
 &lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;groovy.io.FileType&lt;/span&gt;
 
@@ -226,7 +226,7 @@
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;And hooking this all together will make sure all &lt;code class=&quot;highlighter-rouge&quot;&gt;internal&lt;/code&gt; classes are excluded:&lt;/p&gt;
+&lt;p&gt;And hooking this all together will make sure all &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;internal&lt;/code&gt; classes are excluded:&lt;/p&gt;
 
 &lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;dokka&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;configuration&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
@@ -321,7 +321,7 @@
 &lt;p&gt;This post covered how to configure &lt;a href=&quot;https://github.com/Kotlin/dokka&quot;&gt;Dokka&lt;/a&gt; to generate &lt;a href=&quot;https://kotlinlang.org/docs/reference/kotlin-doc.html&quot;&gt;KDoc&lt;/a&gt; documentation. It explained how Dokka can be used for multi-module libraries and how public classes of submodules can be excluded.&lt;/p&gt;
 
 &lt;p&gt;If you’ve made it this far you should probably follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=kdocforandroidlibrariesusingdokka2020&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
-. Feel free to leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="documentation" /><category term="kdoc" /><category term="dokka" /><category term="gradle" /><category term="kotlin" /><summary type="html">A great way to make your library easier to use it to generate code documentation for its public interface. The default way to do this in Kotlin is to generate KDoc using the official Dokka plugin.</summary></entry><entry><title type="html">Year in review 2019</title><link href="https://jeroenmols.com/blog/2020/01/09/yearinreview/" rel="alternate" type="text/html" title="Year in review 2019" /><published>2020-01-09T00:00:00+01:00</published><updated>2020-01-09T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2020/01/09/yearinreview</id><content type="html" xml:base="https://jeroenmols.com/blog/2020/01/09/yearinreview/">&lt;p&gt;Getting up without being rushed, cycling my kids to school, cooking healthy salads for lunch, kids running into my arms when they get home… I’m quite happy with my new daily routine!&lt;/p&gt;
+. Feel free to leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="documentation" /><category term="kdoc" /><category term="dokka" /><category term="gradle" /><category term="kotlin" /><summary type="html">A great way to make your library easier to use it to generate code documentation for its public interface. The default way to do this in Kotlin is to generate KDoc using the official Dokka plugin.</summary></entry><entry><title type="html">Year in review 2019</title><link href="https://jeroenmols.com/blog/2020/01/09/yearinreview/" rel="alternate" type="text/html" title="Year in review 2019" /><published>2020-01-09T00:00:00+01:00</published><updated>2020-01-09T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2020/01/09/yearinreview</id><content type="html" xml:base="https://jeroenmols.com/blog/2020/01/09/yearinreview/">&lt;p&gt;Getting up without being rushed, cycling my kids to school, cooking healthy salads for lunch, kids running into my arms when they get home… I’m quite happy with my new daily routine!&lt;/p&gt;
 
 &lt;p&gt;Without a doubt, 2019 was the highlight of my career!&lt;/p&gt;
 
@@ -366,7 +366,7 @@
 &lt;p&gt;I don’t plan on increasing my community contributions, in fact, I might even do slightly less. However, I would also like to explore alternative ways to give back such as one-on-one mentoring or speaking at a remote conference.&lt;/p&gt;
 
 &lt;p&gt;As always you can reach me &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=yearinreview20192020&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;@molsjeroen&lt;/a&gt;&lt;/span&gt;
- on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="review" /><summary type="html">Getting up without being rushed, cycling my kids to school, cooking healthy salads for lunch, kids running into my arms when they get home… I’m quite happy with my new daily routine!</summary></entry><entry><title type="html">Feature flags - A successful architecture</title><link href="https://jeroenmols.com/blog/2019/09/12/featureflagsarchitecture/" rel="alternate" type="text/html" title="Feature flags - A successful architecture" /><published>2019-09-12T00:00:00+02:00</published><updated>2019-09-12T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2019/09/12/featureflagsarchitecture</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/09/12/featureflagsarchitecture/">&lt;p&gt;Now that we know how feature flags can help us release faster, it’s time to dive into the actual implementation details. How can we easily define feature flags? How to configure them both locally as remotely? And use them in our testing?&lt;/p&gt;
+ on twitter, or leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="review" /><summary type="html">Getting up without being rushed, cycling my kids to school, cooking healthy salads for lunch, kids running into my arms when they get home… I’m quite happy with my new daily routine!</summary></entry><entry><title type="html">Feature flags - A successful architecture</title><link href="https://jeroenmols.com/blog/2019/09/12/featureflagsarchitecture/" rel="alternate" type="text/html" title="Feature flags - A successful architecture" /><published>2019-09-12T00:00:00+02:00</published><updated>2019-09-12T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2019/09/12/featureflagsarchitecture</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/09/12/featureflagsarchitecture/">&lt;p&gt;Now that we know how feature flags can help us release faster, it’s time to dive into the actual implementation details. How can we easily define feature flags? How to configure them both locally as remotely? And use them in our testing?&lt;/p&gt;
 
 &lt;p&gt;This post will present a simple, powerful architecture to manage feature flags and comes with a &lt;a href=&quot;https://github.com/JeroenMols/FeatureFlagExample&quot;&gt;full example on Github&lt;/a&gt;.&lt;/p&gt;
 
@@ -380,7 +380,7 @@
 &lt;/blockquote&gt;
 
 &lt;h2 id=&quot;creating-new-feature-flags&quot;&gt;Creating new feature flags&lt;/h2&gt;
-&lt;p&gt;As discussed in &lt;a href=&quot;/blog/2019/08/13/featureflags/&quot;&gt;part 1&lt;/a&gt;, the easier it is to add feature flags, the more likely developers will use the system. At its core a &lt;code class=&quot;highlighter-rouge&quot;&gt;Feature&lt;/code&gt; is something very simple:&lt;/p&gt;
+&lt;p&gt;As discussed in &lt;a href=&quot;/blog/2019/08/13/featureflags/&quot;&gt;part 1&lt;/a&gt;, the easier it is to add feature flags, the more likely developers will use the system. At its core a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Feature&lt;/code&gt; is something very simple:&lt;/p&gt;
 
 &lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Feature&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;
@@ -390,9 +390,9 @@
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;It needs to have a unique &lt;code class=&quot;highlighter-rouge&quot;&gt;key&lt;/code&gt; to reference it on your remote feature flagging tool. A &lt;code class=&quot;highlighter-rouge&quot;&gt;title&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;description&lt;/code&gt; to help understand what it is all about. And optionally a default value, which is handy if you’re using both &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlags&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;TestSettings&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;It needs to have a unique &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;key&lt;/code&gt; to reference it on your remote feature flagging tool. A &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;title&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;description&lt;/code&gt; to help understand what it is all about. And optionally a default value, which is handy if you’re using both &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FeatureFlags&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TestSettings&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;This interface can now be implemented by both a &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;TestSetting&lt;/code&gt; enum:&lt;/p&gt;
+&lt;p&gt;This interface can now be implemented by both a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TestSetting&lt;/code&gt; enum:&lt;/p&gt;
 
 &lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;enum&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;FeatureFlag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
@@ -415,18 +415,18 @@
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Note how a &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; is on by default so that it is immediately visible in developer builds, whereas &lt;code class=&quot;highlighter-rouge&quot;&gt;TestSettings&lt;/code&gt; are off by default as they usually put the app in a specific condition to help with testing.&lt;/p&gt;
+&lt;p&gt;Note how a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; is on by default so that it is immediately visible in developer builds, whereas &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TestSettings&lt;/code&gt; are off by default as they usually put the app in a specific condition to help with testing.&lt;/p&gt;
 
-&lt;p&gt;Both &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;TestSetting&lt;/code&gt; are enums so that the Kotlin compiler can force you to handle each case explicitly in a &lt;code class=&quot;highlighter-rouge&quot;&gt;when&lt;/code&gt; statement. At the same time, they are not sealed classes, because we need to be able to enumerate all items, later on, to automatically generate a UI from it. (There is no way to ask a sealed class to list all it’s subclasses)&lt;/p&gt;
+&lt;p&gt;Both &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TestSetting&lt;/code&gt; are enums so that the Kotlin compiler can force you to handle each case explicitly in a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;when&lt;/code&gt; statement. At the same time, they are not sealed classes, because we need to be able to enumerate all items, later on, to automatically generate a UI from it. (There is no way to ask a sealed class to list all it’s subclasses)&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Mission accomplished: adding a new &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; / &lt;code class=&quot;highlighter-rouge&quot;&gt;TestSetting&lt;/code&gt; is as easy as adding a one-liner!&lt;/p&gt;
+  &lt;p&gt;Mission accomplished: adding a new &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; / &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TestSetting&lt;/code&gt; is as easy as adding a one-liner!&lt;/p&gt;
   &lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;AWESOME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;feature.awesome&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Awesome&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Does something awesome&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;  &lt;/div&gt;
 &lt;/blockquote&gt;
 
 &lt;h2 id=&quot;consuming-feature-flags&quot;&gt;Consuming feature flags&lt;/h2&gt;
-&lt;p&gt;Next, our app needs to be able to read out what value (true/false) a &lt;code class=&quot;highlighter-rouge&quot;&gt;Feature&lt;/code&gt; is currently set to. This can be done by requesting one of the &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlagProviders&lt;/code&gt; for the current value:&lt;/p&gt;
+&lt;p&gt;Next, our app needs to be able to read out what value (true/false) a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Feature&lt;/code&gt; is currently set to. This can be done by requesting one of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FeatureFlagProviders&lt;/code&gt; for the current value:&lt;/p&gt;
 
 &lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;FeatureFlagProvider&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;priority&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Int&lt;/span&gt;
@@ -437,14 +437,14 @@
 
 &lt;p&gt;This interface will have several implementations with different priorities attached to it so that they can override each other. (more on that later)&lt;/p&gt;
 
-&lt;p&gt;Note how implementations don’t need to provide a value for every &lt;code class=&quot;highlighter-rouge&quot;&gt;Feature&lt;/code&gt; thanks to the &lt;code class=&quot;highlighter-rouge&quot;&gt;hasFeature()&lt;/code&gt; method! This has two benefits:&lt;/p&gt;
+&lt;p&gt;Note how implementations don’t need to provide a value for every &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Feature&lt;/code&gt; thanks to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hasFeature()&lt;/code&gt; method! This has two benefits:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;you can prevent accidentally relying on build-in defaults of the feature flag tool you are using by requiring an explicit opt-in for that tool (e.g. Firebase remote config returns false when it doesn’t have a value)&lt;/li&gt;
   &lt;li&gt;you can have a chain of providers (e.g. we can have a feature flag that is only locally available, not remotely).&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;RuntimeBehavior&lt;/code&gt; links all &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlagProviders&lt;/code&gt; together and exposes the API that should be used from within the application:&lt;/p&gt;
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RuntimeBehavior&lt;/code&gt; links all &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FeatureFlagProviders&lt;/code&gt; together and exposes the API that should be used from within the application:&lt;/p&gt;
 
 &lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;RuntimeBehavior&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
 
@@ -465,7 +465,7 @@
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Note how it takes all &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlagProviders&lt;/code&gt;, removes those that don’t provide a value for the &lt;code class=&quot;highlighter-rouge&quot;&gt;Feature&lt;/code&gt; and then takes the value of the highest priority provider. If no one provides a value, the default value is returned.&lt;/p&gt;
+&lt;p&gt;Note how it takes all &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FeatureFlagProviders&lt;/code&gt;, removes those that don’t provide a value for the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Feature&lt;/code&gt; and then takes the value of the highest priority provider. If no one provides a value, the default value is returned.&lt;/p&gt;
 
 &lt;p&gt;Thanks to all of this we can now call from anywhere in the app:&lt;/p&gt;
 
@@ -477,7 +477,7 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Consuming &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt;/&lt;code class=&quot;highlighter-rouge&quot;&gt;TestSetting&lt;/code&gt; is as easy as asking the &lt;code class=&quot;highlighter-rouge&quot;&gt;RuntimeBehavior&lt;/code&gt;&lt;/p&gt;
+  &lt;p&gt;Consuming &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt;/&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TestSetting&lt;/code&gt; is as easy as asking the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RuntimeBehavior&lt;/code&gt;&lt;/p&gt;
   &lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;isFeatureEnabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;AWESOME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;c1&quot;&gt;// code here&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
@@ -485,12 +485,12 @@
 &lt;/blockquote&gt;
 
 &lt;h2 id=&quot;providing-feature-flag-values&quot;&gt;Providing feature flag values&lt;/h2&gt;
-&lt;p&gt;Let’s have a look at the several different &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlagProviders&lt;/code&gt;, why we need them and how they work.&lt;/p&gt;
+&lt;p&gt;Let’s have a look at the several different &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FeatureFlagProviders&lt;/code&gt;, why we need them and how they work.&lt;/p&gt;
 
 &lt;h3 id=&quot;runtimefeatureflagprovider&quot;&gt;RuntimeFeatureFlagProvider&lt;/h3&gt;
 &lt;p&gt;This provider only exists in the debug version of the app and allows to dynamically turn features on or off.&lt;/p&gt;
 
-&lt;p&gt;It does this by keeping a &lt;code class=&quot;highlighter-rouge&quot;&gt;SharedPreferences&lt;/code&gt; internally where it automatically stores a value for each &lt;code class=&quot;highlighter-rouge&quot;&gt;Feature&lt;/code&gt; using its key.&lt;/p&gt;
+&lt;p&gt;It does this by keeping a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SharedPreferences&lt;/code&gt; internally where it automatically stores a value for each &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Feature&lt;/code&gt; using its key.&lt;/p&gt;
 
 &lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;RuntimeFeatureFlagProvider&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;FeatureFlagProvider&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
 
@@ -512,14 +512,14 @@
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Notice how this provider has a public API &lt;code class=&quot;highlighter-rouge&quot;&gt;setFeatureEnabled&lt;/code&gt; to change the current value of a &lt;code class=&quot;highlighter-rouge&quot;&gt;Feature&lt;/code&gt; and how every &lt;code class=&quot;highlighter-rouge&quot;&gt;Feature&lt;/code&gt; is always configurable at runtime. (i.e. &lt;code class=&quot;highlighter-rouge&quot;&gt;hasFeature()&lt;/code&gt; returns true for every feature)&lt;/p&gt;
+&lt;p&gt;Notice how this provider has a public API &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setFeatureEnabled&lt;/code&gt; to change the current value of a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Feature&lt;/code&gt; and how every &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Feature&lt;/code&gt; is always configurable at runtime. (i.e. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hasFeature()&lt;/code&gt; returns true for every feature)&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;RuntimeFeatureFlagProvider&lt;/code&gt; allows to locally turn any &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt;/&lt;code class=&quot;highlighter-rouge&quot;&gt;TestSetting&lt;/code&gt; on or off.&lt;/p&gt;
+  &lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RuntimeFeatureFlagProvider&lt;/code&gt; allows to locally turn any &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt;/&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TestSetting&lt;/code&gt; on or off.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;h3 id=&quot;storefeatureflagprovider&quot;&gt;StoreFeatureFlagProvider&lt;/h3&gt;
-&lt;p&gt;This provider only exists in the release version of the app and defines the baseline of what &lt;code class=&quot;highlighter-rouge&quot;&gt;Features&lt;/code&gt; are on or off. &lt;code class=&quot;highlighter-rouge&quot;&gt;TestSettings&lt;/code&gt; aren’t exposed in the release version of an app and are always off.&lt;/p&gt;
+&lt;p&gt;This provider only exists in the release version of the app and defines the baseline of what &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Features&lt;/code&gt; are on or off. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TestSettings&lt;/code&gt; aren’t exposed in the release version of an app and are always off.&lt;/p&gt;
 
 &lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;StoreFeatureFlagProvider&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;FeatureFlagProvider&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
 
@@ -545,16 +545,16 @@
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Notice how you must provide an explicit value for every feature toggle! This is because you never want to accidentally ship an unfinished feature to users. Non gradual rollout of a feature requires an explicit change to the &lt;code class=&quot;highlighter-rouge&quot;&gt;StoreFeatureFlagProvider&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Notice how you must provide an explicit value for every feature toggle! This is because you never want to accidentally ship an unfinished feature to users. Non gradual rollout of a feature requires an explicit change to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;StoreFeatureFlagProvider&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;Finally, this makes it very easy to check what features are on or off in any given app release. And since all of this is just Kotlin code, it’s easy to write a script to generate a release report with what feature toggles exist and their value for that app version.&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;StoreFeatureFlagProvider&lt;/code&gt; defines for every &lt;code class=&quot;highlighter-rouge&quot;&gt;Feature&lt;/code&gt; whether it is on or off in the release build&lt;/p&gt;
+  &lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;StoreFeatureFlagProvider&lt;/code&gt; defines for every &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Feature&lt;/code&gt; whether it is on or off in the release build&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;h3 id=&quot;firebasefeatureflagprovider&quot;&gt;FirebaseFeatureFlagProvider&lt;/h3&gt;
-&lt;p&gt;One of the most interesting things about &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlags&lt;/code&gt; is that you can gradually roll them out using a remote feature flagging tool. We’ll look at &lt;a href=&quot;https://firebase.google.com/docs/remote-config&quot;&gt;Firebase Remote Config&lt;/a&gt; as an example, but this architecture supports any tool.&lt;/p&gt;
+&lt;p&gt;One of the most interesting things about &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FeatureFlags&lt;/code&gt; is that you can gradually roll them out using a remote feature flagging tool. We’ll look at &lt;a href=&quot;https://firebase.google.com/docs/remote-config&quot;&gt;Firebase Remote Config&lt;/a&gt; as an example, but this architecture supports any tool.&lt;/p&gt;
 
 &lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;FirebaseFeatureFlagProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;isDevModeEnabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Boolean&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;FeatureFlagProvider&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;remoteConfig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;FirebaseRemoteConfig&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;FirebaseRemoteConfig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
@@ -578,30 +578,30 @@
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;The most important thing to note here is that the &lt;code class=&quot;highlighter-rouge&quot;&gt;FirebaseFeatureFlagProvider&lt;/code&gt; has the maximum priority, which means it takes precedence over any other &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlagProvider&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The most important thing to note here is that the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FirebaseFeatureFlagProvider&lt;/code&gt; has the maximum priority, which means it takes precedence over any other &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FeatureFlagProvider&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;However, it doesn’t provide a value for all feature flags! That is because a &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; should only be remotely toggled once development for the feature is done. We don’t want anyone accidentally expose an unfinished/broken feature to users from the feature flag tool console.&lt;/p&gt;
+&lt;p&gt;However, it doesn’t provide a value for all feature flags! That is because a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; should only be remotely toggled once development for the feature is done. We don’t want anyone accidentally expose an unfinished/broken feature to users from the feature flag tool console.&lt;/p&gt;
 
-&lt;p&gt;Typically the lifecycle of a &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; is:&lt;/p&gt;
+&lt;p&gt;Typically the lifecycle of a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; is:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Development started on new feature -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; added&lt;/li&gt;
-  &lt;li&gt;While development ongoing -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; locally available&lt;/li&gt;
+  &lt;li&gt;Development started on new feature -&amp;gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; added&lt;/li&gt;
+  &lt;li&gt;While development ongoing -&amp;gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; locally available&lt;/li&gt;
   &lt;li&gt;Development done
     &lt;ul&gt;
-      &lt;li&gt;Either toggle &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; in &lt;code class=&quot;highlighter-rouge&quot;&gt;StoreFeatureFlagProvider&lt;/code&gt; and roll it out to all users at once. (typically if you have a marketing campaign attached to the feature)&lt;/li&gt;
-      &lt;li&gt;Or add the &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; to the &lt;code class=&quot;highlighter-rouge&quot;&gt;FirebaseFeatureFlagProvider&lt;/code&gt; and gradually roll it out&lt;/li&gt;
+      &lt;li&gt;Either toggle &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;StoreFeatureFlagProvider&lt;/code&gt; and roll it out to all users at once. (typically if you have a marketing campaign attached to the feature)&lt;/li&gt;
+      &lt;li&gt;Or add the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FirebaseFeatureFlagProvider&lt;/code&gt; and gradually roll it out&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;Rollout done -&amp;gt; remove &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; and clean up unused code&lt;/li&gt;
+  &lt;li&gt;Rollout done -&amp;gt; remove &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; and clean up unused code&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;tool name&amp;gt; - FeatureFlagProvider&lt;/code&gt; allows to gradually roll out finished features to users&lt;/p&gt;
+  &lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;tool name&amp;gt; - FeatureFlagProvider&lt;/code&gt; allows to gradually roll out finished features to users&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;h3 id=&quot;how-the-different-providers-work-together&quot;&gt;How the different providers work together&lt;/h3&gt;
-&lt;p&gt;Whenever the &lt;code class=&quot;highlighter-rouge&quot;&gt;RuntimeBehavior&lt;/code&gt; is initialized, it will initialize all providers:&lt;/p&gt;
+&lt;p&gt;Whenever the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RuntimeBehavior&lt;/code&gt; is initialized, it will initialize all providers:&lt;/p&gt;
 
 &lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;RuntimeBehavior&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;..&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
@@ -623,20 +623,20 @@
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;For debug builds, usually only the &lt;code class=&quot;highlighter-rouge&quot;&gt;RuntimeFeatureFlagProvider&lt;/code&gt; is enabled so feature flags can be toggled from the test settings screen (more on that next).&lt;/p&gt;
+&lt;p&gt;For debug builds, usually only the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RuntimeFeatureFlagProvider&lt;/code&gt; is enabled so feature flags can be toggled from the test settings screen (more on that next).&lt;/p&gt;
 
-&lt;p&gt;But you can even enable the &lt;code class=&quot;highlighter-rouge&quot;&gt;FirebaseFeatureFlagProvider&lt;/code&gt; in the debug build. This allows to also easily test the remote feature flag tool.&lt;/p&gt;
+&lt;p&gt;But you can even enable the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FirebaseFeatureFlagProvider&lt;/code&gt; in the debug build. This allows to also easily test the remote feature flag tool.&lt;/p&gt;
 
-&lt;p&gt;In release, however, the &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; value is taken from Firebase when the &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; was made remotely available (using &lt;code class=&quot;highlighter-rouge&quot;&gt;hasFeature()&lt;/code&gt; in &lt;code class=&quot;highlighter-rouge&quot;&gt;FirebaseFeatureFlagProvider&lt;/code&gt;). If not, the value from &lt;code class=&quot;highlighter-rouge&quot;&gt;StoreFeatureFlagProvider&lt;/code&gt; is used.&lt;/p&gt;
+&lt;p&gt;In release, however, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; value is taken from Firebase when the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; was made remotely available (using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hasFeature()&lt;/code&gt; in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FirebaseFeatureFlagProvider&lt;/code&gt;). If not, the value from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;StoreFeatureFlagProvider&lt;/code&gt; is used.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/featureflagarchitecture/featureflagprovider_priority.png&quot; alt=&quot;Different FeatureFlagProviders and their priority for every build type&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;showing-the-flags-in-a-ui&quot;&gt;Showing the flags in a UI&lt;/h2&gt;
-&lt;p&gt;Within the developer version of our app, we want to be able to both see the status of all &lt;code class=&quot;highlighter-rouge&quot;&gt;Features&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;TestSettings&lt;/code&gt; and also toggle each one on or off. Basically, we want to automatically generate a UI like this:&lt;/p&gt;
+&lt;p&gt;Within the developer version of our app, we want to be able to both see the status of all &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Features&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TestSettings&lt;/code&gt; and also toggle each one on or off. Basically, we want to automatically generate a UI like this:&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/featureflagarchitecture/testsettings.png&quot; alt=&quot;Test settings activity to dynamically configure behavior in the app&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;To show all of the &lt;code class=&quot;highlighter-rouge&quot;&gt;Features&lt;/code&gt;, we can simply define a custom &lt;code class=&quot;highlighter-rouge&quot;&gt;RecyclerView&lt;/code&gt; that displays an &lt;code class=&quot;highlighter-rouge&quot;&gt;Array&lt;/code&gt; of &lt;code class=&quot;highlighter-rouge&quot;&gt;Features&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;To show all of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Features&lt;/code&gt;, we can simply define a custom &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RecyclerView&lt;/code&gt; that displays an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Array&lt;/code&gt; of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Features&lt;/code&gt;.&lt;/p&gt;
 
 &lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;FeatureFlagAdapter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;T&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;(&lt;/span&gt;
     &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;,&lt;/span&gt;
@@ -656,11 +656,11 @@
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Now it becomes clear why &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlags&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;TestSettings&lt;/code&gt; had to be enums, because this allows to pass the &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlagAdapter&lt;/code&gt; either &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlag.values()&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;TestSetting.values()&lt;/code&gt; and automatically generate the UI for all defined &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlags&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;TestSettings&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Now it becomes clear why &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FeatureFlags&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TestSettings&lt;/code&gt; had to be enums, because this allows to pass the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FeatureFlagAdapter&lt;/code&gt; either &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FeatureFlag.values()&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TestSetting.values()&lt;/code&gt; and automatically generate the UI for all defined &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FeatureFlags&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TestSettings&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;Additionally we hand it the &lt;code class=&quot;highlighter-rouge&quot;&gt;RuntimeFeatureFlagProvider&lt;/code&gt; to look up the current values of each &lt;code class=&quot;highlighter-rouge&quot;&gt;Feature&lt;/code&gt;. Finally it needs a listener to respond when an item gets enabled/disabled.&lt;/p&gt;
+&lt;p&gt;Additionally we hand it the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RuntimeFeatureFlagProvider&lt;/code&gt; to look up the current values of each &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Feature&lt;/code&gt;. Finally it needs a listener to respond when an item gets enabled/disabled.&lt;/p&gt;
 
-&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlagViewHolder&lt;/code&gt; simply binds the properties of the &lt;code class=&quot;highlighter-rouge&quot;&gt;Feature&lt;/code&gt; to the view, requests the current value from the &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlagProvider&lt;/code&gt; and connects a listener to the switch:&lt;/p&gt;
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FeatureFlagViewHolder&lt;/code&gt; simply binds the properties of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Feature&lt;/code&gt; to the view, requests the current value from the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FeatureFlagProvider&lt;/code&gt; and connects a listener to the switch:&lt;/p&gt;
 
 &lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;FeatureFlagViewHolder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;T&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;(&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;View&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
@@ -678,7 +678,7 @@
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;The listener passed into the &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlagAdapter&lt;/code&gt; simply changes the value of the &lt;code class=&quot;highlighter-rouge&quot;&gt;Feature&lt;/code&gt; on the &lt;code class=&quot;highlighter-rouge&quot;&gt;RuntimeFeatureFlagProvider&lt;/code&gt; and shows a &lt;code class=&quot;highlighter-rouge&quot;&gt;SnackBar&lt;/code&gt; to restart the app to ensure the new value is properly applied:&lt;/p&gt;
+&lt;p&gt;The listener passed into the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FeatureFlagAdapter&lt;/code&gt; simply changes the value of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Feature&lt;/code&gt; on the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RuntimeFeatureFlagProvider&lt;/code&gt; and shows a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SnackBar&lt;/code&gt; to restart the app to ensure the new value is properly applied:&lt;/p&gt;
 
 &lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;checkedListener&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Boolean&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;-&amp;gt;&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;runtimeFeatureFlagProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;setFeatureEnabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
@@ -690,30 +690,30 @@
     &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;msg&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;In order for changes to reflect please restart the app via settings&quot;&lt;/span&gt;
     &lt;span class=&quot;nc&quot;&gt;Snackbar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;make&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!!&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Snackbar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;LENGTH_INDEFINITE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
         &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;setActionTextColor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;RED&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;setAction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Force Stop&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;exitProcess&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(-&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;setAction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Force Stop&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;exitProcess&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
         &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Now we just wrap all of this into a &lt;code class=&quot;highlighter-rouge&quot;&gt;TestSettingsActivity&lt;/code&gt; with a separate launch icon and make sure this activity isn’t available in release builds. The simplest way to do this is by moving all UI classes to the &lt;code class=&quot;highlighter-rouge&quot;&gt;debug&lt;/code&gt; source folder.&lt;/p&gt;
+&lt;p&gt;Now we just wrap all of this into a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TestSettingsActivity&lt;/code&gt; with a separate launch icon and make sure this activity isn’t available in release builds. The simplest way to do this is by moving all UI classes to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;debug&lt;/code&gt; source folder.&lt;/p&gt;
 
-&lt;p&gt;Now we have a very powerful, easy to use UI framework to dynamically configure the behavior of our app! By just adding a single line &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;TestSetting&lt;/code&gt; it instantly shows up in our UI.&lt;/p&gt;
+&lt;p&gt;Now we have a very powerful, easy to use UI framework to dynamically configure the behavior of our app! By just adding a single line &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TestSetting&lt;/code&gt; it instantly shows up in our UI.&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Debug builds have a UI to toggle all &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlags&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;TestSettings&lt;/code&gt; on or off that gets fully automatically generated.&lt;/p&gt;
+  &lt;p&gt;Debug builds have a UI to toggle all &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FeatureFlags&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TestSettings&lt;/code&gt; on or off that gets fully automatically generated.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;h2 id=&quot;remote-feature-flags&quot;&gt;Remote feature flags&lt;/h2&gt;
-&lt;p&gt;Whilst talking about the &lt;code class=&quot;highlighter-rouge&quot;&gt;FirebaseFeatureFlagProvider&lt;/code&gt; before, there is one important aspect that we didn’t cover: how to refresh the local &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; cache with new remote values. Some feature flag tools do that for you automatically, but for others (like Firebase Remote Config), you need to trigger that process manually.&lt;/p&gt;
+&lt;p&gt;Whilst talking about the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FirebaseFeatureFlagProvider&lt;/code&gt; before, there is one important aspect that we didn’t cover: how to refresh the local &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FeatureFlag&lt;/code&gt; cache with new remote values. Some feature flag tools do that for you automatically, but for others (like Firebase Remote Config), you need to trigger that process manually.&lt;/p&gt;
 
-&lt;p&gt;A way to make that fit into our architecture is to define an additional interface &lt;code class=&quot;highlighter-rouge&quot;&gt;RemoteFeatureFlagProvider&lt;/code&gt; that every &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlagProvider&lt;/code&gt; for a remote tool should implement.&lt;/p&gt;
+&lt;p&gt;A way to make that fit into our architecture is to define an additional interface &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RemoteFeatureFlagProvider&lt;/code&gt; that every &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FeatureFlagProvider&lt;/code&gt; for a remote tool should implement.&lt;/p&gt;
 
 &lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;RemoteFeatureFlagProvider&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;refreshFeatureFlags&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Now we just need to expand the &lt;code class=&quot;highlighter-rouge&quot;&gt;FirebaseFeatureFlagProvider&lt;/code&gt; with this interface and implement &lt;code class=&quot;highlighter-rouge&quot;&gt;refreshFeatureFlags&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;Now we just need to expand the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FirebaseFeatureFlagProvider&lt;/code&gt; with this interface and implement &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;refreshFeatureFlags&lt;/code&gt;:&lt;/p&gt;
 
 &lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;FirebaseFeatureFlagProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;isDevModeEnabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Boolean&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
     &lt;span class=&quot;nc&quot;&gt;FeatureFlagProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;RemoteFeatureFlagProvider&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -733,23 +733,23 @@
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Then we expose a new function on the &lt;code class=&quot;highlighter-rouge&quot;&gt;RuntimeBehavior&lt;/code&gt; to refresh all remote feature flag providers at the same time whenever you want in your app lifecycle.&lt;/p&gt;
+&lt;p&gt;Then we expose a new function on the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RuntimeBehavior&lt;/code&gt; to refresh all remote feature flag providers at the same time whenever you want in your app lifecycle.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;object RuntimeBehavior {
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;object RuntimeBehavior {
     fun refreshFeatureFlags() {
         providers.filter { it is RemoteFeatureFlagProvider }.forEach { (it as RemoteFeatureFlagProvider).refreshFeatureFlags() }
     }
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Since Firebase Remote Config internally throttles refresh requests, it’s safe to call the &lt;code class=&quot;highlighter-rouge&quot;&gt;refreshFeatureFlags&lt;/code&gt; method on every app resume.&lt;/p&gt;
+&lt;p&gt;Since Firebase Remote Config internally throttles refresh requests, it’s safe to call the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;refreshFeatureFlags&lt;/code&gt; method on every app resume.&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;RemoteFeatureFlagProvider&lt;/code&gt; offers the generic ability to refresh values for all remote feature flagging tools.&lt;/p&gt;
+  &lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RemoteFeatureFlagProvider&lt;/code&gt; offers the generic ability to refresh values for all remote feature flagging tools.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;h2 id=&quot;testing-feature-flags&quot;&gt;Testing feature flags&lt;/h2&gt;
-&lt;p&gt;During automated unit or espresso tests, you sometimes need to enable/disable particular features. Even that is simple with this architecture, just make a &lt;code class=&quot;highlighter-rouge&quot;&gt;TestFeatureFlagProvider&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;During automated unit or espresso tests, you sometimes need to enable/disable particular features. Even that is simple with this architecture, just make a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TestFeatureFlagProvider&lt;/code&gt;:&lt;/p&gt;
 
 &lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TestFeatureFlagProvider&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;FeatureFlagProvider&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
 
@@ -767,7 +767,7 @@
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;With its &lt;code class=&quot;highlighter-rouge&quot;&gt;TEST_PRIORITY&lt;/code&gt; it takes precedence over all other &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlagProviders&lt;/code&gt; and exposes an API to dynamically enable/disable features and to clear its state after each test.&lt;/p&gt;
+&lt;p&gt;With its &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TEST_PRIORITY&lt;/code&gt; it takes precedence over all other &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FeatureFlagProviders&lt;/code&gt; and exposes an API to dynamically enable/disable features and to clear its state after each test.&lt;/p&gt;
 
 &lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Test&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;withFeatureFlags&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -782,7 +782,7 @@
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;And this extra provider gets added during the debug initialization in the &lt;code class=&quot;highlighter-rouge&quot;&gt;RuntimeBehavior&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;And this extra provider gets added during the debug initialization in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RuntimeBehavior&lt;/code&gt;:&lt;/p&gt;
 
 &lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;RuntimeBehavior&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
 
@@ -806,7 +806,7 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;TestFeatureFlagProvider&lt;/code&gt; allows to turn &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlags&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;TestSettings&lt;/code&gt; on during unit/instrumentation tests.&lt;/p&gt;
+  &lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TestFeatureFlagProvider&lt;/code&gt; allows to turn &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FeatureFlags&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TestSettings&lt;/code&gt; on during unit/instrumentation tests.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;h2 id=&quot;putting-it-all-together&quot;&gt;Putting it all together&lt;/h2&gt;
@@ -817,30 +817,30 @@
 &lt;p&gt;While that might seem a bit overwhelming, it consists of a lot of very small classes that are very easy to understand:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;RuntimeBehavior&lt;/code&gt;: to easily consume feature flags&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlagProvider&lt;/code&gt;: to provide values during debug, release or testing&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Feature&lt;/code&gt;: one-line definition of &lt;code class=&quot;highlighter-rouge&quot;&gt;FeatureFlags&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;TestSettings&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RuntimeBehavior&lt;/code&gt;: to easily consume feature flags&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FeatureFlagProvider&lt;/code&gt;: to provide values during debug, release or testing&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Feature&lt;/code&gt;: one-line definition of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FeatureFlags&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TestSettings&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;And based on these classes, a local UI is automagically generated to toggle the &lt;code class=&quot;highlighter-rouge&quot;&gt;Features&lt;/code&gt; on/off in debug builds!&lt;/p&gt;
+&lt;p&gt;And based on these classes, a local UI is automagically generated to toggle the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Features&lt;/code&gt; on/off in debug builds!&lt;/p&gt;
 
 &lt;p&gt;I’ve created a full Github sample project where you can see all code in action &lt;a href=&quot;https://github.com/JeroenMols/FeatureFlagExample&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;bonus&quot;&gt;Bonus&lt;/h2&gt;
-&lt;p&gt;When combining this Feature Flag architecture with my previous &lt;a href=&quot;/blog/2019/03/18/modularizationarchitecture/&quot;&gt;modularization architecture&lt;/a&gt;, all UI classes can be moved to their own feature module &lt;code class=&quot;highlighter-rouge&quot;&gt;test-settings&lt;/code&gt; that is only included into the &lt;code class=&quot;highlighter-rouge&quot;&gt;app&lt;/code&gt; module for debug builds:&lt;/p&gt;
+&lt;p&gt;When combining this Feature Flag architecture with my previous &lt;a href=&quot;/blog/2019/03/18/modularizationarchitecture/&quot;&gt;modularization architecture&lt;/a&gt;, all UI classes can be moved to their own feature module &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;test-settings&lt;/code&gt; that is only included into the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app&lt;/code&gt; module for debug builds:&lt;/p&gt;
 
 &lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;debugImplementation&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;project&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;':features:test-settings'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;This does require all feature flag business logic to move to a library module &lt;code class=&quot;highlighter-rouge&quot;&gt;feature-flags&lt;/code&gt;, but the end result is a very clean!&lt;/p&gt;
+&lt;p&gt;This does require all feature flag business logic to move to a library module &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;feature-flags&lt;/code&gt;, but the end result is a very clean!&lt;/p&gt;
 
 &lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
 &lt;p&gt;With just a few simple classes we’ve been able to build a powerful feature flagging architecture. In that it’s very easy to add new features, there is support for both local and remote feature flags, feature flags are testable and a local UI for enabling/disabling feature flags is automatically generated.&lt;/p&gt;
 
 &lt;p&gt;If you’ve made it this far you should probably follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=featureflags-asuccessfularchitecture2019&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
-. Feel free leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="architecture" /><category term="android" /><category term="firebase" /><category term="feature flags" /><summary type="html">Now that we know how feature flags can help us release faster, it’s time to dive into the actual implementation details. How can we easily define feature flags? How to configure them both locally as remotely? And use them in our testing?</summary></entry><entry><title type="html">Feature Flags - How to use</title><link href="https://jeroenmols.com/blog/2019/08/20/featureflagshowtouse/" rel="alternate" type="text/html" title="Feature Flags - How to use" /><published>2019-08-20T00:00:00+02:00</published><updated>2019-08-20T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2019/08/20/featureflagshowtouse</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/08/20/featureflagshowtouse/">&lt;p&gt;Empowered with what feature flags are and why they are useful, let’s see how we can actually integrate them into an app. And how can we roll them out to our users?&lt;/p&gt;
+. Feel free leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="architecture" /><category term="android" /><category term="firebase" /><category term="feature flags" /><summary type="html">Now that we know how feature flags can help us release faster, it’s time to dive into the actual implementation details. How can we easily define feature flags? How to configure them both locally as remotely? And use them in our testing?</summary></entry><entry><title type="html">Feature Flags - How to use</title><link href="https://jeroenmols.com/blog/2019/08/20/featureflagshowtouse/" rel="alternate" type="text/html" title="Feature Flags - How to use" /><published>2019-08-20T00:00:00+02:00</published><updated>2019-08-20T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2019/08/20/featureflagshowtouse</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/08/20/featureflagshowtouse/">&lt;p&gt;Empowered with what feature flags are and why they are useful, let’s see how we can actually integrate them into an app. And how can we roll them out to our users?&lt;/p&gt;
 
 &lt;p&gt;This mini-series will explain the benefits of using feature flags and propose a handy architecture that enables local feature flag configuration, remote configuration, and easy testability.&lt;/p&gt;
 
@@ -892,7 +892,7 @@
 
 &lt;p&gt;The best way to handle these cases is to think impact based: if you’re refactoring a crucial part of your business logic then you should take more actions to ensure nothing accidentally breaks. This can either be splitting the refactoring into several small steps (and shipping them), using a feature flag or both.&lt;/p&gt;
 
-&lt;p&gt;To give you an example, at Philips Hue we replaced our Geofence implementation with a new one a while ago. Here the &lt;code class=&quot;highlighter-rouge&quot;&gt;IntentService&lt;/code&gt; handling the geofence starts with an if statement that runs either the old or new code. Note that there are also extra analytics in place to monitor and compare the behavior.&lt;/p&gt;
+&lt;p&gt;To give you an example, at Philips Hue we replaced our Geofence implementation with a new one a while ago. Here the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;IntentService&lt;/code&gt; handling the geofence starts with an if statement that runs either the old or new code. Note that there are also extra analytics in place to monitor and compare the behavior.&lt;/p&gt;
 
 &lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
 &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;GeofenceIntentService&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;IntentService&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -939,7 +939,7 @@
 &lt;p&gt;Feature flags can help in releasing new features and improvements on existing functionality. Always try to roll out features gradually, if that’s not possible, rely on your beta community to test the feature prior to release,&lt;/p&gt;
 
 &lt;p&gt;Make sure you follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=featureflags-howtouse2019&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
- or continue to &lt;a href=&quot;/blog/2019/09/12/featureflagsarchitecture/&quot;&gt;part 3&lt;/a&gt; to learn more about an architecture to integrate feature flags into your app.&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="android" /><category term="firebase" /><category term="feature flags" /><category term="software engineering" /><category term="tools" /><summary type="html">Empowered with what feature flags are and why they are useful, let’s see how we can actually integrate them into an app. And how can we roll them out to our users?</summary></entry><entry><title type="html">Feature Flags - Why you should care</title><link href="https://jeroenmols.com/blog/2019/08/13/featureflags/" rel="alternate" type="text/html" title="Feature Flags - Why you should care" /><published>2019-08-13T00:00:00+02:00</published><updated>2019-08-13T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2019/08/13/featureflags</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/08/13/featureflags/">&lt;p&gt;A key ingredient to speed up modern software development is feature flags. But what is a feature flag precisely? Why should you care about them? How do you integrate them into your codebase? And how can we make them easy to use?&lt;/p&gt;
+ or continue to &lt;a href=&quot;/blog/2019/09/12/featureflagsarchitecture/&quot;&gt;part 3&lt;/a&gt; to learn more about an architecture to integrate feature flags into your app.&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="android" /><category term="firebase" /><category term="feature flags" /><category term="software engineering" /><category term="tools" /><summary type="html">Empowered with what feature flags are and why they are useful, let’s see how we can actually integrate them into an app. And how can we roll them out to our users?</summary></entry><entry><title type="html">Feature Flags - Why you should care</title><link href="https://jeroenmols.com/blog/2019/08/13/featureflags/" rel="alternate" type="text/html" title="Feature Flags - Why you should care" /><published>2019-08-13T00:00:00+02:00</published><updated>2019-08-13T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2019/08/13/featureflags</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/08/13/featureflags/">&lt;p&gt;A key ingredient to speed up modern software development is feature flags. But what is a feature flag precisely? Why should you care about them? How do you integrate them into your codebase? And how can we make them easy to use?&lt;/p&gt;
 
 &lt;p&gt;This mini-series will explain the benefits of using feature flags and propose a handy architecture that enables local feature flag configuration, remote configuration, and easy testability.&lt;/p&gt;
 
@@ -953,7 +953,7 @@
 &lt;/blockquote&gt;
 
 &lt;h2 id=&quot;what-is-a-feature-flag&quot;&gt;What is a feature flag&lt;/h2&gt;
-&lt;p&gt;In essence, a feature flag is simply a &lt;code class=&quot;highlighter-rouge&quot;&gt;Boolean&lt;/code&gt; that determines whether something is “on” or “of”:&lt;/p&gt;
+&lt;p&gt;In essence, a feature flag is simply a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Boolean&lt;/code&gt; that determines whether something is “on” or “of”:&lt;/p&gt;
 
 &lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isFeatureOn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;c1&quot;&gt;// give access to something&lt;/span&gt;
@@ -1055,7 +1055,7 @@
 &lt;p&gt;Feature flags are an incredibly powerful tool to speed up development: they allow to merge incomplete features and derisk app release by allowing gradual rollouts. They should be incredibly easy to add, usable in automated tests and you should be able to toggle them remotely for production use and locally for development and testing.&lt;/p&gt;
 
 &lt;p&gt;Make sure you follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=featureflags-whyyoushouldcare2019&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
- and read on in &lt;a href=&quot;/blog/2019/08/20/featureflagshowtouse/&quot;&gt;part 2&lt;/a&gt; that covers how you can use and release feature flags.&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="android" /><category term="firebase" /><category term="feature flags" /><category term="software engineering" /><category term="tools" /><summary type="html">A key ingredient to speed up modern software development is feature flags. But what is a feature flag precisely? Why should you care about them? How do you integrate them into your codebase? And how can we make them easy to use?</summary></entry><entry><title type="html">Lessons learned being a lead developer</title><link href="https://jeroenmols.com/blog/2019/08/06/lessonsleaddeveloper/" rel="alternate" type="text/html" title="Lessons learned being a lead developer" /><published>2019-08-06T00:00:00+02:00</published><updated>2019-08-06T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2019/08/06/lessonsleaddeveloper</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/08/06/lessonsleaddeveloper/">&lt;p&gt;Three years ago, we decided ramp up internal app development at Philips Hue. After interviewing candidates (78!) for six months, I became the lead Android developer of the freshly hired Android team.&lt;/p&gt;
+ and read on in &lt;a href=&quot;/blog/2019/08/20/featureflagshowtouse/&quot;&gt;part 2&lt;/a&gt; that covers how you can use and release feature flags.&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="android" /><category term="firebase" /><category term="feature flags" /><category term="software engineering" /><category term="tools" /><summary type="html">A key ingredient to speed up modern software development is feature flags. But what is a feature flag precisely? Why should you care about them? How do you integrate them into your codebase? And how can we make them easy to use?</summary></entry><entry><title type="html">Lessons learned being a lead developer</title><link href="https://jeroenmols.com/blog/2019/08/06/lessonsleaddeveloper/" rel="alternate" type="text/html" title="Lessons learned being a lead developer" /><published>2019-08-06T00:00:00+02:00</published><updated>2019-08-06T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2019/08/06/lessonsleaddeveloper</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/08/06/lessonsleaddeveloper/">&lt;p&gt;Three years ago, we decided ramp up internal app development at Philips Hue. After interviewing candidates (78!) for six months, I became the lead Android developer of the freshly hired Android team.&lt;/p&gt;
 
 &lt;p&gt;In this non-tech post (for a change), I’d like to openly share my experiences being a team lead. It’s been a bumpy ride, but I came out with quite some new perspectives that make me a stronger lead and a better person.&lt;/p&gt;
 
@@ -1315,7 +1315,7 @@
 &lt;p&gt;One of my long open career goals was to work in a high performant team on a world-class product. And I’m happy to say that I can now finally check that box!!! Though, I didn’t expect to be leading that team.&lt;/p&gt;
 
 &lt;p&gt;Hopefully, you liked this honest retrospective, feel free to leave a comment below or follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=lessonslearnedbeingaleaddeveloper2019&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
-.&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="team lead" /><category term="software engineering" /><category term="lessonslearned" /><summary type="html">Three years ago, we decided ramp up internal app development at Philips Hue. After interviewing candidates (78!) for six months, I became the lead Android developer of the freshly hired Android team.</summary></entry><entry><title type="html">Supporting Android Q gestural navigation</title><link href="https://jeroenmols.com/blog/2019/07/17/androidqgestures/" rel="alternate" type="text/html" title="Supporting Android Q gestural navigation" /><published>2019-07-17T00:00:00+02:00</published><updated>2019-07-17T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2019/07/17/androidqgestures</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/07/17/androidqgestures/">&lt;p&gt;From Android Q onwards devices can now operate in a fully gestural system navigation mode. In that mode, there is no longer an on-screen back button, instead users can swipe from both edges to navigate back.&lt;/p&gt;
+.&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="team lead" /><category term="software engineering" /><category term="lessonslearned" /><summary type="html">Three years ago, we decided ramp up internal app development at Philips Hue. After interviewing candidates (78!) for six months, I became the lead Android developer of the freshly hired Android team.</summary></entry><entry><title type="html">Supporting Android Q gestural navigation</title><link href="https://jeroenmols.com/blog/2019/07/17/androidqgestures/" rel="alternate" type="text/html" title="Supporting Android Q gestural navigation" /><published>2019-07-17T00:00:00+02:00</published><updated>2019-07-17T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2019/07/17/androidqgestures</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/07/17/androidqgestures/">&lt;p&gt;From Android Q onwards devices can now operate in a fully gestural system navigation mode. In that mode, there is no longer an on-screen back button, instead users can swipe from both edges to navigate back.&lt;/p&gt;
 
 &lt;p&gt;In this blog post, we’ll look at a case study on how we added support for these back gestures in the Philips Hue app.&lt;/p&gt;
 
@@ -1339,12 +1339,12 @@
 
 &lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/androidqgestures/no_exclusions.gif&quot; alt=&quot;Back navigation gestures prevent from moving the brightness slider&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Fortunately, Android Q offers a way to tell the Android system that it shouldn’t intercept gestures in a particular area of the screen using &lt;a href=&quot;https://developer.android.com/reference/android/view/View#setSystemGestureExclusionRects(java.util.List%3Candroid.graphics.Rect%3E)&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;setSystemGestureExclusionRects&lt;/code&gt;&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;Fortunately, Android Q offers a way to tell the Android system that it shouldn’t intercept gestures in a particular area of the screen using &lt;a href=&quot;https://developer.android.com/reference/android/view/View#setSystemGestureExclusionRects(java.util.List%3Candroid.graphics.Rect%3E)&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setSystemGestureExclusionRects&lt;/code&gt;&lt;/a&gt;:&lt;/p&gt;
 
 &lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;brightnessSlider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;doOnLayout&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;exclusions&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;listOf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-            &lt;span class=&quot;nc&quot;&gt;Rect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;exclusionWidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// min area&lt;/span&gt;
-            &lt;span class=&quot;nc&quot;&gt;Rect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;it&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;width&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;exclusionWidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// max area&lt;/span&gt;
+            &lt;span class=&quot;nc&quot;&gt;Rect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;exclusionWidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// min area&lt;/span&gt;
+            &lt;span class=&quot;nc&quot;&gt;Rect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;it&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;width&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;exclusionWidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// max area&lt;/span&gt;
         &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;nc&quot;&gt;ViewCompat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;setSystemGestureExclusionRects&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;brightnessSlider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;exclusions&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
@@ -1352,9 +1352,9 @@
 
 &lt;p&gt;In the example above, we exclude both the minimum and maximum area of the brightness slider from navigation gestures.&lt;/p&gt;
 
-&lt;p&gt;Important to know is that you should define the &lt;code class=&quot;highlighter-rouge&quot;&gt;systemGestureExclusionRects&lt;/code&gt; in coordinates relative to the &lt;code class=&quot;highlighter-rouge&quot;&gt;View&lt;/code&gt;/&lt;code class=&quot;highlighter-rouge&quot;&gt;ViewGroup&lt;/code&gt; you are applying the exclusion &lt;code class=&quot;highlighter-rouge&quot;&gt;Rects&lt;/code&gt; on!&lt;/p&gt;
+&lt;p&gt;Important to know is that you should define the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;systemGestureExclusionRects&lt;/code&gt; in coordinates relative to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;View&lt;/code&gt;/&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ViewGroup&lt;/code&gt; you are applying the exclusion &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Rects&lt;/code&gt; on!&lt;/p&gt;
 
-&lt;p&gt;In the example above we apply them on the brightness slider so we use coordinates relative to the slider (notice the use of &lt;code class=&quot;highlighter-rouge&quot;&gt;width&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;height&lt;/code&gt;). But we can also apply the exclusion to the parent (notice the use of &lt;code class=&quot;highlighter-rouge&quot;&gt;left&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;right&lt;/code&gt;):&lt;/p&gt;
+&lt;p&gt;In the example above we apply them on the brightness slider so we use coordinates relative to the slider (notice the use of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;width&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;height&lt;/code&gt;). But we can also apply the exclusion to the parent (notice the use of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;left&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;right&lt;/code&gt;):&lt;/p&gt;
 
 &lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;doOnLayout&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;exclusions&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;brightnessSlider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -1367,11 +1367,11 @@
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;At any rate, we can only apply the exclusion &lt;code class=&quot;highlighter-rouge&quot;&gt;Rects&lt;/code&gt; once the view is laid out, hence we wrap the &lt;code class=&quot;highlighter-rouge&quot;&gt;setSystemGestureExclusionRects&lt;/code&gt; with the awesome &lt;a href=&quot;https://developer.android.com/reference/kotlin/androidx/core/view/package-summary#doonlayout&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;doOnLayout&lt;/code&gt; method&lt;/a&gt; from Android KTX.&lt;/p&gt;
+&lt;p&gt;At any rate, we can only apply the exclusion &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Rects&lt;/code&gt; once the view is laid out, hence we wrap the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setSystemGestureExclusionRects&lt;/code&gt; with the awesome &lt;a href=&quot;https://developer.android.com/reference/kotlin/androidx/core/view/package-summary#doonlayout&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;doOnLayout&lt;/code&gt; method&lt;/a&gt; from Android KTX.&lt;/p&gt;
 
-&lt;p&gt;To get the width of the exclusion area &lt;code class=&quot;highlighter-rouge&quot;&gt;exclusionWidth&lt;/code&gt;, we should add an &lt;code class=&quot;highlighter-rouge&quot;&gt;OnApplyWindowInsetsListener&lt;/code&gt; and ask the returned insets for the &lt;code class=&quot;highlighter-rouge&quot;&gt;getSystemGestureInsets&lt;/code&gt;. There is one problem though: this listener is only called when the edge to edge system UI flags (&lt;code class=&quot;highlighter-rouge&quot;&gt;View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN&lt;/code&gt;) are set!&lt;/p&gt;
+&lt;p&gt;To get the width of the exclusion area &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exclusionWidth&lt;/code&gt;, we should add an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OnApplyWindowInsetsListener&lt;/code&gt; and ask the returned insets for the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getSystemGestureInsets&lt;/code&gt;. There is one problem though: this listener is only called when the edge to edge system UI flags (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN&lt;/code&gt;) are set!&lt;/p&gt;
 
-&lt;p&gt;So as an alternative we can take the &lt;code class=&quot;highlighter-rouge&quot;&gt;WindowInsets&lt;/code&gt; from the root view, which can easily be done in the following way:&lt;/p&gt;
+&lt;p&gt;So as an alternative we can take the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;WindowInsets&lt;/code&gt; from the root view, which can easily be done in the following way:&lt;/p&gt;
 
 &lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;seekbar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;doOnAttach&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;insets&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;WindowInsetsCompat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;wrap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rootWindowInsets&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
@@ -1383,16 +1383,16 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Note that &lt;a href=&quot;https://android-review.googlesource.com/c/platform/frameworks/support/+/983823/&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;doOnAttach&lt;/code&gt;&lt;/a&gt; and &lt;a href=&quot;&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;WindowInsetsCompat.wrap()&lt;/code&gt;&lt;/a&gt; have yet to be released in an upcoming support library&lt;/p&gt;
+  &lt;p&gt;Note that &lt;a href=&quot;https://android-review.googlesource.com/c/platform/frameworks/support/+/983823/&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;doOnAttach&lt;/code&gt;&lt;/a&gt; and &lt;a href=&quot;&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;WindowInsetsCompat.wrap()&lt;/code&gt;&lt;/a&gt; have yet to be released in an upcoming support library&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;Finally, note that you need to use at least androidx.core version 1.2.0 or higher in order for the &lt;a href=&quot;https://developer.android.com/reference/androidx/core/view/ViewCompat#setSystemGestureExclusionRects(android.view.View,%2520java.util.List%3Candroid.graphics.Rect%3E)&quot;&gt;ViewCompat &lt;code class=&quot;highlighter-rouge&quot;&gt;setSystemGestureExclusionRects&lt;/code&gt; API&lt;/a&gt;) to be available. If you’re not ready to jump on 1.2.0 yet, you can always surround it with an API level check (make sure to use compile SDK Q).&lt;/p&gt;
+&lt;p&gt;Finally, note that you need to use at least androidx.core version 1.2.0 or higher in order for the &lt;a href=&quot;https://developer.android.com/reference/androidx/core/view/ViewCompat#setSystemGestureExclusionRects(android.view.View,%2520java.util.List%3Candroid.graphics.Rect%3E)&quot;&gt;ViewCompat &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setSystemGestureExclusionRects&lt;/code&gt; API&lt;/a&gt;) to be available. If you’re not ready to jump on 1.2.0 yet, you can always surround it with an API level check (make sure to use compile SDK Q).&lt;/p&gt;
 
 &lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Build&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;VERSION&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;SDK_INT&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;exclusions&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;brightnessSlider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;nf&quot;&gt;listOf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-            &lt;span class=&quot;nc&quot;&gt;Rect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;exclusionWidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
-            &lt;span class=&quot;nc&quot;&gt;Rect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;width&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;exclusionWidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;nc&quot;&gt;Rect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;exclusionWidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+            &lt;span class=&quot;nc&quot;&gt;Rect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;width&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;exclusionWidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
         &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;brightnessSlider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;setSystemGestureExclusionRects&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;exclusions&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
@@ -1427,7 +1427,7 @@
 
 &lt;p&gt;Secondly, when cards are off (and the brightness slider is at 0 alpha), we also shouldn’t ask for any exclusions of such a slider:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;if (!switch.checked) {
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;if (!switch.checked) {
     ViewCompat.setSystemGestureExclusionRects(brightnessSlider, emptyList())
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -1442,7 +1442,7 @@
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;crosstalk-with-brightness-sliders&quot;&gt;Crosstalk with brightness sliders&lt;/h2&gt;
-&lt;p&gt;Unfortunately, all isn’t good just yet, because in very rare cases back navigation would still accidentally cause &lt;code class=&quot;highlighter-rouge&quot;&gt;onTouchEvent&lt;/code&gt; of our custom brightness slider to also be called:&lt;/p&gt;
+&lt;p&gt;Unfortunately, all isn’t good just yet, because in very rare cases back navigation would still accidentally cause &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onTouchEvent&lt;/code&gt; of our custom brightness slider to also be called:&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/androidqgestures/crosstalk_exclusion.gif&quot; alt=&quot;Back navigation gestures first causes brightness slider to jump to max before navigating back&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
 
@@ -1454,13 +1454,13 @@
     &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Build&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;VERSION&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;SDK_INT&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;false&lt;/span&gt;
 
     &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;positionOnSlider&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;getProgressForXPosition&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;touchX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;toFloat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;max&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;slideGestureNearMinNotOnThumb&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;positionOnSlider&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0.1f&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isThumbNearMin&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;slideGestureNearMaxNotOnThumb&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;positionOnSlider&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0.9f&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isThumbNearMax&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;slideGestureNearMinNotOnThumb&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;positionOnSlider&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.1f&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isThumbNearMin&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;slideGestureNearMaxNotOnThumb&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;positionOnSlider&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.9f&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isThumbNearMax&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;slideGestureNearMinNotOnThumb&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;slideGestureNearMaxNotOnThumb&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Ignoring the touch is as easy as just returning false in the &lt;code class=&quot;highlighter-rouge&quot;&gt;onTouchEvent&lt;/code&gt; method:&lt;/p&gt;
+&lt;p&gt;Ignoring the touch is as easy as just returning false in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onTouchEvent&lt;/code&gt; method:&lt;/p&gt;
 
 &lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ev&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;getAction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MotionEvent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;ACTION_MASK&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;nc&quot;&gt;MotionEvent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;ACTION_DOWN&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -1479,7 +1479,7 @@
 &lt;p&gt;Android Q gesture navigation will impact how users interact with our apps. For most apps, this should work out of the box, but in rare cases, the system gesture exclusion API can help whitelist parts of your app where touch is required to work near the edges.&lt;/p&gt;
 
 &lt;p&gt;Follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=supportingandroidqgesturalnavigation2019&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
- to get notified when I post more interesting content! Feel free to leave a comment below.&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="ui" /><category term="androidq" /><category term="navigation" /><category term="gestures" /><summary type="html">From Android Q onwards devices can now operate in a fully gestural system navigation mode. In that mode, there is no longer an on-screen back button, instead users can swipe from both edges to navigate back.</summary></entry><entry><title type="html">Philips Hue adaptive icon</title><link href="https://jeroenmols.com/blog/2019/07/03/adaptiveicon/" rel="alternate" type="text/html" title="Philips Hue adaptive icon" /><published>2019-07-03T00:00:00+02:00</published><updated>2019-07-03T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2019/07/03/adaptiveicon</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/07/03/adaptiveicon/">&lt;p&gt;Your icon is one of the most important assets in your app. With a bit of luck, users might even put it on their main launcher screen!&lt;/p&gt;
+ to get notified when I post more interesting content! Feel free to leave a comment below.&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="ui" /><category term="androidq" /><category term="navigation" /><category term="gestures" /><summary type="html">From Android Q onwards devices can now operate in a fully gestural system navigation mode. In that mode, there is no longer an on-screen back button, instead users can swipe from both edges to navigate back.</summary></entry><entry><title type="html">Philips Hue adaptive icon</title><link href="https://jeroenmols.com/blog/2019/07/03/adaptiveicon/" rel="alternate" type="text/html" title="Philips Hue adaptive icon" /><published>2019-07-03T00:00:00+02:00</published><updated>2019-07-03T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2019/07/03/adaptiveicon</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/07/03/adaptiveicon/">&lt;p&gt;Your icon is one of the most important assets in your app. With a bit of luck, users might even put it on their main launcher screen!&lt;/p&gt;
 
 &lt;p&gt;As various Android launchers, versions or devices might resize/reshape your icon to make them look consistent, you’ll need to be robust against this kind of changes. Learn how we did that at Philips Hue.&lt;/p&gt;
 
@@ -1518,7 +1518,7 @@
 
 &lt;p&gt;Make sure to also generate a round icon for Android N and plain image assets for older Android versions. Click next and review the assets being generated, and finish to complete the icon creation.&lt;/p&gt;
 
-&lt;p&gt;You’ll see that in &lt;code class=&quot;highlighter-rouge&quot;&gt;mipmap-anydpi-v26&lt;/code&gt; two resources get generated &lt;code class=&quot;highlighter-rouge&quot;&gt;ic_launcher.xml&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;ic_launcher_round.xml&lt;/code&gt;. Both these files simply indicate what resource to use for the icon foreground and background:&lt;/p&gt;
+&lt;p&gt;You’ll see that in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mipmap-anydpi-v26&lt;/code&gt; two resources get generated &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ic_launcher.xml&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ic_launcher_round.xml&lt;/code&gt;. Both these files simply indicate what resource to use for the icon foreground and background:&lt;/p&gt;
 
 &lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&amp;gt;&lt;/span&gt;
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;adaptive-icon&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:android=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.android.com/apk/res/android&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
@@ -1536,7 +1536,7 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Note: &lt;code class=&quot;highlighter-rouge&quot;&gt;ic_launcher_round.xml&lt;/code&gt; got introduced with the launch of the Google Pixel (Android N) and has since been replaced with the more powerful adaptive icon. &lt;br /&gt; However you can still provide a rounded icon to avoid that Android N devices show your square item in a round bounding box:
+  &lt;p&gt;Note: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ic_launcher_round.xml&lt;/code&gt; got introduced with the launch of the Google Pixel (Android N) and has since been replaced with the more powerful adaptive icon. &lt;br /&gt; However you can still provide a rounded icon to avoid that Android N devices show your square item in a round bounding box:
 &lt;img src=&quot;https://jeroenmols.com/img/blog/adaptiveicon/boxed_icon.png&quot; alt=&quot;Boxed icon when no round variant is provided&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
@@ -1551,7 +1551,7 @@
 &lt;p&gt;The launcher icon is one of the most important assets of your app and therefore it is key to make it look perfect on any device. Adaptive icons make that possible and also allow you to add a nice little extra touch to your app.&lt;/p&gt;
 
 &lt;p&gt;If you’ve made it this far you should probably follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=philipshueadaptiveicon2019&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
-. Feel free to leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="ui" /><category term="android" /><category term="adaptive icon" /><summary type="html">Your icon is one of the most important assets in your app. With a bit of luck, users might even put it on their main launcher screen!</summary></entry><entry><title type="html">Modularization - Lessons learned</title><link href="https://jeroenmols.com/blog/2019/06/12/modularizationtips/" rel="alternate" type="text/html" title="Modularization - Lessons learned" /><published>2019-06-12T00:00:00+02:00</published><updated>2019-06-12T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2019/06/12/modularizationtips</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/06/12/modularizationtips/">&lt;p&gt;Wrapping up this series on modularization I’d like to share some of the things we’ve learned at Philips Hue while going through this process the past year.&lt;/p&gt;
+. Feel free to leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="ui" /><category term="android" /><category term="adaptive icon" /><summary type="html">Your icon is one of the most important assets in your app. With a bit of luck, users might even put it on their main launcher screen!</summary></entry><entry><title type="html">Modularization - Lessons learned</title><link href="https://jeroenmols.com/blog/2019/06/12/modularizationtips/" rel="alternate" type="text/html" title="Modularization - Lessons learned" /><published>2019-06-12T00:00:00+02:00</published><updated>2019-06-12T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2019/06/12/modularizationtips</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/06/12/modularizationtips/">&lt;p&gt;Wrapping up this series on modularization I’d like to share some of the things we’ve learned at Philips Hue while going through this process the past year.&lt;/p&gt;
 
 &lt;p&gt;Part five of this series will share quite a few useful tips and tricks for modularizing apps.&lt;/p&gt;
 
@@ -1575,7 +1575,7 @@
   &lt;li&gt;maintaining module configurations must be easy&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Both of these can be accomplished via a nice little trick in the project level &lt;code class=&quot;highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; file (thanks to &lt;a href=&quot;https://twitter.com/o_patry&quot;&gt;Olivier Patry&lt;/a&gt; for the simplification):&lt;/p&gt;
+&lt;p&gt;Both of these can be accomplished via a nice little trick in the project level &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; file (thanks to &lt;a href=&quot;https://twitter.com/o_patry&quot;&gt;Olivier Patry&lt;/a&gt; for the simplification):&lt;/p&gt;
 
 &lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;subprojects&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;afterEvaluate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;project&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;
@@ -1600,11 +1600,11 @@
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;The block above will dynamically look for all &lt;code class=&quot;highlighter-rouge&quot;&gt;android&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;android-library&lt;/code&gt; modules and configure the &lt;code class=&quot;highlighter-rouge&quot;&gt;android&lt;/code&gt; block with all default values. That way each module will use the same &lt;code class=&quot;highlighter-rouge&quot;&gt;minSdk&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;buildTools&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;testRunner&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;javaVersion&lt;/code&gt;,…&lt;/p&gt;
+&lt;p&gt;The block above will dynamically look for all &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;android&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;android-library&lt;/code&gt; modules and configure the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;android&lt;/code&gt; block with all default values. That way each module will use the same &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;minSdk&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;buildTools&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;testRunner&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;javaVersion&lt;/code&gt;,…&lt;/p&gt;
 
 &lt;p&gt;This won’t just avoid issues like &lt;a href=&quot;/blog/2018/08/02/phonestatepermission/&quot;&gt;dangerous permissions sneaking into your app&lt;/a&gt;, but will also make it very easy to bump the target/minimum SDK and will simplify configuring submodules to just listing the dependencies.&lt;/p&gt;
 
-&lt;p&gt;For instance the &lt;a href=&quot;https://github.com/JeroenMols/ModularizationExample/blob/master/features/login/build.gradle&quot;&gt;Login feature&lt;/a&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; is:&lt;/p&gt;
+&lt;p&gt;For instance the &lt;a href=&quot;https://github.com/JeroenMols/ModularizationExample/blob/master/features/login/build.gradle&quot;&gt;Login feature&lt;/a&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; is:&lt;/p&gt;
 
 &lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;apply&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;plugin:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'com.android.library'&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;apply&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;plugin:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'kotlin-android-extensions'&lt;/span&gt;
@@ -1627,17 +1627,17 @@
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;No more &lt;code class=&quot;highlighter-rouge&quot;&gt;android{}&lt;/code&gt; block required! Also, note that there is no need to specify a &lt;code class=&quot;highlighter-rouge&quot;&gt;release&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;debug&lt;/code&gt; build type block.&lt;/p&gt;
+&lt;p&gt;No more &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;android{}&lt;/code&gt; block required! Also, note that there is no need to specify a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;release&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;debug&lt;/code&gt; build type block.&lt;/p&gt;
 
 &lt;h2 id=&quot;module-graph&quot;&gt;Module graph&lt;/h2&gt;
 &lt;p&gt;While modularizing it’s great to keep an eye on the dependencies between different modules. For this, &lt;a href=&quot;https://twitter.com/JakeWharton&quot;&gt;Jake Wharton&lt;/a&gt; made a little script that creates a visual overview of your modules.&lt;/p&gt;
 
-&lt;p&gt;To use it, I recommend downloading &lt;a href=&quot;https://github.com/JakeWharton/SdkSearch/blob/master/gradle/projectDependencyGraph.gradle&quot;&gt;the script&lt;/a&gt; and adding it to your repository. But you could also simply add the following to your app &lt;code class=&quot;highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; file:&lt;/p&gt;
+&lt;p&gt;To use it, I recommend downloading &lt;a href=&quot;https://github.com/JakeWharton/SdkSearch/blob/master/gradle/projectDependencyGraph.gradle&quot;&gt;the script&lt;/a&gt; and adding it to your repository. But you could also simply add the following to your app &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; file:&lt;/p&gt;
 
 &lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;apply&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;from:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'https://raw.githubusercontent.com/JakeWharton/SdkSearch/master/gradle/projectDependencyGraph.gradle'&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Then you can simply run &lt;code class=&quot;highlighter-rouge&quot;&gt;./gradlew projectDependencyGraph&lt;/code&gt; to get a graphical overview.&lt;/p&gt;
+&lt;p&gt;Then you can simply run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;./gradlew projectDependencyGraph&lt;/code&gt; to get a graphical overview.&lt;/p&gt;
 
 &lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt; Task :app:projectDependencyGraph
 Project module dependency graph created at ~/ModularizationExample/build/reports/dependency-graph/project.dot.png
@@ -1648,7 +1648,7 @@ Project module dependency graph created at ~/ModularizationExample/build/reports
 &lt;p&gt;Android modules are shown in &lt;font color=&quot;#baffc9&quot;&gt;green&lt;/font&gt;, Java modules in &lt;font color=&quot;#ffb3ba&quot;&gt;pink&lt;/font&gt; and Kotlin multiplatform modules in &lt;font color=&quot;#ffd2b3&quot;&gt;orange&lt;/font&gt;.&lt;/p&gt;
 
 &lt;h2 id=&quot;organize-settingsgradle&quot;&gt;Organize settings.gradle&lt;/h2&gt;
-&lt;p&gt;When adding a new module via Android Studio, by default a new entry is added to the &lt;code class=&quot;highlighter-rouge&quot;&gt;settings.gradle&lt;/code&gt; file. This is necessary to inform Gradle that this module will also participate in the build.&lt;/p&gt;
+&lt;p&gt;When adding a new module via Android Studio, by default a new entry is added to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;settings.gradle&lt;/code&gt; file. This is necessary to inform Gradle that this module will also participate in the build.&lt;/p&gt;
 
 &lt;p&gt;By default each new module is added to the same line:&lt;/p&gt;
 
@@ -1665,7 +1665,7 @@ Project module dependency graph created at ~/ModularizationExample/build/reports
 &lt;span class=&quot;n&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;':libraries:actions'&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;This keeps the &lt;code class=&quot;highlighter-rouge&quot;&gt;settings.gradle&lt;/code&gt; file cleaner and easier to read. But it also avoids clutter in your Git history, because adding a new module will now add a new line instead of modifying an already existing (very long) file at some random place.&lt;/p&gt;
+&lt;p&gt;This keeps the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;settings.gradle&lt;/code&gt; file cleaner and easier to read. But it also avoids clutter in your Git history, because adding a new module will now add a new line instead of modifying an already existing (very long) file at some random place.&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;Note: I’ve created a &lt;a href=&quot;https://issuetracker.google.com/issues/133578918&quot;&gt;feature request&lt;/a&gt; for this and this will now be the default behavior from Android Studio 3.6 onwards!&lt;/p&gt;
@@ -1673,7 +1673,7 @@ Project module dependency graph created at ~/ModularizationExample/build/reports
 
 &lt;h2 id=&quot;module-internals&quot;&gt;Module internals&lt;/h2&gt;
 &lt;h3 id=&quot;project-organization&quot;&gt;Project organization&lt;/h3&gt;
-&lt;p&gt;When you scale up the number of modules, your root git folder might become quite messy. One convenient way to organize it is to create three different top-level folders: &lt;code class=&quot;highlighter-rouge&quot;&gt;app&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;features&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;libraries&lt;/code&gt;. This will naturally organize all the modules that you have:&lt;/p&gt;
+&lt;p&gt;When you scale up the number of modules, your root git folder might become quite messy. One convenient way to organize it is to create three different top-level folders: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;features&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;libraries&lt;/code&gt;. This will naturally organize all the modules that you have:&lt;/p&gt;
 
 &lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;.
 ├── app
@@ -1686,24 +1686,24 @@ Project module dependency graph created at ~/ModularizationExample/build/reports
     └── ui-components
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;In order to directly generate a module in one of the subfolders, go to &lt;code class=&quot;highlighter-rouge&quot;&gt;File &amp;gt; New &amp;gt; New Module&lt;/code&gt; in Android studio and prefix the module name with &lt;code class=&quot;highlighter-rouge&quot;&gt;features:&lt;/code&gt; to directly create the module in the &lt;code class=&quot;highlighter-rouge&quot;&gt;features&lt;/code&gt; folder.&lt;/p&gt;
+&lt;p&gt;In order to directly generate a module in one of the subfolders, go to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;File &amp;gt; New &amp;gt; New Module&lt;/code&gt; in Android studio and prefix the module name with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;features:&lt;/code&gt; to directly create the module in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;features&lt;/code&gt; folder.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/modularizationtips/create_submodule.png&quot; alt=&quot;Create module directly in subfolder by prefixing the name with a colon&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Alternatively, you can also create the new module, and drag it to the correct subfolder. In that case, just make sure to also update the module reference in &lt;code class=&quot;highlighter-rouge&quot;&gt;settings.gradle&lt;/code&gt; after you do that.&lt;/p&gt;
+&lt;p&gt;Alternatively, you can also create the new module, and drag it to the correct subfolder. In that case, just make sure to also update the module reference in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;settings.gradle&lt;/code&gt; after you do that.&lt;/p&gt;
 
 &lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;':app'&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;':features:newfeature'&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Finally, every module should have a &lt;code class=&quot;highlighter-rouge&quot;&gt;README.md&lt;/code&gt; file at its root level explaining in a concise one-liner what that module is supposed to do. That makes navigating the code online (e.g. Github) a breeze.&lt;/p&gt;
+&lt;p&gt;Finally, every module should have a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;README.md&lt;/code&gt; file at its root level explaining in a concise one-liner what that module is supposed to do. That makes navigating the code online (e.g. Github) a breeze.&lt;/p&gt;
 
 &lt;h3 id=&quot;package-names&quot;&gt;Package names&lt;/h3&gt;
-&lt;p&gt;While the main app package name is rather long (&lt;code class=&quot;highlighter-rouge&quot;&gt;com.jeroenmols.modularization.example&lt;/code&gt;), the modules follow a very simple pattern:&lt;/p&gt;
+&lt;p&gt;While the main app package name is rather long (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;com.jeroenmols.modularization.example&lt;/code&gt;), the modules follow a very simple pattern:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;features: [project-name].features.[feature-name]&lt;br /&gt; e.g. &lt;code class=&quot;highlighter-rouge&quot;&gt;modularization.features.login&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;libraries: [project-name].libraries.[library-name]&lt;br /&gt; e.g. &lt;code class=&quot;highlighter-rouge&quot;&gt;modularization.libraries.actions&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;features: [project-name].features.[feature-name]&lt;br /&gt; e.g. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;modularization.features.login&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;libraries: [project-name].libraries.[library-name]&lt;br /&gt; e.g. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;modularization.libraries.actions&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;This doesn’t just avoid getting very long package names, but it will also logically group your imports in your code:&lt;/p&gt;
@@ -1718,9 +1718,9 @@ Project module dependency graph created at ~/ModularizationExample/build/reports
 
 &lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/modularizationtips/preview_wrong_theme.jpg&quot; alt=&quot;Layout preview by default shows wrong theme&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;This makes sense, as our submodules don’t know anything about the application theme set in the main &lt;code class=&quot;highlighter-rouge&quot;&gt;app&lt;/code&gt; module manifest.&lt;/p&gt;
+&lt;p&gt;This makes sense, as our submodules don’t know anything about the application theme set in the main &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app&lt;/code&gt; module manifest.&lt;/p&gt;
 
-&lt;p&gt;While you can manually change the theme from the drop-down menu, you can also tell the module what theme it will eventually inherit from the &lt;code class=&quot;highlighter-rouge&quot;&gt;app&lt;/code&gt; module. Do this by adding the theme attribute to the application element of the submodule manifest:&lt;/p&gt;
+&lt;p&gt;While you can manually change the theme from the drop-down menu, you can also tell the module what theme it will eventually inherit from the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app&lt;/code&gt; module. Do this by adding the theme attribute to the application element of the submodule manifest:&lt;/p&gt;
 
 &lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;manifest&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:android=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.android.com/apk/res/android&quot;&lt;/span&gt;
     &lt;span class=&quot;na&quot;&gt;package=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;modularization.features.dashboard&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
@@ -1738,7 +1738,7 @@ Project module dependency graph created at ~/ModularizationExample/build/reports
 &lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/modularizationtips/preview_right_theme.jpg&quot; alt=&quot;Layout preview shows correct theme when application theme attribute set in module manifest&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;restrict-visibility&quot;&gt;Restrict visibility&lt;/h3&gt;
-&lt;p&gt;In order to ensure different modules are properly decoupled, I highly recommend marking each class with an &lt;code class=&quot;highlighter-rouge&quot;&gt;internal&lt;/code&gt; modifier unless it is part of the public API.&lt;/p&gt;
+&lt;p&gt;In order to ensure different modules are properly decoupled, I highly recommend marking each class with an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;internal&lt;/code&gt; modifier unless it is part of the public API.&lt;/p&gt;
 
 &lt;p&gt;This has the added advantage that Android Studio autocomplete will suggest fewer options (only the relevant ones), making it easier to find the classes you need while coding.&lt;/p&gt;
 
@@ -1750,9 +1750,9 @@ Project module dependency graph created at ~/ModularizationExample/build/reports
 &lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.gradle.api.JavaVersion&lt;/span&gt;
 
 &lt;span class=&quot;kd&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Config&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;minSdk&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;23&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;compileSdk&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;28&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;targetSdk&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;28&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;minSdk&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;23&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;compileSdk&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;28&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;targetSdk&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;28&lt;/span&gt;
     &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;javaVersion&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;JavaVersion&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;VERSION_1_8&lt;/span&gt;
     &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;buildTools&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;28.0.3&quot;&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
@@ -1819,7 +1819,7 @@ The following dependencies have later milestone versions:
 &lt;h2 id=&quot;speed-up-builds&quot;&gt;Speed up builds&lt;/h2&gt;
 &lt;p&gt;Remember that speeding up builds was an important &lt;a href=&quot;/blog/2019/03/06/modularizationwhy/&quot;&gt;reason to modularize&lt;/a&gt; apps. One of the most intriguing ways Gradle accomplishes this is by being smart about whether a code change will also require other modules to be recompiled.&lt;/p&gt;
 
-&lt;p&gt;While you can find the &lt;a href=&quot;/blog/2017/06/14/androidstudio3/&quot;&gt;full explanation here&lt;/a&gt;, it suffices to say here that you should always strive to &lt;code class=&quot;highlighter-rouge&quot;&gt;implementation&lt;/code&gt; dependencies instead of &lt;code class=&quot;highlighter-rouge&quot;&gt;api&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;While you can find the &lt;a href=&quot;/blog/2017/06/14/androidstudio3/&quot;&gt;full explanation here&lt;/a&gt;, it suffices to say here that you should always strive to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;implementation&lt;/code&gt; dependencies instead of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;api&lt;/code&gt;.&lt;/p&gt;
 
 &lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;c1&quot;&gt;// Don't do this&lt;/span&gt;
@@ -1836,7 +1836,7 @@ The following dependencies have later milestone versions:
 &lt;p&gt;After reading this series, you’ve learned why modularization is important, what the architecture of a modularized app could be, how to start modularizing your app and finally quite some useful tips and tricks to help you along the way.&lt;/p&gt;
 
 &lt;p&gt;If you’ve made it this far you should probably follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=modularization-lessonslearned2019&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
-. Feel free leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="modularization" /><category term="architecture" /><category term="software engineering" /><category term="tips" /><summary type="html">Wrapping up this series on modularization I’d like to share some of the things we’ve learned at Philips Hue while going through this process the past year.</summary></entry><entry><title type="html">Modularization - How to approach</title><link href="https://jeroenmols.com/blog/2019/04/24/modularizationhow/" rel="alternate" type="text/html" title="Modularization - How to approach" /><published>2019-04-24T00:00:00+02:00</published><updated>2019-04-24T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2019/04/24/modularizationhow</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/04/24/modularizationhow/">&lt;p&gt;Now that we have a clear idea of how a modularized app could look like how can this be applied to an existing app?&lt;/p&gt;
+. Feel free leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="modularization" /><category term="architecture" /><category term="software engineering" /><category term="tips" /><summary type="html">Wrapping up this series on modularization I’d like to share some of the things we’ve learned at Philips Hue while going through this process the past year.</summary></entry><entry><title type="html">Modularization - How to approach</title><link href="https://jeroenmols.com/blog/2019/04/24/modularizationhow/" rel="alternate" type="text/html" title="Modularization - How to approach" /><published>2019-04-24T00:00:00+02:00</published><updated>2019-04-24T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2019/04/24/modularizationhow</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/04/24/modularizationhow/">&lt;p&gt;Now that we have a clear idea of how a modularized app could look like how can this be applied to an existing app?&lt;/p&gt;
 
 &lt;p&gt;Part four will dive deeper into how existing apps can be sliced and how you can gradually migrate to a fully modularized architecture.&lt;/p&gt;
 
@@ -1869,30 +1869,30 @@ The following dependencies have later milestone versions:
 
 &lt;p&gt;Conceptually this is very simple and it has one huge advantage: (almost) no dependency problems!&lt;/p&gt;
 
-&lt;p&gt;All old code is in the &lt;code class=&quot;highlighter-rouge&quot;&gt;old app module&lt;/code&gt; and new modules are only created on top of that. Hence, those modules will always have access to all legacy files they depend on, even if those files weren’t migrated to a proper module yet.&lt;/p&gt;
+&lt;p&gt;All old code is in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;old app module&lt;/code&gt; and new modules are only created on top of that. Hence, those modules will always have access to all legacy files they depend on, even if those files weren’t migrated to a proper module yet.&lt;/p&gt;
 
-&lt;p&gt;E.g. a new feature can easily access the analytics framework, even if there isn’t an analytics module yet. This is because all old analytics code is already in the &lt;code class=&quot;highlighter-rouge&quot;&gt;old app module&lt;/code&gt; that the feature depends on.&lt;/p&gt;
+&lt;p&gt;E.g. a new feature can easily access the analytics framework, even if there isn’t an analytics module yet. This is because all old analytics code is already in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;old app module&lt;/code&gt; that the feature depends on.&lt;/p&gt;
 
 &lt;p&gt;There are also some disadvantages, unfortunately:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;renaming/moving the old app module is a huge upfront change and could cause a lot of merge conflicts =&amp;gt; can be avoided by not moving/renaming the app module&lt;/li&gt;
-  &lt;li&gt;need to convert all references to view IDs from &lt;code class=&quot;highlighter-rouge&quot;&gt;R.id.***&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;R2.id.***&lt;/code&gt; when using &lt;a href=&quot;https://github.com/JakeWharton/butterknife&quot;&gt;Butterknife&lt;/a&gt;. This is because the Android build system dynamically changes IDs of resources in libraries to avoid ID conflicts while merging libraries together in the app&lt;/li&gt;
-  &lt;li&gt;features need to be modularized first and only after libraries can be extracted. E.g. hard to extract all analytics up to an &lt;code class=&quot;highlighter-rouge&quot;&gt;analytics library&lt;/code&gt; when some features that are still in &lt;code class=&quot;highlighter-rouge&quot;&gt;old app module&lt;/code&gt; still need to access that.&lt;/li&gt;
+  &lt;li&gt;need to convert all references to view IDs from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;R.id.***&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;R2.id.***&lt;/code&gt; when using &lt;a href=&quot;https://github.com/JakeWharton/butterknife&quot;&gt;Butterknife&lt;/a&gt;. This is because the Android build system dynamically changes IDs of resources in libraries to avoid ID conflicts while merging libraries together in the app&lt;/li&gt;
+  &lt;li&gt;features need to be modularized first and only after libraries can be extracted. E.g. hard to extract all analytics up to an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;analytics library&lt;/code&gt; when some features that are still in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;old app module&lt;/code&gt; still need to access that.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;At Philips Hue, we heavily used Butterknife so this approach turned out to be impractical for us. Mainly due to the large number of upfront changes to prepare the &lt;code class=&quot;highlighter-rouge&quot;&gt;old app module&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;At Philips Hue, we heavily used Butterknife so this approach turned out to be impractical for us. Mainly due to the large number of upfront changes to prepare the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;old app module&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h3 id=&quot;push-code-down&quot;&gt;Push code down&lt;/h3&gt;
 &lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/modularizationhow/modularisation_pushdown.png&quot; alt=&quot;Modularized app example&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Alternatively, the old &lt;code class=&quot;highlighter-rouge&quot;&gt;app module&lt;/code&gt; can also just remain in place and modules are extracted from that downwards one by one.&lt;/p&gt;
+&lt;p&gt;Alternatively, the old &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app module&lt;/code&gt; can also just remain in place and modules are extracted from that downwards one by one.&lt;/p&gt;
 
-&lt;p&gt;At first, this is quite a bit more challenging because all the common plumbing (UI components, analytics, storage,… ) is still in the upper &lt;code class=&quot;highlighter-rouge&quot;&gt;app module&lt;/code&gt; and isn’t accessible by lower modules. e.g. It’s hard to pull out a feature that relies on analytics if the analytics code is still in the &lt;code class=&quot;highlighter-rouge&quot;&gt;app module&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;At first, this is quite a bit more challenging because all the common plumbing (UI components, analytics, storage,… ) is still in the upper &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app module&lt;/code&gt; and isn’t accessible by lower modules. e.g. It’s hard to pull out a feature that relies on analytics if the analytics code is still in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app module&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;On the plus side, this method aggressively forces you to modularize: you will easily run into actual dependency problems that must be solved before you can continue. E.g. add a new or extract a &lt;code class=&quot;highlighter-rouge&quot;&gt;feature module&lt;/code&gt; will force you to extract common logic first (e.g. network layer)&lt;/p&gt;
+&lt;p&gt;On the plus side, this method aggressively forces you to modularize: you will easily run into actual dependency problems that must be solved before you can continue. E.g. add a new or extract a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;feature module&lt;/code&gt; will force you to extract common logic first (e.g. network layer)&lt;/p&gt;
 
-&lt;p&gt;Hence common plumbing must be modularized on the short term and cannot be parked in a single huge core module for a long time. But once these key &lt;code class=&quot;highlighter-rouge&quot;&gt;plumbing modules&lt;/code&gt; are extracted, the rest of the modularization will become a lot easier.&lt;/p&gt;
+&lt;p&gt;Hence common plumbing must be modularized on the short term and cannot be parked in a single huge core module for a long time. But once these key &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;plumbing modules&lt;/code&gt; are extracted, the rest of the modularization will become a lot easier.&lt;/p&gt;
 
 &lt;p&gt;And because moving code down is harder than moving it up, only the essential code parts will be moved down at first. Resulting in smaller steps, enabling a better grip on the entire modularisation process.&lt;/p&gt;
 
@@ -1902,7 +1902,7 @@ The following dependencies have later milestone versions:
   &lt;p&gt;Note: Introducing new technologies (e.g. coroutines, rxjava) is usually also easier bottom up. This is because modules making use of these can directly access “cleaned up interfaces” instead of wrapping old ones to fit the new paradigms. So you start benefitting from the end-to-end benefits of the new technologies sooner in your app.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;At Philips Hue, we decided to go for this approach, mainly because it forced us to think better about our &lt;code class=&quot;highlighter-rouge&quot;&gt;library modules&lt;/code&gt; upfront and it also avoided a huge refactoring due to Butterknife.&lt;/p&gt;
+&lt;p&gt;At Philips Hue, we decided to go for this approach, mainly because it forced us to think better about our &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library modules&lt;/code&gt; upfront and it also avoided a huge refactoring due to Butterknife.&lt;/p&gt;
 
 &lt;h2 id=&quot;considerations&quot;&gt;Considerations&lt;/h2&gt;
 &lt;p&gt;Regardless of what strategy you decide two follow, here are a few things you should take into consideration:&lt;/p&gt;
@@ -1942,4 +1942,4 @@ The following dependencies have later milestone versions:
 &lt;p&gt;Generally speaking, there are two strategies to modularize an existing app: pull code up or push code down. Make sure to make a big initial push towards modularization to reap the benefits as soon as possible, clean up the module APIs and see if you can take some code improvements along.&lt;/p&gt;
 
 &lt;p&gt;Make sure to follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=modularization-howtoapproach2019&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
- and read on to learn some tips and lessons learned while modularizing &lt;a href=&quot;/blog/2019/06/12/modularizationtips/&quot;&gt;in part 5&lt;/a&gt;.&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="modularization" /><category term="architecture" /><category term="software engineering" /><category term="how to" /><summary type="html">Now that we have a clear idea of how a modularized app could look like how can this be applied to an existing app?</summary></entry></feed>
+ and read on to learn some tips and lessons learned while modularizing &lt;a href=&quot;/blog/2019/06/12/modularizationtips/&quot;&gt;in part 5&lt;/a&gt;.&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="modularization" /><category term="architecture" /><category term="software engineering" /><category term="how to" /><summary type="html">Now that we have a clear idea of how a modularized app could look like how can this be applied to an existing app?</summary></entry></feed>

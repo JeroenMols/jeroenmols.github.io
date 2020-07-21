@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.17.0 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.19.3 by Michael Rose
   Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
@@ -170,11 +170,11 @@ $(document).ready(function(){
           
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/blog/" >Blog</a>
+              <a href="/blog/">Blog</a>
             </li><li class="masthead__menu-item">
-              <a href="/speaking/" >Speaking</a>
+              <a href="/speaking/">Speaking</a>
             </li><li class="masthead__menu-item">
-              <a href="/hireme/" >Hire me</a>
+              <a href="/hireme/">Hire me</a>
             </li></ul>
         
         <button class="search__toggle" type="button">
@@ -210,8 +210,6 @@ $(document).ready(function(){
 
   
     <div class="author__avatar">
-      
-
       
         <img src="/img/profile.jpg" alt="Jeroen Mols" itemprop="image">
       
@@ -250,7 +248,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://twitter.com/@molsjeroen" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span>
           </a>
         </li>
       
@@ -260,7 +258,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://www.linkedin.com/in/jeroenmols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn
+            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span>
           </a>
         </li>
       
@@ -276,7 +274,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://github.com/JeroenMols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span>
           </a>
         </li>
       
@@ -286,7 +284,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://stackoverflow.com/users/2771851/jmols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i> Stack Overflow
+            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i><span class="label">Stack Overflow</span>
           </a>
         </li>
       
@@ -305,7 +303,7 @@ $(document).ready(function(){
         
           <li>
             <a href="https://www.youtube.com/channel/UC34Vt1lo8T15_rgc3e3Jsew" itemprop="sameAs" rel="nofollow noopener noreferrer">
-              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i> YouTube
+              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span>
             </a>
           </li>
         
@@ -334,6 +332,7 @@ $(document).ready(function(){
 
   
   </div>
+
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
@@ -376,7 +375,7 @@ $(document).ready(function(){
   <p>Disclaimer, the example below is a consequence of legacy code and only serves to demonstrate a Kotlin puzzler.</p>
 </blockquote>
 
-<p>Have a look at the simple test class below. It subclasses the subject under test (<code class="highlighter-rouge">BaseFragment</code>) to inject a mocked <code class="highlighter-rouge">Repository</code> that is used by the <code class="highlighter-rouge">getDataOperation()</code> method in the test.</p>
+<p>Have a look at the simple test class below. It subclasses the subject under test (<code class="language-plaintext highlighter-rouge">BaseFragment</code>) to inject a mocked <code class="language-plaintext highlighter-rouge">Repository</code> that is used by the <code class="language-plaintext highlighter-rouge">getDataOperation()</code> method in the test.</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">BaseFragmentTest</span> <span class="p">{</span>
 
@@ -410,7 +409,7 @@ $(document).ready(function(){
 
 <p>…</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>java.lang.StackOverflowError
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>java.lang.StackOverflowError
     at com.jeroenmols.BaseFragmentTest$TestFragment.getRepository(BaseFragmentTest.kt:26)
     at com.jeroenmols.BaseFragmentTest$TestFragment.getRepository(BaseFragmentTest.kt:26)
     at com.jeroenmols.BaseFragmentTest$TestFragment.getRepository(BaseFragmentTest.kt:26)
@@ -422,7 +421,7 @@ $(document).ready(function(){
 
 <p>Wait, what???</p>
 
-<p>This trace indicates that the line <code class="highlighter-rouge">return repository</code> (line 26) is called recursively… How is that even possible? That line just return a value, right?</p>
+<p>This trace indicates that the line <code class="language-plaintext highlighter-rouge">return repository</code> (line 26) is called recursively… How is that even possible? That line just return a value, right?</p>
 
 <p>Well…</p>
 
@@ -430,14 +429,14 @@ $(document).ready(function(){
 <p>This is actually a very interesting case of Java/Kotlin interop. Because a Kotlin property is compiled down to the following Java elements:</p>
 
 <ul>
-  <li>a getter method with <code class="highlighter-rouge">get</code> prefix</li>
-  <li>a setter method with <code class="highlighter-rouge">set</code> prefix</li>
+  <li>a getter method with <code class="language-plaintext highlighter-rouge">get</code> prefix</li>
+  <li>a setter method with <code class="language-plaintext highlighter-rouge">set</code> prefix</li>
   <li>a private field backing the property</li>
 </ul>
 
-<p>Hence the <code class="highlighter-rouge">return repository</code> statement actually ends up executing <code class="highlighter-rouge">return getRepository()</code> and hence recursively calling itself!</p>
+<p>Hence the <code class="language-plaintext highlighter-rouge">return repository</code> statement actually ends up executing <code class="language-plaintext highlighter-rouge">return getRepository()</code> and hence recursively calling itself!</p>
 
-<p>Now the really interesting detail here is that this only happens when <code class="highlighter-rouge">BaseFragment</code> is a Java class! When converting the class to Kotlin this doesn’t happen.</p>
+<p>Now the really interesting detail here is that this only happens when <code class="language-plaintext highlighter-rouge">BaseFragment</code> is a Java class! When converting the class to Kotlin this doesn’t happen.</p>
 
 <p>So let’s have a look at the decompiled bytecode:</p>
 
@@ -458,9 +457,9 @@ $(document).ready(function(){
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>Sure enough, the decompiled Java code recursively links to the <code class="highlighter-rouge">TestFragment</code> when <code class="highlighter-rouge">BaseFragment</code> is in java and properly links to the right method when <code class="highlighter-rouge">BaseFragment</code> is in Kotlin.</p>
+<p>Sure enough, the decompiled Java code recursively links to the <code class="language-plaintext highlighter-rouge">TestFragment</code> when <code class="language-plaintext highlighter-rouge">BaseFragment</code> is in java and properly links to the right method when <code class="language-plaintext highlighter-rouge">BaseFragment</code> is in Kotlin.</p>
 
-<p>A simple way to fix this is to strongly refer the overridden method to point at the <code class="highlighter-rouge">BaseFragmentTest</code> class:</p>
+<p>A simple way to fix this is to strongly refer the overridden method to point at the <code class="language-plaintext highlighter-rouge">BaseFragmentTest</code> class:</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">inner</span> <span class="kd">class</span> <span class="nc">TestFragment</span> <span class="p">:</span> <span class="nc">BaseFragment</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">override</span> <span class="k">fun</span> <span class="nf">getRepository</span><span class="p">():</span> <span class="nc">Repository</span> <span class="p">{</span>
@@ -825,10 +824,10 @@ $(document).ready(function(){
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://jeroenmols.com/blog/2018/11/01/kotlinstackoverflow/";  // Replace PAGE_URL with your page's canonical URL variable
-      this.page.identifier = "/blog/2018/11/01/kotlinstackoverflow"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      this.page.url = "https://jeroenmols.com/blog/2018/11/01/kotlinstackoverflow/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/blog/2018/11/01/kotlinstackoverflow"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
     };
-    (function() { // DON'T EDIT BELOW THIS LINE
+    (function() { /* DON'T EDIT BELOW THIS LINE */
       var d = document, s = d.createElement('script');
       s.src = 'https://jeroenmols.disqus.com/embed.js';
       s.setAttribute('data-timestamp', +new Date());

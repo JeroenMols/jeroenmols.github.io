@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.17.0 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.19.3 by Michael Rose
   Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
@@ -170,11 +170,11 @@ $(document).ready(function(){
           
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/blog/" >Blog</a>
+              <a href="/blog/">Blog</a>
             </li><li class="masthead__menu-item">
-              <a href="/speaking/" >Speaking</a>
+              <a href="/speaking/">Speaking</a>
             </li><li class="masthead__menu-item">
-              <a href="/hireme/" >Hire me</a>
+              <a href="/hireme/">Hire me</a>
             </li></ul>
         
         <button class="search__toggle" type="button">
@@ -210,8 +210,6 @@ $(document).ready(function(){
 
   
     <div class="author__avatar">
-      
-
       
         <img src="/img/profile.jpg" alt="Jeroen Mols" itemprop="image">
       
@@ -250,7 +248,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://twitter.com/@molsjeroen" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span>
           </a>
         </li>
       
@@ -260,7 +258,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://www.linkedin.com/in/jeroenmols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn
+            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span>
           </a>
         </li>
       
@@ -276,7 +274,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://github.com/JeroenMols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span>
           </a>
         </li>
       
@@ -286,7 +284,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://stackoverflow.com/users/2771851/jmols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i> Stack Overflow
+            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i><span class="label">Stack Overflow</span>
           </a>
         </li>
       
@@ -305,7 +303,7 @@ $(document).ready(function(){
         
           <li>
             <a href="https://www.youtube.com/channel/UC34Vt1lo8T15_rgc3e3Jsew" itemprop="sameAs" rel="nofollow noopener noreferrer">
-              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i> YouTube
+              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span>
             </a>
           </li>
         
@@ -334,6 +332,7 @@ $(document).ready(function(){
 
   
   </div>
+
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
@@ -382,7 +381,7 @@ $(document).ready(function(){
 </blockquote>
 
 <h2 id="creating-new-feature-flags">Creating new feature flags</h2>
-<p>As discussed in <a href="/blog/2019/08/13/featureflags/">part 1</a>, the easier it is to add feature flags, the more likely developers will use the system. At its core a <code class="highlighter-rouge">Feature</code> is something very simple:</p>
+<p>As discussed in <a href="/blog/2019/08/13/featureflags/">part 1</a>, the easier it is to add feature flags, the more likely developers will use the system. At its core a <code class="language-plaintext highlighter-rouge">Feature</code> is something very simple:</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">interface</span> <span class="nc">Feature</span> <span class="p">{</span>
     <span class="kd">val</span> <span class="py">key</span><span class="p">:</span> <span class="nc">String</span>
@@ -392,9 +391,9 @@ $(document).ready(function(){
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>It needs to have a unique <code class="highlighter-rouge">key</code> to reference it on your remote feature flagging tool. A <code class="highlighter-rouge">title</code> and <code class="highlighter-rouge">description</code> to help understand what it is all about. And optionally a default value, which is handy if you’re using both <code class="highlighter-rouge">FeatureFlags</code> and <code class="highlighter-rouge">TestSettings</code>.</p>
+<p>It needs to have a unique <code class="language-plaintext highlighter-rouge">key</code> to reference it on your remote feature flagging tool. A <code class="language-plaintext highlighter-rouge">title</code> and <code class="language-plaintext highlighter-rouge">description</code> to help understand what it is all about. And optionally a default value, which is handy if you’re using both <code class="language-plaintext highlighter-rouge">FeatureFlags</code> and <code class="language-plaintext highlighter-rouge">TestSettings</code>.</p>
 
-<p>This interface can now be implemented by both a <code class="highlighter-rouge">FeatureFlag</code> and <code class="highlighter-rouge">TestSetting</code> enum:</p>
+<p>This interface can now be implemented by both a <code class="language-plaintext highlighter-rouge">FeatureFlag</code> and <code class="language-plaintext highlighter-rouge">TestSetting</code> enum:</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">enum</span> <span class="kd">class</span> <span class="nc">FeatureFlag</span><span class="p">(</span>
         <span class="k">override</span> <span class="kd">val</span> <span class="py">key</span><span class="p">:</span> <span class="nc">String</span><span class="p">,</span>
@@ -417,18 +416,18 @@ $(document).ready(function(){
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>Note how a <code class="highlighter-rouge">FeatureFlag</code> is on by default so that it is immediately visible in developer builds, whereas <code class="highlighter-rouge">TestSettings</code> are off by default as they usually put the app in a specific condition to help with testing.</p>
+<p>Note how a <code class="language-plaintext highlighter-rouge">FeatureFlag</code> is on by default so that it is immediately visible in developer builds, whereas <code class="language-plaintext highlighter-rouge">TestSettings</code> are off by default as they usually put the app in a specific condition to help with testing.</p>
 
-<p>Both <code class="highlighter-rouge">FeatureFlag</code> and <code class="highlighter-rouge">TestSetting</code> are enums so that the Kotlin compiler can force you to handle each case explicitly in a <code class="highlighter-rouge">when</code> statement. At the same time, they are not sealed classes, because we need to be able to enumerate all items, later on, to automatically generate a UI from it. (There is no way to ask a sealed class to list all it’s subclasses)</p>
+<p>Both <code class="language-plaintext highlighter-rouge">FeatureFlag</code> and <code class="language-plaintext highlighter-rouge">TestSetting</code> are enums so that the Kotlin compiler can force you to handle each case explicitly in a <code class="language-plaintext highlighter-rouge">when</code> statement. At the same time, they are not sealed classes, because we need to be able to enumerate all items, later on, to automatically generate a UI from it. (There is no way to ask a sealed class to list all it’s subclasses)</p>
 
 <blockquote>
-  <p>Mission accomplished: adding a new <code class="highlighter-rouge">FeatureFlag</code> / <code class="highlighter-rouge">TestSetting</code> is as easy as adding a one-liner!</p>
+  <p>Mission accomplished: adding a new <code class="language-plaintext highlighter-rouge">FeatureFlag</code> / <code class="language-plaintext highlighter-rouge">TestSetting</code> is as easy as adding a one-liner!</p>
   <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">AWESOME</span><span class="p">(</span><span class="s">"feature.awesome"</span><span class="p">,</span> <span class="s">"Awesome"</span><span class="p">,</span> <span class="s">"Does something awesome"</span><span class="p">)</span>
 </code></pre></div>  </div>
 </blockquote>
 
 <h2 id="consuming-feature-flags">Consuming feature flags</h2>
-<p>Next, our app needs to be able to read out what value (true/false) a <code class="highlighter-rouge">Feature</code> is currently set to. This can be done by requesting one of the <code class="highlighter-rouge">FeatureFlagProviders</code> for the current value:</p>
+<p>Next, our app needs to be able to read out what value (true/false) a <code class="language-plaintext highlighter-rouge">Feature</code> is currently set to. This can be done by requesting one of the <code class="language-plaintext highlighter-rouge">FeatureFlagProviders</code> for the current value:</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">interface</span> <span class="nc">FeatureFlagProvider</span> <span class="p">{</span>
     <span class="kd">val</span> <span class="py">priority</span><span class="p">:</span> <span class="nc">Int</span>
@@ -439,14 +438,14 @@ $(document).ready(function(){
 
 <p>This interface will have several implementations with different priorities attached to it so that they can override each other. (more on that later)</p>
 
-<p>Note how implementations don’t need to provide a value for every <code class="highlighter-rouge">Feature</code> thanks to the <code class="highlighter-rouge">hasFeature()</code> method! This has two benefits:</p>
+<p>Note how implementations don’t need to provide a value for every <code class="language-plaintext highlighter-rouge">Feature</code> thanks to the <code class="language-plaintext highlighter-rouge">hasFeature()</code> method! This has two benefits:</p>
 
 <ul>
   <li>you can prevent accidentally relying on build-in defaults of the feature flag tool you are using by requiring an explicit opt-in for that tool (e.g. Firebase remote config returns false when it doesn’t have a value)</li>
   <li>you can have a chain of providers (e.g. we can have a feature flag that is only locally available, not remotely).</li>
 </ul>
 
-<p>The <code class="highlighter-rouge">RuntimeBehavior</code> links all <code class="highlighter-rouge">FeatureFlagProviders</code> together and exposes the API that should be used from within the application:</p>
+<p>The <code class="language-plaintext highlighter-rouge">RuntimeBehavior</code> links all <code class="language-plaintext highlighter-rouge">FeatureFlagProviders</code> together and exposes the API that should be used from within the application:</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">object</span> <span class="nc">RuntimeBehavior</span> <span class="p">{</span>
 
@@ -467,7 +466,7 @@ $(document).ready(function(){
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>Note how it takes all <code class="highlighter-rouge">FeatureFlagProviders</code>, removes those that don’t provide a value for the <code class="highlighter-rouge">Feature</code> and then takes the value of the highest priority provider. If no one provides a value, the default value is returned.</p>
+<p>Note how it takes all <code class="language-plaintext highlighter-rouge">FeatureFlagProviders</code>, removes those that don’t provide a value for the <code class="language-plaintext highlighter-rouge">Feature</code> and then takes the value of the highest priority provider. If no one provides a value, the default value is returned.</p>
 
 <p>Thanks to all of this we can now call from anywhere in the app:</p>
 
@@ -479,7 +478,7 @@ $(document).ready(function(){
 </code></pre></div></div>
 
 <blockquote>
-  <p>Consuming <code class="highlighter-rouge">FeatureFlag</code>/<code class="highlighter-rouge">TestSetting</code> is as easy as asking the <code class="highlighter-rouge">RuntimeBehavior</code></p>
+  <p>Consuming <code class="language-plaintext highlighter-rouge">FeatureFlag</code>/<code class="language-plaintext highlighter-rouge">TestSetting</code> is as easy as asking the <code class="language-plaintext highlighter-rouge">RuntimeBehavior</code></p>
   <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="nf">isFeatureEnabled</span><span class="p">(</span><span class="nc">AWESOME</span><span class="p">))</span> <span class="p">{</span>
     <span class="c1">// code here</span>
 <span class="p">}</span>
@@ -487,12 +486,12 @@ $(document).ready(function(){
 </blockquote>
 
 <h2 id="providing-feature-flag-values">Providing feature flag values</h2>
-<p>Let’s have a look at the several different <code class="highlighter-rouge">FeatureFlagProviders</code>, why we need them and how they work.</p>
+<p>Let’s have a look at the several different <code class="language-plaintext highlighter-rouge">FeatureFlagProviders</code>, why we need them and how they work.</p>
 
 <h3 id="runtimefeatureflagprovider">RuntimeFeatureFlagProvider</h3>
 <p>This provider only exists in the debug version of the app and allows to dynamically turn features on or off.</p>
 
-<p>It does this by keeping a <code class="highlighter-rouge">SharedPreferences</code> internally where it automatically stores a value for each <code class="highlighter-rouge">Feature</code> using its key.</p>
+<p>It does this by keeping a <code class="language-plaintext highlighter-rouge">SharedPreferences</code> internally where it automatically stores a value for each <code class="language-plaintext highlighter-rouge">Feature</code> using its key.</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">RuntimeFeatureFlagProvider</span> <span class="p">:</span> <span class="nc">FeatureFlagProvider</span> <span class="p">{</span>
 
@@ -514,14 +513,14 @@ $(document).ready(function(){
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>Notice how this provider has a public API <code class="highlighter-rouge">setFeatureEnabled</code> to change the current value of a <code class="highlighter-rouge">Feature</code> and how every <code class="highlighter-rouge">Feature</code> is always configurable at runtime. (i.e. <code class="highlighter-rouge">hasFeature()</code> returns true for every feature)</p>
+<p>Notice how this provider has a public API <code class="language-plaintext highlighter-rouge">setFeatureEnabled</code> to change the current value of a <code class="language-plaintext highlighter-rouge">Feature</code> and how every <code class="language-plaintext highlighter-rouge">Feature</code> is always configurable at runtime. (i.e. <code class="language-plaintext highlighter-rouge">hasFeature()</code> returns true for every feature)</p>
 
 <blockquote>
-  <p>The <code class="highlighter-rouge">RuntimeFeatureFlagProvider</code> allows to locally turn any <code class="highlighter-rouge">FeatureFlag</code>/<code class="highlighter-rouge">TestSetting</code> on or off.</p>
+  <p>The <code class="language-plaintext highlighter-rouge">RuntimeFeatureFlagProvider</code> allows to locally turn any <code class="language-plaintext highlighter-rouge">FeatureFlag</code>/<code class="language-plaintext highlighter-rouge">TestSetting</code> on or off.</p>
 </blockquote>
 
 <h3 id="storefeatureflagprovider">StoreFeatureFlagProvider</h3>
-<p>This provider only exists in the release version of the app and defines the baseline of what <code class="highlighter-rouge">Features</code> are on or off. <code class="highlighter-rouge">TestSettings</code> aren’t exposed in the release version of an app and are always off.</p>
+<p>This provider only exists in the release version of the app and defines the baseline of what <code class="language-plaintext highlighter-rouge">Features</code> are on or off. <code class="language-plaintext highlighter-rouge">TestSettings</code> aren’t exposed in the release version of an app and are always off.</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">StoreFeatureFlagProvider</span> <span class="p">:</span> <span class="nc">FeatureFlagProvider</span> <span class="p">{</span>
 
@@ -547,16 +546,16 @@ $(document).ready(function(){
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>Notice how you must provide an explicit value for every feature toggle! This is because you never want to accidentally ship an unfinished feature to users. Non gradual rollout of a feature requires an explicit change to the <code class="highlighter-rouge">StoreFeatureFlagProvider</code>.</p>
+<p>Notice how you must provide an explicit value for every feature toggle! This is because you never want to accidentally ship an unfinished feature to users. Non gradual rollout of a feature requires an explicit change to the <code class="language-plaintext highlighter-rouge">StoreFeatureFlagProvider</code>.</p>
 
 <p>Finally, this makes it very easy to check what features are on or off in any given app release. And since all of this is just Kotlin code, it’s easy to write a script to generate a release report with what feature toggles exist and their value for that app version.</p>
 
 <blockquote>
-  <p>The <code class="highlighter-rouge">StoreFeatureFlagProvider</code> defines for every <code class="highlighter-rouge">Feature</code> whether it is on or off in the release build</p>
+  <p>The <code class="language-plaintext highlighter-rouge">StoreFeatureFlagProvider</code> defines for every <code class="language-plaintext highlighter-rouge">Feature</code> whether it is on or off in the release build</p>
 </blockquote>
 
 <h3 id="firebasefeatureflagprovider">FirebaseFeatureFlagProvider</h3>
-<p>One of the most interesting things about <code class="highlighter-rouge">FeatureFlags</code> is that you can gradually roll them out using a remote feature flagging tool. We’ll look at <a href="https://firebase.google.com/docs/remote-config">Firebase Remote Config</a> as an example, but this architecture supports any tool.</p>
+<p>One of the most interesting things about <code class="language-plaintext highlighter-rouge">FeatureFlags</code> is that you can gradually roll them out using a remote feature flagging tool. We’ll look at <a href="https://firebase.google.com/docs/remote-config">Firebase Remote Config</a> as an example, but this architecture supports any tool.</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">FirebaseFeatureFlagProvider</span><span class="p">(</span><span class="k">private</span> <span class="kd">val</span> <span class="py">isDevModeEnabled</span><span class="p">:</span> <span class="nc">Boolean</span><span class="p">)</span> <span class="p">:</span> <span class="nc">FeatureFlagProvider</span> <span class="p">{</span>
     <span class="k">private</span> <span class="kd">val</span> <span class="py">remoteConfig</span><span class="p">:</span> <span class="nc">FirebaseRemoteConfig</span> <span class="p">=</span> <span class="nc">FirebaseRemoteConfig</span><span class="p">.</span><span class="nf">getInstance</span><span class="p">()</span>
@@ -580,30 +579,30 @@ $(document).ready(function(){
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>The most important thing to note here is that the <code class="highlighter-rouge">FirebaseFeatureFlagProvider</code> has the maximum priority, which means it takes precedence over any other <code class="highlighter-rouge">FeatureFlagProvider</code>.</p>
+<p>The most important thing to note here is that the <code class="language-plaintext highlighter-rouge">FirebaseFeatureFlagProvider</code> has the maximum priority, which means it takes precedence over any other <code class="language-plaintext highlighter-rouge">FeatureFlagProvider</code>.</p>
 
-<p>However, it doesn’t provide a value for all feature flags! That is because a <code class="highlighter-rouge">FeatureFlag</code> should only be remotely toggled once development for the feature is done. We don’t want anyone accidentally expose an unfinished/broken feature to users from the feature flag tool console.</p>
+<p>However, it doesn’t provide a value for all feature flags! That is because a <code class="language-plaintext highlighter-rouge">FeatureFlag</code> should only be remotely toggled once development for the feature is done. We don’t want anyone accidentally expose an unfinished/broken feature to users from the feature flag tool console.</p>
 
-<p>Typically the lifecycle of a <code class="highlighter-rouge">FeatureFlag</code> is:</p>
+<p>Typically the lifecycle of a <code class="language-plaintext highlighter-rouge">FeatureFlag</code> is:</p>
 
 <ul>
-  <li>Development started on new feature -&gt; <code class="highlighter-rouge">FeatureFlag</code> added</li>
-  <li>While development ongoing -&gt; <code class="highlighter-rouge">FeatureFlag</code> locally available</li>
+  <li>Development started on new feature -&gt; <code class="language-plaintext highlighter-rouge">FeatureFlag</code> added</li>
+  <li>While development ongoing -&gt; <code class="language-plaintext highlighter-rouge">FeatureFlag</code> locally available</li>
   <li>Development done
     <ul>
-      <li>Either toggle <code class="highlighter-rouge">FeatureFlag</code> in <code class="highlighter-rouge">StoreFeatureFlagProvider</code> and roll it out to all users at once. (typically if you have a marketing campaign attached to the feature)</li>
-      <li>Or add the <code class="highlighter-rouge">FeatureFlag</code> to the <code class="highlighter-rouge">FirebaseFeatureFlagProvider</code> and gradually roll it out</li>
+      <li>Either toggle <code class="language-plaintext highlighter-rouge">FeatureFlag</code> in <code class="language-plaintext highlighter-rouge">StoreFeatureFlagProvider</code> and roll it out to all users at once. (typically if you have a marketing campaign attached to the feature)</li>
+      <li>Or add the <code class="language-plaintext highlighter-rouge">FeatureFlag</code> to the <code class="language-plaintext highlighter-rouge">FirebaseFeatureFlagProvider</code> and gradually roll it out</li>
     </ul>
   </li>
-  <li>Rollout done -&gt; remove <code class="highlighter-rouge">FeatureFlag</code> and clean up unused code</li>
+  <li>Rollout done -&gt; remove <code class="language-plaintext highlighter-rouge">FeatureFlag</code> and clean up unused code</li>
 </ul>
 
 <blockquote>
-  <p>The <code class="highlighter-rouge">&lt;tool name&gt; - FeatureFlagProvider</code> allows to gradually roll out finished features to users</p>
+  <p>The <code class="language-plaintext highlighter-rouge">&lt;tool name&gt; - FeatureFlagProvider</code> allows to gradually roll out finished features to users</p>
 </blockquote>
 
 <h3 id="how-the-different-providers-work-together">How the different providers work together</h3>
-<p>Whenever the <code class="highlighter-rouge">RuntimeBehavior</code> is initialized, it will initialize all providers:</p>
+<p>Whenever the <code class="language-plaintext highlighter-rouge">RuntimeBehavior</code> is initialized, it will initialize all providers:</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">object</span> <span class="nc">RuntimeBehavior</span> <span class="p">{</span>
     <span class="o">..</span><span class="p">.</span>
@@ -625,20 +624,20 @@ $(document).ready(function(){
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>For debug builds, usually only the <code class="highlighter-rouge">RuntimeFeatureFlagProvider</code> is enabled so feature flags can be toggled from the test settings screen (more on that next).</p>
+<p>For debug builds, usually only the <code class="language-plaintext highlighter-rouge">RuntimeFeatureFlagProvider</code> is enabled so feature flags can be toggled from the test settings screen (more on that next).</p>
 
-<p>But you can even enable the <code class="highlighter-rouge">FirebaseFeatureFlagProvider</code> in the debug build. This allows to also easily test the remote feature flag tool.</p>
+<p>But you can even enable the <code class="language-plaintext highlighter-rouge">FirebaseFeatureFlagProvider</code> in the debug build. This allows to also easily test the remote feature flag tool.</p>
 
-<p>In release, however, the <code class="highlighter-rouge">FeatureFlag</code> value is taken from Firebase when the <code class="highlighter-rouge">FeatureFlag</code> was made remotely available (using <code class="highlighter-rouge">hasFeature()</code> in <code class="highlighter-rouge">FirebaseFeatureFlagProvider</code>). If not, the value from <code class="highlighter-rouge">StoreFeatureFlagProvider</code> is used.</p>
+<p>In release, however, the <code class="language-plaintext highlighter-rouge">FeatureFlag</code> value is taken from Firebase when the <code class="language-plaintext highlighter-rouge">FeatureFlag</code> was made remotely available (using <code class="language-plaintext highlighter-rouge">hasFeature()</code> in <code class="language-plaintext highlighter-rouge">FirebaseFeatureFlagProvider</code>). If not, the value from <code class="language-plaintext highlighter-rouge">StoreFeatureFlagProvider</code> is used.</p>
 
 <p><img src="https://jeroenmols.com/img/blog/featureflagarchitecture/featureflagprovider_priority.png" alt="Different FeatureFlagProviders and their priority for every build type" /></p>
 
 <h2 id="showing-the-flags-in-a-ui">Showing the flags in a UI</h2>
-<p>Within the developer version of our app, we want to be able to both see the status of all <code class="highlighter-rouge">Features</code> and <code class="highlighter-rouge">TestSettings</code> and also toggle each one on or off. Basically, we want to automatically generate a UI like this:</p>
+<p>Within the developer version of our app, we want to be able to both see the status of all <code class="language-plaintext highlighter-rouge">Features</code> and <code class="language-plaintext highlighter-rouge">TestSettings</code> and also toggle each one on or off. Basically, we want to automatically generate a UI like this:</p>
 
 <p><img src="https://jeroenmols.com/img/blog/featureflagarchitecture/testsettings.png" alt="Test settings activity to dynamically configure behavior in the app" /></p>
 
-<p>To show all of the <code class="highlighter-rouge">Features</code>, we can simply define a custom <code class="highlighter-rouge">RecyclerView</code> that displays an <code class="highlighter-rouge">Array</code> of <code class="highlighter-rouge">Features</code>.</p>
+<p>To show all of the <code class="language-plaintext highlighter-rouge">Features</code>, we can simply define a custom <code class="language-plaintext highlighter-rouge">RecyclerView</code> that displays an <code class="language-plaintext highlighter-rouge">Array</code> of <code class="language-plaintext highlighter-rouge">Features</code>.</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">private</span> <span class="kd">class</span> <span class="nc">FeatureFlagAdapter</span><span class="p">&lt;</span><span class="nc">T</span> <span class="p">:</span> <span class="nc">Feature</span><span class="p">&gt;(</span>
     <span class="kd">val</span> <span class="py">items</span><span class="p">:</span> <span class="nc">Array</span><span class="p">&lt;</span><span class="nc">T</span><span class="p">&gt;,</span>
@@ -658,11 +657,11 @@ $(document).ready(function(){
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>Now it becomes clear why <code class="highlighter-rouge">FeatureFlags</code> and <code class="highlighter-rouge">TestSettings</code> had to be enums, because this allows to pass the <code class="highlighter-rouge">FeatureFlagAdapter</code> either <code class="highlighter-rouge">FeatureFlag.values()</code> or <code class="highlighter-rouge">TestSetting.values()</code> and automatically generate the UI for all defined <code class="highlighter-rouge">FeatureFlags</code> or <code class="highlighter-rouge">TestSettings</code>.</p>
+<p>Now it becomes clear why <code class="language-plaintext highlighter-rouge">FeatureFlags</code> and <code class="language-plaintext highlighter-rouge">TestSettings</code> had to be enums, because this allows to pass the <code class="language-plaintext highlighter-rouge">FeatureFlagAdapter</code> either <code class="language-plaintext highlighter-rouge">FeatureFlag.values()</code> or <code class="language-plaintext highlighter-rouge">TestSetting.values()</code> and automatically generate the UI for all defined <code class="language-plaintext highlighter-rouge">FeatureFlags</code> or <code class="language-plaintext highlighter-rouge">TestSettings</code>.</p>
 
-<p>Additionally we hand it the <code class="highlighter-rouge">RuntimeFeatureFlagProvider</code> to look up the current values of each <code class="highlighter-rouge">Feature</code>. Finally it needs a listener to respond when an item gets enabled/disabled.</p>
+<p>Additionally we hand it the <code class="language-plaintext highlighter-rouge">RuntimeFeatureFlagProvider</code> to look up the current values of each <code class="language-plaintext highlighter-rouge">Feature</code>. Finally it needs a listener to respond when an item gets enabled/disabled.</p>
 
-<p>The <code class="highlighter-rouge">FeatureFlagViewHolder</code> simply binds the properties of the <code class="highlighter-rouge">Feature</code> to the view, requests the current value from the <code class="highlighter-rouge">FeatureFlagProvider</code> and connects a listener to the switch:</p>
+<p>The <code class="language-plaintext highlighter-rouge">FeatureFlagViewHolder</code> simply binds the properties of the <code class="language-plaintext highlighter-rouge">Feature</code> to the view, requests the current value from the <code class="language-plaintext highlighter-rouge">FeatureFlagProvider</code> and connects a listener to the switch:</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">private</span> <span class="kd">class</span> <span class="nc">FeatureFlagViewHolder</span><span class="p">&lt;</span><span class="nc">T</span> <span class="p">:</span> <span class="nc">Feature</span><span class="p">&gt;(</span>
     <span class="n">view</span><span class="p">:</span> <span class="nc">View</span><span class="p">,</span>
@@ -680,7 +679,7 @@ $(document).ready(function(){
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>The listener passed into the <code class="highlighter-rouge">FeatureFlagAdapter</code> simply changes the value of the <code class="highlighter-rouge">Feature</code> on the <code class="highlighter-rouge">RuntimeFeatureFlagProvider</code> and shows a <code class="highlighter-rouge">SnackBar</code> to restart the app to ensure the new value is properly applied:</p>
+<p>The listener passed into the <code class="language-plaintext highlighter-rouge">FeatureFlagAdapter</code> simply changes the value of the <code class="language-plaintext highlighter-rouge">Feature</code> on the <code class="language-plaintext highlighter-rouge">RuntimeFeatureFlagProvider</code> and shows a <code class="language-plaintext highlighter-rouge">SnackBar</code> to restart the app to ensure the new value is properly applied:</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">val</span> <span class="py">checkedListener</span> <span class="p">=</span> <span class="p">{</span> <span class="n">feature</span><span class="p">:</span> <span class="nc">Feature</span><span class="p">,</span> <span class="n">enabled</span><span class="p">:</span> <span class="nc">Boolean</span> <span class="p">-&gt;</span>
     <span class="n">runtimeFeatureFlagProvider</span><span class="p">.</span><span class="nf">setFeatureEnabled</span><span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="n">enabled</span><span class="p">)</span>
@@ -692,30 +691,30 @@ $(document).ready(function(){
     <span class="kd">val</span> <span class="py">msg</span> <span class="p">=</span> <span class="s">"In order for changes to reflect please restart the app via settings"</span>
     <span class="nc">Snackbar</span><span class="p">.</span><span class="nf">make</span><span class="p">(</span><span class="n">view</span><span class="o">!!</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="nc">Snackbar</span><span class="p">.</span><span class="nc">LENGTH_INDEFINITE</span><span class="p">)</span>
         <span class="p">.</span><span class="nf">setActionTextColor</span><span class="p">(</span><span class="nc">Color</span><span class="p">.</span><span class="nc">RED</span><span class="p">)</span>
-        <span class="p">.</span><span class="nf">setAction</span><span class="p">(</span><span class="s">"Force Stop"</span><span class="p">)</span> <span class="p">{</span> <span class="nf">exitProcess</span><span class="p">(-</span><span class="m">1</span><span class="p">)</span> <span class="p">}</span>
+        <span class="p">.</span><span class="nf">setAction</span><span class="p">(</span><span class="s">"Force Stop"</span><span class="p">)</span> <span class="p">{</span> <span class="nf">exitProcess</span><span class="p">(-</span><span class="mi">1</span><span class="p">)</span> <span class="p">}</span>
         <span class="p">.</span><span class="nf">show</span><span class="p">()</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>Now we just wrap all of this into a <code class="highlighter-rouge">TestSettingsActivity</code> with a separate launch icon and make sure this activity isn’t available in release builds. The simplest way to do this is by moving all UI classes to the <code class="highlighter-rouge">debug</code> source folder.</p>
+<p>Now we just wrap all of this into a <code class="language-plaintext highlighter-rouge">TestSettingsActivity</code> with a separate launch icon and make sure this activity isn’t available in release builds. The simplest way to do this is by moving all UI classes to the <code class="language-plaintext highlighter-rouge">debug</code> source folder.</p>
 
-<p>Now we have a very powerful, easy to use UI framework to dynamically configure the behavior of our app! By just adding a single line <code class="highlighter-rouge">FeatureFlag</code> or <code class="highlighter-rouge">TestSetting</code> it instantly shows up in our UI.</p>
+<p>Now we have a very powerful, easy to use UI framework to dynamically configure the behavior of our app! By just adding a single line <code class="language-plaintext highlighter-rouge">FeatureFlag</code> or <code class="language-plaintext highlighter-rouge">TestSetting</code> it instantly shows up in our UI.</p>
 
 <blockquote>
-  <p>Debug builds have a UI to toggle all <code class="highlighter-rouge">FeatureFlags</code> and <code class="highlighter-rouge">TestSettings</code> on or off that gets fully automatically generated.</p>
+  <p>Debug builds have a UI to toggle all <code class="language-plaintext highlighter-rouge">FeatureFlags</code> and <code class="language-plaintext highlighter-rouge">TestSettings</code> on or off that gets fully automatically generated.</p>
 </blockquote>
 
 <h2 id="remote-feature-flags">Remote feature flags</h2>
-<p>Whilst talking about the <code class="highlighter-rouge">FirebaseFeatureFlagProvider</code> before, there is one important aspect that we didn’t cover: how to refresh the local <code class="highlighter-rouge">FeatureFlag</code> cache with new remote values. Some feature flag tools do that for you automatically, but for others (like Firebase Remote Config), you need to trigger that process manually.</p>
+<p>Whilst talking about the <code class="language-plaintext highlighter-rouge">FirebaseFeatureFlagProvider</code> before, there is one important aspect that we didn’t cover: how to refresh the local <code class="language-plaintext highlighter-rouge">FeatureFlag</code> cache with new remote values. Some feature flag tools do that for you automatically, but for others (like Firebase Remote Config), you need to trigger that process manually.</p>
 
-<p>A way to make that fit into our architecture is to define an additional interface <code class="highlighter-rouge">RemoteFeatureFlagProvider</code> that every <code class="highlighter-rouge">FeatureFlagProvider</code> for a remote tool should implement.</p>
+<p>A way to make that fit into our architecture is to define an additional interface <code class="language-plaintext highlighter-rouge">RemoteFeatureFlagProvider</code> that every <code class="language-plaintext highlighter-rouge">FeatureFlagProvider</code> for a remote tool should implement.</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">interface</span> <span class="nc">RemoteFeatureFlagProvider</span> <span class="p">{</span>
     <span class="k">fun</span> <span class="nf">refreshFeatureFlags</span><span class="p">()</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>Now we just need to expand the <code class="highlighter-rouge">FirebaseFeatureFlagProvider</code> with this interface and implement <code class="highlighter-rouge">refreshFeatureFlags</code>:</p>
+<p>Now we just need to expand the <code class="language-plaintext highlighter-rouge">FirebaseFeatureFlagProvider</code> with this interface and implement <code class="language-plaintext highlighter-rouge">refreshFeatureFlags</code>:</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">FirebaseFeatureFlagProvider</span><span class="p">(</span><span class="k">private</span> <span class="kd">val</span> <span class="py">isDevModeEnabled</span><span class="p">:</span> <span class="nc">Boolean</span><span class="p">)</span> <span class="p">:</span>
     <span class="nc">FeatureFlagProvider</span><span class="p">,</span> <span class="nc">RemoteFeatureFlagProvider</span> <span class="p">{</span>
@@ -735,23 +734,23 @@ $(document).ready(function(){
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>Then we expose a new function on the <code class="highlighter-rouge">RuntimeBehavior</code> to refresh all remote feature flag providers at the same time whenever you want in your app lifecycle.</p>
+<p>Then we expose a new function on the <code class="language-plaintext highlighter-rouge">RuntimeBehavior</code> to refresh all remote feature flag providers at the same time whenever you want in your app lifecycle.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>object RuntimeBehavior {
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>object RuntimeBehavior {
     fun refreshFeatureFlags() {
         providers.filter { it is RemoteFeatureFlagProvider }.forEach { (it as RemoteFeatureFlagProvider).refreshFeatureFlags() }
     }
 }
 </code></pre></div></div>
 
-<p>Since Firebase Remote Config internally throttles refresh requests, it’s safe to call the <code class="highlighter-rouge">refreshFeatureFlags</code> method on every app resume.</p>
+<p>Since Firebase Remote Config internally throttles refresh requests, it’s safe to call the <code class="language-plaintext highlighter-rouge">refreshFeatureFlags</code> method on every app resume.</p>
 
 <blockquote>
-  <p>The <code class="highlighter-rouge">RemoteFeatureFlagProvider</code> offers the generic ability to refresh values for all remote feature flagging tools.</p>
+  <p>The <code class="language-plaintext highlighter-rouge">RemoteFeatureFlagProvider</code> offers the generic ability to refresh values for all remote feature flagging tools.</p>
 </blockquote>
 
 <h2 id="testing-feature-flags">Testing feature flags</h2>
-<p>During automated unit or espresso tests, you sometimes need to enable/disable particular features. Even that is simple with this architecture, just make a <code class="highlighter-rouge">TestFeatureFlagProvider</code>:</p>
+<p>During automated unit or espresso tests, you sometimes need to enable/disable particular features. Even that is simple with this architecture, just make a <code class="language-plaintext highlighter-rouge">TestFeatureFlagProvider</code>:</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">object</span> <span class="nc">TestFeatureFlagProvider</span> <span class="p">:</span> <span class="nc">FeatureFlagProvider</span> <span class="p">{</span>
 
@@ -769,7 +768,7 @@ $(document).ready(function(){
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>With its <code class="highlighter-rouge">TEST_PRIORITY</code> it takes precedence over all other <code class="highlighter-rouge">FeatureFlagProviders</code> and exposes an API to dynamically enable/disable features and to clear its state after each test.</p>
+<p>With its <code class="language-plaintext highlighter-rouge">TEST_PRIORITY</code> it takes precedence over all other <code class="language-plaintext highlighter-rouge">FeatureFlagProviders</code> and exposes an API to dynamically enable/disable features and to clear its state after each test.</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
 <span class="k">fun</span> <span class="nf">withFeatureFlags</span><span class="p">()</span> <span class="p">{</span>
@@ -784,7 +783,7 @@ $(document).ready(function(){
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>And this extra provider gets added during the debug initialization in the <code class="highlighter-rouge">RuntimeBehavior</code>:</p>
+<p>And this extra provider gets added during the debug initialization in the <code class="language-plaintext highlighter-rouge">RuntimeBehavior</code>:</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">object</span> <span class="nc">RuntimeBehavior</span> <span class="p">{</span>
 
@@ -808,7 +807,7 @@ $(document).ready(function(){
 </code></pre></div></div>
 
 <blockquote>
-  <p>The <code class="highlighter-rouge">TestFeatureFlagProvider</code> allows to turn <code class="highlighter-rouge">FeatureFlags</code> or <code class="highlighter-rouge">TestSettings</code> on during unit/instrumentation tests.</p>
+  <p>The <code class="language-plaintext highlighter-rouge">TestFeatureFlagProvider</code> allows to turn <code class="language-plaintext highlighter-rouge">FeatureFlags</code> or <code class="language-plaintext highlighter-rouge">TestSettings</code> on during unit/instrumentation tests.</p>
 </blockquote>
 
 <h2 id="putting-it-all-together">Putting it all together</h2>
@@ -819,24 +818,24 @@ $(document).ready(function(){
 <p>While that might seem a bit overwhelming, it consists of a lot of very small classes that are very easy to understand:</p>
 
 <ul>
-  <li><code class="highlighter-rouge">RuntimeBehavior</code>: to easily consume feature flags</li>
-  <li><code class="highlighter-rouge">FeatureFlagProvider</code>: to provide values during debug, release or testing</li>
-  <li><code class="highlighter-rouge">Feature</code>: one-line definition of <code class="highlighter-rouge">FeatureFlags</code> or <code class="highlighter-rouge">TestSettings</code></li>
+  <li><code class="language-plaintext highlighter-rouge">RuntimeBehavior</code>: to easily consume feature flags</li>
+  <li><code class="language-plaintext highlighter-rouge">FeatureFlagProvider</code>: to provide values during debug, release or testing</li>
+  <li><code class="language-plaintext highlighter-rouge">Feature</code>: one-line definition of <code class="language-plaintext highlighter-rouge">FeatureFlags</code> or <code class="language-plaintext highlighter-rouge">TestSettings</code></li>
 </ul>
 
-<p>And based on these classes, a local UI is automagically generated to toggle the <code class="highlighter-rouge">Features</code> on/off in debug builds!</p>
+<p>And based on these classes, a local UI is automagically generated to toggle the <code class="language-plaintext highlighter-rouge">Features</code> on/off in debug builds!</p>
 
 <p>I’ve created a full Github sample project where you can see all code in action <a href="https://github.com/JeroenMols/FeatureFlagExample">here</a></p>
 
 <h2 id="bonus">Bonus</h2>
-<p>When combining this Feature Flag architecture with my previous <a href="/blog/2019/03/18/modularizationarchitecture/">modularization architecture</a>, all UI classes can be moved to their own feature module <code class="highlighter-rouge">test-settings</code> that is only included into the <code class="highlighter-rouge">app</code> module for debug builds:</p>
+<p>When combining this Feature Flag architecture with my previous <a href="/blog/2019/03/18/modularizationarchitecture/">modularization architecture</a>, all UI classes can be moved to their own feature module <code class="language-plaintext highlighter-rouge">test-settings</code> that is only included into the <code class="language-plaintext highlighter-rouge">app</code> module for debug builds:</p>
 
 <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dependencies</span> <span class="o">{</span>
     <span class="n">debugImplementation</span> <span class="nf">project</span><span class="o">(</span><span class="s1">':features:test-settings'</span><span class="o">)</span>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>This does require all feature flag business logic to move to a library module <code class="highlighter-rouge">feature-flags</code>, but the end result is a very clean!</p>
+<p>This does require all feature flag business logic to move to a library module <code class="language-plaintext highlighter-rouge">feature-flags</code>, but the end result is a very clean!</p>
 
 <h2 id="wrap-up">Wrap-up</h2>
 <p>With just a few simple classes we’ve been able to build a powerful feature flagging architecture. In that it’s very easy to add new features, there is support for both local and remote feature flags, feature flags are testable and a local UI for enabling/disabling feature flags is automatically generated.</p>
@@ -1194,10 +1193,10 @@ $(document).ready(function(){
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://jeroenmols.com/blog/2019/09/12/featureflagsarchitecture/";  // Replace PAGE_URL with your page's canonical URL variable
-      this.page.identifier = "/blog/2019/09/12/featureflagsarchitecture"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      this.page.url = "https://jeroenmols.com/blog/2019/09/12/featureflagsarchitecture/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/blog/2019/09/12/featureflagsarchitecture"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
     };
-    (function() { // DON'T EDIT BELOW THIS LINE
+    (function() { /* DON'T EDIT BELOW THIS LINE */
       var d = document, s = d.createElement('script');
       s.src = 'https://jeroenmols.disqus.com/embed.js';
       s.setAttribute('data-timestamp', +new Date());

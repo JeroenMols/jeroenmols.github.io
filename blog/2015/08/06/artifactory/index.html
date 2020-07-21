@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.17.0 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.19.3 by Michael Rose
   Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
@@ -170,11 +170,11 @@ $(document).ready(function(){
           
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/blog/" >Blog</a>
+              <a href="/blog/">Blog</a>
             </li><li class="masthead__menu-item">
-              <a href="/speaking/" >Speaking</a>
+              <a href="/speaking/">Speaking</a>
             </li><li class="masthead__menu-item">
-              <a href="/hireme/" >Hire me</a>
+              <a href="/hireme/">Hire me</a>
             </li></ul>
         
         <button class="search__toggle" type="button">
@@ -210,8 +210,6 @@ $(document).ready(function(){
 
   
     <div class="author__avatar">
-      
-
       
         <img src="/img/profile.jpg" alt="Jeroen Mols" itemprop="image">
       
@@ -250,7 +248,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://twitter.com/@molsjeroen" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span>
           </a>
         </li>
       
@@ -260,7 +258,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://www.linkedin.com/in/jeroenmols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn
+            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span>
           </a>
         </li>
       
@@ -276,7 +274,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://github.com/JeroenMols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span>
           </a>
         </li>
       
@@ -286,7 +284,7 @@ $(document).ready(function(){
       
         <li>
           <a href="https://stackoverflow.com/users/2771851/jmols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i> Stack Overflow
+            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i><span class="label">Stack Overflow</span>
           </a>
         </li>
       
@@ -305,7 +303,7 @@ $(document).ready(function(){
         
           <li>
             <a href="https://www.youtube.com/channel/UC34Vt1lo8T15_rgc3e3Jsew" itemprop="sameAs" rel="nofollow noopener noreferrer">
-              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i> YouTube
+              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span>
             </a>
           </li>
         
@@ -334,6 +332,7 @@ $(document).ready(function(){
 
   
   </div>
+
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
@@ -403,7 +402,7 @@ $(document).ready(function(){
 <p>For more information have a look at the <a href="https://maven.apache.org/repository-management.html">alternatives</a>, checkout this <a href="http://www.jfrog.com/blog/artifactory-vs-nexus-integration-matrix/">feature comparison matrix</a> or review all of the <a href="https://www.jfrog.com/confluence/display/RTF/Artifactory+Comparison+Matrix">Artifactory features</a>.</p>
 
 <h3 id="verify-you-have-java-sdk-8">Verify you have Java SDK 8</h3>
-<p>Before you get started, make sure that you have Java SDK 8 installed, or otherwise Artifactory won’t start. You can easily verify your Java version with <code class="highlighter-rouge">java -version</code>:</p>
+<p>Before you get started, make sure that you have Java SDK 8 installed, or otherwise Artifactory won’t start. You can easily verify your Java version with <code class="language-plaintext highlighter-rouge">java -version</code>:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>java <span class="nt">-version</span>
 java version <span class="s2">"1.8.0_51"</span>
@@ -411,16 +410,16 @@ Java<span class="o">(</span>TM<span class="o">)</span> SE Runtime Environment <s
 Java HotSpot<span class="o">(</span>TM<span class="o">)</span> 64-Bit Server VM <span class="o">(</span>build 25.51-b03, mixed mode<span class="o">)</span>
 </code></pre></div></div>
 
-<p>If it doesn’t output at least version <code class="highlighter-rouge">1.8.x</code>, you should <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">download</a> and install a new Java SDK before you continue.</p>
+<p>If it doesn’t output at least version <code class="language-plaintext highlighter-rouge">1.8.x</code>, you should <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">download</a> and install a new Java SDK before you continue.</p>
 
 <p>Note that the error you get if you don’t have Java 8 looks a bit cryptic:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Aug 05, 2015 9:29:31 AM org.apache.catalina.core.StandardContext startInternal
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Aug 05, 2015 9:29:31 AM org.apache.catalina.core.StandardContext startInternal
 SEVERE: One or more listeners failed to start. Full details will be found in the appropriate container log file
 </code></pre></div></div>
 
 <h3 id="install-artifactory">Install Artifactory</h3>
-<p>Thankfully this is incredibly easy to do. Just download the latest version of <a href="http://www.jfrog.com/open-source/">Artifactory</a>, unpack the archive and run the <code class="highlighter-rouge">artifactory</code> executable for your platform.</p>
+<p>Thankfully this is incredibly easy to do. Just download the latest version of <a href="http://www.jfrog.com/open-source/">Artifactory</a>, unpack the archive and run the <code class="language-plaintext highlighter-rouge">artifactory</code> executable for your platform.</p>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/mztbo8WwqRc" frameborder="0" allowfullscreen=""></iframe>
 <p><br /></p>
@@ -430,7 +429,7 @@ SEVERE: One or more listeners failed to start. Full details will be found in the
 <h3 id="configuring-gradle-to-upload-android-artifacts">Configuring Gradle to upload Android artifacts</h3>
 <p>Let’s upload a very simple archive by configuring a new Gradle task for our Android library project.</p>
 
-<p>In your top level <code class="highlighter-rouge">build.gradle</code> file, add a reference to the repository of the Artifactory Gradle plugin:</p>
+<p>In your top level <code class="language-plaintext highlighter-rouge">build.gradle</code> file, add a reference to the repository of the Artifactory Gradle plugin:</p>
 
 <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">buildscript</span> <span class="o">{</span>
     <span class="n">dependencies</span> <span class="o">{</span>
@@ -439,7 +438,7 @@ SEVERE: One or more listeners failed to start. Full details will be found in the
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>Next in your library we will need to apply two new plugins: one to prepare the Maven artifacts <code class="highlighter-rouge">maven-publish</code> and one to upload the archives to Artifactory ` com.jfrog.artifactory`:</p>
+<p>Next in your library we will need to apply two new plugins: one to prepare the Maven artifacts <code class="language-plaintext highlighter-rouge">maven-publish</code> and one to upload the archives to Artifactory ` com.jfrog.artifactory`:</p>
 
 <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">'com.jfrog.artifactory'</span>
 <span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">'maven-publish'</span>
@@ -453,18 +452,18 @@ SEVERE: One or more listeners failed to start. Full details will be found in the
   <li>version: identifies different releases of the same artifact</li>
 </ul>
 
-<p>For the last two, we will explicitly define a variable in the <code class="highlighter-rouge">build.gradle</code> file.</p>
+<p>For the last two, we will explicitly define a variable in the <code class="language-plaintext highlighter-rouge">build.gradle</code> file.</p>
 
 <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">def</span> <span class="n">packageName</span> <span class="o">=</span> <span class="s1">'com.jeroenmols.awesomelibrary'</span>
 <span class="kt">def</span> <span class="n">libraryVersion</span> <span class="o">=</span> <span class="s1">'1.0.0'</span>
 </code></pre></div></div>
 
-<p>The <code class="highlighter-rouge">artifactId</code> however needs to match the output filename of the <code class="highlighter-rouge">assembleRelease</code> task. Therefore we either have to <a href="https://stackoverflow.com/questions/26936812/renaming-modules-in-android-studio">rename the library module</a> or explicitly <a href="https://stackoverflow.com/questions/24728591/how-to-set-name-of-aar-output-from-gradle">specify the output filename</a>. I personally prefer the first approach, which allows to get <code class="highlighter-rouge">artifactId</code> in the following way:</p>
+<p>The <code class="language-plaintext highlighter-rouge">artifactId</code> however needs to match the output filename of the <code class="language-plaintext highlighter-rouge">assembleRelease</code> task. Therefore we either have to <a href="https://stackoverflow.com/questions/26936812/renaming-modules-in-android-studio">rename the library module</a> or explicitly <a href="https://stackoverflow.com/questions/24728591/how-to-set-name-of-aar-output-from-gradle">specify the output filename</a>. I personally prefer the first approach, which allows to get <code class="language-plaintext highlighter-rouge">artifactId</code> in the following way:</p>
 
 <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">project</span><span class="o">.</span><span class="na">getName</span><span class="o">()</span> <span class="c1">// the ArtifactId</span>
 </code></pre></div></div>
 
-<p>Now we need to configure the <code class="highlighter-rouge">maven-publish</code> plugin so that it knows which artifacts to publish to Artifactory. For our purpose we will refer to the <code class="highlighter-rouge">***-release.aar</code> file, generated by the <code class="highlighter-rouge">assembleRelease</code> task. Note that we can predict the name by taking the name of the Library project:</p>
+<p>Now we need to configure the <code class="language-plaintext highlighter-rouge">maven-publish</code> plugin so that it knows which artifacts to publish to Artifactory. For our purpose we will refer to the <code class="language-plaintext highlighter-rouge">***-release.aar</code> file, generated by the <code class="language-plaintext highlighter-rouge">assembleRelease</code> task. Note that we can predict the name by taking the name of the Library project:</p>
 
 <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">publishing</span> <span class="o">{</span>
     <span class="n">publications</span> <span class="o">{</span>
@@ -480,7 +479,7 @@ SEVERE: One or more listeners failed to start. Full details will be found in the
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>Finally we need to configure the <code class="highlighter-rouge">com.jfrog.artifactory</code> plugin so it knows which repository to publish the artifacts to. For simplicity we will upload the artifact to the locally running Artifactory instance (<a href="http://localhost:8081/artifactory">http://localhost:8081/artifactory</a>) and place it in the default <code class="highlighter-rouge">libs-release-local</code> repository. Note that the username <code class="highlighter-rouge">admin</code> and password <code class="highlighter-rouge">password</code> are hardcoded in this example, but we will provide a better solution for that later.</p>
+<p>Finally we need to configure the <code class="language-plaintext highlighter-rouge">com.jfrog.artifactory</code> plugin so it knows which repository to publish the artifacts to. For simplicity we will upload the artifact to the locally running Artifactory instance (<a href="http://localhost:8081/artifactory">http://localhost:8081/artifactory</a>) and place it in the default <code class="language-plaintext highlighter-rouge">libs-release-local</code> repository. Note that the username <code class="language-plaintext highlighter-rouge">admin</code> and password <code class="language-plaintext highlighter-rouge">password</code> are hardcoded in this example, but we will provide a better solution for that later.</p>
 
 <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">artifactory</span> <span class="o">{</span>
     <span class="n">contextUrl</span> <span class="o">=</span> <span class="s1">'http://localhost:8081/artifactory'</span>
@@ -512,14 +511,14 @@ SEVERE: One or more listeners failed to start. Full details will be found in the
 <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">gradle</span> <span class="n">assembleRelease</span> <span class="n">artifactoryPublish</span>
 </code></pre></div></div>
 
-<p>Notice how we first invoke <code class="highlighter-rouge">assembleRelease</code> before we invoke the actual <code class="highlighter-rouge">artifactoryPublish</code> task, because of the way we defined the artifacts to publish in the previous section.</p>
+<p>Notice how we first invoke <code class="language-plaintext highlighter-rouge">assembleRelease</code> before we invoke the actual <code class="language-plaintext highlighter-rouge">artifactoryPublish</code> task, because of the way we defined the artifacts to publish in the previous section.</p>
 
 <p>You can very easily verify that the upload was successful by navigating to <a href="http://localhost:8081">localhost:8081</a> and signing in with the default admin credentials.</p>
 
 <p><a href="https://jeroenmols.com/img/blog/artifactory/artifactory_screenshot.png"><img src="https://jeroenmols.com/img/blog/artifactory/artifactory_screenshot.png" alt="Verify a successful upload in the Artifactory control panel." class="align-center" /></a></p>
 
 <h3 id="using-the-artifacts">Using the artifacts</h3>
-<p>To make use of the published artifacts in another project we have to add our Artifactory repository to the list of Maven repositories in your top level <code class="highlighter-rouge">build.gradle</code> file:</p>
+<p>To make use of the published artifacts in another project we have to add our Artifactory repository to the list of Maven repositories in your top level <code class="language-plaintext highlighter-rouge">build.gradle</code> file:</p>
 
 <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">allprojects</span> <span class="o">{</span>
     <span class="n">repositories</span> <span class="o">{</span>
@@ -528,7 +527,7 @@ SEVERE: One or more listeners failed to start. Full details will be found in the
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>After we can simply add the artifact as a dependency in the <code class="highlighter-rouge">build.gradle</code> file of our main project:</p>
+<p>After we can simply add the artifact as a dependency in the <code class="language-plaintext highlighter-rouge">build.gradle</code> file of our main project:</p>
 
 <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dependencies</span> <span class="o">{</span>
     <span class="n">compile</span> <span class="s1">'com.jeroenmols.awesomelibrary:1.0.0'</span>
@@ -544,7 +543,7 @@ SEVERE: One or more listeners failed to start. Full details will be found in the
   <li>Library projects with dependencies</li>
   <li>Configuring your own repositories</li>
   <li>User access management and rights</li>
-  <li>Removing hardcoded username and password from <code class="highlighter-rouge">build.gradle</code></li>
+  <li>Removing hardcoded username and password from <code class="language-plaintext highlighter-rouge">build.gradle</code></li>
 </ul>
 
 <p>I have also uploaded a <a href="https://github.com/JeroenMols/ArtifactoryExample">complete example</a> on GitHub for your reference.</p>
@@ -899,10 +898,10 @@ SEVERE: One or more listeners failed to start. Full details will be found in the
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://jeroenmols.com/blog/2015/08/06/artifactory/";  // Replace PAGE_URL with your page's canonical URL variable
-      this.page.identifier = "/blog/2015/08/06/artifactory"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      this.page.url = "https://jeroenmols.com/blog/2015/08/06/artifactory/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/blog/2015/08/06/artifactory"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
     };
-    (function() { // DON'T EDIT BELOW THIS LINE
+    (function() { /* DON'T EDIT BELOW THIS LINE */
       var d = document, s = d.createElement('script');
       s.src = 'https://jeroenmols.disqus.com/embed.js';
       s.setAttribute('data-timestamp', +new Date());
