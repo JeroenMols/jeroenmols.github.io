@@ -1,0 +1,920 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.2 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Android library development - Getting started - Jeroen Mols</title>
+<meta name="description" content="Having switched to Android SDK development over the past year, I’ve run into quite a few interesting and unexpected challenges. So how does library development differ from app development? ">
+
+
+  <meta name="author" content="Jeroen Mols">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="Jeroen Mols">
+<meta property="og:title" content="Android library development - Getting started">
+<meta property="og:url" content="https://jeroenmols.com/blog/2020/10/28/library-gettingstarted/">
+
+
+  <meta property="og:description" content="Having switched to Android SDK development over the past year, I’ve run into quite a few interesting and unexpected challenges. So how does library development differ from app development? ">
+
+
+
+  <meta property="og:image" content="https://jeroenmols.com/img/blog/librarygettingstarted/librarygettingstarted.jpg">
+
+
+
+  <meta name="twitter:site" content="@molsjeroen">
+  <meta name="twitter:title" content="Android library development - Getting started">
+  <meta name="twitter:description" content="Having switched to Android SDK development over the past year, I’ve run into quite a few interesting and unexpected challenges. So how does library development differ from app development? ">
+  <meta name="twitter:url" content="https://jeroenmols.com/blog/2020/10/28/library-gettingstarted/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+      <meta name="twitter:image" content="https://jeroenmols.com/img/blog/librarygettingstarted/librarygettingstarted.jpg">
+    
+  
+
+  
+    <meta name="twitter:creator" content="@molsjeroen">
+  
+
+
+
+  <meta property="article:published_time" content="2020-10-28T00:00:00+01:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://jeroenmols.com/blog/2020/10/28/library-gettingstarted/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Jeroen Mols",
+      "url": "https://jeroenmols.com/",
+      "sameAs": ["https://twitter.com/molsjeroen","https://www.linkedin.com/in/jeroenmols/","https://plus.google.com/+JeroenMols","https://github.com/JeroenMols","https://speakerdeck.com/jeroenmols","https://stackoverflow.com/users/2771851/jmols"]
+    
+  }
+</script>
+
+
+  <meta name="google-site-verification" content="8E8HUpExgyNFdLuFMWmkSUl08gISnOF3UWexA55aNrk" />
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$('.ga-link').on('click', function(){
+		if (typeof(ga)!=="undefined"){
+			ga('send',{
+				hitType: 'event',
+				eventCategory: 'Outbound link',
+				eventAction: 'click',
+				eventLabel: event.target.href
+			});
+	  	}
+	});
+})	;
+</script>
+
+<meta name="theme-color" content="#3d405b">
+
+<link href="atom.xml" type="application/atom+xml" rel="alternate" title="Jeroen Mols Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="https://jeroenmols.com/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Jeroen Mols
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/blog/">Blog</a>
+            </li><li class="masthead__menu-item">
+              <a href="/speaking/">Speaking</a>
+            </li><li class="masthead__menu-item">
+              <a href="/hireme/">Hire me</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/img/profile.jpg" alt="Jeroen Mols" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Jeroen Mols</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Android freelancer and Google Developer Expert</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Geel, Belgium</span>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://twitter.com/@molsjeroen" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="https://www.linkedin.com/in/jeroenmols" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/JeroenMols" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="https://stackoverflow.com/users/2771851/jmols" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i><span class="label">Stack Overflow</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        
+          <li>
+            <a href="https://www.youtube.com/channel/UC34Vt1lo8T15_rgc3e3Jsew" itemprop="sameAs" rel="nofollow noopener noreferrer">
+              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span>
+            </a>
+          </li>
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+  <li>
+    <a href="https://speakerdeck.com/jeroenmols" itemprop="sameAs">
+      <i class="fab fa-fw fa-speaker-deck" aria-hidden="true"></i> Speaker Deck
+    </a>
+  </li>
+
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Android library development - Getting started">
+    <meta itemprop="description" content="Having switched to Android SDK development over the past year, I’ve run into quite a few interesting and unexpected challenges. So how does library development differ from app development?">
+    <meta itemprop="datePublished" content="October 28, 2020">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Android library development - Getting started
+</h1>
+          <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  28 Oct 2020</p>
+
+          
+            <img src="https://jeroenmols.com/img/blog/librarygettingstarted/librarygettingstarted.jpg" alt="Android library development - Getting started" title="Photo by mentatdgt from Pexels, https://www.pexels.com/photo/library-photo-1319854/, cropped and resized">
+          
+
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>Having switched to Android SDK development over the past year, I’ve run into quite a few interesting and unexpected challenges. So how does library development differ from app development?</p>
+
+<p>This mini-series will cover the differences between SDK and App development, and explore some interesting challenges around SDK modularization and transitive dependencies.</p>
+
+<blockquote>
+  <p>This blog post is part of a series on Android libraries:</p>
+  <ul>
+    <li>Part 1: Getting started</li>
+    <li>Part 2: Modularization</li>
+    <li>Part 3: Transitive dependencies</li>
+  </ul>
+</blockquote>
+
+<h2 id="introduction">Introduction</h2>
+<p>Before kicking off the meat of this series, let’s have a quick look at how SDK development differs from app development. If you’re already familiar with these concepts, feel free to skip to the next article!</p>
+
+<p>Note that the term SDK or Android library will be used interchangeably.</p>
+
+<h2 id="anatomy-of-a-library">Anatomy of a library</h2>
+<p>A getting started Android SDK project typically contain of at least two modules:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">app</code> module to test out the SDK</li>
+  <li><code class="language-plaintext highlighter-rouge">library</code> module that contains all SDK code and resources</li>
+</ul>
+
+<p><a href="https://jeroenmols.com/img/blog/librarygettingstarted/app_with_projectlibrary.png"><img src="https://jeroenmols.com/img/blog/librarygettingstarted/app_with_projectlibrary.png" alt="Project with app and library module" class="align-center" /></a></p>
+
+<p>In this, the <code class="language-plaintext highlighter-rouge">app</code> module has a direct dependency on the <code class="language-plaintext highlighter-rouge">library</code> module:</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dependencies</span> <span class="o">{</span>
+  <span class="n">implementation</span> <span class="nf">project</span><span class="o">(</span><span class="s1">':library'</span><span class="o">)</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>And the folder structure looks like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.
+├── app
+└── library
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">library</code> module has the <code class="language-plaintext highlighter-rouge">com.android.library</code> plugin in its <code class="language-plaintext highlighter-rouge">build.gradle</code> file:</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">'com.android.library'</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>Notice how everything so far is exactly the same as developing a submodule in a multi-module app!</p>
+</blockquote>
+
+<h2 id="building-a-library">Building a library</h2>
+<p>Similar to building the application, the library can be built using a Gradle task:</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">./</span><span class="n">gradlew</span> <span class="o">:</span><span class="nl">library:</span><span class="n">assembleRelease</span>
+</code></pre></div></div>
+
+<p>However, the output won’t be an <code class="language-plaintext highlighter-rouge">.apk</code> file (or <code class="language-plaintext highlighter-rouge">.aab</code> <a href="https://developer.android.com/platform/technology/app-bundle">when using App Bundles</a>).  Instead it will be an Android Archive (or <code class="language-plaintext highlighter-rouge">.aar</code>) file, placed in the build folder of the <code class="language-plaintext highlighter-rouge">library</code> project:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>library/build/outputs/aar/library-release.aar
+</code></pre></div></div>
+
+<p>This <code class="language-plaintext highlighter-rouge">.aar</code> file is very similar to a Java Archive (<code class="language-plaintext highlighter-rouge">.jar</code>) file, but it can also contain Android XML resources.</p>
+
+<blockquote>
+  <p>Note that <code class="language-plaintext highlighter-rouge">.aar</code> files aren’t signed, so in contrast to creating an <code class="language-plaintext highlighter-rouge">.apk</code> file, no signing config is required to create the release variant of the Android library.</p>
+</blockquote>
+
+<h2 id="deploying-a-library">Deploying a library</h2>
+<p>However, customers shouldn’t directly copy-paste the SDK source code into their project. Instead, they should consume the library as a <a href="https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html">Maven dependency</a>:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dependencies {
+  implementation "com.jeroenmols:library:1.0.0"
+}
+</code></pre></div></div>
+
+<p>Resulting in the following project setup:</p>
+
+<p><a href="https://jeroenmols.com/img/blog/librarygettingstarted/app_with_externallibrary.png"><img src="https://jeroenmols.com/img/blog/librarygettingstarted/app_with_externallibrary.png" alt="App that consumes library through Maven" class="align-center" /></a></p>
+
+<p>To make this possible, the library needs to be deployed to a public Maven repository such <a href="https://search.maven.org/">Maven Central</a> or <a href="https://bintray.com/">Bintray</a> (jcenter). Which can be done by configuring the Gradle publishing plugin.</p>
+
+<blockquote>
+  <p>This blog post won’t cover how to publish your library, instead have a look at this <a href="https://medium.com/devnibbles/publishing-your-first-android-library-to-bintray-da08c8a76e1a">great article by Andrew Kelly</a> if you’re looking to learn.</p>
+</blockquote>
+
+<h2 id="external-dependencies">External dependencies</h2>
+<p>But as the <code class="language-plaintext highlighter-rouge">library</code> evolves, it might also start depending on Maven dependencies of its own! Imagine that the <code class="language-plaintext highlighter-rouge">library</code> would also depend on <code class="language-plaintext highlighter-rouge">OkHttp</code>:</p>
+
+<p><a href="https://jeroenmols.com/img/blog/librarygettingstarted/library_with_externaldependency.png"><img src="https://jeroenmols.com/img/blog/librarygettingstarted/library_with_externaldependency.png" alt="Project with app and library module that has an external dependency" class="align-center" /></a></p>
+
+<p>This means that the customer application needs to depend on both <code class="language-plaintext highlighter-rouge">library</code> and <code class="language-plaintext highlighter-rouge">OkHttp</code>:</p>
+
+<p><a href="https://jeroenmols.com/img/blog/librarygettingstarted/app_with_library_with_externaldependency.png"><img src="https://jeroenmols.com/img/blog/librarygettingstarted/app_with_library_with_externaldependency.png" alt="Project with app and library module that has an external dependency" class="align-center" /></a></p>
+
+<p>Why?</p>
+
+<p>Because <code class="language-plaintext highlighter-rouge">.aar</code> files only contain code and resources of the <code class="language-plaintext highlighter-rouge">library</code> module that was used to build it! So the <code class="language-plaintext highlighter-rouge">.aar</code> file of the library won’t contain any <code class="language-plaintext highlighter-rouge">OkHttp</code> code, nor any indication that it requires <code class="language-plaintext highlighter-rouge">OkHttp</code> to run.</p>
+
+<p>Consequently, customer applications need to include both the <code class="language-plaintext highlighter-rouge">library</code> and <code class="language-plaintext highlighter-rouge">OkHttp</code> as a dependency.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dependencies {
+  implementation "com.jeroenmols:library:1.0.0"
+  implementation "com.squareup.okhttp3:okhttp:4.9.0"
+}
+</code></pre></div></div>
+
+<blockquote>
+  <p>Notice that this did work when <code class="language-plaintext highlighter-rouge">library</code> is a submodule of a project! Then the <code class="language-plaintext highlighter-rouge">build.gradle</code> file of the <code class="language-plaintext highlighter-rouge">library</code> includes the <code class="language-plaintext highlighter-rouge">OkHttp</code> dependency and Gradle will include it into the <code class="language-plaintext highlighter-rouge">.apk</code> while building.</p>
+</blockquote>
+
+<h2 id="transitive-dependencies">Transitive dependencies</h2>
+<p>Wouldn’t it be nice if the <code class="language-plaintext highlighter-rouge">OkHttp</code> dependency could be automatically included in the customer application?</p>
+
+<p>That way customers simply have to add:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dependencies {
+  implementation "com.jeroenmols:library:1.0.0"
+}
+</code></pre></div></div>
+
+<p>And get the <code class="language-plaintext highlighter-rouge">OkHttp</code> dependency indirectly through the dependency on <code class="language-plaintext highlighter-rouge">library</code>. This is what we call a transitive dependency: <code class="language-plaintext highlighter-rouge">OkHttp</code> is a transitive dependency of the <code class="language-plaintext highlighter-rouge">library</code> and hence an indirect dependency of the customer application.</p>
+
+<p>But how can Gradle know to include <code class="language-plaintext highlighter-rouge">OkHttp</code> in the customer app after adding the <code class="language-plaintext highlighter-rouge">library</code> as a dependency?</p>
+
+<p>That’s taken care of by the <code class="language-plaintext highlighter-rouge">pom.xml</code> file that gets created when you deploy your app to a Maven repository (such a <a href="https://search.maven.org/">Maven Central</a>).</p>
+
+<p>Here’s an example <code class="language-plaintext highlighter-rouge">pom.xml</code> for the <code class="language-plaintext highlighter-rouge">library</code>:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xsi:schemaLocation=</span><span class="s">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.jeroenmols<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>library<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.0.0<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;name&gt;</span>library<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;dependencies&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>com.squareup.okhttp3<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>okhttp3<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>4.9.0<span class="nt">&lt;/version&gt;</span>
+      <span class="nt">&lt;scope&gt;</span>compile<span class="nt">&lt;/scope&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+  <span class="nt">&lt;/dependencies&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+
+<p>So when building an Android library, there are two key outputs:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">.aar</code> file: a binary containing all library code and resources</li>
+  <li><code class="language-plaintext highlighter-rouge">pom.xml</code> file: containing all transitive dependencies</li>
+</ul>
+
+<blockquote>
+  <p>In reality, there can be many more files (Javadoc, sources,…). Have a look at the Files tab of the <a href="https://bintray.com/bintray/jcenter/com.squareup.okhttp3%3Aokhttp/4.9.0#files/com%2Fsquareup%2Fokhttp3%2Fokhttp%2F4.9.0">Maven entry for OkHttp</a>.</p>
+</blockquote>
+
+<p>For more information on how to generate a <code class="language-plaintext highlighter-rouge">pom.xml</code>, have a look at <a href="https://medium.com/swlh/how-to-publish-and-distribute-your-android-library-ce845c68c7f7">this post by Marco Gomiero</a>.</p>
+
+<h2 id="testing">Testing</h2>
+<p>Finally, for Android libraries with external dependencies, there will be a difference between a local build of the SDK or a Maven build.</p>
+
+<p>If the SDK source code is within a project, then transitive dependencies will automatically be included when the application is built.</p>
+
+<p>However, when the SDK is included through Maven, those transitive dependencies will only be included when the <code class="language-plaintext highlighter-rouge">pom.xml</code> file is properly constructed and deployed to Maven.</p>
+
+<p>Therefore it is always important to test the actual SDK artifact as a Maven dependency before shipping a new release!</p>
+
+<h2 id="wrap-up">Wrap-up</h2>
+<p>Android libraries are built into a special <code class="language-plaintext highlighter-rouge">.aar</code> format that includes all code and resources. For all its external dependencies, a <code class="language-plaintext highlighter-rouge">pom.xml</code> needs to be deployed alongside to the Maven repository.</p>
+
+<p>Don’t forget to follow me on <span><a href="https://twitter.com/molsjeroen?source=androidlibrarydevelopment-gettingstarted2020" class="ga-link" target="_blank">Twitter</a></span>
+ so you don’t miss the second part on SDK modularization!</p>
+
+<p>Feel free to leave a comment below!</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/android" class="page__taxonomy-item" rel="tag">android</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/gradle" class="page__taxonomy-item" rel="tag">gradle</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/kotlin" class="page__taxonomy-item" rel="tag">kotlin</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/library" class="page__taxonomy-item" rel="tag">library</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/maven" class="page__taxonomy-item" rel="tag">maven</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/blog" class="page__taxonomy-item" rel="tag">blog</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-10-28T00:00:00+01:00">October 28, 2020</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=Android+library+development+-+Getting+started%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2020%2F10%2F28%2Flibrary-gettingstarted%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2020%2F10%2F28%2Flibrary-gettingstarted%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2020%2F10%2F28%2Flibrary-gettingstarted%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      <section class="page__share">
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bottom-blog-responsive -->
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-9854541518226004"
+       data-ad-slot="4086741379"
+       data-ad-format="auto"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/blog/2020/02/19/dokka-code-documentation/" class="pagination--pager" title="Kdoc for Android libraries using Dokka
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a Comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/dokkacodedocumentation/kdoc.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2020/02/19/dokka-code-documentation/" rel="permalink">Kdoc for Android libraries using Dokka
+</a>
+        </h2>
+        <h3 class="archive__date">19 Feb 2020</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2020/02/19/dokka-code-documentation/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  6 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">A great way to make your library easier to use it to generate code documentation for its public interface. The default way to do this in Kotlin is to generate KDoc using the official Dokka plugin.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/yearinreview19/yearinreview19.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2020/01/09/yearinreview/" rel="permalink">Year in review 2019
+</a>
+        </h2>
+        <h3 class="archive__date">09 Jan 2020</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2020/01/09/yearinreview/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Getting up without being rushed, cycling my kids to school, cooking healthy salads for lunch, kids running into my arms when they get home… I’m quite happy with my new daily routine!
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/featureflagarchitecture/featureflagarchitecture.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2019/09/12/featureflagsarchitecture/" rel="permalink">Feature flags - A successful architecture
+</a>
+        </h2>
+        <h3 class="archive__date">12 Sep 2019</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2019/09/12/featureflagsarchitecture/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  12 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Now that we know how feature flags can help us release faster, it’s time to dive into the actual implementation details. How can we easily define feature flags? How to configure them both locally as remotely? And use them in...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/featureflagshowtouse/featureflagshowtouse.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2019/08/20/featureflagshowtouse/" rel="permalink">Feature Flags - How to use
+</a>
+        </h2>
+        <h3 class="archive__date">20 Aug 2019</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2019/08/20/featureflagshowtouse/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  5 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Empowered with what feature flags are and why they are useful, let’s see how we can actually integrate them into an app. And how can we roll them out to our users?
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+
+    <li><a href="atom.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 Jeroen Mols. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <script>
+  window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+  ga('create','UA-63356566-1','auto');
+  ga('set', 'anonymizeIp', false);
+  ga('send','pageview')
+</script>
+<script src="https://www.google-analytics.com/analytics.js" async></script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://jeroenmols.com/blog/2020/10/28/library-gettingstarted/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/blog/2020/10/28/library-gettingstarted"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jeroenmols.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

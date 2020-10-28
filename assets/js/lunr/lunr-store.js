@@ -316,4 +316,10 @@ var store = [{
         "tags": ["documentation","kdoc","dokka","gradle","kotlin"],
         "url": "https://jeroenmols.com/blog/2020/02/19/dokka-code-documentation/",
         "teaser": "https://jeroenmols.com/img/blog/dokkacodedocumentation/kdoc.jpg"
+      },{
+        "title": "Android library development - Getting started",
+        "excerpt":"Having switched to Android SDK development over the past year, I’ve run into quite a few interesting and unexpected challenges. So how does library development differ from app development? This mini-series will cover the differences between SDK and App development, and explore some interesting challenges around SDK modularization and transitive...","categories": ["blog"],
+        "tags": ["android","library","maven","gradle","kotlin"],
+        "url": "https://jeroenmols.com/blog/2020/10/28/library-gettingstarted/",
+        "teaser": "https://jeroenmols.com/img/blog/librarygettingstarted/librarygettingstarted.jpg"
       }]

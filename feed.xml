@@ -1,25 +1,200 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2020-07-21T20:58:15+02:00</updated><id>https://jeroenmols.com/feed.xml</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, Android freelancer and Google Developer Expert.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Kdoc for Android libraries using Dokka</title><link href="https://jeroenmols.com/blog/2020/02/19/dokka-code-documentation/" rel="alternate" type="text/html" title="Kdoc for Android libraries using Dokka" /><published>2020-02-19T00:00:00+01:00</published><updated>2020-02-19T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2020/02/19/dokka-code-documentation</id><content type="html" xml:base="https://jeroenmols.com/blog/2020/02/19/dokka-code-documentation/">&lt;p&gt;A great way to make your library easier to use it to generate code documentation for its public interface. The default way to do this in Kotlin is to generate KDoc using the official Dokka plugin.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2020-10-28T19:50:24+01:00</updated><id>https://jeroenmols.com/feed.xml</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, Android freelancer and Google Developer Expert.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Android library development - Getting started</title><link href="https://jeroenmols.com/blog/2020/10/28/library-gettingstarted/" rel="alternate" type="text/html" title="Android library development - Getting started" /><published>2020-10-28T00:00:00+01:00</published><updated>2020-10-28T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2020/10/28/library-gettingstarted</id><content type="html" xml:base="https://jeroenmols.com/blog/2020/10/28/library-gettingstarted/">&lt;p&gt;Having switched to Android SDK development over the past year, I’ve run into quite a few interesting and unexpected challenges. So how does library development differ from app development?&lt;/p&gt;
+
+&lt;p&gt;This mini-series will cover the differences between SDK and App development, and explore some interesting challenges around SDK modularization and transitive dependencies.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;This blog post is part of a series on Android libraries:&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Part 1: Getting started&lt;/li&gt;
+    &lt;li&gt;Part 2: Modularization&lt;/li&gt;
+    &lt;li&gt;Part 3: Transitive dependencies&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Before kicking off the meat of this series, let’s have a quick look at how SDK development differs from app development. If you’re already familiar with these concepts, feel free to skip to the next article!&lt;/p&gt;
+
+&lt;p&gt;Note that the term SDK or Android library will be used interchangeably.&lt;/p&gt;
+
+&lt;h2 id=&quot;anatomy-of-a-library&quot;&gt;Anatomy of a library&lt;/h2&gt;
+&lt;p&gt;A getting started Android SDK project typically contain of at least two modules:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app&lt;/code&gt; module to test out the SDK&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt; module that contains all SDK code and resources&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/librarygettingstarted/app_with_projectlibrary.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/librarygettingstarted/app_with_projectlibrary.png&quot; alt=&quot;Project with app and library module&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;In this, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app&lt;/code&gt; module has a direct dependency on the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt; module:&lt;/p&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;implementation&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;project&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;':library'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And the folder structure looks like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;.
+├── app
+└── library
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt; module has the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;com.android.library&lt;/code&gt; plugin in its &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; file:&lt;/p&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;apply&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;plugin:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'com.android.library'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Notice how everything so far is exactly the same as developing a submodule in a multi-module app!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;building-a-library&quot;&gt;Building a library&lt;/h2&gt;
+&lt;p&gt;Similar to building the application, the library can be built using a Gradle task:&lt;/p&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;./&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gradlew&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;library:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;assembleRelease&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;However, the output won’t be an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.apk&lt;/code&gt; file (or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.aab&lt;/code&gt; &lt;a href=&quot;https://developer.android.com/platform/technology/app-bundle&quot;&gt;when using App Bundles&lt;/a&gt;).  Instead it will be an Android Archive (or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.aar&lt;/code&gt;) file, placed in the build folder of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt; project:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;library/build/outputs/aar/library-release.aar
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.aar&lt;/code&gt; file is very similar to a Java Archive (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.jar&lt;/code&gt;) file, but it can also contain Android XML resources.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.aar&lt;/code&gt; files aren’t signed, so in contrast to creating an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.apk&lt;/code&gt; file, no signing config is required to create the release variant of the Android library.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;deploying-a-library&quot;&gt;Deploying a library&lt;/h2&gt;
+&lt;p&gt;However, customers shouldn’t directly copy-paste the SDK source code into their project. Instead, they should consume the library as a &lt;a href=&quot;https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html&quot;&gt;Maven dependency&lt;/a&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;dependencies {
+  implementation &quot;com.jeroenmols:library:1.0.0&quot;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Resulting in the following project setup:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/librarygettingstarted/app_with_externallibrary.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/librarygettingstarted/app_with_externallibrary.png&quot; alt=&quot;App that consumes library through Maven&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;To make this possible, the library needs to be deployed to a public Maven repository such &lt;a href=&quot;https://search.maven.org/&quot;&gt;Maven Central&lt;/a&gt; or &lt;a href=&quot;https://bintray.com/&quot;&gt;Bintray&lt;/a&gt; (jcenter). Which can be done by configuring the Gradle publishing plugin.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;This blog post won’t cover how to publish your library, instead have a look at this &lt;a href=&quot;https://medium.com/devnibbles/publishing-your-first-android-library-to-bintray-da08c8a76e1a&quot;&gt;great article by Andrew Kelly&lt;/a&gt; if you’re looking to learn.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;external-dependencies&quot;&gt;External dependencies&lt;/h2&gt;
+&lt;p&gt;But as the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt; evolves, it might also start depending on Maven dependencies of its own! Imagine that the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt; would also depend on &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OkHttp&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/librarygettingstarted/library_with_externaldependency.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/librarygettingstarted/library_with_externaldependency.png&quot; alt=&quot;Project with app and library module that has an external dependency&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This means that the customer application needs to depend on both &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OkHttp&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/librarygettingstarted/app_with_library_with_externaldependency.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/librarygettingstarted/app_with_library_with_externaldependency.png&quot; alt=&quot;Project with app and library module that has an external dependency&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Why?&lt;/p&gt;
+
+&lt;p&gt;Because &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.aar&lt;/code&gt; files only contain code and resources of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt; module that was used to build it! So the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.aar&lt;/code&gt; file of the library won’t contain any &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OkHttp&lt;/code&gt; code, nor any indication that it requires &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OkHttp&lt;/code&gt; to run.&lt;/p&gt;
+
+&lt;p&gt;Consequently, customer applications need to include both the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OkHttp&lt;/code&gt; as a dependency.&lt;/p&gt;
+
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;dependencies {
+  implementation &quot;com.jeroenmols:library:1.0.0&quot;
+  implementation &quot;com.squareup.okhttp3:okhttp:4.9.0&quot;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Notice that this did work when &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt; is a submodule of a project! Then the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; file of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt; includes the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OkHttp&lt;/code&gt; dependency and Gradle will include it into the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.apk&lt;/code&gt; while building.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;transitive-dependencies&quot;&gt;Transitive dependencies&lt;/h2&gt;
+&lt;p&gt;Wouldn’t it be nice if the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OkHttp&lt;/code&gt; dependency could be automatically included in the customer application?&lt;/p&gt;
+
+&lt;p&gt;That way customers simply have to add:&lt;/p&gt;
+
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;dependencies {
+  implementation &quot;com.jeroenmols:library:1.0.0&quot;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And get the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OkHttp&lt;/code&gt; dependency indirectly through the dependency on &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt;. This is what we call a transitive dependency: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OkHttp&lt;/code&gt; is a transitive dependency of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt; and hence an indirect dependency of the customer application.&lt;/p&gt;
+
+&lt;p&gt;But how can Gradle know to include &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OkHttp&lt;/code&gt; in the customer app after adding the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt; as a dependency?&lt;/p&gt;
+
+&lt;p&gt;That’s taken care of by the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pom.xml&lt;/code&gt; file that gets created when you deploy your app to a Maven repository (such a &lt;a href=&quot;https://search.maven.org/&quot;&gt;Maven Central&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;Here’s an example &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pom.xml&lt;/code&gt; for the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;project&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://maven.apache.org/POM/4.0.0&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xsi:schemaLocation=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:xsi=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;modelVersion&amp;gt;&lt;/span&gt;4.0.0&lt;span class=&quot;nt&quot;&gt;&amp;lt;/modelVersion&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;com.jeroenmols&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;library&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;1.0.0&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;name&amp;gt;&lt;/span&gt;library&lt;span class=&quot;nt&quot;&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;dependencies&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;com.squareup.okhttp3&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;okhttp3&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;4.9.0&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;scope&amp;gt;&lt;/span&gt;compile&lt;span class=&quot;nt&quot;&gt;&amp;lt;/scope&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependencies&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/project&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;So when building an Android library, there are two key outputs:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.aar&lt;/code&gt; file: a binary containing all library code and resources&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pom.xml&lt;/code&gt; file: containing all transitive dependencies&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;In reality, there can be many more files (Javadoc, sources,…). Have a look at the Files tab of the &lt;a href=&quot;https://bintray.com/bintray/jcenter/com.squareup.okhttp3%3Aokhttp/4.9.0#files/com%2Fsquareup%2Fokhttp3%2Fokhttp%2F4.9.0&quot;&gt;Maven entry for OkHttp&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;For more information on how to generate a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pom.xml&lt;/code&gt;, have a look at &lt;a href=&quot;https://medium.com/swlh/how-to-publish-and-distribute-your-android-library-ce845c68c7f7&quot;&gt;this post by Marco Gomiero&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;testing&quot;&gt;Testing&lt;/h2&gt;
+&lt;p&gt;Finally, for Android libraries with external dependencies, there will be a difference between a local build of the SDK or a Maven build.&lt;/p&gt;
+
+&lt;p&gt;If the SDK source code is within a project, then transitive dependencies will automatically be included when the application is built.&lt;/p&gt;
+
+&lt;p&gt;However, when the SDK is included through Maven, those transitive dependencies will only be included when the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pom.xml&lt;/code&gt; file is properly constructed and deployed to Maven.&lt;/p&gt;
+
+&lt;p&gt;Therefore it is always important to test the actual SDK artifact as a Maven dependency before shipping a new release!&lt;/p&gt;
+
+&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
+&lt;p&gt;Android libraries are built into a special &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.aar&lt;/code&gt; format that includes all code and resources. For all its external dependencies, a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pom.xml&lt;/code&gt; needs to be deployed alongside to the Maven repository.&lt;/p&gt;
+
+&lt;p&gt;Don’t forget to follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=androidlibrarydevelopment-gettingstarted2020&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
+ so you don’t miss the second part on SDK modularization!&lt;/p&gt;
+
+&lt;p&gt;Feel free to leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="android" /><category term="library" /><category term="maven" /><category term="gradle" /><category term="kotlin" /><summary type="html">Having switched to Android SDK development over the past year, I’ve run into quite a few interesting and unexpected challenges. So how does library development differ from app development?</summary></entry><entry><title type="html">Kdoc for Android libraries using Dokka</title><link href="https://jeroenmols.com/blog/2020/02/19/dokka-code-documentation/" rel="alternate" type="text/html" title="Kdoc for Android libraries using Dokka" /><published>2020-02-19T00:00:00+01:00</published><updated>2020-02-19T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2020/02/19/dokka-code-documentation</id><content type="html" xml:base="https://jeroenmols.com/blog/2020/02/19/dokka-code-documentation/">&lt;p&gt;A great way to make your library easier to use it to generate code documentation for its public interface. The default way to do this in Kotlin is to generate KDoc using the official Dokka plugin.&lt;/p&gt;
 
 &lt;p&gt;This post will cover some challenges in configuring Dokka and explain some neat tricks to improve your documentation.&lt;/p&gt;
 
 &lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;The equivalent of JavaDoc for Kotlin is called &lt;a href=&quot;https://kotlinlang.org/docs/reference/kotlin-doc.html&quot;&gt;KDoc&lt;/a&gt;. While it is very similar to the former, it also supports inline Markup and allows to easily link to other elements using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[ ]&lt;/code&gt; brackets.&lt;/p&gt;
 
-&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cm&quot;&gt;/**&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;cm&quot;&gt; * A group of *members*.&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;cm&quot;&gt; *&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;cm&quot;&gt; * This class has no useful logic;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;cm&quot;&gt; * it's just a documentation example.&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;cm&quot;&gt; *&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;cm&quot;&gt; * @param T the type of a member in this group.&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;cm&quot;&gt; * @property name the name of this group.&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;cm&quot;&gt; * @constructor Creates an empty group.&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;cm&quot;&gt; */&lt;/span&gt;
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cm&quot;&gt;/**
+ * A group of *members*.
+ *
+ * This class has no useful logic;
+ * it's just a documentation example.
+ *
+ * @param T the type of a member in this group.
+ * @property name the name of this group.
+ * @constructor Creates an empty group.
+ */&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Group&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;cm&quot;&gt;/**&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;cm&quot;&gt;     * Adds a [member] to this group.&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;cm&quot;&gt;     * @return the new size of the group.&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;cm&quot;&gt;     */&lt;/span&gt;
+    &lt;span class=&quot;cm&quot;&gt;/**
+     * Adds a [member] to this group.
+     * @return the new size of the group.
+     */&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;member&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Int&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;..&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -1836,110 +2011,4 @@ The following dependencies have later milestone versions:
 &lt;p&gt;After reading this series, you’ve learned why modularization is important, what the architecture of a modularized app could be, how to start modularizing your app and finally quite some useful tips and tricks to help you along the way.&lt;/p&gt;
 
 &lt;p&gt;If you’ve made it this far you should probably follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=modularization-lessonslearned2019&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
-. Feel free leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="modularization" /><category term="architecture" /><category term="software engineering" /><category term="tips" /><summary type="html">Wrapping up this series on modularization I’d like to share some of the things we’ve learned at Philips Hue while going through this process the past year.</summary></entry><entry><title type="html">Modularization - How to approach</title><link href="https://jeroenmols.com/blog/2019/04/24/modularizationhow/" rel="alternate" type="text/html" title="Modularization - How to approach" /><published>2019-04-24T00:00:00+02:00</published><updated>2019-04-24T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2019/04/24/modularizationhow</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/04/24/modularizationhow/">&lt;p&gt;Now that we have a clear idea of how a modularized app could look like how can this be applied to an existing app?&lt;/p&gt;
-
-&lt;p&gt;Part four will dive deeper into how existing apps can be sliced and how you can gradually migrate to a fully modularized architecture.&lt;/p&gt;
-
-&lt;blockquote&gt;
-
-  &lt;p&gt;This post is part of an in depth series on modularization:&lt;/p&gt;
-  &lt;ul&gt;
-    &lt;li&gt;&lt;a href=&quot;/blog/2019/03/06/modularizationwhy/&quot;&gt;Part 1: Why you should care&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;/blog/2019/03/18/modularizationarchitecture/&quot;&gt;Part 2: A successful multi-module architecture&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;/blog/2019/04/02/modularizationexample/&quot;&gt;Part 3: Real-life example&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;/blog/2019/04/24/modularizationhow/&quot;&gt;Part 4: How to approach&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;/blog/2019/06/12/modularizationtips/&quot;&gt;Part 5: Lessons learned&lt;/a&gt;&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;modularization-strategy&quot;&gt;Modularization strategy&lt;/h2&gt;
-&lt;p&gt;Roughly speaking there are two strategies you can take:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;convert the old app to a library and pull code up&lt;/li&gt;
-  &lt;li&gt;keep the old app and push code down&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;pull-code-up&quot;&gt;Pull code up&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/modularizationhow/modularisation_pullup.png&quot; alt=&quot;Modularized app example&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;In this approach, the old app gets converted to an Android library module and a new app module is created on top of that. This allows to gradually pull up code (features and libraries) from the old app module into a new module.&lt;/p&gt;
-
-&lt;p&gt;When all code is pulled up, the old app module is removed and what’s left is the &lt;a href=&quot;/blog/2019/03/18/modularizationarchitecture/&quot;&gt;architecture&lt;/a&gt; we were striving for.&lt;/p&gt;
-
-&lt;p&gt;Conceptually this is very simple and it has one huge advantage: (almost) no dependency problems!&lt;/p&gt;
-
-&lt;p&gt;All old code is in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;old app module&lt;/code&gt; and new modules are only created on top of that. Hence, those modules will always have access to all legacy files they depend on, even if those files weren’t migrated to a proper module yet.&lt;/p&gt;
-
-&lt;p&gt;E.g. a new feature can easily access the analytics framework, even if there isn’t an analytics module yet. This is because all old analytics code is already in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;old app module&lt;/code&gt; that the feature depends on.&lt;/p&gt;
-
-&lt;p&gt;There are also some disadvantages, unfortunately:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;renaming/moving the old app module is a huge upfront change and could cause a lot of merge conflicts =&amp;gt; can be avoided by not moving/renaming the app module&lt;/li&gt;
-  &lt;li&gt;need to convert all references to view IDs from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;R.id.***&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;R2.id.***&lt;/code&gt; when using &lt;a href=&quot;https://github.com/JakeWharton/butterknife&quot;&gt;Butterknife&lt;/a&gt;. This is because the Android build system dynamically changes IDs of resources in libraries to avoid ID conflicts while merging libraries together in the app&lt;/li&gt;
-  &lt;li&gt;features need to be modularized first and only after libraries can be extracted. E.g. hard to extract all analytics up to an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;analytics library&lt;/code&gt; when some features that are still in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;old app module&lt;/code&gt; still need to access that.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;At Philips Hue, we heavily used Butterknife so this approach turned out to be impractical for us. Mainly due to the large number of upfront changes to prepare the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;old app module&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h3 id=&quot;push-code-down&quot;&gt;Push code down&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/modularizationhow/modularisation_pushdown.png&quot; alt=&quot;Modularized app example&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Alternatively, the old &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app module&lt;/code&gt; can also just remain in place and modules are extracted from that downwards one by one.&lt;/p&gt;
-
-&lt;p&gt;At first, this is quite a bit more challenging because all the common plumbing (UI components, analytics, storage,… ) is still in the upper &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app module&lt;/code&gt; and isn’t accessible by lower modules. e.g. It’s hard to pull out a feature that relies on analytics if the analytics code is still in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app module&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;On the plus side, this method aggressively forces you to modularize: you will easily run into actual dependency problems that must be solved before you can continue. E.g. add a new or extract a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;feature module&lt;/code&gt; will force you to extract common logic first (e.g. network layer)&lt;/p&gt;
-
-&lt;p&gt;Hence common plumbing must be modularized on the short term and cannot be parked in a single huge core module for a long time. But once these key &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;plumbing modules&lt;/code&gt; are extracted, the rest of the modularization will become a lot easier.&lt;/p&gt;
-
-&lt;p&gt;And because moving code down is harder than moving it up, only the essential code parts will be moved down at first. Resulting in smaller steps, enabling a better grip on the entire modularisation process.&lt;/p&gt;
-
-&lt;p&gt;Finally, this way of modularisation allows to clean up the code base bottom up: move part code down -&amp;gt; convert to Kotlin -&amp;gt; make idiomatic -&amp;gt; rinse and repeat. It’s a lot easier to set architecture goals (e.g. % Kotlin, % test coverage,…) for smaller parts of your code base than for huge monolithic modules.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Note: Introducing new technologies (e.g. coroutines, rxjava) is usually also easier bottom up. This is because modules making use of these can directly access “cleaned up interfaces” instead of wrapping old ones to fit the new paradigms. So you start benefitting from the end-to-end benefits of the new technologies sooner in your app.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;At Philips Hue, we decided to go for this approach, mainly because it forced us to think better about our &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library modules&lt;/code&gt; upfront and it also avoided a huge refactoring due to Butterknife.&lt;/p&gt;
-
-&lt;h2 id=&quot;considerations&quot;&gt;Considerations&lt;/h2&gt;
-&lt;p&gt;Regardless of what strategy you decide two follow, here are a few things you should take into consideration:&lt;/p&gt;
-
-&lt;h3 id=&quot;try-to-make-a-big-initial-push&quot;&gt;Try to make a big initial push&lt;/h3&gt;
-&lt;p&gt;Only once you reach a critical mass of modules, you will start reaping the benefits. (build times, easier to understand code,…) Therefore try to define a few key modules and put them in place as soon as possible.&lt;/p&gt;
-
-&lt;p&gt;At Philips Hue these were:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;UI components (incl themes and styles)&lt;/li&gt;
-  &lt;li&gt;SDK wrapper (Hue system domain model)&lt;/li&gt;
-  &lt;li&gt;Translations&lt;/li&gt;
-  &lt;li&gt;Analytics&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;api-clean-up&quot;&gt;Api clean up&lt;/h3&gt;
-&lt;p&gt;Modularizing an existing app will be quite the challenge and you will uncover dependencies between classes that shouldn’t be have been there. Cutting these might be non-trivial and could result in splitting classes, introducing adapters,…&lt;/p&gt;
-
-&lt;p&gt;Hence clean up work cannot be avoided while modularizing. But try to keep that cleanup work focussed as much as possible to the API of the modules. Once they are clean/fixed you’ll be able to refactor/replace their internals easily later on.&lt;/p&gt;
-
-&lt;p&gt;Also, try to aggressively restrict the visibility of the non-public interface to private or internal. This decouples modules and again facilitates doing an internal module clean up later without affecting the rest of the code base.&lt;/p&gt;
-
-&lt;p&gt;Sometimes, however, a simple interface clean up can blow up and result in tons of code changes somewhere. At this point, it could become impractical to completely clean up the entire interface when all you need is just to extract a simple module.&lt;/p&gt;
-
-&lt;p&gt;That’s fine, just mark the old API as deprecated and provide a new API next to that one. Don’t be afraid to postpone other problems when you are trying to solve the modularization one.&lt;/p&gt;
-
-&lt;h3 id=&quot;general-code-improvements&quot;&gt;General code improvements&lt;/h3&gt;
-&lt;p&gt;While doing all this work, nearly all parts of the code will be touched at some point. This generates a unique opportunity to finally do some of the improvements that were on your backlog for quite some time like:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;conversion to Kotlin&lt;/li&gt;
-  &lt;li&gt;add (more) unit tests&lt;/li&gt;
-  &lt;li&gt;…&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
-&lt;p&gt;Generally speaking, there are two strategies to modularize an existing app: pull code up or push code down. Make sure to make a big initial push towards modularization to reap the benefits as soon as possible, clean up the module APIs and see if you can take some code improvements along.&lt;/p&gt;
-
-&lt;p&gt;Make sure to follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=modularization-howtoapproach2019&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
- and read on to learn some tips and lessons learned while modularizing &lt;a href=&quot;/blog/2019/06/12/modularizationtips/&quot;&gt;in part 5&lt;/a&gt;.&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="modularization" /><category term="architecture" /><category term="software engineering" /><category term="how to" /><summary type="html">Now that we have a clear idea of how a modularized app could look like how can this be applied to an existing app?</summary></entry></feed>
+. Feel free leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="modularization" /><category term="architecture" /><category term="software engineering" /><category term="tips" /><summary type="html">Wrapping up this series on modularization I’d like to share some of the things we’ve learned at Philips Hue while going through this process the past year.</summary></entry></feed>
