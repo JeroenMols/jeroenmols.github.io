@@ -42,7 +42,7 @@ Imagine the following project setup:
 
 Here, the `app` module is an Android application that depends on the `library` module. And the `library` module depends on two other modules: `database` and `ui-components`.
 
-[Remember that]({{ site.baseurl }}{% link blog/_posts/2020-10-27-library-gettingstarted.md %}) when a `library` module gets built, the `.aar` artifact will only include code and resources that are in the `library` module itself. It won't include:
+[Remember that]({{ site.baseurl }}{% link blog/_posts/2020-10-28-library-gettingstarted.md %}) when a `library` module gets built, the `.aar` artifact will only include code and resources that are in the `library` module itself. It won't include:
 
 - any code or resources from `database` and `ui-components`
 - links to its transitive dependencies (these go into the `pom.xml`)
@@ -91,7 +91,7 @@ dependencies {
 
 While the `fat .aar` solution works, it's not without its challenges either.
 
-For starters, the `fat .aar` plugin breaks on almost every minor Android Gradle plugin update! This is because it hooks itself into particular tasks of the Android Gradle plugin and these very ofter get renamed/moved. However, the project maintainer does a stellar job at fixing those within a few weeks after the breaking change.
+For starters, the `fat .aar` plugin breaks on almost every minor Android Gradle plugin update! This is because it hooks itself into particular tasks of the Android Gradle plugin and these very often get renamed/moved. However, the project maintainer does a stellar job at fixing those within a few weeks after the breaking change.
 
 
 Also, because of the way `fat .aar` references dependencies from submodules, it can significantly increase the binary size of your SDK. There is a way to solve that by using `compileOnly` for SDK submodule dependencies, but I'm not going to cover that in-depth here.
@@ -115,7 +115,7 @@ However, that won't just cause them to be `accessible` to the `library`, it will
 
 While this limitation is fundamental to Kotlin (and Java), there are a few ways to mitigate this:
 
-1. move all internal APIs to and "internal package"
+1. move all internal APIs to an "internal package"
 2. obfuscate all non-public classes in the SDK using R8/proguard
 3. create a single module SDK
 
