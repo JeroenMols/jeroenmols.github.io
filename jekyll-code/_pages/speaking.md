@@ -11,11 +11,12 @@ I'm always eager to share my technical knowledge with fellow developers. Don't h
 
 Upcoming talks:
 
-- Mumbai App Developers Meetup (GDG) - The big rewrite
-- GDG Jeddah - Getting the most out of Android KTX
-- Dutch Android User Group - Getting the most out of Android KTX
+- To be announced
 
 2020:
+- Mumbai App Developers Meetup (GDG) - [The big rewrite](https://speakerdeck.com/jeroenmols/the-big-rewrite)
+- GDG Jeddah - [Getting the most out of Android KTX](https://speakerdeck.com/jeroenmols/getting-the-most-out-of-android-ktx)
+- Dutch Android User Group - [Getting the most out of Android KTX](https://speakerdeck.com/jeroenmols/getting-the-most-out-of-android-ktx)
 - Android Makers Paris - [Getting the most out of Android KTX](https://speakerdeck.com/jeroenmols/getting-the-most-out-of-android-ktx)
 - Async Android - [Powerful layout previews](https://speakerdeck.com/jeroenmols/powerful-layout-previews)
 
