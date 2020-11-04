@@ -16,8 +16,8 @@ Having switched to Android SDK development over the past year, I've run into qui
 This mini-series will cover the differences between SDK and App development, and explore some interesting challenges around SDK modularization and transitive dependencies.
 
 > This blog post is part of a series on Android libraries:
-- Part 1: Getting started
-- Part 2: Modularization
+- Part 1: [Getting started]({{ site.baseurl }}{% link blog/_posts/2020-10-28-library-gettingstarted.md %})
+- Part 2: [Modularization]({{ site.baseurl }}{% link blog/_posts/2020-11-04-library-modularization.md %})
 - Part 3: Transitive dependencies
 
 ## Introduction
@@ -177,6 +177,6 @@ Therefore it is always important to test the actual SDK artifact as a Maven depe
 ## Wrap-up
 Android libraries are built into a special `.aar` format that includes all code and resources. For all its external dependencies, a `pom.xml` needs to be deployed alongside to the Maven repository.
 
-Don't forget to follow me on {% include link_twitter.html %} so you don't miss the second part on SDK modularization!
+Don't forget to follow me on {% include link_twitter.html %} and enjoy reading the next post on [SDK modularization]({{ site.baseurl }}{% link blog/_posts/2020-11-04-library-modularization.md %})!
 
 Feel free to leave a comment below!

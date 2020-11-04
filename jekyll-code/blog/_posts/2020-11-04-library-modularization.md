@@ -17,8 +17,8 @@ With modularization being all the hype, should you also modularize an SDK? Are f
 This post will cover all things modularization for Android libraries.
 
 > This blog post is part of a series on Android libraries:
-- Part 1: Getting started
-- Part 2: Modularization
+- Part 1: [Getting started]({{ site.baseurl }}{% link blog/_posts/2020-10-28-library-gettingstarted.md %})
+- Part 2: [Modularization]({{ site.baseurl }}{% link blog/_posts/2020-11-04-library-modularization.md %})
 - Part 3: Transitive dependencies
 
 ## Introduction
