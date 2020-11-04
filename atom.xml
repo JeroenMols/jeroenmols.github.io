@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/" rel="alternate" type="text/html"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, Android freelancer and Google Developer Expert.</subtitle>
- <updated>2020-10-28T19:50:24+01:00</updated>
+ <updated>2020-11-04T21:23:34+01:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,31 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>Android library development - Modularization</title>
+   <link href="https://jeroenmols.com/blog/2020/11/04/library-modularization/"/>
+   <updated>2020-11-04T00:00:00+01:00</updated>
+   <id>https://jeroenmols.com/blog/2020/11/04/library-modularization</id>
+   <content type="html"><![CDATA[
+     
+     <p>With modularization being all the hype, should you also modularize an SDK? Are fat aar files really needed? And how do you prevent internal APIs from being exposed on your public interface?</p>
+
+<p>This post will cover all things modularization for Android libraries.</p>
+
+<blockquote>
+  <p>This blog post is part of a series on Android libraries:</p>
+  <ul>
+    <li>Part 1: <a href="/blog/2020/10/28/library-gettingstarted/">Getting started</a></li>
+    <li>Part 2: <a href="/blog/2020/11/04/library-modularization/">Modularization</a></li>
+    <li>Part 3: Transitive dependencies</li>
+  </ul>
+</blockquote>
+
+
+     <a href="https://jeroenmols.com/blog/2020/11/04/library-modularization/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>Android library development - Getting started</title>
@@ -31,8 +56,8 @@
 <blockquote>
   <p>This blog post is part of a series on Android libraries:</p>
   <ul>
-    <li>Part 1: Getting started</li>
-    <li>Part 2: Modularization</li>
+    <li>Part 1: <a href="/blog/2020/10/28/library-gettingstarted/">Getting started</a></li>
+    <li>Part 2: <a href="/blog/2020/11/04/library-modularization/">Modularization</a></li>
     <li>Part 3: Transitive dependencies</li>
   </ul>
 </blockquote>

@@ -1,12 +1,179 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2020-10-28T19:50:24+01:00</updated><id>https://jeroenmols.com/feed.xml</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, Android freelancer and Google Developer Expert.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Android library development - Getting started</title><link href="https://jeroenmols.com/blog/2020/10/28/library-gettingstarted/" rel="alternate" type="text/html" title="Android library development - Getting started" /><published>2020-10-28T00:00:00+01:00</published><updated>2020-10-28T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2020/10/28/library-gettingstarted</id><content type="html" xml:base="https://jeroenmols.com/blog/2020/10/28/library-gettingstarted/">&lt;p&gt;Having switched to Android SDK development over the past year, I’ve run into quite a few interesting and unexpected challenges. So how does library development differ from app development?&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2020-11-04T21:23:34+01:00</updated><id>https://jeroenmols.com/feed.xml</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, Android freelancer and Google Developer Expert.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Android library development - Modularization</title><link href="https://jeroenmols.com/blog/2020/11/04/library-modularization/" rel="alternate" type="text/html" title="Android library development - Modularization" /><published>2020-11-04T00:00:00+01:00</published><updated>2020-11-04T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2020/11/04/library-modularization</id><content type="html" xml:base="https://jeroenmols.com/blog/2020/11/04/library-modularization/">&lt;p&gt;With modularization being all the hype, should you also modularize an SDK? Are fat aar files really needed? And how do you prevent internal APIs from being exposed on your public interface?&lt;/p&gt;
+
+&lt;p&gt;This post will cover all things modularization for Android libraries.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;This blog post is part of a series on Android libraries:&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Part 1: &lt;a href=&quot;/blog/2020/10/28/library-gettingstarted/&quot;&gt;Getting started&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;Part 2: &lt;a href=&quot;/blog/2020/11/04/library-modularization/&quot;&gt;Modularization&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;Part 3: Transitive dependencies&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;When building an SDK, one might be inclined to modularize the SDK as &lt;a href=&quot;/blog/2019/03/06/modularizationwhy/&quot;&gt;modularization has tons of benefits&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;However, there are two challenges with that:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;submodule dependencies don’t get included in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.aar&lt;/code&gt; file&lt;/li&gt;
+  &lt;li&gt;public interface of submodules gets exposed&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;submodule-dependencies&quot;&gt;Submodule dependencies&lt;/h2&gt;
+&lt;p&gt;Imagine the following project setup:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;├── app
+├── library
+└── modules
+    ├── database
+    └── ui-components
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Here, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app&lt;/code&gt; module is an Android application that depends on the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt; module. And the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt; module depends on two other modules: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;database&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ui-components&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/blog/2020/10/28/library-gettingstarted/&quot;&gt;Remember that&lt;/a&gt; when a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt; module gets built, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.aar&lt;/code&gt; artifact will only include code and resources that are in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt; module itself. It won’t include:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;any code or resources from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;database&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ui-components&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;links to its transitive dependencies (these go into the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pom.xml&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;So when the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app&lt;/code&gt; module directly includes the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt; as a Maven dependency, it would crash due to missing classes from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;database&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ui-components&lt;/code&gt; on its classpath.&lt;/p&gt;
+
+&lt;p&gt;This is, unfortunately, a limitation of the current Android Gradle plugin, and there’s been a &lt;a href=&quot;https://issuetracker.google.com/issues/62121508&quot;&gt;feature request&lt;/a&gt; open for more than 3 years now that’s still unaddressed&lt;/p&gt;
+
+&lt;p&gt;There are three ways to solve this though:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;release every submodule of your library directly to Maven&lt;/li&gt;
+  &lt;li&gt;create a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fat .aar&lt;/code&gt; that includes the submodules&lt;/li&gt;
+  &lt;li&gt;create a single module SDK&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;1-release-submodules-to-maven&quot;&gt;1. Release submodules to Maven&lt;/h3&gt;
+&lt;p&gt;Instead of publishing &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt; to Maven, we could also publish &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;database&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ui-components&lt;/code&gt;. This way the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt; module can include them as a direct Maven dependency and add it as a transitive dependency to its &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pom.xml&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;implementation&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;com.jeroenmols:database:1.0.0&quot;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;implementation&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;com.jeroenmols:ui-components:1.0.0&quot;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;However, this adds quite a bit of extra complexity. Because when a change is made to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;database&lt;/code&gt; module, it now first has to be built, published and version updated in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt; module before that module sees the changes.&lt;/p&gt;
+
+&lt;p&gt;This obviously has a significant impact on the day to day workflow for developers on the project! Moreover, it’s mostly practical when there are a limited amount of submodules that only change infrequently.&lt;/p&gt;
+
+&lt;p&gt;These challenges don’t mean this approach can’t be successful though. The Android Jetpack libraries are the living proof of that, but it’s also adopted by for instance the &lt;a href=&quot;https://sdk.squareup.com/public/android/com/squareup/sdk/in-app-payments/&quot;&gt;Square In-App payments SDK&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;2-fat-aar&quot;&gt;2. Fat AAR&lt;/h3&gt;
+&lt;p&gt;In the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fat .aar&lt;/code&gt; solution, code and resources of the submodules are bundled into the main SDK module, hence creating a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fat .aar&lt;/code&gt;. This can be done by using an external Gradle plugin such as &lt;a href=&quot;https://github.com/kezong/fat-aar-android&quot;&gt;fat-aar-android&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;To create a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fat .aar&lt;/code&gt;, apply a plugin to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; file of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt; and change its dependencies from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;implementation&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;embed&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;apply&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;plugin:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'com.kezong.fat-aar'&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;embed&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;project&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;path:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;':modules:database'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;configuration:&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'default'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;embed&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;project&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;path:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;':modules:ui-components'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;configuration:&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'default'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;While the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fat .aar&lt;/code&gt; solution works, it’s not without its challenges either.&lt;/p&gt;
+
+&lt;p&gt;For starters, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fat .aar&lt;/code&gt; plugin breaks on almost every minor Android Gradle plugin update! This is because it hooks itself into particular tasks of the Android Gradle plugin and these very often get renamed/moved. However, the project maintainer does a stellar job at fixing those within a few weeks after the breaking change.&lt;/p&gt;
+
+&lt;p&gt;Also, because of the way &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fat .aar&lt;/code&gt; references dependencies from submodules, it can significantly increase the binary size of your SDK. There is a way to solve that by using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;compileOnly&lt;/code&gt; for SDK submodule dependencies, but I’m not going to cover that in-depth here.&lt;/p&gt;
+
+&lt;h3 id=&quot;3-single-module-sdk&quot;&gt;3. Single module SDK&lt;/h3&gt;
+&lt;p&gt;Quite obvious, but with a single module SDK this problem simply doesn’t exist.&lt;/p&gt;
+
+&lt;h2 id=&quot;public-interface-pollution-by-submodules&quot;&gt;Public interface pollution by submodules&lt;/h2&gt;
+&lt;p&gt;Kotlin has four different visibility modifiers:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;private&lt;/code&gt; - visible inside this class only&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;protected&lt;/code&gt; — same as private + visible in subclasses too&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;internal&lt;/code&gt; — visible to all classes inside this module&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;public&lt;/code&gt; — visible to all classes&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Notably absent here is a modifier that’s internal to the project, yet visible across different modules.&lt;/p&gt;
+
+&lt;p&gt;So when the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;database&lt;/code&gt; module wants to make its methods accessible to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt;, it will need to mark those methods as public!&lt;/p&gt;
+
+&lt;p&gt;However, that won’t just cause them to be &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;accessible&lt;/code&gt; to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt;, it will also make those methods accessible to any application using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt;! Hence exposing SDK internals to the outside world.&lt;/p&gt;
+
+&lt;p&gt;While this limitation is fundamental to Kotlin (and Java), there are a few ways to mitigate this:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;move all internal APIs to an “internal package”&lt;/li&gt;
+  &lt;li&gt;obfuscate all non-public classes in the SDK using R8/proguard&lt;/li&gt;
+  &lt;li&gt;create a single module SDK&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;1-internal-package&quot;&gt;1. Internal package&lt;/h3&gt;
+&lt;p&gt;The first solution is to move all classes that aren’t intended for public use to a package name that has &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;internal&lt;/code&gt; in its name. This discourages (but not prevents!) others from using it.&lt;/p&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;com.jeroenmols.internal.database&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;For example OkHttp has an &lt;a href=&quot;https://github.com/square/okhttp/tree/master/okhttp/src/main/kotlin/okhttp3/internal&quot;&gt;okhttp.internal package&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;2-proguardr8&quot;&gt;2. Proguard/R8&lt;/h3&gt;
+&lt;p&gt;A more aggressive solution is to use Proguard/R8 to obfuscate each interface that isn’t supposed to be public.&lt;/p&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;However, these class names no longer have a unique package prefix! Hence this could lead to class name collisions with other libraries that do the same.&lt;/p&gt;
+
+&lt;p&gt;Fortunately, there is an option to repackage classes under your own namespace to avoid collisions in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;proguard-rules.pro&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-prolog highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;ss&quot;&gt;repackageclasses&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;jeroenmols&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;internal&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This will make sure every obfuscated class will be flattened in the package specified.&lt;/p&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;jeroenmols&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;internal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The main downside of this approach is that Proguard/R8 isn’t trivial to set up correctly, so expect some frustration and test well.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note: both these strategies aren’t mutually exclusive! I’ve successfully combined both to reduce an SDK API surface.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;3-single-module-sdk-1&quot;&gt;3. Single module SDK&lt;/h3&gt;
+&lt;p&gt;Finally, there is the third option of building a single module SDK and using the internal modifier to prevent classes/methods from being exposed publicly.&lt;/p&gt;
+
+&lt;h2 id=&quot;recommendation&quot;&gt;Recommendation&lt;/h2&gt;
+&lt;p&gt;While modularization is almost always a good idea for an App, the same can’t be said for SDKs. This is mainly because the tooling is lacking proper support for building Android libraries.&lt;/p&gt;
+
+&lt;p&gt;Therefore I recommend making small and even mid-sized SDKs single module and organize code in packages instead.&lt;/p&gt;
+
+&lt;p&gt;Whenever an SDK grows larger, it likely contains parts that could also be useful as a stand-alone library. Hence it might make sense to split the SDK and develop and deploy a few small spin-offs.&lt;/p&gt;
+
+&lt;p&gt;Multi modules SDKs should be avoided as much as possible.&lt;/p&gt;
+
+&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
+&lt;p&gt;Modularizing SDKs on Android unfortunately creates significant issues with packaging and restricting visibility of code. Therefore single module SDKs should be preferred.&lt;/p&gt;
+
+&lt;p&gt;Don’t forget to follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=androidlibrarydevelopment-modularization2020&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
+ so you don’t miss the last part on transitive dependencies!&lt;/p&gt;
+
+&lt;p&gt;Feel free to leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="android" /><category term="library" /><category term="modularization" /><category term="maven" /><category term="gradle" /><category term="kotlin" /><summary type="html">With modularization being all the hype, should you also modularize an SDK? Are fat aar files really needed? And how do you prevent internal APIs from being exposed on your public interface?</summary></entry><entry><title type="html">Android library development - Getting started</title><link href="https://jeroenmols.com/blog/2020/10/28/library-gettingstarted/" rel="alternate" type="text/html" title="Android library development - Getting started" /><published>2020-10-28T00:00:00+01:00</published><updated>2020-10-28T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2020/10/28/library-gettingstarted</id><content type="html" xml:base="https://jeroenmols.com/blog/2020/10/28/library-gettingstarted/">&lt;p&gt;Having switched to Android SDK development over the past year, I’ve run into quite a few interesting and unexpected challenges. So how does library development differ from app development?&lt;/p&gt;
 
 &lt;p&gt;This mini-series will cover the differences between SDK and App development, and explore some interesting challenges around SDK modularization and transitive dependencies.&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;This blog post is part of a series on Android libraries:&lt;/p&gt;
   &lt;ul&gt;
-    &lt;li&gt;Part 1: Getting started&lt;/li&gt;
-    &lt;li&gt;Part 2: Modularization&lt;/li&gt;
+    &lt;li&gt;Part 1: &lt;a href=&quot;/blog/2020/10/28/library-gettingstarted/&quot;&gt;Getting started&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;Part 2: &lt;a href=&quot;/blog/2020/11/04/library-modularization/&quot;&gt;Modularization&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;Part 3: Transitive dependencies&lt;/li&gt;
   &lt;/ul&gt;
 &lt;/blockquote&gt;
@@ -171,7 +338,7 @@
 &lt;p&gt;Android libraries are built into a special &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.aar&lt;/code&gt; format that includes all code and resources. For all its external dependencies, a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pom.xml&lt;/code&gt; needs to be deployed alongside to the Maven repository.&lt;/p&gt;
 
 &lt;p&gt;Don’t forget to follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=androidlibrarydevelopment-gettingstarted2020&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
- so you don’t miss the second part on SDK modularization!&lt;/p&gt;
+ and enjoy reading the next post on &lt;a href=&quot;/blog/2020/11/04/library-modularization/&quot;&gt;SDK modularization&lt;/a&gt;!&lt;/p&gt;
 
 &lt;p&gt;Feel free to leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="android" /><category term="library" /><category term="maven" /><category term="gradle" /><category term="kotlin" /><summary type="html">Having switched to Android SDK development over the past year, I’ve run into quite a few interesting and unexpected challenges. So how does library development differ from app development?</summary></entry><entry><title type="html">Kdoc for Android libraries using Dokka</title><link href="https://jeroenmols.com/blog/2020/02/19/dokka-code-documentation/" rel="alternate" type="text/html" title="Kdoc for Android libraries using Dokka" /><published>2020-02-19T00:00:00+01:00</published><updated>2020-02-19T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2020/02/19/dokka-code-documentation</id><content type="html" xml:base="https://jeroenmols.com/blog/2020/02/19/dokka-code-documentation/">&lt;p&gt;A great way to make your library easier to use it to generate code documentation for its public interface. The default way to do this in Kotlin is to generate KDoc using the official Dokka plugin.&lt;/p&gt;
 
@@ -1726,289 +1893,4 @@
 &lt;p&gt;The launcher icon is one of the most important assets of your app and therefore it is key to make it look perfect on any device. Adaptive icons make that possible and also allow you to add a nice little extra touch to your app.&lt;/p&gt;
 
 &lt;p&gt;If you’ve made it this far you should probably follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=philipshueadaptiveicon2019&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
-. Feel free to leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="ui" /><category term="android" /><category term="adaptive icon" /><summary type="html">Your icon is one of the most important assets in your app. With a bit of luck, users might even put it on their main launcher screen!</summary></entry><entry><title type="html">Modularization - Lessons learned</title><link href="https://jeroenmols.com/blog/2019/06/12/modularizationtips/" rel="alternate" type="text/html" title="Modularization - Lessons learned" /><published>2019-06-12T00:00:00+02:00</published><updated>2019-06-12T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2019/06/12/modularizationtips</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/06/12/modularizationtips/">&lt;p&gt;Wrapping up this series on modularization I’d like to share some of the things we’ve learned at Philips Hue while going through this process the past year.&lt;/p&gt;
-
-&lt;p&gt;Part five of this series will share quite a few useful tips and tricks for modularizing apps.&lt;/p&gt;
-
-&lt;blockquote&gt;
-
-  &lt;p&gt;This post is part of an in depth series on modularization:&lt;/p&gt;
-  &lt;ul&gt;
-    &lt;li&gt;&lt;a href=&quot;/blog/2019/03/06/modularizationwhy/&quot;&gt;Part 1: Why you should care&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;/blog/2019/03/18/modularizationarchitecture/&quot;&gt;Part 2: A successful multi-module architecture&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;/blog/2019/04/02/modularizationexample/&quot;&gt;Part 3: Real-life example&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;/blog/2019/04/24/modularizationhow/&quot;&gt;Part 4: How to approach&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;/blog/2019/06/12/modularizationtips/&quot;&gt;Part 5: Lessons learned&lt;/a&gt;&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;configuring-modules&quot;&gt;Configuring modules&lt;/h2&gt;
-&lt;p&gt;In order to drive modularization it’s very important to make creating a new module as simple as possible:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;adding a new module must be easy (so it will happen often)&lt;/li&gt;
-  &lt;li&gt;maintaining module configurations must be easy&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Both of these can be accomplished via a nice little trick in the project level &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; file (thanks to &lt;a href=&quot;https://twitter.com/o_patry&quot;&gt;Olivier Patry&lt;/a&gt; for the simplification):&lt;/p&gt;
-
-&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;subprojects&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;afterEvaluate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;project&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;project&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;hasProperty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'android'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;android&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;buildToolsVersion&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Config&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;buildTools&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;compileSdkVersion&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Config&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;compileSdk&lt;/span&gt;
-
-                &lt;span class=&quot;n&quot;&gt;defaultConfig&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;minSdkVersion&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Config&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;minSdk&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;targetSdkVersion&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Config&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;targetSdk&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;testInstrumentationRunner&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;androidx.test.runner.AndroidJUnitRunner&quot;&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-                &lt;span class=&quot;n&quot;&gt;compileOptions&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;sourceCompatibility&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Config&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;javaVersion&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;targetCompatibility&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Config&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;javaVersion&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The block above will dynamically look for all &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;android&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;android-library&lt;/code&gt; modules and configure the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;android&lt;/code&gt; block with all default values. That way each module will use the same &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;minSdk&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;buildTools&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;testRunner&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;javaVersion&lt;/code&gt;,…&lt;/p&gt;
-
-&lt;p&gt;This won’t just avoid issues like &lt;a href=&quot;/blog/2018/08/02/phonestatepermission/&quot;&gt;dangerous permissions sneaking into your app&lt;/a&gt;, but will also make it very easy to bump the target/minimum SDK and will simplify configuring submodules to just listing the dependencies.&lt;/p&gt;
-
-&lt;p&gt;For instance the &lt;a href=&quot;https://github.com/JeroenMols/ModularizationExample/blob/master/features/login/build.gradle&quot;&gt;Login feature&lt;/a&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; is:&lt;/p&gt;
-
-&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;apply&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;plugin:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'com.android.library'&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;apply&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;plugin:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'kotlin-android-extensions'&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;apply&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;plugin:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'kotlin-android'&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;implementation&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;project&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;':libraries:ui-components'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;implementation&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;project&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;':libraries:actions'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;implementation&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Deps&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;androidx_material&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;implementation&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Deps&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;androidx_constraintlayout&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;implementation&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Deps&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;androidx_navigation_fragment&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;implementation&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Deps&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;androidx_navigation_ui&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;testImplementation&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Deps&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;testlib_junit&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;androidTestImplementation&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Deps&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;testandroidx_runner&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;androidTestImplementation&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Deps&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;testandroidx_rules&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;androidTestImplementation&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Deps&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;testandroidx_espressocore&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;No more &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;android{}&lt;/code&gt; block required! Also, note that there is no need to specify a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;release&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;debug&lt;/code&gt; build type block.&lt;/p&gt;
-
-&lt;h2 id=&quot;module-graph&quot;&gt;Module graph&lt;/h2&gt;
-&lt;p&gt;While modularizing it’s great to keep an eye on the dependencies between different modules. For this, &lt;a href=&quot;https://twitter.com/JakeWharton&quot;&gt;Jake Wharton&lt;/a&gt; made a little script that creates a visual overview of your modules.&lt;/p&gt;
-
-&lt;p&gt;To use it, I recommend downloading &lt;a href=&quot;https://github.com/JakeWharton/SdkSearch/blob/master/gradle/projectDependencyGraph.gradle&quot;&gt;the script&lt;/a&gt; and adding it to your repository. But you could also simply add the following to your app &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; file:&lt;/p&gt;
-
-&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;apply&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;from:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'https://raw.githubusercontent.com/JakeWharton/SdkSearch/master/gradle/projectDependencyGraph.gradle'&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Then you can simply run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;./gradlew projectDependencyGraph&lt;/code&gt; to get a graphical overview.&lt;/p&gt;
-
-&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt; Task :app:projectDependencyGraph
-Project module dependency graph created at ~/ModularizationExample/build/reports/dependency-graph/project.dot.png
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/modularizationtips/module_graph.png&quot; alt=&quot;Module graph of modularization example&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Android modules are shown in &lt;font color=&quot;#baffc9&quot;&gt;green&lt;/font&gt;, Java modules in &lt;font color=&quot;#ffb3ba&quot;&gt;pink&lt;/font&gt; and Kotlin multiplatform modules in &lt;font color=&quot;#ffd2b3&quot;&gt;orange&lt;/font&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;organize-settingsgradle&quot;&gt;Organize settings.gradle&lt;/h2&gt;
-&lt;p&gt;When adding a new module via Android Studio, by default a new entry is added to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;settings.gradle&lt;/code&gt; file. This is necessary to inform Gradle that this module will also participate in the build.&lt;/p&gt;
-
-&lt;p&gt;By default each new module is added to the same line:&lt;/p&gt;
-
-&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;':app'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;':features:login'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;':features:dashboard'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;':features:sharing'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;':libraries:ui-components'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;':libraries:actions'&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;However, you can also configure each module on it’s own line:&lt;/p&gt;
-
-&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;':app'&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;':features:login'&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;':features:dashboard'&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;':features:sharing'&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;':libraries:ui-components'&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;':libraries:actions'&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;This keeps the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;settings.gradle&lt;/code&gt; file cleaner and easier to read. But it also avoids clutter in your Git history, because adding a new module will now add a new line instead of modifying an already existing (very long) file at some random place.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Note: I’ve created a &lt;a href=&quot;https://issuetracker.google.com/issues/133578918&quot;&gt;feature request&lt;/a&gt; for this and this will now be the default behavior from Android Studio 3.6 onwards!&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;module-internals&quot;&gt;Module internals&lt;/h2&gt;
-&lt;h3 id=&quot;project-organization&quot;&gt;Project organization&lt;/h3&gt;
-&lt;p&gt;When you scale up the number of modules, your root git folder might become quite messy. One convenient way to organize it is to create three different top-level folders: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;features&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;libraries&lt;/code&gt;. This will naturally organize all the modules that you have:&lt;/p&gt;
-
-&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;.
-├── app
-├── features
-│   ├── dashboard
-│   ├── login
-│   └── sharing
-└── libraries
-    ├── actions
-    └── ui-components
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;In order to directly generate a module in one of the subfolders, go to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;File &amp;gt; New &amp;gt; New Module&lt;/code&gt; in Android studio and prefix the module name with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;features:&lt;/code&gt; to directly create the module in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;features&lt;/code&gt; folder.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/modularizationtips/create_submodule.png&quot; alt=&quot;Create module directly in subfolder by prefixing the name with a colon&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Alternatively, you can also create the new module, and drag it to the correct subfolder. In that case, just make sure to also update the module reference in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;settings.gradle&lt;/code&gt; after you do that.&lt;/p&gt;
-
-&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;':app'&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;':features:newfeature'&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Finally, every module should have a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;README.md&lt;/code&gt; file at its root level explaining in a concise one-liner what that module is supposed to do. That makes navigating the code online (e.g. Github) a breeze.&lt;/p&gt;
-
-&lt;h3 id=&quot;package-names&quot;&gt;Package names&lt;/h3&gt;
-&lt;p&gt;While the main app package name is rather long (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;com.jeroenmols.modularization.example&lt;/code&gt;), the modules follow a very simple pattern:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;features: [project-name].features.[feature-name]&lt;br /&gt; e.g. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;modularization.features.login&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;libraries: [project-name].libraries.[library-name]&lt;br /&gt; e.g. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;modularization.libraries.actions&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;This doesn’t just avoid getting very long package names, but it will also logically group your imports in your code:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;all your modules are grouped due to the same project name&lt;/li&gt;
-  &lt;li&gt;feature imports appear first, followed by library imports&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;layout-previews&quot;&gt;Layout previews&lt;/h3&gt;
-&lt;p&gt;When looking at the layout preview of any layout resource in a submodule, it is shown by default in the wrong theme:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/modularizationtips/preview_wrong_theme.jpg&quot; alt=&quot;Layout preview by default shows wrong theme&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;This makes sense, as our submodules don’t know anything about the application theme set in the main &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app&lt;/code&gt; module manifest.&lt;/p&gt;
-
-&lt;p&gt;While you can manually change the theme from the drop-down menu, you can also tell the module what theme it will eventually inherit from the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app&lt;/code&gt; module. Do this by adding the theme attribute to the application element of the submodule manifest:&lt;/p&gt;
-
-&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;manifest&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:android=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.android.com/apk/res/android&quot;&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;package=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;modularization.features.dashboard&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;application&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;android:theme=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@style/AppTheme&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;activity&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;android:name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;.DashboardActivity&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/application&amp;gt;&lt;/span&gt;
-
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/manifest&amp;gt;&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;That way the layout previews will be shown in the correct theme by default!&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/modularizationtips/preview_right_theme.jpg&quot; alt=&quot;Layout preview shows correct theme when application theme attribute set in module manifest&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;restrict-visibility&quot;&gt;Restrict visibility&lt;/h3&gt;
-&lt;p&gt;In order to ensure different modules are properly decoupled, I highly recommend marking each class with an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;internal&lt;/code&gt; modifier unless it is part of the public API.&lt;/p&gt;
-
-&lt;p&gt;This has the added advantage that Android Studio autocomplete will suggest fewer options (only the relevant ones), making it easier to find the classes you need while coding.&lt;/p&gt;
-
-&lt;h2 id=&quot;dependency-management&quot;&gt;Dependency management&lt;/h2&gt;
-&lt;p&gt;When scaling up your project to a lot of modules, making sure that every module uses the same version of each dependency can be quite a challenge. Hence I advice to centrally manage the version of each dependency so it can be updated for all modules with just one change.&lt;/p&gt;
-
-&lt;p&gt;There are many different ways in order to accomplish that, so I encourage you to check out Sam Edward’s &lt;a href=&quot;https://handstandsam.com/2018/02/11/kotlin-buildsrc-for-better-gradle-dependency-management/&quot;&gt;great article on dependency management&lt;/a&gt;. Adopting this into the ModularizationExample leads to a &lt;a href=&quot;https://github.com/JeroenMols/ModularizationExample/blob/master/buildSrc/src/main/kotlin/Dependencies.kt&quot;&gt;very simple dependencies file&lt;/a&gt; listing all dependencies:&lt;/p&gt;
-
-&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.gradle.api.JavaVersion&lt;/span&gt;
-
-&lt;span class=&quot;kd&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Config&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;minSdk&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;23&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;compileSdk&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;28&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;targetSdk&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;28&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;javaVersion&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;JavaVersion&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;VERSION_1_8&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;buildTools&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;28.0.3&quot;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;kd&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Versions&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// &amp;lt;editor-fold desc=&quot;google&quot;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;androidx_core&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;1.0.1&quot;&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;androidx_recyclerview&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;1.0.0&quot;&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;androidx_navigation&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;2.0.0&quot;&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;androidx_constraintLayout&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;1.1.3&quot;&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;material&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;1.1.0-alpha04&quot;&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// &amp;lt;/editor-fold&amp;gt;&lt;/span&gt;
-
-    &lt;span class=&quot;o&quot;&gt;..&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;kd&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Deps&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;androidx_core&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;androidx.core:core-ktx:${Versions.androidx_core}&quot;&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;androidx_constraintlayout&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;androidx.constraintlayout:constraintlayout:${Versions.androidx_constraintLayout}&quot;&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;androidx_material&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;com.google.android.material:material:${Versions.material}&quot;&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;androidx_navigation_fragment&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;androidx.navigation:navigation-fragment-ktx:${Versions.androidx_navigation}&quot;&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;androidx_navigation_ui&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;androidx.navigation:navigation-ui-ktx:${Versions.androidx_navigation}&quot;&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;androidx_recyclerview&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;androidx.recyclerview:recyclerview:${Versions.androidx_recyclerview}&quot;&lt;/span&gt;
-
-    &lt;span class=&quot;o&quot;&gt;..&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Also, when projects grow bigger, the number of dependencies will also grow causing it hard to keep all of them up to date. Fortunately, Ben Manes has created a &lt;a href=&quot;https://github.com/ben-manes/gradle-versions-plugin&quot;&gt;Gradle Versions Plugin&lt;/a&gt; that makes it very easy to keep your dependencies up to date.&lt;/p&gt;
-
-&lt;p&gt;Simply add the plugin and run:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;./gradlew dependencyUpdates
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;To get a clear output of all up to date and out of date dependencies:&lt;/p&gt;
-
-&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;------------------------------------------------------------
-: Project Dependency Updates (report to plain text file)
-------------------------------------------------------------
-
-The following dependencies are using the latest milestone version:
- - com.github.ben-manes:gradle-versions-plugin:0.21.0
-
-The following dependencies have later milestone versions:
- - androidx.constraintlayout:constraintlayout [1.1.3 -&amp;gt; 2.0.0-beta1]
-     http://tools.android.com
- - androidx.core:core-ktx [1.0.1 -&amp;gt; 1.2.0-alpha01]
-     http://developer.android.com/tools/extras/support-library.html
- - androidx.navigation:navigation-fragment-ktx [2.0.0 -&amp;gt; 2.1.0-alpha04]
-     https://developer.android.com/topic/libraries/architecture/index.html
- - androidx.navigation:navigation-ui-ktx [2.0.0 -&amp;gt; 2.1.0-alpha04]
-     https://developer.android.com/topic/libraries/architecture/index.html
- - org.jetbrains.kotlin:kotlin-android-extensions [1.3.20 -&amp;gt; 1.3.31]
-     https://kotlinlang.org/
- - org.jetbrains.kotlin:kotlin-android-extensions-runtime [1.3.20 -&amp;gt; 1.3.31]
-     https://kotlinlang.org/
- - org.jetbrains.kotlin:kotlin-gradle-plugin [1.3.20 -&amp;gt; 1.3.31]
-     https://kotlinlang.org/
-
-...
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;speed-up-builds&quot;&gt;Speed up builds&lt;/h2&gt;
-&lt;p&gt;Remember that speeding up builds was an important &lt;a href=&quot;/blog/2019/03/06/modularizationwhy/&quot;&gt;reason to modularize&lt;/a&gt; apps. One of the most intriguing ways Gradle accomplishes this is by being smart about whether a code change will also require other modules to be recompiled.&lt;/p&gt;
-
-&lt;p&gt;While you can find the &lt;a href=&quot;/blog/2017/06/14/androidstudio3/&quot;&gt;full explanation here&lt;/a&gt;, it suffices to say here that you should always strive to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;implementation&lt;/code&gt; dependencies instead of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;api&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// Don't do this&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;api&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;project&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;':libraries:ui-components'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-
-    &lt;span class=&quot;c1&quot;&gt;// Do this instead&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;implementation&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;project&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;':libraries:ui-components'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
-&lt;p&gt;Modularization yields tons of benefits, yet can be quite challenging.&lt;/p&gt;
-
-&lt;p&gt;After reading this series, you’ve learned why modularization is important, what the architecture of a modularized app could be, how to start modularizing your app and finally quite some useful tips and tricks to help you along the way.&lt;/p&gt;
-
-&lt;p&gt;If you’ve made it this far you should probably follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=modularization-lessonslearned2019&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
-. Feel free leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="modularization" /><category term="architecture" /><category term="software engineering" /><category term="tips" /><summary type="html">Wrapping up this series on modularization I’d like to share some of the things we’ve learned at Philips Hue while going through this process the past year.</summary></entry></feed>
+. Feel free to leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="ui" /><category term="android" /><category term="adaptive icon" /><summary type="html">Your icon is one of the most important assets in your app. With a bit of luck, users might even put it on their main launcher screen!</summary></entry></feed>

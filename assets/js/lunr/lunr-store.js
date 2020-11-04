@@ -322,4 +322,10 @@ var store = [{
         "tags": ["android","library","maven","gradle","kotlin"],
         "url": "https://jeroenmols.com/blog/2020/10/28/library-gettingstarted/",
         "teaser": "https://jeroenmols.com/img/blog/librarygettingstarted/librarygettingstarted.jpg"
+      },{
+        "title": "Android library development - Modularization",
+        "excerpt":"With modularization being all the hype, should you also modularize an SDK? Are fat aar files really needed? And how do you prevent internal APIs from being exposed on your public interface? This post will cover all things modularization for Android libraries. This blog post is part of a series...","categories": ["blog"],
+        "tags": ["android","library","modularization","maven","gradle","kotlin"],
+        "url": "https://jeroenmols.com/blog/2020/11/04/library-modularization/",
+        "teaser": "https://jeroenmols.com/img/blog/librarymodularization/librarymodularization.jpg"
       }]
