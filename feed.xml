@@ -1,4 +1,379 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2020-11-04T21:23:34+01:00</updated><id>https://jeroenmols.com/feed.xml</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, Android freelancer and Google Developer Expert.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Android library development - Modularization</title><link href="https://jeroenmols.com/blog/2020/11/04/library-modularization/" rel="alternate" type="text/html" title="Android library development - Modularization" /><published>2020-11-04T00:00:00+01:00</published><updated>2020-11-04T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2020/11/04/library-modularization</id><content type="html" xml:base="https://jeroenmols.com/blog/2020/11/04/library-modularization/">&lt;p&gt;With modularization being all the hype, should you also modularize an SDK? Are fat aar files really needed? And how do you prevent internal APIs from being exposed on your public interface?&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2020-11-11T20:05:21+01:00</updated><id>https://jeroenmols.com/feed.xml</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, Android freelancer and Google Developer Expert.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Android library development - Dependencies</title><link href="https://jeroenmols.com/blog/2020/11/11/library-dependencies/" rel="alternate" type="text/html" title="Android library development - Dependencies" /><published>2020-11-11T00:00:00+01:00</published><updated>2020-11-11T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2020/11/11/library-dependencies</id><content type="html" xml:base="https://jeroenmols.com/blog/2020/11/11/library-dependencies/">&lt;p&gt;Ever had a build failure while integrating an SDK? Wonder how you can avoid your SDK customers having dependency conflicts? How many transitive dependencies should your SDK have?&lt;/p&gt;
+
+&lt;p&gt;This post will cover how transitive dependencies of an Android library affect Apps integrating it.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;This blog post is part of a series on Android libraries:&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Part 1: &lt;a href=&quot;/blog/2020/10/28/library-gettingstarted/&quot;&gt;Getting started&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;Part 2: &lt;a href=&quot;/blog/2020/11/04/library-modularization/&quot;&gt;Modularization&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;Part 3: &lt;a href=&quot;/blog/2020/11/11/library-dependencies/&quot;&gt;Transitive dependencies&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;This post assumes familiarity with transitive dependencies and how Maven handles those. You can learn all about that and much more in &lt;a href=&quot;/blog/2020/10/28/library-gettingstarted/&quot;&gt;the first part&lt;/a&gt; of this series.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Assume there is an existing application &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CustomerApp&lt;/code&gt; that is about to start using our library:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/librarydependencies/customerapp_before.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/librarydependencies/customerapp_before.png&quot; alt=&quot;Customer app about to integrate a new library&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Before integration, they have a single dependency on &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Another library&lt;/code&gt; that transitively depends on &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Transitive dependency 1&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Now when they integrate the new &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/librarydependencies/customerapp_after.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/librarydependencies/customerapp_after.png&quot; alt=&quot;Customer app after integrating a new library&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;They don’t just start to depend on &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt;, but they also depend on all its transitive dependencies &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Transitive dependency 1&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Transitive dependency 2&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;All these transitive dependencies can easily cause integration issues in the host &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CustomerApp&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;This blog post will look at the two most common issues:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;conflicting transitive dependency versions&lt;/li&gt;
+  &lt;li&gt;incompatible transitive dependencies&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;It’s important to note that when transitive dependency issues occur, the last integrated SDK will be blamed for these issues!!!&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CustomerApp&lt;/code&gt; was compiling fine with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Another library&lt;/code&gt;, only after adding &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt; the issues occurred. So as an SDK developer, this is our problem to solve.&lt;/p&gt;
+
+&lt;h2 id=&quot;conflicting-dependency-versions&quot;&gt;Conflicting dependency versions&lt;/h2&gt;
+&lt;p&gt;Imagine if &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CustomerApp&lt;/code&gt; integrates the following two SDKs:&lt;/p&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;implementation&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;com.jeroenmols:library:1.0.0&quot;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;implementation&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;com.example:anotherlibrary:2.0.0&quot;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And that both &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;anotherLibary&lt;/code&gt; depend on a different version of a common dependency like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OkHttp&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/librarydependencies/dependency_versions.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/librarydependencies/dependency_versions.png&quot; alt=&quot;Customer app after integrating a new library&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Now building &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CustomerApp&lt;/code&gt; would fail, because Gradle can’t know what &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OkHttp&lt;/code&gt; version to pick: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;v3&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;v4&lt;/code&gt;?&lt;/p&gt;
+
+&lt;p&gt;While more solutions possible, this post will cover the three most common ways this problem can be fixed:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Force dependency resolution in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CustomerApp&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Loosen dependency requirements in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Remove transitive dependency from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;1-force-dependency-resolution-in-customerapp&quot;&gt;1. Force dependency resolution in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CustomerApp&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;The first way to address this problem is by adding code in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CustomerApp&lt;/code&gt; to force a particular dependency version.&lt;/p&gt;
+
+&lt;p&gt;This can either be done by excluding the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OkHttp&lt;/code&gt; version from the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt; dependency.&lt;/p&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;implementation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'com.jeroenmols:library:1.0.0'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;exclude&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;group:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'com.squareup.okhttp3'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;module:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'okhttp'&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Or by forcing the resolved &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OkHttp&lt;/code&gt; version for all dependencies to a particular version:&lt;/p&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;configurations&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;all&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;resolutionStrategy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;force&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'com.squareup.okhttp3:okhttp:4.9.0'&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The main advantage of this strategy is that no &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt; update is required. So the developers of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CustomerApp&lt;/code&gt; can apply this themselves when a conflict occurs.&lt;/p&gt;
+
+&lt;p&gt;However, this is incredibly dangerous as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CustomerApp&lt;/code&gt; is now forcing &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AnotherLibrary&lt;/code&gt; to work with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OkHttp&lt;/code&gt; version &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;4.9.0&lt;/code&gt;, whereas &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AnotherLibrary&lt;/code&gt; was expecting &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OkHttp&lt;/code&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;3.x.x&lt;/code&gt;!&lt;/p&gt;
+
+&lt;p&gt;And since the developers of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AnotherLibrary&lt;/code&gt; never tested their SDK with the enforced version of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OkHttp&lt;/code&gt;, this could cause runtime crashes (e.g. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ClassNotFoundException&lt;/code&gt;), behavior differences,…&lt;/p&gt;
+
+&lt;p&gt;A second downside is that this puts the burden on the SDK customers (i.e. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CustomerApp&lt;/code&gt;) to fix the problems arising from integrating your SDK.&lt;/p&gt;
+
+&lt;h3 id=&quot;2-loosen-dependency-requirements-in-library&quot;&gt;2. Loosen dependency requirements in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;A better solution is to loosen the dependency requirements of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Instead of explicitly requiring version &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OkHttp&lt;/code&gt; version &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;4.9.0&lt;/code&gt;, the SDK can also require a minimum version of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;4.0.0&lt;/code&gt; or higher in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pom.xml&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;...
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependencies&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;com.squareup.okhttp3&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;okhttp3&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;[4.0.0,)&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;scope&amp;gt;&lt;/span&gt;compile&lt;span class=&quot;nt&quot;&gt;&amp;lt;/scope&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependencies&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Notice how the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OkHttp&lt;/code&gt; version is now specified as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[4.0.0,)&lt;/code&gt; meaning any version of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;4.0.0&lt;/code&gt; or higher is supported.&lt;/p&gt;
+
+&lt;p&gt;In order to achieve this using Gradle, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;publishing&lt;/code&gt; block of SDK &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; needs to contain the following:&lt;/p&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;pom&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withXml&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;asNode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;appendNode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'dependencies'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;configurations&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getByName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;releaseCompileClasspath&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getResolvedConfiguration&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getFirstLevelModuleDependencies&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dependency&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;appendNode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'dependency'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;it&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;moduleGroup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;contains&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'okhttp3'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;dependency&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;appendNode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'version'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;[4.0.0,)&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;dependency&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;appendNode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'version'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;moduleVersion&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The main advantage of this strategy is that this doesn’t require any action from the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CustomerApp&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;On the other hand, this increases the testing burden for the developers of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt; to ensure compatibility with all supported versions of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OkHttp&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Also, imagine &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OkHttp&lt;/code&gt; release a new major version &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;5.x.x&lt;/code&gt; with massive breaking API changes. What version of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OkHttp&lt;/code&gt; would &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt; then support and force their customers to adopt?&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OkHttp&lt;/code&gt; actually solves this problem by &lt;a href=&quot;https://jakewharton.com/java-interoperability-policy-for-major-version-updates/&quot;&gt;including the version in their package name&lt;/a&gt;:&lt;/p&gt;
+  &lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;com.square.okhttp3&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;  &lt;/div&gt;
+  &lt;p&gt;and Maven coordinates:&lt;/p&gt;
+  &lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;implementation&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'com.squareup.okhttp3:okhttp3:4.9.0'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;  &lt;/div&gt;
+  &lt;p&gt;So for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OkHttp&lt;/code&gt; different major versions can coexist in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CustomerApp&lt;/code&gt;, but this isn’t true for all other SDKs.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;3-remove-transitive-dependency-from-library&quot;&gt;3. Remove transitive dependency from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;While obvious, this actually is a highly effective way of reducing transitive dependency conflicts. Downside is that the library needs more code to solve the challenges the dependency would.&lt;/p&gt;
+
+&lt;p&gt;This is also the only proposed solution that would be able to fully handle breaking API changes of a particular dependency that doesn’t support major versions to coexist.&lt;/p&gt;
+
+&lt;h2 id=&quot;incompatible-transitive-dependencies&quot;&gt;Incompatible transitive dependencies&lt;/h2&gt;
+&lt;p&gt;Similar to conflicting dependency versions, dependencies can be downright incompatible.&lt;/p&gt;
+
+&lt;p&gt;Take for instance &lt;a href=&quot;https://developers.google.com/protocol-buffers&quot;&gt;protocol buffers&lt;/a&gt;, which has two different artifacts:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;protobuf-java&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;protobuf-javalite&lt;/code&gt; (optimized for Android)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;These artifacts are mostly similar but optimized for different use cases.&lt;/p&gt;
+
+&lt;p&gt;So for a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CustomerApp&lt;/code&gt; with two &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;libraries&lt;/code&gt; dependencies that transitive rely on a different &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;protobuf&lt;/code&gt; artifact:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/librarydependencies/dependency_incompatible.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/librarydependencies/dependency_incompatible.png&quot; alt=&quot;Customer app with incompatible transitive dependencies&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Compilation will fail! Because both &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;protobuf-java&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;protobuf-javalite&lt;/code&gt; define the same/similar classes in the same namespace:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ ./gradlew clean assembleDebug
+&amp;gt; Task :app:checkDebugDuplicateClasses FAILED
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':myproject:checkReleaseDuplicateClasses'.
+&amp;gt; 1 exception was raised by workers:
+  java.lang.RuntimeException: Duplicate class com.google.protobuf.AbstractMessageLite found in modules protobuf-java-3.11.1.jar (com.google.protobuf:protobuf-java:3.11.1) and protobuf-javalite-3.11.0.jar (com.google.protobuf:protobuf-javalite:3.11.0)
+  Duplicate class com.google.protobuf.AbstractMessageLite$Builder found in modules protobuf-java-3.11.1.jar (com.google.protobuf:protobuf-java:3.11.1) and protobuf-javalite-3.11.0.jar (com.google.protobuf:protobuf-javalite:3.11.0)
+  Duplicate class com.google.protobuf.AbstractMessageLite$Builder$LimitedInputStream found in modules protobuf-java-3.11.1.jar (com.google.protobuf:protobuf-java:3.11.1) and protobuf-javalite-3.11.0.jar (com.google.protobuf:protobuf-javalite:3.11.0)
+     ...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And unfortunately for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;protobuf&lt;/code&gt;, this issue is very common: even Firebase performance monitoring &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;19.0.7&lt;/code&gt; (April 2020 !!!) relied on an even different, incompatible, 4 year old &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;protobuf&lt;/code&gt; artifact!&lt;/p&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;+---&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;google&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;firebase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;firebase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;perf:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;19.0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;+---&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;google&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;firebase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;firebase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;config:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;19.0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;+---&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;google&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;firebase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;firebase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;abt:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;19.0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;google&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;protobuf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;protobuf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;lite:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;3.0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;So what to do when a transitive dependency of the SDK relies on the wrong dependency?&lt;/p&gt;
+
+&lt;p&gt;Let’s have a look at three possible solutions:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Substitute dependency in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CustomerApp&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Remove dependency from transitive dependency of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Remove transitive dependency from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;1-substitute-dependency-in-customerapp&quot;&gt;1. Substitute dependency in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CustomerApp&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;Similar to handling conflicting dependency versions, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CustomerApp&lt;/code&gt; can exclude the dependency:&lt;/p&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;implementation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'com.jeroenmols:library:1.0.0'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;exclude&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;group:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'com.google.protobuf'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;module:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'protobuf-java'&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Or force the dependency to be substituted:&lt;/p&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;allprojects&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;configurations&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;all&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;resolutionStrategy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;dependencySubstitution&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;substitute&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'com.google.protobuf:protobuf-lite'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'com.google.protobuf:protobuf-javalite'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;These solutions have similar advantages and disadvantages as solution 1 for conflicting versions.&lt;/p&gt;
+
+&lt;h3 id=&quot;2-remove-dependency-from-transitive-dependency&quot;&gt;2. Remove dependency from transitive dependency&lt;/h3&gt;
+&lt;p&gt;Let’s look at a more interesting approach.&lt;/p&gt;
+
+&lt;p&gt;We’ll take &lt;a href=&quot;https://github.com/streem/pbandk&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pbandk&lt;/code&gt;&lt;/a&gt; as an example, a very promising &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Kotlin&lt;/code&gt; code generator and runtime for Protocol buffers.&lt;/p&gt;
+
+&lt;p&gt;Imagine that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt; depends on &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pbandk&lt;/code&gt;, which unfortunately depends on the non-optimized version of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;protobuf&lt;/code&gt;, causing a build failure when integrated into the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CustomerApp&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/librarydependencies/dependency_incompatible_pbandk.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/librarydependencies/dependency_incompatible_pbandk.png&quot; alt=&quot;Library dependency has incompatible transitive dependency&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Now to fix this, we need to ensure that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;protobuf-java&lt;/code&gt; doesn’t get transitively added to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CustomerApp&lt;/code&gt; after adding a dependency on &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;So we’ll have to add a dependency exclusion to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt;’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pom.xml&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;...
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependencies&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;pro.streem.pbandk&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;pbandk-runtime-jvm&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;0.9.0&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;exclusions&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;exclusion&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;com.google.protobuf&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;protobuf-java&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/exclusion&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/exclusions&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependencies&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This can be done by modifying the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;publishing&lt;/code&gt; block of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt;’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;pom&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;withXml&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;asNode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;appendNode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'dependencies'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;configurations&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getByName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;releaseCompileClasspath&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getResolvedConfiguration&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getFirstLevelModuleDependencies&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dependency&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;appendNode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'dependency'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;it&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;moduleName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;contains&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;pbandk&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;dependency&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;appendNode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'version'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;moduleVersion&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;exclusions&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dependency&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;appendNode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'exclusions'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;protobufExclusion&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;exclusions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;appendNode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'exclusion'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;protobufExclusion&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;appendNode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'groupId'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;com.google.protobuf&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;protobufExclusion&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;appendNode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'artifactId'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;protobuf-java&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;dependency&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;appendNode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'version'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;moduleVersion&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And don’t forget to also add &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;protobuf-javalite&lt;/code&gt; as a direct transitive dependency to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt;. This is needed to ensure the SDK also works in apps that don’t rely on &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;protobuf-javalite&lt;/code&gt; yet.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://jeroenmols.com/img/blog/librarydependencies/dependency_incompatible_pbandkfix.png&quot;&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/librarydependencies/dependency_incompatible_pbandkfix.png&quot; alt=&quot;Library dependency has incompatible transitive dependency&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note that the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pbandk&lt;/code&gt; example is just as an illustration. The library is still under active development and there is an &lt;a href=&quot;https://github.com/streem/pbandk/issues/91&quot;&gt;open issue&lt;/a&gt; to address this.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;3-remove-transitive-dependency-from-library-1&quot;&gt;3. Remove transitive dependency from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;Similar to solving dependency version conflicts, incompatibilities can also be solved by removing the transitive dependency altogether. Again with the disadvantage of having to write more code in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;investigate-dependency-conflicts&quot;&gt;Investigate dependency conflicts&lt;/h2&gt;
+&lt;p&gt;Finally, whenever a dependency conflict occurs, there is one Gradle command that will be a lifesaver while debugging:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;./gradlew :library:dependencies
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Which will give you a detailed overview of how each transitive dependency ends up in your classpath:&lt;/p&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;./&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gradlew&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;console&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plain&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;app:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;configuration&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;releaseRuntimeClasspath&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Task&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;app:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;------------------------------------------------------------&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Project&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;------------------------------------------------------------&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;releaseRuntimeClasspath&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Runtime&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;classpath&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;of&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;compilation&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'release'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;target&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;androidJvm&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)).&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;+---&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;org&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;jetbrains&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;kotlin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kotlin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;stdlib:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;72&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;+---&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;org&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;jetbrains&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;kotlin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kotlin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stdlib&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;common:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;72&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;org&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;jetbrains&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;annotations:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;13.0&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;+---&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;androidx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;core&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;core&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;ktx:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;+---&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;org&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;jetbrains&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;kotlin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kotlin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;stdlib:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;71&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;72&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(*)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;+---&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;androidx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;annotation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;annotation:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;androidx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;core&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;core:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;         &lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;+---&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;androidx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;appcompat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;appcompat:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;+---&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;androidx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;annotation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;annotation:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;+---&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;androidx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;core&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;core:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(*)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;+---&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;androidx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;cursoradapter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;cursoradapter:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;+---&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;androidx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;fragment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;fragment:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;+---&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;androidx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;appcompat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;appcompat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;resources:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;   
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;+---&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;androidx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;drawerlayout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;drawerlayout:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;androidx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;collection&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;collection:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(*)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;+---&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;google&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;material&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;material:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;+---&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;androidx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;annotation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;annotation:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;+---&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;androidx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;appcompat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;appcompat:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(*)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;+---&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;androidx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;cardview&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;cardview:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;+---&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;androidx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;coordinatorlayout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;coordinatorlayout:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;+---&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;androidx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;core&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;core:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(*)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;+---&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;androidx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;annotation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;annotation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;experimental:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;+---&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;androidx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;fragment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;fragment:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(*)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;+---&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;androidx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;lifecycle&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lifecycle&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;runtime:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;2.0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;2.1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(*)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;+---&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;androidx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;recyclerview&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;recyclerview:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;+---&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;androidx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;transition&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;transition:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;+---&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;androidx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;vectordrawable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;vectordrawable:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(*)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;androidx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;viewpager2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;viewpager2:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;         &lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;androidx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;constraintlayout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;constraintlayout:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;
+     &lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;androidx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;constraintlayout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;constraintlayout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;solver:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;(*)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;omitted&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;listed&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;previously&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Notice the sheer amount of dependencies that the standard Android project template already has!&lt;/p&gt;
+
+&lt;h2 id=&quot;recommendation&quot;&gt;Recommendation&lt;/h2&gt;
+&lt;p&gt;Transitive SDK dependencies can create very challenging issues. These tend to be hard to predict as they only pop up for certain combinations of dependencies in a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CustomerApp&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Worse even, their blame might be pushed onto the wrong SDK. And your SDK might be blamed for a conflict caused by an obsolete transitive &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Firebase&lt;/code&gt; dependency.&lt;/p&gt;
+
+&lt;p&gt;The only foolproof way to solve these issues is to not use any transitive dependencies for your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;And while that’s likely not very practical, here’s a few tips to avoid transitive dependency problems:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;minimize transitive dependencies
+    &lt;ul&gt;
+      &lt;li&gt;often it’s easy to write your own (minimal) solution&lt;/li&gt;
+      &lt;li&gt;focus on commonly used dependencies (e.g. OkHttp) -&amp;gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CustomerApp&lt;/code&gt; likely has this already&lt;/li&gt;
+      &lt;li&gt;investigate breaking changes are handled&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;specify minimum versions instead of specific ones&lt;/li&gt;
+  &lt;li&gt;only rely on stable transitive dependencies (no RC, Beta or Alpha)&lt;/li&gt;
+  &lt;li&gt;use android optimized dependencies&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Finally, to combat device fragmentation, Android has a rich set of &lt;a href=&quot;https://developer.android.com/jetpack&quot;&gt;Jetpack libraries&lt;/a&gt;. These have become so ubiquitous, that it’s close to impossible not to rely on them when developing an Android app or SDK.&lt;/p&gt;
+
+&lt;p&gt;Therefore, and thanks to their amazing track record of backward compatibility, it’s fine to rely on &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AndroidX&lt;/code&gt; dependencies. Most tips above remain valid (e.g. min version, no alpha’s,…) and keep in mind that some &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AndroidX&lt;/code&gt; libraries may need Google play services in order to work.&lt;/p&gt;
+
+&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
+&lt;p&gt;Transitive dependencies problems only occur when a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CustomerApp&lt;/code&gt; has certain combinations of dependencies. This makes them hard to predict and quite disruptive for both the SDK as app developers.&lt;/p&gt;
+
+&lt;p&gt;Try to reduce the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library&lt;/code&gt;’s transitive dependencies to a minimum and focus on popular, Android optimized dependencies.&lt;/p&gt;
+
+&lt;p&gt;If you’ve made it this far you should probably follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=androidlibrarydevelopment-dependencies2020&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
+. Feel free to leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="android" /><category term="library" /><category term="maven" /><category term="transitive dependencies" /><category term="gradle" /><category term="kotlin" /><summary type="html">Ever had a build failure while integrating an SDK? Wonder how you can avoid your SDK customers having dependency conflicts? How many transitive dependencies should your SDK have?</summary></entry><entry><title type="html">Android library development - Modularization</title><link href="https://jeroenmols.com/blog/2020/11/04/library-modularization/" rel="alternate" type="text/html" title="Android library development - Modularization" /><published>2020-11-04T00:00:00+01:00</published><updated>2020-11-04T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2020/11/04/library-modularization</id><content type="html" xml:base="https://jeroenmols.com/blog/2020/11/04/library-modularization/">&lt;p&gt;With modularization being all the hype, should you also modularize an SDK? Are fat aar files really needed? And how do you prevent internal APIs from being exposed on your public interface?&lt;/p&gt;
 
 &lt;p&gt;This post will cover all things modularization for Android libraries.&lt;/p&gt;
 
@@ -7,7 +382,7 @@
   &lt;ul&gt;
     &lt;li&gt;Part 1: &lt;a href=&quot;/blog/2020/10/28/library-gettingstarted/&quot;&gt;Getting started&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;Part 2: &lt;a href=&quot;/blog/2020/11/04/library-modularization/&quot;&gt;Modularization&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;Part 3: Transitive dependencies&lt;/li&gt;
+    &lt;li&gt;Part 3: &lt;a href=&quot;/blog/2020/11/11/library-dependencies/&quot;&gt;Transitive dependencies&lt;/a&gt;&lt;/li&gt;
   &lt;/ul&gt;
 &lt;/blockquote&gt;
 
@@ -163,7 +538,7 @@
 &lt;p&gt;Modularizing SDKs on Android unfortunately creates significant issues with packaging and restricting visibility of code. Therefore single module SDKs should be preferred.&lt;/p&gt;
 
 &lt;p&gt;Don’t forget to follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=androidlibrarydevelopment-modularization2020&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
- so you don’t miss the last part on transitive dependencies!&lt;/p&gt;
+ and don’t miss the last part about &lt;a href=&quot;/blog/2020/11/11/library-dependencies/&quot;&gt;transitive dependencies&lt;/a&gt;!&lt;/p&gt;
 
 &lt;p&gt;Feel free to leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="android" /><category term="library" /><category term="modularization" /><category term="maven" /><category term="gradle" /><category term="kotlin" /><summary type="html">With modularization being all the hype, should you also modularize an SDK? Are fat aar files really needed? And how do you prevent internal APIs from being exposed on your public interface?</summary></entry><entry><title type="html">Android library development - Getting started</title><link href="https://jeroenmols.com/blog/2020/10/28/library-gettingstarted/" rel="alternate" type="text/html" title="Android library development - Getting started" /><published>2020-10-28T00:00:00+01:00</published><updated>2020-10-28T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2020/10/28/library-gettingstarted</id><content type="html" xml:base="https://jeroenmols.com/blog/2020/10/28/library-gettingstarted/">&lt;p&gt;Having switched to Android SDK development over the past year, I’ve run into quite a few interesting and unexpected challenges. So how does library development differ from app development?&lt;/p&gt;
 
@@ -174,7 +549,7 @@
   &lt;ul&gt;
     &lt;li&gt;Part 1: &lt;a href=&quot;/blog/2020/10/28/library-gettingstarted/&quot;&gt;Getting started&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;Part 2: &lt;a href=&quot;/blog/2020/11/04/library-modularization/&quot;&gt;Modularization&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;Part 3: Transitive dependencies&lt;/li&gt;
+    &lt;li&gt;Part 3: &lt;a href=&quot;/blog/2020/11/11/library-dependencies/&quot;&gt;Transitive dependencies&lt;/a&gt;&lt;/li&gt;
   &lt;/ul&gt;
 &lt;/blockquote&gt;
 
@@ -1821,76 +2196,4 @@
 &lt;p&gt;Android Q gesture navigation will impact how users interact with our apps. For most apps, this should work out of the box, but in rare cases, the system gesture exclusion API can help whitelist parts of your app where touch is required to work near the edges.&lt;/p&gt;
 
 &lt;p&gt;Follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=supportingandroidqgesturalnavigation2019&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
- to get notified when I post more interesting content! Feel free to leave a comment below.&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="ui" /><category term="androidq" /><category term="navigation" /><category term="gestures" /><summary type="html">From Android Q onwards devices can now operate in a fully gestural system navigation mode. In that mode, there is no longer an on-screen back button, instead users can swipe from both edges to navigate back.</summary></entry><entry><title type="html">Philips Hue adaptive icon</title><link href="https://jeroenmols.com/blog/2019/07/03/adaptiveicon/" rel="alternate" type="text/html" title="Philips Hue adaptive icon" /><published>2019-07-03T00:00:00+02:00</published><updated>2019-07-03T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2019/07/03/adaptiveicon</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/07/03/adaptiveicon/">&lt;p&gt;Your icon is one of the most important assets in your app. With a bit of luck, users might even put it on their main launcher screen!&lt;/p&gt;
-
-&lt;p&gt;As various Android launchers, versions or devices might resize/reshape your icon to make them look consistent, you’ll need to be robust against this kind of changes. Learn how we did that at Philips Hue.&lt;/p&gt;
-
-&lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
-&lt;p&gt;For various years, different device manufacturers have been reshaping icons to make them fit their custom skin of Android. Unfortunately, there wasn’t a clear contract in place to do that reshaping, leading to some pretty bad results:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/adaptiveicon/poor_icon_shapes.png&quot; alt=&quot;Badly resized Philips Hue icons&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Shadows overlayed on top of the Philips wordmark, part of the Hue text cut off and a teardrop shape that looked really weird are just a few of the problems.&lt;/p&gt;
-
-&lt;p&gt;Fortunately, in Android O, adaptive icons came to the rescue to solve this problem.&lt;/p&gt;
-
-&lt;h2 id=&quot;icon-design&quot;&gt;Icon design&lt;/h2&gt;
-&lt;p&gt;Inspired by &lt;a href=&quot;https://medium.com/google-design/designing-adaptive-icons-515af294c783&quot;&gt;this blog post from Nick Butcher&lt;/a&gt;, we wanted to create a depth effect in our icon. Wouldn’t it be cool if our icon could change color just like our lights?&lt;/p&gt;
-
-&lt;p&gt;Hence we decided to use a gradient as the background layer:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/adaptiveicon/icon_background.png&quot; alt=&quot;Adaptive icon background&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Notice how the gradient gets lighter towards the top and darker towards the bottom. It also contains a darker shade of red on the left side and a darker shade of blue on the right.&lt;/p&gt;
-
-&lt;p&gt;The foreground of the icon, however, consists out of a static blue “Philips” word mark and a plain white background with “Hue” cut out from that:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/adaptiveicon/icon_foreground.png&quot; alt=&quot;Adaptive icon foreground&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Now when the icon will be dragged or pressed, the foreground will move independently of the background causing the “Hue” cutout to hover over different parts of the gradient. This creates a very nice effect where the Hue logo slightly changes colors!&lt;/p&gt;
-
-&lt;h2 id=&quot;implementation&quot;&gt;Implementation&lt;/h2&gt;
-&lt;p&gt;In Android Studio, right-click your project and select “New &amp;gt; Image asset”.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/adaptiveicon/create_image_asset.png&quot; alt=&quot;Create image asset&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;For the best scaling quality and minimal icon size, we use a vector asset as the foreground layer. This wasn’t possible for the gradient though due to the complexity of that asset, so for that we use a webp background.&lt;/p&gt;
-
-&lt;p&gt;Notice how both “Hue” and “Philips” fit nicely within the safe zone indicated by the circle area. This is the zone that is guaranteed to be always displayed and never cut off.&lt;/p&gt;
-
-&lt;p&gt;Make sure to also generate a round icon for Android N and plain image assets for older Android versions. Click next and review the assets being generated, and finish to complete the icon creation.&lt;/p&gt;
-
-&lt;p&gt;You’ll see that in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mipmap-anydpi-v26&lt;/code&gt; two resources get generated &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ic_launcher.xml&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ic_launcher_round.xml&lt;/code&gt;. Both these files simply indicate what resource to use for the icon foreground and background:&lt;/p&gt;
-
-&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;adaptive-icon&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:android=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.android.com/apk/res/android&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;background&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;android:drawable=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@mipmap/ic_launcher_background&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;foreground&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;android:drawable=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@drawable/ic_launcher_foreground&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/adaptive-icon&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;In the Android manifest you simply reference both resources in order to use them:&lt;/p&gt;
-
-&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;application&lt;/span&gt;
-       &lt;span class=&quot;err&quot;&gt;...&lt;/span&gt;
-       &lt;span class=&quot;na&quot;&gt;android:icon=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@mipmap/ic_launcher&quot;&lt;/span&gt;
-       &lt;span class=&quot;na&quot;&gt;android:roundIcon=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@mipmap/ic_launcher_round&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Note: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ic_launcher_round.xml&lt;/code&gt; got introduced with the launch of the Google Pixel (Android N) and has since been replaced with the more powerful adaptive icon. &lt;br /&gt; However you can still provide a rounded icon to avoid that Android N devices show your square item in a round bounding box:
-&lt;img src=&quot;https://jeroenmols.com/img/blog/adaptiveicon/boxed_icon.png&quot; alt=&quot;Boxed icon when no round variant is provided&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;end-result&quot;&gt;End result&lt;/h2&gt;
-&lt;p&gt;Bringing it all together, we now have an icon that not only adapts to any device launcher, but also has a nice subtle color effect on the Hue letters while moving.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/adaptiveicon/adaptive_icon.gif&quot; alt=&quot;Adaptive icon Philips Hue&quot; class=&quot;align-center&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Notice for instance how the letter “e” changes from green to blue while moving right.&lt;/p&gt;
-
-&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
-&lt;p&gt;The launcher icon is one of the most important assets of your app and therefore it is key to make it look perfect on any device. Adaptive icons make that possible and also allow you to add a nice little extra touch to your app.&lt;/p&gt;
-
-&lt;p&gt;If you’ve made it this far you should probably follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=philipshueadaptiveicon2019&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
-. Feel free to leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="ui" /><category term="android" /><category term="adaptive icon" /><summary type="html">Your icon is one of the most important assets in your app. With a bit of luck, users might even put it on their main launcher screen!</summary></entry></feed>
+ to get notified when I post more interesting content! Feel free to leave a comment below.&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="ui" /><category term="androidq" /><category term="navigation" /><category term="gestures" /><summary type="html">From Android Q onwards devices can now operate in a fully gestural system navigation mode. In that mode, there is no longer an on-screen back button, instead users can swipe from both edges to navigate back.</summary></entry></feed>

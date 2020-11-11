@@ -1,0 +1,1125 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.3 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Android library development - Dependencies - Jeroen Mols</title>
+<meta name="description" content="Ever had a build failure while integrating an SDK? Wonder how you can avoid your SDK customers having dependency conflicts? How many transitive dependencies should your SDK have?">
+
+
+  <meta name="author" content="Jeroen Mols">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="Jeroen Mols">
+<meta property="og:title" content="Android library development - Dependencies">
+<meta property="og:url" content="https://jeroenmols.com/blog/2020/11/11/library-dependencies/">
+
+
+  <meta property="og:description" content="Ever had a build failure while integrating an SDK? Wonder how you can avoid your SDK customers having dependency conflicts? How many transitive dependencies should your SDK have?">
+
+
+
+  <meta property="og:image" content="https://jeroenmols.com/img/blog/librarydependencies/librarydependencies.jpg">
+
+
+
+  <meta name="twitter:site" content="@molsjeroen">
+  <meta name="twitter:title" content="Android library development - Dependencies">
+  <meta name="twitter:description" content="Ever had a build failure while integrating an SDK? Wonder how you can avoid your SDK customers having dependency conflicts? How many transitive dependencies should your SDK have?">
+  <meta name="twitter:url" content="https://jeroenmols.com/blog/2020/11/11/library-dependencies/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+      <meta name="twitter:image" content="https://jeroenmols.com/img/blog/librarydependencies/librarydependencies.jpg">
+    
+  
+
+  
+    <meta name="twitter:creator" content="@molsjeroen">
+  
+
+
+
+  <meta property="article:published_time" content="2020-11-11T00:00:00+01:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://jeroenmols.com/blog/2020/11/11/library-dependencies/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Jeroen Mols",
+      "url": "https://jeroenmols.com/",
+      "sameAs": ["https://twitter.com/molsjeroen","https://www.linkedin.com/in/jeroenmols/","https://plus.google.com/+JeroenMols","https://github.com/JeroenMols","https://speakerdeck.com/jeroenmols","https://stackoverflow.com/users/2771851/jmols"]
+    
+  }
+</script>
+
+
+  <meta name="google-site-verification" content="8E8HUpExgyNFdLuFMWmkSUl08gISnOF3UWexA55aNrk" />
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$('.ga-link').on('click', function(){
+		if (typeof(ga)!=="undefined"){
+			ga('send',{
+				hitType: 'event',
+				eventCategory: 'Outbound link',
+				eventAction: 'click',
+				eventLabel: event.target.href
+			});
+	  	}
+	});
+})	;
+</script>
+
+<meta name="theme-color" content="#3d405b">
+
+<link href="atom.xml" type="application/atom+xml" rel="alternate" title="Jeroen Mols Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="https://jeroenmols.com/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Jeroen Mols
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/blog/">Blog</a>
+            </li><li class="masthead__menu-item">
+              <a href="/speaking/">Speaking</a>
+            </li><li class="masthead__menu-item">
+              <a href="/hireme/">Hire me</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/img/profile.jpg" alt="Jeroen Mols" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Jeroen Mols</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Android freelancer and Google Developer Expert</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Geel, Belgium</span>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://twitter.com/@molsjeroen" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="https://www.linkedin.com/in/jeroenmols" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/JeroenMols" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="https://stackoverflow.com/users/2771851/jmols" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i><span class="label">Stack Overflow</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        
+          <li>
+            <a href="https://www.youtube.com/channel/UC34Vt1lo8T15_rgc3e3Jsew" itemprop="sameAs" rel="nofollow noopener noreferrer">
+              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span>
+            </a>
+          </li>
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+  <li>
+    <a href="https://speakerdeck.com/jeroenmols" itemprop="sameAs">
+      <i class="fab fa-fw fa-speaker-deck" aria-hidden="true"></i> Speaker Deck
+    </a>
+  </li>
+
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Android library development - Dependencies">
+    <meta itemprop="description" content="Ever had a build failure while integrating an SDK? Wonder how you can avoid your SDK customers having dependency conflicts? How many transitive dependencies should your SDK have?">
+    <meta itemprop="datePublished" content="November 11, 2020">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Android library development - Dependencies
+</h1>
+          <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  11 Nov 2020</p>
+
+          
+            <img src="https://jeroenmols.com/img/blog/librarydependencies/librarydependencies.jpg" alt="Android library development - Dependencies" title="Photo by Joey Kyber from Pexels, https://www.pexels.com/photo/sea-nature-sunset-water-119562/, cropped and resized">
+          
+
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  9 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>Ever had a build failure while integrating an SDK? Wonder how you can avoid your SDK customers having dependency conflicts? How many transitive dependencies should your SDK have?</p>
+
+<p>This post will cover how transitive dependencies of an Android library affect Apps integrating it.</p>
+
+<blockquote>
+  <p>This blog post is part of a series on Android libraries:</p>
+  <ul>
+    <li>Part 1: <a href="/blog/2020/10/28/library-gettingstarted/">Getting started</a></li>
+    <li>Part 2: <a href="/blog/2020/11/04/library-modularization/">Modularization</a></li>
+    <li>Part 3: <a href="/blog/2020/11/11/library-dependencies/">Transitive dependencies</a></li>
+  </ul>
+</blockquote>
+
+<h2 id="introduction">Introduction</h2>
+<blockquote>
+  <p>This post assumes familiarity with transitive dependencies and how Maven handles those. You can learn all about that and much more in <a href="/blog/2020/10/28/library-gettingstarted/">the first part</a> of this series.</p>
+</blockquote>
+
+<p>Assume there is an existing application <code class="language-plaintext highlighter-rouge">CustomerApp</code> that is about to start using our library:</p>
+
+<p><a href="https://jeroenmols.com/img/blog/librarydependencies/customerapp_before.png"><img src="https://jeroenmols.com/img/blog/librarydependencies/customerapp_before.png" alt="Customer app about to integrate a new library" class="align-center" /></a></p>
+
+<p>Before integration, they have a single dependency on <code class="language-plaintext highlighter-rouge">Another library</code> that transitively depends on <code class="language-plaintext highlighter-rouge">Transitive dependency 1</code>.</p>
+
+<p>Now when they integrate the new <code class="language-plaintext highlighter-rouge">library</code>:</p>
+
+<p><a href="https://jeroenmols.com/img/blog/librarydependencies/customerapp_after.png"><img src="https://jeroenmols.com/img/blog/librarydependencies/customerapp_after.png" alt="Customer app after integrating a new library" class="align-center" /></a></p>
+
+<p>They don’t just start to depend on <code class="language-plaintext highlighter-rouge">library</code>, but they also depend on all its transitive dependencies <code class="language-plaintext highlighter-rouge">Transitive dependency 1</code> and <code class="language-plaintext highlighter-rouge">Transitive dependency 2</code>.</p>
+
+<p>All these transitive dependencies can easily cause integration issues in the host <code class="language-plaintext highlighter-rouge">CustomerApp</code>.</p>
+
+<p>This blog post will look at the two most common issues:</p>
+
+<ul>
+  <li>conflicting transitive dependency versions</li>
+  <li>incompatible transitive dependencies</li>
+</ul>
+
+<p>It’s important to note that when transitive dependency issues occur, the last integrated SDK will be blamed for these issues!!!</p>
+
+<p><code class="language-plaintext highlighter-rouge">CustomerApp</code> was compiling fine with <code class="language-plaintext highlighter-rouge">Another library</code>, only after adding <code class="language-plaintext highlighter-rouge">library</code> the issues occurred. So as an SDK developer, this is our problem to solve.</p>
+
+<h2 id="conflicting-dependency-versions">Conflicting dependency versions</h2>
+<p>Imagine if <code class="language-plaintext highlighter-rouge">CustomerApp</code> integrates the following two SDKs:</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dependencies</span> <span class="o">{</span>
+  <span class="n">implementation</span> <span class="s2">"com.jeroenmols:library:1.0.0"</span>
+  <span class="n">implementation</span> <span class="s2">"com.example:anotherlibrary:2.0.0"</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>And that both <code class="language-plaintext highlighter-rouge">library</code> and <code class="language-plaintext highlighter-rouge">anotherLibary</code> depend on a different version of a common dependency like <code class="language-plaintext highlighter-rouge">OkHttp</code>.</p>
+
+<p><a href="https://jeroenmols.com/img/blog/librarydependencies/dependency_versions.png"><img src="https://jeroenmols.com/img/blog/librarydependencies/dependency_versions.png" alt="Customer app after integrating a new library" class="align-center" /></a></p>
+
+<p>Now building <code class="language-plaintext highlighter-rouge">CustomerApp</code> would fail, because Gradle can’t know what <code class="language-plaintext highlighter-rouge">OkHttp</code> version to pick: <code class="language-plaintext highlighter-rouge">v3</code> or <code class="language-plaintext highlighter-rouge">v4</code>?</p>
+
+<p>While more solutions possible, this post will cover the three most common ways this problem can be fixed:</p>
+
+<ol>
+  <li>Force dependency resolution in <code class="language-plaintext highlighter-rouge">CustomerApp</code></li>
+  <li>Loosen dependency requirements in <code class="language-plaintext highlighter-rouge">library</code></li>
+  <li>Remove transitive dependency from <code class="language-plaintext highlighter-rouge">library</code></li>
+</ol>
+
+<h3 id="1-force-dependency-resolution-in-customerapp">1. Force dependency resolution in <code class="language-plaintext highlighter-rouge">CustomerApp</code></h3>
+<p>The first way to address this problem is by adding code in the <code class="language-plaintext highlighter-rouge">CustomerApp</code> to force a particular dependency version.</p>
+
+<p>This can either be done by excluding the <code class="language-plaintext highlighter-rouge">OkHttp</code> version from the <code class="language-plaintext highlighter-rouge">library</code> dependency.</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">implementation</span><span class="o">(</span><span class="s1">'com.jeroenmols:library:1.0.0'</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">exclude</span> <span class="nl">group:</span> <span class="s1">'com.squareup.okhttp3'</span><span class="o">,</span> <span class="nl">module:</span> <span class="s1">'okhttp'</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Or by forcing the resolved <code class="language-plaintext highlighter-rouge">OkHttp</code> version for all dependencies to a particular version:</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">configurations</span><span class="o">.</span><span class="na">all</span> <span class="o">{</span>
+  <span class="n">resolutionStrategy</span> <span class="o">{</span>
+    <span class="n">force</span> <span class="s1">'com.squareup.okhttp3:okhttp:4.9.0'</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The main advantage of this strategy is that no <code class="language-plaintext highlighter-rouge">library</code> update is required. So the developers of <code class="language-plaintext highlighter-rouge">CustomerApp</code> can apply this themselves when a conflict occurs.</p>
+
+<p>However, this is incredibly dangerous as <code class="language-plaintext highlighter-rouge">CustomerApp</code> is now forcing <code class="language-plaintext highlighter-rouge">AnotherLibrary</code> to work with <code class="language-plaintext highlighter-rouge">OkHttp</code> version <code class="language-plaintext highlighter-rouge">4.9.0</code>, whereas <code class="language-plaintext highlighter-rouge">AnotherLibrary</code> was expecting <code class="language-plaintext highlighter-rouge">OkHttp</code> <code class="language-plaintext highlighter-rouge">3.x.x</code>!</p>
+
+<p>And since the developers of <code class="language-plaintext highlighter-rouge">AnotherLibrary</code> never tested their SDK with the enforced version of <code class="language-plaintext highlighter-rouge">OkHttp</code>, this could cause runtime crashes (e.g. <code class="language-plaintext highlighter-rouge">ClassNotFoundException</code>), behavior differences,…</p>
+
+<p>A second downside is that this puts the burden on the SDK customers (i.e. <code class="language-plaintext highlighter-rouge">CustomerApp</code>) to fix the problems arising from integrating your SDK.</p>
+
+<h3 id="2-loosen-dependency-requirements-in-library">2. Loosen dependency requirements in <code class="language-plaintext highlighter-rouge">library</code></h3>
+<p>A better solution is to loosen the dependency requirements of the <code class="language-plaintext highlighter-rouge">library</code>.</p>
+
+<p>Instead of explicitly requiring version <code class="language-plaintext highlighter-rouge">OkHttp</code> version <code class="language-plaintext highlighter-rouge">4.9.0</code>, the SDK can also require a minimum version of <code class="language-plaintext highlighter-rouge">4.0.0</code> or higher in the <code class="language-plaintext highlighter-rouge">pom.xml</code>:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+<span class="nt">&lt;dependencies&gt;</span>
+  <span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>com.squareup.okhttp3<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>okhttp3<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>[4.0.0,)<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>compile<span class="nt">&lt;/scope&gt;</span>
+  <span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;/dependencies&gt;</span>
+</code></pre></div></div>
+
+<p>Notice how the <code class="language-plaintext highlighter-rouge">OkHttp</code> version is now specified as <code class="language-plaintext highlighter-rouge">[4.0.0,)</code> meaning any version of <code class="language-plaintext highlighter-rouge">4.0.0</code> or higher is supported.</p>
+
+<p>In order to achieve this using Gradle, the <code class="language-plaintext highlighter-rouge">publishing</code> block of SDK <code class="language-plaintext highlighter-rouge">build.gradle</code> needs to contain the following:</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pom</span><span class="o">.</span><span class="na">withXml</span> <span class="o">{</span>
+  <span class="kt">def</span> <span class="n">dependencies</span> <span class="o">=</span> <span class="n">asNode</span><span class="o">().</span><span class="na">appendNode</span><span class="o">(</span><span class="s1">'dependencies'</span><span class="o">)</span>
+  <span class="n">configurations</span><span class="o">.</span><span class="na">getByName</span><span class="o">(</span><span class="s2">"releaseCompileClasspath"</span><span class="o">).</span><span class="na">getResolvedConfiguration</span><span class="o">().</span><span class="na">getFirstLevelModuleDependencies</span><span class="o">().</span><span class="na">each</span> <span class="o">{</span>
+    <span class="o">...</span>
+    <span class="kt">def</span> <span class="n">dependency</span> <span class="o">=</span> <span class="n">dependencies</span><span class="o">.</span><span class="na">appendNode</span><span class="o">(</span><span class="s1">'dependency'</span><span class="o">)</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">it</span><span class="o">.</span><span class="na">moduleGroup</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="s1">'okhttp3'</span><span class="o">))</span> <span class="o">{</span>
+        <span class="n">dependency</span><span class="o">.</span><span class="na">appendNode</span><span class="o">(</span><span class="s1">'version'</span><span class="o">,</span> <span class="s2">"[4.0.0,)"</span><span class="o">)</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="n">dependency</span><span class="o">.</span><span class="na">appendNode</span><span class="o">(</span><span class="s1">'version'</span><span class="o">,</span> <span class="n">it</span><span class="o">.</span><span class="na">moduleVersion</span><span class="o">)</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The main advantage of this strategy is that this doesn’t require any action from the <code class="language-plaintext highlighter-rouge">CustomerApp</code>.</p>
+
+<p>On the other hand, this increases the testing burden for the developers of <code class="language-plaintext highlighter-rouge">library</code> to ensure compatibility with all supported versions of <code class="language-plaintext highlighter-rouge">OkHttp</code>.</p>
+
+<p>Also, imagine <code class="language-plaintext highlighter-rouge">OkHttp</code> release a new major version <code class="language-plaintext highlighter-rouge">5.x.x</code> with massive breaking API changes. What version of <code class="language-plaintext highlighter-rouge">OkHttp</code> would <code class="language-plaintext highlighter-rouge">library</code> then support and force their customers to adopt?</p>
+
+<blockquote>
+  <p>Note that <code class="language-plaintext highlighter-rouge">OkHttp</code> actually solves this problem by <a href="https://jakewharton.com/java-interoperability-policy-for-major-version-updates/">including the version in their package name</a>:</p>
+  <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.square.okhttp3</span>
+</code></pre></div>  </div>
+  <p>and Maven coordinates:</p>
+  <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">implementation</span> <span class="s1">'com.squareup.okhttp3:okhttp3:4.9.0'</span>
+</code></pre></div>  </div>
+  <p>So for <code class="language-plaintext highlighter-rouge">OkHttp</code> different major versions can coexist in <code class="language-plaintext highlighter-rouge">CustomerApp</code>, but this isn’t true for all other SDKs.</p>
+</blockquote>
+
+<h3 id="3-remove-transitive-dependency-from-library">3. Remove transitive dependency from <code class="language-plaintext highlighter-rouge">library</code></h3>
+<p>While obvious, this actually is a highly effective way of reducing transitive dependency conflicts. Downside is that the library needs more code to solve the challenges the dependency would.</p>
+
+<p>This is also the only proposed solution that would be able to fully handle breaking API changes of a particular dependency that doesn’t support major versions to coexist.</p>
+
+<h2 id="incompatible-transitive-dependencies">Incompatible transitive dependencies</h2>
+<p>Similar to conflicting dependency versions, dependencies can be downright incompatible.</p>
+
+<p>Take for instance <a href="https://developers.google.com/protocol-buffers">protocol buffers</a>, which has two different artifacts:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">protobuf-java</code></li>
+  <li><code class="language-plaintext highlighter-rouge">protobuf-javalite</code> (optimized for Android)</li>
+</ul>
+
+<p>These artifacts are mostly similar but optimized for different use cases.</p>
+
+<p>So for a <code class="language-plaintext highlighter-rouge">CustomerApp</code> with two <code class="language-plaintext highlighter-rouge">libraries</code> dependencies that transitive rely on a different <code class="language-plaintext highlighter-rouge">protobuf</code> artifact:</p>
+
+<p><a href="https://jeroenmols.com/img/blog/librarydependencies/dependency_incompatible.png"><img src="https://jeroenmols.com/img/blog/librarydependencies/dependency_incompatible.png" alt="Customer app with incompatible transitive dependencies" class="align-center" /></a></p>
+
+<p>Compilation will fail! Because both <code class="language-plaintext highlighter-rouge">protobuf-java</code> and <code class="language-plaintext highlighter-rouge">protobuf-javalite</code> define the same/similar classes in the same namespace:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./gradlew clean assembleDebug
+&gt; Task :app:checkDebugDuplicateClasses FAILED
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':myproject:checkReleaseDuplicateClasses'.
+&gt; 1 exception was raised by workers:
+  java.lang.RuntimeException: Duplicate class com.google.protobuf.AbstractMessageLite found in modules protobuf-java-3.11.1.jar (com.google.protobuf:protobuf-java:3.11.1) and protobuf-javalite-3.11.0.jar (com.google.protobuf:protobuf-javalite:3.11.0)
+  Duplicate class com.google.protobuf.AbstractMessageLite$Builder found in modules protobuf-java-3.11.1.jar (com.google.protobuf:protobuf-java:3.11.1) and protobuf-javalite-3.11.0.jar (com.google.protobuf:protobuf-javalite:3.11.0)
+  Duplicate class com.google.protobuf.AbstractMessageLite$Builder$LimitedInputStream found in modules protobuf-java-3.11.1.jar (com.google.protobuf:protobuf-java:3.11.1) and protobuf-javalite-3.11.0.jar (com.google.protobuf:protobuf-javalite:3.11.0)
+     ...
+</code></pre></div></div>
+
+<p>And unfortunately for <code class="language-plaintext highlighter-rouge">protobuf</code>, this issue is very common: even Firebase performance monitoring <code class="language-plaintext highlighter-rouge">19.0.7</code> (April 2020 !!!) relied on an even different, incompatible, 4 year old <code class="language-plaintext highlighter-rouge">protobuf</code> artifact!</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">+---</span> <span class="n">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">firebase</span><span class="o">:</span><span class="n">firebase</span><span class="o">-</span><span class="nl">perf:</span><span class="mf">19.0</span><span class="o">.</span><span class="mi">7</span>
+<span class="o">|</span>    <span class="o">+---</span> <span class="n">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">firebase</span><span class="o">:</span><span class="n">firebase</span><span class="o">-</span><span class="nl">config:</span><span class="mf">19.0</span><span class="o">.</span><span class="mi">4</span>
+<span class="o">|</span>    <span class="o">|</span>    <span class="o">+---</span> <span class="n">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">firebase</span><span class="o">:</span><span class="n">firebase</span><span class="o">-</span><span class="nl">abt:</span><span class="mf">19.0</span><span class="o">.</span><span class="mi">0</span>
+<span class="o">|</span>    <span class="o">|</span>    <span class="o">|</span>    <span class="err">\</span><span class="o">---</span> <span class="n">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">protobuf</span><span class="o">:</span><span class="n">protobuf</span><span class="o">-</span><span class="nl">lite:</span><span class="mf">3.0</span><span class="o">.</span><span class="mi">1</span>
+</code></pre></div></div>
+
+<p>So what to do when a transitive dependency of the SDK relies on the wrong dependency?</p>
+
+<p>Let’s have a look at three possible solutions:</p>
+
+<ol>
+  <li>Substitute dependency in <code class="language-plaintext highlighter-rouge">CustomerApp</code></li>
+  <li>Remove dependency from transitive dependency of <code class="language-plaintext highlighter-rouge">library</code></li>
+  <li>Remove transitive dependency from <code class="language-plaintext highlighter-rouge">library</code></li>
+</ol>
+
+<h3 id="1-substitute-dependency-in-customerapp">1. Substitute dependency in <code class="language-plaintext highlighter-rouge">CustomerApp</code></h3>
+<p>Similar to handling conflicting dependency versions, the <code class="language-plaintext highlighter-rouge">CustomerApp</code> can exclude the dependency:</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">implementation</span><span class="o">(</span><span class="s1">'com.jeroenmols:library:1.0.0'</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">exclude</span> <span class="nl">group:</span> <span class="s1">'com.google.protobuf'</span><span class="o">,</span> <span class="nl">module:</span> <span class="s1">'protobuf-java'</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Or force the dependency to be substituted:</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">allprojects</span> <span class="o">{</span>
+  <span class="n">configurations</span><span class="o">.</span><span class="na">all</span> <span class="o">{</span>
+    <span class="n">resolutionStrategy</span><span class="o">.</span><span class="na">dependencySubstitution</span> <span class="o">{</span>
+      <span class="n">substitute</span> <span class="nf">module</span><span class="o">(</span><span class="s1">'com.google.protobuf:protobuf-lite'</span><span class="o">)</span> <span class="n">with</span> <span class="n">module</span><span class="o">(</span><span class="s1">'com.google.protobuf:protobuf-javalite'</span><span class="o">)</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>These solutions have similar advantages and disadvantages as solution 1 for conflicting versions.</p>
+
+<h3 id="2-remove-dependency-from-transitive-dependency">2. Remove dependency from transitive dependency</h3>
+<p>Let’s look at a more interesting approach.</p>
+
+<p>We’ll take <a href="https://github.com/streem/pbandk"><code class="language-plaintext highlighter-rouge">pbandk</code></a> as an example, a very promising <code class="language-plaintext highlighter-rouge">Kotlin</code> code generator and runtime for Protocol buffers.</p>
+
+<p>Imagine that <code class="language-plaintext highlighter-rouge">library</code> depends on <code class="language-plaintext highlighter-rouge">pbandk</code>, which unfortunately depends on the non-optimized version of <code class="language-plaintext highlighter-rouge">protobuf</code>, causing a build failure when integrated into the <code class="language-plaintext highlighter-rouge">CustomerApp</code>:</p>
+
+<p><a href="https://jeroenmols.com/img/blog/librarydependencies/dependency_incompatible_pbandk.png"><img src="https://jeroenmols.com/img/blog/librarydependencies/dependency_incompatible_pbandk.png" alt="Library dependency has incompatible transitive dependency" class="align-center" /></a></p>
+
+<p>Now to fix this, we need to ensure that <code class="language-plaintext highlighter-rouge">protobuf-java</code> doesn’t get transitively added to <code class="language-plaintext highlighter-rouge">CustomerApp</code> after adding a dependency on <code class="language-plaintext highlighter-rouge">library</code>.</p>
+
+<p>So we’ll have to add a dependency exclusion to the <code class="language-plaintext highlighter-rouge">library</code>’s <code class="language-plaintext highlighter-rouge">pom.xml</code>:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+<span class="nt">&lt;dependencies&gt;</span>
+  <span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>pro.streem.pbandk<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>pbandk-runtime-jvm<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>0.9.0<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;exclusions&gt;</span>
+      <span class="nt">&lt;exclusion&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>com.google.protobuf<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>protobuf-java<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;/exclusion&gt;</span>
+    <span class="nt">&lt;/exclusions&gt;</span>
+  <span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;/dependencies&gt;</span>
+</code></pre></div></div>
+
+<p>This can be done by modifying the <code class="language-plaintext highlighter-rouge">publishing</code> block of the <code class="language-plaintext highlighter-rouge">library</code>’s <code class="language-plaintext highlighter-rouge">build.gradle</code>:</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pom</span><span class="o">.</span><span class="na">withXml</span> <span class="o">{</span>
+  <span class="kt">def</span> <span class="n">dependencies</span> <span class="o">=</span> <span class="n">asNode</span><span class="o">().</span><span class="na">appendNode</span><span class="o">(</span><span class="s1">'dependencies'</span><span class="o">)</span>
+  <span class="n">configurations</span><span class="o">.</span><span class="na">getByName</span><span class="o">(</span><span class="s2">"releaseCompileClasspath"</span><span class="o">).</span><span class="na">getResolvedConfiguration</span><span class="o">().</span><span class="na">getFirstLevelModuleDependencies</span><span class="o">().</span><span class="na">each</span> <span class="o">{</span>
+    <span class="o">...</span>
+    <span class="kt">def</span> <span class="n">dependency</span> <span class="o">=</span> <span class="n">dependencies</span><span class="o">.</span><span class="na">appendNode</span><span class="o">(</span><span class="s1">'dependency'</span><span class="o">)</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">it</span><span class="o">.</span><span class="na">moduleName</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="s2">"pbandk"</span><span class="o">))</span> <span class="o">{</span>
+        <span class="n">dependency</span><span class="o">.</span><span class="na">appendNode</span><span class="o">(</span><span class="s1">'version'</span><span class="o">,</span> <span class="n">it</span><span class="o">.</span><span class="na">moduleVersion</span><span class="o">)</span>
+        <span class="kt">def</span> <span class="n">exclusions</span> <span class="o">=</span> <span class="n">dependency</span><span class="o">.</span><span class="na">appendNode</span><span class="o">(</span><span class="s1">'exclusions'</span><span class="o">)</span>
+        <span class="kt">def</span> <span class="n">protobufExclusion</span> <span class="o">=</span> <span class="n">exclusions</span><span class="o">.</span><span class="na">appendNode</span><span class="o">(</span><span class="s1">'exclusion'</span><span class="o">)</span>
+        <span class="n">protobufExclusion</span><span class="o">.</span><span class="na">appendNode</span><span class="o">(</span><span class="s1">'groupId'</span><span class="o">,</span> <span class="s2">"com.google.protobuf"</span><span class="o">)</span>
+        <span class="n">protobufExclusion</span><span class="o">.</span><span class="na">appendNode</span><span class="o">(</span><span class="s1">'artifactId'</span><span class="o">,</span> <span class="s2">"protobuf-java"</span><span class="o">)</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="n">dependency</span><span class="o">.</span><span class="na">appendNode</span><span class="o">(</span><span class="s1">'version'</span><span class="o">,</span> <span class="n">it</span><span class="o">.</span><span class="na">moduleVersion</span><span class="o">)</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>And don’t forget to also add <code class="language-plaintext highlighter-rouge">protobuf-javalite</code> as a direct transitive dependency to the <code class="language-plaintext highlighter-rouge">library</code>. This is needed to ensure the SDK also works in apps that don’t rely on <code class="language-plaintext highlighter-rouge">protobuf-javalite</code> yet.</p>
+
+<p><a href="https://jeroenmols.com/img/blog/librarydependencies/dependency_incompatible_pbandkfix.png"><img src="https://jeroenmols.com/img/blog/librarydependencies/dependency_incompatible_pbandkfix.png" alt="Library dependency has incompatible transitive dependency" class="align-center" /></a></p>
+
+<blockquote>
+  <p>Note that the <code class="language-plaintext highlighter-rouge">pbandk</code> example is just as an illustration. The library is still under active development and there is an <a href="https://github.com/streem/pbandk/issues/91">open issue</a> to address this.</p>
+</blockquote>
+
+<h3 id="3-remove-transitive-dependency-from-library-1">3. Remove transitive dependency from <code class="language-plaintext highlighter-rouge">library</code></h3>
+<p>Similar to solving dependency version conflicts, incompatibilities can also be solved by removing the transitive dependency altogether. Again with the disadvantage of having to write more code in the <code class="language-plaintext highlighter-rouge">library</code>.</p>
+
+<h2 id="investigate-dependency-conflicts">Investigate dependency conflicts</h2>
+<p>Finally, whenever a dependency conflict occurs, there is one Gradle command that will be a lifesaver while debugging:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./gradlew :library:dependencies
+</code></pre></div></div>
+
+<p>Which will give you a detailed overview of how each transitive dependency ends up in your classpath:</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">$</span> <span class="o">./</span><span class="n">gradlew</span> <span class="o">--</span><span class="n">console</span> <span class="n">plain</span> <span class="o">:</span><span class="nl">app:</span><span class="n">dependencies</span> <span class="o">--</span><span class="n">configuration</span> <span class="n">releaseRuntimeClasspath</span>
+
+<span class="o">&gt;</span> <span class="n">Task</span> <span class="o">:</span><span class="nl">app:</span><span class="n">dependencies</span>
+
+<span class="o">------------------------------------------------------------</span>
+<span class="n">Project</span> <span class="o">:</span><span class="n">app</span>
+<span class="o">------------------------------------------------------------</span>
+
+<span class="n">releaseRuntimeClasspath</span> <span class="o">-</span> <span class="n">Runtime</span> <span class="n">classpath</span> <span class="n">of</span> <span class="n">compilation</span> <span class="s1">'release'</span> <span class="o">(</span><span class="n">target</span>  <span class="o">(</span><span class="n">androidJvm</span><span class="o">)).</span>
+<span class="o">+---</span> <span class="n">org</span><span class="o">.</span><span class="na">jetbrains</span><span class="o">.</span><span class="na">kotlin</span><span class="o">:</span><span class="n">kotlin</span><span class="o">-</span><span class="nl">stdlib:</span><span class="mf">1.3</span><span class="o">.</span><span class="mi">72</span>
+<span class="o">|</span>    <span class="o">+---</span> <span class="n">org</span><span class="o">.</span><span class="na">jetbrains</span><span class="o">.</span><span class="na">kotlin</span><span class="o">:</span><span class="n">kotlin</span><span class="o">-</span><span class="n">stdlib</span><span class="o">-</span><span class="nl">common:</span><span class="mf">1.3</span><span class="o">.</span><span class="mi">72</span>
+<span class="o">|</span>    <span class="err">\</span><span class="o">---</span> <span class="n">org</span><span class="o">.</span><span class="na">jetbrains</span><span class="o">:</span><span class="nl">annotations:</span><span class="mf">13.0</span>
+<span class="o">+---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">core</span><span class="o">:</span><span class="n">core</span><span class="o">-</span><span class="nl">ktx:</span><span class="mf">1.3</span><span class="o">.</span><span class="mi">2</span>
+<span class="o">|</span>    <span class="o">+---</span> <span class="n">org</span><span class="o">.</span><span class="na">jetbrains</span><span class="o">.</span><span class="na">kotlin</span><span class="o">:</span><span class="n">kotlin</span><span class="o">-</span><span class="nl">stdlib:</span><span class="mf">1.3</span><span class="o">.</span><span class="mi">71</span> <span class="o">-&gt;</span> <span class="mf">1.3</span><span class="o">.</span><span class="mi">72</span> <span class="o">(*)</span>
+<span class="o">|</span>    <span class="o">+---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">annotation</span><span class="o">:</span><span class="nl">annotation:</span><span class="mf">1.1</span><span class="o">.</span><span class="mi">0</span>
+<span class="o">|</span>    <span class="err">\</span><span class="o">---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">core</span><span class="o">:</span><span class="nl">core:</span><span class="mf">1.3</span><span class="o">.</span><span class="mi">2</span>
+<span class="o">|</span>         <span class="err">\</span><span class="o">---</span> <span class="o">...</span>
+<span class="o">+---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">appcompat</span><span class="o">:</span><span class="nl">appcompat:</span><span class="mf">1.2</span><span class="o">.</span><span class="mi">0</span>
+<span class="o">|</span>    <span class="o">+---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">annotation</span><span class="o">:</span><span class="nl">annotation:</span><span class="mf">1.1</span><span class="o">.</span><span class="mi">0</span>
+<span class="o">|</span>    <span class="o">+---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">core</span><span class="o">:</span><span class="nl">core:</span><span class="mf">1.3</span><span class="o">.</span><span class="mi">0</span> <span class="o">-&gt;</span> <span class="mf">1.3</span><span class="o">.</span><span class="mi">2</span> <span class="o">(*)</span>
+<span class="o">|</span>    <span class="o">+---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">cursoradapter</span><span class="o">:</span><span class="nl">cursoradapter:</span><span class="mf">1.0</span><span class="o">.</span><span class="mi">0</span>
+<span class="o">|</span>    <span class="o">|</span>    <span class="err">\</span><span class="o">---</span> <span class="o">...</span>
+<span class="o">|</span>    <span class="o">+---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">fragment</span><span class="o">:</span><span class="nl">fragment:</span><span class="mf">1.1</span><span class="o">.</span><span class="mi">0</span>
+<span class="o">|</span>    <span class="o">|</span>    <span class="err">\</span><span class="o">---</span> <span class="o">...</span>
+<span class="o">|</span>    <span class="o">+---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">appcompat</span><span class="o">:</span><span class="n">appcompat</span><span class="o">-</span><span class="nl">resources:</span><span class="mf">1.2</span><span class="o">.</span><span class="mi">0</span>
+<span class="o">|</span>    <span class="o">|</span>    <span class="err">\</span><span class="o">---</span> <span class="o">...</span>
+<span class="o">|</span>    <span class="o">|</span>   
+<span class="o">|</span>    <span class="o">+---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">drawerlayout</span><span class="o">:</span><span class="nl">drawerlayout:</span><span class="mf">1.0</span><span class="o">.</span><span class="mi">0</span>
+<span class="o">|</span>    <span class="o">|</span>    <span class="err">\</span><span class="o">---</span> <span class="o">...</span>
+<span class="o">|</span>    <span class="err">\</span><span class="o">---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">collection</span><span class="o">:</span><span class="nl">collection:</span><span class="mf">1.0</span><span class="o">.</span><span class="mi">0</span> <span class="o">-&gt;</span> <span class="mf">1.1</span><span class="o">.</span><span class="mi">0</span> <span class="o">(*)</span>
+<span class="o">+---</span> <span class="n">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">android</span><span class="o">.</span><span class="na">material</span><span class="o">:</span><span class="nl">material:</span><span class="mf">1.2</span><span class="o">.</span><span class="mi">1</span>
+<span class="o">|</span>    <span class="o">+---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">annotation</span><span class="o">:</span><span class="nl">annotation:</span><span class="mf">1.0</span><span class="o">.</span><span class="mi">1</span> <span class="o">-&gt;</span> <span class="mf">1.1</span><span class="o">.</span><span class="mi">0</span>
+<span class="o">|</span>    <span class="o">+---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">appcompat</span><span class="o">:</span><span class="nl">appcompat:</span><span class="mf">1.1</span><span class="o">.</span><span class="mi">0</span> <span class="o">-&gt;</span> <span class="mf">1.2</span><span class="o">.</span><span class="mi">0</span> <span class="o">(*)</span>
+<span class="o">|</span>    <span class="o">+---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">cardview</span><span class="o">:</span><span class="nl">cardview:</span><span class="mf">1.0</span><span class="o">.</span><span class="mi">0</span>
+<span class="o">|</span>    <span class="o">|</span>    <span class="err">\</span><span class="o">---</span> <span class="o">...</span>
+<span class="o">|</span>    <span class="o">+---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">coordinatorlayout</span><span class="o">:</span><span class="nl">coordinatorlayout:</span><span class="mf">1.1</span><span class="o">.</span><span class="mi">0</span>
+<span class="o">|</span>    <span class="o">|</span>    <span class="err">\</span><span class="o">---</span> <span class="o">...</span>
+<span class="o">|</span>    <span class="o">+---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">core</span><span class="o">:</span><span class="nl">core:</span><span class="mf">1.2</span><span class="o">.</span><span class="mi">0</span> <span class="o">-&gt;</span> <span class="mf">1.3</span><span class="o">.</span><span class="mi">2</span> <span class="o">(*)</span>
+<span class="o">|</span>    <span class="o">+---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">annotation</span><span class="o">:</span><span class="n">annotation</span><span class="o">-</span><span class="nl">experimental:</span><span class="mf">1.0</span><span class="o">.</span><span class="mi">0</span>
+<span class="o">|</span>    <span class="o">+---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">fragment</span><span class="o">:</span><span class="nl">fragment:</span><span class="mf">1.0</span><span class="o">.</span><span class="mi">0</span> <span class="o">-&gt;</span> <span class="mf">1.1</span><span class="o">.</span><span class="mi">0</span> <span class="o">(*)</span>
+<span class="o">|</span>    <span class="o">+---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">lifecycle</span><span class="o">:</span><span class="n">lifecycle</span><span class="o">-</span><span class="nl">runtime:</span><span class="mf">2.0</span><span class="o">.</span><span class="mi">0</span> <span class="o">-&gt;</span> <span class="mf">2.1</span><span class="o">.</span><span class="mi">0</span> <span class="o">(*)</span>
+<span class="o">|</span>    <span class="o">+---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">recyclerview</span><span class="o">:</span><span class="nl">recyclerview:</span><span class="mf">1.0</span><span class="o">.</span><span class="mi">0</span> <span class="o">-&gt;</span> <span class="mf">1.1</span><span class="o">.</span><span class="mi">0</span>
+<span class="o">|</span>    <span class="o">|</span>    <span class="err">\</span><span class="o">---</span> <span class="o">...</span>
+<span class="o">|</span>    <span class="o">+---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">transition</span><span class="o">:</span><span class="nl">transition:</span><span class="mf">1.2</span><span class="o">.</span><span class="mi">0</span>
+<span class="o">|</span>    <span class="o">|</span>    <span class="err">\</span><span class="o">---</span> <span class="o">...</span>
+<span class="o">|</span>    <span class="o">+---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">vectordrawable</span><span class="o">:</span><span class="nl">vectordrawable:</span><span class="mf">1.1</span><span class="o">.</span><span class="mi">0</span> <span class="o">(*)</span>
+<span class="o">|</span>    <span class="err">\</span><span class="o">---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">viewpager2</span><span class="o">:</span><span class="nl">viewpager2:</span><span class="mf">1.0</span><span class="o">.</span><span class="mi">0</span>
+<span class="o">|</span>         <span class="err">\</span><span class="o">---</span> <span class="o">...</span>
+<span class="err">\</span><span class="o">---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">constraintlayout</span><span class="o">:</span><span class="nl">constraintlayout:</span><span class="mf">1.1</span><span class="o">.</span><span class="mi">3</span>
+     <span class="err">\</span><span class="o">---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">constraintlayout</span><span class="o">:</span><span class="n">constraintlayout</span><span class="o">-</span><span class="nl">solver:</span><span class="mf">1.1</span><span class="o">.</span><span class="mi">3</span>
+
+<span class="o">(*)</span> <span class="o">-</span> <span class="n">dependencies</span> <span class="n">omitted</span> <span class="o">(</span><span class="n">listed</span> <span class="n">previously</span><span class="o">)</span>
+</code></pre></div></div>
+
+<p>Notice the sheer amount of dependencies that the standard Android project template already has!</p>
+
+<h2 id="recommendation">Recommendation</h2>
+<p>Transitive SDK dependencies can create very challenging issues. These tend to be hard to predict as they only pop up for certain combinations of dependencies in a <code class="language-plaintext highlighter-rouge">CustomerApp</code>.</p>
+
+<p>Worse even, their blame might be pushed onto the wrong SDK. And your SDK might be blamed for a conflict caused by an obsolete transitive <code class="language-plaintext highlighter-rouge">Firebase</code> dependency.</p>
+
+<p>The only foolproof way to solve these issues is to not use any transitive dependencies for your <code class="language-plaintext highlighter-rouge">library</code>.</p>
+
+<p>And while that’s likely not very practical, here’s a few tips to avoid transitive dependency problems:</p>
+
+<ul>
+  <li>minimize transitive dependencies
+    <ul>
+      <li>often it’s easy to write your own (minimal) solution</li>
+      <li>focus on commonly used dependencies (e.g. OkHttp) -&gt; <code class="language-plaintext highlighter-rouge">CustomerApp</code> likely has this already</li>
+      <li>investigate breaking changes are handled</li>
+    </ul>
+  </li>
+  <li>specify minimum versions instead of specific ones</li>
+  <li>only rely on stable transitive dependencies (no RC, Beta or Alpha)</li>
+  <li>use android optimized dependencies</li>
+</ul>
+
+<p>Finally, to combat device fragmentation, Android has a rich set of <a href="https://developer.android.com/jetpack">Jetpack libraries</a>. These have become so ubiquitous, that it’s close to impossible not to rely on them when developing an Android app or SDK.</p>
+
+<p>Therefore, and thanks to their amazing track record of backward compatibility, it’s fine to rely on <code class="language-plaintext highlighter-rouge">AndroidX</code> dependencies. Most tips above remain valid (e.g. min version, no alpha’s,…) and keep in mind that some <code class="language-plaintext highlighter-rouge">AndroidX</code> libraries may need Google play services in order to work.</p>
+
+<h2 id="wrap-up">Wrap-up</h2>
+<p>Transitive dependencies problems only occur when a <code class="language-plaintext highlighter-rouge">CustomerApp</code> has certain combinations of dependencies. This makes them hard to predict and quite disruptive for both the SDK as app developers.</p>
+
+<p>Try to reduce the <code class="language-plaintext highlighter-rouge">library</code>’s transitive dependencies to a minimum and focus on popular, Android optimized dependencies.</p>
+
+<p>If you’ve made it this far you should probably follow me on <span><a href="https://twitter.com/molsjeroen?source=androidlibrarydevelopment-dependencies2020" class="ga-link" target="_blank">Twitter</a></span>
+. Feel free to leave a comment below!</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/android" class="page__taxonomy-item" rel="tag">android</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/gradle" class="page__taxonomy-item" rel="tag">gradle</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/kotlin" class="page__taxonomy-item" rel="tag">kotlin</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/library" class="page__taxonomy-item" rel="tag">library</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/maven" class="page__taxonomy-item" rel="tag">maven</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/transitive-dependencies" class="page__taxonomy-item" rel="tag">transitive dependencies</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/blog" class="page__taxonomy-item" rel="tag">blog</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-11-11T00:00:00+01:00">November 11, 2020</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=Android+library+development+-+Dependencies%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2020%2F11%2F11%2Flibrary-dependencies%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2020%2F11%2F11%2Flibrary-dependencies%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2020%2F11%2F11%2Flibrary-dependencies%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      <section class="page__share">
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bottom-blog-responsive -->
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-9854541518226004"
+       data-ad-slot="4086741379"
+       data-ad-format="auto"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/blog/2020/11/04/library-modularization/" class="pagination--pager" title="Android library development - Modularization
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a Comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/librarymodularization/librarymodularization.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2020/11/04/library-modularization/" rel="permalink">Android library development - Modularization
+</a>
+        </h2>
+        <h3 class="archive__date">04 Nov 2020</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2020/11/04/library-modularization/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  5 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">With modularization being all the hype, should you also modularize an SDK? Are fat aar files really needed? And how do you prevent internal APIs from being exposed on your public interface?
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/librarygettingstarted/librarygettingstarted.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2020/10/28/library-gettingstarted/" rel="permalink">Android library development - Getting started
+</a>
+        </h2>
+        <h3 class="archive__date">28 Oct 2020</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2020/10/28/library-gettingstarted/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Having switched to Android SDK development over the past year, I’ve run into quite a few interesting and unexpected challenges. So how does library development differ from app development?
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/dokkacodedocumentation/kdoc.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2020/02/19/dokka-code-documentation/" rel="permalink">Kdoc for Android libraries using Dokka
+</a>
+        </h2>
+        <h3 class="archive__date">19 Feb 2020</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2020/02/19/dokka-code-documentation/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  6 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">A great way to make your library easier to use it to generate code documentation for its public interface. The default way to do this in Kotlin is to generate KDoc using the official Dokka plugin.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/yearinreview19/yearinreview19.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2020/01/09/yearinreview/" rel="permalink">Year in review 2019
+</a>
+        </h2>
+        <h3 class="archive__date">09 Jan 2020</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2020/01/09/yearinreview/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Getting up without being rushed, cycling my kids to school, cooking healthy salads for lunch, kids running into my arms when they get home… I’m quite happy with my new daily routine!
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+
+    <li><a href="atom.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 Jeroen Mols. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <script>
+  window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+  ga('create','UA-63356566-1','auto');
+  ga('set', 'anonymizeIp', false);
+  ga('send','pageview')
+</script>
+<script src="https://www.google-analytics.com/analytics.js" async></script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://jeroenmols.com/blog/2020/11/11/library-dependencies/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/blog/2020/11/11/library-dependencies"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jeroenmols.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

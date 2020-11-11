@@ -328,4 +328,10 @@ var store = [{
         "tags": ["android","library","modularization","maven","gradle","kotlin"],
         "url": "https://jeroenmols.com/blog/2020/11/04/library-modularization/",
         "teaser": "https://jeroenmols.com/img/blog/librarymodularization/librarymodularization.jpg"
+      },{
+        "title": "Android library development - Dependencies",
+        "excerpt":"Ever had a build failure while integrating an SDK? Wonder how you can avoid your SDK customers having dependency conflicts? How many transitive dependencies should your SDK have? This post will cover how transitive dependencies of an Android library affect Apps integrating it. This blog post is part of a...","categories": ["blog"],
+        "tags": ["android","library","maven","transitive dependencies","gradle","kotlin"],
+        "url": "https://jeroenmols.com/blog/2020/11/11/library-dependencies/",
+        "teaser": "https://jeroenmols.com/img/blog/librarydependencies/librarydependencies.jpg"
       }]

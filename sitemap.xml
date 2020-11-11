@@ -221,6 +221,10 @@
 <lastmod>2020-11-04T00:00:00+01:00</lastmod>
 </url>
 <url>
+<loc>https://jeroenmols.com/blog/2020/11/11/library-dependencies/</loc>
+<lastmod>2020-11-11T00:00:00+01:00</lastmod>
+</url>
+<url>
 <loc>https://jeroenmols.com/categories/</loc>
 </url>
 <url>
@@ -426,6 +430,9 @@
 </url>
 <url>
 <loc>https://jeroenmols.com/tags/library/</loc>
+</url>
+<url>
+<loc>https://jeroenmols.com/tags/transitive-dependencies/</loc>
 </url>
 <url>
 <loc>https://jeroenmols.com/categories/blog/</loc>

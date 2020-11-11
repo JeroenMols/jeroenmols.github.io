@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/" rel="alternate" type="text/html"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, Android freelancer and Google Developer Expert.</subtitle>
- <updated>2020-11-04T21:23:34+01:00</updated>
+ <updated>2020-11-11T20:05:21+01:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,31 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>Android library development - Dependencies</title>
+   <link href="https://jeroenmols.com/blog/2020/11/11/library-dependencies/"/>
+   <updated>2020-11-11T00:00:00+01:00</updated>
+   <id>https://jeroenmols.com/blog/2020/11/11/library-dependencies</id>
+   <content type="html"><![CDATA[
+     
+     <p>Ever had a build failure while integrating an SDK? Wonder how you can avoid your SDK customers having dependency conflicts? How many transitive dependencies should your SDK have?</p>
+
+<p>This post will cover how transitive dependencies of an Android library affect Apps integrating it.</p>
+
+<blockquote>
+  <p>This blog post is part of a series on Android libraries:</p>
+  <ul>
+    <li>Part 1: <a href="/blog/2020/10/28/library-gettingstarted/">Getting started</a></li>
+    <li>Part 2: <a href="/blog/2020/11/04/library-modularization/">Modularization</a></li>
+    <li>Part 3: <a href="/blog/2020/11/11/library-dependencies/">Transitive dependencies</a></li>
+  </ul>
+</blockquote>
+
+
+     <a href="https://jeroenmols.com/blog/2020/11/11/library-dependencies/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>Android library development - Modularization</title>
@@ -33,7 +58,7 @@
   <ul>
     <li>Part 1: <a href="/blog/2020/10/28/library-gettingstarted/">Getting started</a></li>
     <li>Part 2: <a href="/blog/2020/11/04/library-modularization/">Modularization</a></li>
-    <li>Part 3: Transitive dependencies</li>
+    <li>Part 3: <a href="/blog/2020/11/11/library-dependencies/">Transitive dependencies</a></li>
   </ul>
 </blockquote>
 
@@ -58,7 +83,7 @@
   <ul>
     <li>Part 1: <a href="/blog/2020/10/28/library-gettingstarted/">Getting started</a></li>
     <li>Part 2: <a href="/blog/2020/11/04/library-modularization/">Modularization</a></li>
-    <li>Part 3: Transitive dependencies</li>
+    <li>Part 3: <a href="/blog/2020/11/11/library-dependencies/">Transitive dependencies</a></li>
   </ul>
 </blockquote>
 
