@@ -367,8 +367,12 @@ And while that's likely not very practical, here's a few tips to avoid transitiv
   - focus on commonly used dependencies (e.g. OkHttp) -> `CustomerApp` likely has this already
   - investigate breaking changes are handled
 - specify minimum versions instead of specific ones
+- only rely on stable transitive dependencies (no RC, Beta or Alpha)
 - use android optimized dependencies
 
+Finally, to combat device fragmentation, Android has a rich set of [Jetpack libraries](https://developer.android.com/jetpack). These have become so ubiquitous, that it's close to impossible not to rely on them when developing an Android app or SDK.
+
+Therefore, and thanks to their amazing track record of backward compatibility, it's fine to rely on `AndroidX` dependencies. Most tips above remain valid (e.g. min version, no alpha's,...) and keep in mind that some `AndroidX` libraries may need Google play services in order to work.
 
 ## Wrap-up
 Transitive dependencies problems only occur when a `CustomerApp` has certain combinations of dependencies. This makes them hard to predict and quite disruptive for both the SDK as app developers.
