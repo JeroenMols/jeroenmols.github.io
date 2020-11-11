@@ -19,7 +19,7 @@ This post will cover how transitive dependencies of an Android library affect Ap
 > This blog post is part of a series on Android libraries:
 - Part 1: [Getting started]({{ site.baseurl }}{% link blog/_posts/2020-10-28-library-gettingstarted.md %})
 - Part 2: [Modularization]({{ site.baseurl }}{% link blog/_posts/2020-11-04-library-modularization.md %})
-- Part 3: Transitive dependencies
+- Part 3: [Transitive dependencies]({{ site.baseurl }}{% link blog/_posts/2020-11-11-library-dependencies.md %})
 
 ## Introduction
 > This post assumes familiarity with transitive dependencies and how Maven handles those. You can learn all about that and much more in [the first part]({{ site.baseurl }}{% link blog/_posts/2020-10-28-library-gettingstarted.md %}) of this series.

@@ -18,7 +18,7 @@ This mini-series will cover the differences between SDK and App development, and
 > This blog post is part of a series on Android libraries:
 - Part 1: [Getting started]({{ site.baseurl }}{% link blog/_posts/2020-10-28-library-gettingstarted.md %})
 - Part 2: [Modularization]({{ site.baseurl }}{% link blog/_posts/2020-11-04-library-modularization.md %})
-- Part 3: Transitive dependencies
+- Part 3: [Transitive dependencies]({{ site.baseurl }}{% link blog/_posts/2020-11-11-library-dependencies.md %})
 
 ## Introduction
 Before kicking off the meat of this series, let's have a quick look at how SDK development differs from app development. If you're already familiar with these concepts, feel free to skip to the next article!

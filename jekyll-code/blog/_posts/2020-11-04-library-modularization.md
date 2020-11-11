@@ -19,7 +19,7 @@ This post will cover all things modularization for Android libraries.
 > This blog post is part of a series on Android libraries:
 - Part 1: [Getting started]({{ site.baseurl }}{% link blog/_posts/2020-10-28-library-gettingstarted.md %})
 - Part 2: [Modularization]({{ site.baseurl }}{% link blog/_posts/2020-11-04-library-modularization.md %})
-- Part 3: Transitive dependencies
+- Part 3: [Transitive dependencies]({{ site.baseurl }}{% link blog/_posts/2020-11-11-library-dependencies.md %})
 
 ## Introduction
 When building an SDK, one might be inclined to modularize the SDK as [modularization has tons of benefits]({{ site.baseurl }}{% link blog/_posts/2019-03-06-modularizationwhy.md %}).
@@ -165,10 +165,9 @@ Whenever an SDK grows larger, it likely contains parts that could also be useful
 
 Multi modules SDKs should be avoided as much as possible.
 
-
 ## Wrap-up
 Modularizing SDKs on Android unfortunately creates significant issues with packaging and restricting visibility of code. Therefore single module SDKs should be preferred.
 
-Don't forget to follow me on {% include link_twitter.html %} so you don't miss the last part on transitive dependencies!
+Don't forget to follow me on {% include link_twitter.html %} and don't miss the last part about [transitive dependencies]({{ site.baseurl }}{% link blog/_posts/2020-11-11-library-dependencies.md %})!
 
 Feel free to leave a comment below!
