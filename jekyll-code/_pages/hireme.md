@@ -18,7 +18,7 @@ Let's talk!
 
 Note that I'm a remote first developer and hence only pass by your office occasionally.
 
-<form class="page__contact" method="POST" action="https://formspree.io/contact@jeroenmols.com">
+<form class="page__contact" method="POST" action="https://formspree.io/f/xyybjlbr">
   <input type="email" name="email" placeholder="Your email">
   <textarea name="message" placeholder="Your message"></textarea>
   <button type="submit">Send</button>
