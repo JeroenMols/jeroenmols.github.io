@@ -1,5 +1,5 @@
 ---
-title: Test release library through in project Maven repository
+title: Test library releases through an in project Maven repository
 published: true
 header:
   teaser: img/blog/inprojectmaven/inprojectmaven.jpg
@@ -12,13 +12,13 @@ tags:
   - gradle
   - kotlin
 ---
-Short but powerful post on how to test a release version of a libraries directly within a project without having to deploy them to Maven first.
+Short, powerful post on how to test the release version of libraries directly within a project without having to deploy them to Maven first.
 
-As a bonus, there will also be an open source example showcasing all of this in action.
+As a bonus, there will also be an open-source example showcasing all of this in action.
 
 
 ## Problem description
-In (Android) library development the local development setup differs from how customers integrate the library.
+In (Android) library development, the local development setup differs from how customers integrate the library.
 
 Local development uses a module dependency:
 
@@ -36,16 +36,16 @@ dependencies {
 }
 ```
 
-Now because both integration mechansims are fundamentally different, they can also lead to different results.
+Now because both integration mechanisms are fundamentally different, they can also lead to different results.
 
 Wouldn't it be great if you could test the Maven version of your library directly in your project?
 
 Let's do that!
 
-That avoids deploying the library to Maven, makes testing more realistic and speeds up release testing considerably.
+That avoids deploying the library to Maven, makes testing more realistic, and speeds up release testing considerably.
 
 ## Core idea
-What we'll try to accomplish is to mimic a local `Maven` repository within your Android project. That allows to integrate the release build similar to an external Maven build:
+What we'll try to accomplish is to mimic a local `Maven` repository within your Android project. That allows integrating the release build similar to an external Maven build:
 
 ```groovy
 dependencies {
@@ -62,7 +62,7 @@ To accomplish this we'll:
 - add a build flag to toggle between local and external build
 - create a release artifact and `pom.xml` with a special version
 - create a `Maven` like folder structure in `app/libs`
-- add `Maven` meta data files and symlinks to the build outputs
+- add `Maven` metadata files and symlinks to the build outputs
 - include the local Maven repository
 
 
