@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/" rel="alternate" type="text/html"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, Android freelancer and Google Developer Expert.</subtitle>
- <updated>2020-11-11T20:05:21+01:00</updated>
+ <updated>2020-12-02T19:45:06+01:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,22 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>Test library releases using an in project Maven repository</title>
+   <link href="https://jeroenmols.com/blog/2020/12/02/inproject-maven/"/>
+   <updated>2020-12-02T00:00:00+01:00</updated>
+   <id>https://jeroenmols.com/blog/2020/12/02/inproject-maven</id>
+   <content type="html"><![CDATA[
+     
+     <p>Short, powerful post on how to test the release version of libraries directly within a project without having to deploy them to Maven first.</p>
+
+<p>As a bonus, there will also be an open-source example showcasing all of this in action.</p>
+
+
+     <a href="https://jeroenmols.com/blog/2020/12/02/inproject-maven/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>Android library development - Dependencies</title>

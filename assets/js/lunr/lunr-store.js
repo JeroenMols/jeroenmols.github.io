@@ -334,4 +334,10 @@ var store = [{
         "tags": ["android","library","maven","transitive dependencies","gradle","kotlin"],
         "url": "https://jeroenmols.com/blog/2020/11/11/library-dependencies/",
         "teaser": "https://jeroenmols.com/img/blog/librarydependencies/librarydependencies.jpg"
+      },{
+        "title": "Test library releases using an in project Maven repository",
+        "excerpt":"Short, powerful post on how to test the release version of libraries directly within a project without having to deploy them to Maven first. As a bonus, there will also be an open-source example showcasing all of this in action. Problem description In (Android) library development, the local development setup...","categories": ["blog"],
+        "tags": ["android","library","maven","transitive dependencies","gradle","kotlin"],
+        "url": "https://jeroenmols.com/blog/2020/12/02/inproject-maven/",
+        "teaser": "https://jeroenmols.com/img/blog/inprojectmaven/inprojectmaven.jpg"
       }]
