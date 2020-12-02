@@ -1,5 +1,5 @@
 ---
-title: Test library releases through an in project Maven repository
+title: Test library releases using an in project Maven repository
 published: true
 header:
   teaser: img/blog/inprojectmaven/inprojectmaven.jpg
