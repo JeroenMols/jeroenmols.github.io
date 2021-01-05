@@ -340,4 +340,10 @@ var store = [{
         "tags": ["android","library","maven","transitive dependencies","gradle","kotlin"],
         "url": "https://jeroenmols.com/blog/2020/12/02/inproject-maven/",
         "teaser": "https://jeroenmols.com/img/blog/inprojectmaven/inprojectmaven.jpg"
+      },{
+        "title": "Year in review 2020",
+        "excerpt":"Well… I don’t really know where to start this time. 2020 was quite the rollercoaster, with many downs… but fortunately also a few amazing ups. Let’s focus on the good stuff. My first lucky break was that I started working remotely by choice! This privilege meant I was quite well...","categories": ["blog"],
+        "tags": ["review"],
+        "url": "https://jeroenmols.com/blog/2021/01/05/yearinreview/",
+        "teaser": "https://jeroenmols.com/img/blog/yearinreview20/yearinreview20.jpg"
       }]

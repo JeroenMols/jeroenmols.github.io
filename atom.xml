@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/" rel="alternate" type="text/html"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, Android freelancer and Google Developer Expert.</subtitle>
- <updated>2020-12-02T19:45:06+01:00</updated>
+ <updated>2021-01-05T23:17:37+01:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,63 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>Year in review 2020</title>
+   <link href="https://jeroenmols.com/blog/2021/01/05/yearinreview/"/>
+   <updated>2021-01-05T00:00:00+01:00</updated>
+   <id>https://jeroenmols.com/blog/2021/01/05/yearinreview</id>
+   <content type="html"><![CDATA[
+     
+     <p>Well… I don’t really know where to start this time. 2020 was quite the rollercoaster, with many downs… but fortunately also a few amazing ups. Let’s focus on the good stuff.</p>
+
+<p>My first lucky break was that I started working remotely by choice! This privilege meant I was quite well equipped both practically and mentally for the challenges of remote work. And while not without its challenges, I haven’t been happier at my work.</p>
+
+<p>The main work challenge was bridging the 9-hour timezone gap with my colleagues. And while I do work some evenings, I’ve never been more available for my kids. And I’ve grown really fond of:</p>
+
+<ul>
+  <li>never (!!!) having to set an alarm clock</li>
+  <li>exercising in the middle of a working day</li>
+  <li>grabbing coffee/breakfast with my wife anytime I want (can?)</li>
+</ul>
+
+<p>Another highlight was the amazing time I was able to spend with my kids during the first Lockdown. I would work from 2pm to 10pm so me and the kids could do fun stuff in the mornings (fixing up the house, gardening, playgrounds,…). I recognize how extraordinary it was to have so much playtime with my kids and truly enjoyed it.</p>
+
+<p>However, working such long days also meant I pushed myself beyond my limits and I had to take it a lot slower for several weeks before I felt better. A huge shoutout to Plaid and my manager Judd for the immense understanding they’ve shown for my situation.</p>
+
+<p>Further, I’ve also built and designed my own custom Lego set: <a href="http://bit.ly/legostuntcar">Radio-Controlled Flip Over Stunt Car</a>:</p>
+
+<p><a href="http://bit.ly/legostuntcar"><img src="https://jeroenmols.com/img/blog/yearinreview20/lego-ideas.jpg" alt="Radio-Controlled Flip Over Stunt Car" class="align-center" /></a></p>
+
+<p>Please give me a <a href="http://bit.ly/legostuntcar">vote</a>!!! If I make it to 10k supporters, Lego might actually make it into an official set. 🤞</p>
+
+<p>Further 2020 highlights include:</p>
+
+<ul>
+  <li>🧱 Teaching my son and daughter how to build Lego</li>
+  <li>👨‍💻 Spoke at <a href="https://jeroenmols.com/speaking/">4 online events</a> and produced <a href="https://www.youtube.com/watch?v=TCKb1WfjAC8">1 video</a>.</li>
+  <li>📝 Wrote <a href="http://jeroenmols.com/blog/">6 blog posts</a></li>
+  <li>📱 Grew my <a href="https://twitter.com/molsjeroen">Twitter</a> followers by ~20% to more than 7500</li>
+  <li>🚗 Drove less than 1500 km with my car (down from 30k km)</li>
+  <li>☕️  Improved my coffee skills with (basic) latte art!</li>
+  <li>🚴‍♀️ Worked out (almost) biweekly on my indoor racing bike</li>
+  <li>🪒 Shaved my hair and grew a beard</li>
+  <li>📕 Read 4 books</li>
+  <li>📈 Started investing</li>
+</ul>
+
+<p>To keep the best for last: we’re expecting a baby girl in March! 🍼👼</p>
+
+<p>In 2021, I’m going to try and exercise twice a week, read 5 books, enjoy every little moment with the baby and double down on being an awesome father for all my kids.</p>
+
+<p>I do want to pick up my community contributions again and maybe even venture into other areas beyond Android.</p>
+
+<p>As always you can reach me <span><a href="https://twitter.com/molsjeroen?source=yearinreview20202021" class="ga-link" target="_blank">@molsjeroen</a></span>
+ on Twitter, or leave a comment below!</p>
+
+     <a href="https://jeroenmols.com/blog/2021/01/05/yearinreview/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>Test library releases using an in project Maven repository</title>
