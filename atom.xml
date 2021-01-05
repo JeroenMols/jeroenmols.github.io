@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/" rel="alternate" type="text/html"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, Android freelancer and Google Developer Expert.</subtitle>
- <updated>2021-01-05T23:17:37+01:00</updated>
+ <updated>2021-01-05T23:54:26+01:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -53,6 +53,7 @@
   <li>👨‍💻 Spoke at <a href="https://jeroenmols.com/speaking/">4 online events</a> and produced <a href="https://www.youtube.com/watch?v=TCKb1WfjAC8">1 video</a>.</li>
   <li>📝 Wrote <a href="http://jeroenmols.com/blog/">6 blog posts</a></li>
   <li>📱 Grew my <a href="https://twitter.com/molsjeroen">Twitter</a> followers by ~20% to more than 7500</li>
+  <li>🦠 Contributed code to the official <a href="https://github.com/nhsx/covid-19-app-android-ag-public/tree/master/app/src/main/java/com/jeroenmols">UK Covid app</a></li>
   <li>🚗 Drove less than 1500 km with my car (down from 30k km)</li>
   <li>☕️  Improved my coffee skills with (basic) latte art!</li>
   <li>🚴‍♀️ Worked out (almost) biweekly on my indoor racing bike</li>
