@@ -7,21 +7,25 @@ header:
 tags:
   - review
 ---
-Well... I don't really know where to start this time. 2020 was quite the rollercoaster, with many downs... but fortunately also a few amazing ups.
+Well... I don't really know where to start this time. 2020 was quite the rollercoaster, with many downs... but fortunately also a few amazing ups. Let's focus on the good stuff.
 
 My first lucky break was that I started working remotely by choice! This privilege meant I was quite well equipped both practically and mentally for the challenges of remote work. And while not without its challenges, I haven't been happier at my work.
 
-The main work challenge was bridging the 9-hour timezone gap with my colleagues. And while I do work some evenings, I've never been more available for my kids. And I've grown really fond of never (!!!) having to set an alarm clock, exercising in the middle of a working day, and going out for a coffee/breakfast with my wife anytime I want (can?).
+The main work challenge was bridging the 9-hour timezone gap with my colleagues. And while I do work some evenings, I've never been more available for my kids. And I've grown really fond of:
 
-Another highlight was the amazing time I was able to spend with my kids during the first Lockdown. I would work from 2 pm to 10 pm so I could do fun stuff with the kids in the mornings (fixing up the house, gardening, playgrounds,...). I recognize how extraordinary it was to have so much playtime with my kids at that age.
+- never (!!!) having to set an alarm clock
+- exercising in the middle of a working day
+- grabbing coffee/breakfast with my wife anytime I want (can?)
+
+Another highlight was the amazing time I was able to spend with my kids during the first Lockdown. I would work from 2pm to 10pm so me and the kids could do fun stuff in the mornings (fixing up the house, gardening, playgrounds,...). I recognize how extraordinary it was to have so much playtime with my kids and truly enjoyed it.
 
 However, working such long days also meant I pushed myself beyond my limits and I had to take it a lot slower for several weeks before I felt better. A huge shoutout to Plaid and my manager Judd for the immense understanding they've shown for my situation.
 
-Further, I've also extended my Lego passion to new heights and I designed my own custom Lego set: [Radio-Controlled Flip Over Stunt Car](http://bit.ly/legostuntcar):
+Further, I've also built and designed my own custom Lego set: [Radio-Controlled Flip Over Stunt Car](http://bit.ly/legostuntcar):
 
 [![Radio-Controlled Flip Over Stunt Car]({{ site.url }}{{ site.baseurl }}/img/blog/yearinreview20/lego-ideas.jpg){: .align-center}](http://bit.ly/legostuntcar)
 
-Please give me a [vote](http://bit.ly/legostuntcar)!!! If I make it to 10k supporters, Lego might actually make it into an official set.
+Please give me a [vote](http://bit.ly/legostuntcar)!!! If I make it to 10k supporters, Lego might actually make it into an official set. 🤞
 
 Further 2020 highlights include:
 
