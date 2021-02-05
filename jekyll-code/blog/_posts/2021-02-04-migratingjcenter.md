@@ -8,13 +8,15 @@ tags:
   - android
   - library
   - maven
+  - jcenter
+  - bintray
   - transitive dependencies
   - gradle
 ---
 This week JFrog - out of nowhere - announced to completely remove their Maven repository. Since they'll pull it offline already by May 2021 (!!!) it's time to urgently migrate away. This blogpost will guide how to get started.
 
 ## Expected migrations
-Roughly there are two main migrations steps required:
+After the [jcenter/bintray shutdown announcement](https://jfrog.com/blog/into-the-sunset-bintray-jcenter-gocenter-and-chartcenter/), there are two main migrations steps required:
 
 - consumed dependencies from Bintray/JCenter
 - published artifacts to Bintray/JCenter
