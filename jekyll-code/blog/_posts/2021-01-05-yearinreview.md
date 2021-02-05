@@ -33,6 +33,7 @@ Further 2020 highlights include:
 - 👨‍💻 Spoke at [4 online events](https://jeroenmols.com/speaking/) and produced [1 video](https://www.youtube.com/watch?v=TCKb1WfjAC8).
 - 📝 Wrote [6 blog posts](http://jeroenmols.com/blog/)
 - 📱 Grew my [Twitter](https://twitter.com/molsjeroen) followers by ~20% to more than 7500
+- 🦠 Contributed code to the official [UK Covid app](https://github.com/nhsx/covid-19-app-android-ag-public/tree/master/app/src/main/java/com/jeroenmols)
 - 🚗 Drove less than 1500 km with my car (down from 30k km)
 - ☕️  Improved my coffee skills with (basic) latte art!
 - 🚴‍♀️ Worked out (almost) biweekly on my indoor racing bike
