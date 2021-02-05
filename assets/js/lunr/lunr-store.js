@@ -348,8 +348,8 @@ var store = [{
         "teaser": "https://jeroenmols.com/img/blog/yearinreview20/yearinreview20.jpg"
       },{
         "title": "Migrating away from JCenter",
-        "excerpt":"This week JFrog - out of nowhere - announced to completely remove their Maven repository. Since they’ll pull it offline already by May 2021 (!!!) it’s time to urgently migrate away. This blogpost will guide how to get started. Expected migrations Roughly there are two main migrations steps required: consumed...","categories": ["blog"],
-        "tags": ["android","library","maven","transitive dependencies","gradle"],
+        "excerpt":"This week JFrog - out of nowhere - announced to completely remove their Maven repository. Since they’ll pull it offline already by May 2021 (!!!) it’s time to urgently migrate away. This blogpost will guide how to get started. Expected migrations After the jcenter/bintray shutdown announcement, there are two main...","categories": ["blog"],
+        "tags": ["android","library","maven","jcenter","bintray","transitive dependencies","gradle"],
         "url": "https://jeroenmols.com/blog/2021/02/04/migratingjcenter/",
         "teaser": "https://jeroenmols.com/img/blog/migratingjcenter/migratingjcenter.jpg"
       }]
