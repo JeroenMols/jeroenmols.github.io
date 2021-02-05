@@ -1,0 +1,906 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.3 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Migrating away from JCenter - Jeroen Mols</title>
+<meta name="description" content="This week JFrog - out of nowhere - announced to completely remove their Maven repository. Since they’ll pull it offline already by May 2021 (!!!) it’s time to urgently migrate away. This blogpost will guide how to get started.">
+
+
+  <meta name="author" content="Jeroen Mols">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="Jeroen Mols">
+<meta property="og:title" content="Migrating away from JCenter">
+<meta property="og:url" content="https://jeroenmols.com/blog/2021/02/04/migratingjcenter/">
+
+
+  <meta property="og:description" content="This week JFrog - out of nowhere - announced to completely remove their Maven repository. Since they’ll pull it offline already by May 2021 (!!!) it’s time to urgently migrate away. This blogpost will guide how to get started.">
+
+
+
+  <meta property="og:image" content="https://jeroenmols.com/img/blog/migratingjcenter/migratingjcenter.jpg">
+
+
+
+  <meta name="twitter:site" content="@molsjeroen">
+  <meta name="twitter:title" content="Migrating away from JCenter">
+  <meta name="twitter:description" content="This week JFrog - out of nowhere - announced to completely remove their Maven repository. Since they’ll pull it offline already by May 2021 (!!!) it’s time to urgently migrate away. This blogpost will guide how to get started.">
+  <meta name="twitter:url" content="https://jeroenmols.com/blog/2021/02/04/migratingjcenter/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+      <meta name="twitter:image" content="https://jeroenmols.com/img/blog/migratingjcenter/migratingjcenter.jpg">
+    
+  
+
+  
+    <meta name="twitter:creator" content="@molsjeroen">
+  
+
+
+
+  <meta property="article:published_time" content="2021-02-04T00:00:00+01:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://jeroenmols.com/blog/2021/02/04/migratingjcenter/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Jeroen Mols",
+      "url": "https://jeroenmols.com/",
+      "sameAs": ["https://twitter.com/molsjeroen","https://www.linkedin.com/in/jeroenmols/","https://plus.google.com/+JeroenMols","https://github.com/JeroenMols","https://speakerdeck.com/jeroenmols","https://stackoverflow.com/users/2771851/jmols"]
+    
+  }
+</script>
+
+
+  <meta name="google-site-verification" content="8E8HUpExgyNFdLuFMWmkSUl08gISnOF3UWexA55aNrk" />
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$('.ga-link').on('click', function(){
+		if (typeof(ga)!=="undefined"){
+			ga('send',{
+				hitType: 'event',
+				eventCategory: 'Outbound link',
+				eventAction: 'click',
+				eventLabel: event.target.href
+			});
+	  	}
+	});
+})	;
+</script>
+
+<meta name="theme-color" content="#3d405b">
+
+<link href="atom.xml" type="application/atom+xml" rel="alternate" title="Jeroen Mols Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="https://jeroenmols.com/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Jeroen Mols
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/blog/">Blog</a>
+            </li><li class="masthead__menu-item">
+              <a href="/speaking/">Speaking</a>
+            </li><li class="masthead__menu-item">
+              <a href="/hireme/">Hire me</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/img/profile.jpg" alt="Jeroen Mols" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Jeroen Mols</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Android freelancer and Google Developer Expert</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Geel, Belgium</span>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://twitter.com/@molsjeroen" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="https://www.linkedin.com/in/jeroenmols" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/JeroenMols" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="https://stackoverflow.com/users/2771851/jmols" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i><span class="label">Stack Overflow</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        
+          <li>
+            <a href="https://www.youtube.com/channel/UC34Vt1lo8T15_rgc3e3Jsew" itemprop="sameAs" rel="nofollow noopener noreferrer">
+              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span>
+            </a>
+          </li>
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+  <li>
+    <a href="https://speakerdeck.com/jeroenmols" itemprop="sameAs">
+      <i class="fab fa-fw fa-speaker-deck" aria-hidden="true"></i> Speaker Deck
+    </a>
+  </li>
+
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Migrating away from JCenter">
+    <meta itemprop="description" content="This week JFrog - out of nowhere - announced to completely remove their Maven repository. Since they’ll pull it offline already by May 2021 (!!!) it’s time to urgently migrate away. This blogpost will guide how to get started.">
+    <meta itemprop="datePublished" content="February 04, 2021">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Migrating away from JCenter
+</h1>
+          <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  04 Feb 2021</p>
+
+          
+            <img src="https://jeroenmols.com/img/blog/migratingjcenter/migratingjcenter.jpg" alt="Migrating away from JCenter" title="Photo by William Bossen from Unsplash, https://unsplash.com/photos/CeL6SfbXCx8, cropped and resized">
+          
+
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>This week JFrog - out of nowhere - announced to completely remove their Maven repository. Since they’ll pull it offline already by May 2021 (!!!) it’s time to urgently migrate away. This blogpost will guide how to get started.</p>
+
+<h2 id="expected-migrations">Expected migrations</h2>
+<p>Roughly there are two main migrations steps required:</p>
+
+<ul>
+  <li>consumed dependencies from Bintray/JCenter</li>
+  <li>published artifacts to Bintray/JCenter</li>
+</ul>
+
+<p>Let’s have an in-depth look at both.</p>
+
+<h2 id="consumed-dependencies-from-bintrayjcenter">Consumed dependencies from Bintray/JCenter</h2>
+<p>These are dependencies that your app or library directly uses in one of its <code class="language-plaintext highlighter-rouge">dependencies</code> blocks in <code class="language-plaintext highlighter-rouge">build.gradle</code>.</p>
+
+<p>To understand what needs to happen, let’s first have a look to see how Gradle fetches dependencies. Imagine a project with multiple defined repositories in the top-level <code class="language-plaintext highlighter-rouge">build.gradle</code> file:</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Top-level build.gradle file</span>
+<span class="n">allprojects</span> <span class="o">{</span>
+  <span class="n">repositories</span> <span class="o">{</span>
+      <span class="n">google</span><span class="o">()</span>
+      <span class="n">jcenter</span><span class="o">()</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// App (or module) level build.gradle file</span>
+<span class="n">dependencies</span> <span class="o">{</span>
+  <span class="n">implementation</span> <span class="s1">'com.jeroenmols:mylibrary:1.0.0'</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>In this example, Gradle will first look for <code class="language-plaintext highlighter-rouge">com.jeroenmols:mylibrary</code> in the <code class="language-plaintext highlighter-rouge">google()</code> Maven repository. If it can’t find the artifact there, it will look in <code class="language-plaintext highlighter-rouge">jcenter()</code> instead.</p>
+
+<blockquote>
+  <p>Note that <code class="language-plaintext highlighter-rouge">jcenter</code> is a superset of Maven Central. So when you request <code class="language-plaintext highlighter-rouge">jcenter</code> for a Maven artifact that it doesn’t host itself, it will go and fetch it from Maven Central for you.</p>
+</blockquote>
+
+<p>Two things are important to note here:</p>
+
+<ol>
+  <li>the order in which repositories are defined matters</li>
+  <li>most artifacts come from <code class="language-plaintext highlighter-rouge">mavenCentral()</code>, hosted through <code class="language-plaintext highlighter-rouge">jcenter()</code></li>
+</ol>
+
+<p>To fully migrate away from <code class="language-plaintext highlighter-rouge">jcenter()</code>, all we need to do is replace all <code class="language-plaintext highlighter-rouge">jcenter()</code> occurrences with <code class="language-plaintext highlighter-rouge">mavenCentral()</code> in all <code class="language-plaintext highlighter-rouge">build.gradle</code> files.</p>
+
+<p>For my projects this meant:</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">//</span> Top level build.gradle file
+<span class="p">buildscript {
+</span>  repositories {
+    google()
+<span class="gd">-   jcenter()
+</span><span class="gi">+   mavenCentral()
+</span>  }
+<span class="err">}</span>
+...
+
+allprojects {
+  repositories {
+<span class="gd">-   jcenter()
+</span><span class="gi">+   mavenCentral()
+</span>  }
+<span class="err">}</span>
+</code></pre></div></div>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">//</span> buildSrc level build.gradle file
+<span class="p">repositories {
+</span><span class="gd">- jcenter()
+</span><span class="gi">+ mavenCentral()
+</span><span class="err">}</span>
+</code></pre></div></div>
+
+<p>After replacing all repositories, we can test if our build still passes by running the following command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./gradlew assemble assembleDebugUnitTest assembleAndroidTest <span class="nt">--refresh-dependencies</span>
+</code></pre></div></div>
+
+<p>This will ensure all dependencies for every build type are downloaded again. Such a “clean” build will assess whether your app can be built independently of <code class="language-plaintext highlighter-rouge">jcenter()</code>.</p>
+
+<p>If this command passes, congratulations you’ve successfully migrated your dependencies away from <code class="language-plaintext highlighter-rouge">jcenter</code>. Nothing more to do.</p>
+
+<p>When this command fails, however, it will print out all issues you may have:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">*</span> What went wrong:
+Could not determine the dependencies of task <span class="s1">':app:lintVitalRelease'</span><span class="nb">.</span>
+<span class="o">&gt;</span> Could not resolve all artifacts <span class="k">for </span>configuration <span class="s1">':app:debugCompileClasspath'</span><span class="nb">.</span>
+   <span class="o">&gt;</span> Could not find com.jeroenmols:mylibrary:1.0.0.
+     Required by:
+         project :app
+</code></pre></div></div>
+
+<p>This doesn’t just mean we can’t remove <code class="language-plaintext highlighter-rouge">jcenter()</code> from our projects yet. But keeping <code class="language-plaintext highlighter-rouge">jcenter()</code> as a repository could cause us to add even more <code class="language-plaintext highlighter-rouge">jcenter()</code> only dependencies in the future!</p>
+
+<p>Fortunately there is a way to restrict the usage of <code class="language-plaintext highlighter-rouge">jcenter()</code>:</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">jcenter</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">content</span> <span class="o">{</span>
+        <span class="n">includeModule</span><span class="o">(</span><span class="s2">"com.jeroenmols"</span><span class="o">,</span> <span class="s2">"mylibrary"</span><span class="o">)</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This will restrict Gradle to only use <code class="language-plaintext highlighter-rouge">jcenter()</code> for this single dependency. Note that you can define multiple lines of <code class="language-plaintext highlighter-rouge">includeModule</code> for each dependency that isn’t available on Maven Central yet.</p>
+
+<p>The benefits of this are twofold:</p>
+<ol>
+  <li>You make it explicit which <code class="language-plaintext highlighter-rouge">jcenter()</code> dependencies you still have</li>
+  <li>You prevent other <code class="language-plaintext highlighter-rouge">jcenter()</code> only dependencies from being added.</li>
+</ol>
+
+<p>For each <code class="language-plaintext highlighter-rouge">jcenter()</code> dependency you still have, I recommend opening a <a href="https://github.com/streem/pbandk/issues/120">public Github issue</a> to request the library author to migrate.</p>
+
+<p>Bringing it all together yields:</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Top level build.gradle file</span>
+<span class="n">allprojects</span> <span class="o">{</span>
+  <span class="n">repositories</span> <span class="o">{</span>
+      <span class="n">google</span><span class="o">()</span>
+      <span class="n">mavenCentral</span><span class="o">()</span>
+      <span class="n">jcenter</span><span class="o">()</span> <span class="o">{</span>
+          <span class="n">content</span> <span class="o">{</span>
+              <span class="n">includeModule</span><span class="o">(</span><span class="s2">"com.jeroenmols"</span><span class="o">,</span> <span class="s2">"mylibrary"</span><span class="o">)</span>
+          <span class="o">}</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// App (or module) level build.gradle file</span>
+<span class="n">dependencies</span> <span class="o">{</span>
+  <span class="n">implementation</span> <span class="s1">'com.jeroenmols:mylibrary:1.0.0'</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>With this solution, Gradle will first look for the artifact in the <code class="language-plaintext highlighter-rouge">google()</code> repository, then in <code class="language-plaintext highlighter-rouge">mavenCentral()</code> and finally in <code class="language-plaintext highlighter-rouge">jcenter()</code> if the artifact is on the explicit allow list.</p>
+
+<h1 id="published-artifacts-to-bintrayjcenter">Published artifacts to Bintray/JCenter</h1>
+<p>These are artifacts you’ve published to <code class="language-plaintext highlighter-rouge">jcenter()</code> yourself.</p>
+
+<p>Roughly there are two things that you’ll need to do:</p>
+
+<ol>
+  <li>Change your publishing pipeline to upload new library versions to Maven Central</li>
+  <li>Migrate all your existing artifacts to Maven Central.</li>
+</ol>
+
+<p>To handle the first part, I recommend <a href="https://proandroiddev.com/publishing-your-first-android-library-to-mavencentral-be2c51330b88">this guide</a> by <a href="https://twitter.com/waseefakhtar">Waseef Akhtar</a> on how to publish to Maven Central.</p>
+
+<p>For the second part, I want to emphasize how important it is to also migrate your old artifacts. Not all your customers will be on the latest version of your library and upgrading might not be straightforward for them, especially with breaking API changes.</p>
+
+<p>But besides this customer argument, there could also be existing open source projects that are currently in low maintenance mode, but still incredibly valuable to the community as a learning resource. Would we want to break all those builds?</p>
+
+<p>Finally note that, even though May 1st is still a few months away, I highly recommend you to start migrating your library as soon as feasible. This won’t just decrease the burden for your customers, but I do also expect a surge in libraries being migrated to Maven central which could result in technical issues on their end. Hopefully not off course, but better to make sure you have some extra time in your planning.</p>
+
+<h2 id="wrap-up">Wrap-up</h2>
+<p>Migrating your app away from JCenter can be done by replacing all <code class="language-plaintext highlighter-rouge">jcenter()</code> references with <code class="language-plaintext highlighter-rouge">mavenCentral()</code> and adding explicit inclusions for dependencies that haven’t migrated yet. For your published libraries, try to migrate as soon as possible, and don’t forget to also migrate all existing artifacts.</p>
+
+<p>If you’ve made it this far you should probably follow me on <span><a href="https://twitter.com/molsjeroen?source=migratingawayfromjcenter2021" class="ga-link" target="_blank">Twitter</a></span>
+. Feel free to leave a comment below!</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/android" class="page__taxonomy-item" rel="tag">android</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/gradle" class="page__taxonomy-item" rel="tag">gradle</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/library" class="page__taxonomy-item" rel="tag">library</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/maven" class="page__taxonomy-item" rel="tag">maven</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/transitive-dependencies" class="page__taxonomy-item" rel="tag">transitive dependencies</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/blog" class="page__taxonomy-item" rel="tag">blog</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-02-04T00:00:00+01:00">February 04, 2021</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=Migrating+away+from+JCenter%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2021%2F02%2F04%2Fmigratingjcenter%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2021%2F02%2F04%2Fmigratingjcenter%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2021%2F02%2F04%2Fmigratingjcenter%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      <section class="page__share">
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bottom-blog-responsive -->
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-9854541518226004"
+       data-ad-slot="4086741379"
+       data-ad-format="auto"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/blog/2021/01/05/yearinreview/" class="pagination--pager" title="Year in review 2020
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a Comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/yearinreview20/yearinreview20.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2021/01/05/yearinreview/" rel="permalink">Year in review 2020
+</a>
+        </h2>
+        <h3 class="archive__date">05 Jan 2021</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2021/01/05/yearinreview/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Well… I don’t really know where to start this time. 2020 was quite the rollercoaster, with many downs… but fortunately also a few amazing ups. Let’s focus on the good stuff.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/inprojectmaven/inprojectmaven.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2020/12/02/inproject-maven/" rel="permalink">Test library releases using an in project Maven repository
+</a>
+        </h2>
+        <h3 class="archive__date">02 Dec 2020</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2020/12/02/inproject-maven/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Short, powerful post on how to test the release version of libraries directly within a project without having to deploy them to Maven first.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/librarydependencies/librarydependencies.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2020/11/11/library-dependencies/" rel="permalink">Android library development - Dependencies
+</a>
+        </h2>
+        <h3 class="archive__date">11 Nov 2020</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2020/11/11/library-dependencies/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  9 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Ever had a build failure while integrating an SDK? Wonder how you can avoid your SDK customers having dependency conflicts? How many transitive dependencies should your SDK have?
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(https://jeroenmols.com/img/blog/librarymodularization/librarymodularization.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="https://jeroenmols.com/blog/2020/11/04/library-modularization/" rel="permalink">Android library development - Modularization
+</a>
+        </h2>
+        <h3 class="archive__date">04 Nov 2020</h3>
+      </div>
+      
+        <a href="https://jeroenmols.com/blog/2020/11/04/library-modularization/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  5 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">With modularization being all the hype, should you also modularize an SDK? Are fat aar files really needed? And how do you prevent internal APIs from being exposed on your public interface?
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+
+    <li><a href="atom.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Jeroen Mols. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <script>
+  window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+  ga('create','UA-63356566-1','auto');
+  ga('set', 'anonymizeIp', false);
+  ga('send','pageview')
+</script>
+<script src="https://www.google-analytics.com/analytics.js" async></script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://jeroenmols.com/blog/2021/02/04/migratingjcenter/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/blog/2021/02/04/migratingjcenter"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jeroenmols.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

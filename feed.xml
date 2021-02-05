@@ -1,4 +1,164 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2021-01-05T23:54:26+01:00</updated><id>https://jeroenmols.com/feed.xml</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, Android freelancer and Google Developer Expert.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Year in review 2020</title><link href="https://jeroenmols.com/blog/2021/01/05/yearinreview/" rel="alternate" type="text/html" title="Year in review 2020" /><published>2021-01-05T00:00:00+01:00</published><updated>2021-01-05T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2021/01/05/yearinreview</id><content type="html" xml:base="https://jeroenmols.com/blog/2021/01/05/yearinreview/">&lt;p&gt;Well… I don’t really know where to start this time. 2020 was quite the rollercoaster, with many downs… but fortunately also a few amazing ups. Let’s focus on the good stuff.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2021-02-05T10:54:14+01:00</updated><id>https://jeroenmols.com/feed.xml</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, Android freelancer and Google Developer Expert.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Migrating away from JCenter</title><link href="https://jeroenmols.com/blog/2021/02/04/migratingjcenter/" rel="alternate" type="text/html" title="Migrating away from JCenter" /><published>2021-02-04T00:00:00+01:00</published><updated>2021-02-04T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2021/02/04/migratingjcenter</id><content type="html" xml:base="https://jeroenmols.com/blog/2021/02/04/migratingjcenter/">&lt;p&gt;This week JFrog - out of nowhere - announced to completely remove their Maven repository. Since they’ll pull it offline already by May 2021 (!!!) it’s time to urgently migrate away. This blogpost will guide how to get started.&lt;/p&gt;
+
+&lt;h2 id=&quot;expected-migrations&quot;&gt;Expected migrations&lt;/h2&gt;
+&lt;p&gt;Roughly there are two main migrations steps required:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;consumed dependencies from Bintray/JCenter&lt;/li&gt;
+  &lt;li&gt;published artifacts to Bintray/JCenter&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Let’s have an in-depth look at both.&lt;/p&gt;
+
+&lt;h2 id=&quot;consumed-dependencies-from-bintrayjcenter&quot;&gt;Consumed dependencies from Bintray/JCenter&lt;/h2&gt;
+&lt;p&gt;These are dependencies that your app or library directly uses in one of its &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dependencies&lt;/code&gt; blocks in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;To understand what needs to happen, let’s first have a look to see how Gradle fetches dependencies. Imagine a project with multiple defined repositories in the top-level &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; file:&lt;/p&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Top-level build.gradle file&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;allprojects&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;repositories&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;google&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;jcenter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// App (or module) level build.gradle file&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;implementation&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'com.jeroenmols:mylibrary:1.0.0'&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;In this example, Gradle will first look for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;com.jeroenmols:mylibrary&lt;/code&gt; in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;google()&lt;/code&gt; Maven repository. If it can’t find the artifact there, it will look in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jcenter()&lt;/code&gt; instead.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jcenter&lt;/code&gt; is a superset of Maven Central. So when you request &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jcenter&lt;/code&gt; for a Maven artifact that it doesn’t host itself, it will go and fetch it from Maven Central for you.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Two things are important to note here:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;the order in which repositories are defined matters&lt;/li&gt;
+  &lt;li&gt;most artifacts come from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mavenCentral()&lt;/code&gt;, hosted through &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jcenter()&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;To fully migrate away from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jcenter()&lt;/code&gt;, all we need to do is replace all &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jcenter()&lt;/code&gt; occurrences with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mavenCentral()&lt;/code&gt; in all &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; files.&lt;/p&gt;
+
+&lt;p&gt;For my projects this meant:&lt;/p&gt;
+
+&lt;div class=&quot;language-diff highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;//&lt;/span&gt; Top level build.gradle file
+&lt;span class=&quot;p&quot;&gt;buildscript {
+&lt;/span&gt;  repositories {
+    google()
+&lt;span class=&quot;gd&quot;&gt;-   jcenter()
+&lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+   mavenCentral()
+&lt;/span&gt;  }
+&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;
+...
+
+allprojects {
+  repositories {
+&lt;span class=&quot;gd&quot;&gt;-   jcenter()
+&lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+   mavenCentral()
+&lt;/span&gt;  }
+&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-diff highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;//&lt;/span&gt; buildSrc level build.gradle file
+&lt;span class=&quot;p&quot;&gt;repositories {
+&lt;/span&gt;&lt;span class=&quot;gd&quot;&gt;- jcenter()
+&lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+ mavenCentral()
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;After replacing all repositories, we can test if our build still passes by running the following command:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;./gradlew assemble assembleDebugUnitTest assembleAndroidTest &lt;span class=&quot;nt&quot;&gt;--refresh-dependencies&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This will ensure all dependencies for every build type are downloaded again. Such a “clean” build will assess whether your app can be built independently of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jcenter()&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;If this command passes, congratulations you’ve successfully migrated your dependencies away from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jcenter&lt;/code&gt;. Nothing more to do.&lt;/p&gt;
+
+&lt;p&gt;When this command fails, however, it will print out all issues you may have:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; What went wrong:
+Could not determine the dependencies of task &lt;span class=&quot;s1&quot;&gt;':app:lintVitalRelease'&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; Could not resolve all artifacts &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;configuration &lt;span class=&quot;s1&quot;&gt;':app:debugCompileClasspath'&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+   &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; Could not find com.jeroenmols:mylibrary:1.0.0.
+     Required by:
+         project :app
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This doesn’t just mean we can’t remove &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jcenter()&lt;/code&gt; from our projects yet. But keeping &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jcenter()&lt;/code&gt; as a repository could cause us to add even more &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jcenter()&lt;/code&gt; only dependencies in the future!&lt;/p&gt;
+
+&lt;p&gt;Fortunately there is a way to restrict the usage of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jcenter()&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;jcenter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;content&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;includeModule&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;com.jeroenmols&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;mylibrary&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This will restrict Gradle to only use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jcenter()&lt;/code&gt; for this single dependency. Note that you can define multiple lines of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;includeModule&lt;/code&gt; for each dependency that isn’t available on Maven Central yet.&lt;/p&gt;
+
+&lt;p&gt;The benefits of this are twofold:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;You make it explicit which &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jcenter()&lt;/code&gt; dependencies you still have&lt;/li&gt;
+  &lt;li&gt;You prevent other &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jcenter()&lt;/code&gt; only dependencies from being added.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;For each &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jcenter()&lt;/code&gt; dependency you still have, I recommend opening a &lt;a href=&quot;https://github.com/streem/pbandk/issues/120&quot;&gt;public Github issue&lt;/a&gt; to request the library author to migrate.&lt;/p&gt;
+
+&lt;p&gt;Bringing it all together yields:&lt;/p&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Top level build.gradle file&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;allprojects&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;repositories&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;google&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;mavenCentral&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;jcenter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;content&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+              &lt;span class=&quot;n&quot;&gt;includeModule&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;com.jeroenmols&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;mylibrary&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+          &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// App (or module) level build.gradle file&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;implementation&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'com.jeroenmols:mylibrary:1.0.0'&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;With this solution, Gradle will first look for the artifact in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;google()&lt;/code&gt; repository, then in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mavenCentral()&lt;/code&gt; and finally in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jcenter()&lt;/code&gt; if the artifact is on the explicit allow list.&lt;/p&gt;
+
+&lt;h1 id=&quot;published-artifacts-to-bintrayjcenter&quot;&gt;Published artifacts to Bintray/JCenter&lt;/h1&gt;
+&lt;p&gt;These are artifacts you’ve published to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jcenter()&lt;/code&gt; yourself.&lt;/p&gt;
+
+&lt;p&gt;Roughly there are two things that you’ll need to do:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Change your publishing pipeline to upload new library versions to Maven Central&lt;/li&gt;
+  &lt;li&gt;Migrate all your existing artifacts to Maven Central.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;To handle the first part, I recommend &lt;a href=&quot;https://proandroiddev.com/publishing-your-first-android-library-to-mavencentral-be2c51330b88&quot;&gt;this guide&lt;/a&gt; by &lt;a href=&quot;https://twitter.com/waseefakhtar&quot;&gt;Waseef Akhtar&lt;/a&gt; on how to publish to Maven Central.&lt;/p&gt;
+
+&lt;p&gt;For the second part, I want to emphasize how important it is to also migrate your old artifacts. Not all your customers will be on the latest version of your library and upgrading might not be straightforward for them, especially with breaking API changes.&lt;/p&gt;
+
+&lt;p&gt;But besides this customer argument, there could also be existing open source projects that are currently in low maintenance mode, but still incredibly valuable to the community as a learning resource. Would we want to break all those builds?&lt;/p&gt;
+
+&lt;p&gt;Finally note that, even though May 1st is still a few months away, I highly recommend you to start migrating your library as soon as feasible. This won’t just decrease the burden for your customers, but I do also expect a surge in libraries being migrated to Maven central which could result in technical issues on their end. Hopefully not off course, but better to make sure you have some extra time in your planning.&lt;/p&gt;
+
+&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
+&lt;p&gt;Migrating your app away from JCenter can be done by replacing all &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jcenter()&lt;/code&gt; references with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mavenCentral()&lt;/code&gt; and adding explicit inclusions for dependencies that haven’t migrated yet. For your published libraries, try to migrate as soon as possible, and don’t forget to also migrate all existing artifacts.&lt;/p&gt;
+
+&lt;p&gt;If you’ve made it this far you should probably follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=migratingawayfromjcenter2021&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
+. Feel free to leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="android" /><category term="library" /><category term="maven" /><category term="transitive dependencies" /><category term="gradle" /><summary type="html">This week JFrog - out of nowhere - announced to completely remove their Maven repository. Since they’ll pull it offline already by May 2021 (!!!) it’s time to urgently migrate away. This blogpost will guide how to get started.</summary></entry><entry><title type="html">Year in review 2020</title><link href="https://jeroenmols.com/blog/2021/01/05/yearinreview/" rel="alternate" type="text/html" title="Year in review 2020" /><published>2021-01-05T00:00:00+01:00</published><updated>2021-01-05T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2021/01/05/yearinreview</id><content type="html" xml:base="https://jeroenmols.com/blog/2021/01/05/yearinreview/">&lt;p&gt;Well… I don’t really know where to start this time. 2020 was quite the rollercoaster, with many downs… but fortunately also a few amazing ups. Let’s focus on the good stuff.&lt;/p&gt;
 
 &lt;p&gt;My first lucky break was that I started working remotely by choice! This privilege meant I was quite well equipped both practically and mentally for the challenges of remote work. And while not without its challenges, I haven’t been happier at my work.&lt;/p&gt;
 
@@ -27,7 +187,6 @@
   &lt;li&gt;👨‍💻 Spoke at &lt;a href=&quot;https://jeroenmols.com/speaking/&quot;&gt;4 online events&lt;/a&gt; and produced &lt;a href=&quot;https://www.youtube.com/watch?v=TCKb1WfjAC8&quot;&gt;1 video&lt;/a&gt;.&lt;/li&gt;
   &lt;li&gt;📝 Wrote &lt;a href=&quot;http://jeroenmols.com/blog/&quot;&gt;6 blog posts&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;📱 Grew my &lt;a href=&quot;https://twitter.com/molsjeroen&quot;&gt;Twitter&lt;/a&gt; followers by ~20% to more than 7500&lt;/li&gt;
-  &lt;li&gt;🦠 Contributed code to the official &lt;a href=&quot;https://github.com/nhsx/covid-19-app-android-ag-public/tree/master/app/src/main/java/com/jeroenmols&quot;&gt;UK Covid app&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;🚗 Drove less than 1500 km with my car (down from 30k km)&lt;/li&gt;
   &lt;li&gt;☕️  Improved my coffee skills with (basic) latte art!&lt;/li&gt;
   &lt;li&gt;🚴‍♀️ Worked out (almost) biweekly on my indoor racing bike&lt;/li&gt;
@@ -1854,120 +2013,4 @@ Execution failed for task ':myproject:checkReleaseDuplicateClasses'.
 &lt;p&gt;Feature flags can help in releasing new features and improvements on existing functionality. Always try to roll out features gradually, if that’s not possible, rely on your beta community to test the feature prior to release,&lt;/p&gt;
 
 &lt;p&gt;Make sure you follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=featureflags-howtouse2019&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
- or continue to &lt;a href=&quot;/blog/2019/09/12/featureflagsarchitecture/&quot;&gt;part 3&lt;/a&gt; to learn more about an architecture to integrate feature flags into your app.&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="android" /><category term="firebase" /><category term="feature flags" /><category term="software engineering" /><category term="tools" /><summary type="html">Empowered with what feature flags are and why they are useful, let’s see how we can actually integrate them into an app. And how can we roll them out to our users?</summary></entry><entry><title type="html">Feature Flags - Why you should care</title><link href="https://jeroenmols.com/blog/2019/08/13/featureflags/" rel="alternate" type="text/html" title="Feature Flags - Why you should care" /><published>2019-08-13T00:00:00+02:00</published><updated>2019-08-13T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2019/08/13/featureflags</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/08/13/featureflags/">&lt;p&gt;A key ingredient to speed up modern software development is feature flags. But what is a feature flag precisely? Why should you care about them? How do you integrate them into your codebase? And how can we make them easy to use?&lt;/p&gt;
-
-&lt;p&gt;This mini-series will explain the benefits of using feature flags and propose a handy architecture that enables local feature flag configuration, remote configuration, and easy testability.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;This blog post is part of a series on feature flags:&lt;/p&gt;
-  &lt;ul&gt;
-    &lt;li&gt;Part 1: &lt;a href=&quot;/blog/2019/08/13/featureflags/&quot;&gt;Why you should care&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;Part 2: &lt;a href=&quot;/blog/2019/08/20/featureflagshowtouse/&quot;&gt;How to use&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;Part 3: &lt;a href=&quot;/blog/2019/09/12/featureflagsarchitecture/&quot;&gt;A successful architecture&lt;/a&gt;&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;what-is-a-feature-flag&quot;&gt;What is a feature flag&lt;/h2&gt;
-&lt;p&gt;In essence, a feature flag is simply a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Boolean&lt;/code&gt; that determines whether something is “on” or “of”:&lt;/p&gt;
-
-&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isFeatureOn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// give access to something&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// prevent access to something&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;This “something” can be many things:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;a new user-facing feature in your app (e.g. enable dark theme)&lt;/li&gt;
-  &lt;li&gt;a non-user-facing feature (e.g. new analytics provider)&lt;/li&gt;
-  &lt;li&gt;a replacement for existing feature (e.g. rewrite of some screen)&lt;/li&gt;
-  &lt;li&gt;a refactoring of business logic (e.g. conversion of SQL to Room)&lt;/li&gt;
-  &lt;li&gt;…&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Basically, a feature flag decides whether a particular code path will be executed or not. As such it can make both very small (e.g. new button color) as very large things (e.g. new multi-screen feature) available to users. The mechanics are always the same.&lt;/p&gt;
-
-&lt;p&gt;There are two types of feature flags: static and dynamic.&lt;/p&gt;
-
-&lt;p&gt;A static feature flag gets hardcoded into the app at build time and hence you decide during compilation what will be “on” or “off”. Because of its inflexibility at runtime, it’s benefits are mostly limited to the development process itself.&lt;/p&gt;
-
-&lt;p&gt;A dynamic feature flag, on the other hand, can still be changed at runtime. This happens either via a secret settings screen in the debug variant or via a remote tool (e.g. &lt;a href=&quot;https://firebase.google.com/docs/remote-config&quot;&gt;Firebase Remote Config&lt;/a&gt;) when the app is in production. This enables some very interesting use cases such as gradual feature rollout and A/B testing.&lt;/p&gt;
-
-&lt;p&gt;Finally, note that feature flags don’t affect the code that is bundled into your app binary! All they do is change the code path that is executed. This is in contrast to tools like &lt;a href=&quot;https://www.guardsquare.com/en/products/proguard&quot;&gt;ProGuard&lt;/a&gt; that can actually strip out parts of your code.&lt;/p&gt;
-
-&lt;h2 id=&quot;why-use-feature-flags&quot;&gt;Why use feature flags&lt;/h2&gt;
-&lt;p&gt;The key benefit of using feature flags is that they decouple development from app releases. This means two things:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;features can be merged before they are fully implemented&lt;/li&gt;
-  &lt;li&gt;fully implemented features can remain hidden until you are ready to release them.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;First and foremost, feature flags help developers because incomplete features can be merged! This allows to split a feature into many small increments and merge those branches one by one.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/featureflags/smaller_branches.png&quot; alt=&quot;Thanks to feature flags, development of new features can be split into many small increments&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;These smaller branches aren’t just easier to review (fewer files), but they are also easier to merge. This is because their difference with master is small causing a lot less merge conflicts. When merging is painless, it will happen more often and hence development will speed up.&lt;/p&gt;
-
-&lt;p&gt;Secondly, feature flags also help with releasing. In the old days, an app release could get blocked when finding a last-minute issue on a new feature. Thanks to feature flags, this can no longer happen! If a feature isn’t fully ready, it can just be temporarily disabled.&lt;/p&gt;
-
-&lt;p&gt;Even more, when a feature is ready to ship, you no longer have to do a big bang roll out to all users. Instead, you can gradually roll out and make a data-driven decision on to roll out further or maybe even roll back! That dramatically de-risks rolling out new features. At Philips Hue, we recently rewrote one of our most important screens and rolled it out over 10 days to make sure users weren’t negatively impacted.&lt;/p&gt;
-
-&lt;p&gt;Also, there are commercial benefits: time-critical new features can be built ahead of time and only made available when you are ready to announce them. This was especially useful at Philips Hue where we need to time app launches together with new product introductions (e.g. a new lamp or accessory).&lt;/p&gt;
-
-&lt;p&gt;Finally, improvements to new features can be built side by side the old feature and using A/B tests you can then decide which feature should remain. This allows optimizing user engagement in your app.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Benefits of feature flags:&lt;/p&gt;
-  &lt;ul&gt;
-    &lt;li&gt;speed up development by integrating incomplete features&lt;/li&gt;
-    &lt;li&gt;allow releasing when a new feature is not yet ready&lt;/li&gt;
-    &lt;li&gt;enable to derisk releases using gradual feature rollout&lt;/li&gt;
-    &lt;li&gt;enable roll back when production issue found in feature&lt;/li&gt;
-    &lt;li&gt;time the release of new features to the market&lt;/li&gt;
-    &lt;li&gt;enable A/B testing&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;requirements-of-good-feature-flags&quot;&gt;Requirements of good feature flags&lt;/h2&gt;
-&lt;p&gt;Now that we know that feature flags can be quite useful, let’s take a minute and think about what we need to make feature flags work.&lt;/p&gt;
-
-&lt;p&gt;First and foremost: it must be incredibly easy to add a new feature flag. The easier that is, the more you will do it and the more you’ll benefit from them. In the next posts, we’ll see how we can define feature flags using one single line of code!&lt;/p&gt;
-
-&lt;p&gt;Next, we need to be able to toggle feature flags both locally and remotely. For developer (debug) builds, you want predictable, easy access to feature flags. Hence there should be some screen in the app where you can see the current state of all feature flags and toggle them. Ideally, this UI should even be auto-generated.&lt;/p&gt;
-
-&lt;p&gt;On the other hand, for production (release) builds, you want to be able to remotely toggle the feature flags. Hence they should also be remotely available, which is typically provided by a framework like &lt;a href=&quot;https://firebase.google.com/docs/remote-config&quot;&gt;Firebase Remote Config&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;In terms of feature flag values, we are going to restrict ourselves to just boolean flags. Having binary values keeps things simple, both from a development perspective as conceptually: something is either on or off. Using many feature flags can already be quite confusing with just binary values, let alone if strings or integers are allowed. This simplification also allows to elegantly generate the UI for our feature flags later on.&lt;/p&gt;
-
-&lt;p&gt;We do need more than just feature flags though! Apps typically also have a dynamic configuration that you only use in the debug build type: logging, leak canary, espresso idling resources, development backend, bypass onboarding, simulate a crash… All of these are “test settings” that facilitate testing or debugging your app. Wouldn’t it be nice if you could also turn these on or off using a built-in UI?&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/featureflags/testsettings.png&quot; alt=&quot;Feature flags allow to toggle features on or off, whereas test stettings allow to dynamically configure the behavior of the app&quot; class=&quot;align-center width-half&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Tests settings don’t just ease development and testing, but they also reduce the need to build flavors. Instead of having a separate flavor for leak canary or logging or espresso idling resources or … these now become a configuration that you can turn on or off on demand!&lt;/p&gt;
-
-&lt;p&gt;This allows having predictable debug builds that never behave differently due to a remote feature flag change (that would also cause test flakiness). And at the same time enables to turn the remote feature flagging on to actual test whether remote feature flags still work.&lt;/p&gt;
-
-&lt;p&gt;Contrary to feature flags, test settings are long-lived and are never shipped directly to users.&lt;/p&gt;
-
-&lt;p&gt;Finally, we should be able to easily toggle feature flags on/off in automated tests and we don’t want to lock ourselves into a particular framework. So it should be easy to swap to a different remote feature flag tool later on.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Wrapping it all up, feature flags should be:&lt;/p&gt;
-  &lt;ul&gt;
-    &lt;li&gt;very easy to add&lt;/li&gt;
-    &lt;li&gt;locally and remotely available&lt;/li&gt;
-    &lt;li&gt;binary in value&lt;/li&gt;
-    &lt;li&gt;cater for both features and test settings&lt;/li&gt;
-    &lt;li&gt;configurable for automated tests&lt;/li&gt;
-    &lt;li&gt;agnostic of the used remote feature flag tool&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
-&lt;p&gt;Feature flags are an incredibly powerful tool to speed up development: they allow to merge incomplete features and derisk app release by allowing gradual rollouts. They should be incredibly easy to add, usable in automated tests and you should be able to toggle them remotely for production use and locally for development and testing.&lt;/p&gt;
-
-&lt;p&gt;Make sure you follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=featureflags-whyyoushouldcare2019&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
- and read on in &lt;a href=&quot;/blog/2019/08/20/featureflagshowtouse/&quot;&gt;part 2&lt;/a&gt; that covers how you can use and release feature flags.&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="android" /><category term="firebase" /><category term="feature flags" /><category term="software engineering" /><category term="tools" /><summary type="html">A key ingredient to speed up modern software development is feature flags. But what is a feature flag precisely? Why should you care about them? How do you integrate them into your codebase? And how can we make them easy to use?</summary></entry></feed>
+ or continue to &lt;a href=&quot;/blog/2019/09/12/featureflagsarchitecture/&quot;&gt;part 3&lt;/a&gt; to learn more about an architecture to integrate feature flags into your app.&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="android" /><category term="firebase" /><category term="feature flags" /><category term="software engineering" /><category term="tools" /><summary type="html">Empowered with what feature flags are and why they are useful, let’s see how we can actually integrate them into an app. And how can we roll them out to our users?</summary></entry></feed>
