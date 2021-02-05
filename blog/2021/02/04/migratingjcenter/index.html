@@ -521,7 +521,7 @@ Could not determine the dependencies of task <span class="s1">':app:lintVitalRel
 
 <p>But besides this customer argument, there could also be existing open source projects that are currently in low maintenance mode, but still incredibly valuable to the community as a learning resource. Would we want to break all those builds?</p>
 
-<p>Finally note that, even though May 1st is still a few months away, I highly recommend you to start migrating your library as soon as feasible. This won’t just decrease the burden for your customers, but I do also expect a surge in libraries being migrated to Maven central which could result in technical issues on their end. Hopefully not off course, but better to make sure you have some extra time in your planning.</p>
+<p>Finally note that, even though May 1st is still a few months away, I highly recommend you to start migrating your library as soon as feasible. This won’t just decrease the burden for your customers, but I do also expect a surge in libraries being migrated to Maven central which could result in technical issues on their end. Hopefully not, of course, but better to make sure you have some extra time in your planning.</p>
 
 <h2 id="wrap-up">Wrap-up</h2>
 <p>Migrating your app away from JCenter can be done by replacing all <code class="language-plaintext highlighter-rouge">jcenter()</code> references with <code class="language-plaintext highlighter-rouge">mavenCentral()</code> and adding explicit inclusions for dependencies that haven’t migrated yet. For your published libraries, try to migrate as soon as possible, and don’t forget to also migrate all existing artifacts.</p>
