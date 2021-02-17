@@ -1,7 +1,7 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.19.3 by Michael Rose
-  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Minimal Mistakes Jekyll Theme 4.22.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
 -->
@@ -14,6 +14,9 @@
 
 
   <meta name="author" content="Jeroen Mols">
+  
+  <meta property="article:author" content="Jeroen Mols">
+  
 
 
 <meta property="og:type" content="article">
@@ -43,8 +46,6 @@
     
   
 
-  
-    <meta name="twitter:creator" content="@molsjeroen">
   
 
 
@@ -117,7 +118,8 @@ $(document).ready(function(){
 </script>
 
 <!-- For all browsers -->
-<link rel="stylesheet" href="https://jeroenmols.com/assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
 
 <!--[if lte IE 9]>
   <style>
@@ -133,6 +135,7 @@ $(document).ready(function(){
     }
   </style>
 <![endif]-->
+
 
 
 
@@ -222,7 +225,7 @@ $(document).ready(function(){
     
     
       <div class="author__bio" itemprop="description">
-        <p>Android freelancer and Google Developer Expert</p>
+        <p>Android developer at Plaid and Google Developer Expert</p>
 
       </div>
     
@@ -233,79 +236,39 @@ $(document).ready(function(){
     <ul class="author__urls social-icons">
       
         <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
-          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Geel, Belgium</span>
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Flanders, Belgium</span>
         </li>
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-        <li>
-          <a href="https://twitter.com/@molsjeroen" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span>
-          </a>
-        </li>
-      
-
-      
-
-      
-        <li>
-          <a href="https://www.linkedin.com/in/jeroenmols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span>
-          </a>
-        </li>
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-        <li>
-          <a href="https://github.com/JeroenMols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span>
-          </a>
-        </li>
-      
-
-      
-
-      
-        <li>
-          <a href="https://stackoverflow.com/users/2771851/jmols" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i><span class="label">Stack Overflow</span>
-          </a>
-        </li>
-      
-
-      
-
-      
-
-      
-
-      
-
       
 
       
         
-          <li>
-            <a href="https://www.youtube.com/channel/UC34Vt1lo8T15_rgc3e3Jsew" itemprop="sameAs" rel="nofollow noopener noreferrer">
-              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span>
-            </a>
-          </li>
+          
+            <li><a href="https://twitter.com/molsjeroen" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/jeroenmols" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/jeroenmols/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">Linkedin</span></a></li>
+          
+        
+          
+            <li><a href="https://speakerdeck.com/jeroenmols" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-speaker-deck" aria-hidden="true"></i><span class="label">Speakerdeck</span></a></li>
+          
+        
+          
+            <li><a href="https://stackoverflow.com/users/2771851/jeroen-mols" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i><span class="label">Stackoverflow</span></a></li>
+          
+        
+          
+            <li><a href="https://www.youtube.com/channel/UC34Vt1lo8T15_rgc3e3Jsew" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span></a></li>
+          
+        
+          
+            <li><a href="mailto:info@jeroenmols.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
         
       
 
@@ -320,12 +283,50 @@ $(document).ready(function(){
       
 
       
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
   <li>
-    <a href="https://speakerdeck.com/jeroenmols" itemprop="sameAs">
-      <i class="fab fa-fw fa-speaker-deck" aria-hidden="true"></i> Speaker Deck
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
     </a>
   </li>
-
+-->
     </ul>
   </div>
 </div>
@@ -623,27 +624,17 @@ For more information, have a look at the <a href="http://docs.travis-ci.com/user
 
 
   
-  
-  
 
   <p class="page__taxonomy">
     <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
     <span itemprop="keywords">
     
-      
-      
       <a href="/tags/android" class="page__taxonomy-item" rel="tag">android</a><span class="sep">, </span>
     
-      
-      
       <a href="/tags/ci" class="page__taxonomy-item" rel="tag">ci</a><span class="sep">, </span>
     
-      
-      
       <a href="/tags/coverage" class="page__taxonomy-item" rel="tag">coverage</a><span class="sep">, </span>
     
-      
-      
       <a href="/tags/tools" class="page__taxonomy-item" rel="tag">tools</a>
     
     </span>
@@ -656,15 +647,11 @@ For more information, have a look at the <a href="http://docs.travis-ci.com/user
 
 
   
-  
-  
 
   <p class="page__taxonomy">
     <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
     <span itemprop="keywords">
     
-      
-      
       <a href="/categories/blog" class="page__taxonomy-item" rel="tag">blog</a>
     
     </span>
@@ -925,7 +912,9 @@ For more information, have a look at the <a href="http://docs.travis-ci.com/user
 
     
 
-    <li><a href="atom.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+      <li><a href="atom.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
   </ul>
 </div>
 
@@ -936,7 +925,6 @@ For more information, have a look at the <a href="http://docs.travis-ci.com/user
 
     
   <script src="/assets/js/main.min.js"></script>
-  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
 
 
 
