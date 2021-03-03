@@ -30,7 +30,7 @@ layout: default
           {% if page.date %}<p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  {{ page.date | date_to_string }}</p>{% endif %}
 
           {% unless page.header.hero %}
-            {% if page.header.teaser %}<img src="{{ site.url }}/{{ page.header.teaser }}" alt="{{ page.title }}" title="{{ page.header.imgcredit }}">{% endif %}
+            {% if page.header.teaser %}<img src="{{ page.header.teaser | relative_url }}" alt="{{ page.title }}" title="{{ page.header.imgcredit }}">{% endif %}
           {% endunless %}
 
           {% if page.read_time %}
