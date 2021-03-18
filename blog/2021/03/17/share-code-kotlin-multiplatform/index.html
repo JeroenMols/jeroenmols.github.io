@@ -1,0 +1,842 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.22.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Share code between Android and Jvm in Kotlin multiplatform - Jeroen Mols</title>
+<meta name="description" content="While Android supports most Java language features, it doesn’t support every API that Java provides. On the other hand, Kotlin multiplatform only allows sharing code across all targets (commonMain), not a subset of targets (commonJvm).">
+
+
+  <meta name="author" content="Jeroen Mols">
+  
+  <meta property="article:author" content="Jeroen Mols">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="Jeroen Mols">
+<meta property="og:title" content="Share code between Android and Jvm in Kotlin multiplatform">
+<meta property="og:url" content="https://jeroenmols.com/blog/2021/03/17/share-code-kotlin-multiplatform/">
+
+
+  <meta property="og:description" content="While Android supports most Java language features, it doesn’t support every API that Java provides. On the other hand, Kotlin multiplatform only allows sharing code across all targets (commonMain), not a subset of targets (commonJvm).">
+
+
+
+  <meta property="og:image" content="https://jeroenmols.com/img/blog/sharecodemultiplatform/sharecodemultiplatform.jpg">
+
+
+
+  <meta name="twitter:site" content="@molsjeroen">
+  <meta name="twitter:title" content="Share code between Android and Jvm in Kotlin multiplatform">
+  <meta name="twitter:description" content="While Android supports most Java language features, it doesn’t support every API that Java provides. On the other hand, Kotlin multiplatform only allows sharing code across all targets (commonMain), not a subset of targets (commonJvm).">
+  <meta name="twitter:url" content="https://jeroenmols.com/blog/2021/03/17/share-code-kotlin-multiplatform/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+      <meta name="twitter:image" content="https://jeroenmols.com/img/blog/sharecodemultiplatform/sharecodemultiplatform.jpg">
+    
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2021-03-17T00:00:00+01:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://jeroenmols.com/blog/2021/03/17/share-code-kotlin-multiplatform/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Jeroen Mols",
+      "url": "https://jeroenmols.com/",
+      "sameAs": ["https://twitter.com/molsjeroen","https://www.linkedin.com/in/jeroenmols/","https://plus.google.com/+JeroenMols","https://github.com/JeroenMols","https://speakerdeck.com/jeroenmols","https://stackoverflow.com/users/2771851/jmols"]
+    
+  }
+</script>
+
+
+  <meta name="google-site-verification" content="8E8HUpExgyNFdLuFMWmkSUl08gISnOF3UWexA55aNrk" />
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$('.ga-link').on('click', function(){
+		if (typeof(ga)!=="undefined"){
+			ga('send',{
+				hitType: 'event',
+				eventCategory: 'Outbound link',
+				eventAction: 'click',
+				eventLabel: event.target.href
+			});
+	  	}
+	});
+})	;
+</script>
+
+<meta name="theme-color" content="#3d405b">
+
+<link href="atom.xml" type="application/atom+xml" rel="alternate" title="Jeroen Mols Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Jeroen Mols
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/blog/">Blog</a>
+            </li><li class="masthead__menu-item">
+              <a href="/speaking/">Speaking</a>
+            </li><li class="masthead__menu-item">
+              <a href="/hireme/">Hire me</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/img/profile.jpg" alt="Jeroen Mols" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Jeroen Mols</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Android developer at Plaid and Google Developer Expert</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Flanders, Belgium</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://twitter.com/molsjeroen" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/jeroenmols" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/jeroenmols/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">Linkedin</span></a></li>
+          
+        
+          
+            <li><a href="https://speakerdeck.com/jeroenmols" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-speaker-deck" aria-hidden="true"></i><span class="label">Speakerdeck</span></a></li>
+          
+        
+          
+            <li><a href="https://stackoverflow.com/users/2771851/jeroen-mols" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i><span class="label">Stackoverflow</span></a></li>
+          
+        
+          
+            <li><a href="https://www.youtube.com/channel/UC34Vt1lo8T15_rgc3e3Jsew" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span></a></li>
+          
+        
+          
+            <li><a href="mailto:info@jeroenmols.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Share code between Android and Jvm in Kotlin multiplatform">
+    <meta itemprop="description" content="While Android supports most Java language features, it doesn’t support every API that Java provides. On the other hand, Kotlin multiplatform only allows sharing code across all targets (commonMain), not a subset of targets (commonJvm).">
+    <meta itemprop="datePublished" content="March 17, 2021">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Share code between Android and Jvm in Kotlin multiplatform
+</h1>
+          <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  17 Mar 2021</p>
+
+          
+            <img src="/img/blog/sharecodemultiplatform/sharecodemultiplatform.jpg" alt="Share code between Android and Jvm in Kotlin multiplatform" title="Photo by Nathan Dumlao on Unsplash, https://unsplash.com/photos/8V_ehc1Kva0, cropped and resized">
+          
+
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>While Android supports most Java language features, it doesn’t support every API that Java provides. On the other hand, Kotlin multiplatform only allows sharing code across all targets (commonMain), not a subset of targets (commonJvm).</p>
+
+<p>Read on to learn how to share part of your code between Android and Java (Jvm), while still providing platform-specific implementations of some classes.</p>
+
+<h2 id="problem-description">Problem description</h2>
+<p>In a typical Kotlin multiplatform project, there is a <code class="language-plaintext highlighter-rouge">commonMain</code> <code class="language-plaintext highlighter-rouge">SourceSet</code> (blue) which defines both common code and <code class="language-plaintext highlighter-rouge">expected</code> code for specific <code class="language-plaintext highlighter-rouge">SourceSets</code> (orange):</p>
+
+<p><a href="/img/blog/sharecodemultiplatform/multiplatform_project.png"><img src="/img/blog/sharecodemultiplatform/multiplatform_project.png" alt="Kotlin multiplatform project overview" class="align-center" /></a></p>
+
+<p>Besides making use of the common code, the specific <code class="language-plaintext highlighter-rouge">SourceSets</code> also must provide <code class="language-plaintext highlighter-rouge">actual</code> implementations for the expected code.</p>
+
+<p>While this mechanism works great, it doesn’t allow to share code between specific <code class="language-plaintext highlighter-rouge">SourceSets</code>. Take for instance <code class="language-plaintext highlighter-rouge">Android</code> and <code class="language-plaintext highlighter-rouge">Jvm</code>, they have a lot of common API’s but some (e.g. <code class="language-plaintext highlighter-rouge">Base64</code>) are different.</p>
+
+<p>As such <code class="language-plaintext highlighter-rouge">Android</code> has defined its own <code class="language-plaintext highlighter-rouge">android.util.Base64</code> class which is different from the <code class="language-plaintext highlighter-rouge">Jvm</code> <code class="language-plaintext highlighter-rouge">java.util.Base64</code> class. (Though API level 26 and higher also support <code class="language-plaintext highlighter-rouge">java.util.Base64</code>)</p>
+
+<p>So the challenge at hand is to share most <code class="language-plaintext highlighter-rouge">actual</code> implementations across <code class="language-plaintext highlighter-rouge">Android</code> and <code class="language-plaintext highlighter-rouge">Jvm</code>, but provide platform-specific implementations for some functions.</p>
+
+<p>Visually speaking we would like to accomplish the following:</p>
+
+<p><a href="/img/blog/sharecodemultiplatform/codeshare_androidjvm.png"><img src="/img/blog/sharecodemultiplatform/codeshare_androidjvm.png" alt="Desired code sharing between Android and Jvm" class="align-center" /></a></p>
+
+<h2 id="approach-1-new-sourceset">Approach 1: New sourceset</h2>
+<p>Inspired by <a href="https://github.com/h0tk3y/k-new-mpp-samples/blob/master/split-actuals/build.gradle">an example</a> from <a href="https://twitter.com/h07k3y?lang=en">Sergey Igushkin</a>, let’s add a new sourceSet <code class="language-plaintext highlighter-rouge">commonJvmAndroid</code> that will have the shared <code class="language-plaintext highlighter-rouge">actual</code> implementations across <code class="language-plaintext highlighter-rouge">Android</code> and <code class="language-plaintext highlighter-rouge">Jvm</code>.</p>
+
+<p>This requires the following:</p>
+
+<ol>
+  <li>create a new folder <code class="language-plaintext highlighter-rouge">commonJvmAndroid</code> under <code class="language-plaintext highlighter-rouge">src</code></li>
+  <li>create a new <code class="language-plaintext highlighter-rouge">SourceSet</code> called <code class="language-plaintext highlighter-rouge">commonJvmAndroid</code></li>
+  <li>make <code class="language-plaintext highlighter-rouge">androidMain</code> and <code class="language-plaintext highlighter-rouge">jvmMain</code> depend on this new <code class="language-plaintext highlighter-rouge">SourceSet</code></li>
+</ol>
+
+<p>And the resulting <code class="language-plaintext highlighter-rouge">build.gradle.kts</code> file will be:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">kotlin</span> <span class="p">{</span>
+  <span class="o">..</span><span class="p">.</span>
+
+  <span class="nf">sourceSets</span> <span class="p">{</span>
+    <span class="o">..</span><span class="p">.</span>
+
+    <span class="c1">// Must be defined before androidMain and jvmMain</span>
+    <span class="kd">val</span> <span class="py">commonJvmAndroid</span> <span class="p">=</span> <span class="nf">create</span><span class="p">(</span><span class="s">"commonJvmAndroid"</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nf">dependsOn</span><span class="p">(</span><span class="n">commonMain</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">val</span> <span class="py">androidMain</span> <span class="k">by</span> <span class="nf">getting</span> <span class="p">{</span>
+      <span class="nf">dependsOn</span><span class="p">(</span><span class="n">commonJvmAndroid</span><span class="p">)</span>
+      <span class="nf">dependencies</span> <span class="p">{</span>
+        <span class="o">..</span><span class="p">.</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">val</span> <span class="py">jvmMain</span> <span class="k">by</span> <span class="nf">getting</span> <span class="p">{</span>
+      <span class="nf">dependsOn</span><span class="p">(</span><span class="n">commonJvmAndroid</span><span class="p">)</span>
+      <span class="nf">dependencies</span> <span class="p">{</span>
+        <span class="o">..</span><span class="p">.</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>While this solution works great from the command line, Intellij autocomplete unfortunately doesn’t work and all <code class="language-plaintext highlighter-rouge">Java</code> imports show up red.</p>
+
+<p>I suspect this is because Intellij doesn’t know what kind of <code class="language-plaintext highlighter-rouge">SourceSet</code> <code class="language-plaintext highlighter-rouge">commonJvmAndroid</code> is, whereas it can recognize the default multiplatform <code class="language-plaintext highlighter-rouge">SourceSets</code>.</p>
+
+<h2 id="approach-2-new-srcdir">Approach 2: New srcDir</h2>
+<p>To ensure Intellij autocomplete works, a <code class="language-plaintext highlighter-rouge">srcDir</code> can be added to the existing <code class="language-plaintext highlighter-rouge">SourceSets</code>.</p>
+
+<ol>
+  <li>create a new folder <code class="language-plaintext highlighter-rouge">commonJvmAndroid</code> under <code class="language-plaintext highlighter-rouge">src</code></li>
+  <li>add this new sourceSet to <code class="language-plaintext highlighter-rouge">androidMain</code> and <code class="language-plaintext highlighter-rouge">jvmMain</code></li>
+</ol>
+
+<p>And the resulting <code class="language-plaintext highlighter-rouge">build.gradle.kts</code> file will be:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">kotlin</span> <span class="p">{</span>
+  <span class="o">..</span><span class="p">.</span>
+
+  <span class="nf">sourceSets</span> <span class="p">{</span>
+    <span class="o">..</span><span class="p">.</span>
+
+    <span class="kd">val</span> <span class="py">androidMain</span> <span class="k">by</span> <span class="nf">getting</span> <span class="p">{</span>
+        <span class="n">kotlin</span><span class="p">.</span><span class="nf">srcDir</span><span class="p">(</span><span class="s">"src/commonJvmAndroid/kotlin"</span><span class="p">)</span>
+        <span class="nf">dependencies</span> <span class="p">{</span>
+            <span class="o">..</span><span class="p">.</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">val</span> <span class="py">jvmMain</span> <span class="k">by</span> <span class="nf">getting</span> <span class="p">{</span>
+        <span class="n">kotlin</span><span class="p">.</span><span class="nf">srcDir</span><span class="p">(</span><span class="s">"src/commonJvmAndroid/kotlin"</span><span class="p">)</span>
+        <span class="nf">dependencies</span> <span class="p">{</span>
+            <span class="o">..</span><span class="p">.</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Because there is no new sourceSet, Intellij will implicitly use the <code class="language-plaintext highlighter-rouge">Android</code> or <code class="language-plaintext highlighter-rouge">Jvm</code> one while browsing code in <code class="language-plaintext highlighter-rouge">commonAndroidJvm</code>, and hence autocomplete will work!</p>
+
+<h2 id="real-life-example">Real-life example</h2>
+<p>Want a bigger example of this principle in action? Have a look at the awesome <a href="https://github.com/streem/pbandk">PbandK</a> project, that provides a Kotlin code generator and runtime for Protocol Buffers. It is built to work across multiple Kotlin platforms.</p>
+
+<p>In the <a href="https://github.com/streem/pbandk/tree/master/runtime">runtime module</a>, the <a href="https://github.com/streem/pbandk/blob/master/runtime/build.gradle.kts">build.gradle.kts</a> adds the extra <code class="language-plaintext highlighter-rouge">srcDir</code> to <code class="language-plaintext highlighter-rouge">androidMain</code>/<code class="language-plaintext highlighter-rouge">jvmMain</code> and the <a href="https://github.com/streem/pbandk/tree/master/runtime/src">src directory</a> has the shared code in a <code class="language-plaintext highlighter-rouge">commonAndroidJvm</code> folder.</p>
+
+<h2 id="wrap-up">Wrap-up</h2>
+<p>While <code class="language-plaintext highlighter-rouge">Android</code> and <code class="language-plaintext highlighter-rouge">Jvm</code> projects share most APIs, not every <code class="language-plaintext highlighter-rouge">Java</code> API is available on Android. To share a subset of code across both platforms, it’s best to use a shared <code class="language-plaintext highlighter-rouge">srcDir</code> so Intellij autocomplete works as expected.</p>
+
+<p>If you’ve made it this far you should probably follow me on <span><a href="https://twitter.com/molsjeroen?source=sharecodebetweenandroidandjvminkotlinmultiplatform2021" class="ga-link" target="_blank">Twitter</a></span>
+. Feel free to leave a comment below!</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/android" class="page__taxonomy-item" rel="tag">android</a><span class="sep">, </span>
+    
+      <a href="/tags/code-sharing" class="page__taxonomy-item" rel="tag">code sharing</a><span class="sep">, </span>
+    
+      <a href="/tags/gradle" class="page__taxonomy-item" rel="tag">gradle</a><span class="sep">, </span>
+    
+      <a href="/tags/kotlin" class="page__taxonomy-item" rel="tag">kotlin</a><span class="sep">, </span>
+    
+      <a href="/tags/multiplatform" class="page__taxonomy-item" rel="tag">multiplatform</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/blog" class="page__taxonomy-item" rel="tag">blog</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-03-17T00:00:00+01:00">March 17, 2021</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=Share+code+between+Android+and+Jvm+in+Kotlin+multiplatform%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2021%2F03%2F17%2Fshare-code-kotlin-multiplatform%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2021%2F03%2F17%2Fshare-code-kotlin-multiplatform%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2021%2F03%2F17%2Fshare-code-kotlin-multiplatform%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      <section class="page__share">
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bottom-blog-responsive -->
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-9854541518226004"
+       data-ad-slot="4086741379"
+       data-ad-format="auto"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/blog/2021/02/04/migratingjcenter/" class="pagination--pager" title="Migrating away from JCenter
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a Comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(/img/blog/migratingjcenter/migratingjcenter.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="/blog/2021/02/04/migratingjcenter/" rel="permalink">Migrating away from JCenter
+</a>
+        </h2>
+        <h3 class="archive__date">04 Feb 2021</h3>
+      </div>
+      
+        <a href="/blog/2021/02/04/migratingjcenter/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">This week JFrog - out of nowhere - announced to completely remove their Maven repository. Since they’ll pull it offline already by May 2021 (!!!) it’s time to urgently migrate away. This blogpost will guide how to get started.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(/img/blog/yearinreview20/yearinreview20.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="/blog/2021/01/05/yearinreview/" rel="permalink">Year in review 2020
+</a>
+        </h2>
+        <h3 class="archive__date">05 Jan 2021</h3>
+      </div>
+      
+        <a href="/blog/2021/01/05/yearinreview/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Well… I don’t really know where to start this time. 2020 was quite the rollercoaster, with many downs… but fortunately also a few amazing ups. Let’s focus on the good stuff.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(/img/blog/inprojectmaven/inprojectmaven.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="/blog/2020/12/02/inproject-maven/" rel="permalink">Test library releases using an in project Maven repository
+</a>
+        </h2>
+        <h3 class="archive__date">02 Dec 2020</h3>
+      </div>
+      
+        <a href="/blog/2020/12/02/inproject-maven/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Short, powerful post on how to test the release version of libraries directly within a project without having to deploy them to Maven first.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(/img/blog/librarydependencies/librarydependencies.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="/blog/2020/11/11/library-dependencies/" rel="permalink">Android library development - Dependencies
+</a>
+        </h2>
+        <h3 class="archive__date">11 Nov 2020</h3>
+      </div>
+      
+        <a href="/blog/2020/11/11/library-dependencies/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  9 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Ever had a build failure while integrating an SDK? Wonder how you can avoid your SDK customers having dependency conflicts? How many transitive dependencies should your SDK have?
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+
+    
+      <li><a href="atom.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Jeroen Mols. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <script>
+  window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+  ga('create','UA-63356566-1','auto');
+  ga('set', 'anonymizeIp', false);
+  ga('send','pageview')
+</script>
+<script src="https://www.google-analytics.com/analytics.js" async></script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://jeroenmols.com/blog/2021/03/17/share-code-kotlin-multiplatform/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/blog/2021/03/17/share-code-kotlin-multiplatform"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jeroenmols.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

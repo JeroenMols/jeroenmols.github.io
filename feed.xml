@@ -1,4 +1,114 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2021-02-18T00:54:03+01:00</updated><id>https://jeroenmols.com/feed.xml</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, Android developer at Plaid and Google Developer Expert.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Migrating away from JCenter</title><link href="https://jeroenmols.com/blog/2021/02/04/migratingjcenter/" rel="alternate" type="text/html" title="Migrating away from JCenter" /><published>2021-02-04T00:00:00+01:00</published><updated>2021-02-04T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2021/02/04/migratingjcenter</id><content type="html" xml:base="https://jeroenmols.com/blog/2021/02/04/migratingjcenter/">&lt;p&gt;This week JFrog - out of nowhere - announced to completely remove their Maven repository. Since they’ll pull it offline already by May 2021 (!!!) it’s time to urgently migrate away. This blogpost will guide how to get started.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2021-03-18T07:10:06+01:00</updated><id>https://jeroenmols.com/feed.xml</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, Android developer at Plaid and Google Developer Expert.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Share code between Android and Jvm in Kotlin multiplatform</title><link href="https://jeroenmols.com/blog/2021/03/17/share-code-kotlin-multiplatform/" rel="alternate" type="text/html" title="Share code between Android and Jvm in Kotlin multiplatform" /><published>2021-03-17T00:00:00+01:00</published><updated>2021-03-17T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2021/03/17/share-code-kotlin-multiplatform</id><content type="html" xml:base="https://jeroenmols.com/blog/2021/03/17/share-code-kotlin-multiplatform/">&lt;p&gt;While Android supports most Java language features, it doesn’t support every API that Java provides. On the other hand, Kotlin multiplatform only allows sharing code across all targets (commonMain), not a subset of targets (commonJvm).&lt;/p&gt;
+
+&lt;p&gt;Read on to learn how to share part of your code between Android and Java (Jvm), while still providing platform-specific implementations of some classes.&lt;/p&gt;
+
+&lt;h2 id=&quot;problem-description&quot;&gt;Problem description&lt;/h2&gt;
+&lt;p&gt;In a typical Kotlin multiplatform project, there is a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;commonMain&lt;/code&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SourceSet&lt;/code&gt; (blue) which defines both common code and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;expected&lt;/code&gt; code for specific &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SourceSets&lt;/code&gt; (orange):&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/img/blog/sharecodemultiplatform/multiplatform_project.png&quot;&gt;&lt;img src=&quot;/img/blog/sharecodemultiplatform/multiplatform_project.png&quot; alt=&quot;Kotlin multiplatform project overview&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Besides making use of the common code, the specific &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SourceSets&lt;/code&gt; also must provide &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;actual&lt;/code&gt; implementations for the expected code.&lt;/p&gt;
+
+&lt;p&gt;While this mechanism works great, it doesn’t allow to share code between specific &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SourceSets&lt;/code&gt;. Take for instance &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Android&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Jvm&lt;/code&gt;, they have a lot of common API’s but some (e.g. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Base64&lt;/code&gt;) are different.&lt;/p&gt;
+
+&lt;p&gt;As such &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Android&lt;/code&gt; has defined its own &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;android.util.Base64&lt;/code&gt; class which is different from the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Jvm&lt;/code&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;java.util.Base64&lt;/code&gt; class. (Though API level 26 and higher also support &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;java.util.Base64&lt;/code&gt;)&lt;/p&gt;
+
+&lt;p&gt;So the challenge at hand is to share most &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;actual&lt;/code&gt; implementations across &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Android&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Jvm&lt;/code&gt;, but provide platform-specific implementations for some functions.&lt;/p&gt;
+
+&lt;p&gt;Visually speaking we would like to accomplish the following:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/img/blog/sharecodemultiplatform/codeshare_androidjvm.png&quot;&gt;&lt;img src=&quot;/img/blog/sharecodemultiplatform/codeshare_androidjvm.png&quot; alt=&quot;Desired code sharing between Android and Jvm&quot; class=&quot;align-center&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;approach-1-new-sourceset&quot;&gt;Approach 1: New sourceset&lt;/h2&gt;
+&lt;p&gt;Inspired by &lt;a href=&quot;https://github.com/h0tk3y/k-new-mpp-samples/blob/master/split-actuals/build.gradle&quot;&gt;an example&lt;/a&gt; from &lt;a href=&quot;https://twitter.com/h07k3y?lang=en&quot;&gt;Sergey Igushkin&lt;/a&gt;, let’s add a new sourceSet &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;commonJvmAndroid&lt;/code&gt; that will have the shared &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;actual&lt;/code&gt; implementations across &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Android&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Jvm&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;This requires the following:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;create a new folder &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;commonJvmAndroid&lt;/code&gt; under &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;src&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;create a new &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SourceSet&lt;/code&gt; called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;commonJvmAndroid&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;make &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;androidMain&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jvmMain&lt;/code&gt; depend on this new &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SourceSet&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;And the resulting &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;build.gradle.kts&lt;/code&gt; file will be:&lt;/p&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nf&quot;&gt;kotlin&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;..&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+
+  &lt;span class=&quot;nf&quot;&gt;sourceSets&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;..&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// Must be defined before androidMain and jvmMain&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;commonJvmAndroid&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;commonJvmAndroid&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nf&quot;&gt;dependsOn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;commonMain&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;androidMain&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;by&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getting&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nf&quot;&gt;dependsOn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;commonJvmAndroid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;nf&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;..&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;jvmMain&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;by&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getting&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nf&quot;&gt;dependsOn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;commonJvmAndroid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;nf&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;..&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;While this solution works great from the command line, Intellij autocomplete unfortunately doesn’t work and all &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Java&lt;/code&gt; imports show up red.&lt;/p&gt;
+
+&lt;p&gt;I suspect this is because Intellij doesn’t know what kind of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SourceSet&lt;/code&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;commonJvmAndroid&lt;/code&gt; is, whereas it can recognize the default multiplatform &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SourceSets&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;approach-2-new-srcdir&quot;&gt;Approach 2: New srcDir&lt;/h2&gt;
+&lt;p&gt;To ensure Intellij autocomplete works, a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;srcDir&lt;/code&gt; can be added to the existing &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SourceSets&lt;/code&gt;.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;create a new folder &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;commonJvmAndroid&lt;/code&gt; under &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;src&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;add this new sourceSet to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;androidMain&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jvmMain&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;And the resulting &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;build.gradle.kts&lt;/code&gt; file will be:&lt;/p&gt;
+
+&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nf&quot;&gt;kotlin&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;..&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+
+  &lt;span class=&quot;nf&quot;&gt;sourceSets&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;..&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;androidMain&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;by&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getting&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;kotlin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;srcDir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;src/commonJvmAndroid/kotlin&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;nf&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;..&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;jvmMain&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;by&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getting&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;kotlin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;srcDir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;src/commonJvmAndroid/kotlin&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;nf&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;..&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Because there is no new sourceSet, Intellij will implicitly use the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Android&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Jvm&lt;/code&gt; one while browsing code in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;commonAndroidJvm&lt;/code&gt;, and hence autocomplete will work!&lt;/p&gt;
+
+&lt;h2 id=&quot;real-life-example&quot;&gt;Real-life example&lt;/h2&gt;
+&lt;p&gt;Want a bigger example of this principle in action? Have a look at the awesome &lt;a href=&quot;https://github.com/streem/pbandk&quot;&gt;PbandK&lt;/a&gt; project, that provides a Kotlin code generator and runtime for Protocol Buffers. It is built to work across multiple Kotlin platforms.&lt;/p&gt;
+
+&lt;p&gt;In the &lt;a href=&quot;https://github.com/streem/pbandk/tree/master/runtime&quot;&gt;runtime module&lt;/a&gt;, the &lt;a href=&quot;https://github.com/streem/pbandk/blob/master/runtime/build.gradle.kts&quot;&gt;build.gradle.kts&lt;/a&gt; adds the extra &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;srcDir&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;androidMain&lt;/code&gt;/&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jvmMain&lt;/code&gt; and the &lt;a href=&quot;https://github.com/streem/pbandk/tree/master/runtime/src&quot;&gt;src directory&lt;/a&gt; has the shared code in a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;commonAndroidJvm&lt;/code&gt; folder.&lt;/p&gt;
+
+&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
+&lt;p&gt;While &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Android&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Jvm&lt;/code&gt; projects share most APIs, not every &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Java&lt;/code&gt; API is available on Android. To share a subset of code across both platforms, it’s best to use a shared &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;srcDir&lt;/code&gt; so Intellij autocomplete works as expected.&lt;/p&gt;
+
+&lt;p&gt;If you’ve made it this far you should probably follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=sharecodebetweenandroidandjvminkotlinmultiplatform2021&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
+. Feel free to leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="android" /><category term="kotlin" /><category term="multiplatform" /><category term="code sharing" /><category term="gradle" /><summary type="html">While Android supports most Java language features, it doesn’t support every API that Java provides. On the other hand, Kotlin multiplatform only allows sharing code across all targets (commonMain), not a subset of targets (commonJvm).</summary></entry><entry><title type="html">Migrating away from JCenter</title><link href="https://jeroenmols.com/blog/2021/02/04/migratingjcenter/" rel="alternate" type="text/html" title="Migrating away from JCenter" /><published>2021-02-04T00:00:00+01:00</published><updated>2021-02-04T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2021/02/04/migratingjcenter</id><content type="html" xml:base="https://jeroenmols.com/blog/2021/02/04/migratingjcenter/">&lt;p&gt;This week JFrog - out of nowhere - announced to completely remove their Maven repository. Since they’ll pull it offline already by May 2021 (!!!) it’s time to urgently migrate away. This blogpost will guide how to get started.&lt;/p&gt;
 
 &lt;h2 id=&quot;expected-migrations&quot;&gt;Expected migrations&lt;/h2&gt;
 &lt;p&gt;After the &lt;a href=&quot;https://jfrog.com/blog/into-the-sunset-bintray-jcenter-gocenter-and-chartcenter/&quot;&gt;jcenter/bintray shutdown announcement&lt;/a&gt;, there are two main migrations steps required:&lt;/p&gt;
@@ -1915,103 +2025,4 @@ Execution failed for task ':myproject:checkReleaseDuplicateClasses'.
 &lt;p&gt;With just a few simple classes we’ve been able to build a powerful feature flagging architecture. In that it’s very easy to add new features, there is support for both local and remote feature flags, feature flags are testable and a local UI for enabling/disabling feature flags is automatically generated.&lt;/p&gt;
 
 &lt;p&gt;If you’ve made it this far you should probably follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=featureflags-asuccessfularchitecture2019&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
-. Feel free leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="architecture" /><category term="android" /><category term="firebase" /><category term="feature flags" /><summary type="html">Now that we know how feature flags can help us release faster, it’s time to dive into the actual implementation details. How can we easily define feature flags? How to configure them both locally as remotely? And use them in our testing?</summary></entry><entry><title type="html">Feature Flags - How to use</title><link href="https://jeroenmols.com/blog/2019/08/20/featureflagshowtouse/" rel="alternate" type="text/html" title="Feature Flags - How to use" /><published>2019-08-20T00:00:00+02:00</published><updated>2019-08-20T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2019/08/20/featureflagshowtouse</id><content type="html" xml:base="https://jeroenmols.com/blog/2019/08/20/featureflagshowtouse/">&lt;p&gt;Empowered with what feature flags are and why they are useful, let’s see how we can actually integrate them into an app. And how can we roll them out to our users?&lt;/p&gt;
-
-&lt;p&gt;This mini-series will explain the benefits of using feature flags and propose a handy architecture that enables local feature flag configuration, remote configuration, and easy testability.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;This blog post is part of a series on feature flags:&lt;/p&gt;
-  &lt;ul&gt;
-    &lt;li&gt;Part 1: &lt;a href=&quot;/blog/2019/08/13/featureflags/&quot;&gt;Why you should care&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;Part 2: &lt;a href=&quot;/blog/2019/08/20/featureflagshowtouse/&quot;&gt;How to use&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;Part 3: &lt;a href=&quot;/blog/2019/09/12/featureflagsarchitecture/&quot;&gt;A successful architecture&lt;/a&gt;&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;integrating-feature-flags&quot;&gt;Integrating feature flags&lt;/h2&gt;
-&lt;p&gt;Roughly there are two ways you could use a feature flag: for new features and existing features.&lt;/p&gt;
-
-&lt;h3 id=&quot;new-features&quot;&gt;New features&lt;/h3&gt;
-&lt;p&gt;Let’s start with the easiest way: use feature flags for new features. A new feature typically includes some UI that’s either in a new screen (e.g. a complete new tab) or a new part of a screen (e.g. new social provider in login). In these cases the feature flag is usually a single if statement that shows/hides that part of the UI.&lt;/p&gt;
-
-&lt;p&gt;For instance, at Philips Hue, we built a new feature to configure the start-up behavior of your lights and the feature toggle just showed/hid the menu item that gave access to the feature.&lt;/p&gt;
-
-&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;isFeatureEnabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;POWER_ON_BEHAVIOR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;menuitem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;visibility&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;View&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;VISIBLE&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;menuitem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;visibility&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;View&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;GONE&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/featureflagshowtouse/featureflag_menuitem.png&quot; alt=&quot;Feature flagging a new feature by showing or hiding a menu item&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The same principle can also be used for showing an extra tab or an extra UI element that gives access to the new feature. Some features might even require several if statements in several locations, but try to avoid that if you can as that complicates things.&lt;/p&gt;
-
-&lt;h3 id=&quot;existing-features&quot;&gt;Existing features&lt;/h3&gt;
-&lt;p&gt;While refactoring existing code, on the other hand, the situation is slightly more complex. In the ideal case, there is an old code path that you simply replace with a new one:&lt;/p&gt;
-
-&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;withLegacy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;isFeatureEnabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;LOGIC_REFACTOR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;code&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;NewLogic&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;code&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;UnitTests&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;code&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;LegacyLogic&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;code&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;OutUnitTests&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Notice how you need to duplicate existing code before refactoring start! If not, you can no longer toggle the feature off and all the feature flag benefits disappear…&lt;/p&gt;
-
-&lt;p&gt;Ideally you should do every refactoring behind a feature flag, but the simply isn’t practical. Sometimes the overhead of keeping the original code path intact is simply too big for a minor refactoring. Or some code can even be so interconnected that it’s impossible to cleanly surround one code path with a feature flag.&lt;/p&gt;
-
-&lt;p&gt;The best way to handle these cases is to think impact based: if you’re refactoring a crucial part of your business logic then you should take more actions to ensure nothing accidentally breaks. This can either be splitting the refactoring into several small steps (and shipping them), using a feature flag or both.&lt;/p&gt;
-
-&lt;p&gt;To give you an example, at Philips Hue we replaced our Geofence implementation with a new one a while ago. Here the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;IntentService&lt;/code&gt; handling the geofence starts with an if statement that runs either the old or new code. Note that there are also extra analytics in place to monitor and compare the behavior.&lt;/p&gt;
-
-&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;GeofenceIntentService&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;IntentService&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onHandleIntent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;intent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Intent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;isFeatureEnabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;GEOFENCE_REWRITE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;nc&quot;&gt;GeofenceRewrite&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;onHandleIntent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;intent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;nc&quot;&gt;LegacyGeofence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;onHandleIntent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;intent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;rollout&quot;&gt;Rollout&lt;/h2&gt;
-&lt;p&gt;What would you choose: a big bang feature release to all users or gradually rolling out a feature? Well, thanks to the &lt;a href=&quot;/blog/2019/08/13/featureflags/&quot;&gt;first post&lt;/a&gt; we know the second option is a lot less risky.&lt;/p&gt;
-
-&lt;p&gt;In reality, however, your marketing department might want to create some buzz around the newly launched feature. In that case, you must do a big bang roll out to all users or some users reading the announcement wouldn’t have access to the feature yet!&lt;/p&gt;
-
-&lt;p&gt;To combine the best of both worlds, you can strive to roll out as many features as possible in a gradual fashion. That typically applies to:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;small new features (e.g. more stock images)&lt;/li&gt;
-  &lt;li&gt;refactoring of critical business logic (e.g. geofence IntentService rewrite)&lt;/li&gt;
-  &lt;li&gt;rewrites of existing features (no visible change to the users)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;A key aspect in doing this successfully is adding extra analytics events, defining clear KPIs and putting a dashboard in place to monitor everything.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/featureflagshowtouse/dashboard.png&quot; alt=&quot;Dashboard to monitor the roll out of a new feature&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;In the above dashboard, the performance of both old and rewritten features is measured. The Y-axis indicates how many users successfully completed the feature and the X-axis shows how long it took them to complete it. Here the rewritten feature clearly outperform the old feature and we should fully remove the old one in the next release.&lt;/p&gt;
-
-&lt;p&gt;When you can’t roll out a feature gradually, you can still derisk its launch using remote feature flags. Just make sure to wrap up feature development early so you have time to use a remote feature flag to test it in your beta community. This allows learning how the code behaves in the wild, while still allowing you to promote that exact build to production (with feature flag turned off).&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://jeroenmols.com/img/blog/featureflagshowtouse/featureflags_rolloutnongradual.jpg&quot; alt=&quot;How to roll out a feature flag in a non gradual, big bang fashion&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Once confident that the feature works well in beta, you can hardcode the feature flag to be on in the next app release. Better to still leave both code paths in your code base at this stage though, that still provides an easy way to hotfix, you never know. Once the code is behaving properly in production, you can remove the old code path.&lt;/p&gt;
-
-&lt;p&gt;Finally, note that it’s crucial to roll out features as quickly as possible. This is because feature flags can create a lot of confusion around what feature flags are “on” or “off” in production and after a while you can even get dependencies between different feature flags! Like always releasing fast is key to reducing the complexity, followed by a swift clean up of rolled out feature flags.&lt;/p&gt;
-
-&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h2&gt;
-&lt;p&gt;Feature flags can help in releasing new features and improvements on existing functionality. Always try to roll out features gradually, if that’s not possible, rely on your beta community to test the feature prior to release,&lt;/p&gt;
-
-&lt;p&gt;Make sure you follow me on &lt;span&gt;&lt;a href=&quot;https://twitter.com/molsjeroen?source=featureflags-howtouse2019&quot; class=&quot;ga-link&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;&lt;/span&gt;
- or continue to &lt;a href=&quot;/blog/2019/09/12/featureflagsarchitecture/&quot;&gt;part 3&lt;/a&gt; to learn more about an architecture to integrate feature flags into your app.&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="android" /><category term="firebase" /><category term="feature flags" /><category term="software engineering" /><category term="tools" /><summary type="html">Empowered with what feature flags are and why they are useful, let’s see how we can actually integrate them into an app. And how can we roll them out to our users?</summary></entry></feed>
+. Feel free leave a comment below!&lt;/p&gt;</content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="architecture" /><category term="android" /><category term="firebase" /><category term="feature flags" /><summary type="html">Now that we know how feature flags can help us release faster, it’s time to dive into the actual implementation details. How can we easily define feature flags? How to configure them both locally as remotely? And use them in our testing?</summary></entry></feed>

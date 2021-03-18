@@ -352,4 +352,10 @@ var store = [{
         "tags": ["android","library","maven","jcenter","bintray","transitive dependencies","gradle"],
         "url": "/blog/2021/02/04/migratingjcenter/",
         "teaser": "/img/blog/migratingjcenter/migratingjcenter.jpg"
+      },{
+        "title": "Share code between Android and Jvm in Kotlin multiplatform",
+        "excerpt":"While Android supports most Java language features, it doesn’t support every API that Java provides. On the other hand, Kotlin multiplatform only allows sharing code across all targets (commonMain), not a subset of targets (commonJvm). Read on to learn how to share part of your code between Android and Java...","categories": ["blog"],
+        "tags": ["android","kotlin","multiplatform","code sharing","gradle"],
+        "url": "/blog/2021/03/17/share-code-kotlin-multiplatform/",
+        "teaser": "/img/blog/sharecodemultiplatform/sharecodemultiplatform.jpg"
       }]

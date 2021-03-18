@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/" rel="alternate" type="text/html"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, Android developer at Plaid and Google Developer Expert.</subtitle>
- <updated>2021-02-18T00:54:03+01:00</updated>
+ <updated>2021-03-18T07:10:06+01:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,22 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>Share code between Android and Jvm in Kotlin multiplatform</title>
+   <link href="https://jeroenmols.com/blog/2021/03/17/share-code-kotlin-multiplatform/"/>
+   <updated>2021-03-17T00:00:00+01:00</updated>
+   <id>https://jeroenmols.com/blog/2021/03/17/share-code-kotlin-multiplatform</id>
+   <content type="html"><![CDATA[
+     
+     <p>While Android supports most Java language features, it doesn’t support every API that Java provides. On the other hand, Kotlin multiplatform only allows sharing code across all targets (commonMain), not a subset of targets (commonJvm).</p>
+
+<p>Read on to learn how to share part of your code between Android and Java (Jvm), while still providing platform-specific implementations of some classes.</p>
+
+
+     <a href="https://jeroenmols.com/blog/2021/03/17/share-code-kotlin-multiplatform/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>Migrating away from JCenter</title>
