@@ -358,4 +358,10 @@ var store = [{
         "tags": ["android","kotlin","multiplatform","code sharing","gradle"],
         "url": "/blog/2021/03/17/share-code-kotlin-multiplatform/",
         "teaser": "/img/blog/sharecodemultiplatform/sharecodemultiplatform.jpg"
+      },{
+        "title": "Migrate existing library artifacts from JCenter to Maven Central",
+        "excerpt":"With JCenter shutting down, many are migrating to Maven Central. And while there are many posts on how to publish new artifacts, also all existing artifacts should be migrated away from JCenter. This post will cover all steps required to migrate artifacts from JCenter to Maven Central. It will present...","categories": ["blog"],
+        "tags": ["script","migrate","jcenter","mavenCentral","maven"],
+        "url": "/blog/2021/03/24/migrate-artifacts-mavencentral/",
+        "teaser": "/img/blog/migrateartifactsmaven/migrate_artifacts.jpg"
       }]

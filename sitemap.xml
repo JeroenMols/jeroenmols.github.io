@@ -241,6 +241,10 @@
 <lastmod>2021-03-17T00:00:00+01:00</lastmod>
 </url>
 <url>
+<loc>https://jeroenmols.com/blog/2021/03/24/migrate-artifacts-mavencentral/</loc>
+<lastmod>2021-03-24T00:00:00+01:00</lastmod>
+</url>
+<url>
 <loc>https://jeroenmols.com/categories/</loc>
 </url>
 <url>
@@ -463,6 +467,15 @@
 <loc>https://jeroenmols.com/tags/code-sharing/</loc>
 </url>
 <url>
+<loc>https://jeroenmols.com/tags/script/</loc>
+</url>
+<url>
+<loc>https://jeroenmols.com/tags/migrate/</loc>
+</url>
+<url>
+<loc>https://jeroenmols.com/tags/mavencentral/</loc>
+</url>
+<url>
 <loc>https://jeroenmols.com/categories/blog/</loc>
 </url>
 <url>
@@ -479,6 +492,9 @@
 </url>
 <url>
 <loc>https://jeroenmols.com/blog/page6/</loc>
+</url>
+<url>
+<loc>https://jeroenmols.com/blog/page7/</loc>
 </url>
 <url>
 <loc>https://jeroenmols.com/andi/</loc>

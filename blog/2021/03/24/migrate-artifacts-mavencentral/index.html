@@ -1,0 +1,1156 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.22.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Migrate existing library artifacts from JCenter to Maven Central - Jeroen Mols</title>
+<meta name="description" content="With JCenter shutting down, many are migrating to Maven Central. And while there are many posts on how to publish new artifacts, also all existing artifacts should be migrated away from JCenter.">
+
+
+  <meta name="author" content="Jeroen Mols">
+  
+  <meta property="article:author" content="Jeroen Mols">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="Jeroen Mols">
+<meta property="og:title" content="Migrate existing library artifacts from JCenter to Maven Central">
+<meta property="og:url" content="https://jeroenmols.com/blog/2021/03/24/migrate-artifacts-mavencentral/">
+
+
+  <meta property="og:description" content="With JCenter shutting down, many are migrating to Maven Central. And while there are many posts on how to publish new artifacts, also all existing artifacts should be migrated away from JCenter.">
+
+
+
+  <meta property="og:image" content="https://jeroenmols.com/img/blog/migrateartifactsmaven/migrate_artifacts.jpg">
+
+
+
+  <meta name="twitter:site" content="@molsjeroen">
+  <meta name="twitter:title" content="Migrate existing library artifacts from JCenter to Maven Central">
+  <meta name="twitter:description" content="With JCenter shutting down, many are migrating to Maven Central. And while there are many posts on how to publish new artifacts, also all existing artifacts should be migrated away from JCenter.">
+  <meta name="twitter:url" content="https://jeroenmols.com/blog/2021/03/24/migrate-artifacts-mavencentral/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+      <meta name="twitter:image" content="https://jeroenmols.com/img/blog/migrateartifactsmaven/migrate_artifacts.jpg">
+    
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2021-03-24T00:00:00+01:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://jeroenmols.com/blog/2021/03/24/migrate-artifacts-mavencentral/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Jeroen Mols",
+      "url": "https://jeroenmols.com/",
+      "sameAs": ["https://twitter.com/molsjeroen","https://www.linkedin.com/in/jeroenmols/","https://plus.google.com/+JeroenMols","https://github.com/JeroenMols","https://speakerdeck.com/jeroenmols","https://stackoverflow.com/users/2771851/jmols"]
+    
+  }
+</script>
+
+
+  <meta name="google-site-verification" content="8E8HUpExgyNFdLuFMWmkSUl08gISnOF3UWexA55aNrk" />
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$('.ga-link').on('click', function(){
+		if (typeof(ga)!=="undefined"){
+			ga('send',{
+				hitType: 'event',
+				eventCategory: 'Outbound link',
+				eventAction: 'click',
+				eventLabel: event.target.href
+			});
+	  	}
+	});
+})	;
+</script>
+
+<meta name="theme-color" content="#3d405b">
+
+<link href="atom.xml" type="application/atom+xml" rel="alternate" title="Jeroen Mols Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Jeroen Mols
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/blog/">Blog</a>
+            </li><li class="masthead__menu-item">
+              <a href="/speaking/">Speaking</a>
+            </li><li class="masthead__menu-item">
+              <a href="/hireme/">Hire me</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/img/profile.jpg" alt="Jeroen Mols" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Jeroen Mols</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Android developer at Plaid and Google Developer Expert</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Flanders, Belgium</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://twitter.com/molsjeroen" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/jeroenmols" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/jeroenmols/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">Linkedin</span></a></li>
+          
+        
+          
+            <li><a href="https://speakerdeck.com/jeroenmols" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-speaker-deck" aria-hidden="true"></i><span class="label">Speakerdeck</span></a></li>
+          
+        
+          
+            <li><a href="https://stackoverflow.com/users/2771851/jeroen-mols" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i><span class="label">Stackoverflow</span></a></li>
+          
+        
+          
+            <li><a href="https://www.youtube.com/channel/UC34Vt1lo8T15_rgc3e3Jsew" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span></a></li>
+          
+        
+          
+            <li><a href="mailto:info@jeroenmols.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Migrate existing library artifacts from JCenter to Maven Central">
+    <meta itemprop="description" content="With JCenter shutting down, many are migrating to Maven Central. And while there are many posts on how to publish new artifacts, also all existing artifacts should be migrated away from JCenter.">
+    <meta itemprop="datePublished" content="March 24, 2021">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Migrate existing library artifacts from JCenter to Maven Central
+</h1>
+          <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  24 Mar 2021</p>
+
+          
+            <img src="/img/blog/migrateartifactsmaven/migrate_artifacts.jpg" alt="Migrate existing library artifacts from JCenter to Maven Central" title="Photo by Somya Dinkar from Pexels, https://www.pexels.com/photo/greyscale-photography-of-birds-3401967/, cropped and resized">
+          
+
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  7 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>With JCenter shutting down, many are migrating to Maven Central. And while there are many posts on how to publish new artifacts, also all existing artifacts should be migrated away from JCenter.</p>
+
+<p>This post will cover all steps required to migrate artifacts from JCenter to Maven Central. It will present a script to automatically perform such a migration so that it can be run on a CI and have the secrets injected.</p>
+
+<h2 id="required-before-you-start">Required before you start</h2>
+<p>To migrate an existing project to Maven Central involves two steps:</p>
+
+<ol>
+  <li>Update (Gradle) scripts to publish to Maven Central</li>
+  <li>Migrate all existing artifacts from JCenter to Maven Central</li>
+</ol>
+
+<p>This post will only cover the second step and hence assumes that the reader has a <a href="https://issues.sonatype.org/secure/Dashboard.jspa">Sonatype account</a> and GPG key available.</p>
+
+<p>If you don’t have these yet, have a look at <a href="https://getstream.io/blog/publishing-libraries-to-mavencentral-2021/">this great post</a> by <a href="https://twitter.com/zsmb13">Márton Braun</a>. It will also explain the required steps to make artifacts available after uploading on the Sonatype backend.</p>
+
+<h2 id="migration-steps">Migration steps</h2>
+<p>These are the steps to migrate from JCenter to Maven Central:</p>
+
+<ol>
+  <li><a href="#1-enumerate-all-versions-to-migrate">Enumerate all versions to migrate</a></li>
+  <li><a href="#2-configure-gnu-pg-with-a-signing-key">Configure GNU PG with a signing key</a></li>
+  <li><a href="#3-setup-credentials-for-maven-central-upload">Setup credentials to upload to Maven Central</a></li>
+  <li>For each existing version:
+    <ul>
+      <li><a href="#4a-download-artifacts">Download the artifact from JCenter</a></li>
+      <li><a href="#4b-add-all-missing-info-to-pomxml">Add all missing info to <code class="language-plaintext highlighter-rouge">pom.xml</code></a></li>
+      <li><a href="#4c-sign-and-upload-to-maven-central">Sign and upload the artifact to Maven Central</a></li>
+    </ul>
+  </li>
+</ol>
+
+<p>If you’re impatient, feel free to <a href="#bringing-it-all-together">jump ahead to the full script</a> below.</p>
+
+<p>Though I encourage you to have a look at specific sections as your signing key may be in a different format, sections may be missing from your <code class="language-plaintext highlighter-rouge">pom.xml</code>,…</p>
+
+<h2 id="1-enumerate-all-versions-to-migrate">1. Enumerate all versions to migrate</h2>
+<p>To get all previously published versions from JCenter, navigate to the following url:</p>
+
+<p><code class="language-plaintext highlighter-rouge">https://dl.bintray.com/&lt;bintray-org&gt;/&lt;bintray-repo&gt;/&lt;group-id-slash-separated&gt;/&lt;artifact-id&gt;</code></p>
+
+<p>For the <a href="https://bintray.com/plaid/link-android/com.plaid.link">Plaid Link Android SDK located</a>:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">&lt;bintray-org&gt;</code>: <code class="language-plaintext highlighter-rouge">plaid</code> - first part of url</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;bintray-repo&gt;</code>: <code class="language-plaintext highlighter-rouge">link-android</code> - second part of url</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;group-id-slash-separated&gt;</code>: <code class="language-plaintext highlighter-rouge">com.plaid.link</code> - group id with <code class="language-plaintext highlighter-rouge">.</code> replaced by <code class="language-plaintext highlighter-rouge">/</code></li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;artifact-id&gt;</code>: <code class="language-plaintext highlighter-rouge">sdk-core</code> - artifact id</li>
+</ul>
+
+<p><a href="/img/blog/migrateartifactsmaven/jcenter_info.png"><img src="/img/blog/migrateartifactsmaven/jcenter_info.png" alt="Bintray and Maven credentials to construct versions url" class="align-center" /></a></p>
+
+<p>Resulting in the <a href="https://dl.bintray.com/plaid/link-android/com/plaid/link/sdk-core">following url</a>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">BINTRAYURL</span><span class="o">=</span>https://dl.bintray.com/plaid/link-android/com/plaid/link/sdk-core
+</code></pre></div></div>
+
+<p>From this, all versions can be copy-pasted in plain text and converted into a space-separated array. Either using a text editor or command line (OSX only):</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pbpaste | <span class="nb">tr</span> <span class="s1">'/'</span> <span class="s1">' '</span> | <span class="nb">tr</span> <span class="nt">-d</span> <span class="s1">'\n'</span>
+</code></pre></div></div>
+
+<p>Now the versions can be used as an input variable for the script:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">VERSIONS</span><span class="o">=(</span>0.1.0 0.1.1 0.1.2 0.1.3 0.1.4 0.1.5 0.2.0 0.2.1 0.2.2 <span class="se">\</span>
+            0.3.0 0.3.1 0.3.2 0.3.3 0.3.4 0.3.5 0.3.6 1.0.0 1.0.1 <span class="se">\</span>
+            1.0.2 1.0.3 1.1.0 1.2.0 1.2.1 1.3.0 1.3.1 1.4.0 1.4.1 <span class="se">\</span>
+            2.0.0 2.0.0-rc1 2.0.0-rc2 2.0.0-rc3 2.1.0 2.1.1 2.1.2 <span class="se">\</span>
+            2.2.0 3.0.0 3.0.1 3.1.0 3.1.1 3.2.0 3.2.0-rc1 3.2.0-rc2 <span class="se">\</span>
+            3.2.1 3.2.2 3.2.3 3.2.4<span class="o">)</span>
+</code></pre></div></div>
+
+<p>Finally, keep this URL somewhere as we’ll need it later on to download all artifacts.</p>
+
+<h2 id="2-configure-gnu-pg-with-a-signing-key">2. Configure GNU PG with a signing key</h2>
+<p>To sign the artifacts, we’ll use <a href="https://gnupg.org/">GNU PG</a>.</p>
+
+<p>First, ensure GNU GPG is installed:</p>
+
+<ul>
+  <li>OSX: <code class="language-plaintext highlighter-rouge">$ brew install gnupg</code></li>
+  <li>Docker: <code class="language-plaintext highlighter-rouge">$ RUN apk add gnupg</code></li>
+</ul>
+
+<p>Now your private key can be imported by:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gpg <span class="nt">--import</span> private.key
+</code></pre></div></div>
+
+<p>Or if you’ll be running the script on your CI environment, you may want to inject a base64 encoded version of the private key:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Export base64 key</span>
+gpg <span class="nt">--export-secret-key</span> <span class="nt">--armor</span> | <span class="nb">base64</span>
+
+<span class="c"># Import base64 key</span>
+<span class="nb">echo</span> <span class="nv">$BASE64_SIGNING_KEY</span> | <span class="nb">base64</span> <span class="nt">-d</span> | gpg <span class="nt">--import</span>
+</code></pre></div></div>
+
+<h2 id="3-setup-credentials-for-maven-central-upload">3. Setup credentials for Maven Central upload</h2>
+<p>To make sure Maven can access your Sonatype credentials, a <code class="language-plaintext highlighter-rouge">settings.xml</code> needs to be created in the <code class="language-plaintext highlighter-rouge">~/.m2</code> folder with the <code class="language-plaintext highlighter-rouge">username</code> and <code class="language-plaintext highlighter-rouge">password</code>.</p>
+
+<p>First define a variable for <code class="language-plaintext highlighter-rouge">username</code> and <code class="language-plaintext highlighter-rouge">password</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">SONATYPE_USERNAME</span><span class="o">=</span><span class="s2">"&lt;username_here&gt;"</span>
+<span class="nv">SONATYPE_PASSWORD</span><span class="o">=</span><span class="s2">"&lt;password_here&gt;"</span>
+</code></pre></div></div>
+
+<p>Note that these shouldn’t contain any characters that aren’t compatible with xml. Hence we better xml encode them before using:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">function </span>xml_encode<span class="o">()</span> <span class="o">{</span>
+  <span class="nb">echo</span> <span class="nv">$1</span> | <span class="nb">sed</span> <span class="s1">'s/&amp;/\&amp;amp;/g; s/&lt;/\&amp;lt;/g; s/&gt;/\&amp;gt;/g; s/"/\&amp;quot;/g; s/'</span><span class="s2">"'"</span><span class="s1">'/\&amp;#39;/g'</span>
+<span class="o">}</span>
+
+<span class="nv">SONATYPE_USERNAME</span><span class="o">=</span><span class="si">$(</span>xml_encode <span class="s2">"&lt;username_here&gt;"</span><span class="si">)</span>
+<span class="nv">SONATYPE_PASSWORD</span><span class="o">=</span><span class="si">$(</span>xml_encode <span class="s2">"&lt;password_here&gt;"</span><span class="si">)</span>
+</code></pre></div></div>
+
+<p>Next, make sure the <code class="language-plaintext highlighter-rouge">~/.m2</code> directory is created:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkdir -p ~/.m2
+</code></pre></div></div>
+
+<p>And finally create the <code class="language-plaintext highlighter-rouge">settings.xml</code> file with the credentials:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"&lt;settings xmlns=</span><span class="se">\"</span><span class="s2">http://maven.apache.org/SETTINGS/1.0.0</span><span class="se">\"</span><span class="s2"> xmlns:xsi=</span><span class="se">\"</span><span class="s2">http://www.w3.org/2001/XMLSchema-instance</span><span class="se">\"</span><span class="s2">
+  xsi:schemaLocation=</span><span class="se">\"</span><span class="s2">http://maven.apache.org/SETTINGS/1.0.0 https://maven.apache.org/xsd/settings-1.0.0.xsd</span><span class="se">\"</span><span class="s2">&gt;
+  &lt;servers&gt;
+    &lt;server&gt;
+      &lt;id&gt;</span><span class="nv">$MAVEN_CENTRAL_REPOID</span><span class="s2">&lt;/id&gt;
+      &lt;username&gt;</span><span class="nv">$SONATYPE_USERNAME</span><span class="s2">&lt;/username&gt;
+      &lt;password&gt;</span><span class="nv">$SONATYPE_PASSWORD</span><span class="s2">&lt;/password&gt;
+    &lt;/server&gt;
+  &lt;/servers&gt;
+&lt;/settings&gt;"</span> <span class="o">&gt;</span> ~/.m2/settings.xml
+</code></pre></div></div>
+
+<h2 id="4a-download-artifacts">4.a Download artifacts</h2>
+<p>First, define the output directory where the downloaded files will be placed.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">OUTPUT_DIR</span><span class="o">=</span><span class="s2">"output"</span>
+</code></pre></div></div>
+
+<p>Then for each version, create a new directory that will host the downloaded artifacts:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for </span>v <span class="k">in</span> <span class="k">${</span><span class="nv">VERSIONS</span><span class="p">[@]</span><span class="k">}</span><span class="p">;</span> <span class="k">do
+  </span><span class="nb">mkdir</span> <span class="nt">-p</span> <span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>
+<span class="k">done</span>
+</code></pre></div></div>
+
+<p>And finally, download all the artifacts using the base URL that we created in step 1:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for </span>v <span class="k">in</span> <span class="k">${</span><span class="nv">VERSIONS</span><span class="p">[@]</span><span class="k">}</span><span class="p">;</span> <span class="k">do</span>
+  ...
+  curl <span class="nt">-L</span> <span class="nv">$BINTRAYURL</span>/<span class="nv">$v</span>/<span class="nv">$ARTIFACT_ID</span>-<span class="nv">$v</span>.aar <span class="se">\</span>
+      <span class="nt">-o</span> <span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/<span class="nv">$ARTIFACT_ID</span>-<span class="nv">$v</span>.aar
+  curl <span class="nt">-L</span> <span class="nv">$BINTRAYURL</span>/<span class="nv">$v</span>/<span class="nv">$ARTIFACT_ID</span>-<span class="nv">$v</span>.pom <span class="se">\</span>
+      <span class="nt">-o</span> <span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/<span class="nv">$ARTIFACT_ID</span>-<span class="nv">$v</span>.pom
+<span class="k">done</span>
+</code></pre></div></div>
+
+<p>This will represent a similar folder structure in the output directory as what is present in Maven.</p>
+
+<blockquote>
+  <p>Note: if you deploy more artifacts (e.g. <code class="language-plaintext highlighter-rouge">javadoc.jar</code>), make sure to download them here. And when your artifact is a <code class="language-plaintext highlighter-rouge">.jar</code>, update the extension.</p>
+</blockquote>
+
+<h2 id="4b-add-all-missing-info-to-pomxml">4.b Add all missing info to <code class="language-plaintext highlighter-rouge">pom.xml</code></h2>
+<p>Maven Central has <a href="https://central.sonatype.org/pages/requirements.html#sufficient-metadata">more mandatory fields</a> for the <code class="language-plaintext highlighter-rouge">pom.xml</code> and hence the <code class="language-plaintext highlighter-rouge">pom.xml</code> files may need to be amended before uploading.</p>
+
+<p>I had to add the following info:</p>
+
+<ul>
+  <li>name</li>
+  <li>description</li>
+  <li>URL</li>
+  <li>license</li>
+  <li>developer</li>
+  <li>organization</li>
+  <li>SCM (link to source control)</li>
+</ul>
+
+<p>To add the information above, let’s replace an existing attribute in the <code class="language-plaintext highlighter-rouge">pom.xml</code> with a new XML snippet that contains all information. A good candidate to replace is the <code class="language-plaintext highlighter-rouge">&lt;packaging&gt;</code> attribute:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">POM_PLACEHOLDER</span><span class="o">=</span><span class="s2">"&lt;packaging&gt;.*&gt;"</span>
+</code></pre></div></div>
+
+<p>This will be replaced with a new XML snippet that starts with the same attribute, but adds the other attributes to the <code class="language-plaintext highlighter-rouge">pom.xml</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">POM_REPLACEMENT</span><span class="o">=</span><span class="s2">"&lt;packaging&gt;aar&lt;/packaging&gt;
+
+  &lt;name&gt;name here&lt;/name&gt;
+  &lt;description&gt;description here&lt;/description&gt;
+  &lt;url&gt;url here&lt;/url&gt;
+
+
+  &lt;licenses&gt;
+    &lt;license&gt;
+      &lt;name&gt;license here&lt;/name&gt;
+      &lt;url&gt;url to license&lt;/url&gt;
+    &lt;/license&gt;
+  &lt;/licenses&gt;
+
+  &lt;organization&gt;
+    &lt;name&gt;name here&lt;/name&gt;
+    &lt;url&gt;url here&lt;/url&gt;
+  &lt;/organization&gt;
+
+   &lt;developers&gt;
+    &lt;developer&gt;
+      &lt;organization&gt;name here&lt;/organization&gt;
+      &lt;organizationUrl&gt;url here&lt;/organizationUrl&gt;
+    &lt;/developer&gt;
+  &lt;/developers&gt;
+
+  &lt;scm&gt;
+    &lt;connection&gt;url here&lt;/connection&gt;
+    &lt;developerConnection&gt;url here&lt;/developerConnection&gt;
+    &lt;url&gt;url here&lt;/url&gt;
+  &lt;/scm&gt;
+  "</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>To learn what data to provide for each attribute, have a look a the <a href="https://central.sonatype.org/pages/requirements.html#sufficient-metadata">sonatype documentation</a></p>
+</blockquote>
+
+<blockquote>
+  <p>Note that your <code class="language-plaintext highlighter-rouge">pom.xml</code> might already have been defining some of these attributes, so you may not need to add all of these replacement attributes when migrating your project</p>
+</blockquote>
+
+<p>Using <code class="language-plaintext highlighter-rouge">sed</code> we can replace the placeholder with the replacement text:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sed</span> <span class="nt">-e</span> <span class="s2">"s/</span><span class="nv">$POM_PLACEHOLDER</span><span class="s2">/</span><span class="nv">$POM_REPLACEMENT_ESCAPED</span><span class="s2">/g"</span> <span class="se">\</span>
+  <span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/sdk-core-<span class="nv">$v</span>.pom
+</code></pre></div></div>
+
+<p>Unfortunately, that doesn’t work as all <code class="language-plaintext highlighter-rouge">/</code> in the replacement snippet need to be escaped or <code class="language-plaintext highlighter-rouge">sed</code> will consider them part of its command.</p>
+
+<p>To fix this, preprocess the replacement snippet:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">POM_REPLACEMENT_ESCAPED</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="s2">"</span><span class="k">${</span><span class="nv">POM_REPLACEMENT</span><span class="k">}</span><span class="s2">"</span> |<span class="se">\</span>
+    <span class="nb">sed</span> <span class="s1">'s#/#\\/#g'</span><span class="si">)</span>
+</code></pre></div></div>
+
+<p>Almost there, but <code class="language-plaintext highlighter-rouge">sed</code> cannot handle multi-line replacements.</p>
+
+<p>This can be solved by using <code class="language-plaintext highlighter-rouge">tr</code> to temporarily swap the <code class="language-plaintext highlighter-rouge">/n</code> characters with a unique character <code class="language-plaintext highlighter-rouge">@</code> and swapping it back after the replacement:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">POM_REPLACEMENT_ESCAPED</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="s2">"</span><span class="k">${</span><span class="nv">POM_REPLACEMENT</span><span class="k">}</span><span class="s2">"</span> |<span class="se">\</span>
+    <span class="nb">sed</span> <span class="s1">'s#/#\\/#g'</span> | <span class="nb">tr</span> <span class="s1">'\n'</span> <span class="s1">'@'</span><span class="si">)</span>
+<span class="nb">sed</span> <span class="nt">-e</span> <span class="s2">"s/</span><span class="nv">$POM_PLACEHOLDER</span><span class="s2">/</span><span class="nv">$POM_REPLACEMENT_ESCAPED</span><span class="s2">/g"</span> <span class="se">\</span>
+    <span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/sdk-core-<span class="nv">$v</span>.pom |<span class="se">\</span>
+     <span class="nb">tr</span> <span class="s1">'@'</span> <span class="s1">'\n'</span> <span class="o">&gt;</span> temp.txt
+<span class="nb">mv </span>temp.txt <span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/sdk-core-<span class="nv">$v</span>.pom
+</code></pre></div></div>
+
+<p>Notice how an intermediate file <code class="language-plaintext highlighter-rouge">temp.txt</code> is used to avoid reading and modifying the original file at the same time.</p>
+
+<h2 id="4c-sign-and-upload-to-maven-central">4.c Sign and upload to Maven Central</h2>
+<p>To sign and upload the artifacts to Maven Central, what better tool to use than Maven itself?</p>
+
+<p>First, make sure Maven is installed:</p>
+
+<ul>
+  <li>OSX: <code class="language-plaintext highlighter-rouge">$ brew install maven</code></li>
+  <li>Docker: <code class="language-plaintext highlighter-rouge">$ RUN apk add maven</code></li>
+</ul>
+
+<p>Then define the repository id and staging URL constants:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Constants, no need to change these</span>
+<span class="nv">MAVEN_CENTRAL_STAGINGURL</span><span class="o">=</span><span class="s2">"https://oss.sonatype.org/service/local/staging/deploy/maven2"</span>
+<span class="nv">MAVEN_CENTRAL_REPOID</span><span class="o">=</span><span class="s2">"ossrh"</span>
+</code></pre></div></div>
+
+<p>Finally, invoke Maven with the GPG sign and deploy plugin:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for </span>v <span class="k">in</span> <span class="k">${</span><span class="nv">VERSIONS</span><span class="p">[@]</span><span class="k">}</span><span class="p">;</span> <span class="k">do</span>
+  ...
+mvn gpg:sign-and-deploy-file <span class="se">\</span>
+   <span class="nt">-Durl</span><span class="o">=</span><span class="nv">$MAVEN_CENTRAL_STAGINGURL</span> <span class="se">\</span>
+   <span class="nt">-DrepositoryId</span><span class="o">=</span><span class="nv">$MAVEN_CENTRAL_REPOID</span> <span class="se">\</span>
+   <span class="nt">-DpomFile</span><span class="o">=</span><span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/sdk-core-<span class="nv">$v</span>.pom <span class="se">\</span>
+   <span class="nt">-Dfile</span><span class="o">=</span><span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/sdk-core-<span class="nv">$v</span>.aar
+<span class="k">done</span>
+</code></pre></div></div>
+
+<p>This will upload all your files to the staging environment on Maven Central.</p>
+
+<blockquote>
+  <p>Note: If you want to upload additional artifacts (e.g. javadoc.jar), have a look at the <a href="https://central.sonatype.org/pages/manual-staging-bundle-creation-and-deployment.html">Sonatype documentation</a>.</p>
+</blockquote>
+
+<p>After, login to Sonatype to close the repository from future uploads and promote all artifacts to release. This process is well described in the <a href="https://getstream.io/blog/publishing-libraries-to-mavencentral-2021/#your-first-release">your first release</a> section by <a href="https://twitter.com/zsmb13">Márton Braun</a></p>
+
+<h2 id="bringing-it-all-together">Bringing it all together</h2>
+<p>Combined this results in the following script, that takes all required secrets as input parameters so it can easily be run on a CI:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>./migrate_to_mavencentral.sh <span class="nv">$BASE64_SIGNING_KEY</span> <span class="nv">$SONATYPE_USERNAME</span> <span class="nv">$SONATYPE_PASSWORD</span>
+</code></pre></div></div>
+
+<p>And the full script (including <code class="language-plaintext highlighter-rouge">TODOs</code>!) <a href="https://github.com/JeroenMols/MigrateArtifactsMavenCentral">can be found on Github</a>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="nb">set</span> <span class="nt">-euo</span> pipefail
+
+<span class="c"># TODO: add versions e.g. (1.0.0 1.0.1 1.0.2)</span>
+<span class="nv">VERSIONS</span><span class="o">=()</span>
+<span class="c"># TODO : add artifact Id</span>
+<span class="nv">ARTIFACT_ID</span><span class="o">=</span><span class="s2">""</span>
+<span class="c"># TODO: https://dl.bintray.com/&lt;bintray-org&gt;/&lt;bintray-repo&gt;/&lt;group-id-slash-separated&gt;/&lt;artifact-id&gt;</span>
+<span class="nv">BINTRAYURL</span><span class="o">=</span><span class="s2">""</span>
+
+<span class="c"># TODO: define placeholder and provide additional pom information (starting with placeholder!)</span>
+<span class="nv">ARTIFACT_EXTENSTION</span><span class="o">=</span><span class="s2">"aar"</span>
+<span class="nv">POM_PLACEHOLDER</span><span class="o">=</span><span class="s2">"&lt;packaging&gt;.*&gt;"</span>
+<span class="nv">POM_REPLACEMENT</span><span class="o">=</span><span class="s2">"&lt;packaging&gt;aar&lt;/packaging&gt;
+
+  &lt;name&gt;name here&lt;/name&gt;
+  &lt;description&gt;description here&lt;/description&gt;
+  &lt;url&gt;url here&lt;/url&gt;
+
+
+  &lt;licenses&gt;
+    &lt;license&gt;
+      &lt;name&gt;license here&lt;/name&gt;
+      &lt;url&gt;url to license&lt;/url&gt;
+    &lt;/license&gt;
+  &lt;/licenses&gt;
+
+  &lt;organization&gt;
+    &lt;name&gt;name here&lt;/name&gt;
+    &lt;url&gt;url here&lt;/url&gt;
+  &lt;/organization&gt;
+
+   &lt;developers&gt;
+    &lt;developer&gt;
+      &lt;organization&gt;name here&lt;/organization&gt;
+      &lt;organizationUrl&gt;url here&lt;/organizationUrl&gt;
+    &lt;/developer&gt;
+  &lt;/developers&gt;
+
+  &lt;scm&gt;
+    &lt;connection&gt;url here&lt;/connection&gt;
+    &lt;developerConnection&gt;url here&lt;/developerConnection&gt;
+    &lt;url&gt;url here&lt;/url&gt;
+  &lt;/scm&gt;
+  "</span>
+
+<span class="c"># Constants</span>
+<span class="nv">MAVEN_CENTRAL_STAGINGURL</span><span class="o">=</span><span class="s2">"https://oss.sonatype.org/service/local/staging/deploy/maven2"</span>
+<span class="nv">MAVEN_CENTRAL_REPOID</span><span class="o">=</span><span class="s2">"ossrh"</span>
+<span class="nv">OUTPUT_DIR</span><span class="o">=</span><span class="s2">"output"</span>
+
+<span class="c"># Utilities</span>
+<span class="k">function </span>escape_pom<span class="o">()</span> <span class="o">{</span>
+  <span class="nb">echo</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> | <span class="nb">sed</span> <span class="s1">'s#/#\\/#g'</span> | <span class="nb">tr</span> <span class="s1">'\n'</span> <span class="s1">'@'</span>
+<span class="o">}</span>
+
+<span class="k">function </span>xml_encode<span class="o">()</span> <span class="o">{</span>
+  <span class="nb">echo</span> <span class="nv">$1</span> | <span class="nb">sed</span> <span class="s1">'s/&amp;/\&amp;amp;/g; s/&lt;/\&amp;lt;/g; s/&gt;/\&amp;gt;/g; s/"/\&amp;quot;/g; s/'</span><span class="s2">"'"</span><span class="s1">'/\&amp;#39;/g'</span>
+<span class="o">}</span>
+
+
+
+<span class="nb">echo</span> <span class="s2">"Loading script input"</span>
+<span class="nv">BASE64_SIGNING_KEY</span><span class="o">=</span><span class="nv">$1</span>
+<span class="nv">SONATYPE_USERNAME</span><span class="o">=</span><span class="si">$(</span>xml_encode <span class="nv">$2</span><span class="si">)</span>
+<span class="nv">SONATYPE_PASSWORD</span><span class="o">=</span><span class="si">$(</span>xml_encode <span class="nv">$3</span><span class="si">)</span>
+<span class="nb">echo</span> <span class="nv">$SONATYPE_PASSWORD</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nt">-z</span> <span class="s2">"</span><span class="k">${</span><span class="nv">BASE64_SIGNING_KEY</span><span class="k">}</span><span class="s2">"</span>  <span class="nt">-o</span> <span class="nt">-z</span> <span class="s2">"</span><span class="k">${</span><span class="nv">SONATYPE_USERNAME</span><span class="k">}</span><span class="s2">"</span> <span class="nt">-o</span> <span class="nt">-z</span> <span class="s2">"</span><span class="k">${</span><span class="nv">SONATYPE_PASSWORD</span><span class="k">}</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+  </span><span class="nb">echo</span> <span class="s2">"USAGE: migrate BASE64_SIGNING_KEY SONATYPE_USERNAME SONATYPE_PASSWORD"</span>
+  <span class="nb">exit </span>1
+<span class="k">fi
+
+
+
+</span><span class="nb">echo</span> <span class="s2">"Setup signing key"</span>
+<span class="nb">echo</span> <span class="nv">$BASE64_SIGNING_KEY</span> | <span class="nb">base64</span> <span class="nt">-d</span> | gpg <span class="nt">--import</span>
+
+
+
+<span class="nb">echo</span> <span class="s2">"Setup Maven credentials"</span>
+<span class="nb">mkdir</span> <span class="nt">-p</span> ~/.m2
+<span class="nb">echo</span> <span class="s2">"&lt;settings xmlns=</span><span class="se">\"</span><span class="s2">http://maven.apache.org/SETTINGS/1.0.0</span><span class="se">\"</span><span class="s2"> xmlns:xsi=</span><span class="se">\"</span><span class="s2">http://www.w3.org/2001/XMLSchema-instance</span><span class="se">\"</span><span class="s2">
+  xsi:schemaLocation=</span><span class="se">\"</span><span class="s2">http://maven.apache.org/SETTINGS/1.0.0 https://maven.apache.org/xsd/settings-1.0.0.xsd</span><span class="se">\"</span><span class="s2">&gt;
+  &lt;servers&gt;
+    &lt;server&gt;
+      &lt;id&gt;</span><span class="nv">$MAVEN_CENTRAL_REPOID</span><span class="s2">&lt;/id&gt;
+      &lt;username&gt;</span><span class="nv">$SONATYPE_USERNAME</span><span class="s2">&lt;/username&gt;
+      &lt;password&gt;</span><span class="nv">$SONATYPE_PASSWORD</span><span class="s2">&lt;/password&gt;
+    &lt;/server&gt;
+  &lt;/servers&gt;
+&lt;/settings&gt;"</span> <span class="o">&gt;</span> ~/.m2/settings.xml
+
+
+
+<span class="nb">echo</span> <span class="s2">"Migrate artifacts"</span>
+<span class="k">for </span>v <span class="k">in</span> <span class="k">${</span><span class="nv">VERSIONS</span><span class="p">[@]</span><span class="k">}</span><span class="p">;</span> <span class="k">do
+  </span><span class="nb">echo</span> <span class="s2">"Migrating version </span><span class="nv">$v</span><span class="s2">"</span>
+  <span class="nb">mkdir</span> <span class="nt">-p</span> <span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>
+  curl <span class="nt">-L</span> <span class="nv">$BINTRAYURL</span>/<span class="nv">$v</span>/<span class="nv">$ARTIFACT_ID</span>-<span class="nv">$v</span>.<span class="nv">$ARTIFACT_EXTENSTION</span> <span class="se">\</span>
+      <span class="nt">-o</span> <span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/<span class="nv">$ARTIFACT_ID</span>-<span class="nv">$v</span>.<span class="nv">$ARTIFACT_EXTENSTION</span>
+  curl <span class="nt">-L</span> <span class="nv">$BINTRAYURL</span>/<span class="nv">$v</span>/<span class="nv">$ARTIFACT_ID</span>-<span class="nv">$v</span>.pom <span class="se">\</span>
+      <span class="nt">-o</span> <span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/<span class="nv">$ARTIFACT_ID</span>-<span class="nv">$v</span>.pom
+
+  <span class="c"># Add required metadata to pom.xml</span>
+  <span class="nb">sed</span> <span class="nt">-e</span> <span class="s2">"s/</span><span class="nv">$POM_PLACEHOLDER</span><span class="s2">/</span><span class="si">$(</span>escape_pom <span class="s2">"</span><span class="nv">$POM_REPLACEMENT</span><span class="s2">"</span><span class="si">)</span><span class="s2">/g"</span> <span class="se">\</span>
+      <span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/sdk-core-<span class="nv">$v</span>.pom |<span class="se">\</span>
+      <span class="nb">tr</span> <span class="s1">'@'</span> <span class="s1">'\n'</span> <span class="o">&gt;</span> temp.txt
+  <span class="nb">mv </span>temp.txt <span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/sdk-core-<span class="nv">$v</span>.pom
+
+  mvn gpg:sign-and-deploy-file <span class="se">\</span>
+     <span class="nt">-Durl</span><span class="o">=</span><span class="nv">$MAVEN_CENTRAL_STAGINGURL</span> <span class="se">\</span>
+     <span class="nt">-DrepositoryId</span><span class="o">=</span><span class="nv">$MAVEN_CENTRAL_REPOID</span> <span class="se">\</span>
+     <span class="nt">-DpomFile</span><span class="o">=</span><span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/sdk-core-<span class="nv">$v</span>.pom <span class="se">\</span>
+     <span class="nt">-Dfile</span><span class="o">=</span><span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/sdk-core-<span class="nv">$v</span>.<span class="nv">$ARTIFACT_EXTENSTION</span>
+<span class="k">done</span>
+</code></pre></div></div>
+
+<h2 id="wrap-up">Wrap-up</h2>
+<p>Migrating existing artifacts to Maven Central involves quite a few steps. Fortunately, the <a href="https://github.com/JeroenMols/MigrateArtifactsMavenCentral">open source script</a> presented in this blogpost can help with downloading all artifacts, updating their <code class="language-plaintext highlighter-rouge">pom.xml</code>, signing them, and uploading them to Maven Central.</p>
+
+<p>If you’ve made it this far you should probably <span><a href="https://twitter.com/molsjeroen?source=migrateexistinglibraryartifactsfromjcentertomavencentral2021" class="ga-link" target="_blank">Twitter</a></span>
+. Feel free to leave a comment below!</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/jcenter" class="page__taxonomy-item" rel="tag">jcenter</a><span class="sep">, </span>
+    
+      <a href="/tags/maven" class="page__taxonomy-item" rel="tag">maven</a><span class="sep">, </span>
+    
+      <a href="/tags/mavencentral" class="page__taxonomy-item" rel="tag">mavenCentral</a><span class="sep">, </span>
+    
+      <a href="/tags/migrate" class="page__taxonomy-item" rel="tag">migrate</a><span class="sep">, </span>
+    
+      <a href="/tags/script" class="page__taxonomy-item" rel="tag">script</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/blog" class="page__taxonomy-item" rel="tag">blog</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-03-24T00:00:00+01:00">March 24, 2021</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=Migrate+existing+library+artifacts+from+JCenter+to+Maven+Central%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2021%2F03%2F24%2Fmigrate-artifacts-mavencentral%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2021%2F03%2F24%2Fmigrate-artifacts-mavencentral%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2021%2F03%2F24%2Fmigrate-artifacts-mavencentral%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      <section class="page__share">
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- bottom-blog-responsive -->
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-9854541518226004"
+       data-ad-slot="4086741379"
+       data-ad-format="auto"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/blog/2021/03/17/share-code-kotlin-multiplatform/" class="pagination--pager" title="Share code between Android and Jvm in Kotlin multiplatform
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a Comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(/img/blog/sharecodemultiplatform/sharecodemultiplatform.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="/blog/2021/03/17/share-code-kotlin-multiplatform/" rel="permalink">Share code between Android and Jvm in Kotlin multiplatform
+</a>
+        </h2>
+        <h3 class="archive__date">17 Mar 2021</h3>
+      </div>
+      
+        <a href="/blog/2021/03/17/share-code-kotlin-multiplatform/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">While Android supports most Java language features, it doesn’t support every API that Java provides. On the other hand, Kotlin multiplatform only allows sharing code across all targets (commonMain), not a subset of targets (commonJvm).
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(/img/blog/migratingjcenter/migratingjcenter.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="/blog/2021/02/04/migratingjcenter/" rel="permalink">Migrating away from JCenter
+</a>
+        </h2>
+        <h3 class="archive__date">04 Feb 2021</h3>
+      </div>
+      
+        <a href="/blog/2021/02/04/migratingjcenter/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">This week JFrog - out of nowhere - announced to completely remove their Maven repository. Since they’ll pull it offline already by May 2021 (!!!) it’s time to urgently migrate away. This blogpost will guide how to get started.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(/img/blog/yearinreview20/yearinreview20.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="/blog/2021/01/05/yearinreview/" rel="permalink">Year in review 2020
+</a>
+        </h2>
+        <h3 class="archive__date">05 Jan 2021</h3>
+      </div>
+      
+        <a href="/blog/2021/01/05/yearinreview/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Well… I don’t really know where to start this time. 2020 was quite the rollercoaster, with many downs… but fortunately also a few amazing ups. Let’s focus on the good stuff.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(/img/blog/inprojectmaven/inprojectmaven.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="/blog/2020/12/02/inproject-maven/" rel="permalink">Test library releases using an in project Maven repository
+</a>
+        </h2>
+        <h3 class="archive__date">02 Dec 2020</h3>
+      </div>
+      
+        <a href="/blog/2020/12/02/inproject-maven/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Short, powerful post on how to test the release version of libraries directly within a project without having to deploy them to Maven first.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+
+    
+      <li><a href="atom.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Jeroen Mols. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <script>
+  window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+  ga('create','UA-63356566-1','auto');
+  ga('set', 'anonymizeIp', false);
+  ga('send','pageview')
+</script>
+<script src="https://www.google-analytics.com/analytics.js" async></script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://jeroenmols.com/blog/2021/03/24/migrate-artifacts-mavencentral/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/blog/2021/03/24/migrate-artifacts-mavencentral"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://jeroenmols.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

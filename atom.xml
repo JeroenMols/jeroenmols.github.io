@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/" rel="alternate" type="text/html"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, Android developer at Plaid and Google Developer Expert.</subtitle>
- <updated>2021-03-18T07:10:06+01:00</updated>
+ <updated>2021-03-24T22:03:32+01:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,22 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>Migrate existing library artifacts from JCenter to Maven Central</title>
+   <link href="https://jeroenmols.com/blog/2021/03/24/migrate-artifacts-mavencentral/"/>
+   <updated>2021-03-24T00:00:00+01:00</updated>
+   <id>https://jeroenmols.com/blog/2021/03/24/migrate-artifacts-mavencentral</id>
+   <content type="html"><![CDATA[
+     
+     <p>With JCenter shutting down, many are migrating to Maven Central. And while there are many posts on how to publish new artifacts, also all existing artifacts should be migrated away from JCenter.</p>
+
+<p>This post will cover all steps required to migrate artifacts from JCenter to Maven Central. It will present a script to automatically perform such a migration so that it can be run on a CI and have the secrets injected.</p>
+
+
+     <a href="https://jeroenmols.com/blog/2021/03/24/migrate-artifacts-mavencentral/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>Share code between Android and Jvm in Kotlin multiplatform</title>
