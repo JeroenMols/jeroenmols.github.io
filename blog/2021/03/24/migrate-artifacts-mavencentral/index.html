@@ -601,7 +601,7 @@ gpg <span class="nt">--export-secret-key</span> <span class="nt">--armor</span> 
 <p>Using <code class="language-plaintext highlighter-rouge">sed</code> we can replace the placeholder with the replacement text:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sed</span> <span class="nt">-e</span> <span class="s2">"s/</span><span class="nv">$POM_PLACEHOLDER</span><span class="s2">/</span><span class="nv">$POM_REPLACEMENT_ESCAPED</span><span class="s2">/g"</span> <span class="se">\</span>
-  <span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/sdk-core-<span class="nv">$v</span>.pom
+  <span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/<span class="nv">$ARTIFACT_ID</span>-<span class="nv">$v</span>.pom
 </code></pre></div></div>
 
 <p>Unfortunately, that doesn’t work as all <code class="language-plaintext highlighter-rouge">/</code> in the replacement snippet need to be escaped or <code class="language-plaintext highlighter-rouge">sed</code> will consider them part of its command.</p>
@@ -619,9 +619,9 @@ gpg <span class="nt">--export-secret-key</span> <span class="nt">--armor</span> 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">POM_REPLACEMENT_ESCAPED</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="s2">"</span><span class="k">${</span><span class="nv">POM_REPLACEMENT</span><span class="k">}</span><span class="s2">"</span> |<span class="se">\</span>
     <span class="nb">sed</span> <span class="s1">'s#/#\\/#g'</span> | <span class="nb">tr</span> <span class="s1">'\n'</span> <span class="s1">'@'</span><span class="si">)</span>
 <span class="nb">sed</span> <span class="nt">-e</span> <span class="s2">"s/</span><span class="nv">$POM_PLACEHOLDER</span><span class="s2">/</span><span class="nv">$POM_REPLACEMENT_ESCAPED</span><span class="s2">/g"</span> <span class="se">\</span>
-    <span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/sdk-core-<span class="nv">$v</span>.pom |<span class="se">\</span>
+    <span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/<span class="nv">$ARTIFACT_ID</span>-<span class="nv">$v</span>.pom |<span class="se">\</span>
      <span class="nb">tr</span> <span class="s1">'@'</span> <span class="s1">'\n'</span> <span class="o">&gt;</span> temp.txt
-<span class="nb">mv </span>temp.txt <span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/sdk-core-<span class="nv">$v</span>.pom
+<span class="nb">mv </span>temp.txt <span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/<span class="nv">$ARTIFACT_ID</span>-<span class="nv">$v</span>.pom
 </code></pre></div></div>
 
 <p>Notice how an intermediate file <code class="language-plaintext highlighter-rouge">temp.txt</code> is used to avoid reading and modifying the original file at the same time.</p>
@@ -650,8 +650,8 @@ gpg <span class="nt">--export-secret-key</span> <span class="nt">--armor</span> 
 mvn gpg:sign-and-deploy-file <span class="se">\</span>
    <span class="nt">-Durl</span><span class="o">=</span><span class="nv">$MAVEN_CENTRAL_STAGINGURL</span> <span class="se">\</span>
    <span class="nt">-DrepositoryId</span><span class="o">=</span><span class="nv">$MAVEN_CENTRAL_REPOID</span> <span class="se">\</span>
-   <span class="nt">-DpomFile</span><span class="o">=</span><span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/sdk-core-<span class="nv">$v</span>.pom <span class="se">\</span>
-   <span class="nt">-Dfile</span><span class="o">=</span><span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/sdk-core-<span class="nv">$v</span>.aar
+   <span class="nt">-DpomFile</span><span class="o">=</span><span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/<span class="nv">$ARTIFACT_ID</span>-<span class="nv">$v</span>.pom <span class="se">\</span>
+   <span class="nt">-Dfile</span><span class="o">=</span><span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/<span class="nv">$ARTIFACT_ID</span>-<span class="nv">$v</span>.aar
 <span class="k">done</span>
 </code></pre></div></div>
 
@@ -776,15 +776,15 @@ mvn gpg:sign-and-deploy-file <span class="se">\</span>
 
   <span class="c"># Add required metadata to pom.xml</span>
   <span class="nb">sed</span> <span class="nt">-e</span> <span class="s2">"s/</span><span class="nv">$POM_PLACEHOLDER</span><span class="s2">/</span><span class="si">$(</span>escape_pom <span class="s2">"</span><span class="nv">$POM_REPLACEMENT</span><span class="s2">"</span><span class="si">)</span><span class="s2">/g"</span> <span class="se">\</span>
-      <span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/sdk-core-<span class="nv">$v</span>.pom |<span class="se">\</span>
+      <span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/<span class="nv">$ARTIFACT_ID</span>-<span class="nv">$v</span>.pom |<span class="se">\</span>
       <span class="nb">tr</span> <span class="s1">'@'</span> <span class="s1">'\n'</span> <span class="o">&gt;</span> temp.txt
-  <span class="nb">mv </span>temp.txt <span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/sdk-core-<span class="nv">$v</span>.pom
+  <span class="nb">mv </span>temp.txt <span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/<span class="nv">$ARTIFACT_ID</span>-<span class="nv">$v</span>.pom
 
   mvn gpg:sign-and-deploy-file <span class="se">\</span>
      <span class="nt">-Durl</span><span class="o">=</span><span class="nv">$MAVEN_CENTRAL_STAGINGURL</span> <span class="se">\</span>
      <span class="nt">-DrepositoryId</span><span class="o">=</span><span class="nv">$MAVEN_CENTRAL_REPOID</span> <span class="se">\</span>
-     <span class="nt">-DpomFile</span><span class="o">=</span><span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/sdk-core-<span class="nv">$v</span>.pom <span class="se">\</span>
-     <span class="nt">-Dfile</span><span class="o">=</span><span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/sdk-core-<span class="nv">$v</span>.<span class="nv">$ARTIFACT_EXTENSTION</span>
+     <span class="nt">-DpomFile</span><span class="o">=</span><span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/<span class="nv">$ARTIFACT_ID</span>-<span class="nv">$v</span>.pom <span class="se">\</span>
+     <span class="nt">-Dfile</span><span class="o">=</span><span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/<span class="nv">$ARTIFACT_ID</span>-<span class="nv">$v</span>.<span class="nv">$ARTIFACT_EXTENSTION</span>
 <span class="k">done</span>
 </code></pre></div></div>
 
