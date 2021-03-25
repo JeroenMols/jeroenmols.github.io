@@ -240,7 +240,7 @@ Using `sed` we can replace the placeholder with the replacement text:
 
 ```bash
 sed -e "s/$POM_PLACEHOLDER/$POM_REPLACEMENT_ESCAPED/g" \
-  $OUTPUT_DIR/$v/sdk-core-$v.pom
+  $OUTPUT_DIR/$v/$ARTIFACT_ID-$v.pom
 ```
 
 Unfortunately, that doesn't work as all `/` in the replacement snippet need to be escaped or `sed` will consider them part of its command.
@@ -260,9 +260,9 @@ This can be solved by using `tr` to temporarily swap the `/n` characters with a 
 POM_REPLACEMENT_ESCAPED=$(echo "${POM_REPLACEMENT}" |\
     sed 's#/#\\/#g' | tr '\n' '@')
 sed -e "s/$POM_PLACEHOLDER/$POM_REPLACEMENT_ESCAPED/g" \
-    $OUTPUT_DIR/$v/sdk-core-$v.pom |\
+    $OUTPUT_DIR/$v/$ARTIFACT_ID-$v.pom |\
      tr '@' '\n' > temp.txt
-mv temp.txt $OUTPUT_DIR/$v/sdk-core-$v.pom
+mv temp.txt $OUTPUT_DIR/$v/$ARTIFACT_ID-$v.pom
 ```
 
 Notice how an intermediate file `temp.txt` is used to avoid reading and modifying the original file at the same time.
@@ -291,8 +291,8 @@ for v in ${VERSIONS[@]}; do
 mvn gpg:sign-and-deploy-file \
    -Durl=$MAVEN_CENTRAL_STAGINGURL \
    -DrepositoryId=$MAVEN_CENTRAL_REPOID \
-   -DpomFile=$OUTPUT_DIR/$v/sdk-core-$v.pom \
-   -Dfile=$OUTPUT_DIR/$v/sdk-core-$v.aar
+   -DpomFile=$OUTPUT_DIR/$v/$ARTIFACT_ID-$v.pom \
+   -Dfile=$OUTPUT_DIR/$v/$ARTIFACT_ID-$v.aar
 done
 ```
 
@@ -417,15 +417,15 @@ for v in ${VERSIONS[@]}; do
 
   # Add required metadata to pom.xml
   sed -e "s/$POM_PLACEHOLDER/$(escape_pom "$POM_REPLACEMENT")/g" \
-      $OUTPUT_DIR/$v/sdk-core-$v.pom |\
+      $OUTPUT_DIR/$v/$ARTIFACT_ID-$v.pom |\
       tr '@' '\n' > temp.txt
-  mv temp.txt $OUTPUT_DIR/$v/sdk-core-$v.pom
+  mv temp.txt $OUTPUT_DIR/$v/$ARTIFACT_ID-$v.pom
 
   mvn gpg:sign-and-deploy-file \
      -Durl=$MAVEN_CENTRAL_STAGINGURL \
      -DrepositoryId=$MAVEN_CENTRAL_REPOID \
-     -DpomFile=$OUTPUT_DIR/$v/sdk-core-$v.pom \
-     -Dfile=$OUTPUT_DIR/$v/sdk-core-$v.$ARTIFACT_EXTENSTION
+     -DpomFile=$OUTPUT_DIR/$v/$ARTIFACT_ID-$v.pom \
+     -Dfile=$OUTPUT_DIR/$v/$ARTIFACT_ID-$v.$ARTIFACT_EXTENSTION
 done
 ```
 
