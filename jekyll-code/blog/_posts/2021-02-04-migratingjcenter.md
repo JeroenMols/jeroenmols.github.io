@@ -164,6 +164,8 @@ To handle the first part, I recommend [this guide](https://proandroiddev.com/pub
 
 For the second part, I want to emphasize how important it is to also migrate your old artifacts. Not all your customers will be on the latest version of your library and upgrading might not be straightforward for them, especially with breaking API changes.
 
+> Update: To help you with the migration, I've created [a script to migrate all existing artifacts from JCenter to Maven Central]({{ site.baseurl }}{% link blog/_posts/2021-03-24-migrate-artifacts-mavencentral.md %}).
+
 But besides this customer argument, there could also be existing open source projects that are currently in low maintenance mode, but still incredibly valuable to the community as a learning resource. Would we want to break all those builds?
 
 Finally note that, even though May 1st is still a few months away, I highly recommend you to start migrating your library as soon as feasible. This won't just decrease the burden for your customers, but I do also expect a surge in libraries being migrated to Maven central which could result in technical issues on their end. Hopefully not, of course, but better to make sure you have some extra time in your planning.
