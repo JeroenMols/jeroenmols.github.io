@@ -177,7 +177,7 @@ This will represent a similar folder structure in the output directory as what i
 > Note: if you deploy more artifacts (e.g. `javadoc.jar`), make sure to download them here. And when your artifact is a `.jar`, update the extension.
 
 ## 4.b Add all missing info to `pom.xml`
-Maven Central has [more mandatory fields](https://central.sonatype.org/pages/requirements.html#sufficient-metadata) for the `pom.xml` and hence the `pom.xml` files may need to be amended before uploading.
+Maven Central has [more mandatory fields](https://central.sonatype.org/publish/requirements/#sufficient-metadata) for the `pom.xml` and hence the `pom.xml` files may need to be amended before uploading.
 
 I had to add the following info:
 
@@ -232,7 +232,7 @@ POM_REPLACEMENT="<packaging>aar</packaging>
   "
 ```
 
-> To learn what data to provide for each attribute, have a look a the [sonatype documentation](https://central.sonatype.org/pages/requirements.html#sufficient-metadata)
+> To learn what data to provide for each attribute, have a look a the [sonatype documentation](https://central.sonatype.org/publish/requirements/#sufficient-metadata)
 
 > Note that your `pom.xml` might already have been defining some of these attributes, so you may not need to add all of these replacement attributes when migrating your project
 
