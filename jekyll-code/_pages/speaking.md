@@ -13,6 +13,10 @@ Upcoming talks:
 
 - To be announced
 
+2021:
+
+- Droidcon Berlin - [The definitive guide to Android library development](https://speakerdeck.com/jeroenmols/the-definitive-guide-to-android-library-development)
+
 2020:
 - Mumbai App Developers Meetup (GDG) - [The big rewrite](https://speakerdeck.com/jeroenmols/the-big-rewrite)
 - GDG Jeddah - [Getting the most out of Android KTX](https://speakerdeck.com/jeroenmols/getting-the-most-out-of-android-ktx)
