@@ -364,4 +364,10 @@ var store = [{
         "tags": ["script","migrate","jcenter","mavenCentral","maven"],
         "url": "/blog/2021/03/24/migrate-artifacts-mavencentral/",
         "teaser": "/img/blog/migrateartifactsmaven/migrate_artifacts.jpg"
+      },{
+        "title": "No, your pull request does not need a review",
+        "excerpt":"In the past years, my thoughts on pull request reviews have evolved considerably. Given that creating and reviewing pull requests are a core part of our work, let’s talk about those. This post will detail when to craft a pull request and what pull requests require a code review. When...","categories": ["blog"],
+        "tags": ["pull request","code review","process","team"],
+        "url": "/blog/2022/02/23/pull-request-reviews/",
+        "teaser": "/img/blog/pullrequestreview/pullrequestreview.jpeg"
       }]
