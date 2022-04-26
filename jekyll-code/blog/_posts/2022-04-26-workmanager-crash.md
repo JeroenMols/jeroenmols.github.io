@@ -76,6 +76,7 @@ internal class CrashUploadWorker(
     val workerClass = CrashReportWorker::class.java
     WorkManager.getInstance(appContext)
       .enqueue(OneTimeWorkRequest.Builder(workerClass).build())
+    return Result.success()
   }
 }
 ```
