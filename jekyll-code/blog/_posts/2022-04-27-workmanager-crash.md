@@ -1,6 +1,6 @@
 ---
 title: The curious case of crashing Workers
-published: false
+published: true
 header:
   teaser: img/blog/workmanager-crash/workmanager-crash.jpg
   imgcredit: Photo by Markus Spiske from Unsplash, https://unsplash.com/photos/8CWoXxaqGrs, cropped and resized
