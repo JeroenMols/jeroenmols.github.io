@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>No, your pull request does not need a review - Jeroen Mols</title>
-<meta name="description" content="In the past years, my thoughts on pull request reviews have evolved considerably. Given that creating and reviewing pull requests are a core part of our work, let’s talk about those.">
+<!-- begin _includes/seo.html --><title>The curious case of crashing Workers - Jeroen Mols</title>
+<meta name="description" content="WorkManager is great to schedule background work on Android. However, since scheduled work lives outside of the app lifecycle, you might run into unexpected crashes.">
 
 
   <meta name="author" content="Jeroen Mols">
@@ -22,27 +22,27 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en">
 <meta property="og:site_name" content="Jeroen Mols">
-<meta property="og:title" content="No, your pull request does not need a review">
-<meta property="og:url" content="https://jeroenmols.com/blog/2022/02/23/pull-request-reviews/">
+<meta property="og:title" content="The curious case of crashing Workers">
+<meta property="og:url" content="https://jeroenmols.com/blog/2022/04/27/workmanager-crash/">
 
 
-  <meta property="og:description" content="In the past years, my thoughts on pull request reviews have evolved considerably. Given that creating and reviewing pull requests are a core part of our work, let’s talk about those.">
+  <meta property="og:description" content="WorkManager is great to schedule background work on Android. However, since scheduled work lives outside of the app lifecycle, you might run into unexpected crashes.">
 
 
 
-  <meta property="og:image" content="https://jeroenmols.com/img/blog/pullrequestreview/pullrequestreview.jpeg">
+  <meta property="og:image" content="https://jeroenmols.com/img/blog/workmanager-crash/workmanager-crash.jpg">
 
 
 
   <meta name="twitter:site" content="@molsjeroen">
-  <meta name="twitter:title" content="No, your pull request does not need a review">
-  <meta name="twitter:description" content="In the past years, my thoughts on pull request reviews have evolved considerably. Given that creating and reviewing pull requests are a core part of our work, let’s talk about those.">
-  <meta name="twitter:url" content="https://jeroenmols.com/blog/2022/02/23/pull-request-reviews/">
+  <meta name="twitter:title" content="The curious case of crashing Workers">
+  <meta name="twitter:description" content="WorkManager is great to schedule background work on Android. However, since scheduled work lives outside of the app lifecycle, you might run into unexpected crashes.">
+  <meta name="twitter:url" content="https://jeroenmols.com/blog/2022/04/27/workmanager-crash/">
 
   
     <meta name="twitter:card" content="summary">
     
-      <meta name="twitter:image" content="https://jeroenmols.com/img/blog/pullrequestreview/pullrequestreview.jpeg">
+      <meta name="twitter:image" content="https://jeroenmols.com/img/blog/workmanager-crash/workmanager-crash.jpg">
     
   
 
@@ -50,7 +50,7 @@
 
 
 
-  <meta property="article:published_time" content="2022-02-23T00:00:00+01:00">
+  <meta property="article:published_time" content="2022-04-27T00:00:00+02:00">
 
 
 
@@ -61,7 +61,7 @@
   
 
 
-<link rel="canonical" href="https://jeroenmols.com/blog/2022/02/23/pull-request-reviews/">
+<link rel="canonical" href="https://jeroenmols.com/blog/2022/04/27/workmanager-crash/">
 
 
 
@@ -335,20 +335,20 @@ $(document).ready(function(){
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="No, your pull request does not need a review">
-    <meta itemprop="description" content="In the past years, my thoughts on pull request reviews have evolved considerably. Given that creating and reviewing pull requests are a core part of our work, let’s talk about those.">
-    <meta itemprop="datePublished" content="February 23, 2022">
+    <meta itemprop="headline" content="The curious case of crashing Workers">
+    <meta itemprop="description" content="WorkManager is great to schedule background work on Android. However, since scheduled work lives outside of the app lifecycle, you might run into unexpected crashes.">
+    <meta itemprop="datePublished" content="April 27, 2022">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 class="page__title" itemprop="headline">No, your pull request does not need a review
+          <h1 class="page__title" itemprop="headline">The curious case of crashing Workers
 </h1>
-          <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  23 Feb 2022</p>
+          <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  27 Apr 2022</p>
 
           
-            <img src="/img/blog/pullrequestreview/pullrequestreview.jpeg" alt="No, your pull request does not need a review" title="Photo by Markus Winkler from Unsplash, https://unsplash.com/photos/-fRAIQHKcc0, cropped and resized">
+            <img src="/img/blog/workmanager-crash/workmanager-crash.jpg" alt="The curious case of crashing Workers" title="Photo by Markus Spiske from Unsplash, https://unsplash.com/photos/8CWoXxaqGrs, cropped and resized">
           
 
           
@@ -357,7 +357,7 @@ $(document).ready(function(){
 
 
 
-  4 minute read
+  2 minute read
 
 </p>
           
@@ -366,121 +366,97 @@ $(document).ready(function(){
 
       <section class="page__content" itemprop="text">
         
-        <p>In the past years, my thoughts on pull request reviews have evolved considerably. Given that creating and reviewing pull requests are a core part of our work, let’s talk about those.</p>
+        <p>WorkManager is great to schedule background work on Android. However, since scheduled work lives outside of the app lifecycle, you might run into unexpected crashes.</p>
 
-<p>This post will detail when to craft a pull request and what pull requests require a code review.</p>
+<p>Read on to learn why and how to prevent this.</p>
 
-<h2 id="when-to-craft-a-pull-request">When to craft a pull request</h2>
+<h2 id="how-to-crash-workmanager">How to crash WorkManager</h2>
+<p>Reading <a href="https://developer.android.com/topic/libraries/architecture/workmanager">the documentation</a>, it is clear that <code class="language-plaintext highlighter-rouge">WorkManager</code> is a worry-free solution to background work:</p>
+
 <blockquote>
-  <p>Always.</p>
+  <p>WorkManager is the recommended solution for persistent work. Work is persistent when it remains scheduled through app restarts and system reboots.</p>
 </blockquote>
 
-<p>Starting with the easiest part: every code change requires a pull request. This is mainly for two reasons:</p>
+<p>That’s very neat!</p>
 
-<ol>
-  <li>Code quality</li>
-  <li>Provide additional context</li>
-</ol>
+<p>So if we schedule some work, for instance upload a crash:</p>
 
-<h3 id="1-code-quality">1. Code quality</h3>
-<p>Your team likely wants to establish a common baseline of quality.</p>
-
-<p>For this most teams use a set of automated checks that are executed on every pull request. These can verify that the code builds, tests pass, test coverage does not decrease, app size is within certain limits, …</p>
-
-<p>However, some checks can also be manual, such as a checklist on the pull request template. These nudge developers to avoid unrelated changes, do a self-review, add clear descriptions, steps to test the changes, …</p>
-
-<h3 id="2-provide-additional-context">2. Provide additional context</h3>
-<p>Writing a pull request is a useful form of documentation. It allows additional context to code changes such as why the changes are required and what alternatives were considered.</p>
-
-<p>For bugs, you can elaborate on the steps to reproduce, a stack trace of the issue, and what steps others can follow to verify the proposed solution. Adding before/after screenshots can be incredibly helpful in reviewing UI changes.</p>
-
-<p>Finally, draft pull requests can be a tool to compare alternatives or an effective way to convey your design ideas to others.</p>
-
-<h2 id="when-your-pull-request-requires-a-review">When your pull request requires a review</h2>
-<blockquote>
-  <p>For all significant, non-critical code changes.</p>
-</blockquote>
-
-<p>While you might have expected an <code class="language-plaintext highlighter-rouge">always</code> here, I can at least think of two scenarios where pull request reviews might be skipped:</p>
-
-<ol>
-  <li>Trivial code</li>
-  <li>High urgency changes</li>
-</ol>
-
-<h3 id="1-trivial-code">1. Trivial code</h3>
-<p>Some code changes are straightforward, such as bumping the app version. Would you want to hold off your release until a team member finds the time to review the following?</p>
-
-<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code> defaultConfig {
-<span class="gd">-    versionName "1.3.0"
-</span><span class="gi">+    versionName "1.3.1"
-</span>     ...
- }
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">val</span> <span class="py">workerClass</span> <span class="p">=</span> <span class="nc">CrashUploadWorker</span><span class="o">::</span><span class="k">class</span><span class="p">.</span><span class="n">java</span>
+<span class="nc">WorkManager</span><span class="p">.</span><span class="nf">getInstance</span><span class="p">(</span><span class="n">application</span><span class="p">)</span>
+    <span class="p">.</span><span class="nf">enqueue</span><span class="p">(</span><span class="nc">OneTimeWorkRequest</span><span class="p">.</span><span class="nc">Builder</span><span class="p">(</span><span class="n">workerClass</span><span class="p">).</span><span class="nf">build</span><span class="p">())</span>
 </code></pre></div></div>
 
-<p>But why stop there?</p>
+<p>We can be sure that WorkManager will handle it for us, even when the app closes it self immediately after the crash.</p>
 
-<p>How about committing the output of automatic scripts? Examples are adding new translations, updating the <a href="https://developers.google.com/protocol-buffers/">Protobuf</a> definitions, or tweaking assets.</p>
-
-<p>Far too often have I had to disrupt a colleague’s “flow” for a “quick stamp” on a particular pull request. Whereas in reality, our default automated checks would have been sufficient.</p>
-
-<h3 id="2-high-urgency-changes">2. High urgency changes</h3>
-<p>What if, despite all processes, main is suddenly broken?</p>
-
-<p>A common scenario for me is that end-to-end tests suddenly start failing. Either due to a backend change or due to a change on <a href="https://firebase.google.com/docs/test-lab/">Firebase tests lab</a>. In this case, main will still compile, but the builds for all open pull requests would fail.</p>
-
-<p><a href="https://jeroenmols.com/img/blog/pullrequestreview/failed_builds.png"><img src="https://jeroenmols.com/img/blog/pullrequestreview/failed_builds.png" alt="All pull request builds are failing due to an issue with the end-to-end tests" /></a></p>
-
-<p>An even worse situation is when two incompatible changes are merged, breaking main compilation as a result. That is even more impactful as it also breaks compilation for all developers starting from or rebasing onto the latest main.</p>
-
-<p>Given such an impact, should you wait for approval before merging the fix?</p>
-
-<p>Let’s think about the worst-case scenario:</p>
-
-<ol>
-  <li>main breaks</li>
-  <li>someone on the team implements a very hacky fix</li>
-  <li>person opens pull request (mandatory!)</li>
-  <li>all automated checks pass</li>
-  <li>merge the fix into main and builds turn green</li>
-</ol>
-
-<p>Now there’s a very hacky fix in main, but builds are green. Did that fix improve the situation? Yes. Should that fix stay in main forever? Of course not.</p>
-
-<p>We need to accept that software is never finished, and it will always continue to evolve. So after the quick patch, other team members can chime in, offer suggestions and follow up with another pull request containing a more sustainable solution.</p>
-
-<h3 id="compounding-factors">Compounding factors</h3>
-<p>In some situations, requiring reviews can be especially frustrating:</p>
+<p>However, <code class="language-plaintext highlighter-rouge">WorkManager</code> assumes that the <code class="language-plaintext highlighter-rouge">Worker</code> class will always exist in our application. So if we ship a new version of our application that either:</p>
 
 <ul>
-  <li>remote work: unable to tap a colleague on her shoulder for a quick review</li>
-  <li>asynchronous work: my colleagues are 9 (!) time zones apart from me</li>
-  <li>foundational tasks: e.g. update protobufs, so you can build your new feature on top</li>
+  <li>removes the <code class="language-plaintext highlighter-rouge">CrashUploadWorker</code></li>
+  <li>renames the <code class="language-plaintext highlighter-rouge">CrashUploadWorker</code> to <code class="language-plaintext highlighter-rouge">CrashReportWorker</code></li>
 </ul>
 
-<h2 id="interesting-idea-but-it-wont-work-at-our-scale">Interesting idea, but it won’t work at our scale</h2>
-<p>That might be true, I haven’t tested this out on a 100+ people project. And given that my proposal relies more on developer trust, I could see some scaling challenges.</p>
+<p>We might get a <code class="language-plaintext highlighter-rouge">ClassNotFoundException</code> crash after installing the update!</p>
 
-<p>However, I would question whether your scale challenges are unique.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>java.lang.Error: java.lang.ClassNotFoundException: com.example.CrashUploadWorker
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1119)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:588)
+        at java.lang.Thread.run(Thread.java:818)
+</code></pre></div></div>
 
-<p>Don’t all processes run into scaling issues as teams grow? Can’t we just apply our usual solutions?</p>
+<p>This happens, because <code class="language-plaintext highlighter-rouge">WorkManager</code> lives in a separate process (Google Play Services) and will always try to complete its work. It will try to instantiate <code class="language-plaintext highlighter-rouge">CrashUploadWorker</code>, but that no longer exists in our application.</p>
 
-<p>Few ideas:</p>
+<p>Unfortunately <a href="https://github.com/plaid/plaid-link-android/issues/201">I had to learn this the hard way</a>.</p>
+
+<blockquote>
+  <p>Notice the usage of “might”: a crash isn’t guaranteed and will only happen if there was unfinished work pending while the app got updated.</p>
+</blockquote>
+
+<h2 id="how-not-to-crash-workmanager">How not to crash WorkManager</h2>
+<p>The first thing you can try is to cancel all pending work for the <code class="language-plaintext highlighter-rouge">Worker</code> you removed/renamed:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">workManager</span><span class="p">.</span><span class="nf">cancelAllWorkByTag</span><span class="p">(</span><span class="s">"crash_upload"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>This approach can be subject to race conditions as <code class="language-plaintext highlighter-rouge">Workmanager</code> might still retry to execute the scheduled work before you had the chance to cancel. (depending on where you call this)</p>
+
+<p>Another downside of this approach is that this will drop scheduled work, causing data loss. Depending on your unique use case that may or may not be acceptable.</p>
+
+<p>An alternative approach is to keep the original <code class="language-plaintext highlighter-rouge">CrashUploadWorker</code> class and modify that to handle the changing requirements:</p>
 
 <ul>
-  <li>Tools can determine whether a PR needs a review based on predefined requirements</li>
-  <li>Tools can enforce providing a rationale when a PR is merged without review. This can even be broadcasted (Slack) to all team members</li>
-  <li>Some trivial changes could be fully automated: e.g. continuously integrating new translations or assets</li>
-  <li>Code ownership can restrict who can skip reviews for certain parts of the code base,…</li>
-  <li>…</li>
+  <li>drop the work (empty implementation)</li>
+  <li>migrate and schedule the new worker class</li>
 </ul>
 
-<p>Regardless of my suggestions, removing frustrations from your development process is one of the most impactful things you can do.</p>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">internal</span> <span class="kd">class</span> <span class="nc">CrashUploadWorker</span><span class="p">(</span>
+  <span class="n">appContext</span><span class="p">:</span> <span class="nc">Context</span><span class="p">,</span>
+  <span class="n">workerParams</span><span class="p">:</span> <span class="nc">WorkerParameters</span>
+<span class="p">)</span> <span class="p">:</span> <span class="nc">CoroutineWorker</span><span class="p">(</span><span class="n">appContext</span><span class="p">,</span> <span class="n">workerParams</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="k">override</span> <span class="k">suspend</span> <span class="k">fun</span> <span class="nf">doWork</span><span class="p">():</span> <span class="nc">Result</span> <span class="p">{</span>
+    <span class="c1">// Schedule new worker class</span>
+    <span class="kd">val</span> <span class="py">workerClass</span> <span class="p">=</span> <span class="nc">CrashReportWorker</span><span class="o">::</span><span class="k">class</span><span class="p">.</span><span class="n">java</span>
+    <span class="nc">WorkManager</span><span class="p">.</span><span class="nf">getInstance</span><span class="p">(</span><span class="n">appContext</span><span class="p">)</span>
+      <span class="p">.</span><span class="nf">enqueue</span><span class="p">(</span><span class="nc">OneTimeWorkRequest</span><span class="p">.</span><span class="nc">Builder</span><span class="p">(</span><span class="n">workerClass</span><span class="p">).</span><span class="nf">build</span><span class="p">())</span>
+    <span class="k">return</span> <span class="nc">Result</span><span class="p">.</span><span class="nf">success</span><span class="p">()</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Once you stop scheduling work using the old <code class="language-plaintext highlighter-rouge">Worker</code>, you can mark it to be removed after all your customers have updated and migrated.</p>
+
+<p>Finally, here’s what a migration plan could look like:</p>
+
+<ul>
+  <li>Release 1: Add new worker and migrate all work</li>
+  <li>Release 5: Cancel all remaining work using old <code class="language-plaintext highlighter-rouge">Worker</code> (causes data loss!)</li>
+  <li>Release 10: Remove old <code class="language-plaintext highlighter-rouge">Worker</code> (causes crashes!)</li>
+</ul>
 
 <h2 id="wrap-up">Wrap-up</h2>
-<p>All code changes require a pull request before they are merged. Code reviews are encouraged, but they can be skipped for trivial or highly urgent changes.</p>
+<p><code class="language-plaintext highlighter-rouge">WorkManager</code> is a very handy tool to handle background work, but be careful with removing or renaming <code class="language-plaintext highlighter-rouge">Workers</code>.</p>
 
-<p>If you’ve made it this far you should probably <span><a href="https://twitter.com/molsjeroen?source=no,yourpullrequestdoesnotneedareview2022" class="ga-link" target="_blank">Twitter</a></span>
+<p>If you’ve made it this far you should probably <span><a href="https://twitter.com/molsjeroen?source=thecuriouscaseofcrashingworkers2022" class="ga-link" target="_blank">Twitter</a></span>
 . Feel free to leave a comment below!</p>
 
         
@@ -498,13 +474,9 @@ $(document).ready(function(){
     <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
     <span itemprop="keywords">
     
-      <a href="/tags/code-review" class="page__taxonomy-item" rel="tag">code review</a><span class="sep">, </span>
+      <a href="/tags/crash" class="page__taxonomy-item" rel="tag">crash</a><span class="sep">, </span>
     
-      <a href="/tags/process" class="page__taxonomy-item" rel="tag">process</a><span class="sep">, </span>
-    
-      <a href="/tags/pull-request" class="page__taxonomy-item" rel="tag">pull request</a><span class="sep">, </span>
-    
-      <a href="/tags/team" class="page__taxonomy-item" rel="tag">team</a>
+      <a href="/tags/workmanager" class="page__taxonomy-item" rel="tag">workmanager</a>
     
     </span>
   </p>
@@ -528,7 +500,7 @@ $(document).ready(function(){
 
 
         
-          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2022-02-23T00:00:00+01:00">February 23, 2022</time></p>
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2022-04-27T00:00:00+02:00">April 27, 2022</time></p>
         
       </footer>
 
@@ -537,11 +509,11 @@ $(document).ready(function(){
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=No%2C+your+pull+request+does+not+need+a+review%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2022%2F02%2F23%2Fpull-request-reviews%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=The+curious+case+of+crashing+Workers%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2022%2F04%2F27%2Fworkmanager-crash%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2022%2F02%2F23%2Fpull-request-reviews%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2022%2F04%2F27%2Fworkmanager-crash%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2022%2F02%2F23%2Fpull-request-reviews%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2022%2F04%2F27%2Fworkmanager-crash%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
@@ -562,12 +534,11 @@ $(document).ready(function(){
       
   <nav class="pagination">
     
-      <a href="/blog/2021/03/24/migrate-artifacts-mavencentral/" class="pagination--pager" title="Migrate existing library artifacts from JCenter to Maven Central
+      <a href="/blog/2022/02/23/pull-request-reviews/" class="pagination--pager" title="No, your pull request does not need a review
 ">Previous</a>
     
     
-      <a href="/blog/2022/04/27/workmanager-crash/" class="pagination--pager" title="The curious case of crashing Workers
-">Next</a>
+      <a href="#" class="pagination--pager disabled">Next</a>
     
   </nav>
 
@@ -599,17 +570,17 @@ $(document).ready(function(){
   <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
     <div style="position:relative;">
       
-        <div class="archive__item-teaser" style="background-image: url(/img/blog/workmanager-crash/workmanager-crash.jpg)"></div>
+        <div class="archive__item-teaser" style="background-image: url(/img/blog/pullrequestreview/pullrequestreview.jpeg)"></div>
       
       <div class="archive__item_titlecontainer">
         <h2 class="archive__item-title" itemprop="headline">
-            <a href="/blog/2022/04/27/workmanager-crash/" rel="permalink">The curious case of crashing Workers
+            <a href="/blog/2022/02/23/pull-request-reviews/" rel="permalink">No, your pull request does not need a review
 </a>
         </h2>
-        <h3 class="archive__date">27 Apr 2022</h3>
+        <h3 class="archive__date">23 Feb 2022</h3>
       </div>
       
-        <a href="/blog/2022/04/27/workmanager-crash/" rel="permalink">
+        <a href="/blog/2022/02/23/pull-request-reviews/" rel="permalink">
           <div class="archive__item-teaser-imageclickhandler"></div>
         </a>
       
@@ -620,11 +591,11 @@ $(document).ready(function(){
 
 
 
-  2 minute read
+  4 minute read
 
 </p>
     
-    <p class="archive__item-excerpt" itemprop="description">WorkManager is great to schedule background work on Android. However, since scheduled work lives outside of the app lifecycle, you might run into unexpected crashes.
+    <p class="archive__item-excerpt" itemprop="description">In the past years, my thoughts on pull request reviews have evolved considerably. Given that creating and reviewing pull requests are a core part of our work, let’s talk about those.
 </p>
   </article>
 </div>
@@ -821,8 +792,8 @@ $(document).ready(function(){
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://jeroenmols.com/blog/2022/02/23/pull-request-reviews/";  /* Replace PAGE_URL with your page's canonical URL variable */
-      this.page.identifier = "/blog/2022/02/23/pull-request-reviews"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+      this.page.url = "https://jeroenmols.com/blog/2022/04/27/workmanager-crash/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/blog/2022/04/27/workmanager-crash"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
     };
     (function() { /* DON'T EDIT BELOW THIS LINE */
       var d = document, s = d.createElement('script');

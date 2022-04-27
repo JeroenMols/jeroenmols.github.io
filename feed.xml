@@ -1,4 +1,95 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2022-02-23T20:26:11+01:00</updated><id>https://jeroenmols.com/feed.xml</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, Android developer at Plaid and Google Developer Expert.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">No, your pull request does not need a review</title><link href="https://jeroenmols.com/blog/2022/02/23/pull-request-reviews/" rel="alternate" type="text/html" title="No, your pull request does not need a review" /><published>2022-02-23T00:00:00+01:00</published><updated>2022-02-23T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2022/02/23/pull-request-reviews</id><content type="html" xml:base="https://jeroenmols.com/blog/2022/02/23/pull-request-reviews/"><![CDATA[<p>In the past years, my thoughts on pull request reviews have evolved considerably. Given that creating and reviewing pull requests are a core part of our work, let’s talk about those.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2022-04-27T22:15:43+02:00</updated><id>https://jeroenmols.com/feed.xml</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, Android developer at Plaid and Google Developer Expert.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">The curious case of crashing Workers</title><link href="https://jeroenmols.com/blog/2022/04/27/workmanager-crash/" rel="alternate" type="text/html" title="The curious case of crashing Workers" /><published>2022-04-27T00:00:00+02:00</published><updated>2022-04-27T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2022/04/27/workmanager-crash</id><content type="html" xml:base="https://jeroenmols.com/blog/2022/04/27/workmanager-crash/"><![CDATA[<p>WorkManager is great to schedule background work on Android. However, since scheduled work lives outside of the app lifecycle, you might run into unexpected crashes.</p>
+
+<p>Read on to learn why and how to prevent this.</p>
+
+<h2 id="how-to-crash-workmanager">How to crash WorkManager</h2>
+<p>Reading <a href="https://developer.android.com/topic/libraries/architecture/workmanager">the documentation</a>, it is clear that <code class="language-plaintext highlighter-rouge">WorkManager</code> is a worry-free solution to background work:</p>
+
+<blockquote>
+  <p>WorkManager is the recommended solution for persistent work. Work is persistent when it remains scheduled through app restarts and system reboots.</p>
+</blockquote>
+
+<p>That’s very neat!</p>
+
+<p>So if we schedule some work, for instance upload a crash:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">val</span> <span class="py">workerClass</span> <span class="p">=</span> <span class="nc">CrashUploadWorker</span><span class="o">::</span><span class="k">class</span><span class="p">.</span><span class="n">java</span>
+<span class="nc">WorkManager</span><span class="p">.</span><span class="nf">getInstance</span><span class="p">(</span><span class="n">application</span><span class="p">)</span>
+    <span class="p">.</span><span class="nf">enqueue</span><span class="p">(</span><span class="nc">OneTimeWorkRequest</span><span class="p">.</span><span class="nc">Builder</span><span class="p">(</span><span class="n">workerClass</span><span class="p">).</span><span class="nf">build</span><span class="p">())</span>
+</code></pre></div></div>
+
+<p>We can be sure that WorkManager will handle it for us, even when the app closes it self immediately after the crash.</p>
+
+<p>However, <code class="language-plaintext highlighter-rouge">WorkManager</code> assumes that the <code class="language-plaintext highlighter-rouge">Worker</code> class will always exist in our application. So if we ship a new version of our application that either:</p>
+
+<ul>
+  <li>removes the <code class="language-plaintext highlighter-rouge">CrashUploadWorker</code></li>
+  <li>renames the <code class="language-plaintext highlighter-rouge">CrashUploadWorker</code> to <code class="language-plaintext highlighter-rouge">CrashReportWorker</code></li>
+</ul>
+
+<p>We might get a <code class="language-plaintext highlighter-rouge">ClassNotFoundException</code> crash after installing the update!</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>java.lang.Error: java.lang.ClassNotFoundException: com.example.CrashUploadWorker
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1119)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:588)
+        at java.lang.Thread.run(Thread.java:818)
+</code></pre></div></div>
+
+<p>This happens, because <code class="language-plaintext highlighter-rouge">WorkManager</code> lives in a separate process (Google Play Services) and will always try to complete its work. It will try to instantiate <code class="language-plaintext highlighter-rouge">CrashUploadWorker</code>, but that no longer exists in our application.</p>
+
+<p>Unfortunately <a href="https://github.com/plaid/plaid-link-android/issues/201">I had to learn this the hard way</a>.</p>
+
+<blockquote>
+  <p>Notice the usage of “might”: a crash isn’t guaranteed and will only happen if there was unfinished work pending while the app got updated.</p>
+</blockquote>
+
+<h2 id="how-not-to-crash-workmanager">How not to crash WorkManager</h2>
+<p>The first thing you can try is to cancel all pending work for the <code class="language-plaintext highlighter-rouge">Worker</code> you removed/renamed:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">workManager</span><span class="p">.</span><span class="nf">cancelAllWorkByTag</span><span class="p">(</span><span class="s">"crash_upload"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>This approach can be subject to race conditions as <code class="language-plaintext highlighter-rouge">Workmanager</code> might still retry to execute the scheduled work before you had the chance to cancel. (depending on where you call this)</p>
+
+<p>Another downside of this approach is that this will drop scheduled work, causing data loss. Depending on your unique use case that may or may not be acceptable.</p>
+
+<p>An alternative approach is to keep the original <code class="language-plaintext highlighter-rouge">CrashUploadWorker</code> class and modify that to handle the changing requirements:</p>
+
+<ul>
+  <li>drop the work (empty implementation)</li>
+  <li>migrate and schedule the new worker class</li>
+</ul>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">internal</span> <span class="kd">class</span> <span class="nc">CrashUploadWorker</span><span class="p">(</span>
+  <span class="n">appContext</span><span class="p">:</span> <span class="nc">Context</span><span class="p">,</span>
+  <span class="n">workerParams</span><span class="p">:</span> <span class="nc">WorkerParameters</span>
+<span class="p">)</span> <span class="p">:</span> <span class="nc">CoroutineWorker</span><span class="p">(</span><span class="n">appContext</span><span class="p">,</span> <span class="n">workerParams</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="k">override</span> <span class="k">suspend</span> <span class="k">fun</span> <span class="nf">doWork</span><span class="p">():</span> <span class="nc">Result</span> <span class="p">{</span>
+    <span class="c1">// Schedule new worker class</span>
+    <span class="kd">val</span> <span class="py">workerClass</span> <span class="p">=</span> <span class="nc">CrashReportWorker</span><span class="o">::</span><span class="k">class</span><span class="p">.</span><span class="n">java</span>
+    <span class="nc">WorkManager</span><span class="p">.</span><span class="nf">getInstance</span><span class="p">(</span><span class="n">appContext</span><span class="p">)</span>
+      <span class="p">.</span><span class="nf">enqueue</span><span class="p">(</span><span class="nc">OneTimeWorkRequest</span><span class="p">.</span><span class="nc">Builder</span><span class="p">(</span><span class="n">workerClass</span><span class="p">).</span><span class="nf">build</span><span class="p">())</span>
+    <span class="k">return</span> <span class="nc">Result</span><span class="p">.</span><span class="nf">success</span><span class="p">()</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Once you stop scheduling work using the old <code class="language-plaintext highlighter-rouge">Worker</code>, you can mark it to be removed after all your customers have updated and migrated.</p>
+
+<p>Finally, here’s what a migration plan could look like:</p>
+
+<ul>
+  <li>Release 1: Add new worker and migrate all work</li>
+  <li>Release 5: Cancel all remaining work using old <code class="language-plaintext highlighter-rouge">Worker</code> (causes data loss!)</li>
+  <li>Release 10: Remove old <code class="language-plaintext highlighter-rouge">Worker</code> (causes crashes!)</li>
+</ul>
+
+<h2 id="wrap-up">Wrap-up</h2>
+<p><code class="language-plaintext highlighter-rouge">WorkManager</code> is a very handy tool to handle background work, but be careful with removing or renaming <code class="language-plaintext highlighter-rouge">Workers</code>.</p>
+
+<p>If you’ve made it this far you should probably <span><a href="https://twitter.com/molsjeroen?source=thecuriouscaseofcrashingworkers2022" class="ga-link" target="_blank">Twitter</a></span>
+. Feel free to leave a comment below!</p>]]></content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="workmanager" /><category term="crash" /><summary type="html"><![CDATA[WorkManager is great to schedule background work on Android. However, since scheduled work lives outside of the app lifecycle, you might run into unexpected crashes.]]></summary></entry><entry><title type="html">No, your pull request does not need a review</title><link href="https://jeroenmols.com/blog/2022/02/23/pull-request-reviews/" rel="alternate" type="text/html" title="No, your pull request does not need a review" /><published>2022-02-23T00:00:00+01:00</published><updated>2022-02-23T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2022/02/23/pull-request-reviews</id><content type="html" xml:base="https://jeroenmols.com/blog/2022/02/23/pull-request-reviews/"><![CDATA[<p>In the past years, my thoughts on pull request reviews have evolved considerably. Given that creating and reviewing pull requests are a core part of our work, let’s talk about those.</p>
 
 <p>This post will detail when to craft a pull request and what pull requests require a code review.</p>
 
@@ -1726,327 +1817,4 @@ Execution failed for task ':myproject:checkReleaseDuplicateClasses'.
 <p>Don’t forget to follow me on <span><a href="https://twitter.com/molsjeroen?source=androidlibrarydevelopment-gettingstarted2020" class="ga-link" target="_blank">Twitter</a></span>
  and enjoy reading the next post on <a href="/blog/2020/11/04/library-modularization/">SDK modularization</a>!</p>
 
-<p>Feel free to leave a comment below!</p>]]></content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="android" /><category term="library" /><category term="maven" /><category term="gradle" /><category term="kotlin" /><summary type="html"><![CDATA[Having switched to Android SDK development over the past year, I’ve run into quite a few interesting and unexpected challenges. So how does library development differ from app development?]]></summary></entry><entry><title type="html">Kdoc for Android libraries using Dokka</title><link href="https://jeroenmols.com/blog/2020/02/19/dokka-code-documentation/" rel="alternate" type="text/html" title="Kdoc for Android libraries using Dokka" /><published>2020-02-19T00:00:00+01:00</published><updated>2020-02-19T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2020/02/19/dokka-code-documentation</id><content type="html" xml:base="https://jeroenmols.com/blog/2020/02/19/dokka-code-documentation/"><![CDATA[<p>A great way to make your library easier to use it to generate code documentation for its public interface. The default way to do this in Kotlin is to generate KDoc using the official Dokka plugin.</p>
-
-<p>This post will cover some challenges in configuring Dokka and explain some neat tricks to improve your documentation.</p>
-
-<h2 id="introduction">Introduction</h2>
-<p>The equivalent of JavaDoc for Kotlin is called <a href="https://kotlinlang.org/docs/reference/kotlin-doc.html">KDoc</a>. While it is very similar to the former, it also supports inline Markup and allows to easily link to other elements using <code class="language-plaintext highlighter-rouge">[ ]</code> brackets.</p>
-
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
- * A group of *members*.
- *
- * This class has no useful logic;
- * it's just a documentation example.
- *
- * @param T the type of a member in this group.
- * @property name the name of this group.
- * @constructor Creates an empty group.
- */</span>
-<span class="kd">class</span> <span class="nc">Group</span><span class="p">&lt;</span><span class="nc">T</span><span class="p">&gt;(</span><span class="kd">val</span> <span class="py">name</span><span class="p">:</span> <span class="nc">String</span><span class="p">)</span> <span class="p">{</span>
-    <span class="cm">/**
-     * Adds a [member] to this group.
-     * @return the new size of the group.
-     */</span>
-    <span class="k">fun</span> <span class="nf">add</span><span class="p">(</span><span class="n">member</span><span class="p">:</span> <span class="nc">T</span><span class="p">):</span> <span class="nc">Int</span> <span class="p">{</span> <span class="o">..</span><span class="p">.</span> <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p>The documentation generation tool is called <a href="https://github.com/Kotlin/dokka">Dokka</a>. It comes with a Gradle plugin and can generate documentation in multiple formats such as JavaDoc, HTML and even Markdown optimized for Github pages! Neat!</p>
-
-<h2 id="basic-dokka-configuration">Basic Dokka configuration</h2>
-<p>Adding Dokka requires to define a dependency in your top-level <code class="language-plaintext highlighter-rouge">build.gradle</code> file:</p>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">buildscript</span> <span class="o">{</span>
-    <span class="n">repositories</span> <span class="o">{</span>
-        <span class="n">jcenter</span><span class="o">()</span>
-    <span class="o">}</span>
-    <span class="n">dependencies</span> <span class="o">{</span>
-        <span class="n">classpath</span> <span class="s2">"org.jetbrains.dokka:dokka-gradle-plugin:0.10.1"</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-<span class="n">repositories</span> <span class="o">{</span>
-    <span class="n">jcenter</span><span class="o">()</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>And applying the plugin to the <code class="language-plaintext highlighter-rouge">build.gradle</code> of the module(s) for which you would like to generate documentation:</p>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">'org.jetbrains.dokka'</span>
-
-<span class="n">dokka</span> <span class="o">{</span>
-    <span class="n">outputFormat</span> <span class="o">=</span> <span class="s1">'html'</span> <span class="c1">// use 'javadoc' to get standard java docs</span>
-    <span class="n">outputDirectory</span> <span class="o">=</span> <span class="s2">"$buildDir/javadoc"</span>
-
-    <span class="n">configuration</span> <span class="o">{</span>
-        <span class="n">includeNonPublic</span> <span class="o">=</span> <span class="kc">false</span>
-        <span class="n">skipEmptyPackages</span> <span class="o">=</span> <span class="kc">true</span>
-        <span class="n">skipDeprecated</span> <span class="o">=</span> <span class="kc">true</span>
-        <span class="n">reportUndocumented</span> <span class="o">=</span> <span class="kc">true</span>
-        <span class="n">jdkVersion</span> <span class="o">=</span> <span class="mi">8</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>Congratulations, you can now start generating documentation for your code:</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./gradlew :library:dokka
-</code></pre></div></div>
-
-<h2 id="challenges">Challenges</h2>
-<p>However, when your library contains several modules, there are a few interesting challenges:</p>
-
-<ol>
-  <li>Required to use a fat AAR plugin to include all modules in the AAR artifact</li>
-  <li>There is no visibility modifier to make classes only visible within the project</li>
-</ol>
-
-<p>The first challenge causes Dokka not to include the sources of all submodules. Consequently the resulting [KDoc] only contains documentation for your main <code class="language-plaintext highlighter-rouge">library</code> module.</p>
-
-<blockquote>
-  <p>Note: this is because the <a href="https://github.com/kezong/fat-aar-android">fat AAR plugin</a> includes the submodules as <code class="language-plaintext highlighter-rouge">compileOnly</code> dependencies when using the <code class="language-plaintext highlighter-rouge">embed</code> dependency. (See <a href="https://github.com/kezong/fat-aar-android/blob/ab85005f7fdf37ed9802da104bcb63f9f944aee7/source/src/main/groovy/com/kezong/fataar/FatLibraryPlugin.groovy#L65">source code</a>)</p>
-</blockquote>
-
-<p>The second challenge bloats the documentation with a lot of classes that shouldn’t be part of the API:</p>
-
-<ul>
-  <li>the <code class="language-plaintext highlighter-rouge">internal</code> modifier is too restrictive as it doesn’t allow modules within the library to use each other’s classes.</li>
-  <li>the <code class="language-plaintext highlighter-rouge">public</code> modifier is not restrictive enough and exposes classes to any other project using your library.</li>
-</ul>
-
-<p>Unfortunately, using public modifiers is currently the only way to have multiple module libraries until <a href="https://issuetracker.google.com/issues/62121508">issue 62121508 gets fixed</a>.</p>
-
-<h2 id="multi-module-libraries">Multi-module libraries</h2>
-<p>Luckily there is a way to directly tell Dokka what sources it should include in the documentation via the <code class="language-plaintext highlighter-rouge">sourceRoots</code> attribute.</p>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dokka</span> <span class="o">{</span>
-    <span class="n">configuration</span> <span class="o">{</span>
-        <span class="o">...</span>
-
-        <span class="n">sourceRoots</span> <span class="o">=</span> <span class="o">...</span> <span class="c1">// ENTER SOURCE ROOTS HERE</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>Though this doesn’t take a <code class="language-plaintext highlighter-rouge">String</code> pointing to the sources, instead it requires a wrapper object a <code class="language-plaintext highlighter-rouge">SourceRoot</code>, which has an attribute <code class="language-plaintext highlighter-rouge">path</code>. 🤔</p>
-
-<p>The easiest way to create a <code class="language-plaintext highlighter-rouge">SourceRoot</code> is to create a <a href="https://github.com/Kotlin/dokka/blob/0d0d41f594f1095b4ccc999cffe01a6ef9a22dbb/runners/gradle-plugin/src/main/kotlin/org/jetbrains/dokka/gradle/configurationImplementations.kt#L18"><code class="language-plaintext highlighter-rouge">GradleSourceRootImpl</code></a> and set it’s path:</p>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">org.jetbrains.dokka.gradle.GradleSourceRootImpl</span>
-
-<span class="kt">def</span> <span class="n">sourceRoot</span> <span class="o">=</span> <span class="k">new</span> <span class="n">GradleSourceRootImpl</span><span class="o">()</span>
-<span class="n">sourceRoot</span><span class="o">.</span><span class="na">path</span> <span class="o">=</span> <span class="n">it</span>
-</code></pre></div></div>
-
-<p>And with a bit of business logic on top, we can easily extract all sources from our directories:</p>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Converts the source path Strings into SourceRoot</span>
-<span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">GradleSourceRootImpl</span><span class="o">&gt;</span> <span class="n">getSourceRootsToDocument</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="nf">getSourceRootsToDocumentAsStrings</span><span class="o">().</span><span class="na">collect</span> <span class="o">{</span>
-        <span class="kt">def</span> <span class="n">impl</span> <span class="o">=</span> <span class="k">new</span> <span class="n">GradleSourceRootImpl</span><span class="o">()</span>
-        <span class="n">impl</span><span class="o">.</span><span class="na">path</span> <span class="o">=</span> <span class="n">it</span>
-        <span class="n">impl</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-
-<span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">getSourceRootsToDocumentAsStrings</span><span class="o">()</span> <span class="o">{</span>
-    <span class="kt">def</span> <span class="n">sources</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;()</span>
-    <span class="n">sources</span> <span class="o">+=</span> <span class="s2">"$rootDir/app/src/main/java"</span>
-    <span class="n">sources</span> <span class="o">+=</span> <span class="n">getSourceDirs</span><span class="o">(</span><span class="s2">"$rootDir/features"</span><span class="o">)</span>
-    <span class="n">sources</span> <span class="o">+=</span> <span class="n">getSourceDirs</span><span class="o">(</span><span class="s2">"$rootDir/libraries"</span><span class="o">)</span>
-    <span class="c1">// add other locations of sources here</span>
-    <span class="n">sources</span>
-<span class="o">}</span>
-
-<span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">getSourceDirs</span><span class="o">(</span><span class="n">String</span> <span class="n">directoryPath</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">file</span><span class="o">(</span><span class="n">directoryPath</span><span class="o">).</span><span class="na">listFiles</span><span class="o">()</span>
-            <span class="o">.</span><span class="na">findAll</span> <span class="o">{</span> <span class="n">it</span><span class="o">.</span><span class="na">isDirectory</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">it</span><span class="o">.</span><span class="na">name</span> <span class="o">!=</span> <span class="s2">"build"</span> <span class="o">}</span> <span class="c1">// Non build subfolders</span>
-            <span class="o">.</span><span class="na">collect</span> <span class="o">{</span> <span class="s2">"${it.path}/src/main/java"</span> <span class="o">}</span> <span class="c1">// path of main sources</span>
-            <span class="o">.</span><span class="na">findAll</span> <span class="o">{</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">it</span><span class="o">).</span><span class="na">exists</span><span class="o">()</span> <span class="o">}</span> <span class="c1">// only include if path exists</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>Note that these methods only look in the <code class="language-plaintext highlighter-rouge">main</code> source folders and that <code class="language-plaintext highlighter-rouge">getSourceDirs</code> only looks at direct subfolders.</p>
-
-<p>Sadly, this doesn’t work and causes compilation issues when running Dokka. (╯°□°）╯︵ ┻━┻</p>
-
-<p>This can be solved by creating a new Android library module, without any source code and apply the Dokka plugin with reference to all sources there:</p>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">org.jetbrains.dokka.gradle.GradleSourceRootImpl</span>
-
-<span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">'com.android.library'</span>
-<span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">'org.jetbrains.dokka'</span>
-
-<span class="n">android</span> <span class="o">{</span>
-    <span class="n">buildToolsVersion</span> <span class="n">BuildConfig</span><span class="o">.</span><span class="na">buildTools</span>
-    <span class="n">compileSdkVersion</span> <span class="n">BuildConfig</span><span class="o">.</span><span class="na">compileSdk</span>
-
-    <span class="n">defaultConfig</span> <span class="o">{</span>
-        <span class="n">minSdkVersion</span> <span class="n">BuildConfig</span><span class="o">.</span><span class="na">minSdk</span>
-        <span class="n">targetSdkVersion</span> <span class="n">BuildConfig</span><span class="o">.</span><span class="na">targetSdk</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-
-<span class="n">dokka</span> <span class="o">{</span>
-    <span class="n">configuration</span> <span class="o">{</span>
-        <span class="o">...</span>
-
-        <span class="n">sourceRoots</span> <span class="o">=</span> <span class="n">getSourceRootsToDocument</span><span class="o">()</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>In summary, with a bit of logic, we can make sure source files of new modules are automatically included in the documentation.</p>
-
-<h2 id="excluding-public-classes">Excluding public classes</h2>
-<p>Since Kotlin doesn’t have a <code class="language-plaintext highlighter-rouge">project internal</code> visibility modifier, we need a way to exclude <code class="language-plaintext highlighter-rouge">public</code> classes from our documentation that shouldn’t be exposed.</p>
-
-<p>One way of doing that is moving all classes that are internal to your SDK to a package name ending with <code class="language-plaintext highlighter-rouge">internal</code>.</p>
-
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="nn">com.jeroenmols.internal</span>
-<span class="k">package</span> <span class="nn">com.jeroenmols.api.models.internal</span>
-</code></pre></div></div>
-
-<p>This also gives a clear indication to users of your SDK that these classes aren’t supposed to be used.</p>
-
-<blockquote>
-  <p>Note that you could use proguard on your final AAR to hide non-public classes using obfuscation.</p>
-</blockquote>
-
-<p>Now that all classes that should be internal are grouped, they can also be excluded from the documentation:</p>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dokka</span> <span class="o">{</span>
-    <span class="n">configuration</span> <span class="o">{</span>
-        <span class="o">...</span>
-
-
-        <span class="n">perPackageOption</span> <span class="o">{</span>
-            <span class="n">prefix</span> <span class="o">=</span> <span class="s2">"com.jeroenmols.internal"</span>
-            <span class="n">suppress</span> <span class="o">=</span> <span class="kc">true</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>And more generically, all packages in each source root that end with <code class="language-plaintext highlighter-rouge">internal</code> can be filtered:</p>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">groovy.io.FileType</span>
-
-<span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">getInternalPackages</span><span class="o">()</span> <span class="o">{</span>
-    <span class="kt">def</span> <span class="n">sourceRoots</span> <span class="o">=</span> <span class="n">getSourceRootsToDocumentAsStrings</span><span class="o">()</span>
-    <span class="kt">def</span> <span class="n">internalPackages</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;()</span>
-
-    <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">root</span> <span class="k">in</span> <span class="n">sourceRoots</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">def</span> <span class="n">subPackages</span> <span class="o">=</span> <span class="n">getAllSubDirectories</span><span class="o">(</span><span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">root</span><span class="o">))</span>
-                <span class="o">.</span><span class="na">findAll</span> <span class="o">{</span> <span class="n">it</span><span class="o">.</span><span class="na">path</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="s2">"internal"</span><span class="o">)</span> <span class="o">}</span>
-                <span class="o">.</span><span class="na">collect</span> <span class="o">{</span> <span class="n">it</span><span class="o">.</span><span class="na">path</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s2">"src/main/java/"</span><span class="o">)[</span><span class="mi">1</span><span class="o">].</span><span class="na">replaceAll</span><span class="o">(</span><span class="s2">"/"</span><span class="o">,</span> <span class="s2">"."</span><span class="o">)</span> <span class="o">}</span>
-        <span class="n">internalPackages</span><span class="o">.</span><span class="na">addAll</span><span class="o">(</span><span class="n">subPackages</span><span class="o">)</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="n">internalPackages</span>
-<span class="o">}</span>
-
-<span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">File</span><span class="o">&gt;</span> <span class="n">getAllSubDirectories</span><span class="o">(</span><span class="n">File</span> <span class="n">directory</span><span class="o">)</span> <span class="o">{</span>
-    <span class="kt">def</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;()</span>
-    <span class="n">directory</span><span class="o">.</span><span class="na">eachFileRecurse</span> <span class="o">(</span><span class="n">FileType</span><span class="o">.</span><span class="na">DIRECTORIES</span><span class="o">)</span> <span class="o">{</span> <span class="n">file</span> <span class="o">-&gt;</span>
-        <span class="n">list</span> <span class="o">&lt;&lt;</span> <span class="n">file</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="n">list</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>And hooking this all together will make sure all <code class="language-plaintext highlighter-rouge">internal</code> classes are excluded:</p>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dokka</span> <span class="o">{</span>
-    <span class="n">configuration</span> <span class="o">{</span>
-        <span class="o">...</span>
-
-        <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">p</span> <span class="k">in</span> <span class="n">getInternalPackages</span><span class="o">())</span> <span class="o">{</span>
-            <span class="n">perPackageOption</span> <span class="o">{</span>
-                <span class="n">prefix</span> <span class="o">=</span> <span class="n">p</span>
-                <span class="n">suppress</span> <span class="o">=</span> <span class="kc">true</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h2 id="bringing-it-all-together">Bringing it all together</h2>
-<p>Here’s the full example of a Dokka configuration that includes all source from each submodule and excludes internal classes:</p>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">org.jetbrains.dokka.gradle.GradleSourceRootImpl</span>
-
-<span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">'org.jetbrains.dokka'</span>
-
-<span class="n">dokka</span> <span class="o">{</span>
-    <span class="n">outputFormat</span> <span class="o">=</span> <span class="s1">'html'</span> <span class="c1">// use 'javadoc' to get standard java docs</span>
-    <span class="n">outputDirectory</span> <span class="o">=</span> <span class="s2">"$buildDir/javadoc"</span>
-
-    <span class="n">configuration</span> <span class="o">{</span>
-        <span class="n">includeNonPublic</span> <span class="o">=</span> <span class="kc">false</span>
-        <span class="n">skipEmptyPackages</span> <span class="o">=</span> <span class="kc">true</span>
-        <span class="n">skipDeprecated</span> <span class="o">=</span> <span class="kc">true</span>
-        <span class="n">reportUndocumented</span> <span class="o">=</span> <span class="kc">true</span>
-        <span class="n">jdkVersion</span> <span class="o">=</span> <span class="mi">8</span>
-
-        <span class="n">sourceRoots</span> <span class="o">=</span> <span class="n">getSourceRootsToDocument</span><span class="o">()</span>
-        <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">p</span> <span class="k">in</span> <span class="n">getInternalPackages</span><span class="o">())</span> <span class="o">{</span>
-            <span class="n">perPackageOption</span> <span class="o">{</span>
-                <span class="n">prefix</span> <span class="o">=</span> <span class="n">p</span>
-                <span class="n">suppress</span> <span class="o">=</span> <span class="kc">true</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-
-<span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">getInternalPackages</span><span class="o">()</span> <span class="o">{</span>
-    <span class="kt">def</span> <span class="n">sourceRoots</span> <span class="o">=</span> <span class="n">getSourceRootsToDocumentAsStrings</span><span class="o">()</span>
-    <span class="kt">def</span> <span class="n">internalPackages</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;()</span>
-
-    <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">root</span> <span class="k">in</span> <span class="n">sourceRoots</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">def</span> <span class="n">subPackages</span> <span class="o">=</span> <span class="n">getAllSubDirectories</span><span class="o">(</span><span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">root</span><span class="o">))</span>
-                <span class="o">.</span><span class="na">findAll</span> <span class="o">{</span> <span class="n">it</span><span class="o">.</span><span class="na">path</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="s2">"internal"</span><span class="o">)</span> <span class="o">}</span>
-                <span class="o">.</span><span class="na">collect</span> <span class="o">{</span> <span class="n">it</span><span class="o">.</span><span class="na">path</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s2">"src/main/java/"</span><span class="o">)[</span><span class="mi">1</span><span class="o">].</span><span class="na">replaceAll</span><span class="o">(</span><span class="s2">"/"</span><span class="o">,</span> <span class="s2">"."</span><span class="o">)</span> <span class="o">}</span>
-        <span class="n">internalPackages</span><span class="o">.</span><span class="na">addAll</span><span class="o">(</span><span class="n">subPackages</span><span class="o">)</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="n">internalPackages</span>
-<span class="o">}</span>
-
-<span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">File</span><span class="o">&gt;</span> <span class="n">getAllSubDirectories</span><span class="o">(</span><span class="n">File</span> <span class="n">directory</span><span class="o">)</span> <span class="o">{</span>
-    <span class="kt">def</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;()</span>
-    <span class="n">directory</span><span class="o">.</span><span class="na">eachFileRecurse</span> <span class="o">(</span><span class="n">FileType</span><span class="o">.</span><span class="na">DIRECTORIES</span><span class="o">)</span> <span class="o">{</span> <span class="n">file</span> <span class="o">-&gt;</span>
-        <span class="n">list</span> <span class="o">&lt;&lt;</span> <span class="n">file</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="n">list</span>
-<span class="o">}</span>
-
-<span class="c1">// Converts the source path Strings into SourceRoot</span>
-<span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">GradleSourceRootImpl</span><span class="o">&gt;</span> <span class="n">getSourceRootsToDocument</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="nf">getSourceRootsToDocumentAsStrings</span><span class="o">().</span><span class="na">collect</span> <span class="o">{</span>
-        <span class="kt">def</span> <span class="n">impl</span> <span class="o">=</span> <span class="k">new</span> <span class="n">GradleSourceRootImpl</span><span class="o">()</span>
-        <span class="n">impl</span><span class="o">.</span><span class="na">path</span> <span class="o">=</span> <span class="n">it</span>
-        <span class="n">impl</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-
-<span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">getSourceRootsToDocumentAsStrings</span><span class="o">()</span> <span class="o">{</span>
-    <span class="kt">def</span> <span class="n">sources</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;()</span>
-    <span class="n">sources</span> <span class="o">+=</span> <span class="s2">"$rootDir/app/src/main/java"</span>
-    <span class="n">sources</span> <span class="o">+=</span> <span class="n">getSourceDirs</span><span class="o">(</span><span class="s2">"$rootDir/features"</span><span class="o">)</span>
-    <span class="n">sources</span> <span class="o">+=</span> <span class="n">getSourceDirs</span><span class="o">(</span><span class="s2">"$rootDir/libraries"</span><span class="o">)</span>
-    <span class="c1">// add other locations of sources here</span>
-    <span class="n">sources</span>
-<span class="o">}</span>
-
-<span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">getSourceDirs</span><span class="o">(</span><span class="n">String</span> <span class="n">directoryPath</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">file</span><span class="o">(</span><span class="n">directoryPath</span><span class="o">).</span><span class="na">listFiles</span><span class="o">()</span>
-            <span class="o">.</span><span class="na">findAll</span> <span class="o">{</span> <span class="n">it</span><span class="o">.</span><span class="na">isDirectory</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">it</span><span class="o">.</span><span class="na">name</span> <span class="o">!=</span> <span class="s2">"build"</span> <span class="o">}</span> <span class="c1">// Non build subfolders</span>
-            <span class="o">.</span><span class="na">collect</span> <span class="o">{</span> <span class="s2">"${it.path}/src/main/java"</span> <span class="o">}</span> <span class="c1">// path of main sources</span>
-            <span class="o">.</span><span class="na">findAll</span> <span class="o">{</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">it</span><span class="o">).</span><span class="na">exists</span><span class="o">()</span> <span class="o">}</span> <span class="c1">// only include if path exists</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h2 id="wrap-up">Wrap-up</h2>
-<p>This post covered how to configure <a href="https://github.com/Kotlin/dokka">Dokka</a> to generate <a href="https://kotlinlang.org/docs/reference/kotlin-doc.html">KDoc</a> documentation. It explained how Dokka can be used for multi-module libraries and how public classes of submodules can be excluded.</p>
-
-<p>If you’ve made it this far you should probably follow me on <span><a href="https://twitter.com/molsjeroen?source=kdocforandroidlibrariesusingdokka2020" class="ga-link" target="_blank">Twitter</a></span>
-. Feel free to leave a comment below!</p>]]></content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="documentation" /><category term="kdoc" /><category term="dokka" /><category term="gradle" /><category term="kotlin" /><summary type="html"><![CDATA[A great way to make your library easier to use it to generate code documentation for its public interface. The default way to do this in Kotlin is to generate KDoc using the official Dokka plugin.]]></summary></entry></feed>
+<p>Feel free to leave a comment below!</p>]]></content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="android" /><category term="library" /><category term="maven" /><category term="gradle" /><category term="kotlin" /><summary type="html"><![CDATA[Having switched to Android SDK development over the past year, I’ve run into quite a few interesting and unexpected challenges. So how does library development differ from app development?]]></summary></entry></feed>

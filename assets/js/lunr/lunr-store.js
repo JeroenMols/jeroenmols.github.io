@@ -370,4 +370,10 @@ var store = [{
         "tags": ["pull request","code review","process","team"],
         "url": "/blog/2022/02/23/pull-request-reviews/",
         "teaser": "/img/blog/pullrequestreview/pullrequestreview.jpeg"
+      },{
+        "title": "The curious case of crashing Workers",
+        "excerpt":"WorkManager is great to schedule background work on Android. However, since scheduled work lives outside of the app lifecycle, you might run into unexpected crashes. Read on to learn why and how to prevent this. How to crash WorkManager Reading the documentation, it is clear that WorkManager is a worry-free...","categories": ["blog"],
+        "tags": ["workmanager","crash"],
+        "url": "/blog/2022/04/27/workmanager-crash/",
+        "teaser": "/img/blog/workmanager-crash/workmanager-crash.jpg"
       }]

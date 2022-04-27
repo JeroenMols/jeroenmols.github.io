@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/" rel="alternate" type="text/html"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, Android developer at Plaid and Google Developer Expert.</subtitle>
- <updated>2022-02-23T20:26:11+01:00</updated>
+ <updated>2022-04-27T22:15:43+02:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,22 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>The curious case of crashing Workers</title>
+   <link href="https://jeroenmols.com/blog/2022/04/27/workmanager-crash/"/>
+   <updated>2022-04-27T00:00:00+02:00</updated>
+   <id>https://jeroenmols.com/blog/2022/04/27/workmanager-crash</id>
+   <content type="html"><![CDATA[
+     
+     <p>WorkManager is great to schedule background work on Android. However, since scheduled work lives outside of the app lifecycle, you might run into unexpected crashes.</p>
+
+<p>Read on to learn why and how to prevent this.</p>
+
+
+     <a href="https://jeroenmols.com/blog/2022/04/27/workmanager-crash/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>No, your pull request does not need a review</title>
