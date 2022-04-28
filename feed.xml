@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2022-04-27T22:15:43+02:00</updated><id>https://jeroenmols.com/feed.xml</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, Android developer at Plaid and Google Developer Expert.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">The curious case of crashing Workers</title><link href="https://jeroenmols.com/blog/2022/04/27/workmanager-crash/" rel="alternate" type="text/html" title="The curious case of crashing Workers" /><published>2022-04-27T00:00:00+02:00</published><updated>2022-04-27T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2022/04/27/workmanager-crash</id><content type="html" xml:base="https://jeroenmols.com/blog/2022/04/27/workmanager-crash/"><![CDATA[<p>WorkManager is great to schedule background work on Android. However, since scheduled work lives outside of the app lifecycle, you might run into unexpected crashes.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2022-04-28T22:19:37+02:00</updated><id>https://jeroenmols.com/feed.xml</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, Android developer at Plaid and Google Developer Expert.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">The curious case of crashing Workers</title><link href="https://jeroenmols.com/blog/2022/04/27/workmanager-crash/" rel="alternate" type="text/html" title="The curious case of crashing Workers" /><published>2022-04-27T00:00:00+02:00</published><updated>2022-04-27T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2022/04/27/workmanager-crash</id><content type="html" xml:base="https://jeroenmols.com/blog/2022/04/27/workmanager-crash/"><![CDATA[<p>WorkManager is great to schedule background work on Android. However, since scheduled work lives outside of the app lifecycle, you might run into unexpected crashes.</p>
 
 <p>Read on to learn why and how to prevent this.</p>
 
@@ -25,6 +25,7 @@
 <ul>
   <li>removes the <code class="language-plaintext highlighter-rouge">CrashUploadWorker</code></li>
   <li>renames the <code class="language-plaintext highlighter-rouge">CrashUploadWorker</code> to <code class="language-plaintext highlighter-rouge">CrashReportWorker</code></li>
+  <li>moves the <code class="language-plaintext highlighter-rouge">CrashUploadWorker</code> to a new package</li>
 </ul>
 
 <p>We might get a <code class="language-plaintext highlighter-rouge">ClassNotFoundException</code> crash after installing the update!</p>
@@ -84,6 +85,55 @@
   <li>Release 5: Cancel all remaining work using old <code class="language-plaintext highlighter-rouge">Worker</code> (causes data loss!)</li>
   <li>Release 10: Remove old <code class="language-plaintext highlighter-rouge">Worker</code> (causes crashes!)</li>
 </ul>
+
+<h2 id="using-workerfactory">Using WorkerFactory</h2>
+<p>An alternative approach is to provide a custom <code class="language-plaintext highlighter-rouge">WorkerFactory</code> to handle the migration to the new class.</p>
+
+<blockquote>
+  <p>Thanks to <a href="https://twitter.com/pfmaggi">Pietro Maggi</a> and Steffan Davies for suggesting this approach</p>
+</blockquote>
+
+<p>To do so, first <a href="https://developer.android.com/topic/libraries/architecture/workmanager/advanced/custom-configuration#on-demand">disable automatic <code class="language-plaintext highlighter-rouge">WorkManager</code> initialization</a>:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;provider</span>
+   <span class="na">android:name=</span><span class="s">"androidx.startup.InitializationProvider"</span>
+   <span class="na">android:authorities=</span><span class="s">"${applicationId}.androidx-startup"</span>
+   <span class="na">android:exported=</span><span class="s">"false"</span>
+   <span class="na">tools:node=</span><span class="s">"merge"</span><span class="nt">&gt;</span>
+   <span class="c">&lt;!-- If you are using androidx.startup to initialize other components --&gt;</span>
+   <span class="nt">&lt;meta-data</span>
+       <span class="na">android:name=</span><span class="s">"androidx.work.WorkManagerInitializer"</span>
+       <span class="na">android:value=</span><span class="s">"androidx.startup"</span>
+       <span class="na">tools:node=</span><span class="s">"remove"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/provider&gt;</span>
+</code></pre></div></div>
+
+<p>Then initialize the <code class="language-plaintext highlighter-rouge">WorkManager</code> in your <code class="language-plaintext highlighter-rouge">Application#onCreate</code> or <code class="language-plaintext highlighter-rouge">ContentProvider</code>:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">val</span> <span class="py">configuration</span> <span class="p">=</span> <span class="nc">Configuration</span><span class="p">.</span><span class="nc">Builder</span><span class="p">()</span>
+    <span class="p">.</span><span class="nf">setWorkerFactory</span><span class="p">(</span><span class="nc">MigrateWorkerFactory</span><span class="p">())</span>
+    <span class="p">.</span><span class="nf">build</span><span class="p">()</span>
+<span class="nc">WorkManager</span><span class="p">.</span><span class="nf">initialize</span><span class="p">(</span><span class="n">appContext</span><span class="p">,</span> <span class="n">configuration</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>And create your own <a href="https://developer.android.com/reference/androidx/work/WorkerFactory"><code class="language-plaintext highlighter-rouge">WorkerFactory</code></a> that schedules the new worker:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">MyWorkerFactory</span><span class="p">()</span> <span class="p">:</span> <span class="nc">WorkerFactory</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="k">override</span> <span class="k">fun</span> <span class="nf">createWorker</span><span class="p">(</span>
+    <span class="n">appContext</span><span class="p">:</span> <span class="nc">Context</span><span class="p">,</span>
+    <span class="n">workerClassName</span><span class="p">:</span> <span class="nc">String</span><span class="p">,</span>
+    <span class="n">workerParameters</span><span class="p">:</span> <span class="nc">WorkerParameters</span>
+  <span class="p">):</span> <span class="nc">ListenableWorker</span><span class="p">?</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">workerClassName</span> <span class="p">=</span> <span class="s">"com.example.CrashUploadWorker"</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nc">CrashReportWorker</span><span class="p">(</span><span class="n">appContext</span><span class="p">,</span> <span class="n">workerParameters</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="o">..</span><span class="p">.</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This has the upside of not needing to keep the old <code class="language-plaintext highlighter-rouge">Worker</code> class around, but comes with some extra complexity of manual <code class="language-plaintext highlighter-rouge">WorkManager</code> initialization.</p>
 
 <h2 id="wrap-up">Wrap-up</h2>
 <p><code class="language-plaintext highlighter-rouge">WorkManager</code> is a very handy tool to handle background work, but be careful with removing or renaming <code class="language-plaintext highlighter-rouge">Workers</code>.</p>
