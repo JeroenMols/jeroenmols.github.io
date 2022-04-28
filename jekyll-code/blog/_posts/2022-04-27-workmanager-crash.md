@@ -33,6 +33,7 @@ However, `WorkManager` assumes that the `Worker` class will always exist in our 
 
 - removes the `CrashUploadWorker`
 - renames the `CrashUploadWorker` to `CrashReportWorker`
+- moves the `CrashUploadWorker` to a new package
 
 We might get a `ClassNotFoundException` crash after installing the update!
 
@@ -88,6 +89,56 @@ Finally, here's what a migration plan could look like:
 - Release 1: Add new worker and migrate all work
 - Release 5: Cancel all remaining work using old `Worker` (causes data loss!)
 - Release 10: Remove old `Worker` (causes crashes!)
+
+## Using WorkerFactory
+An alternative approach is to provide a custom `WorkerFactory` to handle the migration to the new class.
+
+> Thanks to [Pietro Maggi](https://twitter.com/pfmaggi) and Steffan Davies for suggesting this approach
+
+To do so, first [disable automatic `WorkManager` initialization](https://developer.android.com/topic/libraries/architecture/workmanager/advanced/custom-configuration#on-demand):
+
+```xml
+<provider
+   android:name="androidx.startup.InitializationProvider"
+   android:authorities="${applicationId}.androidx-startup"
+   android:exported="false"
+   tools:node="merge">
+   <!-- If you are using androidx.startup to initialize other components -->
+   <meta-data
+       android:name="androidx.work.WorkManagerInitializer"
+       android:value="androidx.startup"
+       tools:node="remove" />
+</provider>
+```
+
+Then initialize the `WorkManager` in your `Application#onCreate` or `ContentProvider`:
+
+```kotlin
+val configuration = Configuration.Builder()
+    .setWorkerFactory(MigrateWorkerFactory())
+    .build()
+WorkManager.initialize(appContext, configuration)
+```
+
+And create your own [`WorkerFactory`](https://developer.android.com/reference/androidx/work/WorkerFactory) that schedules the new worker:
+
+```kotlin
+class MyWorkerFactory() : WorkerFactory() {
+
+  override fun createWorker(
+    appContext: Context,
+    workerClassName: String,
+    workerParameters: WorkerParameters
+  ): ListenableWorker? {
+    if (workerClassName = "com.example.CrashUploadWorker") {
+      return CrashReportWorker(appContext, workerParameters)
+    }
+    ...
+  }
+}
+```
+
+This has the upside of not needing to keep the old `Worker` class around, but comes with some extra complexity of manual `WorkManager` initialization.
 
 ## Wrap-up
 `WorkManager` is a very handy tool to handle background work, but be careful with removing or renaming `Workers`.
