@@ -13,6 +13,10 @@ Upcoming talks:
 
 - To be announced
 
+2022:
+
+- Android Makers Paris - [The definitive guide to Android library development](https://speakerdeck.com/jeroenmols/the-definitive-guide-to-android-library-development)
+
 2021:
 
 - Droidcon Berlin - [The definitive guide to Android library development](https://speakerdeck.com/jeroenmols/the-definitive-guide-to-android-library-development)
