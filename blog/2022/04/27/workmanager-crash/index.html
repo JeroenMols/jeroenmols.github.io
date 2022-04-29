@@ -486,7 +486,7 @@ $(document).ready(function(){
 
 <p>And create your own <a href="https://developer.android.com/reference/androidx/work/WorkerFactory"><code class="language-plaintext highlighter-rouge">WorkerFactory</code></a> that schedules the new worker:</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">MyWorkerFactory</span><span class="p">()</span> <span class="p">:</span> <span class="nc">WorkerFactory</span><span class="p">()</span> <span class="p">{</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">MigrateWorkerFactory</span><span class="p">()</span> <span class="p">:</span> <span class="nc">WorkerFactory</span><span class="p">()</span> <span class="p">{</span>
 
   <span class="k">override</span> <span class="k">fun</span> <span class="nf">createWorker</span><span class="p">(</span>
     <span class="n">appContext</span><span class="p">:</span> <span class="nc">Context</span><span class="p">,</span>
