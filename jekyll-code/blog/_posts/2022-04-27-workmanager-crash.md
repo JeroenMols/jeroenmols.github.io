@@ -123,7 +123,7 @@ WorkManager.initialize(appContext, configuration)
 And create your own [`WorkerFactory`](https://developer.android.com/reference/androidx/work/WorkerFactory) that schedules the new worker:
 
 ```kotlin
-class MyWorkerFactory() : WorkerFactory() {
+class MigrateWorkerFactory() : WorkerFactory() {
 
   override fun createWorker(
     appContext: Context,
