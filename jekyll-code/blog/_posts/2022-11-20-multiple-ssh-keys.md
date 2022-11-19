@@ -38,4 +38,4 @@ I'm explicitly defining each host, but you could also assign a SSH key to all re
 
 That's it!
 
-If this was helpful to you, consider [buying me a coffee](https://www.buymeacoffee.com/jeroen) or thanking me at {% include link_twitter_molsjeroen.html %} on twitter!
+If this was helpful to you, consider [buying me a coffee](https://www.buymeacoffee.com/jeroen) or thanking me on [Mastodon](https://androiddev.social/@Jeroenmols) or [Twitter](https://twitter.com/molsjeroen)!
