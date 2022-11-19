@@ -376,4 +376,10 @@ var store = [{
         "tags": ["workmanager","crash"],
         "url": "/blog/2022/04/27/workmanager-crash/",
         "teaser": "/img/blog/workmanager-crash/workmanager-crash.jpg"
+      },{
+        "title": "Test React app on mobile without Wi-Fi",
+        "excerpt":"Traveling by train or plane and want to test your react app on your mobile phone? This quick post explains how to access your react development server from your phone without a Wi-Fi connection. Steps Connect your phone to your laptop using a USB cable Enable USB tethering Android: System...","categories": ["blog"],
+        "tags": ["react","offline","tips"],
+        "url": "/blog/2022/11/19/react-local-development/",
+        "teaser": "/img/blog/offline-react-phone/offline-react-phone.png"
       }]

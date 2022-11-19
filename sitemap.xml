@@ -253,6 +253,10 @@
 <lastmod>2022-04-27T00:00:00+02:00</lastmod>
 </url>
 <url>
+<loc>https://jeroenmols.com/blog/2022/11/19/react-local-development/</loc>
+<lastmod>2022-11-19T00:00:00+01:00</lastmod>
+</url>
+<url>
 <loc>https://jeroenmols.com/categories/</loc>
 </url>
 <url>
@@ -500,6 +504,12 @@
 </url>
 <url>
 <loc>https://jeroenmols.com/tags/crash/</loc>
+</url>
+<url>
+<loc>https://jeroenmols.com/tags/react/</loc>
+</url>
+<url>
+<loc>https://jeroenmols.com/tags/offline/</loc>
 </url>
 <url>
 <loc>https://jeroenmols.com/categories/blog/</loc>

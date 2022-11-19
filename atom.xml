@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/" rel="alternate" type="text/html"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, Software developer at Plaid and Google Developer Expert.</subtitle>
- <updated>2022-11-07T19:49:13+01:00</updated>
+ <updated>2022-11-19T07:07:50+01:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,20 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>Test React app on mobile without Wi-Fi</title>
+   <link href="https://jeroenmols.com/blog/2022/11/19/react-local-development/"/>
+   <updated>2022-11-19T00:00:00+01:00</updated>
+   <id>https://jeroenmols.com/blog/2022/11/19/react-local-development</id>
+   <content type="html"><![CDATA[
+     
+     <p>Traveling by train or plane and want to test your react app on your mobile phone? This quick post explains how to access your react development server from your phone without a Wi-Fi connection.</p>
+
+
+     <a href="https://jeroenmols.com/blog/2022/11/19/react-local-development/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>The curious case of crashing Workers</title>

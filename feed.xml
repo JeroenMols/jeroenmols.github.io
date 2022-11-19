@@ -1,4 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2022-11-07T19:49:13+01:00</updated><id>https://jeroenmols.com/feed.xml</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, Software developer at Plaid and Google Developer Expert.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">The curious case of crashing Workers</title><link href="https://jeroenmols.com/blog/2022/04/27/workmanager-crash/" rel="alternate" type="text/html" title="The curious case of crashing Workers" /><published>2022-04-27T00:00:00+02:00</published><updated>2022-04-27T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2022/04/27/workmanager-crash</id><content type="html" xml:base="https://jeroenmols.com/blog/2022/04/27/workmanager-crash/"><![CDATA[<p>WorkManager is great to schedule background work on Android. However, since scheduled work lives outside of the app lifecycle, you might run into unexpected crashes.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2022-11-19T07:07:50+01:00</updated><id>https://jeroenmols.com/feed.xml</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, Software developer at Plaid and Google Developer Expert.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Test React app on mobile without Wi-Fi</title><link href="https://jeroenmols.com/blog/2022/11/19/react-local-development/" rel="alternate" type="text/html" title="Test React app on mobile without Wi-Fi" /><published>2022-11-19T00:00:00+01:00</published><updated>2022-11-19T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2022/11/19/react-local-development</id><content type="html" xml:base="https://jeroenmols.com/blog/2022/11/19/react-local-development/"><![CDATA[<p>Traveling by train or plane and want to test your react app on your mobile phone? This quick post explains how to access your react development server from your phone without a Wi-Fi connection.</p>
+
+<h2 id="steps">Steps</h2>
+
+<ol>
+  <li>Connect your phone to your laptop using a USB cable</li>
+  <li>Enable <code class="language-plaintext highlighter-rouge">USB tethering</code>
+    <ul>
+      <li>Android: System settings &gt; Network &amp; internet &gt; Hotspot &amp; tethering &gt; USB tethering</li>
+    </ul>
+  </li>
+  <li>Start your react server on your laptop <code class="language-plaintext highlighter-rouge">npm start</code></li>
+  <li>Open your servers <code class="language-plaintext highlighter-rouge">ip:port</code> on your phone</li>
+</ol>
+
+<p>That’s it!</p>
+
+<p>If this was helpful to you, consider <a href="https://www.buymeacoffee.com/jeroen">buying me a coffee</a> or thanking me on <a href="https://androiddev.social/@Jeroenmols">Mastodon</a> or <a href="https://twitter.com/molsjeroen">Twitter</a>!</p>]]></content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="react" /><category term="offline" /><category term="tips" /><summary type="html"><![CDATA[Traveling by train or plane and want to test your react app on your mobile phone? This quick post explains how to access your react development server from your phone without a Wi-Fi connection.]]></summary></entry><entry><title type="html">The curious case of crashing Workers</title><link href="https://jeroenmols.com/blog/2022/04/27/workmanager-crash/" rel="alternate" type="text/html" title="The curious case of crashing Workers" /><published>2022-04-27T00:00:00+02:00</published><updated>2022-04-27T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2022/04/27/workmanager-crash</id><content type="html" xml:base="https://jeroenmols.com/blog/2022/04/27/workmanager-crash/"><![CDATA[<p>WorkManager is great to schedule background work on Android. However, since scheduled work lives outside of the app lifecycle, you might run into unexpected crashes.</p>
 
 <p>Read on to learn why and how to prevent this.</p>
 
@@ -1692,179 +1709,4 @@ Execution failed for task ':myproject:checkReleaseDuplicateClasses'.
 <p>Don’t forget to follow me on <span><a href="https://twitter.com/molsjeroen?source=androidlibrarydevelopment-modularization2020" class="ga-link" target="_blank">Twitter</a></span>
  and don’t miss the last part about <a href="/blog/2020/11/11/library-dependencies/">transitive dependencies</a>!</p>
 
-<p>Feel free to leave a comment below!</p>]]></content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="android" /><category term="library" /><category term="modularization" /><category term="maven" /><category term="gradle" /><category term="kotlin" /><summary type="html"><![CDATA[With modularization being all the hype, should you also modularize an SDK? Are fat aar files really needed? And how do you prevent internal APIs from being exposed on your public interface?]]></summary></entry><entry><title type="html">Android library development - Getting started</title><link href="https://jeroenmols.com/blog/2020/10/28/library-gettingstarted/" rel="alternate" type="text/html" title="Android library development - Getting started" /><published>2020-10-28T00:00:00+01:00</published><updated>2020-10-28T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2020/10/28/library-gettingstarted</id><content type="html" xml:base="https://jeroenmols.com/blog/2020/10/28/library-gettingstarted/"><![CDATA[<p>Having switched to Android SDK development over the past year, I’ve run into quite a few interesting and unexpected challenges. So how does library development differ from app development?</p>
-
-<p>This mini-series will cover the differences between SDK and App development, and explore some interesting challenges around SDK modularization and transitive dependencies.</p>
-
-<blockquote>
-  <p>This blog post is part of a series on Android libraries:</p>
-  <ul>
-    <li>Part 1: <a href="/blog/2020/10/28/library-gettingstarted/">Getting started</a></li>
-    <li>Part 2: <a href="/blog/2020/11/04/library-modularization/">Modularization</a></li>
-    <li>Part 3: <a href="/blog/2020/11/11/library-dependencies/">Transitive dependencies</a></li>
-  </ul>
-</blockquote>
-
-<h2 id="introduction">Introduction</h2>
-<p>Before kicking off the meat of this series, let’s have a quick look at how SDK development differs from app development. If you’re already familiar with these concepts, feel free to skip to the next article!</p>
-
-<p>Note that the term SDK or Android library will be used interchangeably.</p>
-
-<h2 id="anatomy-of-a-library">Anatomy of a library</h2>
-<p>A getting started Android SDK project typically contain of at least two modules:</p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">app</code> module to test out the SDK</li>
-  <li><code class="language-plaintext highlighter-rouge">library</code> module that contains all SDK code and resources</li>
-</ul>
-
-<p><a href="https://jeroenmols.com/img/blog/librarygettingstarted/app_with_projectlibrary.png"><img src="https://jeroenmols.com/img/blog/librarygettingstarted/app_with_projectlibrary.png" alt="Project with app and library module" class="align-center" /></a></p>
-
-<p>In this, the <code class="language-plaintext highlighter-rouge">app</code> module has a direct dependency on the <code class="language-plaintext highlighter-rouge">library</code> module:</p>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dependencies</span> <span class="o">{</span>
-  <span class="n">implementation</span> <span class="nf">project</span><span class="o">(</span><span class="s1">':library'</span><span class="o">)</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>And the folder structure looks like this:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.
-├── app
-└── library
-</code></pre></div></div>
-
-<p>The <code class="language-plaintext highlighter-rouge">library</code> module has the <code class="language-plaintext highlighter-rouge">com.android.library</code> plugin in its <code class="language-plaintext highlighter-rouge">build.gradle</code> file:</p>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">'com.android.library'</span>
-</code></pre></div></div>
-
-<blockquote>
-  <p>Notice how everything so far is exactly the same as developing a submodule in a multi-module app!</p>
-</blockquote>
-
-<h2 id="building-a-library">Building a library</h2>
-<p>Similar to building the application, the library can be built using a Gradle task:</p>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">./</span><span class="n">gradlew</span> <span class="o">:</span><span class="nl">library:</span><span class="n">assembleRelease</span>
-</code></pre></div></div>
-
-<p>However, the output won’t be an <code class="language-plaintext highlighter-rouge">.apk</code> file (or <code class="language-plaintext highlighter-rouge">.aab</code> <a href="https://developer.android.com/platform/technology/app-bundle">when using App Bundles</a>).  Instead it will be an Android Archive (or <code class="language-plaintext highlighter-rouge">.aar</code>) file, placed in the build folder of the <code class="language-plaintext highlighter-rouge">library</code> project:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>library/build/outputs/aar/library-release.aar
-</code></pre></div></div>
-
-<p>This <code class="language-plaintext highlighter-rouge">.aar</code> file is very similar to a Java Archive (<code class="language-plaintext highlighter-rouge">.jar</code>) file, but it can also contain Android XML resources.</p>
-
-<blockquote>
-  <p>Note that <code class="language-plaintext highlighter-rouge">.aar</code> files aren’t signed, so in contrast to creating an <code class="language-plaintext highlighter-rouge">.apk</code> file, no signing config is required to create the release variant of the Android library.</p>
-</blockquote>
-
-<h2 id="deploying-a-library">Deploying a library</h2>
-<p>However, customers shouldn’t directly copy-paste the SDK source code into their project. Instead, they should consume the library as a <a href="https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html">Maven dependency</a>:</p>
-
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dependencies {
-  implementation "com.jeroenmols:library:1.0.0"
-}
-</code></pre></div></div>
-
-<p>Resulting in the following project setup:</p>
-
-<p><a href="https://jeroenmols.com/img/blog/librarygettingstarted/app_with_externallibrary.png"><img src="https://jeroenmols.com/img/blog/librarygettingstarted/app_with_externallibrary.png" alt="App that consumes library through Maven" class="align-center" /></a></p>
-
-<p>To make this possible, the library needs to be deployed to a public Maven repository such <a href="https://search.maven.org/">Maven Central</a> or <a href="https://bintray.com/">Bintray</a> (jcenter). Which can be done by configuring the Gradle publishing plugin.</p>
-
-<blockquote>
-  <p>This blog post won’t cover how to publish your library, instead have a look at this <a href="https://medium.com/devnibbles/publishing-your-first-android-library-to-bintray-da08c8a76e1a">great article by Andrew Kelly</a> if you’re looking to learn.</p>
-</blockquote>
-
-<h2 id="external-dependencies">External dependencies</h2>
-<p>But as the <code class="language-plaintext highlighter-rouge">library</code> evolves, it might also start depending on Maven dependencies of its own! Imagine that the <code class="language-plaintext highlighter-rouge">library</code> would also depend on <code class="language-plaintext highlighter-rouge">OkHttp</code>:</p>
-
-<p><a href="https://jeroenmols.com/img/blog/librarygettingstarted/library_with_externaldependency.png"><img src="https://jeroenmols.com/img/blog/librarygettingstarted/library_with_externaldependency.png" alt="Project with app and library module that has an external dependency" class="align-center" /></a></p>
-
-<p>This means that the customer application needs to depend on both <code class="language-plaintext highlighter-rouge">library</code> and <code class="language-plaintext highlighter-rouge">OkHttp</code>:</p>
-
-<p><a href="https://jeroenmols.com/img/blog/librarygettingstarted/app_with_library_with_externaldependency.png"><img src="https://jeroenmols.com/img/blog/librarygettingstarted/app_with_library_with_externaldependency.png" alt="Project with app and library module that has an external dependency" class="align-center" /></a></p>
-
-<p>Why?</p>
-
-<p>Because <code class="language-plaintext highlighter-rouge">.aar</code> files only contain code and resources of the <code class="language-plaintext highlighter-rouge">library</code> module that was used to build it! So the <code class="language-plaintext highlighter-rouge">.aar</code> file of the library won’t contain any <code class="language-plaintext highlighter-rouge">OkHttp</code> code, nor any indication that it requires <code class="language-plaintext highlighter-rouge">OkHttp</code> to run.</p>
-
-<p>Consequently, customer applications need to include both the <code class="language-plaintext highlighter-rouge">library</code> and <code class="language-plaintext highlighter-rouge">OkHttp</code> as a dependency.</p>
-
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dependencies {
-  implementation "com.jeroenmols:library:1.0.0"
-  implementation "com.squareup.okhttp3:okhttp:4.9.0"
-}
-</code></pre></div></div>
-
-<blockquote>
-  <p>Notice that this did work when <code class="language-plaintext highlighter-rouge">library</code> is a submodule of a project! Then the <code class="language-plaintext highlighter-rouge">build.gradle</code> file of the <code class="language-plaintext highlighter-rouge">library</code> includes the <code class="language-plaintext highlighter-rouge">OkHttp</code> dependency and Gradle will include it into the <code class="language-plaintext highlighter-rouge">.apk</code> while building.</p>
-</blockquote>
-
-<h2 id="transitive-dependencies">Transitive dependencies</h2>
-<p>Wouldn’t it be nice if the <code class="language-plaintext highlighter-rouge">OkHttp</code> dependency could be automatically included in the customer application?</p>
-
-<p>That way customers simply have to add:</p>
-
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dependencies {
-  implementation "com.jeroenmols:library:1.0.0"
-}
-</code></pre></div></div>
-
-<p>And get the <code class="language-plaintext highlighter-rouge">OkHttp</code> dependency indirectly through the dependency on <code class="language-plaintext highlighter-rouge">library</code>. This is what we call a transitive dependency: <code class="language-plaintext highlighter-rouge">OkHttp</code> is a transitive dependency of the <code class="language-plaintext highlighter-rouge">library</code> and hence an indirect dependency of the customer application.</p>
-
-<p>But how can Gradle know to include <code class="language-plaintext highlighter-rouge">OkHttp</code> in the customer app after adding the <code class="language-plaintext highlighter-rouge">library</code> as a dependency?</p>
-
-<p>That’s taken care of by the <code class="language-plaintext highlighter-rouge">pom.xml</code> file that gets created when you deploy your app to a Maven repository (such a <a href="https://search.maven.org/">Maven Central</a>).</p>
-
-<p>Here’s an example <code class="language-plaintext highlighter-rouge">pom.xml</code> for the <code class="language-plaintext highlighter-rouge">library</code>:</p>
-
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
-<span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xsi:schemaLocation=</span><span class="s">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
-  <span class="nt">&lt;groupId&gt;</span>com.jeroenmols<span class="nt">&lt;/groupId&gt;</span>
-  <span class="nt">&lt;artifactId&gt;</span>library<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version&gt;</span>1.0.0<span class="nt">&lt;/version&gt;</span>
-  <span class="nt">&lt;name&gt;</span>library<span class="nt">&lt;/name&gt;</span>
-  <span class="nt">&lt;dependencies&gt;</span>
-    <span class="nt">&lt;dependency&gt;</span>
-      <span class="nt">&lt;groupId&gt;</span>com.squareup.okhttp3<span class="nt">&lt;/groupId&gt;</span>
-      <span class="nt">&lt;artifactId&gt;</span>okhttp3<span class="nt">&lt;/artifactId&gt;</span>
-      <span class="nt">&lt;version&gt;</span>4.9.0<span class="nt">&lt;/version&gt;</span>
-      <span class="nt">&lt;scope&gt;</span>compile<span class="nt">&lt;/scope&gt;</span>
-    <span class="nt">&lt;/dependency&gt;</span>
-  <span class="nt">&lt;/dependencies&gt;</span>
-<span class="nt">&lt;/project&gt;</span>
-</code></pre></div></div>
-
-<p>So when building an Android library, there are two key outputs:</p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">.aar</code> file: a binary containing all library code and resources</li>
-  <li><code class="language-plaintext highlighter-rouge">pom.xml</code> file: containing all transitive dependencies</li>
-</ul>
-
-<blockquote>
-  <p>In reality, there can be many more files (Javadoc, sources,…). Have a look at the Files tab of the <a href="https://bintray.com/bintray/jcenter/com.squareup.okhttp3%3Aokhttp/4.9.0#files/com%2Fsquareup%2Fokhttp3%2Fokhttp%2F4.9.0">Maven entry for OkHttp</a>.</p>
-</blockquote>
-
-<p>For more information on how to generate a <code class="language-plaintext highlighter-rouge">pom.xml</code>, have a look at <a href="https://medium.com/swlh/how-to-publish-and-distribute-your-android-library-ce845c68c7f7">this post by Marco Gomiero</a>.</p>
-
-<h2 id="testing">Testing</h2>
-<p>Finally, for Android libraries with external dependencies, there will be a difference between a local build of the SDK or a Maven build.</p>
-
-<p>If the SDK source code is within a project, then transitive dependencies will automatically be included when the application is built.</p>
-
-<p>However, when the SDK is included through Maven, those transitive dependencies will only be included when the <code class="language-plaintext highlighter-rouge">pom.xml</code> file is properly constructed and deployed to Maven.</p>
-
-<p>Therefore it is always important to test the actual SDK artifact as a Maven dependency before shipping a new release!</p>
-
-<h2 id="wrap-up">Wrap-up</h2>
-<p>Android libraries are built into a special <code class="language-plaintext highlighter-rouge">.aar</code> format that includes all code and resources. For all its external dependencies, a <code class="language-plaintext highlighter-rouge">pom.xml</code> needs to be deployed alongside to the Maven repository.</p>
-
-<p>Don’t forget to follow me on <span><a href="https://twitter.com/molsjeroen?source=androidlibrarydevelopment-gettingstarted2020" class="ga-link" target="_blank">Twitter</a></span>
- and enjoy reading the next post on <a href="/blog/2020/11/04/library-modularization/">SDK modularization</a>!</p>
-
-<p>Feel free to leave a comment below!</p>]]></content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="android" /><category term="library" /><category term="maven" /><category term="gradle" /><category term="kotlin" /><summary type="html"><![CDATA[Having switched to Android SDK development over the past year, I’ve run into quite a few interesting and unexpected challenges. So how does library development differ from app development?]]></summary></entry></feed>
+<p>Feel free to leave a comment below!</p>]]></content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="android" /><category term="library" /><category term="modularization" /><category term="maven" /><category term="gradle" /><category term="kotlin" /><summary type="html"><![CDATA[With modularization being all the hype, should you also modularize an SDK? Are fat aar files really needed? And how do you prevent internal APIs from being exposed on your public interface?]]></summary></entry></feed>

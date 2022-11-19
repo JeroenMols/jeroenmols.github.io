@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Philips Hue adaptive icon - Jeroen Mols</title>
-<meta name="description" content="Your icon is one of the most important assets in your app. With a bit of luck, users might even put it on their main launcher screen!">
+<!-- begin _includes/seo.html --><title>Test React app on mobile without Wi-Fi - Jeroen Mols</title>
+<meta name="description" content="Traveling by train or plane and want to test your react app on your mobile phone? This quick post explains how to access your react development server from your phone without a Wi-Fi connection.">
 
 
   <meta name="author" content="Jeroen Mols">
@@ -22,27 +22,27 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en">
 <meta property="og:site_name" content="Jeroen Mols">
-<meta property="og:title" content="Philips Hue adaptive icon">
-<meta property="og:url" content="https://jeroenmols.com/blog/2019/07/03/adaptiveicon/">
+<meta property="og:title" content="Test React app on mobile without Wi-Fi">
+<meta property="og:url" content="https://jeroenmols.com/blog/2022/11/19/react-local-development/">
 
 
-  <meta property="og:description" content="Your icon is one of the most important assets in your app. With a bit of luck, users might even put it on their main launcher screen!">
+  <meta property="og:description" content="Traveling by train or plane and want to test your react app on your mobile phone? This quick post explains how to access your react development server from your phone without a Wi-Fi connection.">
 
 
 
-  <meta property="og:image" content="https://jeroenmols.com/img/blog/adaptiveicon/adaptive_icon.png">
+  <meta property="og:image" content="https://jeroenmols.com/img/blog/offline-react-phone/offline-react-phone.png">
 
 
 
   <meta name="twitter:site" content="@molsjeroen">
-  <meta name="twitter:title" content="Philips Hue adaptive icon">
-  <meta name="twitter:description" content="Your icon is one of the most important assets in your app. With a bit of luck, users might even put it on their main launcher screen!">
-  <meta name="twitter:url" content="https://jeroenmols.com/blog/2019/07/03/adaptiveicon/">
+  <meta name="twitter:title" content="Test React app on mobile without Wi-Fi">
+  <meta name="twitter:description" content="Traveling by train or plane and want to test your react app on your mobile phone? This quick post explains how to access your react development server from your phone without a Wi-Fi connection.">
+  <meta name="twitter:url" content="https://jeroenmols.com/blog/2022/11/19/react-local-development/">
 
   
     <meta name="twitter:card" content="summary">
     
-      <meta name="twitter:image" content="https://jeroenmols.com/img/blog/adaptiveicon/adaptive_icon.png">
+      <meta name="twitter:image" content="https://jeroenmols.com/img/blog/offline-react-phone/offline-react-phone.png">
     
   
 
@@ -50,7 +50,7 @@
 
 
 
-  <meta property="article:published_time" content="2019-07-03T00:00:00+02:00">
+  <meta property="article:published_time" content="2022-11-19T00:00:00+01:00">
 
 
 
@@ -61,7 +61,7 @@
   
 
 
-<link rel="canonical" href="https://jeroenmols.com/blog/2019/07/03/adaptiveicon/">
+<link rel="canonical" href="https://jeroenmols.com/blog/2022/11/19/react-local-development/">
 
 
 
@@ -340,20 +340,20 @@ $(document).ready(function(){
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Philips Hue adaptive icon">
-    <meta itemprop="description" content="Your icon is one of the most important assets in your app. With a bit of luck, users might even put it on their main launcher screen!">
-    <meta itemprop="datePublished" content="July 03, 2019">
+    <meta itemprop="headline" content="Test React app on mobile without Wi-Fi">
+    <meta itemprop="description" content="Traveling by train or plane and want to test your react app on your mobile phone? This quick post explains how to access your react development server from your phone without a Wi-Fi connection.">
+    <meta itemprop="datePublished" content="November 19, 2022">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 class="page__title" itemprop="headline">Philips Hue adaptive icon
+          <h1 class="page__title" itemprop="headline">Test React app on mobile without Wi-Fi
 </h1>
-          <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  03 Jul 2019</p>
+          <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  19 Nov 2022</p>
 
           
-            <img src="/img/blog/adaptiveicon/adaptive_icon.png" alt="Philips Hue adaptive icon" title="Philips Hue app icon, http://signify.com/, placed on dark background">
+            <img src="/img/blog/offline-react-phone/offline-react-phone.png" alt="Test React app on mobile without Wi-Fi" title="React logo and Google material icons, https://reactjs.org/ and https://fonts.google.com/icons, resized and composed together">
           
 
           
@@ -362,7 +362,7 @@ $(document).ready(function(){
 
 
 
-  3 minute read
+  less than 1 minute read
 
 </p>
           
@@ -371,79 +371,24 @@ $(document).ready(function(){
 
       <section class="page__content" itemprop="text">
         
-        <p>Your icon is one of the most important assets in your app. With a bit of luck, users might even put it on their main launcher screen!</p>
+        <p>Traveling by train or plane and want to test your react app on your mobile phone? This quick post explains how to access your react development server from your phone without a Wi-Fi connection.</p>
 
-<p>As various Android launchers, versions or devices might resize/reshape your icon to make them look consistent, you’ll need to be robust against this kind of changes. Learn how we did that at Philips Hue.</p>
+<h2 id="steps">Steps</h2>
 
-<h2 id="background">Background</h2>
-<p>For various years, different device manufacturers have been reshaping icons to make them fit their custom skin of Android. Unfortunately, there wasn’t a clear contract in place to do that reshaping, leading to some pretty bad results:</p>
+<ol>
+  <li>Connect your phone to your laptop using a USB cable</li>
+  <li>Enable <code class="language-plaintext highlighter-rouge">USB tethering</code>
+    <ul>
+      <li>Android: System settings &gt; Network &amp; internet &gt; Hotspot &amp; tethering &gt; USB tethering</li>
+    </ul>
+  </li>
+  <li>Start your react server on your laptop <code class="language-plaintext highlighter-rouge">npm start</code></li>
+  <li>Open your servers <code class="language-plaintext highlighter-rouge">ip:port</code> on your phone</li>
+</ol>
 
-<p><img src="https://jeroenmols.com/img/blog/adaptiveicon/poor_icon_shapes.png" alt="Badly resized Philips Hue icons" /></p>
+<p>That’s it!</p>
 
-<p>Shadows overlayed on top of the Philips wordmark, part of the Hue text cut off and a teardrop shape that looked really weird are just a few of the problems.</p>
-
-<p>Fortunately, in Android O, adaptive icons came to the rescue to solve this problem.</p>
-
-<h2 id="icon-design">Icon design</h2>
-<p>Inspired by <a href="https://medium.com/google-design/designing-adaptive-icons-515af294c783">this blog post from Nick Butcher</a>, we wanted to create a depth effect in our icon. Wouldn’t it be cool if our icon could change color just like our lights?</p>
-
-<p>Hence we decided to use a gradient as the background layer:</p>
-
-<p><img src="https://jeroenmols.com/img/blog/adaptiveicon/icon_background.png" alt="Adaptive icon background" class="align-center" /></p>
-
-<p>Notice how the gradient gets lighter towards the top and darker towards the bottom. It also contains a darker shade of red on the left side and a darker shade of blue on the right.</p>
-
-<p>The foreground of the icon, however, consists out of a static blue “Philips” word mark and a plain white background with “Hue” cut out from that:</p>
-
-<p><img src="https://jeroenmols.com/img/blog/adaptiveicon/icon_foreground.png" alt="Adaptive icon foreground" class="align-center" /></p>
-
-<p>Now when the icon will be dragged or pressed, the foreground will move independently of the background causing the “Hue” cutout to hover over different parts of the gradient. This creates a very nice effect where the Hue logo slightly changes colors!</p>
-
-<h2 id="implementation">Implementation</h2>
-<p>In Android Studio, right-click your project and select “New &gt; Image asset”.</p>
-
-<p><img src="https://jeroenmols.com/img/blog/adaptiveicon/create_image_asset.png" alt="Create image asset" class="align-center" /></p>
-
-<p>For the best scaling quality and minimal icon size, we use a vector asset as the foreground layer. This wasn’t possible for the gradient though due to the complexity of that asset, so for that we use a webp background.</p>
-
-<p>Notice how both “Hue” and “Philips” fit nicely within the safe zone indicated by the circle area. This is the zone that is guaranteed to be always displayed and never cut off.</p>
-
-<p>Make sure to also generate a round icon for Android N and plain image assets for older Android versions. Click next and review the assets being generated, and finish to complete the icon creation.</p>
-
-<p>You’ll see that in <code class="language-plaintext highlighter-rouge">mipmap-anydpi-v26</code> two resources get generated <code class="language-plaintext highlighter-rouge">ic_launcher.xml</code> and <code class="language-plaintext highlighter-rouge">ic_launcher_round.xml</code>. Both these files simply indicate what resource to use for the icon foreground and background:</p>
-
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
-<span class="nt">&lt;adaptive-icon</span> <span class="na">xmlns:android=</span><span class="s">"http://schemas.android.com/apk/res/android"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;background</span> <span class="na">android:drawable=</span><span class="s">"@mipmap/ic_launcher_background"</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;foreground</span> <span class="na">android:drawable=</span><span class="s">"@drawable/ic_launcher_foreground"</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;/adaptive-icon&gt;</span>
-</code></pre></div></div>
-
-<p>In the Android manifest you simply reference both resources in order to use them:</p>
-
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;application</span>
-       <span class="err">...</span>
-       <span class="na">android:icon=</span><span class="s">"@mipmap/ic_launcher"</span>
-       <span class="na">android:roundIcon=</span><span class="s">"@mipmap/ic_launcher_round"</span><span class="nt">&gt;</span>
-</code></pre></div></div>
-
-<blockquote>
-  <p>Note: <code class="language-plaintext highlighter-rouge">ic_launcher_round.xml</code> got introduced with the launch of the Google Pixel (Android N) and has since been replaced with the more powerful adaptive icon. <br /> However you can still provide a rounded icon to avoid that Android N devices show your square item in a round bounding box:
-<img src="https://jeroenmols.com/img/blog/adaptiveicon/boxed_icon.png" alt="Boxed icon when no round variant is provided" class="align-center" /></p>
-</blockquote>
-
-<h2 id="end-result">End result</h2>
-<p>Bringing it all together, we now have an icon that not only adapts to any device launcher, but also has a nice subtle color effect on the Hue letters while moving.</p>
-
-<p><img src="https://jeroenmols.com/img/blog/adaptiveicon/adaptive_icon.gif" alt="Adaptive icon Philips Hue" class="align-center" /></p>
-
-<p>Notice for instance how the letter “e” changes from green to blue while moving right.</p>
-
-<h2 id="wrap-up">Wrap-up</h2>
-<p>The launcher icon is one of the most important assets of your app and therefore it is key to make it look perfect on any device. Adaptive icons make that possible and also allow you to add a nice little extra touch to your app.</p>
-
-<p>If you’ve made it this far you should probably follow me on <span><a href="https://twitter.com/molsjeroen?source=philipshueadaptiveicon2019" class="ga-link" target="_blank">Twitter</a></span>
-. Feel free to leave a comment below!</p>
+<p>If this was helpful to you, consider <a href="https://www.buymeacoffee.com/jeroen">buying me a coffee</a> or thanking me on <a href="https://androiddev.social/@Jeroenmols">Mastodon</a> or <a href="https://twitter.com/molsjeroen">Twitter</a>!</p>
 
         
       </section>
@@ -460,11 +405,11 @@ $(document).ready(function(){
     <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
     <span itemprop="keywords">
     
-      <a href="/tags/adaptive-icon" class="page__taxonomy-item" rel="tag">adaptive icon</a><span class="sep">, </span>
+      <a href="/tags/offline" class="page__taxonomy-item" rel="tag">offline</a><span class="sep">, </span>
     
-      <a href="/tags/android" class="page__taxonomy-item" rel="tag">android</a><span class="sep">, </span>
+      <a href="/tags/react" class="page__taxonomy-item" rel="tag">react</a><span class="sep">, </span>
     
-      <a href="/tags/ui" class="page__taxonomy-item" rel="tag">ui</a>
+      <a href="/tags/tips" class="page__taxonomy-item" rel="tag">tips</a>
     
     </span>
   </p>
@@ -488,7 +433,7 @@ $(document).ready(function(){
 
 
         
-          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-07-03T00:00:00+02:00">July 03, 2019</time></p>
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2022-11-19T00:00:00+01:00">November 19, 2022</time></p>
         
       </footer>
 
@@ -497,11 +442,11 @@ $(document).ready(function(){
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=Philips+Hue+adaptive+icon%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2019%2F07%2F03%2Fadaptiveicon%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=Test+React+app+on+mobile+without+Wi-Fi%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2022%2F11%2F19%2Freact-local-development%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2019%2F07%2F03%2Fadaptiveicon%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2022%2F11%2F19%2Freact-local-development%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2019%2F07%2F03%2Fadaptiveicon%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2022%2F11%2F19%2Freact-local-development%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
@@ -522,12 +467,11 @@ $(document).ready(function(){
       
   <nav class="pagination">
     
-      <a href="/blog/2019/06/12/modularizationtips/" class="pagination--pager" title="Modularization - Lessons learned
+      <a href="/blog/2022/04/27/workmanager-crash/" class="pagination--pager" title="The curious case of crashing Workers
 ">Previous</a>
     
     
-      <a href="/blog/2019/07/17/androidqgestures/" class="pagination--pager" title="Supporting Android Q gestural navigation
-">Next</a>
+      <a href="#" class="pagination--pager disabled">Next</a>
     
   </nav>
 
@@ -550,45 +494,6 @@ $(document).ready(function(){
     <div class="page__related">
       <h4 class="page__related-title">You May Also Enjoy</h4>
       <div class="grid__wrapper">
-        
-          
-
-
-
-<div class="grid__item" style="position: relative">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    <div style="position:relative;">
-      
-        <div class="archive__item-teaser" style="background-image: url(/img/blog/offline-react-phone/offline-react-phone.png)"></div>
-      
-      <div class="archive__item_titlecontainer">
-        <h2 class="archive__item-title" itemprop="headline">
-            <a href="/blog/2022/11/19/react-local-development/" rel="permalink">Test React app on mobile without Wi-Fi
-</a>
-        </h2>
-        <h3 class="archive__date">19 Nov 2022</h3>
-      </div>
-      
-        <a href="/blog/2022/11/19/react-local-development/" rel="permalink">
-          <div class="archive__item-teaser-imageclickhandler"></div>
-        </a>
-      
-    </div>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  less than 1 minute read
-
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">Traveling by train or plane and want to test your react app on your mobile phone? This quick post explains how to access your react development server from your phone without a Wi-Fi connection.
-</p>
-  </article>
-</div>
-
         
           
 
@@ -707,6 +612,45 @@ $(document).ready(function(){
 </div>
 
         
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(/img/blog/sharecodemultiplatform/sharecodemultiplatform.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="/blog/2021/03/17/share-code-kotlin-multiplatform/" rel="permalink">Share code between Android and Jvm in Kotlin multiplatform
+</a>
+        </h2>
+        <h3 class="archive__date">17 Mar 2021</h3>
+      </div>
+      
+        <a href="/blog/2021/03/17/share-code-kotlin-multiplatform/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">While Android supports most Java language features, it doesn’t support every API that Java provides. On the other hand, Kotlin multiplatform only allows sharing code across all targets (commonMain), not a subset of targets (commonJvm).
+</p>
+  </article>
+</div>
+
+        
       </div>
     </div>
   
@@ -781,8 +725,8 @@ $(document).ready(function(){
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://jeroenmols.com/blog/2019/07/03/adaptiveicon/";  /* Replace PAGE_URL with your page's canonical URL variable */
-      this.page.identifier = "/blog/2019/07/03/adaptiveicon"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+      this.page.url = "https://jeroenmols.com/blog/2022/11/19/react-local-development/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/blog/2022/11/19/react-local-development"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
     };
     (function() { /* DON'T EDIT BELOW THIS LINE */
       var d = document, s = d.createElement('script');
