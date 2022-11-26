@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/" rel="alternate" type="text/html"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, Software developer at Plaid and Google Developer Expert.</subtitle>
- <updated>2022-11-19T08:10:58+01:00</updated>
+ <updated>2022-11-26T21:39:10+01:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,22 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>Verify Github profile link on Mastodon</title>
+   <link href="https://jeroenmols.com/blog/2022/11/26/mastodon-verify-github/"/>
+   <updated>2022-11-26T00:00:00+01:00</updated>
+   <id>https://jeroenmols.com/blog/2022/11/26/mastodon-verify-github</id>
+   <content type="html"><![CDATA[
+     
+     <p>Looking to get a fancy verified checkmark on Mastodon for your Github account?</p>
+
+<p>This post details how I made this work.</p>
+
+
+     <a href="https://jeroenmols.com/blog/2022/11/26/mastodon-verify-github/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>Test React app on mobile without Wi-Fi</title>

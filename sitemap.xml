@@ -257,6 +257,10 @@
 <lastmod>2022-11-19T00:00:00+01:00</lastmod>
 </url>
 <url>
+<loc>https://jeroenmols.com/blog/2022/11/26/mastodon-verify-github/</loc>
+<lastmod>2022-11-26T00:00:00+01:00</lastmod>
+</url>
+<url>
 <loc>https://jeroenmols.com/categories/</loc>
 </url>
 <url>
@@ -512,6 +516,12 @@
 <loc>https://jeroenmols.com/tags/offline/</loc>
 </url>
 <url>
+<loc>https://jeroenmols.com/tags/mastodon/</loc>
+</url>
+<url>
+<loc>https://jeroenmols.com/tags/github/</loc>
+</url>
+<url>
 <loc>https://jeroenmols.com/categories/blog/</loc>
 </url>
 <url>
@@ -558,7 +568,7 @@
 </url>
 <url>
 <loc>https://jeroenmols.com/github.html</loc>
-<lastmod>2022-11-19T08:08:54+01:00</lastmod>
+<lastmod>2022-11-26T21:38:58+01:00</lastmod>
 </url>
 <url>
 <loc>https://jeroenmols.com/google04708ab412557d23.html</loc>

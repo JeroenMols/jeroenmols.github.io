@@ -1,4 +1,53 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2022-11-19T08:10:58+01:00</updated><id>https://jeroenmols.com/feed.xml</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, Software developer at Plaid and Google Developer Expert.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Test React app on mobile without Wi-Fi</title><link href="https://jeroenmols.com/blog/2022/11/19/react-local-development/" rel="alternate" type="text/html" title="Test React app on mobile without Wi-Fi" /><published>2022-11-19T00:00:00+01:00</published><updated>2022-11-19T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2022/11/19/react-local-development</id><content type="html" xml:base="https://jeroenmols.com/blog/2022/11/19/react-local-development/"><![CDATA[<p>Traveling by train or plane and want to test your react app on your mobile phone? This quick post explains how to access your react development server from your phone without a Wi-Fi connection.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2022-11-26T21:39:10+01:00</updated><id>https://jeroenmols.com/feed.xml</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, Software developer at Plaid and Google Developer Expert.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Verify Github profile link on Mastodon</title><link href="https://jeroenmols.com/blog/2022/11/26/mastodon-verify-github/" rel="alternate" type="text/html" title="Verify Github profile link on Mastodon" /><published>2022-11-26T00:00:00+01:00</published><updated>2022-11-26T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2022/11/26/mastodon-verify-github</id><content type="html" xml:base="https://jeroenmols.com/blog/2022/11/26/mastodon-verify-github/"><![CDATA[<p>Looking to get a fancy verified checkmark on Mastodon for your Github account?</p>
+
+<p>This post details how I made this work.</p>
+
+<h2 id="steps">Steps</h2>
+<blockquote>
+  <p>Before I get started, huge thanks to <a href="https://fedi.simonwillison.net/@simon">Simon Wilson</a> for inspiring me with the original idea.</p>
+</blockquote>
+
+<p>In his <a href="https://til.simonwillison.net/mastodon/verifying-github-on-mastodon">excellent post</a> Simon details how to leverage the <code class="language-plaintext highlighter-rouge">your-username.github.io</code> static webpage to prove Github domain ownership.</p>
+
+<p>The idea is that proving I own <code class="language-plaintext highlighter-rouge">jeroenmols.github.io</code> is equivalent to proving ownership of <code class="language-plaintext highlighter-rouge">github.com/jeroenmols</code>.</p>
+
+<p>However, I can’t simply redirect <a href="https://jeroenmols.github.io">jeroenmols.github.io</a> to my Github profile as I already host my <a href="https://jeroenmols.com">my personal website</a> on that domain. (I use a <a href="https://github.com/JeroenMols/jeroenmols.github.io/blob/master/CNAME">CNAME record</a> to make both domains equivalent).</p>
+
+<p>Consequently, Simon’s approach didn’t work for me. Now what?</p>
+
+<p>Well instead of redirecting the entire domain, I decided to redirect a sub-page. To do this, I:</p>
+
+<ol>
+  <li>Added a new page <code class="language-plaintext highlighter-rouge">https://jeroenmols.com/github</code></li>
+  <li>Included the Mastodon verification tag: <code class="language-plaintext highlighter-rouge">&lt;link href="https://androiddev.social/@jeroenmols" rel="me"&gt;</code></li>
+  <li>Have the page redirect to my Github profile</li>
+  <li>Use the domain <code class="language-plaintext highlighter-rouge">jeroenmols.github.io/github</code> on my Mastodon profile</li>
+</ol>
+
+<p>The webpage content looks like this:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Redirecting to github.com/jeroenmols /<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"refresh"</span> <span class="na">content=</span><span class="s">"0; URL=https://github.com/jeroenmols"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"https://github.com/jeroenmols"</span> <span class="na">rel=</span><span class="s">"me"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"https://jeroenmols.com"</span> <span class="na">rel=</span><span class="s">"me"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"https://androiddev.social/@jeroenmols"</span> <span class="na">rel=</span><span class="s">"me"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+
+</code></pre></div></div>
+
+<p>And my <a href="https://androiddev.social/@Jeroenmols">Mastodon profile</a>, now looks like this:</p>
+
+<p><img src="https://jeroenmols.com/img/blog/mastodonverifygithub/mastodon-profile.png" alt="Mastondon profile" class="align-center" /></p>
+
+<p>That’s it!</p>
+
+<p>If this was helpful to you, consider <a href="https://www.buymeacoffee.com/jeroen">buying me a coffee</a> or thanking me on <a href="https://androiddev.social/@Jeroenmols">Mastodon</a> or <a href="https://twitter.com/molsjeroen">Twitter</a>!</p>]]></content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="mastodon" /><category term="github" /><category term="tips" /><summary type="html"><![CDATA[Looking to get a fancy verified checkmark on Mastodon for your Github account?]]></summary></entry><entry><title type="html">Test React app on mobile without Wi-Fi</title><link href="https://jeroenmols.com/blog/2022/11/19/react-local-development/" rel="alternate" type="text/html" title="Test React app on mobile without Wi-Fi" /><published>2022-11-19T00:00:00+01:00</published><updated>2022-11-19T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2022/11/19/react-local-development</id><content type="html" xml:base="https://jeroenmols.com/blog/2022/11/19/react-local-development/"><![CDATA[<p>Traveling by train or plane and want to test your react app on your mobile phone? This quick post explains how to access your react development server from your phone without a Wi-Fi connection.</p>
 
 <h2 id="steps">Steps</h2>
 
@@ -1542,171 +1591,4 @@ Execution failed for task ':myproject:checkReleaseDuplicateClasses'.
 <p>Try to reduce the <code class="language-plaintext highlighter-rouge">library</code>’s transitive dependencies to a minimum and focus on popular, Android optimized dependencies.</p>
 
 <p>If you’ve made it this far you should probably follow me on <span><a href="https://twitter.com/molsjeroen?source=androidlibrarydevelopment-dependencies2020" class="ga-link" target="_blank">Twitter</a></span>
-. Feel free to leave a comment below!</p>]]></content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="android" /><category term="library" /><category term="maven" /><category term="transitive dependencies" /><category term="gradle" /><category term="kotlin" /><summary type="html"><![CDATA[Ever had a build failure while integrating an SDK? Wonder how you can avoid your SDK customers having dependency conflicts? How many transitive dependencies should your SDK have?]]></summary></entry><entry><title type="html">Android library development - Modularization</title><link href="https://jeroenmols.com/blog/2020/11/04/library-modularization/" rel="alternate" type="text/html" title="Android library development - Modularization" /><published>2020-11-04T00:00:00+01:00</published><updated>2020-11-04T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2020/11/04/library-modularization</id><content type="html" xml:base="https://jeroenmols.com/blog/2020/11/04/library-modularization/"><![CDATA[<p>With modularization being all the hype, should you also modularize an SDK? Are fat aar files really needed? And how do you prevent internal APIs from being exposed on your public interface?</p>
-
-<p>This post will cover all things modularization for Android libraries.</p>
-
-<blockquote>
-  <p>This blog post is part of a series on Android libraries:</p>
-  <ul>
-    <li>Part 1: <a href="/blog/2020/10/28/library-gettingstarted/">Getting started</a></li>
-    <li>Part 2: <a href="/blog/2020/11/04/library-modularization/">Modularization</a></li>
-    <li>Part 3: <a href="/blog/2020/11/11/library-dependencies/">Transitive dependencies</a></li>
-  </ul>
-</blockquote>
-
-<h2 id="introduction">Introduction</h2>
-<p>When building an SDK, one might be inclined to modularize the SDK as <a href="/blog/2019/03/06/modularizationwhy/">modularization has tons of benefits</a>.</p>
-
-<p>However, there are two challenges with that:</p>
-
-<ol>
-  <li>submodule dependencies don’t get included in the <code class="language-plaintext highlighter-rouge">.aar</code> file</li>
-  <li>public interface of submodules gets exposed</li>
-</ol>
-
-<h2 id="submodule-dependencies">Submodule dependencies</h2>
-<p>Imagine the following project setup:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>├── app
-├── library
-└── modules
-    ├── database
-    └── ui-components
-</code></pre></div></div>
-
-<p>Here, the <code class="language-plaintext highlighter-rouge">app</code> module is an Android application that depends on the <code class="language-plaintext highlighter-rouge">library</code> module. And the <code class="language-plaintext highlighter-rouge">library</code> module depends on two other modules: <code class="language-plaintext highlighter-rouge">database</code> and <code class="language-plaintext highlighter-rouge">ui-components</code>.</p>
-
-<p><a href="/blog/2020/10/28/library-gettingstarted/">Remember that</a> when a <code class="language-plaintext highlighter-rouge">library</code> module gets built, the <code class="language-plaintext highlighter-rouge">.aar</code> artifact will only include code and resources that are in the <code class="language-plaintext highlighter-rouge">library</code> module itself. It won’t include:</p>
-
-<ul>
-  <li>any code or resources from <code class="language-plaintext highlighter-rouge">database</code> and <code class="language-plaintext highlighter-rouge">ui-components</code></li>
-  <li>links to its transitive dependencies (these go into the <code class="language-plaintext highlighter-rouge">pom.xml</code>)</li>
-</ul>
-
-<p>So when the <code class="language-plaintext highlighter-rouge">app</code> module directly includes the <code class="language-plaintext highlighter-rouge">library</code> as a Maven dependency, it would crash due to missing classes from <code class="language-plaintext highlighter-rouge">database</code> and <code class="language-plaintext highlighter-rouge">ui-components</code> on its classpath.</p>
-
-<p>This is, unfortunately, a limitation of the current Android Gradle plugin, and there’s been a <a href="https://issuetracker.google.com/issues/62121508">feature request</a> open for more than 3 years now that’s still unaddressed</p>
-
-<p>There are three ways to solve this though:</p>
-
-<ol>
-  <li>release every submodule of your library directly to Maven</li>
-  <li>create a <code class="language-plaintext highlighter-rouge">fat .aar</code> that includes the submodules</li>
-  <li>create a single module SDK</li>
-</ol>
-
-<h3 id="1-release-submodules-to-maven">1. Release submodules to Maven</h3>
-<p>Instead of publishing <code class="language-plaintext highlighter-rouge">library</code> to Maven, we could also publish <code class="language-plaintext highlighter-rouge">database</code> and <code class="language-plaintext highlighter-rouge">ui-components</code>. This way the <code class="language-plaintext highlighter-rouge">library</code> module can include them as a direct Maven dependency and add it as a transitive dependency to its <code class="language-plaintext highlighter-rouge">pom.xml</code></p>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dependencies</span> <span class="o">{</span>
-  <span class="n">implementation</span> <span class="s2">"com.jeroenmols:database:1.0.0"</span>
-  <span class="n">implementation</span> <span class="s2">"com.jeroenmols:ui-components:1.0.0"</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>However, this adds quite a bit of extra complexity. Because when a change is made to the <code class="language-plaintext highlighter-rouge">database</code> module, it now first has to be built, published and version updated in the <code class="language-plaintext highlighter-rouge">library</code> module before that module sees the changes.</p>
-
-<p>This obviously has a significant impact on the day to day workflow for developers on the project! Moreover, it’s mostly practical when there are a limited amount of submodules that only change infrequently.</p>
-
-<p>These challenges don’t mean this approach can’t be successful though. The Android Jetpack libraries are the living proof of that, but it’s also adopted by for instance the <a href="https://sdk.squareup.com/public/android/com/squareup/sdk/in-app-payments/">Square In-App payments SDK</a>.</p>
-
-<h3 id="2-fat-aar">2. Fat AAR</h3>
-<p>In the <code class="language-plaintext highlighter-rouge">fat .aar</code> solution, code and resources of the submodules are bundled into the main SDK module, hence creating a <code class="language-plaintext highlighter-rouge">fat .aar</code>. This can be done by using an external Gradle plugin such as <a href="https://github.com/kezong/fat-aar-android">fat-aar-android</a>.</p>
-
-<p>To create a <code class="language-plaintext highlighter-rouge">fat .aar</code>, apply a plugin to the <code class="language-plaintext highlighter-rouge">build.gradle</code> file of the <code class="language-plaintext highlighter-rouge">library</code> and change its dependencies from <code class="language-plaintext highlighter-rouge">implementation</code> to <code class="language-plaintext highlighter-rouge">embed</code>:</p>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">'com.kezong.fat-aar'</span>
-
-<span class="o">...</span>
-
-<span class="n">dependencies</span> <span class="o">{</span>
-    <span class="n">embed</span> <span class="nf">project</span><span class="o">(</span><span class="nl">path:</span> <span class="s1">':modules:database'</span><span class="o">,</span> <span class="nl">configuration:</span><span class="s1">'default'</span><span class="o">)</span>
-    <span class="n">embed</span> <span class="nf">project</span><span class="o">(</span><span class="nl">path:</span> <span class="s1">':modules:ui-components'</span><span class="o">,</span> <span class="nl">configuration:</span><span class="s1">'default'</span><span class="o">)</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>While the <code class="language-plaintext highlighter-rouge">fat .aar</code> solution works, it’s not without its challenges either.</p>
-
-<p>For starters, the <code class="language-plaintext highlighter-rouge">fat .aar</code> plugin breaks on almost every minor Android Gradle plugin update! This is because it hooks itself into particular tasks of the Android Gradle plugin and these very often get renamed/moved. However, the project maintainer does a stellar job at fixing those within a few weeks after the breaking change.</p>
-
-<p>Also, because of the way <code class="language-plaintext highlighter-rouge">fat .aar</code> references dependencies from submodules, it can significantly increase the binary size of your SDK. There is a way to solve that by using <code class="language-plaintext highlighter-rouge">compileOnly</code> for SDK submodule dependencies, but I’m not going to cover that in-depth here.</p>
-
-<h3 id="3-single-module-sdk">3. Single module SDK</h3>
-<p>Quite obvious, but with a single module SDK this problem simply doesn’t exist.</p>
-
-<h2 id="public-interface-pollution-by-submodules">Public interface pollution by submodules</h2>
-<p>Kotlin has four different visibility modifiers:</p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">private</code> - visible inside this class only</li>
-  <li><code class="language-plaintext highlighter-rouge">protected</code> — same as private + visible in subclasses too</li>
-  <li><code class="language-plaintext highlighter-rouge">internal</code> — visible to all classes inside this module</li>
-  <li><code class="language-plaintext highlighter-rouge">public</code> — visible to all classes</li>
-</ul>
-
-<p>Notably absent here is a modifier that’s internal to the project, yet visible across different modules.</p>
-
-<p>So when the <code class="language-plaintext highlighter-rouge">database</code> module wants to make its methods accessible to the <code class="language-plaintext highlighter-rouge">library</code>, it will need to mark those methods as public!</p>
-
-<p>However, that won’t just cause them to be <code class="language-plaintext highlighter-rouge">accessible</code> to the <code class="language-plaintext highlighter-rouge">library</code>, it will also make those methods accessible to any application using the <code class="language-plaintext highlighter-rouge">library</code>! Hence exposing SDK internals to the outside world.</p>
-
-<p>While this limitation is fundamental to Kotlin (and Java), there are a few ways to mitigate this:</p>
-
-<ol>
-  <li>move all internal APIs to an “internal package”</li>
-  <li>obfuscate all non-public classes in the SDK using R8/proguard</li>
-  <li>create a single module SDK</li>
-</ol>
-
-<h3 id="1-internal-package">1. Internal package</h3>
-<p>The first solution is to move all classes that aren’t intended for public use to a package name that has <code class="language-plaintext highlighter-rouge">internal</code> in its name. This discourages (but not prevents!) others from using it.</p>
-
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="nn">com.jeroenmols.internal.database</span>
-</code></pre></div></div>
-
-<p>For example OkHttp has an <a href="https://github.com/square/okhttp/tree/master/okhttp/src/main/kotlin/okhttp3/internal">okhttp.internal package</a>.</p>
-
-<h3 id="2-proguardr8">2. Proguard/R8</h3>
-<p>A more aggressive solution is to use Proguard/R8 to obfuscate each interface that isn’t supposed to be public.</p>
-
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span><span class="p">.</span><span class="n">a</span><span class="p">.</span><span class="n">a</span>
-</code></pre></div></div>
-
-<p>However, these class names no longer have a unique package prefix! Hence this could lead to class name collisions with other libraries that do the same.</p>
-
-<p>Fortunately, there is an option to repackage classes under your own namespace to avoid collisions in <code class="language-plaintext highlighter-rouge">proguard-rules.pro</code>:</p>
-
-<div class="language-prolog highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="ss">repackageclasses</span> <span class="ss">com</span><span class="p">.</span><span class="ss">jeroenmols</span><span class="p">.</span><span class="ss">internal</span>
-</code></pre></div></div>
-
-<p>This will make sure every obfuscated class will be flattened in the package specified.</p>
-
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">com</span><span class="p">.</span><span class="n">jeroenmols</span><span class="p">.</span><span class="k">internal</span><span class="p">.</span><span class="n">a</span>
-</code></pre></div></div>
-
-<p>The main downside of this approach is that Proguard/R8 isn’t trivial to set up correctly, so expect some frustration and test well.</p>
-
-<blockquote>
-  <p>Note: both these strategies aren’t mutually exclusive! I’ve successfully combined both to reduce an SDK API surface.</p>
-</blockquote>
-
-<h3 id="3-single-module-sdk-1">3. Single module SDK</h3>
-<p>Finally, there is the third option of building a single module SDK and using the internal modifier to prevent classes/methods from being exposed publicly.</p>
-
-<h2 id="recommendation">Recommendation</h2>
-<p>While modularization is almost always a good idea for an App, the same can’t be said for SDKs. This is mainly because the tooling is lacking proper support for building Android libraries.</p>
-
-<p>Therefore I recommend making small and even mid-sized SDKs single module and organize code in packages instead.</p>
-
-<p>Whenever an SDK grows larger, it likely contains parts that could also be useful as a stand-alone library. Hence it might make sense to split the SDK and develop and deploy a few small spin-offs.</p>
-
-<p>Multi modules SDKs should be avoided as much as possible.</p>
-
-<h2 id="wrap-up">Wrap-up</h2>
-<p>Modularizing SDKs on Android unfortunately creates significant issues with packaging and restricting visibility of code. Therefore single module SDKs should be preferred.</p>
-
-<p>Don’t forget to follow me on <span><a href="https://twitter.com/molsjeroen?source=androidlibrarydevelopment-modularization2020" class="ga-link" target="_blank">Twitter</a></span>
- and don’t miss the last part about <a href="/blog/2020/11/11/library-dependencies/">transitive dependencies</a>!</p>
-
-<p>Feel free to leave a comment below!</p>]]></content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="android" /><category term="library" /><category term="modularization" /><category term="maven" /><category term="gradle" /><category term="kotlin" /><summary type="html"><![CDATA[With modularization being all the hype, should you also modularize an SDK? Are fat aar files really needed? And how do you prevent internal APIs from being exposed on your public interface?]]></summary></entry></feed>
+. Feel free to leave a comment below!</p>]]></content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="android" /><category term="library" /><category term="maven" /><category term="transitive dependencies" /><category term="gradle" /><category term="kotlin" /><summary type="html"><![CDATA[Ever had a build failure while integrating an SDK? Wonder how you can avoid your SDK customers having dependency conflicts? How many transitive dependencies should your SDK have?]]></summary></entry></feed>

@@ -382,4 +382,10 @@ var store = [{
         "tags": ["react","offline","tips"],
         "url": "/blog/2022/11/19/react-local-development/",
         "teaser": "/img/blog/offline-react-phone/offline-react-phone.png"
+      },{
+        "title": "Verify Github profile link on Mastodon",
+        "excerpt":"Looking to get a fancy verified checkmark on Mastodon for your Github account? This post details how I made this work. Steps Before I get started, huge thanks to Simon Wilson for inspiring me with the original idea. In his excellent post Simon details how to leverage the your-username.github.io static...","categories": ["blog"],
+        "tags": ["mastodon","github","tips"],
+        "url": "/blog/2022/11/26/mastodon-verify-github/",
+        "teaser": "/img/blog/mastodonverifygithub/mastodon-verify-github.png"
       }]
