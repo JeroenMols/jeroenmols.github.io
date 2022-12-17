@@ -388,4 +388,10 @@ var store = [{
         "tags": ["mastodon","github","tips"],
         "url": "/blog/2022/11/26/mastodon-verify-github/",
         "teaser": "/img/blog/mastodonverifygithub/mastodon-verify-github.png"
+      },{
+        "title": "Transfer many large files from Android",
+        "excerpt":"Trying to get a large number of files from your Android phone, but Android File Transfer freezing up? Here’s what I learned trying to pull ~170 Gb from my Pixel phone. Pulling files from your phone For this to work you need to have ADB installed on your computer and...","categories": ["blog"],
+        "tags": ["android","adb","backup","files"],
+        "url": "/blog/2022/12/17/pull-files-android/",
+        "teaser": "/img/blog/pull-files-android/pull-files-android.jpg"
       }]

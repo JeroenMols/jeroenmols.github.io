@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/" rel="alternate" type="text/html"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, Software developer at Plaid and Google Developer Expert.</subtitle>
- <updated>2022-11-26T21:46:33+01:00</updated>
+ <updated>2022-12-17T14:58:09+01:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,22 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>Transfer many large files from Android</title>
+   <link href="https://jeroenmols.com/blog/2022/12/17/pull-files-android/"/>
+   <updated>2022-12-17T00:00:00+01:00</updated>
+   <id>https://jeroenmols.com/blog/2022/12/17/pull-files-android</id>
+   <content type="html"><![CDATA[
+     
+     <p>Trying to get a large number of files from your Android phone, but Android File Transfer freezing up?</p>
+
+<p>Here’s what I learned trying to pull ~170 Gb from my Pixel phone.</p>
+
+
+     <a href="https://jeroenmols.com/blog/2022/12/17/pull-files-android/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>Verify Github profile link on Mastodon</title>

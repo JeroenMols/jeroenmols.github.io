@@ -1,4 +1,110 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2022-11-26T21:46:33+01:00</updated><id>https://jeroenmols.com/feed.xml</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, Software developer at Plaid and Google Developer Expert.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Verify Github profile link on Mastodon</title><link href="https://jeroenmols.com/blog/2022/11/26/mastodon-verify-github/" rel="alternate" type="text/html" title="Verify Github profile link on Mastodon" /><published>2022-11-26T00:00:00+01:00</published><updated>2022-11-26T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2022/11/26/mastodon-verify-github</id><content type="html" xml:base="https://jeroenmols.com/blog/2022/11/26/mastodon-verify-github/"><![CDATA[<p>Looking to get a fancy verified checkmark on Mastodon for your Github account?</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2022-12-17T14:58:09+01:00</updated><id>https://jeroenmols.com/feed.xml</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, Software developer at Plaid and Google Developer Expert.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Transfer many large files from Android</title><link href="https://jeroenmols.com/blog/2022/12/17/pull-files-android/" rel="alternate" type="text/html" title="Transfer many large files from Android" /><published>2022-12-17T00:00:00+01:00</published><updated>2022-12-17T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2022/12/17/pull-files-android</id><content type="html" xml:base="https://jeroenmols.com/blog/2022/12/17/pull-files-android/"><![CDATA[<p>Trying to get a large number of files from your Android phone, but Android File Transfer freezing up?</p>
+
+<p>Here’s what I learned trying to pull ~170 Gb from my Pixel phone.</p>
+
+<h2 id="pulling-files-from-your-phone">Pulling files from your phone</h2>
+<p>For this to work you need to <a href="https://www.xda-developers.com/install-adb-windows-macos-linux/">have ADB installed</a> on your computer and <a href="https://developer.android.com/studio/debug/dev-options#enable">developer options enabled</a> on your Android phone.</p>
+
+<p>First, check how large the directory you’re trying to pull is. Let’s assume we want to pull the Camera folder:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>adb shell
+du -sh sdcard/DCIM
+
+# Output:
+171.8G	sdcard/DCIM
+</code></pre></div></div>
+
+<blockquote>
+  <p>Don’t forget to run <code class="language-plaintext highlighter-rouge">exit</code> to leave the ADB shell.</p>
+</blockquote>
+
+<p>If you have enough disk space, you can pull the entire folder to your computer using <code class="language-plaintext highlighter-rouge">adb pull</code>.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>adb pull -p sdcard/DCIM/ .   
+</code></pre></div></div>
+
+<blockquote>
+  <p>Notice the <code class="language-plaintext highlighter-rouge">-p</code> option to show transfer progress</p>
+</blockquote>
+
+<p>Unfortunately, I didn’t have enough disk space… So instead, let’s pull the files in batches, by using <code class="language-plaintext highlighter-rouge">find</code> to search for files.</p>
+
+<p>For instance to find all video files:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>adb shell find `sdcard/DCIM/Camera/*.mp4`
+</code></pre></div></div>
+
+<p>The result of <code class="language-plaintext highlighter-rouge">find</code> can then be piped into <code class="language-plaintext highlighter-rouge">adb pull</code> to transfer the files one by one to your computer.</p>
+
+<p>Some possibly handy variants are:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Pull all video files
+adb shell find 'sdcard/DCIM/Camera/*.mp4' | xargs -n1 adb pull
+
+# Pull all image files
+adb shell find 'sdcard/DCIM/Camera/*.mp4' | xargs -n1 adb pull
+
+# Pull al files from the past year
+adb shell find 'sdcard/DCIM/Camera/PXL_2022*'
+
+# Pull all files from the past month
+adb shell find 'sdcard/DCIM/Camera/PXL_202212*'
+</code></pre></div></div>
+
+<h2 id="deleting-pulled-files">Deleting pulled files</h2>
+<p>Now that the files are pulled from your phone, you probably also want to delete them to free up phone storage.</p>
+
+<p>The easiest way to do so is to delete the entire folder from your phone:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Caution: this permanently deletes all your files!
+adb shell rm &lt;folder-name-here&gt;
+</code></pre></div></div>
+
+<p>However, if you hadn’t pulled all files from that folder yet, you will include data loss.</p>
+
+<p>So instead of deleting the folder, we’ll only delete the files that we just synced to our computer.</p>
+
+<p>First list all of the files in the synced folder on your computer using <code class="language-plaintext highlighter-rouge">find</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>find . -name '*'
+</code></pre></div></div>
+
+<blockquote>
+  <p>However, you can also be more granular here if you want:</p>
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># List all images
+find . -name '*.jpg'
+</code></pre></div>  </div>
+</blockquote>
+
+<p>Next, for each listed file, reconstruct the original file path on your phone using <code class="language-plaintext highlighter-rouge">sed</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>find . -name '*' | sed 's:.:sdcard/DCIM/Camera:'
+</code></pre></div></div>
+
+<p>And finally, delete those files from your phone by piping the result into <code class="language-plaintext highlighter-rouge">adb shell rm</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>find . -name '*' | sed 's:.:sdcard/DCIM/Camera:' | xargs -n1 adb shell rm $1
+</code></pre></div></div>
+
+<blockquote>
+  <p>Note I highly recommend doing a dry run first to check what files will be deleted by using <code class="language-plaintext highlighter-rouge">adb shell ls -l</code>:</p>
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>find . -name '*' | sed 's:.:sdcard/DCIM/Camera:' | xargs -n1 adb shell ls -l $1
+</code></pre></div>  </div>
+</blockquote>
+
+<p>Finally, some possibly handy variants are:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Delete all video files from the current folder from your phone
+find . -name '*.mp4' | sed 's:.:sdcard/DCIM/Camera:' | xargs -n1 adb shell rm $1
+
+# Delete all image files from the current folder from your phone
+find . -name '*.jpg' | sed 's:.:sdcard/DCIM/Camera:' | xargs -n1 adb shell rm $1
+</code></pre></div></div>
+
+<h2 id="wrap-up">Wrap-up</h2>
+<p>Android file transfer unfortunately isn’t the most reliable solution to transfer files from your phone to your computer. However, thanks to <code class="language-plaintext highlighter-rouge">adb</code> there is a fast and reliable way to get (a subset of) files from your Android device.</p>
+
+<p>If this was helpful to you, consider <a href="https://www.buymeacoffee.com/jeroen">buying me a coffee</a> or thanking me on <a href="https://androiddev.social/@Jeroenmols">Mastodon</a> or <a href="https://twitter.com/molsjeroen">Twitter</a>!</p>]]></content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="android" /><category term="adb" /><category term="backup" /><category term="files" /><summary type="html"><![CDATA[Trying to get a large number of files from your Android phone, but Android File Transfer freezing up?]]></summary></entry><entry><title type="html">Verify Github profile link on Mastodon</title><link href="https://jeroenmols.com/blog/2022/11/26/mastodon-verify-github/" rel="alternate" type="text/html" title="Verify Github profile link on Mastodon" /><published>2022-11-26T00:00:00+01:00</published><updated>2022-11-26T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2022/11/26/mastodon-verify-github</id><content type="html" xml:base="https://jeroenmols.com/blog/2022/11/26/mastodon-verify-github/"><![CDATA[<p>Looking to get a fancy verified checkmark on Mastodon for your Github account?</p>
 
 <p>This post details how I made this work.</p>
 
@@ -1216,379 +1322,4 @@ Could not determine the dependencies of task <span class="s1">':app:lintVitalRel
 <p>I hope this neat little trick is helpful to test your libraries. I’ve also <a href="https://github.com/JeroenMols/LibraryExample/pull/1/files">open sourced a sample project</a> that demonstrates this concept.</p>
 
 <p>If you’ve made it this far you should probably follow me on <span><a href="https://twitter.com/molsjeroen?source=testlibraryreleasesusinganinprojectmavenrepository2020" class="ga-link" target="_blank">Twitter</a></span>
-. Feel free to leave a comment below!</p>]]></content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="android" /><category term="library" /><category term="maven" /><category term="transitive dependencies" /><category term="gradle" /><category term="kotlin" /><summary type="html"><![CDATA[Short, powerful post on how to test the release version of libraries directly within a project without having to deploy them to Maven first.]]></summary></entry><entry><title type="html">Android library development - Dependencies</title><link href="https://jeroenmols.com/blog/2020/11/11/library-dependencies/" rel="alternate" type="text/html" title="Android library development - Dependencies" /><published>2020-11-11T00:00:00+01:00</published><updated>2020-11-11T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2020/11/11/library-dependencies</id><content type="html" xml:base="https://jeroenmols.com/blog/2020/11/11/library-dependencies/"><![CDATA[<p>Ever had a build failure while integrating an SDK? Wonder how you can avoid your SDK customers having dependency conflicts? How many transitive dependencies should your SDK have?</p>
-
-<p>This post will cover how transitive dependencies of an Android library affect Apps integrating it.</p>
-
-<blockquote>
-  <p>This blog post is part of a series on Android libraries:</p>
-  <ul>
-    <li>Part 1: <a href="/blog/2020/10/28/library-gettingstarted/">Getting started</a></li>
-    <li>Part 2: <a href="/blog/2020/11/04/library-modularization/">Modularization</a></li>
-    <li>Part 3: <a href="/blog/2020/11/11/library-dependencies/">Transitive dependencies</a></li>
-  </ul>
-</blockquote>
-
-<h2 id="introduction">Introduction</h2>
-<blockquote>
-  <p>This post assumes familiarity with transitive dependencies and how Maven handles those. You can learn all about that and much more in <a href="/blog/2020/10/28/library-gettingstarted/">the first part</a> of this series.</p>
-</blockquote>
-
-<p>Assume there is an existing application <code class="language-plaintext highlighter-rouge">CustomerApp</code> that is about to start using our library:</p>
-
-<p><a href="https://jeroenmols.com/img/blog/librarydependencies/customerapp_before.png"><img src="https://jeroenmols.com/img/blog/librarydependencies/customerapp_before.png" alt="Customer app about to integrate a new library" class="align-center" /></a></p>
-
-<p>Before integration, they have a single dependency on <code class="language-plaintext highlighter-rouge">Another library</code> that transitively depends on <code class="language-plaintext highlighter-rouge">Transitive dependency 1</code>.</p>
-
-<p>Now when they integrate the new <code class="language-plaintext highlighter-rouge">library</code>:</p>
-
-<p><a href="https://jeroenmols.com/img/blog/librarydependencies/customerapp_after.png"><img src="https://jeroenmols.com/img/blog/librarydependencies/customerapp_after.png" alt="Customer app after integrating a new library" class="align-center" /></a></p>
-
-<p>They don’t just start to depend on <code class="language-plaintext highlighter-rouge">library</code>, but they also depend on all its transitive dependencies <code class="language-plaintext highlighter-rouge">Transitive dependency 1</code> and <code class="language-plaintext highlighter-rouge">Transitive dependency 2</code>.</p>
-
-<p>All these transitive dependencies can easily cause integration issues in the host <code class="language-plaintext highlighter-rouge">CustomerApp</code>.</p>
-
-<p>This blog post will look at the two most common issues:</p>
-
-<ul>
-  <li>conflicting transitive dependency versions</li>
-  <li>incompatible transitive dependencies</li>
-</ul>
-
-<p>It’s important to note that when transitive dependency issues occur, the last integrated SDK will be blamed for these issues!!!</p>
-
-<p><code class="language-plaintext highlighter-rouge">CustomerApp</code> was compiling fine with <code class="language-plaintext highlighter-rouge">Another library</code>, only after adding <code class="language-plaintext highlighter-rouge">library</code> the issues occurred. So as an SDK developer, this is our problem to solve.</p>
-
-<h2 id="conflicting-dependency-versions">Conflicting dependency versions</h2>
-<p>Imagine if <code class="language-plaintext highlighter-rouge">CustomerApp</code> integrates the following two SDKs:</p>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dependencies</span> <span class="o">{</span>
-  <span class="n">implementation</span> <span class="s2">"com.jeroenmols:library:1.0.0"</span>
-  <span class="n">implementation</span> <span class="s2">"com.example:anotherlibrary:2.0.0"</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>And that both <code class="language-plaintext highlighter-rouge">library</code> and <code class="language-plaintext highlighter-rouge">anotherLibary</code> depend on a different version of a common dependency like <code class="language-plaintext highlighter-rouge">OkHttp</code>.</p>
-
-<p><a href="https://jeroenmols.com/img/blog/librarydependencies/dependency_versions.png"><img src="https://jeroenmols.com/img/blog/librarydependencies/dependency_versions.png" alt="Customer app after integrating a new library" class="align-center" /></a></p>
-
-<p>Now building <code class="language-plaintext highlighter-rouge">CustomerApp</code> would fail, because Gradle can’t know what <code class="language-plaintext highlighter-rouge">OkHttp</code> version to pick: <code class="language-plaintext highlighter-rouge">v3</code> or <code class="language-plaintext highlighter-rouge">v4</code>?</p>
-
-<p>While more solutions possible, this post will cover the three most common ways this problem can be fixed:</p>
-
-<ol>
-  <li>Force dependency resolution in <code class="language-plaintext highlighter-rouge">CustomerApp</code></li>
-  <li>Loosen dependency requirements in <code class="language-plaintext highlighter-rouge">library</code></li>
-  <li>Remove transitive dependency from <code class="language-plaintext highlighter-rouge">library</code></li>
-</ol>
-
-<h3 id="1-force-dependency-resolution-in-customerapp">1. Force dependency resolution in <code class="language-plaintext highlighter-rouge">CustomerApp</code></h3>
-<p>The first way to address this problem is by adding code in the <code class="language-plaintext highlighter-rouge">CustomerApp</code> to force a particular dependency version.</p>
-
-<p>This can either be done by excluding the <code class="language-plaintext highlighter-rouge">OkHttp</code> version from the <code class="language-plaintext highlighter-rouge">library</code> dependency.</p>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">implementation</span><span class="o">(</span><span class="s1">'com.jeroenmols:library:1.0.0'</span><span class="o">)</span> <span class="o">{</span>
-  <span class="n">exclude</span> <span class="nl">group:</span> <span class="s1">'com.squareup.okhttp3'</span><span class="o">,</span> <span class="nl">module:</span> <span class="s1">'okhttp'</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>Or by forcing the resolved <code class="language-plaintext highlighter-rouge">OkHttp</code> version for all dependencies to a particular version:</p>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">configurations</span><span class="o">.</span><span class="na">all</span> <span class="o">{</span>
-  <span class="n">resolutionStrategy</span> <span class="o">{</span>
-    <span class="n">force</span> <span class="s1">'com.squareup.okhttp3:okhttp:4.9.0'</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>The main advantage of this strategy is that no <code class="language-plaintext highlighter-rouge">library</code> update is required. So the developers of <code class="language-plaintext highlighter-rouge">CustomerApp</code> can apply this themselves when a conflict occurs.</p>
-
-<p>However, this is incredibly dangerous as <code class="language-plaintext highlighter-rouge">CustomerApp</code> is now forcing <code class="language-plaintext highlighter-rouge">AnotherLibrary</code> to work with <code class="language-plaintext highlighter-rouge">OkHttp</code> version <code class="language-plaintext highlighter-rouge">4.9.0</code>, whereas <code class="language-plaintext highlighter-rouge">AnotherLibrary</code> was expecting <code class="language-plaintext highlighter-rouge">OkHttp</code> <code class="language-plaintext highlighter-rouge">3.x.x</code>!</p>
-
-<p>And since the developers of <code class="language-plaintext highlighter-rouge">AnotherLibrary</code> never tested their SDK with the enforced version of <code class="language-plaintext highlighter-rouge">OkHttp</code>, this could cause runtime crashes (e.g. <code class="language-plaintext highlighter-rouge">ClassNotFoundException</code>), behavior differences,…</p>
-
-<p>A second downside is that this puts the burden on the SDK customers (i.e. <code class="language-plaintext highlighter-rouge">CustomerApp</code>) to fix the problems arising from integrating your SDK.</p>
-
-<h3 id="2-loosen-dependency-requirements-in-library">2. Loosen dependency requirements in <code class="language-plaintext highlighter-rouge">library</code></h3>
-<p>A better solution is to loosen the dependency requirements of the <code class="language-plaintext highlighter-rouge">library</code>.</p>
-
-<p>Instead of explicitly requiring version <code class="language-plaintext highlighter-rouge">OkHttp</code> version <code class="language-plaintext highlighter-rouge">4.9.0</code>, the SDK can also require a minimum version of <code class="language-plaintext highlighter-rouge">4.0.0</code> or higher in the <code class="language-plaintext highlighter-rouge">pom.xml</code>:</p>
-
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
-<span class="nt">&lt;dependencies&gt;</span>
-  <span class="nt">&lt;dependency&gt;</span>
-    <span class="nt">&lt;groupId&gt;</span>com.squareup.okhttp3<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>okhttp3<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>[4.0.0,)<span class="nt">&lt;/version&gt;</span>
-    <span class="nt">&lt;scope&gt;</span>compile<span class="nt">&lt;/scope&gt;</span>
-  <span class="nt">&lt;/dependency&gt;</span>
-<span class="nt">&lt;/dependencies&gt;</span>
-</code></pre></div></div>
-
-<p>Notice how the <code class="language-plaintext highlighter-rouge">OkHttp</code> version is now specified as <code class="language-plaintext highlighter-rouge">[4.0.0,)</code> meaning any version of <code class="language-plaintext highlighter-rouge">4.0.0</code> or higher is supported.</p>
-
-<p>In order to achieve this using Gradle, the <code class="language-plaintext highlighter-rouge">publishing</code> block of SDK <code class="language-plaintext highlighter-rouge">build.gradle</code> needs to contain the following:</p>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pom</span><span class="o">.</span><span class="na">withXml</span> <span class="o">{</span>
-  <span class="kt">def</span> <span class="n">dependencies</span> <span class="o">=</span> <span class="n">asNode</span><span class="o">().</span><span class="na">appendNode</span><span class="o">(</span><span class="s1">'dependencies'</span><span class="o">)</span>
-  <span class="n">configurations</span><span class="o">.</span><span class="na">getByName</span><span class="o">(</span><span class="s2">"releaseCompileClasspath"</span><span class="o">).</span><span class="na">getResolvedConfiguration</span><span class="o">().</span><span class="na">getFirstLevelModuleDependencies</span><span class="o">().</span><span class="na">each</span> <span class="o">{</span>
-    <span class="o">...</span>
-    <span class="kt">def</span> <span class="n">dependency</span> <span class="o">=</span> <span class="n">dependencies</span><span class="o">.</span><span class="na">appendNode</span><span class="o">(</span><span class="s1">'dependency'</span><span class="o">)</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">it</span><span class="o">.</span><span class="na">moduleGroup</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="s1">'okhttp3'</span><span class="o">))</span> <span class="o">{</span>
-        <span class="n">dependency</span><span class="o">.</span><span class="na">appendNode</span><span class="o">(</span><span class="s1">'version'</span><span class="o">,</span> <span class="s2">"[4.0.0,)"</span><span class="o">)</span>
-    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-        <span class="n">dependency</span><span class="o">.</span><span class="na">appendNode</span><span class="o">(</span><span class="s1">'version'</span><span class="o">,</span> <span class="n">it</span><span class="o">.</span><span class="na">moduleVersion</span><span class="o">)</span>
-    <span class="o">}</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>The main advantage of this strategy is that this doesn’t require any action from the <code class="language-plaintext highlighter-rouge">CustomerApp</code>.</p>
-
-<p>On the other hand, this increases the testing burden for the developers of <code class="language-plaintext highlighter-rouge">library</code> to ensure compatibility with all supported versions of <code class="language-plaintext highlighter-rouge">OkHttp</code>.</p>
-
-<p>Also, imagine <code class="language-plaintext highlighter-rouge">OkHttp</code> release a new major version <code class="language-plaintext highlighter-rouge">5.x.x</code> with massive breaking API changes. What version of <code class="language-plaintext highlighter-rouge">OkHttp</code> would <code class="language-plaintext highlighter-rouge">library</code> then support and force their customers to adopt?</p>
-
-<blockquote>
-  <p>Note that <code class="language-plaintext highlighter-rouge">OkHttp</code> actually solves this problem by <a href="https://jakewharton.com/java-interoperability-policy-for-major-version-updates/">including the version in their package name</a>:</p>
-  <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.square.okhttp3</span>
-</code></pre></div>  </div>
-  <p>and Maven coordinates:</p>
-  <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">implementation</span> <span class="s1">'com.squareup.okhttp3:okhttp3:4.9.0'</span>
-</code></pre></div>  </div>
-  <p>So for <code class="language-plaintext highlighter-rouge">OkHttp</code> different major versions can coexist in <code class="language-plaintext highlighter-rouge">CustomerApp</code>, but this isn’t true for all other SDKs.</p>
-</blockquote>
-
-<h3 id="3-remove-transitive-dependency-from-library">3. Remove transitive dependency from <code class="language-plaintext highlighter-rouge">library</code></h3>
-<p>While obvious, this actually is a highly effective way of reducing transitive dependency conflicts. Downside is that the library needs more code to solve the challenges the dependency would.</p>
-
-<p>This is also the only proposed solution that would be able to fully handle breaking API changes of a particular dependency that doesn’t support major versions to coexist.</p>
-
-<h2 id="incompatible-transitive-dependencies">Incompatible transitive dependencies</h2>
-<p>Similar to conflicting dependency versions, dependencies can be downright incompatible.</p>
-
-<p>Take for instance <a href="https://developers.google.com/protocol-buffers">protocol buffers</a>, which has two different artifacts:</p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">protobuf-java</code></li>
-  <li><code class="language-plaintext highlighter-rouge">protobuf-javalite</code> (optimized for Android)</li>
-</ul>
-
-<p>These artifacts are mostly similar but optimized for different use cases.</p>
-
-<p>So for a <code class="language-plaintext highlighter-rouge">CustomerApp</code> with two <code class="language-plaintext highlighter-rouge">libraries</code> dependencies that transitive rely on a different <code class="language-plaintext highlighter-rouge">protobuf</code> artifact:</p>
-
-<p><a href="https://jeroenmols.com/img/blog/librarydependencies/dependency_incompatible.png"><img src="https://jeroenmols.com/img/blog/librarydependencies/dependency_incompatible.png" alt="Customer app with incompatible transitive dependencies" class="align-center" /></a></p>
-
-<p>Compilation will fail! Because both <code class="language-plaintext highlighter-rouge">protobuf-java</code> and <code class="language-plaintext highlighter-rouge">protobuf-javalite</code> define the same/similar classes in the same namespace:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./gradlew clean assembleDebug
-&gt; Task :app:checkDebugDuplicateClasses FAILED
-
-FAILURE: Build failed with an exception.
-
-* What went wrong:
-Execution failed for task ':myproject:checkReleaseDuplicateClasses'.
-&gt; 1 exception was raised by workers:
-  java.lang.RuntimeException: Duplicate class com.google.protobuf.AbstractMessageLite found in modules protobuf-java-3.11.1.jar (com.google.protobuf:protobuf-java:3.11.1) and protobuf-javalite-3.11.0.jar (com.google.protobuf:protobuf-javalite:3.11.0)
-  Duplicate class com.google.protobuf.AbstractMessageLite$Builder found in modules protobuf-java-3.11.1.jar (com.google.protobuf:protobuf-java:3.11.1) and protobuf-javalite-3.11.0.jar (com.google.protobuf:protobuf-javalite:3.11.0)
-  Duplicate class com.google.protobuf.AbstractMessageLite$Builder$LimitedInputStream found in modules protobuf-java-3.11.1.jar (com.google.protobuf:protobuf-java:3.11.1) and protobuf-javalite-3.11.0.jar (com.google.protobuf:protobuf-javalite:3.11.0)
-     ...
-</code></pre></div></div>
-
-<p>And unfortunately for <code class="language-plaintext highlighter-rouge">protobuf</code>, this issue is very common: even Firebase performance monitoring <code class="language-plaintext highlighter-rouge">19.0.7</code> (April 2020 !!!) relied on an even different, incompatible, 4 year old <code class="language-plaintext highlighter-rouge">protobuf</code> artifact!</p>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">+---</span> <span class="n">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">firebase</span><span class="o">:</span><span class="n">firebase</span><span class="o">-</span><span class="nl">perf:</span><span class="mf">19.0</span><span class="o">.</span><span class="mi">7</span>
-<span class="o">|</span>    <span class="o">+---</span> <span class="n">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">firebase</span><span class="o">:</span><span class="n">firebase</span><span class="o">-</span><span class="nl">config:</span><span class="mf">19.0</span><span class="o">.</span><span class="mi">4</span>
-<span class="o">|</span>    <span class="o">|</span>    <span class="o">+---</span> <span class="n">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">firebase</span><span class="o">:</span><span class="n">firebase</span><span class="o">-</span><span class="nl">abt:</span><span class="mf">19.0</span><span class="o">.</span><span class="mi">0</span>
-<span class="o">|</span>    <span class="o">|</span>    <span class="o">|</span>    <span class="err">\</span><span class="o">---</span> <span class="n">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">protobuf</span><span class="o">:</span><span class="n">protobuf</span><span class="o">-</span><span class="nl">lite:</span><span class="mf">3.0</span><span class="o">.</span><span class="mi">1</span>
-</code></pre></div></div>
-
-<p>So what to do when a transitive dependency of the SDK relies on the wrong dependency?</p>
-
-<p>Let’s have a look at three possible solutions:</p>
-
-<ol>
-  <li>Substitute dependency in <code class="language-plaintext highlighter-rouge">CustomerApp</code></li>
-  <li>Remove dependency from transitive dependency of <code class="language-plaintext highlighter-rouge">library</code></li>
-  <li>Remove transitive dependency from <code class="language-plaintext highlighter-rouge">library</code></li>
-</ol>
-
-<h3 id="1-substitute-dependency-in-customerapp">1. Substitute dependency in <code class="language-plaintext highlighter-rouge">CustomerApp</code></h3>
-<p>Similar to handling conflicting dependency versions, the <code class="language-plaintext highlighter-rouge">CustomerApp</code> can exclude the dependency:</p>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">implementation</span><span class="o">(</span><span class="s1">'com.jeroenmols:library:1.0.0'</span><span class="o">)</span> <span class="o">{</span>
-  <span class="n">exclude</span> <span class="nl">group:</span> <span class="s1">'com.google.protobuf'</span><span class="o">,</span> <span class="nl">module:</span> <span class="s1">'protobuf-java'</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>Or force the dependency to be substituted:</p>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">allprojects</span> <span class="o">{</span>
-  <span class="n">configurations</span><span class="o">.</span><span class="na">all</span> <span class="o">{</span>
-    <span class="n">resolutionStrategy</span><span class="o">.</span><span class="na">dependencySubstitution</span> <span class="o">{</span>
-      <span class="n">substitute</span> <span class="nf">module</span><span class="o">(</span><span class="s1">'com.google.protobuf:protobuf-lite'</span><span class="o">)</span> <span class="n">with</span> <span class="n">module</span><span class="o">(</span><span class="s1">'com.google.protobuf:protobuf-javalite'</span><span class="o">)</span>
-    <span class="o">}</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>These solutions have similar advantages and disadvantages as solution 1 for conflicting versions.</p>
-
-<h3 id="2-remove-dependency-from-transitive-dependency">2. Remove dependency from transitive dependency</h3>
-<p>Let’s look at a more interesting approach.</p>
-
-<p>We’ll take <a href="https://github.com/streem/pbandk"><code class="language-plaintext highlighter-rouge">pbandk</code></a> as an example, a very promising <code class="language-plaintext highlighter-rouge">Kotlin</code> code generator and runtime for Protocol buffers.</p>
-
-<p>Imagine that <code class="language-plaintext highlighter-rouge">library</code> depends on <code class="language-plaintext highlighter-rouge">pbandk</code>, which unfortunately depends on the non-optimized version of <code class="language-plaintext highlighter-rouge">protobuf</code>, causing a build failure when integrated into the <code class="language-plaintext highlighter-rouge">CustomerApp</code>:</p>
-
-<p><a href="https://jeroenmols.com/img/blog/librarydependencies/dependency_incompatible_pbandk.png"><img src="https://jeroenmols.com/img/blog/librarydependencies/dependency_incompatible_pbandk.png" alt="Library dependency has incompatible transitive dependency" class="align-center" /></a></p>
-
-<p>Now to fix this, we need to ensure that <code class="language-plaintext highlighter-rouge">protobuf-java</code> doesn’t get transitively added to <code class="language-plaintext highlighter-rouge">CustomerApp</code> after adding a dependency on <code class="language-plaintext highlighter-rouge">library</code>.</p>
-
-<p>So we’ll have to add a dependency exclusion to the <code class="language-plaintext highlighter-rouge">library</code>’s <code class="language-plaintext highlighter-rouge">pom.xml</code>:</p>
-
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
-<span class="nt">&lt;dependencies&gt;</span>
-  <span class="nt">&lt;dependency&gt;</span>
-    <span class="nt">&lt;groupId&gt;</span>pro.streem.pbandk<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>pbandk-runtime-jvm<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>0.9.0<span class="nt">&lt;/version&gt;</span>
-    <span class="nt">&lt;exclusions&gt;</span>
-      <span class="nt">&lt;exclusion&gt;</span>
-        <span class="nt">&lt;groupId&gt;</span>com.google.protobuf<span class="nt">&lt;/groupId&gt;</span>
-        <span class="nt">&lt;artifactId&gt;</span>protobuf-java<span class="nt">&lt;/artifactId&gt;</span>
-      <span class="nt">&lt;/exclusion&gt;</span>
-    <span class="nt">&lt;/exclusions&gt;</span>
-  <span class="nt">&lt;/dependency&gt;</span>
-<span class="nt">&lt;/dependencies&gt;</span>
-</code></pre></div></div>
-
-<p>This can be done by modifying the <code class="language-plaintext highlighter-rouge">publishing</code> block of the <code class="language-plaintext highlighter-rouge">library</code>’s <code class="language-plaintext highlighter-rouge">build.gradle</code>:</p>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pom</span><span class="o">.</span><span class="na">withXml</span> <span class="o">{</span>
-  <span class="kt">def</span> <span class="n">dependencies</span> <span class="o">=</span> <span class="n">asNode</span><span class="o">().</span><span class="na">appendNode</span><span class="o">(</span><span class="s1">'dependencies'</span><span class="o">)</span>
-  <span class="n">configurations</span><span class="o">.</span><span class="na">getByName</span><span class="o">(</span><span class="s2">"releaseCompileClasspath"</span><span class="o">).</span><span class="na">getResolvedConfiguration</span><span class="o">().</span><span class="na">getFirstLevelModuleDependencies</span><span class="o">().</span><span class="na">each</span> <span class="o">{</span>
-    <span class="o">...</span>
-    <span class="kt">def</span> <span class="n">dependency</span> <span class="o">=</span> <span class="n">dependencies</span><span class="o">.</span><span class="na">appendNode</span><span class="o">(</span><span class="s1">'dependency'</span><span class="o">)</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">it</span><span class="o">.</span><span class="na">moduleName</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="s2">"pbandk"</span><span class="o">))</span> <span class="o">{</span>
-        <span class="n">dependency</span><span class="o">.</span><span class="na">appendNode</span><span class="o">(</span><span class="s1">'version'</span><span class="o">,</span> <span class="n">it</span><span class="o">.</span><span class="na">moduleVersion</span><span class="o">)</span>
-        <span class="kt">def</span> <span class="n">exclusions</span> <span class="o">=</span> <span class="n">dependency</span><span class="o">.</span><span class="na">appendNode</span><span class="o">(</span><span class="s1">'exclusions'</span><span class="o">)</span>
-        <span class="kt">def</span> <span class="n">protobufExclusion</span> <span class="o">=</span> <span class="n">exclusions</span><span class="o">.</span><span class="na">appendNode</span><span class="o">(</span><span class="s1">'exclusion'</span><span class="o">)</span>
-        <span class="n">protobufExclusion</span><span class="o">.</span><span class="na">appendNode</span><span class="o">(</span><span class="s1">'groupId'</span><span class="o">,</span> <span class="s2">"com.google.protobuf"</span><span class="o">)</span>
-        <span class="n">protobufExclusion</span><span class="o">.</span><span class="na">appendNode</span><span class="o">(</span><span class="s1">'artifactId'</span><span class="o">,</span> <span class="s2">"protobuf-java"</span><span class="o">)</span>
-    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-        <span class="n">dependency</span><span class="o">.</span><span class="na">appendNode</span><span class="o">(</span><span class="s1">'version'</span><span class="o">,</span> <span class="n">it</span><span class="o">.</span><span class="na">moduleVersion</span><span class="o">)</span>
-    <span class="o">}</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>And don’t forget to also add <code class="language-plaintext highlighter-rouge">protobuf-javalite</code> as a direct transitive dependency to the <code class="language-plaintext highlighter-rouge">library</code>. This is needed to ensure the SDK also works in apps that don’t rely on <code class="language-plaintext highlighter-rouge">protobuf-javalite</code> yet.</p>
-
-<p><a href="https://jeroenmols.com/img/blog/librarydependencies/dependency_incompatible_pbandkfix.png"><img src="https://jeroenmols.com/img/blog/librarydependencies/dependency_incompatible_pbandkfix.png" alt="Library dependency has incompatible transitive dependency" class="align-center" /></a></p>
-
-<blockquote>
-  <p>Note that the <code class="language-plaintext highlighter-rouge">pbandk</code> example is just as an illustration. The library is still under active development and there is an <a href="https://github.com/streem/pbandk/issues/91">open issue</a> to address this.</p>
-</blockquote>
-
-<h3 id="3-remove-transitive-dependency-from-library-1">3. Remove transitive dependency from <code class="language-plaintext highlighter-rouge">library</code></h3>
-<p>Similar to solving dependency version conflicts, incompatibilities can also be solved by removing the transitive dependency altogether. Again with the disadvantage of having to write more code in the <code class="language-plaintext highlighter-rouge">library</code>.</p>
-
-<h2 id="investigate-dependency-conflicts">Investigate dependency conflicts</h2>
-<p>Finally, whenever a dependency conflict occurs, there is one Gradle command that will be a lifesaver while debugging:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./gradlew :library:dependencies
-</code></pre></div></div>
-
-<p>Which will give you a detailed overview of how each transitive dependency ends up in your classpath:</p>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">$</span> <span class="o">./</span><span class="n">gradlew</span> <span class="o">--</span><span class="n">console</span> <span class="n">plain</span> <span class="o">:</span><span class="nl">app:</span><span class="n">dependencies</span> <span class="o">--</span><span class="n">configuration</span> <span class="n">releaseRuntimeClasspath</span>
-
-<span class="o">&gt;</span> <span class="n">Task</span> <span class="o">:</span><span class="nl">app:</span><span class="n">dependencies</span>
-
-<span class="o">------------------------------------------------------------</span>
-<span class="n">Project</span> <span class="o">:</span><span class="n">app</span>
-<span class="o">------------------------------------------------------------</span>
-
-<span class="n">releaseRuntimeClasspath</span> <span class="o">-</span> <span class="n">Runtime</span> <span class="n">classpath</span> <span class="n">of</span> <span class="n">compilation</span> <span class="s1">'release'</span> <span class="o">(</span><span class="n">target</span>  <span class="o">(</span><span class="n">androidJvm</span><span class="o">)).</span>
-<span class="o">+---</span> <span class="n">org</span><span class="o">.</span><span class="na">jetbrains</span><span class="o">.</span><span class="na">kotlin</span><span class="o">:</span><span class="n">kotlin</span><span class="o">-</span><span class="nl">stdlib:</span><span class="mf">1.3</span><span class="o">.</span><span class="mi">72</span>
-<span class="o">|</span>    <span class="o">+---</span> <span class="n">org</span><span class="o">.</span><span class="na">jetbrains</span><span class="o">.</span><span class="na">kotlin</span><span class="o">:</span><span class="n">kotlin</span><span class="o">-</span><span class="n">stdlib</span><span class="o">-</span><span class="nl">common:</span><span class="mf">1.3</span><span class="o">.</span><span class="mi">72</span>
-<span class="o">|</span>    <span class="err">\</span><span class="o">---</span> <span class="n">org</span><span class="o">.</span><span class="na">jetbrains</span><span class="o">:</span><span class="nl">annotations:</span><span class="mf">13.0</span>
-<span class="o">+---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">core</span><span class="o">:</span><span class="n">core</span><span class="o">-</span><span class="nl">ktx:</span><span class="mf">1.3</span><span class="o">.</span><span class="mi">2</span>
-<span class="o">|</span>    <span class="o">+---</span> <span class="n">org</span><span class="o">.</span><span class="na">jetbrains</span><span class="o">.</span><span class="na">kotlin</span><span class="o">:</span><span class="n">kotlin</span><span class="o">-</span><span class="nl">stdlib:</span><span class="mf">1.3</span><span class="o">.</span><span class="mi">71</span> <span class="o">-&gt;</span> <span class="mf">1.3</span><span class="o">.</span><span class="mi">72</span> <span class="o">(*)</span>
-<span class="o">|</span>    <span class="o">+---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">annotation</span><span class="o">:</span><span class="nl">annotation:</span><span class="mf">1.1</span><span class="o">.</span><span class="mi">0</span>
-<span class="o">|</span>    <span class="err">\</span><span class="o">---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">core</span><span class="o">:</span><span class="nl">core:</span><span class="mf">1.3</span><span class="o">.</span><span class="mi">2</span>
-<span class="o">|</span>         <span class="err">\</span><span class="o">---</span> <span class="o">...</span>
-<span class="o">+---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">appcompat</span><span class="o">:</span><span class="nl">appcompat:</span><span class="mf">1.2</span><span class="o">.</span><span class="mi">0</span>
-<span class="o">|</span>    <span class="o">+---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">annotation</span><span class="o">:</span><span class="nl">annotation:</span><span class="mf">1.1</span><span class="o">.</span><span class="mi">0</span>
-<span class="o">|</span>    <span class="o">+---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">core</span><span class="o">:</span><span class="nl">core:</span><span class="mf">1.3</span><span class="o">.</span><span class="mi">0</span> <span class="o">-&gt;</span> <span class="mf">1.3</span><span class="o">.</span><span class="mi">2</span> <span class="o">(*)</span>
-<span class="o">|</span>    <span class="o">+---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">cursoradapter</span><span class="o">:</span><span class="nl">cursoradapter:</span><span class="mf">1.0</span><span class="o">.</span><span class="mi">0</span>
-<span class="o">|</span>    <span class="o">|</span>    <span class="err">\</span><span class="o">---</span> <span class="o">...</span>
-<span class="o">|</span>    <span class="o">+---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">fragment</span><span class="o">:</span><span class="nl">fragment:</span><span class="mf">1.1</span><span class="o">.</span><span class="mi">0</span>
-<span class="o">|</span>    <span class="o">|</span>    <span class="err">\</span><span class="o">---</span> <span class="o">...</span>
-<span class="o">|</span>    <span class="o">+---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">appcompat</span><span class="o">:</span><span class="n">appcompat</span><span class="o">-</span><span class="nl">resources:</span><span class="mf">1.2</span><span class="o">.</span><span class="mi">0</span>
-<span class="o">|</span>    <span class="o">|</span>    <span class="err">\</span><span class="o">---</span> <span class="o">...</span>
-<span class="o">|</span>    <span class="o">|</span>   
-<span class="o">|</span>    <span class="o">+---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">drawerlayout</span><span class="o">:</span><span class="nl">drawerlayout:</span><span class="mf">1.0</span><span class="o">.</span><span class="mi">0</span>
-<span class="o">|</span>    <span class="o">|</span>    <span class="err">\</span><span class="o">---</span> <span class="o">...</span>
-<span class="o">|</span>    <span class="err">\</span><span class="o">---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">collection</span><span class="o">:</span><span class="nl">collection:</span><span class="mf">1.0</span><span class="o">.</span><span class="mi">0</span> <span class="o">-&gt;</span> <span class="mf">1.1</span><span class="o">.</span><span class="mi">0</span> <span class="o">(*)</span>
-<span class="o">+---</span> <span class="n">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">android</span><span class="o">.</span><span class="na">material</span><span class="o">:</span><span class="nl">material:</span><span class="mf">1.2</span><span class="o">.</span><span class="mi">1</span>
-<span class="o">|</span>    <span class="o">+---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">annotation</span><span class="o">:</span><span class="nl">annotation:</span><span class="mf">1.0</span><span class="o">.</span><span class="mi">1</span> <span class="o">-&gt;</span> <span class="mf">1.1</span><span class="o">.</span><span class="mi">0</span>
-<span class="o">|</span>    <span class="o">+---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">appcompat</span><span class="o">:</span><span class="nl">appcompat:</span><span class="mf">1.1</span><span class="o">.</span><span class="mi">0</span> <span class="o">-&gt;</span> <span class="mf">1.2</span><span class="o">.</span><span class="mi">0</span> <span class="o">(*)</span>
-<span class="o">|</span>    <span class="o">+---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">cardview</span><span class="o">:</span><span class="nl">cardview:</span><span class="mf">1.0</span><span class="o">.</span><span class="mi">0</span>
-<span class="o">|</span>    <span class="o">|</span>    <span class="err">\</span><span class="o">---</span> <span class="o">...</span>
-<span class="o">|</span>    <span class="o">+---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">coordinatorlayout</span><span class="o">:</span><span class="nl">coordinatorlayout:</span><span class="mf">1.1</span><span class="o">.</span><span class="mi">0</span>
-<span class="o">|</span>    <span class="o">|</span>    <span class="err">\</span><span class="o">---</span> <span class="o">...</span>
-<span class="o">|</span>    <span class="o">+---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">core</span><span class="o">:</span><span class="nl">core:</span><span class="mf">1.2</span><span class="o">.</span><span class="mi">0</span> <span class="o">-&gt;</span> <span class="mf">1.3</span><span class="o">.</span><span class="mi">2</span> <span class="o">(*)</span>
-<span class="o">|</span>    <span class="o">+---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">annotation</span><span class="o">:</span><span class="n">annotation</span><span class="o">-</span><span class="nl">experimental:</span><span class="mf">1.0</span><span class="o">.</span><span class="mi">0</span>
-<span class="o">|</span>    <span class="o">+---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">fragment</span><span class="o">:</span><span class="nl">fragment:</span><span class="mf">1.0</span><span class="o">.</span><span class="mi">0</span> <span class="o">-&gt;</span> <span class="mf">1.1</span><span class="o">.</span><span class="mi">0</span> <span class="o">(*)</span>
-<span class="o">|</span>    <span class="o">+---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">lifecycle</span><span class="o">:</span><span class="n">lifecycle</span><span class="o">-</span><span class="nl">runtime:</span><span class="mf">2.0</span><span class="o">.</span><span class="mi">0</span> <span class="o">-&gt;</span> <span class="mf">2.1</span><span class="o">.</span><span class="mi">0</span> <span class="o">(*)</span>
-<span class="o">|</span>    <span class="o">+---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">recyclerview</span><span class="o">:</span><span class="nl">recyclerview:</span><span class="mf">1.0</span><span class="o">.</span><span class="mi">0</span> <span class="o">-&gt;</span> <span class="mf">1.1</span><span class="o">.</span><span class="mi">0</span>
-<span class="o">|</span>    <span class="o">|</span>    <span class="err">\</span><span class="o">---</span> <span class="o">...</span>
-<span class="o">|</span>    <span class="o">+---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">transition</span><span class="o">:</span><span class="nl">transition:</span><span class="mf">1.2</span><span class="o">.</span><span class="mi">0</span>
-<span class="o">|</span>    <span class="o">|</span>    <span class="err">\</span><span class="o">---</span> <span class="o">...</span>
-<span class="o">|</span>    <span class="o">+---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">vectordrawable</span><span class="o">:</span><span class="nl">vectordrawable:</span><span class="mf">1.1</span><span class="o">.</span><span class="mi">0</span> <span class="o">(*)</span>
-<span class="o">|</span>    <span class="err">\</span><span class="o">---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">viewpager2</span><span class="o">:</span><span class="nl">viewpager2:</span><span class="mf">1.0</span><span class="o">.</span><span class="mi">0</span>
-<span class="o">|</span>         <span class="err">\</span><span class="o">---</span> <span class="o">...</span>
-<span class="err">\</span><span class="o">---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">constraintlayout</span><span class="o">:</span><span class="nl">constraintlayout:</span><span class="mf">1.1</span><span class="o">.</span><span class="mi">3</span>
-     <span class="err">\</span><span class="o">---</span> <span class="n">androidx</span><span class="o">.</span><span class="na">constraintlayout</span><span class="o">:</span><span class="n">constraintlayout</span><span class="o">-</span><span class="nl">solver:</span><span class="mf">1.1</span><span class="o">.</span><span class="mi">3</span>
-
-<span class="o">(*)</span> <span class="o">-</span> <span class="n">dependencies</span> <span class="n">omitted</span> <span class="o">(</span><span class="n">listed</span> <span class="n">previously</span><span class="o">)</span>
-</code></pre></div></div>
-
-<p>Notice the sheer amount of dependencies that the standard Android project template already has!</p>
-
-<h2 id="recommendation">Recommendation</h2>
-<p>Transitive SDK dependencies can create very challenging issues. These tend to be hard to predict as they only pop up for certain combinations of dependencies in a <code class="language-plaintext highlighter-rouge">CustomerApp</code>.</p>
-
-<p>Worse even, their blame might be pushed onto the wrong SDK. And your SDK might be blamed for a conflict caused by an obsolete transitive <code class="language-plaintext highlighter-rouge">Firebase</code> dependency.</p>
-
-<p>The only foolproof way to solve these issues is to not use any transitive dependencies for your <code class="language-plaintext highlighter-rouge">library</code>.</p>
-
-<p>And while that’s likely not very practical, here’s a few tips to avoid transitive dependency problems:</p>
-
-<ul>
-  <li>minimize transitive dependencies
-    <ul>
-      <li>often it’s easy to write your own (minimal) solution</li>
-      <li>focus on commonly used dependencies (e.g. OkHttp) -&gt; <code class="language-plaintext highlighter-rouge">CustomerApp</code> likely has this already</li>
-      <li>investigate breaking changes are handled</li>
-    </ul>
-  </li>
-  <li>specify minimum versions instead of specific ones</li>
-  <li>only rely on stable transitive dependencies (no RC, Beta or Alpha)</li>
-  <li>use android optimized dependencies</li>
-</ul>
-
-<p>Finally, to combat device fragmentation, Android has a rich set of <a href="https://developer.android.com/jetpack">Jetpack libraries</a>. These have become so ubiquitous, that it’s close to impossible not to rely on them when developing an Android app or SDK.</p>
-
-<p>Therefore, and thanks to their amazing track record of backward compatibility, it’s fine to rely on <code class="language-plaintext highlighter-rouge">AndroidX</code> dependencies. Most tips above remain valid (e.g. min version, no alpha’s,…) and keep in mind that some <code class="language-plaintext highlighter-rouge">AndroidX</code> libraries may need Google play services in order to work.</p>
-
-<h2 id="wrap-up">Wrap-up</h2>
-<p>Transitive dependencies problems only occur when a <code class="language-plaintext highlighter-rouge">CustomerApp</code> has certain combinations of dependencies. This makes them hard to predict and quite disruptive for both the SDK as app developers.</p>
-
-<p>Try to reduce the <code class="language-plaintext highlighter-rouge">library</code>’s transitive dependencies to a minimum and focus on popular, Android optimized dependencies.</p>
-
-<p>If you’ve made it this far you should probably follow me on <span><a href="https://twitter.com/molsjeroen?source=androidlibrarydevelopment-dependencies2020" class="ga-link" target="_blank">Twitter</a></span>
-. Feel free to leave a comment below!</p>]]></content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="android" /><category term="library" /><category term="maven" /><category term="transitive dependencies" /><category term="gradle" /><category term="kotlin" /><summary type="html"><![CDATA[Ever had a build failure while integrating an SDK? Wonder how you can avoid your SDK customers having dependency conflicts? How many transitive dependencies should your SDK have?]]></summary></entry></feed>
+. Feel free to leave a comment below!</p>]]></content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="android" /><category term="library" /><category term="maven" /><category term="transitive dependencies" /><category term="gradle" /><category term="kotlin" /><summary type="html"><![CDATA[Short, powerful post on how to test the release version of libraries directly within a project without having to deploy them to Maven first.]]></summary></entry></feed>
