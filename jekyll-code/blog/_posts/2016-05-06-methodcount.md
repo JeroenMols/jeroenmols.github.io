@@ -58,7 +58,7 @@ Normally I recommend never to optimize unless you have a problem. But with metho
 1. Replacing libraries in existing apps can be very challenging, if not almost impossible.
 2. Many developers are using huge libraries just to do simple things. (`Strings.isNullOrEmpty()` anyone?) Note that you don't need to use a library for everything!
 
-Fortunately there is a great website [methodscount.com](http://www.methodscount.com/) that tells you the method count of a library before you start using it. This can really be helpful to avoid using "large libraries" which only add limited benefit to your app.
+There [used to be a great website methodscount](https://medium.com/@rotxed/sunsetting-methodscount-com-cb5693a9586) that told you the method count of a library before you start using it. This can really be helpful to avoid using "large libraries" which only add limited benefit to your app.
 
 ### Replacing existing libraries
 Often there are multiple libraries accomplishing the same goals. Take for instance image loading:
@@ -211,7 +211,7 @@ Obviously your mileage will vary depending on what library you choose. For low c
 
 
 ## Wrap-up
-Hitting the 65k method limit is a real pain, but choosing wisely what libraries you use can already bring you a long way. Fortunately there are great tools like the [Dexcount Gradle Plugin](https://github.com/KeepSafe/dexcount-gradle-plugin) and [methodscount.com](http://www.methodscount.com/) to help with these decisions.
+Hitting the 65k method limit is a real pain, but choosing wisely what libraries you use can already bring you a long way. Fortunately there is a great tools like the [Dexcount Gradle Plugin](https://github.com/KeepSafe/dexcount-gradle-plugin) to help with these decisions.
 
 For existing projects, always try to replace existing large method libraries with alternatives. If this is not feasible and you feel comfortably using Proguard, you can use the latter to preprocess and shrink existing libraries.
 
