@@ -55,7 +55,7 @@ Some possibly handy variants are:
 adb shell find 'sdcard/DCIM/Camera/*.mp4' | xargs -n1 adb pull
 
 # Pull all image files
-adb shell find 'sdcard/DCIM/Camera/*.mp4' | xargs -n1 adb pull
+adb shell find 'sdcard/DCIM/Camera/*.jpg' | xargs -n1 adb pull
 
 # Pull al files from the past year
 adb shell find 'sdcard/DCIM/Camera/PXL_2022*'
