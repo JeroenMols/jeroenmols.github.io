@@ -271,10 +271,10 @@
 <loc>https://jeroenmols.com/hireme/</loc>
 </url>
 <url>
-<loc>https://jeroenmols.com/</loc>
+<loc>https://jeroenmols.com/blog/</loc>
 </url>
 <url>
-<loc>https://jeroenmols.com/blog/</loc>
+<loc>https://jeroenmols.com/</loc>
 </url>
 <url>
 <loc>https://jeroenmols.com/search/</loc>
@@ -606,6 +606,10 @@
 <url>
 <loc>https://jeroenmols.com/img/blog/resourcenaming/resourcenaming_cheatsheet.pdf</loc>
 <lastmod>2017-07-21T20:17:32+02:00</lastmod>
+</url>
+<url>
+<loc>https://jeroenmols.com/jb/</loc>
+<lastmod>2023-01-21T16:52:45+01:00</lastmod>
 </url>
 <url>
 <loc>https://jeroenmols.com/remgeldfacturatie/</loc>

@@ -1,0 +1,6 @@
+---
+layout: null
+sitemap: false
+---
+Disallow: /jb/
+Sitemap: {{ 'sitemap.xml' | absolute_url }}

@@ -1,1 +1,2 @@
+Disallow: /jb/
 Sitemap: https://jeroenmols.com/sitemap.xml
