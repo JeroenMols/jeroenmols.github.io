@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/" rel="alternate" type="text/html"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, Software developer at Plaid and Google Developer Expert.</subtitle>
- <updated>2023-01-21T16:53:37+01:00</updated>
+ <updated>2023-01-25T12:00:16+01:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,20 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>Android emulator access to local server</title>
+   <link href="https://jeroenmols.com/blog/2023/01/25/development-server-emulator/"/>
+   <updated>2023-01-25T00:00:00+01:00</updated>
+   <id>https://jeroenmols.com/blog/2023/01/25/development-server-emulator</id>
+   <content type="html"><![CDATA[
+     
+     <p>How can you connect your app on an Android emulator to a development server running on the localhost of your computer?</p>
+
+
+     <a href="https://jeroenmols.com/blog/2023/01/25/development-server-emulator/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>Transfer many large files from Android</title>

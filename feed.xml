@@ -1,4 +1,98 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2023-01-21T16:53:37+01:00</updated><id>https://jeroenmols.com/feed.xml</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, Software developer at Plaid and Google Developer Expert.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Transfer many large files from Android</title><link href="https://jeroenmols.com/blog/2022/12/17/pull-files-android/" rel="alternate" type="text/html" title="Transfer many large files from Android" /><published>2022-12-17T00:00:00+01:00</published><updated>2022-12-17T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2022/12/17/pull-files-android</id><content type="html" xml:base="https://jeroenmols.com/blog/2022/12/17/pull-files-android/"><![CDATA[<p>Trying to get a large number of files from your Android phone, but Android File Transfer freezing up?</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2023-01-25T12:00:16+01:00</updated><id>https://jeroenmols.com/feed.xml</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, Software developer at Plaid and Google Developer Expert.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Android emulator access to local server</title><link href="https://jeroenmols.com/blog/2023/01/25/development-server-emulator/" rel="alternate" type="text/html" title="Android emulator access to local server" /><published>2023-01-25T00:00:00+01:00</published><updated>2023-01-25T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2023/01/25/development-server-emulator</id><content type="html" xml:base="https://jeroenmols.com/blog/2023/01/25/development-server-emulator/"><![CDATA[<p>How can you connect your app on an Android emulator to a development server running on the localhost of your computer?</p>
+
+<h2 id="the-problem">The problem</h2>
+<p>Since Android emulators create their own virtual network, they cannot access devices on your local network.</p>
+
+<p>This means:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">localhost</code> refers to the emulator, not your laptop</li>
+  <li>local IP addresses <code class="language-plaintext highlighter-rouge">192.168.1.xxx</code> are not accessible</li>
+  <li>local MDNS addresses <code class="language-plaintext highlighter-rouge">jmols.local</code> are not accessible</li>
+</ul>
+
+<p>So accessing our development server at <code class="language-plaintext highlighter-rouge">https://jmols.local:3000</code> results in the following error:</p>
+
+<p><a href="https://jeroenmols.com/img/blog/developmentserveremulator/error.png" class="align-center"><img src="https://jeroenmols.com/img/blog/developmentserveremulator/error.png" alt="Error trying to connect to the connect to a local network IP/MDNS address" /></a></p>
+
+<h2 id="method-1-the-loopback-address">Method 1: the loopback address</h2>
+<p>The simplest solution is to change the server URL in your app and point it to <code class="language-plaintext highlighter-rouge">10.0.2.2</code>. This is a <a href="https://developer.android.com/studio/run/emulator-networking#networkaddresses">special alias to your host loopback interface</a> (127.0.0.1 on your development machine).</p>
+
+<p>So instead of loading <code class="language-plaintext highlighter-rouge">https://jmols.local:3000</code>, our app will load <code class="language-plaintext highlighter-rouge">https://10.0.2.2:3000</code> instead.</p>
+
+<p>That fixes the emulator, but now our app no longer works on real devices. (since the loopback IP doesn’t exist there).</p>
+
+<p>Can we find a single solution that works on both emulators and devices?</p>
+
+<h2 id="method-2-redirect-the-emulator">Method 2: redirect the emulator</h2>
+<p>In this solution, we’ll instruct the emulator to redirect the IP address from the host machine to the loopback IP address automatically. We’ll do this by editing the <code class="language-plaintext highlighter-rouge">etc/hosts</code> file on the Android emulator.</p>
+
+<p>First, we need to ensure the <code class="language-plaintext highlighter-rouge">etc/hosts</code> file is writable:</p>
+
+<ol>
+  <li>Create a new emulator (non Google Play services, so we have access to root)</li>
+  <li>Find the emulator AVD name of the emulator
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>emulator -list-avds
+</code></pre></div>    </div>
+  </li>
+  <li>Start your emulator from the command line with the option to enable a writable system
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>emulator -avd "&lt;AVD_NAME_HERE&gt;" -writable-system
+</code></pre></div>    </div>
+  </li>
+  <li>Run ADB as root
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>adb root
+</code></pre></div>    </div>
+  </li>
+  <li>Disable verified boot
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>adb disable-verity
+</code></pre></div>    </div>
+  </li>
+  <li>Reboot the device
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>adb reboot
+</code></pre></div>    </div>
+  </li>
+  <li>Wait for the device to be rebooted (ready when <code class="language-plaintext highlighter-rouge">adb shell</code> works)</li>
+  <li>Run ADB as root (again)
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>adb root
+</code></pre></div>    </div>
+  </li>
+  <li>Remount partitions as read-write
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>adb remount
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>Now we can overwrite the <code class="language-plaintext highlighter-rouge">etc/hosts</code> file!</p>
+
+<ol>
+  <li>First get the existing hosts file
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>adb pull etc/hosts
+</code></pre></div>    </div>
+  </li>
+  <li>Add an entry to direct your local server domain to the loopback address: <code class="language-plaintext highlighter-rouge">10.0.2.2   &lt;YOUR_LOCAL_HOSTNAME&gt;</code>. Your hostfile should look like this:</li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>127.0.0.1       localhost
+::1             ip6-localhost
+10.0.2.2        jmols.local
+</code></pre></div></div>
+
+<ol>
+  <li>Save and push the file back to the emulator:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>adb push hosts etc/hosts
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>Now our emulator can access our development server at <code class="language-plaintext highlighter-rouge">https://jmols.local:3000</code>!</p>
+
+<blockquote>
+  <p>Notice how this solution can easily be generalized to any IP address on your local network.</p>
+</blockquote>
+
+<h2 id="wrap-up">Wrap-up</h2>
+<p>After jumping through some Android emulator hoops to make <code class="language-plaintext highlighter-rouge">etc/hosts</code> writable, we successfully connected the emulator to our development server by linking our local address to the loopback address.</p>
+
+<p>If this was helpful to you, consider <a href="https://www.buymeacoffee.com/jeroen">buying me a coffee</a> or thanking me on <a href="https://androiddev.social/@Jeroenmols">Mastodon</a> or <a href="https://twitter.com/molsjeroen">Twitter</a>!</p>]]></content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="android" /><category term="adb" /><category term="emulator" /><category term="localhost" /><category term="server" /><summary type="html"><![CDATA[How can you connect your app on an Android emulator to a development server running on the localhost of your computer?]]></summary></entry><entry><title type="html">Transfer many large files from Android</title><link href="https://jeroenmols.com/blog/2022/12/17/pull-files-android/" rel="alternate" type="text/html" title="Transfer many large files from Android" /><published>2022-12-17T00:00:00+01:00</published><updated>2022-12-17T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2022/12/17/pull-files-android</id><content type="html" xml:base="https://jeroenmols.com/blog/2022/12/17/pull-files-android/"><![CDATA[<p>Trying to get a large number of files from your Android phone, but Android File Transfer freezing up?</p>
 
 <p>Here’s what I learned trying to pull ~170 Gb from my Pixel phone.</p>
 
@@ -1169,157 +1263,4 @@ Could not determine the dependencies of task <span class="s1">':app:lintVitalRel
 <p>I do want to pick up my community contributions again and maybe even venture into other areas beyond Android.</p>
 
 <p>As always you can reach me <span><a href="https://twitter.com/molsjeroen?source=yearinreview20202021" class="ga-link" target="_blank">@molsjeroen</a></span>
- on Twitter, or leave a comment below!</p>]]></content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="review" /><summary type="html"><![CDATA[Well… I don’t really know where to start this time. 2020 was quite the rollercoaster, with many downs… but fortunately also a few amazing ups. Let’s focus on the good stuff.]]></summary></entry><entry><title type="html">Test library releases using an in project Maven repository</title><link href="https://jeroenmols.com/blog/2020/12/02/inproject-maven/" rel="alternate" type="text/html" title="Test library releases using an in project Maven repository" /><published>2020-12-02T00:00:00+01:00</published><updated>2020-12-02T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2020/12/02/inproject-maven</id><content type="html" xml:base="https://jeroenmols.com/blog/2020/12/02/inproject-maven/"><![CDATA[<p>Short, powerful post on how to test the release version of libraries directly within a project without having to deploy them to Maven first.</p>
-
-<p>As a bonus, there will also be an open-source example showcasing all of this in action.</p>
-
-<h2 id="problem-description">Problem description</h2>
-<p>In (Android) library development, the local development setup differs from how customers integrate the library.</p>
-
-<p>Local development uses a module dependency:</p>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dependencies</span> <span class="o">{</span>
-    <span class="n">implementation</span> <span class="nf">project</span><span class="o">(</span><span class="s1">':library'</span><span class="o">)</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>Customers integrate through Maven:</p>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dependencies</span> <span class="o">{</span>
-    <span class="n">implementation</span> <span class="err">`</span><span class="n">com</span><span class="o">.</span><span class="na">jeroenmols</span><span class="o">.</span><span class="na">lib</span><span class="o">:</span><span class="nl">library:</span><span class="mf">1.0</span><span class="o">.</span><span class="mi">0</span><span class="err">`</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>Now because both integration mechanisms are fundamentally different, they can also lead to different results.</p>
-
-<p>Wouldn’t it be great if you could test the Maven version of your library directly in your project?</p>
-
-<p>Let’s do that!</p>
-
-<p>That avoids deploying the library to Maven, makes testing more realistic, and speeds up release testing considerably.</p>
-
-<h2 id="core-idea">Core idea</h2>
-<p>What we’ll try to accomplish is to mimic a local <code class="language-plaintext highlighter-rouge">Maven</code> repository within your Android project. That allows integrating the release build similar to an external Maven build:</p>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dependencies</span> <span class="o">{</span>
-    <span class="c1">// in-project build from current code</span>
-    <span class="n">releaseImplementation</span> <span class="s1">'com.jeroenmols.lib:library:local'</span>
-
-    <span class="c1">// version from Maven</span>
-    <span class="n">releaseImplementation</span> <span class="s1">'com.jeroenmols.lib:library:1.0.0'</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>To accomplish this we’ll:</p>
-
-<ul>
-  <li>add a build flag to toggle between local and external build</li>
-  <li>create a release artifact and <code class="language-plaintext highlighter-rouge">pom.xml</code> with a special version</li>
-  <li>create a <code class="language-plaintext highlighter-rouge">Maven</code> like folder structure in <code class="language-plaintext highlighter-rouge">app/libs</code></li>
-  <li>add <code class="language-plaintext highlighter-rouge">Maven</code> metadata files and symlinks to the build outputs</li>
-  <li>include the local Maven repository</li>
-</ul>
-
-<h2 id="implementation">Implementation</h2>
-<p>In the <code class="language-plaintext highlighter-rouge">app</code> level <code class="language-plaintext highlighter-rouge">build.gradle</code> file, split the <code class="language-plaintext highlighter-rouge">lib</code> dependency between <code class="language-plaintext highlighter-rouge">debug</code> and <code class="language-plaintext highlighter-rouge">release</code> variant:</p>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dependencies</span> <span class="o">{</span>
-    <span class="n">debugImplementation</span> <span class="nf">project</span><span class="o">(</span><span class="s1">':lib'</span><span class="o">)</span>
-
-    <span class="kt">def</span> <span class="n">releaseVersion</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="na">hasProperty</span><span class="o">(</span><span class="s2">"external_version"</span><span class="o">)</span> <span class="o">?</span> <span class="n">project</span><span class="o">.</span><span class="na">external_version</span> <span class="o">:</span> <span class="s2">"local"</span>
-    <span class="n">releaseImplementation</span> <span class="s2">"com.jeroenmols.lib:library:$releaseVersion"</span>
-
-    <span class="o">...</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>In the <code class="language-plaintext highlighter-rouge">lib</code> level <code class="language-plaintext highlighter-rouge">build.gradle</code> file, toggle the published version between <code class="language-plaintext highlighter-rouge">local</code> and external version:</p>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">publishing</span> <span class="o">{</span>
-    <span class="n">publications</span> <span class="o">{</span>
-        <span class="n">aar</span><span class="o">(</span><span class="n">MavenPublication</span><span class="o">)</span> <span class="o">{</span>
-            <span class="o">...</span>
-
-            <span class="n">groupId</span> <span class="o">=</span> <span class="s1">'com.jeroenmols.lib'</span>
-            <span class="n">artifactId</span> <span class="o">=</span> <span class="s1">'library'</span>
-            <span class="n">version</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="na">hasProperty</span><span class="o">(</span><span class="s2">"external_version"</span><span class="o">)</span> <span class="o">?</span> <span class="n">project</span><span class="o">.</span><span class="na">external_version</span> <span class="o">:</span> <span class="s2">"local"</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>Create a local Maven repository in the <code class="language-plaintext highlighter-rouge">libs</code> folder of the <code class="language-plaintext highlighter-rouge">app</code> module:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">mkdir</span> <span class="nt">-p</span> app/libs/&lt;group-id-slash-separated&gt;/&lt;artifact-id&gt;/local
-<span class="c"># example: $ mkdir -p app/libs/com/jeroenmols/lib/library/local/</span>
-</code></pre></div></div>
-
-<p>Go into the <code class="language-plaintext highlighter-rouge">artifact-id</code> folder and create a new file <code class="language-plaintext highlighter-rouge">maven-metadata-local.xml</code>:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd </span>app/libs/&lt;group-id-slash-separated&gt;/&lt;artifact-id&gt;
-<span class="nv">$ </span><span class="nb">touch </span>maven-metadata-local.xml
-
-<span class="c"># example: $ cd app/libs/com/jeroenmols/lib/library/</span>
-<span class="c">#          $ touch maven-metadata-local.xml</span>
-</code></pre></div></div>
-
-<p>Copy the following content into the <code class="language-plaintext highlighter-rouge">maven-metadata-local.xml</code> and replace the placeholders with your <code class="language-plaintext highlighter-rouge">groupId</code> and <code class="language-plaintext highlighter-rouge">artifactId</code>:</p>
-
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
-<span class="nt">&lt;metadata&gt;</span>
-  <span class="nt">&lt;groupId&gt;</span>GROUP ID HERE<span class="nt">&lt;/groupId&gt;</span>
-  <span class="nt">&lt;artifactId&gt;</span>ARTIFACT ID HERE<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;versioning&gt;</span>
-    <span class="nt">&lt;latest&gt;</span>local<span class="nt">&lt;/latest&gt;</span>
-    <span class="nt">&lt;release&gt;</span>local<span class="nt">&lt;/release&gt;</span>
-    <span class="nt">&lt;versions&gt;</span>
-      <span class="nt">&lt;version&gt;</span>local<span class="nt">&lt;/version&gt;</span>
-    <span class="nt">&lt;/versions&gt;</span>
-  <span class="nt">&lt;/versioning&gt;</span>
-<span class="nt">&lt;/metadata&gt;</span>
-</code></pre></div></div>
-
-<p>Create symbolic links to the <code class="language-plaintext highlighter-rouge">aar</code> and <code class="language-plaintext highlighter-rouge">pom.xml</code> files.</p>
-
-<blockquote>
-  <p>Note that the file names and paths need to match exactly or this won’t work!</p>
-</blockquote>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// Make sure the output files exist, so we can symlink them
-<span class="nv">$ </span>./gradlew generatePomFileForAarPublication assembleRelease
-
-<span class="nv">$ </span><span class="nb">cd </span>app/libs/&lt;group-id-slash-separated&gt;/&lt;artifact-id&gt;
-
-<span class="nv">$ </span><span class="nb">ln</span> <span class="nt">-s</span> &lt;path-to-lib-build&gt;/outputs/aar/&lt;aar-file-name&gt; &lt;artifact-id&gt;-local.aar
-<span class="nv">$ </span><span class="nb">ln</span> <span class="nt">-s</span> &lt;path-to-lib-build&gt;/publications/aar/pom-default.xml &lt;artifact-id&gt;-local.pom
-<span class="c"># example: ln -s ../../../../../../../lib/build/outputs/aar/lib-release.aar library-local.aar</span>
-<span class="c">#          ln -s ../../../../../../../lib/build/publications/aar/pom-default.xml library-local.pom</span>
-</code></pre></div></div>
-
-<p>Add the local repository to the <code class="language-plaintext highlighter-rouge">app</code> level <code class="language-plaintext highlighter-rouge">build.gradle</code> file:</p>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">repositories</span> <span class="o">{</span>
-    <span class="n">maven</span> <span class="o">{</span> <span class="n">url</span> <span class="s2">"$projectDir/libs"</span> <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>And make sure the <code class="language-plaintext highlighter-rouge">library</code> dependencies are built when running an <code class="language-plaintext highlighter-rouge">app</code> release build by adding to the <code class="language-plaintext highlighter-rouge">app</code> level <code class="language-plaintext highlighter-rouge">build.gradle</code> file:</p>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">afterEvaluate</span> <span class="o">{</span>
-    <span class="n">preReleaseBuild</span><span class="o">.</span><span class="na">dependsOn</span><span class="o">(</span><span class="s2">":lib:assembleRelease"</span><span class="o">)</span>
-    <span class="n">preReleaseBuild</span><span class="o">.</span><span class="na">dependsOn</span><span class="o">(</span><span class="s2">":lib:generatePomFileForAarPublication"</span><span class="o">)</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>That’s it!</p>
-
-<p>You can now test your release variant locally by changing the build variant of the <code class="language-plaintext highlighter-rouge">app</code> project to <code class="language-plaintext highlighter-rouge">release</code> in Android studio and clicking run. Or you can test an external Maven version by invoking:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./gradlew assembleRelease <span class="nt">-Pexternal_version</span><span class="o">=</span>1.0.0
-</code></pre></div></div>
-
-<h2 id="wrap-up">Wrap-up</h2>
-<p>I hope this neat little trick is helpful to test your libraries. I’ve also <a href="https://github.com/JeroenMols/LibraryExample/pull/1/files">open sourced a sample project</a> that demonstrates this concept.</p>
-
-<p>If you’ve made it this far you should probably follow me on <span><a href="https://twitter.com/molsjeroen?source=testlibraryreleasesusinganinprojectmavenrepository2020" class="ga-link" target="_blank">Twitter</a></span>
-. Feel free to leave a comment below!</p>]]></content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="android" /><category term="library" /><category term="maven" /><category term="transitive dependencies" /><category term="gradle" /><category term="kotlin" /><summary type="html"><![CDATA[Short, powerful post on how to test the release version of libraries directly within a project without having to deploy them to Maven first.]]></summary></entry></feed>
+ on Twitter, or leave a comment below!</p>]]></content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="review" /><summary type="html"><![CDATA[Well… I don’t really know where to start this time. 2020 was quite the rollercoaster, with many downs… but fortunately also a few amazing ups. Let’s focus on the good stuff.]]></summary></entry></feed>

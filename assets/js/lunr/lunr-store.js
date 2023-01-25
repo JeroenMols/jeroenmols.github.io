@@ -394,4 +394,10 @@ var store = [{
         "tags": ["android","adb","backup","files"],
         "url": "/blog/2022/12/17/pull-files-android/",
         "teaser": "/img/blog/pull-files-android/pull-files-android.jpg"
+      },{
+        "title": "Android emulator access to local server",
+        "excerpt":"How can you connect your app on an Android emulator to a development server running on the localhost of your computer? The problem Since Android emulators create their own virtual network, they cannot access devices on your local network. This means: localhost refers to the emulator, not your laptop local...","categories": ["blog"],
+        "tags": ["android","adb","emulator","localhost","server"],
+        "url": "/blog/2023/01/25/development-server-emulator/",
+        "teaser": "/img/blog/developmentserveremulator/cover.jpg"
       }]
