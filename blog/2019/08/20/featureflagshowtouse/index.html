@@ -88,23 +88,6 @@
 
 <!-- end _includes/seo.html -->
 
-<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script>
-$(document).ready(function(){
-	$('.ga-link').on('click', function(){
-		if (typeof(ga)!=="undefined"){
-			ga('send',{
-				hitType: 'event',
-				eventCategory: 'Outbound link',
-				eventAction: 'click',
-				eventLabel: event.target.href
-			});
-	  	}
-	});
-})	;
-</script>
-
 <meta name="theme-color" content="#3d405b">
 
 <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Jeroen Mols Feed">
@@ -459,8 +442,7 @@ $(document).ready(function(){
 <h2 id="wrap-up">Wrap-up</h2>
 <p>Feature flags can help in releasing new features and improvements on existing functionality. Always try to roll out features gradually, if that’s not possible, rely on your beta community to test the feature prior to release,</p>
 
-<p>Make sure you follow me on <span><a href="https://twitter.com/molsjeroen?source=featureflags-howtouse2019" class="ga-link" target="_blank">Twitter</a></span>
- or continue to <a href="/blog/2019/09/12/featureflagsarchitecture/">part 3</a> to learn more about an architecture to integrate feature flags into your app.</p>
+<p>Make sure you follow me on <a href="https://androiddev.social/@Jeroenmols">Mastodon</a> or continue to <a href="/blog/2019/09/12/featureflagsarchitecture/">part 3</a> to learn more about an architecture to integrate feature flags into your app.</p>
 
         
       </section>

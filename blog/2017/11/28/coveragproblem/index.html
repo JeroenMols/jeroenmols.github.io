@@ -88,23 +88,6 @@
 
 <!-- end _includes/seo.html -->
 
-<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script>
-$(document).ready(function(){
-	$('.ga-link').on('click', function(){
-		if (typeof(ga)!=="undefined"){
-			ga('send',{
-				hitType: 'event',
-				eventCategory: 'Outbound link',
-				eventAction: 'click',
-				eventLabel: event.target.href
-			});
-	  	}
-	});
-})	;
-</script>
-
 <meta name="theme-color" content="#3d405b">
 
 <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Jeroen Mols Feed">
@@ -481,8 +464,7 @@ $(document).ready(function(){
 <h2 id="wrap-up">Wrap-up</h2>
 <p>Code coverage can be an incredibly powerful tool to improve the quality of your code as long as you don’t blindly optimize for maximum coverage.</p>
 
-<p>If you’ve made it this far you should probably follow me on <span><a href="https://twitter.com/molsjeroen?source=the100%codecoverageproblem2017" class="ga-link" target="_blank">Twitter</a></span>
-. Feel free leave a comment below!</p>
+<p>If you’ve made it this far you should probably follow me on <a href="https://androiddev.social/@Jeroenmols">Mastodon</a>. Feel free leave a comment below!</p>
 
         
       </section>

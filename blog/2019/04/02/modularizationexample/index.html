@@ -88,23 +88,6 @@
 
 <!-- end _includes/seo.html -->
 
-<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script>
-$(document).ready(function(){
-	$('.ga-link').on('click', function(){
-		if (typeof(ga)!=="undefined"){
-			ga('send',{
-				hitType: 'event',
-				eventCategory: 'Outbound link',
-				eventAction: 'click',
-				eventLabel: event.target.href
-			});
-	  	}
-	});
-})	;
-</script>
-
 <meta name="theme-color" content="#3d405b">
 
 <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Jeroen Mols Feed">
@@ -685,8 +668,7 @@ $(document).ready(function(){
 
 <p>All source code is available on <a href="https://github.com/JeroenMols/ModularizationExample">Github</a>.</p>
 
-<p>Make sure to follow me on <span><a href="https://twitter.com/molsjeroen?source=modularization-real-lifeexample2019" class="ga-link" target="_blank">Twitter</a></span>
- and let’s investigate how you can start modularizing an existing app <a href="/blog/2019/04/24/modularizationhow/">in part 4</a>.</p>
+<p>Make sure to follow me on <a href="https://androiddev.social/@Jeroenmols">Mastodon</a> and let’s investigate how you can start modularizing an existing app <a href="/blog/2019/04/24/modularizationhow/">in part 4</a>.</p>
 
         
       </section>

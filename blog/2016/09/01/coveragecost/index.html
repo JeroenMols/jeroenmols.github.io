@@ -88,23 +88,6 @@
 
 <!-- end _includes/seo.html -->
 
-<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script>
-$(document).ready(function(){
-	$('.ga-link').on('click', function(){
-		if (typeof(ga)!=="undefined"){
-			ga('send',{
-				hitType: 'event',
-				eventCategory: 'Outbound link',
-				eventAction: 'click',
-				eventLabel: event.target.href
-			});
-	  	}
-	});
-})	;
-</script>
-
 <meta name="theme-color" content="#3d405b">
 
 <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Jeroen Mols Feed">
@@ -419,8 +402,7 @@ $(document).ready(function(){
 <h2 id="wrap-up">Wrap-up</h2>
 <p>Code coverage is a great way to track your testing efforts. With help of a simple flag you can easily avoid it from slowing down your normal development builds.</p>
 
-<p>As always you can reach me <span><a href="https://twitter.com/molsjeroen?source=thehiddencostofcodecoverage2016" class="ga-link" target="_blank">@molsjeroen</a></span>
- on twitter, or leave a comment below!</p>
+<p>As always you can reach me on <a href="https://androiddev.social/@Jeroenmols">Mastodon</a>, or leave a comment below!</p>
 
         
       </section>

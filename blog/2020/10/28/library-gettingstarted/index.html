@@ -88,23 +88,6 @@
 
 <!-- end _includes/seo.html -->
 
-<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script>
-$(document).ready(function(){
-	$('.ga-link').on('click', function(){
-		if (typeof(ga)!=="undefined"){
-			ga('send',{
-				hitType: 'event',
-				eventCategory: 'Outbound link',
-				eventAction: 'click',
-				eventLabel: event.target.href
-			});
-	  	}
-	});
-})	;
-</script>
-
 <meta name="theme-color" content="#3d405b">
 
 <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Jeroen Mols Feed">
@@ -533,8 +516,7 @@ $(document).ready(function(){
 <h2 id="wrap-up">Wrap-up</h2>
 <p>Android libraries are built into a special <code class="language-plaintext highlighter-rouge">.aar</code> format that includes all code and resources. For all its external dependencies, a <code class="language-plaintext highlighter-rouge">pom.xml</code> needs to be deployed alongside to the Maven repository.</p>
 
-<p>Don’t forget to follow me on <span><a href="https://twitter.com/molsjeroen?source=androidlibrarydevelopment-gettingstarted2020" class="ga-link" target="_blank">Twitter</a></span>
- and enjoy reading the next post on <a href="/blog/2020/11/04/library-modularization/">SDK modularization</a>!</p>
+<p>Don’t forget to follow me on <a href="https://androiddev.social/@Jeroenmols">Mastodon</a> and enjoy reading the next post on <a href="/blog/2020/11/04/library-modularization/">SDK modularization</a>!</p>
 
 <p>Feel free to leave a comment below!</p>
 

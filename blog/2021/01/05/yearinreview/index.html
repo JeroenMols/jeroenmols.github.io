@@ -88,23 +88,6 @@
 
 <!-- end _includes/seo.html -->
 
-<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script>
-$(document).ready(function(){
-	$('.ga-link').on('click', function(){
-		if (typeof(ga)!=="undefined"){
-			ga('send',{
-				hitType: 'event',
-				eventCategory: 'Outbound link',
-				eventAction: 'click',
-				eventLabel: event.target.href
-			});
-	  	}
-	});
-})	;
-</script>
-
 <meta name="theme-color" content="#3d405b">
 
 <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Jeroen Mols Feed">
@@ -405,8 +388,7 @@ $(document).ready(function(){
 
 <p>I do want to pick up my community contributions again and maybe even venture into other areas beyond Android.</p>
 
-<p>As always you can reach me <span><a href="https://twitter.com/molsjeroen?source=yearinreview20202021" class="ga-link" target="_blank">@molsjeroen</a></span>
- on Twitter, or leave a comment below!</p>
+<p>As always you can reach me on <a href="https://androiddev.social/@Jeroenmols">Mastodon</a>, or leave a comment below!</p>
 
         
       </section>

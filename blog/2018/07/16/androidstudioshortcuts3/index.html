@@ -88,23 +88,6 @@
 
 <!-- end _includes/seo.html -->
 
-<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script>
-$(document).ready(function(){
-	$('.ga-link').on('click', function(){
-		if (typeof(ga)!=="undefined"){
-			ga('send',{
-				hitType: 'event',
-				eventCategory: 'Outbound link',
-				eventAction: 'click',
-				eventLabel: event.target.href
-			});
-	  	}
-	});
-})	;
-</script>
-
 <meta name="theme-color" content="#3d405b">
 
 <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Jeroen Mols Feed">
@@ -479,8 +462,7 @@ $(document).ready(function(){
 
 <p>This was the last part in my series to get the most out of Android Studio.</p>
 
-<p>If you’ve made it this far you should probably follow me on <span><a href="https://twitter.com/molsjeroen?source=proandroidstudio-tamingtheinterface2018" class="ga-link" target="_blank">Twitter</a></span>
-. Feel free leave a comment below!</p>
+<p>If you’ve made it this far you should probably follow me on <a href="https://androiddev.social/@Jeroenmols">Mastodon</a>. Feel free leave a comment below!</p>
 
         
       </section>

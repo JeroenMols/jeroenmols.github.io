@@ -88,23 +88,6 @@
 
 <!-- end _includes/seo.html -->
 
-<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script>
-$(document).ready(function(){
-	$('.ga-link').on('click', function(){
-		if (typeof(ga)!=="undefined"){
-			ga('send',{
-				hitType: 'event',
-				eventCategory: 'Outbound link',
-				eventAction: 'click',
-				eventLabel: event.target.href
-			});
-	  	}
-	});
-})	;
-</script>
-
 <meta name="theme-color" content="#3d405b">
 
 <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Jeroen Mols Feed">
@@ -377,8 +360,7 @@ $(document).ready(function(){
 
 <p>My environment: 2017 Macbook pro 15” Touch Bar with MacOS 10.13.1 (High Sierra) installed and tried to update to 10.13.2 using the App Store.</p>
 
-<p>If this was helpful to you, consider <a href="https://www.buymeacoffee.com/jeroen">buying me a coffee</a> or thanking me at <span><a href="https://twitter.com/molsjeroen?source=macosupdatecouldnotbeinstalled2017" class="ga-link" target="_blank">@molsjeroen</a></span>
- on twitter!</p>
+<p>If this was helpful to you, consider <a href="https://www.buymeacoffee.com/jeroen">buying me a coffee</a> or thanking me on <a href="https://androiddev.social/@Jeroenmols">Mastodon</a>!</p>
 
         
       </section>

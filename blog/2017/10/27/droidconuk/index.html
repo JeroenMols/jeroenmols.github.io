@@ -88,23 +88,6 @@
 
 <!-- end _includes/seo.html -->
 
-<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script>
-$(document).ready(function(){
-	$('.ga-link').on('click', function(){
-		if (typeof(ga)!=="undefined"){
-			ga('send',{
-				hitType: 'event',
-				eventCategory: 'Outbound link',
-				eventAction: 'click',
-				eventLabel: event.target.href
-			});
-	  	}
-	});
-})	;
-</script>
-
 <meta name="theme-color" content="#3d405b">
 
 <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Jeroen Mols Feed">
@@ -406,8 +389,7 @@ Fabio Collini</li>
 
 <p>Hope to see you all next year!</p>
 
-<p>Helpful? Got extra slides? Hit me up on <span><a href="https://twitter.com/molsjeroen?source=droidconukslides2017" class="ga-link" target="_blank">Twitter</a></span>
-.</p>
+<p>Helpful? Got extra slides? Hit me up on <a href="https://androiddev.social/@Jeroenmols">Mastodon</a>.</p>
 
         
       </section>

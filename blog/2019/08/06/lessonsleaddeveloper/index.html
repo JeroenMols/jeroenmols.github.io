@@ -88,23 +88,6 @@
 
 <!-- end _includes/seo.html -->
 
-<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script>
-$(document).ready(function(){
-	$('.ga-link').on('click', function(){
-		if (typeof(ga)!=="undefined"){
-			ga('send',{
-				hitType: 'event',
-				eventCategory: 'Outbound link',
-				eventAction: 'click',
-				eventLabel: event.target.href
-			});
-	  	}
-	});
-})	;
-</script>
-
 <meta name="theme-color" content="#3d405b">
 
 <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Jeroen Mols Feed">
@@ -620,8 +603,7 @@ $(document).ready(function(){
 
 <p>One of my long open career goals was to work in a high performant team on a world-class product. And I’m happy to say that I can now finally check that box!!! Though, I didn’t expect to be leading that team.</p>
 
-<p>Hopefully, you liked this honest retrospective, feel free to leave a comment below or follow me on <span><a href="https://twitter.com/molsjeroen?source=lessonslearnedbeingaleaddeveloper2019" class="ga-link" target="_blank">Twitter</a></span>
-.</p>
+<p>Hopefully, you liked this honest retrospective, feel free to leave a comment below or follow me on <a href="https://androiddev.social/@Jeroenmols">Mastodon</a>.</p>
 
         
       </section>
