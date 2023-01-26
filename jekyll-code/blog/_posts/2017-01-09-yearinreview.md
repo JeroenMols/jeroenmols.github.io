@@ -32,4 +32,4 @@ Besides that, I actually found more time than expected to grow technically. As s
 
 Next year construction of our dream house will start, so time will once again be a scarce resource. And since I don't want to give in on quality time with my daughter, I'll just try to keep up my current blogging and speaking efforts. However, it would be really cool if I could speak at a conference outside Europe!
 
-As always you can reach me {% include link_twitter_molsjeroen.html %} on twitter, or leave a comment below!
+As always you can reach me on [Mastodon](https://androiddev.social/@Jeroenmols), or leave a comment below!

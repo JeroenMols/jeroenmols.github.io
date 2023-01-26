@@ -35,4 +35,4 @@ Looking forward to next year, stuff is going to be intense for sure! We'll compl
 
 So I'm not going to increase my community efforts, but instead, I'd like to experiment with data analytics to increase the impact of all my typical efforts.
 
-As always you can reach me {% include link_twitter_molsjeroen.html %} on twitter, or leave a comment below!
+As always you can reach me on [Mastodon](https://androiddev.social/@Jeroenmols), or leave a comment below!

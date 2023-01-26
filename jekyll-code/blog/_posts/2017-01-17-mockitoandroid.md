@@ -65,4 +65,4 @@ Finally, please be aware that Mockito 2.x has some [behavior changes](https://gi
 ## Wrap-up
 Finally Mockito has first class support for Android instrumentation tests! I've also updated my [Mockito sample project](https://github.com/jeroenmols/mockitoexample) where you can see how it works and learn more about how to use Mockito.
 
-As always you can reach me {% include link_twitter_molsjeroen.html %} on twitter, or leave a comment below!
+As always you can reach me on [Mastodon](https://androiddev.social/@Jeroenmols), or leave a comment below!

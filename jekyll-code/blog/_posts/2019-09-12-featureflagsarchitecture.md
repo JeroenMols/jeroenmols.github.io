@@ -478,4 +478,4 @@ This does require all feature flag business logic to move to a library module `f
 ## Wrap-up
 With just a few simple classes we've been able to build a powerful feature flagging architecture. In that it's very easy to add new features, there is support for both local and remote feature flags, feature flags are testable and a local UI for enabling/disabling feature flags is automatically generated.
 
-If you've made it this far you should probably follow me on {% include link_twitter.html %}. Feel free leave a comment below!
+If you've made it this far you should probably follow me on [Mastodon](https://androiddev.social/@Jeroenmols). Feel free leave a comment below!

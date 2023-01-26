@@ -47,4 +47,4 @@ In 2020, I'm going to focus on living a healthier lifestyle: exercise more, eat 
 
 I don't plan on increasing my community contributions, in fact, I might even do slightly less. However, I would also like to explore alternative ways to give back such as one-on-one mentoring or speaking at a remote conference.
 
-As always you can reach me {% include link_twitter_molsjeroen.html %} on twitter, or leave a comment below!
+As always you can reach me on [Mastodon](https://androiddev.social/@Jeroenmols), or leave a comment below!

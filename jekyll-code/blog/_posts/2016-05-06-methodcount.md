@@ -217,4 +217,4 @@ For existing projects, always try to replace existing large method libraries wit
 
 A basic example project with everything in this blogpost integrated is available on [GitHub](https://github.com/JeroenMols/MethodCountExample).
 
-As always you can reach me {% include link_twitter_molsjeroen.html %} on twitter, or leave a comment below!
+As always you can reach me on [Mastodon](https://androiddev.social/@Jeroenmols), or leave a comment below!

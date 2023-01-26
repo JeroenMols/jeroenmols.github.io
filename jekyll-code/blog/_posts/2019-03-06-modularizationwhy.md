@@ -116,4 +116,4 @@ On the other hand, modularization (if done well) can enable the payment flow to 
 ## Wrap-up
 Modularization is incredibly powerful to speed up your builds, simplify development and fundamentally scale your team. On top of that, it enables interesting use cases such as instant apps and makes it easier to experiment with new technologies.
 
-Make sure to follow me on {% include link_twitter.html %} and learn how to architect a multi module app [by reading part 2]({{ site.baseurl }}{% link blog/_posts/2019-03-18-modularizationarchitecture.md %}).
+Make sure to follow me on [Mastodon](https://androiddev.social/@Jeroenmols) and learn how to architect a multi module app [by reading part 2]({{ site.baseurl }}{% link blog/_posts/2019-03-18-modularizationarchitecture.md %}).

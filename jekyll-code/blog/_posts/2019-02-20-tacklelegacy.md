@@ -117,7 +117,7 @@ Finally, know that you are learning an invaluable skill: maintaining software wh
 ## Wrap-up
 There is no silver bullet to magically improve your code base, especially not rewriting. But by learning your tools, slicing your app in several modules and releasing often you will succeed if you have faith.
 
-If you've made it this far you should probably follow me on {% include link_twitter.html %}. Feel free leave a comment below!
+If you've made it this far you should probably follow me on [Mastodon](https://androiddev.social/@Jeroenmols). Feel free leave a comment below!
 
 ## Further reads
 If I've piqued your interest and you would like to learn more, I can highly recommend the following books:

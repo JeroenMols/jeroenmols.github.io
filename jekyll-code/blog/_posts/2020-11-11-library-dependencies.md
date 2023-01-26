@@ -379,4 +379,4 @@ Transitive dependencies problems only occur when a `CustomerApp` has certain com
 
 Try to reduce the `library`'s transitive dependencies to a minimum and focus on popular, Android optimized dependencies.
 
-If you've made it this far you should probably follow me on {% include link_twitter.html %}. Feel free to leave a comment below!
+If you've made it this far you should probably follow me on [Mastodon](https://androiddev.social/@Jeroenmols). Feel free to leave a comment below!

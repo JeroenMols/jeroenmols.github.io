@@ -111,4 +111,4 @@ Regardless of my suggestions, removing frustrations from your development proces
 ## Wrap-up
 All code changes require a pull request before they are merged. Code reviews are encouraged, but they can be skipped for trivial or highly urgent changes.
 
-If you've made it this far you should probably {% include link_twitter.html %}. Feel free to leave a comment below!
+If you've made it this far you should probably follow me on [Mastodon](https://androiddev.social/@Jeroenmols). Feel free to leave a comment below!

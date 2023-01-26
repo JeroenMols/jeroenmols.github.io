@@ -296,4 +296,4 @@ Modularization yields tons of benefits, yet can be quite challenging.
 
 After reading this series, you've learned why modularization is important, what the architecture of a modularized app could be, how to start modularizing your app and finally quite some useful tips and tricks to help you along the way.
 
-If you've made it this far you should probably follow me on {% include link_twitter.html %}. Feel free leave a comment below!
+If you've made it this far you should probably follow me on [Mastodon](https://androiddev.social/@Jeroenmols). Feel free leave a comment below!

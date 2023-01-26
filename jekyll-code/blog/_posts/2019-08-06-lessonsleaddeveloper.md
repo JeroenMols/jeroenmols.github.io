@@ -210,4 +210,4 @@ The ride to get there was rough though and despite my good intentions, I made ma
 
 One of my long open career goals was to work in a high performant team on a world-class product. And I'm happy to say that I can now finally check that box!!! Though, I didn't expect to be leading that team.
 
-Hopefully, you liked this honest retrospective, feel free to leave a comment below or follow me on {% include link_twitter.html %}.
+Hopefully, you liked this honest retrospective, feel free to leave a comment below or follow me on [Mastodon](https://androiddev.social/@Jeroenmols).

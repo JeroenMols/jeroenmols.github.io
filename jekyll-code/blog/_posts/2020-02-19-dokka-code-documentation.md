@@ -338,4 +338,4 @@ private List<String> getSourceDirs(String directoryPath) {
 ## Wrap-up
 This post covered how to configure [Dokka](https://github.com/Kotlin/dokka) to generate [KDoc](https://kotlinlang.org/docs/reference/kotlin-doc.html) documentation. It explained how Dokka can be used for multi-module libraries and how public classes of submodules can be excluded.
 
-If you've made it this far you should probably follow me on {% include link_twitter.html %}. Feel free to leave a comment below!
+If you've made it this far you should probably follow me on [Mastodon](https://androiddev.social/@Jeroenmols). Feel free to leave a comment below!

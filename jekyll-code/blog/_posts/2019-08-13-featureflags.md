@@ -111,4 +111,4 @@ Finally, we should be able to easily toggle feature flags on/off in automated te
 ## Wrap-up
 Feature flags are an incredibly powerful tool to speed up development: they allow to merge incomplete features and derisk app release by allowing gradual rollouts. They should be incredibly easy to add, usable in automated tests and you should be able to toggle them remotely for production use and locally for development and testing.
 
-Make sure you follow me on {% include link_twitter.html %} and read on in [part 2]({{ site.baseurl }}{% link blog/_posts/2019-08-20-featureflagshowtouse.md %}) that covers how you can use and release feature flags.
+Make sure you follow me on [Mastodon](https://androiddev.social/@Jeroenmols) and read on in [part 2]({{ site.baseurl }}{% link blog/_posts/2019-08-20-featureflagshowtouse.md %}) that covers how you can use and release feature flags.

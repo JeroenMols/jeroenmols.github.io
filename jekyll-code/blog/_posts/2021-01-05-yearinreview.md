@@ -47,4 +47,4 @@ In 2021, I'm going to try and exercise twice a week, read 5 books, enjoy every l
 
 I do want to pick up my community contributions again and maybe even venture into other areas beyond Android.
 
-As always you can reach me {% include link_twitter_molsjeroen.html %} on Twitter, or leave a comment below!
+As always you can reach me on [Mastodon](https://androiddev.social/@Jeroenmols), or leave a comment below!

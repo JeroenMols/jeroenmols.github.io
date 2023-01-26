@@ -199,4 +199,4 @@ While not all Java 8 features have been backported yet, Android Studio 3.0 offer
 ## Wrap-up
 Thanks to Java 8 features, a lot of code can be simplified into lambda's or method references. Android Studio auto convert is the easiest way to start learning these features.
 
-If you've made it this far you should probably follow me on {% include link_twitter.html %}. Feel free leave a comment below!
+If you've made it this far you should probably follow me on [Mastodon](https://androiddev.social/@Jeroenmols). Feel free leave a comment below!

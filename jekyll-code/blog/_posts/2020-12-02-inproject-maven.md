@@ -174,4 +174,4 @@ You can now test your release variant locally by changing the build variant of t
 ## Wrap-up
 I hope this neat little trick is helpful to test your libraries. I've also [open sourced a sample project](https://github.com/JeroenMols/LibraryExample/pull/1/files) that demonstrates this concept.
 
-If you've made it this far you should probably follow me on {% include link_twitter.html %}. Feel free to leave a comment below!
+If you've made it this far you should probably follow me on [Mastodon](https://androiddev.social/@Jeroenmols). Feel free to leave a comment below!

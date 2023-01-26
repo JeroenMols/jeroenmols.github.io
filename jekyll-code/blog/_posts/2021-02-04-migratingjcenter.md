@@ -173,4 +173,4 @@ Finally note that, even though May 1st is still a few months away, I highly reco
 ## Wrap-up
 Migrating your app away from JCenter can be done by replacing all `jcenter()` references with `mavenCentral()` and adding explicit inclusions for dependencies that haven't migrated yet. For your published libraries, try to migrate as soon as possible, and don't forget to also migrate all existing artifacts.
 
-If you've made it this far you should probably follow me on {% include link_twitter.html %}. Feel free to leave a comment below!
+If you've made it this far you should probably follow me on [Mastodon](https://androiddev.social/@Jeroenmols). Feel free to leave a comment below!

@@ -133,4 +133,4 @@ Voila! That's it.
 In order to test LiveData, it's values need to be directly updated on the calling thread. This can be done using
 a rule in JUnit 4 or an extension in JUnit 5.
 
-If you've made it this far you should probably follow me on {% include link_twitter.html %}. Feel free leave a comment below!
+If you've made it this far you should probably follow me on [Mastodon](https://androiddev.social/@Jeroenmols). Feel free leave a comment below!

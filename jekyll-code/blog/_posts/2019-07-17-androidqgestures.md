@@ -175,4 +175,4 @@ Finally, we have the exact behavior we were looking for!
 ## Wrap-up
 Android Q gesture navigation will impact how users interact with our apps. For most apps, this should work out of the box, but in rare cases, the system gesture exclusion API can help whitelist parts of your app where touch is required to work near the edges.
 
-Follow me on {% include link_twitter.html %} to get notified when I post more interesting content! Feel free to leave a comment below.
+Follow me on [Mastodon](https://androiddev.social/@Jeroenmols) to get notified when I post more interesting content! Feel free to leave a comment below.

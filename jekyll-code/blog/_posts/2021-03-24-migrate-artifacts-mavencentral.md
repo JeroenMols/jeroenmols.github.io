@@ -432,4 +432,4 @@ done
 ## Wrap-up
 Migrating existing artifacts to Maven Central involves quite a few steps. Fortunately, the [open source script](https://github.com/JeroenMols/MigrateArtifactsMavenCentral) presented in this blogpost can help with downloading all artifacts, updating their `pom.xml`, signing them, and uploading them to Maven Central.
 
-If you've made it this far you should probably {% include link_twitter.html %}. Feel free to leave a comment below!
+If you've made it this far you should probably follow me on [Mastodon](https://androiddev.social/@Jeroenmols). Feel free to leave a comment below!

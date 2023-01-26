@@ -127,4 +127,4 @@ Investing time to really learn Android Studio can mean a big productivity boost.
 
 This was the last part in my series to get the most out of Android Studio.
 
-If you've made it this far you should probably follow me on {% include link_twitter.html %}. Feel free leave a comment below!
+If you've made it this far you should probably follow me on [Mastodon](https://androiddev.social/@Jeroenmols). Feel free leave a comment below!

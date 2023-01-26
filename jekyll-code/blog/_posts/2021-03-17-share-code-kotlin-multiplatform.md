@@ -118,4 +118,4 @@ In the [runtime module](https://github.com/streem/pbandk/tree/master/runtime), t
 ## Wrap-up
 While `Android` and `Jvm` projects share most APIs, not every `Java` API is available on Android. To share a subset of code across both platforms, it's best to use a shared `srcDir` so Intellij autocomplete works as expected.
 
-If you've made it this far you should probably follow me on {% include link_twitter.html %}. Feel free to leave a comment below!
+If you've made it this far you should probably follow me on [Mastodon](https://androiddev.social/@Jeroenmols). Feel free to leave a comment below!

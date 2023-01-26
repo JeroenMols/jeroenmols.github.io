@@ -205,11 +205,11 @@ Pretty cool, no?
 
 Even better: this procedure is 100% safe!!! This is because we've offloaded all correctness checks and code changes to our IDE.
 
-> If you're interested in the next posts it's probably best to follow me on {% include link_twitter.html %}.
+> If you're interested in the next posts it's probably best to follow me on [Mastodon](https://androiddev.social/@Jeroenmols).
 
 ## Wrap up
 Refactoring can be tedious and easily introduce bugs. Therefore we should automate as much as we can using Android Studio.
 
 This was part two of my series to get the most out of Android Studio.
 
-If you've made it this far you should probably follow me on {% include link_twitter.html %}. Feel free leave a comment below!
+If you've made it this far you should probably follow me on [Mastodon](https://androiddev.social/@Jeroenmols). Feel free leave a comment below!

@@ -168,6 +168,6 @@ Multi modules SDKs should be avoided as much as possible.
 ## Wrap-up
 Modularizing SDKs on Android unfortunately creates significant issues with packaging and restricting visibility of code. Therefore single module SDKs should be preferred.
 
-Don't forget to follow me on {% include link_twitter.html %} and don't miss the last part about [transitive dependencies]({{ site.baseurl }}{% link blog/_posts/2020-11-11-library-dependencies.md %})!
+Don't forget to follow me on [Mastodon](https://androiddev.social/@Jeroenmols) and don't miss the last part about [transitive dependencies]({{ site.baseurl }}{% link blog/_posts/2020-11-11-library-dependencies.md %})!
 
 Feel free to leave a comment below!

@@ -143,4 +143,4 @@ This has the upside of not needing to keep the old `Worker` class around, but co
 ## Wrap-up
 `WorkManager` is a very handy tool to handle background work, but be careful with removing or renaming `Workers`.
 
-If you've made it this far you should probably {% include link_twitter.html %}. Feel free to leave a comment below!
+If you've made it this far you should probably follow me on [Mastodon](https://androiddev.social/@Jeroenmols). Feel free to leave a comment below!

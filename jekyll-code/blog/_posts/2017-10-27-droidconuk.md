@@ -52,4 +52,4 @@ Thanks to the Skills Matter team for organizing a top notch conference! To all s
 
 Hope to see you all next year!
 
-Helpful? Got extra slides? Hit me up on {% include link_twitter.html %}.
+Helpful? Got extra slides? Hit me up on [Mastodon](https://androiddev.social/@Jeroenmols).

@@ -144,4 +144,4 @@ That has many advantages:
 ## Epilogue
 Fragment transactions are a surprisingly simple concept of adding/removing and reversing those operations. When navigations become complex, consider moving parts of the flow to a separate activity.
 
-If you've made it this far you should probably follow me on {% include link_twitter.html %}. Feel free leave a comment below or check out [the code](https://github.com/JeroenMols/FragmentBackNavigation) on GitHub!
+If you've made it this far you should probably follow me on [Mastodon](https://androiddev.social/@Jeroenmols). Feel free leave a comment below or check out [the code](https://github.com/JeroenMols/FragmentBackNavigation) on GitHub!

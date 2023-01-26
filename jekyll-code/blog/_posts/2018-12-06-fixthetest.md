@@ -362,4 +362,4 @@ Putting it all together, great tests follow the following principles:
 
 Check out my slides/video to learn more about [awesome unit tests](https://speakerdeck.com/jeroenmols/write-awesome-unit-tests).
 
-If you've made it this far you should probably follow me on {% include link_twitter.html %}. Feel free leave a comment below!
+If you've made it this far you should probably follow me on [Mastodon](https://androiddev.social/@Jeroenmols). Feel free leave a comment below!

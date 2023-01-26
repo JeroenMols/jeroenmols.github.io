@@ -177,6 +177,6 @@ Therefore it is always important to test the actual SDK artifact as a Maven depe
 ## Wrap-up
 Android libraries are built into a special `.aar` format that includes all code and resources. For all its external dependencies, a `pom.xml` needs to be deployed alongside to the Maven repository.
 
-Don't forget to follow me on {% include link_twitter.html %} and enjoy reading the next post on [SDK modularization]({{ site.baseurl }}{% link blog/_posts/2020-11-04-library-modularization.md %})!
+Don't forget to follow me on [Mastodon](https://androiddev.social/@Jeroenmols) and enjoy reading the next post on [SDK modularization]({{ site.baseurl }}{% link blog/_posts/2020-11-04-library-modularization.md %})!
 
 Feel free to leave a comment below!

@@ -125,4 +125,4 @@ Perfectly valid syntax, but otherwise completely useless.
 ## Wrap-up
 A very subtle difference in syntax (`{}` instead of `()`) can make a huge difference in what the code actually does. Kotlin is a very powerful programming language, but with great power comes great...
 
-If you've made it this far you should probably follow me on {% include link_twitter.html %}. Feel free leave a comment below!
+If you've made it this far you should probably follow me on [Mastodon](https://androiddev.social/@Jeroenmols). Feel free leave a comment below!

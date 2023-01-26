@@ -113,4 +113,4 @@ Well, [Firebase](https://github.com/firebase/quickstart-unity/issues/68) AND [Go
 ## Wrap-up
 Not explicitly setting your target SDK version will cause a dangerous permission to sneak into your app. Make sure you set the target SDK in every module and protect yourself from 3rd party libraries.
 
-If you've made it this far you should probably follow me on {% include link_twitter.html %}. Feel free leave a comment below!
+If you've made it this far you should probably follow me on [Mastodon](https://androiddev.social/@Jeroenmols). Feel free leave a comment below!

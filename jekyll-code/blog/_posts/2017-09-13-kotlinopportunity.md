@@ -74,4 +74,4 @@ I'm not saying you must learn Kotlin. But learning a new programming language is
 ## Wrap-up
 Learning a new programming language is essential in staying relevant as a software developer. Thanks to Kotlin, Android developers can now learn a new language without the frustration of all boilerplate around it.
 
-If you've made it this far you should probably follow me on {% include link_twitter.html %}. Feel free leave a comment below!
+If you've made it this far you should probably follow me on [Mastodon](https://androiddev.social/@Jeroenmols). Feel free leave a comment below!

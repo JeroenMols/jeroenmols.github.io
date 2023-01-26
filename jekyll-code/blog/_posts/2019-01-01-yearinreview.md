@@ -34,4 +34,4 @@ Looking forward to next year, I'm planning on living more! I've bought quite a f
 
 I'm going to try and increase my community efforts back to 2017 level and maybe experiment with some new formats, such as [my last blog post](https://jeroenmols.com/blog/2018/12/06/fixthetest/).
 
-As always you can reach me {% include link_twitter_molsjeroen.html %} on twitter, or leave a comment below!
+As always you can reach me on [Mastodon](https://androiddev.social/@Jeroenmols), or leave a comment below!

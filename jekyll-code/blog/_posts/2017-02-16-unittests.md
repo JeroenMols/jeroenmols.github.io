@@ -93,4 +93,4 @@ This means you'll have to:
 ## Wrap-up
 The more you run your unit tests, the more value you'll get from them. Awesome unit tests facilitate exactly that by being fast, focussed and super reliable.
 
-As always you can reach me {% include link_twitter_molsjeroen.html %} on twitter, or leave a comment below!
+As always you can reach me on [Mastodon](https://androiddev.social/@Jeroenmols), or leave a comment below!

@@ -106,4 +106,4 @@ Finally, note that it's crucial to roll out features as quickly as possible. Thi
 ## Wrap-up
 Feature flags can help in releasing new features and improvements on existing functionality. Always try to roll out features gradually, if that's not possible, rely on your beta community to test the feature prior to release,
 
-Make sure you follow me on {% include link_twitter.html %} or continue to [part 3]({{ site.baseurl }}{% link blog/_posts/2019-09-12-featureflagsarchitecture.md %}) to learn more about an architecture to integrate feature flags into your app.
+Make sure you follow me on [Mastodon](https://androiddev.social/@Jeroenmols) or continue to [part 3]({{ site.baseurl }}{% link blog/_posts/2019-09-12-featureflagsarchitecture.md %}) to learn more about an architecture to integrate feature flags into your app.

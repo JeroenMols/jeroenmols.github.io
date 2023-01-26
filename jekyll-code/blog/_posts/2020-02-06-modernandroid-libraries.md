@@ -189,4 +189,4 @@ Modern Android comes with great default choices to make Android development easi
 
 You can find all source code for the TransferWise for Banks reference application on [GitHub](https://github.com/transferwise/banks-reference-android).
 
-This series has plenty of other interesting stuff to talk about! Make sure to follow me on {% include link_twitter.html %} to get the next post on representing UI state!
+This series has plenty of other interesting stuff to talk about! Make sure to follow me on [Mastodon](https://androiddev.social/@Jeroenmols) to get the next post on representing UI state!
