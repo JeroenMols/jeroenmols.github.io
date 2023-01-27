@@ -352,7 +352,6 @@
 <p>This means:</p>
 <ul>
   <li><code class="language-plaintext highlighter-rouge">localhost</code> refers to the emulator, not your laptop</li>
-  <li>local IP addresses <code class="language-plaintext highlighter-rouge">192.168.1.xxx</code> are not accessible</li>
   <li>local MDNS addresses <code class="language-plaintext highlighter-rouge">jmols.local</code> are not accessible</li>
 </ul>
 
@@ -360,8 +359,21 @@
 
 <p><a href="https://jeroenmols.com/img/blog/developmentserveremulator/error.png" class="align-center"><img src="https://jeroenmols.com/img/blog/developmentserveremulator/error.png" alt="Error trying to connect to the connect to a local network IP/MDNS address" /></a></p>
 
-<h2 id="method-1-the-loopback-address">Method 1: the loopback address</h2>
-<p>The simplest solution is to change the server URL in your app and point it to <code class="language-plaintext highlighter-rouge">10.0.2.2</code>. This is a <a href="https://developer.android.com/studio/run/emulator-networking#networkaddresses">special alias to your host loopback interface</a> (127.0.0.1 on your development machine).</p>
+<h2 id="method-1-use-your-computers-ip-address">Method 1: use your computers IP address</h2>
+<blockquote>
+  <p>Huge thanks to <a href="https://androiddev.social/@EdyBolos">Eduard-Cristian Boloș</a> for suggesting this solution.</p>
+</blockquote>
+
+<p>Since Android emulators can <a href="https://developer.android.com/studio/run/emulator-networking#networkinglimitations">access IP addresses on your network</a>, you can directly point to the IP address of your computer.</p>
+
+<p>Instead of loading <code class="language-plaintext highlighter-rouge">https://jmols.local:3000</code>, you can load <code class="language-plaintext highlighter-rouge">https://&lt;YOUR_COMPUTER_IP&gt;:3000</code> (e.g. <code class="language-plaintext highlighter-rouge">https://192.168.1.123</code>).</p>
+
+<p>This works on both emulators and Android phones!</p>
+
+<p>However you may have to update the IP after connecting to a different network or when your IP lease expires.</p>
+
+<h2 id="method-2-the-loopback-address">Method 2: the loopback address</h2>
+<p>Another approach is to change the server URL in your app and point it to <code class="language-plaintext highlighter-rouge">10.0.2.2</code>. This is a <a href="https://developer.android.com/studio/run/emulator-networking#networkaddresses">special alias to your host loopback interface</a> (127.0.0.1 on your development machine).</p>
 
 <p>So instead of loading <code class="language-plaintext highlighter-rouge">https://jmols.local:3000</code>, our app will load <code class="language-plaintext highlighter-rouge">https://10.0.2.2:3000</code> instead.</p>
 
@@ -369,7 +381,7 @@
 
 <p>Can we find a single solution that works on both emulators and devices?</p>
 
-<h2 id="method-2-redirect-the-emulator">Method 2: redirect the emulator</h2>
+<h2 id="method-3-redirect-the-emulator">Method 3: redirect the emulator</h2>
 <p>In this solution, we’ll instruct the emulator to redirect the IP address from the host machine to the loopback IP address automatically. We’ll do this by editing the <code class="language-plaintext highlighter-rouge">etc/hosts</code> file on the Android emulator.</p>
 
 <p>First, we need to ensure the <code class="language-plaintext highlighter-rouge">etc/hosts</code> file is writable:</p>
@@ -435,10 +447,22 @@
   <p>Notice how this solution can easily be generalized to any IP address on your local network.</p>
 </blockquote>
 
-<h2 id="wrap-up">Wrap-up</h2>
-<p>After jumping through some Android emulator hoops to make <code class="language-plaintext highlighter-rouge">etc/hosts</code> writable, we successfully connected the emulator to our development server by linking our local address to the loopback address.</p>
+<h2 id="bonus-adb-reverse">Bonus: ADB reverse</h2>
+<blockquote>
+  <p>Huge thanks to <a href="https://androiddev.social/@jefflewis@hachyderm.io">Jeff Lewis</a> for suggesting this solution.</p>
+</blockquote>
 
-<p>If this was helpful to you, consider <a href="https://www.buymeacoffee.com/jeroen">buying me a coffee</a> or thanking me on <a href="https://androiddev.social/@Jeroenmols">Mastodon</a> or <a href="https://twitter.com/molsjeroen">Twitter</a>!</p>
+<p><a href="https://reactnative.dev/docs/running-on-device#method-1-using-adb-reverse-recommended">React native uses ADB reverse</a> to bind an emulator port to a port on your computer.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>adb reverse tcp:3000 tcp:3000
+</code></pre></div></div>
+
+<p>Similarly to the loopback address, this solution isn’t suitable for a physical device.</p>
+
+<h2 id="wrap-up">Wrap-up</h2>
+<p>Depending on your situation, there are several ways to connect an emulator to a local server. A universal - though complicated way - is to make <code class="language-plaintext highlighter-rouge">etc/hosts</code> writable so you can access your development server using your local MDNS name.</p>
+
+<p>If this was helpful to you, please let me know on <a href="https://androiddev.social/@Jeroenmols">Mastodon</a>!</p>
 
         
       </section>
