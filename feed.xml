@@ -1,4 +1,45 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2023-01-27T12:46:54+01:00</updated><id>https://jeroenmols.com/feed.xml</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, Software developer at Plaid and Google Developer Expert.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Android emulator access to local server</title><link href="https://jeroenmols.com/blog/2023/01/25/development-server-emulator/" rel="alternate" type="text/html" title="Android emulator access to local server" /><published>2023-01-25T00:00:00+01:00</published><updated>2023-01-25T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2023/01/25/development-server-emulator</id><content type="html" xml:base="https://jeroenmols.com/blog/2023/01/25/development-server-emulator/"><![CDATA[<p>How can you connect your app on an Android emulator to a development server running on the localhost of your computer?</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2023-01-29T19:06:26+01:00</updated><id>https://jeroenmols.com/feed.xml</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, Software developer at Plaid and Google Developer Expert.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Removing all trackers from my website</title><link href="https://jeroenmols.com/blog/2023/01/29/remove-trackers/" rel="alternate" type="text/html" title="Removing all trackers from my website" /><published>2023-01-29T00:00:00+01:00</published><updated>2023-01-29T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2023/01/29/remove-trackers</id><content type="html" xml:base="https://jeroenmols.com/blog/2023/01/29/remove-trackers/"><![CDATA[<p>These past years I’ve grown to be more privacy-aware. And while this post isn’t about how I’m increasing my personal privacy, I’d like to talk about how I’m increasing yours.</p>
+
+<p>My website had three services integrated:</p>
+
+<ul>
+  <li><a href="https://analytics.google.com/analytics/web/provision/#/provision">Google Analytics</a> gave me insights into how much people read my content and what topics were popular to write about.</li>
+  <li><a href="https://www.google.com/adsense/start/">Google Adsense</a> showed ads underneath every blog post and enabled me to monetize my content. With this I received two payments (70.84 euro in 2019 and 74.20 euro in 2020), covering the expenses for my domain name for about 14 years.</li>
+  <li><a href="https://disqus.com/">Disqus comments</a> allowed people to comment on my content, but since I didn’t pay for the service Disqus was also serving advertisements.</li>
+</ul>
+
+<p>And while these services were adding some value to my website, they were doing so at the cost of your privacy. By default (!!!), they not only track your interaction with my website, but also detailed information about you (gender, age, approximate location,…) and they even track you across different websites.</p>
+
+<p>But should I really be collecting all that data about you?</p>
+
+<p>Should I really hand off all that data to those services?</p>
+
+<p>Have I ever asked your consent about any of this?</p>
+
+<p>Well, I no longer believe it is “normal” for websites or products to engage in these practices. That every experience needs to be personalized. Or that we should give away our privacy so easily.</p>
+
+<p>Therefore I’ve decided to strip all such services. Now my website is a safe space where you can enjoy (hopefully) my content without worrying about advertisements or tracker blockers.</p>
+
+<p>However, I do still care about your opinion!</p>
+
+<p>So moving forward you can:</p>
+
+<ul>
+  <li>Let me know you’ve read this by liking one of my social posts</li>
+  <li>Talk about my content on <a href="https://www.reddit.com/">Reddit</a> or <a href="https://news.ycombinator.com/">Hacker News</a></li>
+  <li>Send me feedback/questions on <a href="https://androiddev.social/@Jeroenmols">Mastodon</a></li>
+</ul>
+
+<p>You’re in full control whether you decide to reach out or not!</p>
+
+<p>I’ll keep doing my best to provide you with interesting content (which is a ton of work) and hence appreciate every single like or shoutout.</p>
+
+<h2 id="wrap-up">Wrap-up</h2>
+<p style="color: #646769; background: #f2f3f3; padding: 20px;">This site is 100% tracker free, :heart: for liking my post on Mastodon or Linkedin to let me know you've read this.</p>
+
+<p>My website is now fully tracker and advertisement free, I’ll do my best to guarantee your privacy moving forward.</p>
+
+<p>If this was helpful to you, please let me know on <a href="https://androiddev.social/@Jeroenmols">Mastodon</a>!</p>]]></content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="website" /><category term="privacy" /><category term="trackers" /><summary type="html"><![CDATA[These past years I’ve grown to be more privacy-aware. And while this post isn’t about how I’m increasing my personal privacy, I’d like to talk about how I’m increasing yours.]]></summary></entry><entry><title type="html">Android emulator access to local server</title><link href="https://jeroenmols.com/blog/2023/01/25/development-server-emulator/" rel="alternate" type="text/html" title="Android emulator access to local server" /><published>2023-01-25T00:00:00+01:00</published><updated>2023-01-25T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2023/01/25/development-server-emulator</id><content type="html" xml:base="https://jeroenmols.com/blog/2023/01/25/development-server-emulator/"><![CDATA[<p>How can you connect your app on an Android emulator to a development server running on the localhost of your computer?</p>
 
 <h2 id="the-problem">The problem</h2>
 <p>Since Android emulators create their own virtual network, they cannot access devices on your local network.</p>
@@ -114,6 +155,8 @@
 <p>Similarly to the loopback address, this solution isn’t suitable for a physical device.</p>
 
 <h2 id="wrap-up">Wrap-up</h2>
+<p style="color: #646769; background: #f2f3f3; padding: 20px;">This site is 100% tracker free, :heart: for liking my post on <a href="https://androiddev.social/@Jeroenmols/109749532076281170">Mastodon</a> or <a href="https://www.linkedin.com/posts/jeroenmols_androiddev-server-react-activity-7023970812340641792-jtiW">Linkedin</a> to let me know you've read this.</p>
+
 <p>Depending on your situation, there are several ways to connect an emulator to a local server. A universal - though complicated way - is to make <code class="language-plaintext highlighter-rouge">etc/hosts</code> writable so you can access your development server using your local MDNS name.</p>
 
 <p>If this was helpful to you, please let me know on <a href="https://androiddev.social/@Jeroenmols">Mastodon</a>!</p>]]></content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="android" /><category term="adb" /><category term="emulator" /><category term="localhost" /><category term="server" /><summary type="html"><![CDATA[How can you connect your app on an Android emulator to a development server running on the localhost of your computer?]]></summary></entry><entry><title type="html">Transfer many large files from Android</title><link href="https://jeroenmols.com/blog/2022/12/17/pull-files-android/" rel="alternate" type="text/html" title="Transfer many large files from Android" /><published>2022-12-17T00:00:00+01:00</published><updated>2022-12-17T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2022/12/17/pull-files-android</id><content type="html" xml:base="https://jeroenmols.com/blog/2022/12/17/pull-files-android/"><![CDATA[<p>Trying to get a large number of files from your Android phone, but Android File Transfer freezing up?</p>
@@ -1237,48 +1280,4 @@ Could not determine the dependencies of task <span class="s1">':app:lintVitalRel
 <h2 id="wrap-up">Wrap-up</h2>
 <p>Migrating your app away from JCenter can be done by replacing all <code class="language-plaintext highlighter-rouge">jcenter()</code> references with <code class="language-plaintext highlighter-rouge">mavenCentral()</code> and adding explicit inclusions for dependencies that haven’t migrated yet. For your published libraries, try to migrate as soon as possible, and don’t forget to also migrate all existing artifacts.</p>
 
-<p>If you’ve made it this far you should probably follow me on <a href="https://androiddev.social/@Jeroenmols">Mastodon</a>. Feel free to leave a comment below!</p>]]></content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="android" /><category term="library" /><category term="maven" /><category term="jcenter" /><category term="bintray" /><category term="transitive dependencies" /><category term="gradle" /><summary type="html"><![CDATA[This week JFrog - out of nowhere - announced to completely remove their Maven repository. Since they’ll pull it offline already by May 2021 (!!!) it’s time to urgently migrate away. This blogpost will guide how to get started.]]></summary></entry><entry><title type="html">Year in review 2020</title><link href="https://jeroenmols.com/blog/2021/01/05/yearinreview/" rel="alternate" type="text/html" title="Year in review 2020" /><published>2021-01-05T00:00:00+01:00</published><updated>2021-01-05T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2021/01/05/yearinreview</id><content type="html" xml:base="https://jeroenmols.com/blog/2021/01/05/yearinreview/"><![CDATA[<p>Well… I don’t really know where to start this time. 2020 was quite the rollercoaster, with many downs… but fortunately also a few amazing ups. Let’s focus on the good stuff.</p>
-
-<p>My first lucky break was that I started working remotely by choice! This privilege meant I was quite well equipped both practically and mentally for the challenges of remote work. And while not without its challenges, I haven’t been happier at my work.</p>
-
-<p>The main work challenge was bridging the 9-hour timezone gap with my colleagues. And while I do work some evenings, I’ve never been more available for my kids. And I’ve grown really fond of:</p>
-
-<ul>
-  <li>never (!!!) having to set an alarm clock</li>
-  <li>exercising in the middle of a working day</li>
-  <li>grabbing coffee/breakfast with my wife anytime I want (can?)</li>
-</ul>
-
-<p>Another highlight was the amazing time I was able to spend with my kids during the first Lockdown. I would work from 2pm to 10pm so me and the kids could do fun stuff in the mornings (fixing up the house, gardening, playgrounds,…). I recognize how extraordinary it was to have so much playtime with my kids and truly enjoyed it.</p>
-
-<p>However, working such long days also meant I pushed myself beyond my limits and I had to take it a lot slower for several weeks before I felt better. A huge shoutout to Plaid and my manager Judd for the immense understanding they’ve shown for my situation.</p>
-
-<p>Further, I’ve also built and designed my own custom Lego set: <a href="http://bit.ly/legostuntcar">Radio-Controlled Flip Over Stunt Car</a>:</p>
-
-<p><a href="http://bit.ly/legostuntcar"><img src="https://jeroenmols.com/img/blog/yearinreview20/lego-ideas.jpg" alt="Radio-Controlled Flip Over Stunt Car" class="align-center" /></a></p>
-
-<p>Please give me a <a href="http://bit.ly/legostuntcar">vote</a>!!! If I make it to 10k supporters, Lego might actually make it into an official set. 🤞</p>
-
-<p>Further 2020 highlights include:</p>
-
-<ul>
-  <li>🧱 Teaching my son and daughter how to build Lego</li>
-  <li>👨‍💻 Spoke at <a href="https://jeroenmols.com/speaking/">4 online events</a> and produced <a href="https://www.youtube.com/watch?v=TCKb1WfjAC8">1 video</a>.</li>
-  <li>📝 Wrote <a href="http://jeroenmols.com/blog/">6 blog posts</a></li>
-  <li>📱 Grew my <a href="https://twitter.com/molsjeroen">Twitter</a> followers by ~20% to more than 7500</li>
-  <li>🦠 Contributed code to the official <a href="https://github.com/nhsx/covid-19-app-android-ag-public/tree/master/app/src/main/java/com/jeroenmols">UK Covid app</a></li>
-  <li>🚗 Drove less than 1500 km with my car (down from 30k km)</li>
-  <li>☕️  Improved my coffee skills with (basic) latte art!</li>
-  <li>🚴‍♀️ Worked out (almost) biweekly on my indoor racing bike</li>
-  <li>🪒 Shaved my hair and grew a beard</li>
-  <li>📕 Read 4 books</li>
-  <li>📈 Started investing</li>
-</ul>
-
-<p>To keep the best for last: we’re expecting a baby girl in March! 🍼👼</p>
-
-<p>In 2021, I’m going to try and exercise twice a week, read 5 books, enjoy every little moment with the baby and double down on being an awesome father for all my kids.</p>
-
-<p>I do want to pick up my community contributions again and maybe even venture into other areas beyond Android.</p>
-
-<p>As always you can reach me on <a href="https://androiddev.social/@Jeroenmols">Mastodon</a>, or leave a comment below!</p>]]></content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="review" /><summary type="html"><![CDATA[Well… I don’t really know where to start this time. 2020 was quite the rollercoaster, with many downs… but fortunately also a few amazing ups. Let’s focus on the good stuff.]]></summary></entry></feed>
+<p>If you’ve made it this far you should probably follow me on <a href="https://androiddev.social/@Jeroenmols">Mastodon</a>. Feel free to leave a comment below!</p>]]></content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="android" /><category term="library" /><category term="maven" /><category term="jcenter" /><category term="bintray" /><category term="transitive dependencies" /><category term="gradle" /><summary type="html"><![CDATA[This week JFrog - out of nowhere - announced to completely remove their Maven repository. Since they’ll pull it offline already by May 2021 (!!!) it’s time to urgently migrate away. This blogpost will guide how to get started.]]></summary></entry></feed>

@@ -146,13 +146,17 @@
           Jeroen Mols
           
         </a>
-        <ul class="visible-links"><li class="masthead__menu-item">
+        <ul class="visible-links">
+<li class="masthead__menu-item">
               <a href="/blog/">Blog</a>
-            </li><li class="masthead__menu-item">
+            </li>
+<li class="masthead__menu-item">
               <a href="/speaking/">Speaking</a>
-            </li><li class="masthead__menu-item">
+            </li>
+<li class="masthead__menu-item">
               <a href="/hireme/">Hire me</a>
-            </li></ul>
+            </li>
+</ul>
         
         <button class="search__toggle" type="button">
           <span class="visually-hidden">Toggle search</span>
@@ -351,13 +355,14 @@
 
 <p>This means:</p>
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">localhost</code> refers to the emulator, not your laptop</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">localhost</code> refers to the emulator, not your laptop</li>
   <li>local MDNS addresses <code class="language-plaintext highlighter-rouge">jmols.local</code> are not accessible</li>
 </ul>
 
 <p>So accessing our development server at <code class="language-plaintext highlighter-rouge">https://jmols.local:3000</code> results in the following error:</p>
 
-<p><a href="https://jeroenmols.com/img/blog/developmentserveremulator/error.png" class="align-center"><img src="https://jeroenmols.com/img/blog/developmentserveremulator/error.png" alt="Error trying to connect to the connect to a local network IP/MDNS address" /></a></p>
+<p><a href="https://jeroenmols.com/img/blog/developmentserveremulator/error.png" class="align-center"><img src="https://jeroenmols.com/img/blog/developmentserveremulator/error.png" alt="Error trying to connect to the connect to a local network IP/MDNS address"></a></p>
 
 <h2 id="method-1-use-your-computers-ip-address">Method 1: use your computers IP address</h2>
 <blockquote>
@@ -389,32 +394,39 @@
 <ol>
   <li>Create a new emulator (non Google Play services, so we have access to root)</li>
   <li>Find the emulator AVD name of the emulator
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>emulator -list-avds
+    <div class="language-plaintext highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>emulator -list-avds
 </code></pre></div>    </div>
   </li>
   <li>Start your emulator from the command line with the option to enable a writable system
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>emulator -avd "&lt;AVD_NAME_HERE&gt;" -writable-system
+    <div class="language-plaintext highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>emulator -avd "&lt;AVD_NAME_HERE&gt;" -writable-system
 </code></pre></div>    </div>
   </li>
   <li>Run ADB as root
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>adb root
+    <div class="language-plaintext highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>adb root
 </code></pre></div>    </div>
   </li>
   <li>Disable verified boot
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>adb disable-verity
+    <div class="language-plaintext highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>adb disable-verity
 </code></pre></div>    </div>
   </li>
   <li>Reboot the device
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>adb reboot
+    <div class="language-plaintext highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>adb reboot
 </code></pre></div>    </div>
   </li>
   <li>Wait for the device to be rebooted (ready when <code class="language-plaintext highlighter-rouge">adb shell</code> works)</li>
   <li>Run ADB as root (again)
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>adb root
+    <div class="language-plaintext highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>adb root
 </code></pre></div>    </div>
   </li>
   <li>Remount partitions as read-write
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>adb remount
+    <div class="language-plaintext highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>adb remount
 </code></pre></div>    </div>
   </li>
 </ol>
@@ -423,7 +435,8 @@
 
 <ol>
   <li>First get the existing hosts file
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>adb pull etc/hosts
+    <div class="language-plaintext highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>adb pull etc/hosts
 </code></pre></div>    </div>
   </li>
   <li>Add an entry to direct your local server domain to the loopback address: <code class="language-plaintext highlighter-rouge">10.0.2.2   &lt;YOUR_LOCAL_HOSTNAME&gt;</code>. Your hostfile should look like this:</li>
@@ -436,7 +449,8 @@
 
 <ol>
   <li>Save and push the file back to the emulator:
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>adb push hosts etc/hosts
+    <div class="language-plaintext highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>adb push hosts etc/hosts
 </code></pre></div>    </div>
   </li>
 </ol>
@@ -460,6 +474,8 @@
 <p>Similarly to the loopback address, this solution isn’t suitable for a physical device.</p>
 
 <h2 id="wrap-up">Wrap-up</h2>
+<p style="color: #646769; background: #f2f3f3; padding: 20px;">This site is 100% tracker free, <img class="emoji" title=":heart:" alt=":heart:" src="https://github.githubassets.com/images/icons/emoji/unicode/2764.png" height="20" width="20"> for liking my post on <a href="https://androiddev.social/@Jeroenmols/109749532076281170">Mastodon</a> or <a href="https://www.linkedin.com/posts/jeroenmols_androiddev-server-react-activity-7023970812340641792-jtiW">Linkedin</a> to let me know you've read this.</p>
+
 <p>Depending on your situation, there are several ways to connect an emulator to a local server. A universal - though complicated way - is to make <code class="language-plaintext highlighter-rouge">etc/hosts</code> writable so you can access your development server using your local MDNS name.</p>
 
 <p>If this was helpful to you, please let me know on <a href="https://androiddev.social/@Jeroenmols">Mastodon</a>!</p>
@@ -520,11 +536,11 @@
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?via=molsjeroen&text=Android+emulator+access+to+local+server%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2023%2F01%2F25%2Fdevelopment-server-emulator%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?via=molsjeroen&amp;text=Android+emulator+access+to+local+server%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2023%2F01%2F25%2Fdevelopment-server-emulator%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
   <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2023%2F01%2F25%2Fdevelopment-server-emulator%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2023%2F01%2F25%2Fdevelopment-server-emulator%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2023%2F01%2F25%2Fdevelopment-server-emulator%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
@@ -535,7 +551,8 @@
 ">Previous</a>
     
     
-      <a href="#" class="pagination--pager disabled">Next</a>
+      <a href="/blog/2023/01/29/remove-trackers/" class="pagination--pager" title="Removing all trackers from my website
+">Next</a>
     
   </nav>
 
@@ -547,7 +564,7 @@
   
       
 <h4 class="page__comments-title">Leave a Comment</h4>
-<div>Start a conversation about this content on <a href=https://www.reddit.com/>Reddit</a> or <a href=https://news.ycombinator.com/>Hacker News</a>.</div>
+<div>Start a conversation about this content on <a href="https://www.reddit.com/">Reddit</a> or <a href="https://news.ycombinator.com/">Hacker News</a>.</div>
 
   
 </div>
@@ -560,6 +577,45 @@
     <div class="page__related">
       <h4 class="page__related-title">You May Also Enjoy</h4>
       <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(/img/blog/removetrackers/cover.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="/blog/2023/01/29/remove-trackers/" rel="permalink">Removing all trackers from my website
+</a>
+        </h2>
+        <h3 class="archive__date">29 Jan 2023</h3>
+      </div>
+      
+        <a href="/blog/2023/01/29/remove-trackers/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">These past years I’ve grown to be more privacy-aware. And while this post isn’t about how I’m increasing my personal privacy, I’d like to talk about how I’m increasing yours.
+</p>
+  </article>
+</div>
+
         
           
 
@@ -678,45 +734,6 @@
 </div>
 
         
-          
-
-
-
-<div class="grid__item" style="position: relative">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    <div style="position:relative;">
-      
-        <div class="archive__item-teaser" style="background-image: url(/img/blog/workmanager-crash/workmanager-crash.jpg)"></div>
-      
-      <div class="archive__item_titlecontainer">
-        <h2 class="archive__item-title" itemprop="headline">
-            <a href="/blog/2022/04/27/workmanager-crash/" rel="permalink">The curious case of crashing Workers
-</a>
-        </h2>
-        <h3 class="archive__date">27 Apr 2022</h3>
-      </div>
-      
-        <a href="/blog/2022/04/27/workmanager-crash/" rel="permalink">
-          <div class="archive__item-teaser-imageclickhandler"></div>
-        </a>
-      
-    </div>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  3 minute read
-
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">WorkManager is great to schedule background work on Android. However, since scheduled work lives outside of the app lifecycle, you might run into unexpected crashes.
-</p>
-  </article>
-</div>
-
-        
       </div>
     </div>
   
@@ -727,13 +744,15 @@
 
     
       <div class="search-content">
-        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+        <div class="search-content__inner-wrap">
+<form class="search-content__form" onkeydown="return event.key != 'Enter';">
     <label class="sr-only" for="search">
       Enter your search term...
     </label>
-    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term...">
   </form>
-  <div id="results" class="results"></div></div>
+  <div id="results" class="results"></div>
+</div>
 
       </div>
     
@@ -757,7 +776,7 @@
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2023 Jeroen Mols. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">© 2023 Jeroen Mols. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>

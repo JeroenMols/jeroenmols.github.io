@@ -400,4 +400,10 @@ var store = [{
         "tags": ["android","adb","emulator","localhost","server"],
         "url": "/blog/2023/01/25/development-server-emulator/",
         "teaser": "/img/blog/developmentserveremulator/cover.jpg"
+      },{
+        "title": "Removing all trackers from my website",
+        "excerpt":"These past years I’ve grown to be more privacy-aware. And while this post isn’t about how I’m increasing my personal privacy, I’d like to talk about how I’m increasing yours. My website had three services integrated: Google Analytics gave me insights into how much people read my content and what...","categories": ["blog"],
+        "tags": ["website","privacy","trackers"],
+        "url": "/blog/2023/01/29/remove-trackers/",
+        "teaser": "/img/blog/removetrackers/cover.jpg"
       }]
