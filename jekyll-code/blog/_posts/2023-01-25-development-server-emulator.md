@@ -115,6 +115,8 @@ adb reverse tcp:3000 tcp:3000
 Similarly to the loopback address, this solution isn't suitable for a physical device.
 
 ## Wrap-up
+<p style="color: #646769; background: #f2f3f3; padding: 20px;">This site is 100% tracker free, :heart: for liking my post on <a href="https://androiddev.social/@Jeroenmols/109749532076281170">Mastodon</a> or <a href="https://www.linkedin.com/posts/jeroenmols_androiddev-server-react-activity-7023970812340641792-jtiW">Linkedin</a> to let me know you've read this.</p>
+
 Depending on your situation, there are several ways to connect an emulator to a local server. A universal - though complicated way - is to make `etc/hosts` writable so you can access your development server using your local MDNS name.
 
 If this was helpful to you, please let me know on [Mastodon](https://androiddev.social/@Jeroenmols)!
