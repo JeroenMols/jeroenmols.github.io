@@ -1,6 +1,6 @@
 ---
 title: Using multiple SSH keys for Github and Github enterprise
-published: false
+published: true
 header:
   teaser: img/blog/multiple-ssh/multiple-ssh.jpg
   imgcredit: Photo by Samantha Lam from Unsplash, https://unsplash.com/photos/zFy6fOPZEu0, cropped and resized
@@ -38,4 +38,6 @@ I'm explicitly defining each host, but you could also assign a SSH key to all re
 
 That's it!
 
-If this was helpful to you, consider [buying me a coffee](https://www.buymeacoffee.com/jeroen) or thanking me on [Mastodon](https://androiddev.social/@Jeroenmols) or [Twitter](https://twitter.com/molsjeroen)!
+<p style="color: #646769; background: #f2f3f3; padding: 20px;">This site is 100% tracker free, :heart: for liking my post on <a href="https://androiddev.social/@Jeroenmols/109819480309091738">Mastodon</a> or <a href="https://www.linkedin.com/feed/update/urn:li:share:7028447120189726720/">Linkedin</a> to let me know you've read this.</p>
+
+If this was helpful to you, consider [buying me a coffee](https://www.buymeacoffee.com/jeroen).
