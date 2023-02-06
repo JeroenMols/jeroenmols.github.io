@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Removing all trackers from my website - Jeroen Mols</title>
-<meta name="description" content="These past years I’ve grown to be more privacy-aware. And while this post isn’t about how I’m increasing my personal privacy, I’d like to talk about how I’m increasing yours.">
+<!-- begin _includes/seo.html --><title>Using multiple SSH keys for Github and Github enterprise - Jeroen Mols</title>
+<meta name="description" content="Looking to configure multiple SSH keys on the same computer? For instance to use a different SSH key for your public and enterprise Github contributions.">
 
 
   <meta name="author" content="Jeroen Mols">
@@ -22,27 +22,27 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en">
 <meta property="og:site_name" content="Jeroen Mols">
-<meta property="og:title" content="Removing all trackers from my website">
-<meta property="og:url" content="https://jeroenmols.com/blog/2023/01/29/remove-trackers/">
+<meta property="og:title" content="Using multiple SSH keys for Github and Github enterprise">
+<meta property="og:url" content="https://jeroenmols.com/blog/2023/02/06/multiple-ssh-keys/">
 
 
-  <meta property="og:description" content="These past years I’ve grown to be more privacy-aware. And while this post isn’t about how I’m increasing my personal privacy, I’d like to talk about how I’m increasing yours.">
+  <meta property="og:description" content="Looking to configure multiple SSH keys on the same computer? For instance to use a different SSH key for your public and enterprise Github contributions.">
 
 
 
-  <meta property="og:image" content="https://jeroenmols.com/img/blog/removetrackers/cover.jpg">
+  <meta property="og:image" content="https://jeroenmols.com/img/blog/multiple-ssh/multiple-ssh.jpg">
 
 
 
   <meta name="twitter:site" content="@molsjeroen">
-  <meta name="twitter:title" content="Removing all trackers from my website">
-  <meta name="twitter:description" content="These past years I’ve grown to be more privacy-aware. And while this post isn’t about how I’m increasing my personal privacy, I’d like to talk about how I’m increasing yours.">
-  <meta name="twitter:url" content="https://jeroenmols.com/blog/2023/01/29/remove-trackers/">
+  <meta name="twitter:title" content="Using multiple SSH keys for Github and Github enterprise">
+  <meta name="twitter:description" content="Looking to configure multiple SSH keys on the same computer? For instance to use a different SSH key for your public and enterprise Github contributions.">
+  <meta name="twitter:url" content="https://jeroenmols.com/blog/2023/02/06/multiple-ssh-keys/">
 
   
     <meta name="twitter:card" content="summary">
     
-      <meta name="twitter:image" content="https://jeroenmols.com/img/blog/removetrackers/cover.jpg">
+      <meta name="twitter:image" content="https://jeroenmols.com/img/blog/multiple-ssh/multiple-ssh.jpg">
     
   
 
@@ -50,7 +50,7 @@
 
 
 
-  <meta property="article:published_time" content="2023-01-29T00:00:00+01:00">
+  <meta property="article:published_time" content="2023-02-06T00:00:00+01:00">
 
 
 
@@ -61,7 +61,7 @@
   
 
 
-<link rel="canonical" href="https://jeroenmols.com/blog/2023/01/29/remove-trackers/">
+<link rel="canonical" href="https://jeroenmols.com/blog/2023/02/06/multiple-ssh-keys/">
 
 
 
@@ -317,20 +317,20 @@
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Removing all trackers from my website">
-    <meta itemprop="description" content="These past years I’ve grown to be more privacy-aware. And while this post isn’t about how I’m increasing my personal privacy, I’d like to talk about how I’m increasing yours.">
-    <meta itemprop="datePublished" content="January 29, 2023">
+    <meta itemprop="headline" content="Using multiple SSH keys for Github and Github enterprise">
+    <meta itemprop="description" content="Looking to configure multiple SSH keys on the same computer? For instance to use a different SSH key for your public and enterprise Github contributions.">
+    <meta itemprop="datePublished" content="February 06, 2023">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 class="page__title" itemprop="headline">Removing all trackers from my website
+          <h1 class="page__title" itemprop="headline">Using multiple SSH keys for Github and Github enterprise
 </h1>
-          <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  29 Jan 2023</p>
+          <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  06 Feb 2023</p>
 
           
-            <img src="/img/blog/removetrackers/cover.jpg" alt="Removing all trackers from my website" title="Screenshot of Brave browser privacy shield, resized and cropped">
+            <img src="/img/blog/multiple-ssh/multiple-ssh.jpg" alt="Using multiple SSH keys for Github and Github enterprise" title="Photo by Samantha Lam from Unsplash, https://unsplash.com/photos/zFy6fOPZEu0, cropped and resized">
           
 
           
@@ -339,7 +339,7 @@
 
 
 
-  1 minute read
+  less than 1 minute read
 
 </p>
           
@@ -348,53 +348,38 @@
 
       <section class="page__content" itemprop="text">
         
-        <p>These past years I’ve grown to be more privacy-aware. And while this post isn’t about how I’m increasing my personal privacy, I’d like to talk about how I’m increasing yours.</p>
+        <p>Looking to configure multiple SSH keys on the same computer? For instance to use a different SSH key for your public and enterprise Github contributions.</p>
 
-<p>My website had three services integrated:</p>
+<p>This quick little post will show you how to do that.</p>
 
-<ul>
-  <li>
-<a href="https://analytics.google.com/analytics/web/provision/#/provision">Google Analytics</a> gave me insights into how much people read my content and what topics were popular to write about.</li>
-  <li>
-<a href="https://www.google.com/adsense/start/">Google Adsense</a> showed ads underneath every blog post and enabled me to monetize my content. With this I received two payments (70.84 euro in 2019 and 74.20 euro in 2020), covering the expenses for my domain name for about 14 years.</li>
-  <li>
-<a href="https://disqus.com/">Disqus comments</a> allowed people to comment on my content, but since I didn’t pay for the service Disqus was also serving advertisements.</li>
-</ul>
+<h2 id="steps">Steps</h2>
+<p>In this I’m assuming you already have an SSH key setup for your enterprise Github account.</p>
 
-<p>And while these services were adding some value to my website, they were doing so at the cost of your privacy. By default (!!!), they not only track your interaction with my website, but also detailed information about you (gender, age, approximate location,…) and they even track you across different websites.</p>
+<ol>
+  <li><a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">Create a new SSH key and add it to the ssh-agent</a></li>
+  <li>Update your <code class="language-plaintext highlighter-rouge">~/.ssh/config</code> file and add a new host:</li>
+</ol>
 
-<p>But should I really be collecting all that data about you?</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Host <span class="k">*</span>
+  AddKeysToAgent <span class="nb">yes
+  </span>UseKeychain <span class="nb">yes
 
-<p>Should I really hand off all that data to those services?</p>
+</span>Host github.com
+  IdentityFile ~/.ssh/id_github_rsa
+  UseKeychain <span class="nb">yes
 
-<p>Have I ever asked your consent about any of this?</p>
+</span>Host github.mycompany.com
+  IdentityFile ~/.ssh/id_rsa
+  UseKeychain <span class="nb">yes</span>
+</code></pre></div></div>
 
-<p>Well, I no longer believe it is “normal” for websites or products to engage in these practices. That every experience needs to be personalized. Or that we should give away our privacy so easily.</p>
+<p>I’m explicitly defining each host, but you could also assign a SSH key to all remaining hosts using <code class="language-plaintext highlighter-rouge">Host *</code>.</p>
 
-<p>Therefore I’ve decided to strip all such services. Now my website is a safe space where you can enjoy (hopefully) my content without worrying about advertisements or tracker blockers.</p>
+<p>That’s it!</p>
 
-<p>However, I do still care about your opinion!</p>
+<p style="color: #646769; background: #f2f3f3; padding: 20px;">This site is 100% tracker free, <img class="emoji" title=":heart:" alt=":heart:" src="https://github.githubassets.com/images/icons/emoji/unicode/2764.png" height="20" width="20"> for liking my post on <a href="todo">Mastodon</a> or <a href="todo">Linkedin</a> to let me know you've read this.</p>
 
-<p>So moving forward you can:</p>
-
-<ul>
-  <li>Let me know you’ve read this by liking one of my social posts</li>
-  <li>Talk about my content on <a href="https://www.reddit.com/">Reddit</a> or <a href="https://news.ycombinator.com/">Hacker News</a>
-</li>
-  <li>Send me feedback/questions on <a href="https://androiddev.social/@Jeroenmols">Mastodon</a>
-</li>
-</ul>
-
-<p>You’re in full control whether you decide to reach out or not!</p>
-
-<p>I’ll keep doing my best to provide you with interesting content (which is a ton of work) and hence appreciate every single like or shoutout.</p>
-
-<h2 id="wrap-up">Wrap-up</h2>
-<p style="color: #646769; background: #f2f3f3; padding: 20px;">This site is 100% tracker free, <img class="emoji" title=":heart:" alt=":heart:" src="https://github.githubassets.com/images/icons/emoji/unicode/2764.png" height="20" width="20"> for liking my post on <a href="https://androiddev.social/@Jeroenmols/109773847044031984">Mastodon</a> or <a href="https://www.linkedin.com/posts/jeroenmols_removing-all-trackers-from-my-website-activity-7025526545435754496-JCWo">Linkedin</a> to let me know you've read this.</p>
-
-<p>My website is now fully tracker and advertisement free, I’ll do my best to guarantee your privacy moving forward.</p>
-
-<p>If this was helpful to you, please let me know on <a href="https://androiddev.social/@Jeroenmols">Mastodon</a>!</p>
+<p>If this was helpful to you, consider <a href="https://www.buymeacoffee.com/jeroen">buying me a coffee</a>.</p>
 
         
       </section>
@@ -411,11 +396,11 @@
     <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
     <span itemprop="keywords">
     
-      <a href="/tags/privacy" class="page__taxonomy-item" rel="tag">privacy</a><span class="sep">, </span>
+      <a href="/tags/ssh" class="page__taxonomy-item" rel="tag">ssh</a><span class="sep">, </span>
     
-      <a href="/tags/trackers" class="page__taxonomy-item" rel="tag">trackers</a><span class="sep">, </span>
+      <a href="/tags/terminal" class="page__taxonomy-item" rel="tag">terminal</a><span class="sep">, </span>
     
-      <a href="/tags/website" class="page__taxonomy-item" rel="tag">website</a>
+      <a href="/tags/tips" class="page__taxonomy-item" rel="tag">tips</a>
     
     </span>
   </p>
@@ -439,7 +424,7 @@
 
 
         
-          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2023-01-29T00:00:00+01:00">January 29, 2023</time></p>
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2023-02-06T00:00:00+01:00">February 06, 2023</time></p>
         
       </footer>
 
@@ -448,23 +433,22 @@
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?via=molsjeroen&amp;text=Removing+all+trackers+from+my+website%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2023%2F01%2F29%2Fremove-trackers%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?via=molsjeroen&amp;text=Using+multiple+SSH+keys+for+Github+and+Github+enterprise%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2023%2F02%2F06%2Fmultiple-ssh-keys%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2023%2F01%2F29%2Fremove-trackers%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2023%2F02%2F06%2Fmultiple-ssh-keys%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2023%2F01%2F29%2Fremove-trackers%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2023%2F02%2F06%2Fmultiple-ssh-keys%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/blog/2023/01/25/development-server-emulator/" class="pagination--pager" title="Android emulator access to local server
+      <a href="/blog/2023/01/29/remove-trackers/" class="pagination--pager" title="Removing all trackers from my website
 ">Previous</a>
     
     
-      <a href="/blog/2023/02/06/multiple-ssh-keys/" class="pagination--pager" title="Using multiple SSH keys for Github and Github enterprise
-">Next</a>
+      <a href="#" class="pagination--pager disabled">Next</a>
     
   </nav>
 
@@ -498,17 +482,17 @@
   <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
     <div style="position:relative;">
       
-        <div class="archive__item-teaser" style="background-image: url(/img/blog/multiple-ssh/multiple-ssh.jpg)"></div>
+        <div class="archive__item-teaser" style="background-image: url(/img/blog/removetrackers/cover.jpg)"></div>
       
       <div class="archive__item_titlecontainer">
         <h2 class="archive__item-title" itemprop="headline">
-            <a href="/blog/2023/02/06/multiple-ssh-keys/" rel="permalink">Using multiple SSH keys for Github and Github enterprise
+            <a href="/blog/2023/01/29/remove-trackers/" rel="permalink">Removing all trackers from my website
 </a>
         </h2>
-        <h3 class="archive__date">06 Feb 2023</h3>
+        <h3 class="archive__date">29 Jan 2023</h3>
       </div>
       
-        <a href="/blog/2023/02/06/multiple-ssh-keys/" rel="permalink">
+        <a href="/blog/2023/01/29/remove-trackers/" rel="permalink">
           <div class="archive__item-teaser-imageclickhandler"></div>
         </a>
       
@@ -519,11 +503,11 @@
 
 
 
-  less than 1 minute read
+  1 minute read
 
 </p>
     
-    <p class="archive__item-excerpt" itemprop="description">Looking to configure multiple SSH keys on the same computer? For instance to use a different SSH key for your public and enterprise Github contributions.
+    <p class="archive__item-excerpt" itemprop="description">These past years I’ve grown to be more privacy-aware. And while this post isn’t about how I’m increasing my personal privacy, I’d like to talk about how I’m increasing yours.
 </p>
   </article>
 </div>

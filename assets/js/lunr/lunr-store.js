@@ -406,4 +406,10 @@ var store = [{
         "tags": ["website","privacy","trackers"],
         "url": "/blog/2023/01/29/remove-trackers/",
         "teaser": "/img/blog/removetrackers/cover.jpg"
+      },{
+        "title": "Using multiple SSH keys for Github and Github enterprise",
+        "excerpt":"Looking to configure multiple SSH keys on the same computer? For instance to use a different SSH key for your public and enterprise Github contributions. This quick little post will show you how to do that. Steps In this I’m assuming you already have an SSH key setup for your...","categories": ["blog"],
+        "tags": ["ssh","terminal","tips"],
+        "url": "/blog/2023/02/06/multiple-ssh-keys/",
+        "teaser": "/img/blog/multiple-ssh/multiple-ssh.jpg"
       }]

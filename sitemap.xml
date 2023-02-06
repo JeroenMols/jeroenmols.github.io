@@ -273,6 +273,10 @@
 <lastmod>2023-01-29T00:00:00+01:00</lastmod>
 </url>
 <url>
+<loc>https://jeroenmols.com/blog/2023/02/06/multiple-ssh-keys/</loc>
+<lastmod>2023-02-06T00:00:00+01:00</lastmod>
+</url>
+<url>
 <loc>https://jeroenmols.com/categories/</loc>
 </url>
 <url>
@@ -561,6 +565,12 @@
 <loc>https://jeroenmols.com/tags/trackers/</loc>
 </url>
 <url>
+<loc>https://jeroenmols.com/tags/ssh/</loc>
+</url>
+<url>
+<loc>https://jeroenmols.com/tags/terminal/</loc>
+</url>
+<url>
 <loc>https://jeroenmols.com/categories/blog/</loc>
 </url>
 <url>
@@ -635,7 +645,7 @@
 </url>
 <url>
 <loc>https://jeroenmols.com/jb/</loc>
-<lastmod>2023-02-04T21:05:28+01:00</lastmod>
+<lastmod>2023-02-06T20:23:50+01:00</lastmod>
 </url>
 <url>
 <loc>https://jeroenmols.com/remgeldfacturatie/</loc>

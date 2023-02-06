@@ -1,4 +1,35 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2023-02-04T21:07:04+01:00</updated><id>https://jeroenmols.com/feed.xml</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, Software developer at Plaid and Google Developer Expert.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Removing all trackers from my website</title><link href="https://jeroenmols.com/blog/2023/01/29/remove-trackers/" rel="alternate" type="text/html" title="Removing all trackers from my website" /><published>2023-01-29T00:00:00+01:00</published><updated>2023-01-29T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2023/01/29/remove-trackers</id><content type="html" xml:base="https://jeroenmols.com/blog/2023/01/29/remove-trackers/"><![CDATA[<p>These past years I’ve grown to be more privacy-aware. And while this post isn’t about how I’m increasing my personal privacy, I’d like to talk about how I’m increasing yours.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2023-02-06T20:34:54+01:00</updated><id>https://jeroenmols.com/feed.xml</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, Software developer at Plaid and Google Developer Expert.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Using multiple SSH keys for Github and Github enterprise</title><link href="https://jeroenmols.com/blog/2023/02/06/multiple-ssh-keys/" rel="alternate" type="text/html" title="Using multiple SSH keys for Github and Github enterprise" /><published>2023-02-06T00:00:00+01:00</published><updated>2023-02-06T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2023/02/06/multiple-ssh-keys</id><content type="html" xml:base="https://jeroenmols.com/blog/2023/02/06/multiple-ssh-keys/"><![CDATA[<p>Looking to configure multiple SSH keys on the same computer? For instance to use a different SSH key for your public and enterprise Github contributions.</p>
+
+<p>This quick little post will show you how to do that.</p>
+
+<h2 id="steps">Steps</h2>
+<p>In this I’m assuming you already have an SSH key setup for your enterprise Github account.</p>
+
+<ol>
+  <li><a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">Create a new SSH key and add it to the ssh-agent</a></li>
+  <li>Update your <code class="language-plaintext highlighter-rouge">~/.ssh/config</code> file and add a new host:</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Host <span class="k">*</span>
+  AddKeysToAgent <span class="nb">yes
+  </span>UseKeychain <span class="nb">yes
+
+</span>Host github.com
+  IdentityFile ~/.ssh/id_github_rsa
+  UseKeychain <span class="nb">yes
+
+</span>Host github.mycompany.com
+  IdentityFile ~/.ssh/id_rsa
+  UseKeychain <span class="nb">yes</span>
+</code></pre></div></div>
+
+<p>I’m explicitly defining each host, but you could also assign a SSH key to all remaining hosts using <code class="language-plaintext highlighter-rouge">Host *</code>.</p>
+
+<p>That’s it!</p>
+
+<p style="color: #646769; background: #f2f3f3; padding: 20px;">This site is 100% tracker free, :heart: for liking my post on <a href="todo">Mastodon</a> or <a href="todo">Linkedin</a> to let me know you've read this.</p>
+
+<p>If this was helpful to you, consider <a href="https://www.buymeacoffee.com/jeroen">buying me a coffee</a>.</p>]]></content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="ssh" /><category term="terminal" /><category term="tips" /><summary type="html"><![CDATA[Looking to configure multiple SSH keys on the same computer? For instance to use a different SSH key for your public and enterprise Github contributions.]]></summary></entry><entry><title type="html">Removing all trackers from my website</title><link href="https://jeroenmols.com/blog/2023/01/29/remove-trackers/" rel="alternate" type="text/html" title="Removing all trackers from my website" /><published>2023-01-29T00:00:00+01:00</published><updated>2023-01-29T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2023/01/29/remove-trackers</id><content type="html" xml:base="https://jeroenmols.com/blog/2023/01/29/remove-trackers/"><![CDATA[<p>These past years I’ve grown to be more privacy-aware. And while this post isn’t about how I’m increasing my personal privacy, I’d like to talk about how I’m increasing yours.</p>
 
 <p>My website had three services integrated:</p>
 
@@ -1117,167 +1148,4 @@ mvn gpg:sign-and-deploy-file <span class="se">\</span>
 <h2 id="wrap-up">Wrap-up</h2>
 <p>While <code class="language-plaintext highlighter-rouge">Android</code> and <code class="language-plaintext highlighter-rouge">Jvm</code> projects share most APIs, not every <code class="language-plaintext highlighter-rouge">Java</code> API is available on Android. To share a subset of code across both platforms, it’s best to use a shared <code class="language-plaintext highlighter-rouge">srcDir</code> so Intellij autocomplete works as expected.</p>
 
-<p>If you’ve made it this far you should probably follow me on <a href="https://androiddev.social/@Jeroenmols">Mastodon</a>. Feel free to leave a comment below!</p>]]></content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="android" /><category term="kotlin" /><category term="multiplatform" /><category term="code sharing" /><category term="gradle" /><summary type="html"><![CDATA[While Android supports most Java language features, it doesn’t support every API that Java provides. On the other hand, Kotlin multiplatform only allows sharing code across all targets (commonMain), not a subset of targets (commonJvm).]]></summary></entry><entry><title type="html">Migrating away from JCenter</title><link href="https://jeroenmols.com/blog/2021/02/04/migratingjcenter/" rel="alternate" type="text/html" title="Migrating away from JCenter" /><published>2021-02-04T00:00:00+01:00</published><updated>2021-02-04T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2021/02/04/migratingjcenter</id><content type="html" xml:base="https://jeroenmols.com/blog/2021/02/04/migratingjcenter/"><![CDATA[<p>This week JFrog - out of nowhere - announced to completely remove their Maven repository. Since they’ll pull it offline already by May 2021 (!!!) it’s time to urgently migrate away. This blogpost will guide how to get started.</p>
-
-<h2 id="expected-migrations">Expected migrations</h2>
-<p>After the <a href="https://jfrog.com/blog/into-the-sunset-bintray-jcenter-gocenter-and-chartcenter/">jcenter/bintray shutdown announcement</a>, there are two main migrations steps required:</p>
-
-<ul>
-  <li>consumed dependencies from Bintray/JCenter</li>
-  <li>published artifacts to Bintray/JCenter</li>
-</ul>
-
-<p>Let’s have an in-depth look at both.</p>
-
-<h2 id="consumed-dependencies-from-bintrayjcenter">Consumed dependencies from Bintray/JCenter</h2>
-<p>These are dependencies that your app or library directly uses in one of its <code class="language-plaintext highlighter-rouge">dependencies</code> blocks in <code class="language-plaintext highlighter-rouge">build.gradle</code>.</p>
-
-<p>To understand what needs to happen, let’s first have a look to see how Gradle fetches dependencies. Imagine a project with multiple defined repositories in the top-level <code class="language-plaintext highlighter-rouge">build.gradle</code> file:</p>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Top-level build.gradle file</span>
-<span class="n">allprojects</span> <span class="o">{</span>
-  <span class="n">repositories</span> <span class="o">{</span>
-      <span class="n">google</span><span class="o">()</span>
-      <span class="n">jcenter</span><span class="o">()</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// App (or module) level build.gradle file</span>
-<span class="n">dependencies</span> <span class="o">{</span>
-  <span class="n">implementation</span> <span class="s1">'com.jeroenmols:mylibrary:1.0.0'</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>In this example, Gradle will first look for <code class="language-plaintext highlighter-rouge">com.jeroenmols:mylibrary</code> in the <code class="language-plaintext highlighter-rouge">google()</code> Maven repository. If it can’t find the artifact there, it will look in <code class="language-plaintext highlighter-rouge">jcenter()</code> instead.</p>
-
-<blockquote>
-  <p>Note that <code class="language-plaintext highlighter-rouge">jcenter</code> is a superset of Maven Central. So when you request <code class="language-plaintext highlighter-rouge">jcenter</code> for a Maven artifact that it doesn’t host itself, it will go and fetch it from Maven Central for you.</p>
-</blockquote>
-
-<p>Two things are important to note here:</p>
-
-<ol>
-  <li>the order in which repositories are defined matters</li>
-  <li>most artifacts come from <code class="language-plaintext highlighter-rouge">mavenCentral()</code>, hosted through <code class="language-plaintext highlighter-rouge">jcenter()</code></li>
-</ol>
-
-<p>To fully migrate away from <code class="language-plaintext highlighter-rouge">jcenter()</code>, all we need to do is replace all <code class="language-plaintext highlighter-rouge">jcenter()</code> occurrences with <code class="language-plaintext highlighter-rouge">mavenCentral()</code> in all <code class="language-plaintext highlighter-rouge">build.gradle</code> files.</p>
-
-<p>For my projects this meant:</p>
-
-<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">//</span> Top level build.gradle file
-<span class="p">buildscript {
-</span>  repositories {
-    google()
-<span class="gd">-   jcenter()
-</span><span class="gi">+   mavenCentral()
-</span>  }
-<span class="err">}</span>
-...
-
-allprojects {
-  repositories {
-<span class="gd">-   jcenter()
-</span><span class="gi">+   mavenCentral()
-</span>  }
-<span class="err">}</span>
-</code></pre></div></div>
-
-<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">//</span> buildSrc level build.gradle file
-<span class="p">repositories {
-</span><span class="gd">- jcenter()
-</span><span class="gi">+ mavenCentral()
-</span><span class="err">}</span>
-</code></pre></div></div>
-
-<p>After replacing all repositories, we can test if our build still passes by running the following command:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./gradlew assemble assembleDebugUnitTest assembleAndroidTest <span class="nt">--refresh-dependencies</span>
-</code></pre></div></div>
-
-<p>This will ensure all dependencies for every build type are downloaded again. Such a “clean” build will assess whether your app can be built independently of <code class="language-plaintext highlighter-rouge">jcenter()</code>.</p>
-
-<p>If this command passes, congratulations you’ve successfully migrated your dependencies away from <code class="language-plaintext highlighter-rouge">jcenter</code>. Nothing more to do.</p>
-
-<p>When this command fails, however, it will print out all issues you may have:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">*</span> What went wrong:
-Could not determine the dependencies of task <span class="s1">':app:lintVitalRelease'</span><span class="nb">.</span>
-<span class="o">&gt;</span> Could not resolve all artifacts <span class="k">for </span>configuration <span class="s1">':app:debugCompileClasspath'</span><span class="nb">.</span>
-   <span class="o">&gt;</span> Could not find com.jeroenmols:mylibrary:1.0.0.
-     Required by:
-         project :app
-</code></pre></div></div>
-
-<p>This doesn’t just mean we can’t remove <code class="language-plaintext highlighter-rouge">jcenter()</code> from our projects yet. But keeping <code class="language-plaintext highlighter-rouge">jcenter()</code> as a repository could cause us to add even more <code class="language-plaintext highlighter-rouge">jcenter()</code> only dependencies in the future!</p>
-
-<p>Fortunately there is a way to restrict the usage of <code class="language-plaintext highlighter-rouge">jcenter()</code>:</p>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">jcenter</span><span class="o">()</span> <span class="o">{</span>
-    <span class="n">content</span> <span class="o">{</span>
-        <span class="n">includeModule</span><span class="o">(</span><span class="s2">"com.jeroenmols"</span><span class="o">,</span> <span class="s2">"mylibrary"</span><span class="o">)</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>This will restrict Gradle to only use <code class="language-plaintext highlighter-rouge">jcenter()</code> for this single dependency. Note that you can define multiple lines of <code class="language-plaintext highlighter-rouge">includeModule</code> for each dependency that isn’t available on Maven Central yet.</p>
-
-<p>The benefits of this are twofold:</p>
-<ol>
-  <li>You make it explicit which <code class="language-plaintext highlighter-rouge">jcenter()</code> dependencies you still have</li>
-  <li>You prevent other <code class="language-plaintext highlighter-rouge">jcenter()</code> only dependencies from being added.</li>
-</ol>
-
-<p>For each <code class="language-plaintext highlighter-rouge">jcenter()</code> dependency you still have, I recommend opening a <a href="https://github.com/streem/pbandk/issues/120">public Github issue</a> to request the library author to migrate.</p>
-
-<p>Bringing it all together yields:</p>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Top level build.gradle file</span>
-<span class="n">allprojects</span> <span class="o">{</span>
-  <span class="n">repositories</span> <span class="o">{</span>
-      <span class="n">google</span><span class="o">()</span>
-      <span class="n">mavenCentral</span><span class="o">()</span>
-      <span class="n">jcenter</span><span class="o">()</span> <span class="o">{</span>
-          <span class="n">content</span> <span class="o">{</span>
-              <span class="n">includeModule</span><span class="o">(</span><span class="s2">"com.jeroenmols"</span><span class="o">,</span> <span class="s2">"mylibrary"</span><span class="o">)</span>
-          <span class="o">}</span>
-      <span class="o">}</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// App (or module) level build.gradle file</span>
-<span class="n">dependencies</span> <span class="o">{</span>
-  <span class="n">implementation</span> <span class="s1">'com.jeroenmols:mylibrary:1.0.0'</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>With this solution, Gradle will first look for the artifact in the <code class="language-plaintext highlighter-rouge">google()</code> repository, then in <code class="language-plaintext highlighter-rouge">mavenCentral()</code> and finally in <code class="language-plaintext highlighter-rouge">jcenter()</code> if the artifact is on the explicit allow list.</p>
-
-<h1 id="published-artifacts-to-bintrayjcenter">Published artifacts to Bintray/JCenter</h1>
-<p>These are artifacts you’ve published to <code class="language-plaintext highlighter-rouge">jcenter()</code> yourself.</p>
-
-<p>Roughly there are two things that you’ll need to do:</p>
-
-<ol>
-  <li>Change your publishing pipeline to upload new library versions to Maven Central</li>
-  <li>Migrate all your existing artifacts to Maven Central.</li>
-</ol>
-
-<p>To handle the first part, I recommend <a href="https://proandroiddev.com/publishing-your-first-android-library-to-mavencentral-be2c51330b88">this guide</a> by <a href="https://twitter.com/waseefakhtar">Waseef Akhtar</a> on how to publish to Maven Central.</p>
-
-<p>For the second part, I want to emphasize how important it is to also migrate your old artifacts. Not all your customers will be on the latest version of your library and upgrading might not be straightforward for them, especially with breaking API changes.</p>
-
-<blockquote>
-  <p>Update: To help you with the migration, I’ve created <a href="/blog/2021/03/24/migrate-artifacts-mavencentral/">a script to migrate all existing artifacts from JCenter to Maven Central</a>.</p>
-</blockquote>
-
-<p>But besides this customer argument, there could also be existing open source projects that are currently in low maintenance mode, but still incredibly valuable to the community as a learning resource. Would we want to break all those builds?</p>
-
-<p>Finally note that, even though May 1st is still a few months away, I highly recommend you to start migrating your library as soon as feasible. This won’t just decrease the burden for your customers, but I do also expect a surge in libraries being migrated to Maven central which could result in technical issues on their end. Hopefully not, of course, but better to make sure you have some extra time in your planning.</p>
-
-<h2 id="wrap-up">Wrap-up</h2>
-<p>Migrating your app away from JCenter can be done by replacing all <code class="language-plaintext highlighter-rouge">jcenter()</code> references with <code class="language-plaintext highlighter-rouge">mavenCentral()</code> and adding explicit inclusions for dependencies that haven’t migrated yet. For your published libraries, try to migrate as soon as possible, and don’t forget to also migrate all existing artifacts.</p>
-
-<p>If you’ve made it this far you should probably follow me on <a href="https://androiddev.social/@Jeroenmols">Mastodon</a>. Feel free to leave a comment below!</p>]]></content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="android" /><category term="library" /><category term="maven" /><category term="jcenter" /><category term="bintray" /><category term="transitive dependencies" /><category term="gradle" /><summary type="html"><![CDATA[This week JFrog - out of nowhere - announced to completely remove their Maven repository. Since they’ll pull it offline already by May 2021 (!!!) it’s time to urgently migrate away. This blogpost will guide how to get started.]]></summary></entry></feed>
+<p>If you’ve made it this far you should probably follow me on <a href="https://androiddev.social/@Jeroenmols">Mastodon</a>. Feel free to leave a comment below!</p>]]></content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="android" /><category term="kotlin" /><category term="multiplatform" /><category term="code sharing" /><category term="gradle" /><summary type="html"><![CDATA[While Android supports most Java language features, it doesn’t support every API that Java provides. On the other hand, Kotlin multiplatform only allows sharing code across all targets (commonMain), not a subset of targets (commonJvm).]]></summary></entry></feed>

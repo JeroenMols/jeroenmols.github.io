@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/" rel="alternate" type="text/html"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, Software developer at Plaid and Google Developer Expert.</subtitle>
- <updated>2023-02-04T21:07:04+01:00</updated>
+ <updated>2023-02-06T20:34:54+01:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,22 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>Using multiple SSH keys for Github and Github enterprise</title>
+   <link href="https://jeroenmols.com/blog/2023/02/06/multiple-ssh-keys/"/>
+   <updated>2023-02-06T00:00:00+01:00</updated>
+   <id>https://jeroenmols.com/blog/2023/02/06/multiple-ssh-keys</id>
+   <content type="html"><![CDATA[
+     
+     <p>Looking to configure multiple SSH keys on the same computer? For instance to use a different SSH key for your public and enterprise Github contributions.</p>
+
+<p>This quick little post will show you how to do that.</p>
+
+
+     <a href="https://jeroenmols.com/blog/2023/02/06/multiple-ssh-keys/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>Removing all trackers from my website</title>
