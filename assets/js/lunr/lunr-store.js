@@ -412,4 +412,10 @@ var store = [{
         "tags": ["ssh","terminal","tips"],
         "url": "/blog/2023/02/06/multiple-ssh-keys/",
         "teaser": "/img/blog/multiple-ssh/multiple-ssh.jpg"
+      },{
+        "title": "A privacy friendly RSVP for events",
+        "excerpt":"Planning an event can be stressful, and the last thing you need is worrying about your guests’ privacy. But don’t worry, I’ve got you covered with a privacy-friendly RSVP option. Opportunity There exist plenty of online services (like rsvpify) that offer a slick looking interface and a powerful dashboard to...","categories": ["blog"],
+        "tags": ["privacy","html","javascript","rsvp"],
+        "url": "/blog/2023/03/28/privacy-friendly-rsvp/",
+        "teaser": "/img/blog/privacy-friendly-rsvp/privacy-friendly-rsvp.jpg"
       }]

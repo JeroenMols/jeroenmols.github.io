@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/" rel="alternate" type="text/html"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, Software developer at Plaid and Google Developer Expert.</subtitle>
- <updated>2023-03-27T21:00:47+02:00</updated>
+ <updated>2023-03-28T13:50:28+02:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,20 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>A privacy friendly RSVP for events</title>
+   <link href="https://jeroenmols.com/blog/2023/03/28/privacy-friendly-rsvp/"/>
+   <updated>2023-03-28T00:00:00+02:00</updated>
+   <id>https://jeroenmols.com/blog/2023/03/28/privacy-friendly-rsvp</id>
+   <content type="html"><![CDATA[
+     
+     <p>Planning an event can be stressful, and the last thing you need is worrying about your guests’ privacy. But don’t worry, I’ve got you covered with a privacy-friendly RSVP option.</p>
+
+
+     <a href="https://jeroenmols.com/blog/2023/03/28/privacy-friendly-rsvp/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>Using multiple SSH keys for Github and Github enterprise</title>
