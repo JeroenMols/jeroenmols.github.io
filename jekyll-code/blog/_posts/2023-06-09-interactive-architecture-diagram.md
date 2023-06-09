@@ -129,7 +129,7 @@ Here's the [Github repository](https://github.com/JeroenMols/architecturediagram
 
 ## Wrap up
 
-<p style="color: #646769; background: #f2f3f3; padding: 20px;">This site is 100% tracker free, :heart: for liking my post on <a href="https://androiddev.social/@Jeroenmols/">Mastodon</a> or <a href="https://www.linkedin.com/in/jeroenmols/">Linkedin</a> to let me know you've read this.</p>
+<p style="color: #646769; background: #f2f3f3; padding: 20px;">This site is 100% tracker free, :heart: for liking my post on <a href="https://androiddev.social/@Jeroenmols/110516305062438230">Mastodon</a> or <a href="https://www.linkedin.com/posts/jeroenmols_interactive-versionable-architecture-diagrams-activity-7073042645714919424-nmgc?utm_source=share&utm_medium=member_desktop">Linkedin</a> to let me know you've read this.</p>
 
 By leveraging Graphviz and directly embedding an SVG diagram in an HTML document, you can create visually appealing diagrams that are interactive.
 
