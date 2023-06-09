@@ -1,0 +1,795 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Interactive versionable architecture diagrams - Jeroen Mols</title>
+<meta name="description" content="Tired of building un-versionable, lifeless architecture diagrams? Wouldn’t it be great if you could add your diagram to Git, embed it in your documentation, and have clickable elements?">
+
+
+  <meta name="author" content="Jeroen Mols">
+  
+  <meta property="article:author" content="Jeroen Mols">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="Jeroen Mols">
+<meta property="og:title" content="Interactive versionable architecture diagrams">
+<meta property="og:url" content="https://jeroenmols.com/blog/2023/06/09/interactive-architecture-diagram/">
+
+
+  <meta property="og:description" content="Tired of building un-versionable, lifeless architecture diagrams? Wouldn’t it be great if you could add your diagram to Git, embed it in your documentation, and have clickable elements?">
+
+
+
+  <meta property="og:image" content="https://jeroenmols.com/img/blog/interactive-architecture-diagram/cover.jpeg">
+
+
+
+  <meta name="twitter:site" content="@molsjeroen">
+  <meta name="twitter:title" content="Interactive versionable architecture diagrams">
+  <meta name="twitter:description" content="Tired of building un-versionable, lifeless architecture diagrams? Wouldn’t it be great if you could add your diagram to Git, embed it in your documentation, and have clickable elements?">
+  <meta name="twitter:url" content="https://jeroenmols.com/blog/2023/06/09/interactive-architecture-diagram/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+      <meta name="twitter:image" content="https://jeroenmols.com/img/blog/interactive-architecture-diagram/cover.jpeg">
+    
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2023-06-09T00:00:00+02:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://jeroenmols.com/blog/2023/06/09/interactive-architecture-diagram/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Jeroen Mols",
+      "url": "https://jeroenmols.com/",
+      "sameAs": ["https://twitter.com/molsjeroen","https://www.linkedin.com/in/jeroenmols/","https://plus.google.com/+JeroenMols","https://github.com/JeroenMols","https://speakerdeck.com/jeroenmols","https://stackoverflow.com/users/2771851/jmols"]
+    
+  }
+</script>
+
+
+  <meta name="google-site-verification" content="8E8HUpExgyNFdLuFMWmkSUl08gISnOF3UWexA55aNrk" />
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+<meta name="theme-color" content="#3d405b">
+
+<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Jeroen Mols Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<meta name="author" content="Jeroen Mols">
+<link href="https://twitter.com/molsjeroen" rel="me">
+<link href="https://androiddev.social/@jeroenmols" rel="me">
+<link href="https://github.com/jeroenmols" rel="me">
+<link href="https://www.linkedin.com/in/jeroenmols/" rel="me">
+<link href="https://stackoverflow.com/users/2771851/jeroen-mols" rel="me">
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Jeroen Mols
+          
+        </a>
+        <ul class="visible-links">
+<li class="masthead__menu-item">
+              <a href="/blog/">Blog</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/speaking/">Speaking</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/hireme/">Hire me</a>
+            </li>
+</ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/img/profile.jpg" alt="Jeroen Mols" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Jeroen Mols</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Software developer at Plaid and Google Developer Expert</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Flanders, Belgium</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://twitter.com/molsjeroen" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+            <li><a href="https://androiddev.social/web/@Jeroenmols" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-mastodon" aria-hidden="true"></i><span class="label">Mastodon</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/jeroenmols" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/jeroenmols/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">Linkedin</span></a></li>
+          
+        
+          
+            <li><a href="https://speakerdeck.com/jeroenmols" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-speaker-deck" aria-hidden="true"></i><span class="label">Speakerdeck</span></a></li>
+          
+        
+          
+            <li><a href="https://stackoverflow.com/users/2771851/jeroen-mols" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i><span class="label">Stackoverflow</span></a></li>
+          
+        
+          
+            <li><a href="https://www.youtube.com/channel/UC34Vt1lo8T15_rgc3e3Jsew" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span></a></li>
+          
+        
+          
+            <li><a href="mailto:info@jeroenmols.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Interactive versionable architecture diagrams">
+    <meta itemprop="description" content="Tired of building un-versionable, lifeless architecture diagrams? Wouldn’t it be great if you could add your diagram to Git, embed it in your documentation, and have clickable elements?">
+    <meta itemprop="datePublished" content="June 09, 2023">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Interactive versionable architecture diagrams
+</h1>
+          <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  09 Jun 2023</p>
+
+          
+            <img src="/img/blog/interactive-architecture-diagram/cover.jpeg" alt="Interactive versionable architecture diagrams" title="Photo by Tima Miroshnichenko from pexels,  https://www.pexels.com/photo/person-people-building-desk-6615230/, cropped and resized">
+          
+
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>Tired of building un-versionable, lifeless architecture diagrams? Wouldn’t it be great if you could add your diagram to Git, embed it in your documentation, and have clickable elements?</p>
+
+<p>Well, look no further! In this blog post, we will explore how to generate an interactive system architecture diagram using Graphviz and HTML. Get ready to bring your diagrams to life!</p>
+
+<h2 id="curious">Curious?</h2>
+
+<p>Can’t wait to see the result of what we’re going to build, get a sneak peak of the result here:</p>
+
+<p>👉 <a href="https://jeroenmols.com/img/blog/interactive-architecture-diagram/system_architecture.html" target="\_blank">Interactive system architecture diagram</a>.</p>
+
+<h2 id="building-a-diagram-with-graphviz">Building a Diagram with Graphviz</h2>
+
+<p>Graphviz is a powerful graph visualization tool that offers higher flexibility than alternatives like Mermaid. It allows us to export graphs to Scalable Vector Graphics (SVG) files, which are ideal for embedding in HTML documents. Additionally, Graphviz supports embedding URLs into the graph elements, enabling interactivity.</p>
+
+<p>To start, you’ll need to install Graphviz on your system.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew install graphviz
+</code></pre></div></div>
+
+<p>Once installed, create a Graphviz file (with a <code class="language-plaintext highlighter-rouge">.dot</code> extension) that defines the architecture diagram. You can specify nodes, edges, and their properties using <a href="https://graphviz.org/documentation/">the DOT language</a>.</p>
+
+<p>Here’s a brief example of a Graphviz file:</p>
+
+<div class="language-dot highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">digraph</span> <span class="nv">architecture</span> <span class="p">{</span>
+  <span class="nv">FrontendApp</span>
+  <span class="nv">BackendApp</span>
+  <span class="nv">FrontendApp</span> <span class="o">-&gt;</span> <span class="nv">BackendApp</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>To export the DOT file to an SVG file, use the following command:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ dot -Tsvg diagram.dot -o diagram.svg
+</code></pre></div></div>
+
+<p>Which will yield the following diagram:</p>
+
+<p><img src="https://jeroenmols.com/img/blog/interactive-architecture-diagram/sample.svg" alt="Graphviz diagram example" class="align-center"></p>
+
+<p>While this is a very simple example of a Graphviz diagram, it is possible to create more complex and better-looking ones.</p>
+
+<p>For the sake of example, let’s take <a href="https://github.com/JeroenMols/architecturediagrams/blob/main/diagram.dot">the diagram defined here</a> and build an interactive version of that.</p>
+
+<p><img src="https://jeroenmols.com/img/blog/interactive-architecture-diagram/diagram.svg" alt="Graphviz architecture diagram" class="align-center"></p>
+
+<p>Here are my pro tips for Graphviz to create the layout you want:</p>
+
+<ul>
+  <li>Have the diagram lay itself out from left to right</li>
+  <li>Add an invisible column on the left with elements that define your rows (use <code class="language-plaintext highlighter-rouge">rank=same</code> to lay out the linked nodes under each other)</li>
+  <li>Link each alignment row to the element you want to appear first on that row</li>
+  <li>Link elements on different rows with an edge that has a `[constraint=”false”] attribute</li>
+  <li>Use invisible elements to add spacers or to force edges along a certain path</li>
+</ul>
+
+<p>By following the suggestions above you can essentially lay out architecture blocks on a grid.</p>
+
+<h2 id="creating-an-html-file-to-embed-the-diagram">Creating an HTML File to Embed the Diagram</h2>
+
+<p>To include the generated SVG in an HTML page, you can use the following code:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"diagram.svg"</span> <span class="na">alt=</span><span class="s">"Architecture diagram"</span> <span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<p>However, simply using an <code class="language-plaintext highlighter-rouge">&lt;img&gt;</code> tag to include the SVG won’t allow the hyperlinks to link to the hosting page. So unfortunately, we have to directly include the SVG code between the <code class="language-plaintext highlighter-rouge">&lt;svg&gt;</code> and <code class="language-plaintext highlighter-rouge">&lt;/svg&gt;</code> tags.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;svg</span> <span class="err">...</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- SVG content goes here --&gt;</span>
+<span class="nt">&lt;/svg&gt;</span>
+</code></pre></div></div>
+
+<p>A few changes need to be made before embedding the SVG code to ensure compatibility with HTML:</p>
+
+<ul>
+  <li>Remove all comments from the SVG file (comments start with <code class="language-plaintext highlighter-rouge">&lt;!--</code> and end with <code class="language-plaintext highlighter-rouge">--&gt;</code>).</li>
+  <li>Remove the <code class="language-plaintext highlighter-rouge">xmlns:xlink="http://www.w3.org/1999/xlink"</code> attribute from the root <code class="language-plaintext highlighter-rouge">&lt;svg&gt;</code> tag.</li>
+  <li>Remove any <code class="language-plaintext highlighter-rouge">xlink</code> prefixes used throughout the SVG code.</li>
+</ul>
+
+<p>Next, let’s talk about building the HTML page that will contain the diagram.</p>
+
+<p>For each architecture component, we want to link from, we will need to add a section with an anchor link. A way to do this is to add a <code class="language-plaintext highlighter-rouge">&lt;h2&gt;</code> tag with an <code class="language-plaintext highlighter-rouge">id</code> attribute.</p>
+
+<p>As an example, the following section:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;h2</span> <span class="na">id=</span><span class="s">"frontend-app"</span><span class="nt">&gt;</span>Frontend App<span class="nt">&lt;/h2&gt;</span>
+</code></pre></div></div>
+
+<p>Can be linked to from the diagram by adding the following <code class="language-plaintext highlighter-rouge">URL</code> (notice the added #):</p>
+
+<div class="language-dot highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">digraph</span> <span class="nv">architecture</span> <span class="p">{</span>
+  <span class="nv">FrontendApp</span> <span class="o">[</span><span class="n">URL</span><span class="p">=</span><span class="s2">"#frontend-app"</span><span class="o">]</span>
+  <span class="nv">BackendApp</span>
+  <span class="nv">FrontendApp</span> <span class="o">-&gt;</span> <span class="nv">BackendApp</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="bringing-it-all-together-the-final-example">Bringing It All Together: The Final Example</h2>
+
+<p>Now that we know how to prepare the SVG and create the HTML file, let’s add sections and URLs for all diagram components. You can admire <a href="https://jeroenmols.com/img/blog/interactive-architecture-diagram/system_architecture.html" target="\_blank">the result here</a>.</p>
+
+<p>Pretty dope, isn’t it? 😎</p>
+
+<p>In this example, we have manually written the HTML file, but you could also use Markdown and have the HTML generated for you. I’m pretty confident this will work with whatever documentation tool you are currently using!</p>
+
+<p>The advantages are numerous:</p>
+
+<ul>
+  <li>diagram can be seamlessly added to your existing documentation pages</li>
+  <li>interactivity allows users to navigate the system easily</li>
+  <li>diagram is fully versionable under Git so you can keep track of changes and collaborate efficiently.</li>
+</ul>
+
+<p>Here’s the <a href="https://github.com/JeroenMols/architecturediagrams">Github repository</a> with the diagram source code.</p>
+
+<h2 id="wrap-up">Wrap up</h2>
+
+<p style="color: #646769; background: #f2f3f3; padding: 20px;">This site is 100% tracker free, <img class="emoji" title=":heart:" alt=":heart:" src="https://github.githubassets.com/images/icons/emoji/unicode/2764.png" height="20" width="20"> for liking my post on <a href="https://androiddev.social/@Jeroenmols/">Mastodon</a> or <a href="https://www.linkedin.com/in/jeroenmols/">Linkedin</a> to let me know you've read this.</p>
+
+<p>By leveraging Graphviz and directly embedding an SVG diagram in an HTML document, you can create visually appealing diagrams that are interactive.</p>
+
+<p>If this was helpful to you, consider <a href="https://www.buymeacoffee.com/jeroen">buying me a coffee</a>.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/architecture" class="page__taxonomy-item" rel="tag">architecture</a><span class="sep">, </span>
+    
+      <a href="/tags/diagram" class="page__taxonomy-item" rel="tag">diagram</a><span class="sep">, </span>
+    
+      <a href="/tags/graphviz" class="page__taxonomy-item" rel="tag">graphviz</a><span class="sep">, </span>
+    
+      <a href="/tags/html" class="page__taxonomy-item" rel="tag">html</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/blog" class="page__taxonomy-item" rel="tag">blog</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2023-06-09T00:00:00+02:00">June 09, 2023</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=molsjeroen&amp;text=Interactive+versionable+architecture+diagrams%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2023%2F06%2F09%2Finteractive-architecture-diagram%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2023%2F06%2F09%2Finteractive-architecture-diagram%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2023%2F06%2F09%2Finteractive-architecture-diagram%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/blog/2023/03/28/privacy-friendly-rsvp/" class="pagination--pager" title="A privacy friendly RSVP for events
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      
+<h4 class="page__comments-title">Leave a Comment</h4>
+<div>Start a conversation about this content on <a href="https://www.reddit.com/">Reddit</a> or <a href="https://news.ycombinator.com/">Hacker News</a>.</div>
+
+  
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(/img/blog/privacy-friendly-rsvp/privacy-friendly-rsvp.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="/blog/2023/03/28/privacy-friendly-rsvp/" rel="permalink">A privacy friendly RSVP for events
+</a>
+        </h2>
+        <h3 class="archive__date">28 Mar 2023</h3>
+      </div>
+      
+        <a href="/blog/2023/03/28/privacy-friendly-rsvp/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Planning an event can be stressful, and the last thing you need is worrying about your guests’ privacy. But don’t worry, I’ve got you covered with a privacy-friendly RSVP option.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(/img/blog/multiple-ssh/multiple-ssh.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="/blog/2023/02/06/multiple-ssh-keys/" rel="permalink">Using multiple SSH keys for Github and Github enterprise
+</a>
+        </h2>
+        <h3 class="archive__date">06 Feb 2023</h3>
+      </div>
+      
+        <a href="/blog/2023/02/06/multiple-ssh-keys/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Looking to configure multiple SSH keys on the same computer? For instance to use a different SSH key for your public and enterprise Github contributions.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(/img/blog/removetrackers/cover.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="/blog/2023/01/29/remove-trackers/" rel="permalink">Removing all trackers from my website
+</a>
+        </h2>
+        <h3 class="archive__date">29 Jan 2023</h3>
+      </div>
+      
+        <a href="/blog/2023/01/29/remove-trackers/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">These past years I’ve grown to be more privacy-aware. And while this post isn’t about how I’m increasing my personal privacy, I’d like to talk about how I’m increasing yours.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(/img/blog/developmentserveremulator/cover.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="/blog/2023/01/25/development-server-emulator/" rel="permalink">Android emulator access to local server
+</a>
+        </h2>
+        <h3 class="archive__date">25 Jan 2023</h3>
+      </div>
+      
+        <a href="/blog/2023/01/25/development-server-emulator/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">How can you connect your app on an Android emulator to a development server running on the localhost of your computer?
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap">
+<form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term...">
+  </form>
+  <div id="results" class="results"></div>
+</div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+
+    
+      <li><a href="/atom.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">© 2023 Jeroen Mols. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    <!-- start custom comments scripts -->
+
+<!-- end custom comments scripts -->
+
+
+
+
+
+
+  </body>
+</html>

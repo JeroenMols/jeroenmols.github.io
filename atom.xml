@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/" rel="alternate" type="text/html"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, Software developer at Plaid and Google Developer Expert.</subtitle>
- <updated>2023-03-29T07:04:55+02:00</updated>
+ <updated>2023-06-09T22:57:33+02:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,22 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>Interactive versionable architecture diagrams</title>
+   <link href="https://jeroenmols.com/blog/2023/06/09/interactive-architecture-diagram/"/>
+   <updated>2023-06-09T00:00:00+02:00</updated>
+   <id>https://jeroenmols.com/blog/2023/06/09/interactive-architecture-diagram</id>
+   <content type="html"><![CDATA[
+     
+     <p>Tired of building un-versionable, lifeless architecture diagrams? Wouldn’t it be great if you could add your diagram to Git, embed it in your documentation, and have clickable elements?</p>
+
+<p>Well, look no further! In this blog post, we will explore how to generate an interactive system architecture diagram using Graphviz and HTML. Get ready to bring your diagrams to life!</p>
+
+
+     <a href="https://jeroenmols.com/blog/2023/06/09/interactive-architecture-diagram/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>A privacy friendly RSVP for events</title>

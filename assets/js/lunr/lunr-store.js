@@ -418,4 +418,10 @@ var store = [{
         "tags": ["privacy","html","javascript","rsvp"],
         "url": "/blog/2023/03/28/privacy-friendly-rsvp/",
         "teaser": "/img/blog/privacy-friendly-rsvp/privacy-friendly-rsvp.jpg"
+      },{
+        "title": "Interactive versionable architecture diagrams",
+        "excerpt":"Tired of building un-versionable, lifeless architecture diagrams? Wouldn’t it be great if you could add your diagram to Git, embed it in your documentation, and have clickable elements? Well, look no further! In this blog post, we will explore how to generate an interactive system architecture diagram using Graphviz and...","categories": ["blog"],
+        "tags": ["graphviz","architecture","diagram","html"],
+        "url": "/blog/2023/06/09/interactive-architecture-diagram/",
+        "teaser": "/img/blog/interactive-architecture-diagram/cover.jpeg"
       }]

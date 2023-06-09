@@ -1,4 +1,125 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2023-03-29T07:04:55+02:00</updated><id>https://jeroenmols.com/feed.xml</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, Software developer at Plaid and Google Developer Expert.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">A privacy friendly RSVP for events</title><link href="https://jeroenmols.com/blog/2023/03/28/privacy-friendly-rsvp/" rel="alternate" type="text/html" title="A privacy friendly RSVP for events" /><published>2023-03-28T00:00:00+02:00</published><updated>2023-03-28T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2023/03/28/privacy-friendly-rsvp</id><content type="html" xml:base="https://jeroenmols.com/blog/2023/03/28/privacy-friendly-rsvp/"><![CDATA[<p>Planning an event can be stressful, and the last thing you need is worrying about your guests’ privacy. But don’t worry, I’ve got you covered with a privacy-friendly RSVP option.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2023-06-09T22:57:33+02:00</updated><id>https://jeroenmols.com/feed.xml</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, Software developer at Plaid and Google Developer Expert.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Interactive versionable architecture diagrams</title><link href="https://jeroenmols.com/blog/2023/06/09/interactive-architecture-diagram/" rel="alternate" type="text/html" title="Interactive versionable architecture diagrams" /><published>2023-06-09T00:00:00+02:00</published><updated>2023-06-09T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2023/06/09/interactive-architecture-diagram</id><content type="html" xml:base="https://jeroenmols.com/blog/2023/06/09/interactive-architecture-diagram/"><![CDATA[<p>Tired of building un-versionable, lifeless architecture diagrams? Wouldn’t it be great if you could add your diagram to Git, embed it in your documentation, and have clickable elements?</p>
+
+<p>Well, look no further! In this blog post, we will explore how to generate an interactive system architecture diagram using Graphviz and HTML. Get ready to bring your diagrams to life!</p>
+
+<h2 id="curious">Curious?</h2>
+
+<p>Can’t wait to see the result of what we’re going to build, get a sneak peak of the result here:</p>
+
+<p>👉 <a href="https://jeroenmols.com/img/blog/interactive-architecture-diagram/system_architecture.html" target="\_blank">Interactive system architecture diagram</a>.</p>
+
+<h2 id="building-a-diagram-with-graphviz">Building a Diagram with Graphviz</h2>
+
+<p>Graphviz is a powerful graph visualization tool that offers higher flexibility than alternatives like Mermaid. It allows us to export graphs to Scalable Vector Graphics (SVG) files, which are ideal for embedding in HTML documents. Additionally, Graphviz supports embedding URLs into the graph elements, enabling interactivity.</p>
+
+<p>To start, you’ll need to install Graphviz on your system.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew install graphviz
+</code></pre></div></div>
+
+<p>Once installed, create a Graphviz file (with a <code class="language-plaintext highlighter-rouge">.dot</code> extension) that defines the architecture diagram. You can specify nodes, edges, and their properties using <a href="https://graphviz.org/documentation/">the DOT language</a>.</p>
+
+<p>Here’s a brief example of a Graphviz file:</p>
+
+<div class="language-dot highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">digraph</span> <span class="nv">architecture</span> <span class="p">{</span>
+  <span class="nv">FrontendApp</span>
+  <span class="nv">BackendApp</span>
+  <span class="nv">FrontendApp</span> <span class="o">-&gt;</span> <span class="nv">BackendApp</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>To export the DOT file to an SVG file, use the following command:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ dot -Tsvg diagram.dot -o diagram.svg
+</code></pre></div></div>
+
+<p>Which will yield the following diagram:</p>
+
+<p><img src="https://jeroenmols.com/img/blog/interactive-architecture-diagram/sample.svg" alt="Graphviz diagram example" class="align-center" /></p>
+
+<p>While this is a very simple example of a Graphviz diagram, it is possible to create more complex and better-looking ones.</p>
+
+<p>For the sake of example, let’s take <a href="https://github.com/JeroenMols/architecturediagrams/blob/main/diagram.dot">the diagram defined here</a> and build an interactive version of that.</p>
+
+<p><img src="https://jeroenmols.com/img/blog/interactive-architecture-diagram/diagram.svg" alt="Graphviz architecture diagram" class="align-center" /></p>
+
+<p>Here are my pro tips for Graphviz to create the layout you want:</p>
+
+<ul>
+  <li>Have the diagram lay itself out from left to right</li>
+  <li>Add an invisible column on the left with elements that define your rows (use <code class="language-plaintext highlighter-rouge">rank=same</code> to lay out the linked nodes under each other)</li>
+  <li>Link each alignment row to the element you want to appear first on that row</li>
+  <li>Link elements on different rows with an edge that has a `[constraint=”false”] attribute</li>
+  <li>Use invisible elements to add spacers or to force edges along a certain path</li>
+</ul>
+
+<p>By following the suggestions above you can essentially lay out architecture blocks on a grid.</p>
+
+<h2 id="creating-an-html-file-to-embed-the-diagram">Creating an HTML File to Embed the Diagram</h2>
+
+<p>To include the generated SVG in an HTML page, you can use the following code:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"diagram.svg"</span> <span class="na">alt=</span><span class="s">"Architecture diagram"</span> <span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<p>However, simply using an <code class="language-plaintext highlighter-rouge">&lt;img&gt;</code> tag to include the SVG won’t allow the hyperlinks to link to the hosting page. So unfortunately, we have to directly include the SVG code between the <code class="language-plaintext highlighter-rouge">&lt;svg&gt;</code> and <code class="language-plaintext highlighter-rouge">&lt;/svg&gt;</code> tags.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;svg</span> <span class="err">...</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- SVG content goes here --&gt;</span>
+<span class="nt">&lt;/svg&gt;</span>
+</code></pre></div></div>
+
+<p>A few changes need to be made before embedding the SVG code to ensure compatibility with HTML:</p>
+
+<ul>
+  <li>Remove all comments from the SVG file (comments start with <code class="language-plaintext highlighter-rouge">&lt;!--</code> and end with <code class="language-plaintext highlighter-rouge">--&gt;</code>).</li>
+  <li>Remove the <code class="language-plaintext highlighter-rouge">xmlns:xlink="http://www.w3.org/1999/xlink"</code> attribute from the root <code class="language-plaintext highlighter-rouge">&lt;svg&gt;</code> tag.</li>
+  <li>Remove any <code class="language-plaintext highlighter-rouge">xlink</code> prefixes used throughout the SVG code.</li>
+</ul>
+
+<p>Next, let’s talk about building the HTML page that will contain the diagram.</p>
+
+<p>For each architecture component, we want to link from, we will need to add a section with an anchor link. A way to do this is to add a <code class="language-plaintext highlighter-rouge">&lt;h2&gt;</code> tag with an <code class="language-plaintext highlighter-rouge">id</code> attribute.</p>
+
+<p>As an example, the following section:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;h2</span> <span class="na">id=</span><span class="s">"frontend-app"</span><span class="nt">&gt;</span>Frontend App<span class="nt">&lt;/h2&gt;</span>
+</code></pre></div></div>
+
+<p>Can be linked to from the diagram by adding the following <code class="language-plaintext highlighter-rouge">URL</code> (notice the added #):</p>
+
+<div class="language-dot highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">digraph</span> <span class="nv">architecture</span> <span class="p">{</span>
+  <span class="nv">FrontendApp</span> <span class="o">[</span><span class="n">URL</span><span class="p">=</span><span class="s2">"#frontend-app"</span><span class="o">]</span>
+  <span class="nv">BackendApp</span>
+  <span class="nv">FrontendApp</span> <span class="o">-&gt;</span> <span class="nv">BackendApp</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="bringing-it-all-together-the-final-example">Bringing It All Together: The Final Example</h2>
+
+<p>Now that we know how to prepare the SVG and create the HTML file, let’s add sections and URLs for all diagram components. You can admire <a href="https://jeroenmols.com/img/blog/interactive-architecture-diagram/system_architecture.html" target="\_blank">the result here</a>.</p>
+
+<p>Pretty dope, isn’t it? 😎</p>
+
+<p>In this example, we have manually written the HTML file, but you could also use Markdown and have the HTML generated for you. I’m pretty confident this will work with whatever documentation tool you are currently using!</p>
+
+<p>The advantages are numerous:</p>
+
+<ul>
+  <li>diagram can be seamlessly added to your existing documentation pages</li>
+  <li>interactivity allows users to navigate the system easily</li>
+  <li>diagram is fully versionable under Git so you can keep track of changes and collaborate efficiently.</li>
+</ul>
+
+<p>Here’s the <a href="https://github.com/JeroenMols/architecturediagrams">Github repository</a> with the diagram source code.</p>
+
+<h2 id="wrap-up">Wrap up</h2>
+
+<p style="color: #646769; background: #f2f3f3; padding: 20px;">This site is 100% tracker free, :heart: for liking my post on <a href="https://androiddev.social/@Jeroenmols/">Mastodon</a> or <a href="https://www.linkedin.com/in/jeroenmols/">Linkedin</a> to let me know you've read this.</p>
+
+<p>By leveraging Graphviz and directly embedding an SVG diagram in an HTML document, you can create visually appealing diagrams that are interactive.</p>
+
+<p>If this was helpful to you, consider <a href="https://www.buymeacoffee.com/jeroen">buying me a coffee</a>.</p>]]></content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="graphviz" /><category term="architecture" /><category term="diagram" /><category term="html" /><summary type="html"><![CDATA[Tired of building un-versionable, lifeless architecture diagrams? Wouldn’t it be great if you could add your diagram to Git, embed it in your documentation, and have clickable elements?]]></summary></entry><entry><title type="html">A privacy friendly RSVP for events</title><link href="https://jeroenmols.com/blog/2023/03/28/privacy-friendly-rsvp/" rel="alternate" type="text/html" title="A privacy friendly RSVP for events" /><published>2023-03-28T00:00:00+02:00</published><updated>2023-03-28T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2023/03/28/privacy-friendly-rsvp</id><content type="html" xml:base="https://jeroenmols.com/blog/2023/03/28/privacy-friendly-rsvp/"><![CDATA[<p>Planning an event can be stressful, and the last thing you need is worrying about your guests’ privacy. But don’t worry, I’ve got you covered with a privacy-friendly RSVP option.</p>
 
 <h2 id="opportunity">Opportunity</h2>
 
@@ -819,427 +940,4 @@ find . -name '*.jpg' | sed 's:.:sdcard/DCIM/Camera:' | xargs -n1 adb shell rm $1
 <h2 id="wrap-up">Wrap-up</h2>
 <p>All code changes require a pull request before they are merged. Code reviews are encouraged, but they can be skipped for trivial or highly urgent changes.</p>
 
-<p>If you’ve made it this far you should probably follow me on <a href="https://androiddev.social/@Jeroenmols">Mastodon</a>. Feel free to leave a comment below!</p>]]></content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="pull request" /><category term="code review" /><category term="process" /><category term="team" /><summary type="html"><![CDATA[In the past years, my thoughts on pull request reviews have evolved considerably. Given that creating and reviewing pull requests are a core part of our work, let’s talk about those.]]></summary></entry><entry><title type="html">Migrate existing library artifacts from JCenter to Maven Central</title><link href="https://jeroenmols.com/blog/2021/03/24/migrate-artifacts-mavencentral/" rel="alternate" type="text/html" title="Migrate existing library artifacts from JCenter to Maven Central" /><published>2021-03-24T00:00:00+01:00</published><updated>2021-03-24T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2021/03/24/migrate-artifacts-mavencentral</id><content type="html" xml:base="https://jeroenmols.com/blog/2021/03/24/migrate-artifacts-mavencentral/"><![CDATA[<p>With JCenter shutting down, many are migrating to Maven Central. And while there are many posts on how to publish new artifacts, also all existing artifacts should be migrated away from JCenter.</p>
-
-<p>This post will cover all steps required to migrate artifacts from JCenter to Maven Central. It will present a script to automatically perform such a migration so that it can be run on a CI and have the secrets injected.</p>
-
-<h2 id="required-before-you-start">Required before you start</h2>
-<p>To migrate an existing project to Maven Central involves two steps:</p>
-
-<ol>
-  <li>Update (Gradle) scripts to publish to Maven Central</li>
-  <li>Migrate all existing artifacts from JCenter to Maven Central</li>
-</ol>
-
-<p>This post will only cover the second step and hence assumes that the reader has a <a href="https://issues.sonatype.org/secure/Dashboard.jspa">Sonatype account</a> and GPG key available.</p>
-
-<p>If you don’t have these yet, have a look at <a href="https://getstream.io/blog/publishing-libraries-to-mavencentral-2021/">this great post</a> by <a href="https://twitter.com/zsmb13">Márton Braun</a>. It will also explain the required steps to make artifacts available after uploading on the Sonatype backend.</p>
-
-<h2 id="migration-steps">Migration steps</h2>
-<p>These are the steps to migrate from JCenter to Maven Central:</p>
-
-<ol>
-  <li><a href="#1-enumerate-all-versions-to-migrate">Enumerate all versions to migrate</a></li>
-  <li><a href="#2-configure-gnu-pg-with-a-signing-key">Configure GNU PG with a signing key</a></li>
-  <li><a href="#3-setup-credentials-for-maven-central-upload">Setup credentials to upload to Maven Central</a></li>
-  <li>For each existing version:
-    <ul>
-      <li><a href="#4a-download-artifacts">Download the artifact from JCenter</a></li>
-      <li><a href="#4b-add-all-missing-info-to-pomxml">Add all missing info to <code class="language-plaintext highlighter-rouge">pom.xml</code></a></li>
-      <li><a href="#4c-sign-and-upload-to-maven-central">Sign and upload the artifact to Maven Central</a></li>
-    </ul>
-  </li>
-</ol>
-
-<p>If you’re impatient, feel free to <a href="#bringing-it-all-together">jump ahead to the full script</a> below.</p>
-
-<p>Though I encourage you to have a look at specific sections as your signing key may be in a different format, sections may be missing from your <code class="language-plaintext highlighter-rouge">pom.xml</code>,…</p>
-
-<h2 id="1-enumerate-all-versions-to-migrate">1. Enumerate all versions to migrate</h2>
-<p>To get all previously published versions from JCenter, navigate to the following url:</p>
-
-<p><code class="language-plaintext highlighter-rouge">https://dl.bintray.com/&lt;bintray-org&gt;/&lt;bintray-repo&gt;/&lt;group-id-slash-separated&gt;/&lt;artifact-id&gt;</code></p>
-
-<p>For the <a href="https://bintray.com/plaid/link-android/com.plaid.link">Plaid Link Android SDK located</a>:</p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">&lt;bintray-org&gt;</code>: <code class="language-plaintext highlighter-rouge">plaid</code> - first part of url</li>
-  <li><code class="language-plaintext highlighter-rouge">&lt;bintray-repo&gt;</code>: <code class="language-plaintext highlighter-rouge">link-android</code> - second part of url</li>
-  <li><code class="language-plaintext highlighter-rouge">&lt;group-id-slash-separated&gt;</code>: <code class="language-plaintext highlighter-rouge">com.plaid.link</code> - group id with <code class="language-plaintext highlighter-rouge">.</code> replaced by <code class="language-plaintext highlighter-rouge">/</code></li>
-  <li><code class="language-plaintext highlighter-rouge">&lt;artifact-id&gt;</code>: <code class="language-plaintext highlighter-rouge">sdk-core</code> - artifact id</li>
-</ul>
-
-<p><a href="/img/blog/migrateartifactsmaven/jcenter_info.png"><img src="/img/blog/migrateartifactsmaven/jcenter_info.png" alt="Bintray and Maven credentials to construct versions url" class="align-center" /></a></p>
-
-<p>Resulting in the <a href="https://dl.bintray.com/plaid/link-android/com/plaid/link/sdk-core">following url</a>:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">BINTRAYURL</span><span class="o">=</span>https://dl.bintray.com/plaid/link-android/com/plaid/link/sdk-core
-</code></pre></div></div>
-
-<p>From this, all versions can be copy-pasted in plain text and converted into a space-separated array. Either using a text editor or command line (OSX only):</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pbpaste | <span class="nb">tr</span> <span class="s1">'/'</span> <span class="s1">' '</span> | <span class="nb">tr</span> <span class="nt">-d</span> <span class="s1">'\n'</span>
-</code></pre></div></div>
-
-<p>Now the versions can be used as an input variable for the script:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">VERSIONS</span><span class="o">=(</span>0.1.0 0.1.1 0.1.2 0.1.3 0.1.4 0.1.5 0.2.0 0.2.1 0.2.2 <span class="se">\</span>
-            0.3.0 0.3.1 0.3.2 0.3.3 0.3.4 0.3.5 0.3.6 1.0.0 1.0.1 <span class="se">\</span>
-            1.0.2 1.0.3 1.1.0 1.2.0 1.2.1 1.3.0 1.3.1 1.4.0 1.4.1 <span class="se">\</span>
-            2.0.0 2.0.0-rc1 2.0.0-rc2 2.0.0-rc3 2.1.0 2.1.1 2.1.2 <span class="se">\</span>
-            2.2.0 3.0.0 3.0.1 3.1.0 3.1.1 3.2.0 3.2.0-rc1 3.2.0-rc2 <span class="se">\</span>
-            3.2.1 3.2.2 3.2.3 3.2.4<span class="o">)</span>
-</code></pre></div></div>
-
-<p>Finally, keep this URL somewhere as we’ll need it later on to download all artifacts.</p>
-
-<h2 id="2-configure-gnu-pg-with-a-signing-key">2. Configure GNU PG with a signing key</h2>
-<p>To sign the artifacts, we’ll use <a href="https://gnupg.org/">GNU PG</a>.</p>
-
-<p>First, ensure GNU GPG is installed:</p>
-
-<ul>
-  <li>OSX: <code class="language-plaintext highlighter-rouge">$ brew install gnupg</code></li>
-  <li>Docker: <code class="language-plaintext highlighter-rouge">$ RUN apk add gnupg</code></li>
-</ul>
-
-<p>Now your private key can be imported by:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gpg <span class="nt">--import</span> private.key
-</code></pre></div></div>
-
-<p>Or if you’ll be running the script on your CI environment, you may want to inject a base64 encoded version of the private key:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Export base64 key</span>
-gpg <span class="nt">--export-secret-key</span> <span class="nt">--armor</span> | <span class="nb">base64</span>
-
-<span class="c"># Import base64 key</span>
-<span class="nb">echo</span> <span class="nv">$BASE64_SIGNING_KEY</span> | <span class="nb">base64</span> <span class="nt">-d</span> | gpg <span class="nt">--import</span>
-</code></pre></div></div>
-
-<h2 id="3-setup-credentials-for-maven-central-upload">3. Setup credentials for Maven Central upload</h2>
-<p>To make sure Maven can access your Sonatype credentials, a <code class="language-plaintext highlighter-rouge">settings.xml</code> needs to be created in the <code class="language-plaintext highlighter-rouge">~/.m2</code> folder with the <code class="language-plaintext highlighter-rouge">username</code> and <code class="language-plaintext highlighter-rouge">password</code>.</p>
-
-<p>First define a variable for <code class="language-plaintext highlighter-rouge">username</code> and <code class="language-plaintext highlighter-rouge">password</code>:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">SONATYPE_USERNAME</span><span class="o">=</span><span class="s2">"&lt;username_here&gt;"</span>
-<span class="nv">SONATYPE_PASSWORD</span><span class="o">=</span><span class="s2">"&lt;password_here&gt;"</span>
-</code></pre></div></div>
-
-<p>Note that these shouldn’t contain any characters that aren’t compatible with xml. Hence we better xml encode them before using:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">function </span>xml_encode<span class="o">()</span> <span class="o">{</span>
-  <span class="nb">echo</span> <span class="nv">$1</span> | <span class="nb">sed</span> <span class="s1">'s/&amp;/\&amp;amp;/g; s/&lt;/\&amp;lt;/g; s/&gt;/\&amp;gt;/g; s/"/\&amp;quot;/g; s/'</span><span class="s2">"'"</span><span class="s1">'/\&amp;#39;/g'</span>
-<span class="o">}</span>
-
-<span class="nv">SONATYPE_USERNAME</span><span class="o">=</span><span class="si">$(</span>xml_encode <span class="s2">"&lt;username_here&gt;"</span><span class="si">)</span>
-<span class="nv">SONATYPE_PASSWORD</span><span class="o">=</span><span class="si">$(</span>xml_encode <span class="s2">"&lt;password_here&gt;"</span><span class="si">)</span>
-</code></pre></div></div>
-
-<p>Next, make sure the <code class="language-plaintext highlighter-rouge">~/.m2</code> directory is created:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkdir -p ~/.m2
-</code></pre></div></div>
-
-<p>And finally create the <code class="language-plaintext highlighter-rouge">settings.xml</code> file with the credentials:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"&lt;settings xmlns=</span><span class="se">\"</span><span class="s2">http://maven.apache.org/SETTINGS/1.0.0</span><span class="se">\"</span><span class="s2"> xmlns:xsi=</span><span class="se">\"</span><span class="s2">http://www.w3.org/2001/XMLSchema-instance</span><span class="se">\"</span><span class="s2">
-  xsi:schemaLocation=</span><span class="se">\"</span><span class="s2">http://maven.apache.org/SETTINGS/1.0.0 https://maven.apache.org/xsd/settings-1.0.0.xsd</span><span class="se">\"</span><span class="s2">&gt;
-  &lt;servers&gt;
-    &lt;server&gt;
-      &lt;id&gt;</span><span class="nv">$MAVEN_CENTRAL_REPOID</span><span class="s2">&lt;/id&gt;
-      &lt;username&gt;</span><span class="nv">$SONATYPE_USERNAME</span><span class="s2">&lt;/username&gt;
-      &lt;password&gt;</span><span class="nv">$SONATYPE_PASSWORD</span><span class="s2">&lt;/password&gt;
-    &lt;/server&gt;
-  &lt;/servers&gt;
-&lt;/settings&gt;"</span> <span class="o">&gt;</span> ~/.m2/settings.xml
-</code></pre></div></div>
-
-<h2 id="4a-download-artifacts">4.a Download artifacts</h2>
-<p>First, define the output directory where the downloaded files will be placed.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">OUTPUT_DIR</span><span class="o">=</span><span class="s2">"output"</span>
-</code></pre></div></div>
-
-<p>Then for each version, create a new directory that will host the downloaded artifacts:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for </span>v <span class="k">in</span> <span class="k">${</span><span class="nv">VERSIONS</span><span class="p">[@]</span><span class="k">}</span><span class="p">;</span> <span class="k">do
-  </span><span class="nb">mkdir</span> <span class="nt">-p</span> <span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>
-<span class="k">done</span>
-</code></pre></div></div>
-
-<p>And finally, download all the artifacts using the base URL that we created in step 1:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for </span>v <span class="k">in</span> <span class="k">${</span><span class="nv">VERSIONS</span><span class="p">[@]</span><span class="k">}</span><span class="p">;</span> <span class="k">do</span>
-  ...
-  curl <span class="nt">-L</span> <span class="nv">$BINTRAYURL</span>/<span class="nv">$v</span>/<span class="nv">$ARTIFACT_ID</span>-<span class="nv">$v</span>.aar <span class="se">\</span>
-      <span class="nt">-o</span> <span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/<span class="nv">$ARTIFACT_ID</span>-<span class="nv">$v</span>.aar
-  curl <span class="nt">-L</span> <span class="nv">$BINTRAYURL</span>/<span class="nv">$v</span>/<span class="nv">$ARTIFACT_ID</span>-<span class="nv">$v</span>.pom <span class="se">\</span>
-      <span class="nt">-o</span> <span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/<span class="nv">$ARTIFACT_ID</span>-<span class="nv">$v</span>.pom
-<span class="k">done</span>
-</code></pre></div></div>
-
-<p>This will represent a similar folder structure in the output directory as what is present in Maven.</p>
-
-<blockquote>
-  <p>Note: if you deploy more artifacts (e.g. <code class="language-plaintext highlighter-rouge">javadoc.jar</code>), make sure to download them here. And when your artifact is a <code class="language-plaintext highlighter-rouge">.jar</code>, update the extension.</p>
-</blockquote>
-
-<h2 id="4b-add-all-missing-info-to-pomxml">4.b Add all missing info to <code class="language-plaintext highlighter-rouge">pom.xml</code></h2>
-<p>Maven Central has <a href="https://central.sonatype.org/publish/requirements/#sufficient-metadata">more mandatory fields</a> for the <code class="language-plaintext highlighter-rouge">pom.xml</code> and hence the <code class="language-plaintext highlighter-rouge">pom.xml</code> files may need to be amended before uploading.</p>
-
-<p>I had to add the following info:</p>
-
-<ul>
-  <li>name</li>
-  <li>description</li>
-  <li>URL</li>
-  <li>license</li>
-  <li>developer</li>
-  <li>organization</li>
-  <li>SCM (link to source control)</li>
-</ul>
-
-<p>To add the information above, let’s replace an existing attribute in the <code class="language-plaintext highlighter-rouge">pom.xml</code> with a new XML snippet that contains all information. A good candidate to replace is the <code class="language-plaintext highlighter-rouge">&lt;packaging&gt;</code> attribute:</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">POM_PLACEHOLDER</span><span class="o">=</span><span class="s2">"&lt;packaging&gt;.*&gt;"</span>
-</code></pre></div></div>
-
-<p>This will be replaced with a new XML snippet that starts with the same attribute, but adds the other attributes to the <code class="language-plaintext highlighter-rouge">pom.xml</code>:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">POM_REPLACEMENT</span><span class="o">=</span><span class="s2">"&lt;packaging&gt;aar&lt;/packaging&gt;
-
-  &lt;name&gt;name here&lt;/name&gt;
-  &lt;description&gt;description here&lt;/description&gt;
-  &lt;url&gt;url here&lt;/url&gt;
-
-
-  &lt;licenses&gt;
-    &lt;license&gt;
-      &lt;name&gt;license here&lt;/name&gt;
-      &lt;url&gt;url to license&lt;/url&gt;
-    &lt;/license&gt;
-  &lt;/licenses&gt;
-
-  &lt;organization&gt;
-    &lt;name&gt;name here&lt;/name&gt;
-    &lt;url&gt;url here&lt;/url&gt;
-  &lt;/organization&gt;
-
-   &lt;developers&gt;
-    &lt;developer&gt;
-      &lt;organization&gt;name here&lt;/organization&gt;
-      &lt;organizationUrl&gt;url here&lt;/organizationUrl&gt;
-    &lt;/developer&gt;
-  &lt;/developers&gt;
-
-  &lt;scm&gt;
-    &lt;connection&gt;url here&lt;/connection&gt;
-    &lt;developerConnection&gt;url here&lt;/developerConnection&gt;
-    &lt;url&gt;url here&lt;/url&gt;
-  &lt;/scm&gt;
-  "</span>
-</code></pre></div></div>
-
-<blockquote>
-  <p>To learn what data to provide for each attribute, have a look a the <a href="https://central.sonatype.org/publish/requirements/#sufficient-metadata">sonatype documentation</a></p>
-</blockquote>
-
-<blockquote>
-  <p>Note that your <code class="language-plaintext highlighter-rouge">pom.xml</code> might already have been defining some of these attributes, so you may not need to add all of these replacement attributes when migrating your project</p>
-</blockquote>
-
-<p>Using <code class="language-plaintext highlighter-rouge">sed</code> we can replace the placeholder with the replacement text:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sed</span> <span class="nt">-e</span> <span class="s2">"s/</span><span class="nv">$POM_PLACEHOLDER</span><span class="s2">/</span><span class="nv">$POM_REPLACEMENT_ESCAPED</span><span class="s2">/g"</span> <span class="se">\</span>
-  <span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/<span class="nv">$ARTIFACT_ID</span>-<span class="nv">$v</span>.pom
-</code></pre></div></div>
-
-<p>Unfortunately, that doesn’t work as all <code class="language-plaintext highlighter-rouge">/</code> in the replacement snippet need to be escaped or <code class="language-plaintext highlighter-rouge">sed</code> will consider them part of its command.</p>
-
-<p>To fix this, preprocess the replacement snippet:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">POM_REPLACEMENT_ESCAPED</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="s2">"</span><span class="k">${</span><span class="nv">POM_REPLACEMENT</span><span class="k">}</span><span class="s2">"</span> |<span class="se">\</span>
-    <span class="nb">sed</span> <span class="s1">'s#/#\\/#g'</span><span class="si">)</span>
-</code></pre></div></div>
-
-<p>Almost there, but <code class="language-plaintext highlighter-rouge">sed</code> cannot handle multi-line replacements.</p>
-
-<p>This can be solved by using <code class="language-plaintext highlighter-rouge">tr</code> to temporarily swap the <code class="language-plaintext highlighter-rouge">/n</code> characters with a unique character <code class="language-plaintext highlighter-rouge">@</code> and swapping it back after the replacement:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">POM_REPLACEMENT_ESCAPED</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="s2">"</span><span class="k">${</span><span class="nv">POM_REPLACEMENT</span><span class="k">}</span><span class="s2">"</span> |<span class="se">\</span>
-    <span class="nb">sed</span> <span class="s1">'s#/#\\/#g'</span> | <span class="nb">tr</span> <span class="s1">'\n'</span> <span class="s1">'@'</span><span class="si">)</span>
-<span class="nb">sed</span> <span class="nt">-e</span> <span class="s2">"s/</span><span class="nv">$POM_PLACEHOLDER</span><span class="s2">/</span><span class="nv">$POM_REPLACEMENT_ESCAPED</span><span class="s2">/g"</span> <span class="se">\</span>
-    <span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/<span class="nv">$ARTIFACT_ID</span>-<span class="nv">$v</span>.pom |<span class="se">\</span>
-     <span class="nb">tr</span> <span class="s1">'@'</span> <span class="s1">'\n'</span> <span class="o">&gt;</span> temp.txt
-<span class="nb">mv </span>temp.txt <span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/<span class="nv">$ARTIFACT_ID</span>-<span class="nv">$v</span>.pom
-</code></pre></div></div>
-
-<p>Notice how an intermediate file <code class="language-plaintext highlighter-rouge">temp.txt</code> is used to avoid reading and modifying the original file at the same time.</p>
-
-<h2 id="4c-sign-and-upload-to-maven-central">4.c Sign and upload to Maven Central</h2>
-<p>To sign and upload the artifacts to Maven Central, what better tool to use than Maven itself?</p>
-
-<p>First, make sure Maven is installed:</p>
-
-<ul>
-  <li>OSX: <code class="language-plaintext highlighter-rouge">$ brew install maven</code></li>
-  <li>Docker: <code class="language-plaintext highlighter-rouge">$ RUN apk add maven</code></li>
-</ul>
-
-<p>Then define the repository id and staging URL constants:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Constants, no need to change these</span>
-<span class="nv">MAVEN_CENTRAL_STAGINGURL</span><span class="o">=</span><span class="s2">"https://oss.sonatype.org/service/local/staging/deploy/maven2"</span>
-<span class="nv">MAVEN_CENTRAL_REPOID</span><span class="o">=</span><span class="s2">"ossrh"</span>
-</code></pre></div></div>
-
-<p>Finally, invoke Maven with the GPG sign and deploy plugin:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for </span>v <span class="k">in</span> <span class="k">${</span><span class="nv">VERSIONS</span><span class="p">[@]</span><span class="k">}</span><span class="p">;</span> <span class="k">do</span>
-  ...
-mvn gpg:sign-and-deploy-file <span class="se">\</span>
-   <span class="nt">-Durl</span><span class="o">=</span><span class="nv">$MAVEN_CENTRAL_STAGINGURL</span> <span class="se">\</span>
-   <span class="nt">-DrepositoryId</span><span class="o">=</span><span class="nv">$MAVEN_CENTRAL_REPOID</span> <span class="se">\</span>
-   <span class="nt">-DpomFile</span><span class="o">=</span><span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/<span class="nv">$ARTIFACT_ID</span>-<span class="nv">$v</span>.pom <span class="se">\</span>
-   <span class="nt">-Dfile</span><span class="o">=</span><span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/<span class="nv">$ARTIFACT_ID</span>-<span class="nv">$v</span>.aar
-<span class="k">done</span>
-</code></pre></div></div>
-
-<p>This will upload all your files to the staging environment on Maven Central.</p>
-
-<blockquote>
-  <p>Note: If you want to upload additional artifacts (e.g. javadoc.jar), have a look at the <a href="https://central.sonatype.org/pages/manual-staging-bundle-creation-and-deployment.html">Sonatype documentation</a>.</p>
-</blockquote>
-
-<p>After, login to Sonatype to close the repository from future uploads and promote all artifacts to release. This process is well described in the <a href="https://getstream.io/blog/publishing-libraries-to-mavencentral-2021/#your-first-release">your first release</a> section by <a href="https://twitter.com/zsmb13">Márton Braun</a></p>
-
-<h2 id="bringing-it-all-together">Bringing it all together</h2>
-<p>Combined this results in the following script, that takes all required secrets as input parameters so it can easily be run on a CI:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>./migrate_to_mavencentral.sh <span class="nv">$BASE64_SIGNING_KEY</span> <span class="nv">$SONATYPE_USERNAME</span> <span class="nv">$SONATYPE_PASSWORD</span>
-</code></pre></div></div>
-
-<p>And the full script (including <code class="language-plaintext highlighter-rouge">TODOs</code>!) <a href="https://github.com/JeroenMols/MigrateArtifactsMavenCentral">can be found on Github</a>:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
-<span class="nb">set</span> <span class="nt">-euo</span> pipefail
-
-<span class="c"># TODO: add versions e.g. (1.0.0 1.0.1 1.0.2)</span>
-<span class="nv">VERSIONS</span><span class="o">=()</span>
-<span class="c"># TODO : add artifact Id</span>
-<span class="nv">ARTIFACT_ID</span><span class="o">=</span><span class="s2">""</span>
-<span class="c"># TODO: https://dl.bintray.com/&lt;bintray-org&gt;/&lt;bintray-repo&gt;/&lt;group-id-slash-separated&gt;/&lt;artifact-id&gt;</span>
-<span class="nv">BINTRAYURL</span><span class="o">=</span><span class="s2">""</span>
-
-<span class="c"># TODO: define placeholder and provide additional pom information (starting with placeholder!)</span>
-<span class="nv">ARTIFACT_EXTENSTION</span><span class="o">=</span><span class="s2">"aar"</span>
-<span class="nv">POM_PLACEHOLDER</span><span class="o">=</span><span class="s2">"&lt;packaging&gt;.*&gt;"</span>
-<span class="nv">POM_REPLACEMENT</span><span class="o">=</span><span class="s2">"&lt;packaging&gt;aar&lt;/packaging&gt;
-
-  &lt;name&gt;name here&lt;/name&gt;
-  &lt;description&gt;description here&lt;/description&gt;
-  &lt;url&gt;url here&lt;/url&gt;
-
-
-  &lt;licenses&gt;
-    &lt;license&gt;
-      &lt;name&gt;license here&lt;/name&gt;
-      &lt;url&gt;url to license&lt;/url&gt;
-    &lt;/license&gt;
-  &lt;/licenses&gt;
-
-  &lt;organization&gt;
-    &lt;name&gt;name here&lt;/name&gt;
-    &lt;url&gt;url here&lt;/url&gt;
-  &lt;/organization&gt;
-
-   &lt;developers&gt;
-    &lt;developer&gt;
-      &lt;organization&gt;name here&lt;/organization&gt;
-      &lt;organizationUrl&gt;url here&lt;/organizationUrl&gt;
-    &lt;/developer&gt;
-  &lt;/developers&gt;
-
-  &lt;scm&gt;
-    &lt;connection&gt;url here&lt;/connection&gt;
-    &lt;developerConnection&gt;url here&lt;/developerConnection&gt;
-    &lt;url&gt;url here&lt;/url&gt;
-  &lt;/scm&gt;
-  "</span>
-
-<span class="c"># Constants</span>
-<span class="nv">MAVEN_CENTRAL_STAGINGURL</span><span class="o">=</span><span class="s2">"https://oss.sonatype.org/service/local/staging/deploy/maven2"</span>
-<span class="nv">MAVEN_CENTRAL_REPOID</span><span class="o">=</span><span class="s2">"ossrh"</span>
-<span class="nv">OUTPUT_DIR</span><span class="o">=</span><span class="s2">"output"</span>
-
-<span class="c"># Utilities</span>
-<span class="k">function </span>escape_pom<span class="o">()</span> <span class="o">{</span>
-  <span class="nb">echo</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> | <span class="nb">sed</span> <span class="s1">'s#/#\\/#g'</span> | <span class="nb">tr</span> <span class="s1">'\n'</span> <span class="s1">'@'</span>
-<span class="o">}</span>
-
-<span class="k">function </span>xml_encode<span class="o">()</span> <span class="o">{</span>
-  <span class="nb">echo</span> <span class="nv">$1</span> | <span class="nb">sed</span> <span class="s1">'s/&amp;/\&amp;amp;/g; s/&lt;/\&amp;lt;/g; s/&gt;/\&amp;gt;/g; s/"/\&amp;quot;/g; s/'</span><span class="s2">"'"</span><span class="s1">'/\&amp;#39;/g'</span>
-<span class="o">}</span>
-
-
-
-<span class="nb">echo</span> <span class="s2">"Loading script input"</span>
-<span class="nv">BASE64_SIGNING_KEY</span><span class="o">=</span><span class="nv">$1</span>
-<span class="nv">SONATYPE_USERNAME</span><span class="o">=</span><span class="si">$(</span>xml_encode <span class="nv">$2</span><span class="si">)</span>
-<span class="nv">SONATYPE_PASSWORD</span><span class="o">=</span><span class="si">$(</span>xml_encode <span class="nv">$3</span><span class="si">)</span>
-<span class="nb">echo</span> <span class="nv">$SONATYPE_PASSWORD</span>
-<span class="k">if</span> <span class="o">[</span> <span class="nt">-z</span> <span class="s2">"</span><span class="k">${</span><span class="nv">BASE64_SIGNING_KEY</span><span class="k">}</span><span class="s2">"</span>  <span class="nt">-o</span> <span class="nt">-z</span> <span class="s2">"</span><span class="k">${</span><span class="nv">SONATYPE_USERNAME</span><span class="k">}</span><span class="s2">"</span> <span class="nt">-o</span> <span class="nt">-z</span> <span class="s2">"</span><span class="k">${</span><span class="nv">SONATYPE_PASSWORD</span><span class="k">}</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
-  </span><span class="nb">echo</span> <span class="s2">"USAGE: migrate BASE64_SIGNING_KEY SONATYPE_USERNAME SONATYPE_PASSWORD"</span>
-  <span class="nb">exit </span>1
-<span class="k">fi
-
-
-
-</span><span class="nb">echo</span> <span class="s2">"Setup signing key"</span>
-<span class="nb">echo</span> <span class="nv">$BASE64_SIGNING_KEY</span> | <span class="nb">base64</span> <span class="nt">-d</span> | gpg <span class="nt">--import</span>
-
-
-
-<span class="nb">echo</span> <span class="s2">"Setup Maven credentials"</span>
-<span class="nb">mkdir</span> <span class="nt">-p</span> ~/.m2
-<span class="nb">echo</span> <span class="s2">"&lt;settings xmlns=</span><span class="se">\"</span><span class="s2">http://maven.apache.org/SETTINGS/1.0.0</span><span class="se">\"</span><span class="s2"> xmlns:xsi=</span><span class="se">\"</span><span class="s2">http://www.w3.org/2001/XMLSchema-instance</span><span class="se">\"</span><span class="s2">
-  xsi:schemaLocation=</span><span class="se">\"</span><span class="s2">http://maven.apache.org/SETTINGS/1.0.0 https://maven.apache.org/xsd/settings-1.0.0.xsd</span><span class="se">\"</span><span class="s2">&gt;
-  &lt;servers&gt;
-    &lt;server&gt;
-      &lt;id&gt;</span><span class="nv">$MAVEN_CENTRAL_REPOID</span><span class="s2">&lt;/id&gt;
-      &lt;username&gt;</span><span class="nv">$SONATYPE_USERNAME</span><span class="s2">&lt;/username&gt;
-      &lt;password&gt;</span><span class="nv">$SONATYPE_PASSWORD</span><span class="s2">&lt;/password&gt;
-    &lt;/server&gt;
-  &lt;/servers&gt;
-&lt;/settings&gt;"</span> <span class="o">&gt;</span> ~/.m2/settings.xml
-
-
-
-<span class="nb">echo</span> <span class="s2">"Migrate artifacts"</span>
-<span class="k">for </span>v <span class="k">in</span> <span class="k">${</span><span class="nv">VERSIONS</span><span class="p">[@]</span><span class="k">}</span><span class="p">;</span> <span class="k">do
-  </span><span class="nb">echo</span> <span class="s2">"Migrating version </span><span class="nv">$v</span><span class="s2">"</span>
-  <span class="nb">mkdir</span> <span class="nt">-p</span> <span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>
-  curl <span class="nt">-L</span> <span class="nv">$BINTRAYURL</span>/<span class="nv">$v</span>/<span class="nv">$ARTIFACT_ID</span>-<span class="nv">$v</span>.<span class="nv">$ARTIFACT_EXTENSTION</span> <span class="se">\</span>
-      <span class="nt">-o</span> <span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/<span class="nv">$ARTIFACT_ID</span>-<span class="nv">$v</span>.<span class="nv">$ARTIFACT_EXTENSTION</span>
-  curl <span class="nt">-L</span> <span class="nv">$BINTRAYURL</span>/<span class="nv">$v</span>/<span class="nv">$ARTIFACT_ID</span>-<span class="nv">$v</span>.pom <span class="se">\</span>
-      <span class="nt">-o</span> <span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/<span class="nv">$ARTIFACT_ID</span>-<span class="nv">$v</span>.pom
-
-  <span class="c"># Add required metadata to pom.xml</span>
-  <span class="nb">sed</span> <span class="nt">-e</span> <span class="s2">"s/</span><span class="nv">$POM_PLACEHOLDER</span><span class="s2">/</span><span class="si">$(</span>escape_pom <span class="s2">"</span><span class="nv">$POM_REPLACEMENT</span><span class="s2">"</span><span class="si">)</span><span class="s2">/g"</span> <span class="se">\</span>
-      <span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/<span class="nv">$ARTIFACT_ID</span>-<span class="nv">$v</span>.pom |<span class="se">\</span>
-      <span class="nb">tr</span> <span class="s1">'@'</span> <span class="s1">'\n'</span> <span class="o">&gt;</span> temp.txt
-  <span class="nb">mv </span>temp.txt <span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/<span class="nv">$ARTIFACT_ID</span>-<span class="nv">$v</span>.pom
-
-  mvn gpg:sign-and-deploy-file <span class="se">\</span>
-     <span class="nt">-Durl</span><span class="o">=</span><span class="nv">$MAVEN_CENTRAL_STAGINGURL</span> <span class="se">\</span>
-     <span class="nt">-DrepositoryId</span><span class="o">=</span><span class="nv">$MAVEN_CENTRAL_REPOID</span> <span class="se">\</span>
-     <span class="nt">-DpomFile</span><span class="o">=</span><span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/<span class="nv">$ARTIFACT_ID</span>-<span class="nv">$v</span>.pom <span class="se">\</span>
-     <span class="nt">-Dfile</span><span class="o">=</span><span class="nv">$OUTPUT_DIR</span>/<span class="nv">$v</span>/<span class="nv">$ARTIFACT_ID</span>-<span class="nv">$v</span>.<span class="nv">$ARTIFACT_EXTENSTION</span>
-<span class="k">done</span>
-</code></pre></div></div>
-
-<h2 id="wrap-up">Wrap-up</h2>
-<p>Migrating existing artifacts to Maven Central involves quite a few steps. Fortunately, the <a href="https://github.com/JeroenMols/MigrateArtifactsMavenCentral">open source script</a> presented in this blogpost can help with downloading all artifacts, updating their <code class="language-plaintext highlighter-rouge">pom.xml</code>, signing them, and uploading them to Maven Central.</p>
-
-<p>If you’ve made it this far you should probably follow me on <a href="https://androiddev.social/@Jeroenmols">Mastodon</a>. Feel free to leave a comment below!</p>]]></content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="script" /><category term="migrate" /><category term="jcenter" /><category term="mavenCentral" /><category term="maven" /><summary type="html"><![CDATA[With JCenter shutting down, many are migrating to Maven Central. And while there are many posts on how to publish new artifacts, also all existing artifacts should be migrated away from JCenter.]]></summary></entry></feed>
+<p>If you’ve made it this far you should probably follow me on <a href="https://androiddev.social/@Jeroenmols">Mastodon</a>. Feel free to leave a comment below!</p>]]></content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="pull request" /><category term="code review" /><category term="process" /><category term="team" /><summary type="html"><![CDATA[In the past years, my thoughts on pull request reviews have evolved considerably. Given that creating and reviewing pull requests are a core part of our work, let’s talk about those.]]></summary></entry></feed>
