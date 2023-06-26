@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Interactive versionable architecture diagrams - Jeroen Mols</title>
-<meta name="description" content="Tired of building un-versionable, lifeless architecture diagrams? Wouldn’t it be great if you could add your diagram to Git, embed it in your documentation, and have clickable elements?">
+<!-- begin _includes/seo.html --><title>Gaming the pull request review system - Jeroen Mols</title>
+<meta name="description" content="As developers, we love to build cool things and ship them as fast as reasonably possible. And in order to get that done, here are a few things you can do to “game the system”.">
 
 
   <meta name="author" content="Jeroen Mols">
@@ -22,27 +22,27 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en">
 <meta property="og:site_name" content="Jeroen Mols">
-<meta property="og:title" content="Interactive versionable architecture diagrams">
-<meta property="og:url" content="https://jeroenmols.com/blog/2023/06/09/interactive-architecture-diagram/">
+<meta property="og:title" content="Gaming the pull request review system">
+<meta property="og:url" content="https://jeroenmols.com/blog/2023/06/26/prs-and-commits/">
 
 
-  <meta property="og:description" content="Tired of building un-versionable, lifeless architecture diagrams? Wouldn’t it be great if you could add your diagram to Git, embed it in your documentation, and have clickable elements?">
+  <meta property="og:description" content="As developers, we love to build cool things and ship them as fast as reasonably possible. And in order to get that done, here are a few things you can do to “game the system”.">
 
 
 
-  <meta property="og:image" content="https://jeroenmols.com/img/blog/interactive-architecture-diagram/cover.jpeg">
+  <meta property="og:image" content="https://jeroenmols.com/img/blog/prs-and-commits/cover.jpg">
 
 
 
   <meta name="twitter:site" content="@molsjeroen">
-  <meta name="twitter:title" content="Interactive versionable architecture diagrams">
-  <meta name="twitter:description" content="Tired of building un-versionable, lifeless architecture diagrams? Wouldn’t it be great if you could add your diagram to Git, embed it in your documentation, and have clickable elements?">
-  <meta name="twitter:url" content="https://jeroenmols.com/blog/2023/06/09/interactive-architecture-diagram/">
+  <meta name="twitter:title" content="Gaming the pull request review system">
+  <meta name="twitter:description" content="As developers, we love to build cool things and ship them as fast as reasonably possible. And in order to get that done, here are a few things you can do to “game the system”.">
+  <meta name="twitter:url" content="https://jeroenmols.com/blog/2023/06/26/prs-and-commits/">
 
   
     <meta name="twitter:card" content="summary">
     
-      <meta name="twitter:image" content="https://jeroenmols.com/img/blog/interactive-architecture-diagram/cover.jpeg">
+      <meta name="twitter:image" content="https://jeroenmols.com/img/blog/prs-and-commits/cover.jpg">
     
   
 
@@ -50,7 +50,7 @@
 
 
 
-  <meta property="article:published_time" content="2023-06-09T00:00:00+02:00">
+  <meta property="article:published_time" content="2023-06-26T00:00:00+02:00">
 
 
 
@@ -61,7 +61,7 @@
   
 
 
-<link rel="canonical" href="https://jeroenmols.com/blog/2023/06/09/interactive-architecture-diagram/">
+<link rel="canonical" href="https://jeroenmols.com/blog/2023/06/26/prs-and-commits/">
 
 
 
@@ -317,20 +317,20 @@
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Interactive versionable architecture diagrams">
-    <meta itemprop="description" content="Tired of building un-versionable, lifeless architecture diagrams? Wouldn’t it be great if you could add your diagram to Git, embed it in your documentation, and have clickable elements?">
-    <meta itemprop="datePublished" content="June 09, 2023">
+    <meta itemprop="headline" content="Gaming the pull request review system">
+    <meta itemprop="description" content="As developers, we love to build cool things and ship them as fast as reasonably possible. And in order to get that done, here are a few things you can do to “game the system”.">
+    <meta itemprop="datePublished" content="June 26, 2023">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 class="page__title" itemprop="headline">Interactive versionable architecture diagrams
+          <h1 class="page__title" itemprop="headline">Gaming the pull request review system
 </h1>
-          <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  09 Jun 2023</p>
+          <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  26 Jun 2023</p>
 
           
-            <img src="/img/blog/interactive-architecture-diagram/cover.jpeg" alt="Interactive versionable architecture diagrams" title="Photo by Tima Miroshnichenko from pexels,  https://www.pexels.com/photo/person-people-building-desk-6615230/, cropped and resized">
+            <img src="/img/blog/prs-and-commits/cover.jpg" alt="Gaming the pull request review system" title="Photo by Alexey Savchenko on Unsplash, https://unsplash.com/photos/k4Akpt5-Sfk, cropped and resized">
           
 
           
@@ -348,126 +348,87 @@
 
       <section class="page__content" itemprop="text">
         
-        <p>Tired of building un-versionable, lifeless architecture diagrams? Wouldn’t it be great if you could add your diagram to Git, embed it in your documentation, and have clickable elements?</p>
+        <p>As developers, we love to build cool things and ship them as fast as reasonably possible. And in order to get that done, here are a few things you can do to “game the system”.</p>
 
-<p>Well, look no further! In this blog post, we will explore how to generate an interactive system architecture diagram using Graphviz and HTML. Get ready to bring your diagrams to life!</p>
+<h2 id="pull-requests">Pull requests</h2>
 
-<h2 id="curious">Curious?</h2>
+<p>Put yourself in the shoes of the reviewer, how would you like your pull requests (PR) to be served?</p>
 
-<p>Can’t wait to see the result of what we’re going to build, get a sneak peak of the result here:</p>
-
-<p>👉 <a href="https://jeroenmols.com/img/blog/interactive-architecture-diagram/system_architecture.html" target="\_blank">Interactive system architecture diagram</a>.</p>
-
-<h2 id="building-a-diagram-with-graphviz">Building a Diagram with Graphviz</h2>
-
-<p>Graphviz is a powerful graph visualization tool that offers higher flexibility than alternatives like Mermaid. It allows us to export graphs to Scalable Vector Graphics (SVG) files, which are ideal for embedding in HTML documents. Additionally, Graphviz supports embedding URLs into the graph elements, enabling interactivity.</p>
-
-<p>To start, you’ll need to install Graphviz on your system.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew install graphviz
-</code></pre></div></div>
-
-<p>Once installed, create a Graphviz file (with a <code class="language-plaintext highlighter-rouge">.dot</code> extension) that defines the architecture diagram. You can specify nodes, edges, and their properties using <a href="https://graphviz.org/documentation/">the DOT language</a>.</p>
-
-<p>Here’s a brief example of a Graphviz file:</p>
-
-<div class="language-dot highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">digraph</span> <span class="nv">architecture</span> <span class="p">{</span>
-  <span class="nv">FrontendApp</span>
-  <span class="nv">BackendApp</span>
-  <span class="nv">FrontendApp</span> <span class="o">-&gt;</span> <span class="nv">BackendApp</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p>To export the DOT file to an SVG file, use the following command:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ dot -Tsvg diagram.dot -o diagram.svg
-</code></pre></div></div>
-
-<p>Which will yield the following diagram:</p>
-
-<p><img src="https://jeroenmols.com/img/blog/interactive-architecture-diagram/sample.svg" alt="Graphviz diagram example" class="align-center"></p>
-
-<p>While this is a very simple example of a Graphviz diagram, it is possible to create more complex and better-looking ones.</p>
-
-<p>For the sake of example, let’s take <a href="https://github.com/JeroenMols/architecturediagrams/blob/main/diagram.dot">the diagram defined here</a> and build an interactive version of that.</p>
-
-<p><img src="https://jeroenmols.com/img/blog/interactive-architecture-diagram/diagram.svg" alt="Graphviz architecture diagram" class="align-center"></p>
-
-<p>Here are my pro tips for Graphviz to create the layout you want:</p>
+<p>I like mine:</p>
 
 <ul>
-  <li>Have the diagram lay itself out from left to right</li>
-  <li>Add an invisible column on the left with elements that define your rows (use <code class="language-plaintext highlighter-rouge">rank=same</code> to lay out the linked nodes under each other)</li>
-  <li>Link each alignment row to the element you want to appear first on that row</li>
-  <li>Link elements on different rows with an edge that has a `[constraint=”false”] attribute</li>
-  <li>Use invisible elements to add spacers or to force edges along a certain path</li>
+  <li>nice and small, so they’re less intimidating to review and hence will be reviewed faster</li>
+  <li>with a great description, context about why it’s built this way and considered alternatives help to understand and learn</li>
+  <li>visual with a screenshot (before/after visual change) or a graph (conversion change) or table (comparison)</li>
+  <li>already reviewed, comments by the author add extra context and helpful insights to review the code</li>
 </ul>
 
-<p>By following the suggestions above you can essentially lay out architecture blocks on a grid.</p>
+<p>Doing all the above is extra work, but will speed up reviews, reduce rework and improve the feedback loop.</p>
 
-<h2 id="creating-an-html-file-to-embed-the-diagram">Creating an HTML File to Embed the Diagram</h2>
+<p>So be selfish and put in the extra work to craft stellar PRs!</p>
 
-<p>To include the generated SVG in an HTML page, you can use the following code:</p>
+<p>This won’t just make you more happy and productive, it will also increase your overall impact by helping to inform others and creating an excellent historical reference.</p>
 
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"diagram.svg"</span> <span class="na">alt=</span><span class="s">"Architecture diagram"</span> <span class="nt">/&gt;</span>
-</code></pre></div></div>
+<h2 id="commits">Commits</h2>
 
-<p>However, simply using an <code class="language-plaintext highlighter-rouge">&lt;img&gt;</code> tag to include the SVG won’t allow the hyperlinks to link to the hosting page. So unfortunately, we have to directly include the SVG code between the <code class="language-plaintext highlighter-rouge">&lt;svg&gt;</code> and <code class="language-plaintext highlighter-rouge">&lt;/svg&gt;</code> tags.</p>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;svg</span> <span class="err">...</span><span class="nt">&gt;</span>
-  <span class="c">&lt;!-- SVG content goes here --&gt;</span>
-<span class="nt">&lt;/svg&gt;</span>
-</code></pre></div></div>
-
-<p>A few changes need to be made before embedding the SVG code to ensure compatibility with HTML:</p>
+<p>Much of the above is also valid for commit messages:</p>
 
 <ul>
-  <li>Remove all comments from the SVG file (comments start with <code class="language-plaintext highlighter-rouge">&lt;!--</code> and end with <code class="language-plaintext highlighter-rouge">--&gt;</code>).</li>
-  <li>Remove the <code class="language-plaintext highlighter-rouge">xmlns:xlink="http://www.w3.org/1999/xlink"</code> attribute from the root <code class="language-plaintext highlighter-rouge">&lt;svg&gt;</code> tag.</li>
-  <li>Remove any <code class="language-plaintext highlighter-rouge">xlink</code> prefixes used throughout the SVG code.</li>
+  <li>small commits are easier to review, since changes are more correlated and have extra context (i.e. commit message)</li>
+  <li>great commit messages add extra context and reasoning behind commit changes (optimize for Git bisect)</li>
 </ul>
 
-<p>Next, let’s talk about building the HTML page that will contain the diagram.</p>
+<p>However at my current company we squash all commits before merging.</p>
 
-<p>For each architecture component, we want to link from, we will need to add a section with an anchor link. A way to do this is to add a <code class="language-plaintext highlighter-rouge">&lt;h2&gt;</code> tag with an <code class="language-plaintext highlighter-rouge">id</code> attribute.</p>
-
-<p>As an example, the following section:</p>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;h2</span> <span class="na">id=</span><span class="s">"frontend-app"</span><span class="nt">&gt;</span>Frontend App<span class="nt">&lt;/h2&gt;</span>
-</code></pre></div></div>
-
-<p>Can be linked to from the diagram by adding the following <code class="language-plaintext highlighter-rouge">URL</code> (notice the added #):</p>
-
-<div class="language-dot highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">digraph</span> <span class="nv">architecture</span> <span class="p">{</span>
-  <span class="nv">FrontendApp</span> <span class="o">[</span><span class="n">URL</span><span class="p">=</span><span class="s2">"#frontend-app"</span><span class="o">]</span>
-  <span class="nv">BackendApp</span>
-  <span class="nv">FrontendApp</span> <span class="o">-&gt;</span> <span class="nv">BackendApp</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<h2 id="bringing-it-all-together-the-final-example">Bringing It All Together: The Final Example</h2>
-
-<p>Now that we know how to prepare the SVG and create the HTML file, let’s add sections and URLs for all diagram components. You can admire <a href="https://jeroenmols.com/img/blog/interactive-architecture-diagram/system_architecture.html" target="\_blank">the result here</a>.</p>
-
-<p>Pretty dope, isn’t it? 😎</p>
-
-<p>In this example, we have manually written the HTML file, but you could also use Markdown and have the HTML generated for you. I’m pretty confident this will work with whatever documentation tool you are currently using!</p>
-
-<p>The advantages are numerous:</p>
-
-<ul>
-  <li>diagram can be seamlessly added to your existing documentation pages</li>
-  <li>interactivity allows users to navigate the system easily</li>
-  <li>diagram is fully versionable under Git so you can keep track of changes and collaborate efficiently.</li>
-</ul>
-
-<p>Here’s the <a href="https://github.com/JeroenMols/architecturediagrams">Github repository</a> with the diagram source code.</p>
+<p>So I’ve personally given up on my commit size and message hygiene and moved my efforts to the PR level instead.</p>
 
 <h2 id="wrap-up">Wrap up</h2>
 
-<p style="color: #646769; background: #f2f3f3; padding: 20px;">This site is 100% tracker free, <img class="emoji" title=":heart:" alt=":heart:" src="https://github.githubassets.com/images/icons/emoji/unicode/2764.png" height="20" width="20"> for liking my post on <a href="https://androiddev.social/@Jeroenmols/110516305062438230">Mastodon</a> or <a href="https://www.linkedin.com/posts/jeroenmols_interactive-versionable-architecture-diagrams-activity-7073042645714919424-nmgc?utm_source=share&amp;utm_medium=member_desktop">Linkedin</a> to let me know you've read this.</p>
+<p style="color: #646769; background: #f2f3f3; padding: 20px;">This site is 100% tracker free, <img class="emoji" title=":heart:" alt=":heart:" src="https://github.githubassets.com/images/icons/emoji/unicode/2764.png" height="20" width="20"> for liking my post on <a href="https://androiddev.social/@Jeroenmols/">Mastodon</a> or <a href="https://www.linkedin.com/in/jeroenmols">Linkedin</a> to let me know you've read this.</p>
 
-<p>By leveraging Graphviz and directly embedding an SVG diagram in an HTML document, you can create visually appealing diagrams that are interactive.</p>
+<p>Sometimes it’s good to be a little selfish! Optimize your pull requests to be reviewed as quickly as possible and increase your overall impact and happiness.</p>
+
+<p>If this was helpful to you, consider <a href="https://www.buymeacoffee.com/jeroen">buying me a coffee</a>.</p>
+
+<p>As developers, we love to build cool things and ship them as fast as reasonably possible. And to get that done, here are a few things you can do to “game the system”.</p>
+
+<h2 id="pull-requests-1">Pull requests</h2>
+
+<p>Put yourself in the shoes of the reviewer, how would you like your pull requests (PR) to be served?</p>
+
+<p>I like mine:</p>
+
+<ul>
+  <li>nice and small, so they’re less intimidating to review and hence will be reviewed faster</li>
+  <li>with a great description, context about why it’s built this way, and considered alternatives help to understand and learn</li>
+  <li>visual with a screenshot (before/after visual change) or a graph (conversion change) or table (comparison)</li>
+  <li>already reviewed, comments by the author add extra context and helpful insights to review the code</li>
+</ul>
+
+<p>Doing all the above is extra work, but will speed up reviews, reduce rework and improve the feedback loop.</p>
+
+<p>So be selfish and put in the extra work to craft stellar PRs!</p>
+
+<p>This won’t just make you happier and more productive, but it will also increase your overall impact by helping to inform others and creating an excellent historical reference.</p>
+
+<h2 id="commits-1">Commits</h2>
+
+<p>Much of the above is also valid for commit messages:</p>
+
+<ul>
+  <li>small commits are easier to review since changes are more correlated and have extra context (i.e. commit message)</li>
+  <li>great commit messages add extra context and reasoning behind commit changes (optimize for Git bisect)</li>
+</ul>
+
+<p>However, at my current company, we squash all commits before merging.</p>
+
+<p>So I’ve personally given up on my commit size and message hygiene and moved my efforts to the PR level instead.</p>
+
+<h2 id="wrap-up-1">Wrap up</h2>
+
+<p style="color: #646769; background: #f2f3f3; padding: 20px;">This site is 100% tracker free, <img class="emoji" title=":heart:" alt=":heart:" src="https://github.githubassets.com/images/icons/emoji/unicode/2764.png" height="20" width="20"> for liking my post on <a href="https://androiddev.social/@Jeroenmols/">Mastodon</a> or <a href="https://www.linkedin.com/in/jeroenmols">Linkedin</a> to let me know you've read this.</p>
+
+<p>Sometimes it’s good to be a little selfish! Optimize your pull requests to be reviewed as quickly as possible and increase your overall impact and happiness.</p>
 
 <p>If this was helpful to you, consider <a href="https://www.buymeacoffee.com/jeroen">buying me a coffee</a>.</p>
 
@@ -486,13 +447,11 @@
     <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
     <span itemprop="keywords">
     
-      <a href="/tags/architecture" class="page__taxonomy-item" rel="tag">architecture</a><span class="sep">, </span>
+      <a href="/tags/commit" class="page__taxonomy-item" rel="tag">commit</a><span class="sep">, </span>
     
-      <a href="/tags/diagram" class="page__taxonomy-item" rel="tag">diagram</a><span class="sep">, </span>
+      <a href="/tags/engineering" class="page__taxonomy-item" rel="tag">engineering</a><span class="sep">, </span>
     
-      <a href="/tags/graphviz" class="page__taxonomy-item" rel="tag">graphviz</a><span class="sep">, </span>
-    
-      <a href="/tags/html" class="page__taxonomy-item" rel="tag">html</a>
+      <a href="/tags/pullrequest" class="page__taxonomy-item" rel="tag">pullrequest</a>
     
     </span>
   </p>
@@ -516,7 +475,7 @@
 
 
         
-          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2023-06-09T00:00:00+02:00">June 09, 2023</time></p>
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2023-06-26T00:00:00+02:00">June 26, 2023</time></p>
         
       </footer>
 
@@ -525,23 +484,22 @@
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?via=molsjeroen&amp;text=Interactive+versionable+architecture+diagrams%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2023%2F06%2F09%2Finteractive-architecture-diagram%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?via=molsjeroen&amp;text=Gaming+the+pull+request+review+system%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2023%2F06%2F26%2Fprs-and-commits%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2023%2F06%2F09%2Finteractive-architecture-diagram%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2023%2F06%2F26%2Fprs-and-commits%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2023%2F06%2F09%2Finteractive-architecture-diagram%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2023%2F06%2F26%2Fprs-and-commits%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/blog/2023/03/28/privacy-friendly-rsvp/" class="pagination--pager" title="A privacy friendly RSVP for events
+      <a href="/blog/2023/06/09/interactive-architecture-diagram/" class="pagination--pager" title="Interactive versionable architecture diagrams
 ">Previous</a>
     
     
-      <a href="/blog/2023/06/26/prs-and-commits/" class="pagination--pager" title="Gaming the pull request review system
-">Next</a>
+      <a href="#" class="pagination--pager disabled">Next</a>
     
   </nav>
 
@@ -575,17 +533,17 @@
   <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
     <div style="position:relative;">
       
-        <div class="archive__item-teaser" style="background-image: url(/img/blog/prs-and-commits/cover.jpg)"></div>
+        <div class="archive__item-teaser" style="background-image: url(/img/blog/interactive-architecture-diagram/cover.jpeg)"></div>
       
       <div class="archive__item_titlecontainer">
         <h2 class="archive__item-title" itemprop="headline">
-            <a href="/blog/2023/06/26/prs-and-commits/" rel="permalink">Gaming the pull request review system
+            <a href="/blog/2023/06/09/interactive-architecture-diagram/" rel="permalink">Interactive versionable architecture diagrams
 </a>
         </h2>
-        <h3 class="archive__date">26 Jun 2023</h3>
+        <h3 class="archive__date">09 Jun 2023</h3>
       </div>
       
-        <a href="/blog/2023/06/26/prs-and-commits/" rel="permalink">
+        <a href="/blog/2023/06/09/interactive-architecture-diagram/" rel="permalink">
           <div class="archive__item-teaser-imageclickhandler"></div>
         </a>
       
@@ -600,7 +558,7 @@
 
 </p>
     
-    <p class="archive__item-excerpt" itemprop="description">As developers, we love to build cool things and ship them as fast as reasonably possible. And in order to get that done, here are a few things you can do to “game the system”.
+    <p class="archive__item-excerpt" itemprop="description">Tired of building un-versionable, lifeless architecture diagrams? Wouldn’t it be great if you could add your diagram to Git, embed it in your documentation, and have clickable elements?
 </p>
   </article>
 </div>

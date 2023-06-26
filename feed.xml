@@ -1,4 +1,86 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2023-06-12T12:20:18+02:00</updated><id>https://jeroenmols.com/feed.xml</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, Software developer at Plaid and Google Developer Expert.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Interactive versionable architecture diagrams</title><link href="https://jeroenmols.com/blog/2023/06/09/interactive-architecture-diagram/" rel="alternate" type="text/html" title="Interactive versionable architecture diagrams" /><published>2023-06-09T00:00:00+02:00</published><updated>2023-06-09T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2023/06/09/interactive-architecture-diagram</id><content type="html" xml:base="https://jeroenmols.com/blog/2023/06/09/interactive-architecture-diagram/"><![CDATA[<p>Tired of building un-versionable, lifeless architecture diagrams? Wouldn’t it be great if you could add your diagram to Git, embed it in your documentation, and have clickable elements?</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2023-06-26T21:17:29+02:00</updated><id>https://jeroenmols.com/feed.xml</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, Software developer at Plaid and Google Developer Expert.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Gaming the pull request review system</title><link href="https://jeroenmols.com/blog/2023/06/26/prs-and-commits/" rel="alternate" type="text/html" title="Gaming the pull request review system" /><published>2023-06-26T00:00:00+02:00</published><updated>2023-06-26T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2023/06/26/prs-and-commits</id><content type="html" xml:base="https://jeroenmols.com/blog/2023/06/26/prs-and-commits/"><![CDATA[<p>As developers, we love to build cool things and ship them as fast as reasonably possible. And in order to get that done, here are a few things you can do to “game the system”.</p>
+
+<h2 id="pull-requests">Pull requests</h2>
+
+<p>Put yourself in the shoes of the reviewer, how would you like your pull requests (PR) to be served?</p>
+
+<p>I like mine:</p>
+
+<ul>
+  <li>nice and small, so they’re less intimidating to review and hence will be reviewed faster</li>
+  <li>with a great description, context about why it’s built this way and considered alternatives help to understand and learn</li>
+  <li>visual with a screenshot (before/after visual change) or a graph (conversion change) or table (comparison)</li>
+  <li>already reviewed, comments by the author add extra context and helpful insights to review the code</li>
+</ul>
+
+<p>Doing all the above is extra work, but will speed up reviews, reduce rework and improve the feedback loop.</p>
+
+<p>So be selfish and put in the extra work to craft stellar PRs!</p>
+
+<p>This won’t just make you more happy and productive, it will also increase your overall impact by helping to inform others and creating an excellent historical reference.</p>
+
+<h2 id="commits">Commits</h2>
+
+<p>Much of the above is also valid for commit messages:</p>
+
+<ul>
+  <li>small commits are easier to review, since changes are more correlated and have extra context (i.e. commit message)</li>
+  <li>great commit messages add extra context and reasoning behind commit changes (optimize for Git bisect)</li>
+</ul>
+
+<p>However at my current company we squash all commits before merging.</p>
+
+<p>So I’ve personally given up on my commit size and message hygiene and moved my efforts to the PR level instead.</p>
+
+<h2 id="wrap-up">Wrap up</h2>
+
+<p style="color: #646769; background: #f2f3f3; padding: 20px;">This site is 100% tracker free, :heart: for liking my post on <a href="https://androiddev.social/@Jeroenmols/">Mastodon</a> or <a href="https://www.linkedin.com/in/jeroenmols">Linkedin</a> to let me know you've read this.</p>
+
+<p>Sometimes it’s good to be a little selfish! Optimize your pull requests to be reviewed as quickly as possible and increase your overall impact and happiness.</p>
+
+<p>If this was helpful to you, consider <a href="https://www.buymeacoffee.com/jeroen">buying me a coffee</a>.</p>
+
+<p>As developers, we love to build cool things and ship them as fast as reasonably possible. And to get that done, here are a few things you can do to “game the system”.</p>
+
+<h2 id="pull-requests-1">Pull requests</h2>
+
+<p>Put yourself in the shoes of the reviewer, how would you like your pull requests (PR) to be served?</p>
+
+<p>I like mine:</p>
+
+<ul>
+  <li>nice and small, so they’re less intimidating to review and hence will be reviewed faster</li>
+  <li>with a great description, context about why it’s built this way, and considered alternatives help to understand and learn</li>
+  <li>visual with a screenshot (before/after visual change) or a graph (conversion change) or table (comparison)</li>
+  <li>already reviewed, comments by the author add extra context and helpful insights to review the code</li>
+</ul>
+
+<p>Doing all the above is extra work, but will speed up reviews, reduce rework and improve the feedback loop.</p>
+
+<p>So be selfish and put in the extra work to craft stellar PRs!</p>
+
+<p>This won’t just make you happier and more productive, but it will also increase your overall impact by helping to inform others and creating an excellent historical reference.</p>
+
+<h2 id="commits-1">Commits</h2>
+
+<p>Much of the above is also valid for commit messages:</p>
+
+<ul>
+  <li>small commits are easier to review since changes are more correlated and have extra context (i.e. commit message)</li>
+  <li>great commit messages add extra context and reasoning behind commit changes (optimize for Git bisect)</li>
+</ul>
+
+<p>However, at my current company, we squash all commits before merging.</p>
+
+<p>So I’ve personally given up on my commit size and message hygiene and moved my efforts to the PR level instead.</p>
+
+<h2 id="wrap-up-1">Wrap up</h2>
+
+<p style="color: #646769; background: #f2f3f3; padding: 20px;">This site is 100% tracker free, :heart: for liking my post on <a href="https://androiddev.social/@Jeroenmols/">Mastodon</a> or <a href="https://www.linkedin.com/in/jeroenmols">Linkedin</a> to let me know you've read this.</p>
+
+<p>Sometimes it’s good to be a little selfish! Optimize your pull requests to be reviewed as quickly as possible and increase your overall impact and happiness.</p>
+
+<p>If this was helpful to you, consider <a href="https://www.buymeacoffee.com/jeroen">buying me a coffee</a>.</p>]]></content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="pullrequest" /><category term="commit" /><category term="engineering" /><summary type="html"><![CDATA[As developers, we love to build cool things and ship them as fast as reasonably possible. And in order to get that done, here are a few things you can do to “game the system”.]]></summary></entry><entry><title type="html">Interactive versionable architecture diagrams</title><link href="https://jeroenmols.com/blog/2023/06/09/interactive-architecture-diagram/" rel="alternate" type="text/html" title="Interactive versionable architecture diagrams" /><published>2023-06-09T00:00:00+02:00</published><updated>2023-06-09T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2023/06/09/interactive-architecture-diagram</id><content type="html" xml:base="https://jeroenmols.com/blog/2023/06/09/interactive-architecture-diagram/"><![CDATA[<p>Tired of building un-versionable, lifeless architecture diagrams? Wouldn’t it be great if you could add your diagram to Git, embed it in your documentation, and have clickable elements?</p>
 
 <p>Well, look no further! In this blog post, we will explore how to generate an interactive system architecture diagram using Graphviz and HTML. Get ready to bring your diagrams to life!</p>
 
@@ -826,118 +908,4 @@ find . -name '*.jpg' | sed 's:.:sdcard/DCIM/Camera:' | xargs -n1 adb shell rm $1
 <h2 id="wrap-up">Wrap-up</h2>
 <p><code class="language-plaintext highlighter-rouge">WorkManager</code> is a very handy tool to handle background work, but be careful with removing or renaming <code class="language-plaintext highlighter-rouge">Workers</code>.</p>
 
-<p>If you’ve made it this far you should probably follow me on <a href="https://androiddev.social/@Jeroenmols">Mastodon</a>. Feel free to leave a comment below!</p>]]></content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="workmanager" /><category term="crash" /><summary type="html"><![CDATA[WorkManager is great to schedule background work on Android. However, since scheduled work lives outside of the app lifecycle, you might run into unexpected crashes.]]></summary></entry><entry><title type="html">No, your pull request does not need a review</title><link href="https://jeroenmols.com/blog/2022/02/23/pull-request-reviews/" rel="alternate" type="text/html" title="No, your pull request does not need a review" /><published>2022-02-23T00:00:00+01:00</published><updated>2022-02-23T00:00:00+01:00</updated><id>https://jeroenmols.com/blog/2022/02/23/pull-request-reviews</id><content type="html" xml:base="https://jeroenmols.com/blog/2022/02/23/pull-request-reviews/"><![CDATA[<p>In the past years, my thoughts on pull request reviews have evolved considerably. Given that creating and reviewing pull requests are a core part of our work, let’s talk about those.</p>
-
-<p>This post will detail when to craft a pull request and what pull requests require a code review.</p>
-
-<h2 id="when-to-craft-a-pull-request">When to craft a pull request</h2>
-<blockquote>
-  <p>Always.</p>
-</blockquote>
-
-<p>Starting with the easiest part: every code change requires a pull request. This is mainly for two reasons:</p>
-
-<ol>
-  <li>Code quality</li>
-  <li>Provide additional context</li>
-</ol>
-
-<h3 id="1-code-quality">1. Code quality</h3>
-<p>Your team likely wants to establish a common baseline of quality.</p>
-
-<p>For this most teams use a set of automated checks that are executed on every pull request. These can verify that the code builds, tests pass, test coverage does not decrease, app size is within certain limits, …</p>
-
-<p>However, some checks can also be manual, such as a checklist on the pull request template. These nudge developers to avoid unrelated changes, do a self-review, add clear descriptions, steps to test the changes, …</p>
-
-<h3 id="2-provide-additional-context">2. Provide additional context</h3>
-<p>Writing a pull request is a useful form of documentation. It allows additional context to code changes such as why the changes are required and what alternatives were considered.</p>
-
-<p>For bugs, you can elaborate on the steps to reproduce, a stack trace of the issue, and what steps others can follow to verify the proposed solution. Adding before/after screenshots can be incredibly helpful in reviewing UI changes.</p>
-
-<p>Finally, draft pull requests can be a tool to compare alternatives or an effective way to convey your design ideas to others.</p>
-
-<h2 id="when-your-pull-request-requires-a-review">When your pull request requires a review</h2>
-<blockquote>
-  <p>For all significant, non-critical code changes.</p>
-</blockquote>
-
-<p>While you might have expected an <code class="language-plaintext highlighter-rouge">always</code> here, I can at least think of two scenarios where pull request reviews might be skipped:</p>
-
-<ol>
-  <li>Trivial code</li>
-  <li>High urgency changes</li>
-</ol>
-
-<h3 id="1-trivial-code">1. Trivial code</h3>
-<p>Some code changes are straightforward, such as bumping the app version. Would you want to hold off your release until a team member finds the time to review the following?</p>
-
-<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code> defaultConfig {
-<span class="gd">-    versionName "1.3.0"
-</span><span class="gi">+    versionName "1.3.1"
-</span>     ...
- }
-</code></pre></div></div>
-
-<p>But why stop there?</p>
-
-<p>How about committing the output of automatic scripts? Examples are adding new translations, updating the <a href="https://developers.google.com/protocol-buffers/">Protobuf</a> definitions, or tweaking assets.</p>
-
-<p>Far too often have I had to disrupt a colleague’s “flow” for a “quick stamp” on a particular pull request. Whereas in reality, our default automated checks would have been sufficient.</p>
-
-<h3 id="2-high-urgency-changes">2. High urgency changes</h3>
-<p>What if, despite all processes, main is suddenly broken?</p>
-
-<p>A common scenario for me is that end-to-end tests suddenly start failing. Either due to a backend change or due to a change on <a href="https://firebase.google.com/docs/test-lab/">Firebase tests lab</a>. In this case, main will still compile, but the builds for all open pull requests would fail.</p>
-
-<p><a href="https://jeroenmols.com/img/blog/pullrequestreview/failed_builds.png"><img src="https://jeroenmols.com/img/blog/pullrequestreview/failed_builds.png" alt="All pull request builds are failing due to an issue with the end-to-end tests" /></a></p>
-
-<p>An even worse situation is when two incompatible changes are merged, breaking main compilation as a result. That is even more impactful as it also breaks compilation for all developers starting from or rebasing onto the latest main.</p>
-
-<p>Given such an impact, should you wait for approval before merging the fix?</p>
-
-<p>Let’s think about the worst-case scenario:</p>
-
-<ol>
-  <li>main breaks</li>
-  <li>someone on the team implements a very hacky fix</li>
-  <li>person opens pull request (mandatory!)</li>
-  <li>all automated checks pass</li>
-  <li>merge the fix into main and builds turn green</li>
-</ol>
-
-<p>Now there’s a very hacky fix in main, but builds are green. Did that fix improve the situation? Yes. Should that fix stay in main forever? Of course not.</p>
-
-<p>We need to accept that software is never finished, and it will always continue to evolve. So after the quick patch, other team members can chime in, offer suggestions and follow up with another pull request containing a more sustainable solution.</p>
-
-<h3 id="compounding-factors">Compounding factors</h3>
-<p>In some situations, requiring reviews can be especially frustrating:</p>
-
-<ul>
-  <li>remote work: unable to tap a colleague on her shoulder for a quick review</li>
-  <li>asynchronous work: my colleagues are 9 (!) time zones apart from me</li>
-  <li>foundational tasks: e.g. update protobufs, so you can build your new feature on top</li>
-</ul>
-
-<h2 id="interesting-idea-but-it-wont-work-at-our-scale">Interesting idea, but it won’t work at our scale</h2>
-<p>That might be true, I haven’t tested this out on a 100+ people project. And given that my proposal relies more on developer trust, I could see some scaling challenges.</p>
-
-<p>However, I would question whether your scale challenges are unique.</p>
-
-<p>Don’t all processes run into scaling issues as teams grow? Can’t we just apply our usual solutions?</p>
-
-<p>Few ideas:</p>
-
-<ul>
-  <li>Tools can determine whether a PR needs a review based on predefined requirements</li>
-  <li>Tools can enforce providing a rationale when a PR is merged without review. This can even be broadcasted (Slack) to all team members</li>
-  <li>Some trivial changes could be fully automated: e.g. continuously integrating new translations or assets</li>
-  <li>Code ownership can restrict who can skip reviews for certain parts of the code base,…</li>
-  <li>…</li>
-</ul>
-
-<p>Regardless of my suggestions, removing frustrations from your development process is one of the most impactful things you can do.</p>
-
-<h2 id="wrap-up">Wrap-up</h2>
-<p>All code changes require a pull request before they are merged. Code reviews are encouraged, but they can be skipped for trivial or highly urgent changes.</p>
-
-<p>If you’ve made it this far you should probably follow me on <a href="https://androiddev.social/@Jeroenmols">Mastodon</a>. Feel free to leave a comment below!</p>]]></content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="pull request" /><category term="code review" /><category term="process" /><category term="team" /><summary type="html"><![CDATA[In the past years, my thoughts on pull request reviews have evolved considerably. Given that creating and reviewing pull requests are a core part of our work, let’s talk about those.]]></summary></entry></feed>
+<p>If you’ve made it this far you should probably follow me on <a href="https://androiddev.social/@Jeroenmols">Mastodon</a>. Feel free to leave a comment below!</p>]]></content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="workmanager" /><category term="crash" /><summary type="html"><![CDATA[WorkManager is great to schedule background work on Android. However, since scheduled work lives outside of the app lifecycle, you might run into unexpected crashes.]]></summary></entry></feed>

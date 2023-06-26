@@ -424,4 +424,10 @@ var store = [{
         "tags": ["graphviz","architecture","diagram","html"],
         "url": "/blog/2023/06/09/interactive-architecture-diagram/",
         "teaser": "/img/blog/interactive-architecture-diagram/cover.jpeg"
+      },{
+        "title": "Gaming the pull request review system",
+        "excerpt":"As developers, we love to build cool things and ship them as fast as reasonably possible. And in order to get that done, here are a few things you can do to “game the system”. Pull requests Put yourself in the shoes of the reviewer, how would you like your...","categories": ["blog"],
+        "tags": ["pullrequest","commit","engineering"],
+        "url": "/blog/2023/06/26/prs-and-commits/",
+        "teaser": "/img/blog/prs-and-commits/cover.jpg"
       }]

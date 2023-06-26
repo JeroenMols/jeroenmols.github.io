@@ -285,6 +285,10 @@
 <lastmod>2023-06-09T00:00:00+02:00</lastmod>
 </url>
 <url>
+<loc>https://jeroenmols.com/blog/2023/06/26/prs-and-commits/</loc>
+<lastmod>2023-06-26T00:00:00+02:00</lastmod>
+</url>
+<url>
 <loc>https://jeroenmols.com/categories/</loc>
 </url>
 <url>
@@ -592,6 +596,15 @@
 </url>
 <url>
 <loc>https://jeroenmols.com/tags/diagram/</loc>
+</url>
+<url>
+<loc>https://jeroenmols.com/tags/pullrequest/</loc>
+</url>
+<url>
+<loc>https://jeroenmols.com/tags/commit/</loc>
+</url>
+<url>
+<loc>https://jeroenmols.com/tags/engineering/</loc>
 </url>
 <url>
 <loc>https://jeroenmols.com/categories/blog/</loc>

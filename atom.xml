@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/" rel="alternate" type="text/html"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, Software developer at Plaid and Google Developer Expert.</subtitle>
- <updated>2023-06-12T12:20:18+02:00</updated>
+ <updated>2023-06-26T21:17:29+02:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,20 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>Gaming the pull request review system</title>
+   <link href="https://jeroenmols.com/blog/2023/06/26/prs-and-commits/"/>
+   <updated>2023-06-26T00:00:00+02:00</updated>
+   <id>https://jeroenmols.com/blog/2023/06/26/prs-and-commits</id>
+   <content type="html"><![CDATA[
+     
+     <p>As developers, we love to build cool things and ship them as fast as reasonably possible. And in order to get that done, here are a few things you can do to “game the system”.</p>
+
+
+     <a href="https://jeroenmols.com/blog/2023/06/26/prs-and-commits/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>Interactive versionable architecture diagrams</title>
