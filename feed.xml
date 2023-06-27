@@ -1,48 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2023-06-26T21:23:19+02:00</updated><id>https://jeroenmols.com/feed.xml</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, Software developer at Plaid and Google Developer Expert.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Gaming the pull request review system</title><link href="https://jeroenmols.com/blog/2023/06/26/prs-and-commits/" rel="alternate" type="text/html" title="Gaming the pull request review system" /><published>2023-06-26T00:00:00+02:00</published><updated>2023-06-26T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2023/06/26/prs-and-commits</id><content type="html" xml:base="https://jeroenmols.com/blog/2023/06/26/prs-and-commits/"><![CDATA[<p>As developers, we love to build cool things and ship them as fast as reasonably possible. And in order to get that done, here are a few things you can do to “game the system”.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2023-06-27T07:21:17+02:00</updated><id>https://jeroenmols.com/feed.xml</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, Software developer at Plaid and Google Developer Expert.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Gaming the pull request review system</title><link href="https://jeroenmols.com/blog/2023/06/26/prs-and-commits/" rel="alternate" type="text/html" title="Gaming the pull request review system" /><published>2023-06-26T00:00:00+02:00</published><updated>2023-06-26T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2023/06/26/prs-and-commits</id><content type="html" xml:base="https://jeroenmols.com/blog/2023/06/26/prs-and-commits/"><![CDATA[<p>As developers, we love to build cool things and ship them as fast as reasonably possible. And to get that done, here are a few things you can do to “game the system”.</p>
 
 <h2 id="pull-requests">Pull requests</h2>
-
-<p>Put yourself in the shoes of the reviewer, how would you like your pull requests (PR) to be served?</p>
-
-<p>I like mine:</p>
-
-<ul>
-  <li>nice and small, so they’re less intimidating to review and hence will be reviewed faster</li>
-  <li>with a great description, context about why it’s built this way and considered alternatives help to understand and learn</li>
-  <li>visual with a screenshot (before/after visual change) or a graph (conversion change) or table (comparison)</li>
-  <li>already reviewed, comments by the author add extra context and helpful insights to review the code</li>
-</ul>
-
-<p>Doing all the above is extra work, but will speed up reviews, reduce rework and improve the feedback loop.</p>
-
-<p>So be selfish and put in the extra work to craft stellar PRs!</p>
-
-<p>This won’t just make you more happy and productive, it will also increase your overall impact by helping to inform others and creating an excellent historical reference.</p>
-
-<h2 id="commits">Commits</h2>
-
-<p>Much of the above is also valid for commit messages:</p>
-
-<ul>
-  <li>small commits are easier to review, since changes are more correlated and have extra context (i.e. commit message)</li>
-  <li>great commit messages add extra context and reasoning behind commit changes (optimize for Git bisect)</li>
-</ul>
-
-<p>However at my current company we squash all commits before merging.</p>
-
-<p>So I’ve personally given up on my commit size and message hygiene and moved my efforts to the PR level instead.</p>
-
-<h2 id="wrap-up">Wrap up</h2>
-
-<p style="color: #646769; background: #f2f3f3; padding: 20px;">This site is 100% tracker free, :heart: for liking my post on <a href="https://androiddev.social/@Jeroenmols/110612136335930968">Mastodon</a> or <a href="https://www.linkedin.com/posts/jeroenmols_gaming-the-pull-request-review-system-activity-7079176881228406784-uR2v">Linkedin</a> to let me know you've read this.</p>
-
-<p>Sometimes it’s good to be a little selfish! Optimize your pull requests to be reviewed as quickly as possible and increase your overall impact and happiness.</p>
-
-<p>If this was helpful to you, consider <a href="https://www.buymeacoffee.com/jeroen">buying me a coffee</a>.</p>
-
-<p>As developers, we love to build cool things and ship them as fast as reasonably possible. And to get that done, here are a few things you can do to “game the system”.</p>
-
-<h2 id="pull-requests-1">Pull requests</h2>
 
 <p>Put yourself in the shoes of the reviewer, how would you like your pull requests (PR) to be served?</p>
 
@@ -61,7 +19,7 @@
 
 <p>This won’t just make you happier and more productive, but it will also increase your overall impact by helping to inform others and creating an excellent historical reference.</p>
 
-<h2 id="commits-1">Commits</h2>
+<h2 id="commits">Commits</h2>
 
 <p>Much of the above is also valid for commit messages:</p>
 
@@ -74,13 +32,13 @@
 
 <p>So I’ve personally given up on my commit size and message hygiene and moved my efforts to the PR level instead.</p>
 
-<h2 id="wrap-up-1">Wrap up</h2>
+<h2 id="wrap-up">Wrap up</h2>
 
-<p style="color: #646769; background: #f2f3f3; padding: 20px;">This site is 100% tracker free, :heart: for liking my post on <a href="https://androiddev.social/@Jeroenmols/">Mastodon</a> or <a href="https://www.linkedin.com/in/jeroenmols">Linkedin</a> to let me know you've read this.</p>
+<p style="color: #646769; background: #f2f3f3; padding: 20px;">This site is 100% tracker free, :heart: for liking my post on <a href="https://androiddev.social/@Jeroenmols/110612136335930968">Mastodon</a> or <a href="https://www.linkedin.com/posts/jeroenmols_gaming-the-pull-request-review-system-activity-7079176881228406784-uR2v">Linkedin</a> to let me know you've read this.</p>
 
 <p>Sometimes it’s good to be a little selfish! Optimize your pull requests to be reviewed as quickly as possible and increase your overall impact and happiness.</p>
 
-<p>If this was helpful to you, consider <a href="https://www.buymeacoffee.com/jeroen">buying me a coffee</a>.</p>]]></content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="pullrequest" /><category term="commit" /><category term="engineering" /><summary type="html"><![CDATA[As developers, we love to build cool things and ship them as fast as reasonably possible. And in order to get that done, here are a few things you can do to “game the system”.]]></summary></entry><entry><title type="html">Interactive versionable architecture diagrams</title><link href="https://jeroenmols.com/blog/2023/06/09/interactive-architecture-diagram/" rel="alternate" type="text/html" title="Interactive versionable architecture diagrams" /><published>2023-06-09T00:00:00+02:00</published><updated>2023-06-09T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2023/06/09/interactive-architecture-diagram</id><content type="html" xml:base="https://jeroenmols.com/blog/2023/06/09/interactive-architecture-diagram/"><![CDATA[<p>Tired of building un-versionable, lifeless architecture diagrams? Wouldn’t it be great if you could add your diagram to Git, embed it in your documentation, and have clickable elements?</p>
+<p>If this was helpful to you, consider <a href="https://www.buymeacoffee.com/jeroen">buying me a coffee</a>.</p>]]></content><author><name>Jeroen Mols</name></author><category term="blog" /><category term="pullrequest" /><category term="commit" /><category term="engineering" /><summary type="html"><![CDATA[As developers, we love to build cool things and ship them as fast as reasonably possible. And to get that done, here are a few things you can do to “game the system”.]]></summary></entry><entry><title type="html">Interactive versionable architecture diagrams</title><link href="https://jeroenmols.com/blog/2023/06/09/interactive-architecture-diagram/" rel="alternate" type="text/html" title="Interactive versionable architecture diagrams" /><published>2023-06-09T00:00:00+02:00</published><updated>2023-06-09T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2023/06/09/interactive-architecture-diagram</id><content type="html" xml:base="https://jeroenmols.com/blog/2023/06/09/interactive-architecture-diagram/"><![CDATA[<p>Tired of building un-versionable, lifeless architecture diagrams? Wouldn’t it be great if you could add your diagram to Git, embed it in your documentation, and have clickable elements?</p>
 
 <p>Well, look no further! In this blog post, we will explore how to generate an interactive system architecture diagram using Graphviz and HTML. Get ready to bring your diagrams to life!</p>
 
