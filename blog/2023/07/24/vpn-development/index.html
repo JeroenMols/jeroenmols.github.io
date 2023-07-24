@@ -1,0 +1,728 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Using VPN during MDNS server development - Jeroen Mols</title>
+<meta name="description" content="Are you using a VPN on your mobile device? Do you need to disable that to access your development web server over MDNS on your mobile device? Well… read on to simplify your workflow.">
+
+
+  <meta name="author" content="Jeroen Mols">
+  
+  <meta property="article:author" content="Jeroen Mols">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="Jeroen Mols">
+<meta property="og:title" content="Using VPN during MDNS server development">
+<meta property="og:url" content="https://jeroenmols.com/blog/2023/07/24/vpn-development/">
+
+
+  <meta property="og:description" content="Are you using a VPN on your mobile device? Do you need to disable that to access your development web server over MDNS on your mobile device? Well… read on to simplify your workflow.">
+
+
+
+  <meta property="og:image" content="https://jeroenmols.com/img/blog/vpn-development/cover.jpeg">
+
+
+
+  <meta name="twitter:site" content="@molsjeroen">
+  <meta name="twitter:title" content="Using VPN during MDNS server development">
+  <meta name="twitter:description" content="Are you using a VPN on your mobile device? Do you need to disable that to access your development web server over MDNS on your mobile device? Well… read on to simplify your workflow.">
+  <meta name="twitter:url" content="https://jeroenmols.com/blog/2023/07/24/vpn-development/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+      <meta name="twitter:image" content="https://jeroenmols.com/img/blog/vpn-development/cover.jpeg">
+    
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2023-07-24T00:00:00+02:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://jeroenmols.com/blog/2023/07/24/vpn-development/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Jeroen Mols",
+      "url": "https://jeroenmols.com/",
+      "sameAs": ["https://twitter.com/molsjeroen","https://www.linkedin.com/in/jeroenmols/","https://plus.google.com/+JeroenMols","https://github.com/JeroenMols","https://speakerdeck.com/jeroenmols","https://stackoverflow.com/users/2771851/jmols"]
+    
+  }
+</script>
+
+
+  <meta name="google-site-verification" content="8E8HUpExgyNFdLuFMWmkSUl08gISnOF3UWexA55aNrk" />
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+<meta name="theme-color" content="#3d405b">
+
+<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Jeroen Mols Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<meta name="author" content="Jeroen Mols">
+<link href="https://twitter.com/molsjeroen" rel="me">
+<link href="https://androiddev.social/@jeroenmols" rel="me">
+<link href="https://github.com/jeroenmols" rel="me">
+<link href="https://www.linkedin.com/in/jeroenmols/" rel="me">
+<link href="https://stackoverflow.com/users/2771851/jeroen-mols" rel="me">
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Jeroen Mols
+          
+        </a>
+        <ul class="visible-links">
+<li class="masthead__menu-item">
+              <a href="/blog/">Blog</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/speaking/">Speaking</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/hireme/">Hire me</a>
+            </li>
+</ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/img/profile.jpg" alt="Jeroen Mols" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Jeroen Mols</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Software developer at Plaid and Google Developer Expert</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Flanders, Belgium</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://twitter.com/molsjeroen" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+            <li><a href="https://androiddev.social/web/@Jeroenmols" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-mastodon" aria-hidden="true"></i><span class="label">Mastodon</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/jeroenmols" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/jeroenmols/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">Linkedin</span></a></li>
+          
+        
+          
+            <li><a href="https://speakerdeck.com/jeroenmols" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-speaker-deck" aria-hidden="true"></i><span class="label">Speakerdeck</span></a></li>
+          
+        
+          
+            <li><a href="https://stackoverflow.com/users/2771851/jeroen-mols" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-stack-overflow" aria-hidden="true"></i><span class="label">Stackoverflow</span></a></li>
+          
+        
+          
+            <li><a href="https://www.youtube.com/channel/UC34Vt1lo8T15_rgc3e3Jsew" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span></a></li>
+          
+        
+          
+            <li><a href="mailto:info@jeroenmols.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Using VPN during MDNS server development">
+    <meta itemprop="description" content="Are you using a VPN on your mobile device? Do you need to disable that to access your development web server over MDNS on your mobile device? Well… read on to simplify your workflow.">
+    <meta itemprop="datePublished" content="July 24, 2023">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Using VPN during MDNS server development
+</h1>
+          <p class="page__meta"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>  24 Jul 2023</p>
+
+          
+            <img src="/img/blog/vpn-development/cover.jpeg" alt="Using VPN during MDNS server development" title="Photo by Dan NelsoUnsplash, https://unsplash.com/photos/ah-HeguOe9k, cropped and resized">
+          
+
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>Are you using a VPN on your mobile device? Do you need to disable that to access your development web server over MDNS on your mobile device? Well… read on to simplify your workflow.</p>
+
+<h2 id="problem">Problem</h2>
+
+<p>While using a mobile VPN, you might get a DNS error when trying to access your computer over MDNS (<code class="language-plaintext highlighter-rouge">.local</code> domain).</p>
+
+<p><img src="https://jeroenmols.com/img/blog/vpn-development/dns_error.png" alt="DNS error when accessing .local domain on a VPN"></p>
+
+<p>This happens because the <code class="language-plaintext highlighter-rouge">jmols.local</code> domain isn’t an actual domain and hence the DNS server on the VPN cannot resolve it.</p>
+
+<h2 id="solution">Solution</h2>
+
+<p>A way to solve this is to use <a href="https://mullvad.net/en/help/split-tunneling-with-the-mullvad-app/">split tunneling</a>, which allows to exclude certain apps from the VPN.</p>
+
+<p><img src="https://jeroenmols.com/img/blog/vpn-development/split_tunneling.png" alt="Split tunneling to exclude certain apps from the VPN"></p>
+
+<p>In my case, I decided to use two different browsers:</p>
+
+<ul>
+  <li>one for my normal use with VPN (Brave)</li>
+  <li>one for development without VPN (Chrome)</li>
+</ul>
+
+<p>This allows me to access development URLs, whilst still securing all my personal internet usage.</p>
+
+<p>However, this falls apart when I send myself a development URL or when I scan a QR code that links to my development server. This is because Android will use your default browser to open URLs and for personal use that should be a VPN-protected one.</p>
+
+<p>Fortunately, I’ve built a solution for that: an open-source app that intercepts all links to your local domain and redirects them to a browser of choice!</p>
+
+<p><img src="https://jeroenmols.com/img/blog/vpn-development/url_interceptor.png" alt="App to intercept .local URLs and redirect them to a development browser"></p>
+
+<p>Here’s how to get started:</p>
+
+<ul>
+  <li>Clone the URLInterceptor Github repository</li>
+  <li>Fill in your <a href="https://github.com/JeroenMols/DevelopmentUrlInterceptor/blob/f594ad171e70c34e6eacef2639db3f60b6752b6a/app/src/main/AndroidManifest.xml#L31">development url</a>
+</li>
+  <li>Set the package name of your <a href="https://github.com/JeroenMols/DevelopmentUrlInterceptor/blob/f594ad171e70c34e6eacef2639db3f60b6752b6a/app/src/main/java/com/jeroenmols/urlinterceptor/InterceptUrlActivity.kt#L14">development browser</a>
+</li>
+  <li>Install the app and follow the instructions to start intercepting URLs.</li>
+</ul>
+
+<p>That’s it!</p>
+
+<blockquote>
+  <p>There is a little bit of setup involved. This is because Android for security reasons first has to verify deep links using a <a href="https://developer.android.com/studio/write/app-link-indexing">.well-known hosted file</a> on your server. Since this would be tricky to do on a development server, I’ve opted to manually inform Android to trust our app to handle these links instead.</p>
+</blockquote>
+
+<h2 id="wrap-up">Wrap up</h2>
+
+<p style="color: #646769; background: #f2f3f3; padding: 20px;">This site is 100% tracker free, <img class="emoji" title=":heart:" alt=":heart:" src="https://github.githubassets.com/images/icons/emoji/unicode/2764.png" height="20" width="20"> for liking my post on <a href="https://androiddev.social/@Jeroenmols">Mastodon</a> or <a href="https://www.linkedin.com/in/jeroenmols/">Linkedin</a> to let me know you've read this.</p>
+
+<p>Using my URL interceptor app you can combine the best of both worlds: access <code class="language-plaintext highlighter-rouge">.local</code> domains without VPN and have all your other traffic protected by a VPN.</p>
+
+<p>If this was helpful to you, consider <a href="https://www.buymeacoffee.com/jeroen">buying me a coffee</a>.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/fullstack" class="page__taxonomy-item" rel="tag">fullstack</a><span class="sep">, </span>
+    
+      <a href="/tags/server" class="page__taxonomy-item" rel="tag">server</a><span class="sep">, </span>
+    
+      <a href="/tags/tips" class="page__taxonomy-item" rel="tag">tips</a><span class="sep">, </span>
+    
+      <a href="/tags/vpn" class="page__taxonomy-item" rel="tag">vpn</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/blog" class="page__taxonomy-item" rel="tag">blog</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2023-07-24T00:00:00+02:00">July 24, 2023</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=molsjeroen&amp;text=Using+VPN+during+MDNS+server+development%20https%3A%2F%2Fjeroenmols.com%2Fblog%2F2023%2F07%2F24%2Fvpn-development%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2023%2F07%2F24%2Fvpn-development%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fjeroenmols.com%2Fblog%2F2023%2F07%2F24%2Fvpn-development%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/blog/2023/06/26/prs-and-commits/" class="pagination--pager" title="Gaming the pull request review system
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      
+<h4 class="page__comments-title">Leave a Comment</h4>
+<div>Start a conversation about this content on <a href="https://www.reddit.com/">Reddit</a> or <a href="https://news.ycombinator.com/">Hacker News</a>.</div>
+
+  
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(/img/blog/prs-and-commits/cover.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="/blog/2023/06/26/prs-and-commits/" rel="permalink">Gaming the pull request review system
+</a>
+        </h2>
+        <h3 class="archive__date">26 Jun 2023</h3>
+      </div>
+      
+        <a href="/blog/2023/06/26/prs-and-commits/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">As developers, we love to build cool things and ship them as fast as reasonably possible. And to get that done, here are a few things you can do to “game the system”.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(/img/blog/interactive-architecture-diagram/cover.jpeg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="/blog/2023/06/09/interactive-architecture-diagram/" rel="permalink">Interactive versionable architecture diagrams
+</a>
+        </h2>
+        <h3 class="archive__date">09 Jun 2023</h3>
+      </div>
+      
+        <a href="/blog/2023/06/09/interactive-architecture-diagram/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Tired of building un-versionable, lifeless architecture diagrams? Wouldn’t it be great if you could add your diagram to Git, embed it in your documentation, and have clickable elements?
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(/img/blog/privacy-friendly-rsvp/privacy-friendly-rsvp.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="/blog/2023/03/28/privacy-friendly-rsvp/" rel="permalink">A privacy friendly RSVP for events
+</a>
+        </h2>
+        <h3 class="archive__date">28 Mar 2023</h3>
+      </div>
+      
+        <a href="/blog/2023/03/28/privacy-friendly-rsvp/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Planning an event can be stressful, and the last thing you need is worrying about your guests’ privacy. But don’t worry, I’ve got you covered with a privacy-friendly RSVP option.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item" style="position: relative">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    <div style="position:relative;">
+      
+        <div class="archive__item-teaser" style="background-image: url(/img/blog/multiple-ssh/multiple-ssh.jpg)"></div>
+      
+      <div class="archive__item_titlecontainer">
+        <h2 class="archive__item-title" itemprop="headline">
+            <a href="/blog/2023/02/06/multiple-ssh-keys/" rel="permalink">Using multiple SSH keys for Github and Github enterprise
+</a>
+        </h2>
+        <h3 class="archive__date">06 Feb 2023</h3>
+      </div>
+      
+        <a href="/blog/2023/02/06/multiple-ssh-keys/" rel="permalink">
+          <div class="archive__item-teaser-imageclickhandler"></div>
+        </a>
+      
+    </div>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Looking to configure multiple SSH keys on the same computer? For instance to use a different SSH key for your public and enterprise Github contributions.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap">
+<form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term...">
+  </form>
+  <div id="results" class="results"></div>
+</div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+
+    
+      <li><a href="/atom.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">© 2023 Jeroen Mols. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    <!-- start custom comments scripts -->
+
+<!-- end custom comments scripts -->
+
+
+
+
+
+
+  </body>
+</html>

@@ -7,7 +7,7 @@
  <link href="https://jeroenmols.com/" rel="alternate" type="text/html"/>
  <icon>https://jeroenmols.com/img/profile.jpg</icon>
  <subtitle>Blog and portfolio of Jeroen Mols, Software developer at Plaid and Google Developer Expert.</subtitle>
- <updated>2023-06-27T07:21:17+02:00</updated>
+ <updated>2023-07-24T21:13:54+02:00</updated>
  <id>https://jeroenmols.com/</id>
  <author>
    <name>Jeroen Mols</name>
@@ -16,6 +16,20 @@
  <webfeeds:cover image="https://jeroenmols.com/img/profile.jpg" />
  <webfeeds:icon>https://jeroenmols.com/img/profile.jpg</webfeeds:icon>
 
+ 
+ <entry>
+   <title>Using VPN during MDNS server development</title>
+   <link href="https://jeroenmols.com/blog/2023/07/24/vpn-development/"/>
+   <updated>2023-07-24T00:00:00+02:00</updated>
+   <id>https://jeroenmols.com/blog/2023/07/24/vpn-development</id>
+   <content type="html"><![CDATA[
+     
+     <p>Are you using a VPN on your mobile device? Do you need to disable that to access your development web server over MDNS on your mobile device? Well… read on to simplify your workflow.</p>
+
+
+     <a href="https://jeroenmols.com/blog/2023/07/24/vpn-development/">Continue reading</p>]]>
+   </content>
+ </entry>
  
  <entry>
    <title>Gaming the pull request review system</title>

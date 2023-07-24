@@ -430,4 +430,10 @@ var store = [{
         "tags": ["pullrequest","commit","engineering"],
         "url": "/blog/2023/06/26/prs-and-commits/",
         "teaser": "/img/blog/prs-and-commits/cover.jpg"
+      },{
+        "title": "Using VPN during MDNS server development",
+        "excerpt":"Are you using a VPN on your mobile device? Do you need to disable that to access your development web server over MDNS on your mobile device? Well… read on to simplify your workflow. Problem While using a mobile VPN, you might get a DNS error when trying to access...","categories": ["blog"],
+        "tags": ["vpn","fullstack","tips","server"],
+        "url": "/blog/2023/07/24/vpn-development/",
+        "teaser": "/img/blog/vpn-development/cover.jpeg"
       }]
