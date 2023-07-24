@@ -45,7 +45,7 @@ Fortunately, I've built a solution for that: an open-source app that intercepts 
 
 Here's how to get started:
 
-- Clone the URLInterceptor Github repository
+- Clone the [URLInterceptor Github repository](https://github.com/JeroenMols/DevelopmentUrlInterceptor)
 - Fill in your [development url](https://github.com/JeroenMols/DevelopmentUrlInterceptor/blob/f594ad171e70c34e6eacef2639db3f60b6752b6a/app/src/main/AndroidManifest.xml#L31)
 - Set the package name of your [development browser](https://github.com/JeroenMols/DevelopmentUrlInterceptor/blob/f594ad171e70c34e6eacef2639db3f60b6752b6a/app/src/main/java/com/jeroenmols/urlinterceptor/InterceptUrlActivity.kt#L14)
 - Install the app and follow the instructions to start intercepting URLs.
