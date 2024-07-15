@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2023-07-24T22:40:17+02:00</updated><id>https://jeroenmols.com/feed.xml</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, Software developer at Plaid and Google Developer Expert.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Using VPN during MDNS server development</title><link href="https://jeroenmols.com/blog/2023/07/24/vpn-development/" rel="alternate" type="text/html" title="Using VPN during MDNS server development" /><published>2023-07-24T00:00:00+02:00</published><updated>2023-07-24T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2023/07/24/vpn-development</id><content type="html" xml:base="https://jeroenmols.com/blog/2023/07/24/vpn-development/"><![CDATA[<p>Are you using a VPN on your mobile device? Do you need to disable that to access your development web server over MDNS on your mobile device? Well… read on to simplify your workflow.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://jeroenmols.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jeroenmols.com/" rel="alternate" type="text/html" /><updated>2024-07-15T22:54:48+02:00</updated><id>https://jeroenmols.com/feed.xml</id><title type="html">Jeroen Mols</title><subtitle>Blog and portfolio of Jeroen Mols, Software developer at Plaid and Google Developer Expert.</subtitle><author><name>Jeroen Mols</name></author><entry><title type="html">Using VPN during MDNS server development</title><link href="https://jeroenmols.com/blog/2023/07/24/vpn-development/" rel="alternate" type="text/html" title="Using VPN during MDNS server development" /><published>2023-07-24T00:00:00+02:00</published><updated>2023-07-24T00:00:00+02:00</updated><id>https://jeroenmols.com/blog/2023/07/24/vpn-development</id><content type="html" xml:base="https://jeroenmols.com/blog/2023/07/24/vpn-development/"><![CDATA[<p>Are you using a VPN on your mobile device? Do you need to disable that to access your development web server over MDNS on your mobile device? Well… read on to simplify your workflow.</p>
 
 <h2 id="problem">Problem</h2>
 
@@ -243,7 +243,7 @@
   <span class="nt">&lt;body&gt;</span>
     <span class="nt">&lt;button</span> <span class="na">onclick=</span><span class="s">"sendEmail()"</span><span class="nt">&gt;</span>RSVP<span class="nt">&lt;/button&gt;</span>
     <span class="nt">&lt;script&gt;</span>
-      <span class="kd">function</span> <span class="nx">sendEmail</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kd">function</span> <span class="nf">sendEmail</span><span class="p">()</span> <span class="p">{</span>
         <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span>
           <span class="dl">'</span><span class="s1">mailto:name.lastname+rsvp@gmail.com?subject=RSVP&amp;body=I will be attending!</span><span class="dl">'</span><span class="p">;</span>
       <span class="p">}</span>
@@ -388,14 +388,14 @@
 
       <span class="nt">&lt;script&gt;</span>
         <span class="nb">document</span>
-          <span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">btn-rsvp</span><span class="dl">'</span><span class="p">)</span>
-          <span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+          <span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">btn-rsvp</span><span class="dl">'</span><span class="p">)</span>
+          <span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,</span> <span class="nf">function </span><span class="p">()</span> <span class="p">{</span>
             <span class="kd">var</span> <span class="nx">link</span> <span class="o">=</span>
               <span class="dl">'</span><span class="s1">mailto:name.lastname+rsvp@gmail.com</span><span class="dl">'</span> <span class="o">+</span>
               <span class="dl">'</span><span class="s1">?subject=</span><span class="dl">'</span> <span class="o">+</span>
-              <span class="nb">encodeURIComponent</span><span class="p">(</span><span class="dl">'</span><span class="s1">RSVP - My party</span><span class="dl">'</span><span class="p">)</span> <span class="o">+</span>
+              <span class="nf">encodeURIComponent</span><span class="p">(</span><span class="dl">'</span><span class="s1">RSVP - My party</span><span class="dl">'</span><span class="p">)</span> <span class="o">+</span>
               <span class="dl">'</span><span class="s1">&amp;body=</span><span class="dl">'</span> <span class="o">+</span>
-              <span class="nb">encodeURIComponent</span><span class="p">(</span><span class="dl">'</span><span class="s1">We will be there!</span><span class="dl">'</span><span class="p">);</span>
+              <span class="nf">encodeURIComponent</span><span class="p">(</span><span class="dl">'</span><span class="s1">We will be there!</span><span class="dl">'</span><span class="p">);</span>
             <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nx">link</span><span class="p">;</span>
           <span class="p">});</span>
       <span class="nt">&lt;/script&gt;</span>
