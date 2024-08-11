@@ -13,38 +13,43 @@ title = "Blowfish"
   # description = "My awesome website"
   # copyright = "Copy, _right?_ :thinking_face:"
 
-# [author]
-#   name = "Your name here"
-#   email = "youremail@example.com"
-#   image = "img/blowfish_logo.png"
-#   imageQuality = 96
-#   headline = "I'm only human"
-#   bio = "A little bit about you"
-#   links = [
-#     { email = "mailto:hello@your_domain.com" },
-#     { link = "https://link-to-some-website.com/" },
+[author]
+  name = "Jeroen Mols"
+  email = "info@jeroenmols.com"
+  image = "img/profile_image.jpg"
+  imageQuality = 96
+  headline = "Software engineer, strong communicator and problem solver"
+  # TODO update bio
+  bio = "Jeroen Mols is a Google Developer Expert (GDE) in Android, the former lead Android developer at Philips Hue and an internationally recognized speaker. With a passion for complex systems and highly technical apps, Jeroen has helped realize four connected products and over 15 Android applications. Experienced in leading large teams, he can step beyond his developer role and provide technical leadership to others. He continuously challenges the status quo and mentors people surrounding him to grow. Shipping apps to millions of users, Jeroen has a thorough understanding of both the Android framework and how maintainable software should be crafted."
+  links = [
+    { email = "mailto:info@jeroenmols.com" },
+    { github = "https://github.com/jeroenmols" },
+    { google = "https://developers.google.com/profile/u/Jeroenmols" },
+    { codepen = "https://codepen.io/username" },
+    { linkedin = "https://www.linkedin.com/in/jeroenmols/" },
+    { x-twitter = "https://x.com/molsjeroen" },
+    { mastodon = "https://androiddev.social/web/@Jeroenmols" },
+    { stack-overflow = "https://stackoverflow.com/users/2771851/jeroen-mols" },
+    { youtube = "https://www.youtube.com/channel/UC34Vt1lo8T15_rgc3e3Jsew" },
+    # TODO: add speakerdeck logo
+    { link = "https://speakerdeck.com/jeroenmols" },
 #     { amazon = "https://www.amazon.com/hz/wishlist/ls/wishlist-id" },
 #     { apple = "https://www.apple.com" },
 #     { blogger = "https://username.blogspot.com/" },
 #     { bluesky = "https://bsky.app/profile/username" },
-#     { codepen = "https://codepen.io/username" },
 #     { dev = "https://dev.to/username" },
 #     { discord = "https://discord.gg/invitecode" },
 #     { dribbble = "https://dribbble.com/username" },
 #     { facebook = "https://facebook.com/username" },
 #     { flickr = "https://www.flickr.com/photos/username/" },
 #     { foursquare = "https://foursquare.com/username" },
-#     { github = "https://github.com/username" },
 #     { gitlab = "https://gitlab.com/username" },
-#     { google = "https://www.google.com/" },
 #     { hashnode = "https://username.hashnode.dev" },
 #     { instagram = "https://instagram.com/username" },
 #     { itch-io = "https://username.itch.io" },
 #     { keybase = "https://keybase.io/username" },
 #     { kickstarter = "https://www.kickstarter.com/profile/username" },
 #     { lastfm = "https://lastfm.com/user/username" },
-#     { linkedin = "https://linkedin.com/in/username" },
-#     { mastodon = "https://mastodon.instance/@username" },
 #     { medium = "https://medium.com/username" },
 #     { microsoft = "https://www.microsoft.com/" },
 #     { orcid = "https://orcid.org/userid" },
@@ -56,7 +61,6 @@ title = "Blowfish"
 #     { snapchat = "https://snapchat.com/add/username" },
 #     { soundcloud = "https://soundcloud.com/username" },
 #     { spotify = "https://open.spotify.com/user/userid" },
-#     { stack-overflow = "https://stackoverflow.com/users/userid/username" },
 #     { steam = "https://steamcommunity.com/profiles/userid" },
 #     { telegram = "https://t.me/username" },
 #     { threads = "https://www.threads.net/@username" },
@@ -64,9 +68,7 @@ title = "Blowfish"
 #     { tumblr = "https://username.tumblr.com" },
 #     { twitch = "https://twitch.tv/username" },
 #     { twitter = "https://twitter.com/username" },
-#     { x-twitter = "https://twitter.com/username" },
 #     { whatsapp = "https://wa.me/phone-number" },
-#     { youtube = "https://youtube.com/username" },
 #     { ko-fi = "https://ko-fi.com/username" },
 #     { codeberg = "https://codeberg.org/username"},
-#   ]
+   ]
