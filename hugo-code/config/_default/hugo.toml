@@ -68,5 +68,4 @@ enableEmoji = true
 
 [permalinks]
   [permalinks.page]
-    posts = '/blog/:year/:month/:day/:filename/'
-    tutorials = '/training/:slug/'
+    posts = '/blog/:year/:month/:day/:slugorfilename/'
