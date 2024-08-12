@@ -222,8 +222,7 @@ Neat, right?
 
 Finally, relying on implicit `Intent`s can cause chooser dialogs to pop up. While a collision with a 3rd party app is unlikely, it can easily happen for different build flavors.
 
-<center><img style="width: 75%" src="{{ site.url }}{{ site.baseurl }}/img/blog/modularizationexample/chooser_dialog.png" alt="Chooser dialog pops up when using different build flavors e.g. debug and release"></center><br>
-
+![Chooser dialog pops up when using different build flavors e.g. debug and release](./chooser_dialog.png)
 This can easily be avoided by restricting the intents to the current package:
 
 ```kotlin

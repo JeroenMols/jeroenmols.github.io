@@ -17,8 +17,7 @@ Are you using a VPN on your mobile device? Do you need to disable that to access
 
 While using a mobile VPN, you might get a DNS error when trying to access your computer over MDNS (`.local` domain).
 
-<img src="{{ site.url }}{{ site.baseurl }}/img/blog/vpn-development/dns_error.png"
-       alt="DNS error when accessing .local domain on a VPN"/>
+<img src="{{ site.url }}{{ site.baseurl }}/img/blog/vpn-development/dns_error.png" alt="DNS error when accessing .local domain on a VPN"/>
 
 This happens because the `jmols.local` domain isn't an actual domain and hence the DNS server on the VPN cannot resolve it.
 
@@ -26,8 +25,7 @@ This happens because the `jmols.local` domain isn't an actual domain and hence t
 
 A way to solve this is to use [split tunneling](https://mullvad.net/en/help/split-tunneling-with-the-mullvad-app/), which allows to exclude certain apps from the VPN.
 
-<img src="{{ site.url }}{{ site.baseurl }}/img/blog/vpn-development/split_tunneling.png"
-       alt="Split tunneling to exclude certain apps from the VPN"/>
+<img src="{{ site.url }}{{ site.baseurl }}/img/blog/vpn-development/split_tunneling.png" alt="Split tunneling to exclude certain apps from the VPN"/>
 
 In my case, I decided to use two different browsers:
 
@@ -40,8 +38,7 @@ However, this falls apart when I send myself a development URL or when I scan a 
 
 Fortunately, I've built a solution for that: an open-source app that intercepts all links to your local domain and redirects them to a browser of choice!
 
-<img src="{{ site.url }}{{ site.baseurl }}/img/blog/vpn-development/url_interceptor.png"
-       alt="App to intercept .local URLs and redirect them to a development browser"/>
+<img src="{{ site.url }}{{ site.baseurl }}/img/blog/vpn-development/url_interceptor.png" alt="App to intercept .local URLs and redirect them to a development browser"/>
 
 Here's how to get started:
 

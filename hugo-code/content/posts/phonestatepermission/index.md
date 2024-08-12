@@ -39,12 +39,10 @@ Unfortunately, this view couldn't help us find where the permission was merged f
 - Double-clicking the permission led us back to normal manifest view
 - Color coding palette is so subtle that we couldn't see what color the permission was highlighted in
 
-<p><center><img style="width: 85%" src="{{ site.url }}{{ site.baseurl }}/img/blog/phonestatepermission/mergedmanifestcolors.png" alt="Color highlighting of manifest merger needs an extremely trained eye to map it on the legend"></center></p>
-
+![Color highlighting of manifest merger needs an extremely trained eye to map it on the legend](./mergedmanifestcolors.png)
 Fortunately, the manifest merger also prints a log file to `build/outputs/logs` that describes where everything is merged from.
 
-<p><center><img style="width: 85%" src="{{ site.url }}{{ site.baseurl }}/img/blog/phonestatepermission/manifestmerger.png" alt="Output logs of the manifest merger are located at build/outputs/logs"></center></p>
-
+![Output logs of the manifest merger are located at build/outputs/logs](./manifestmerger.png)
 This file gave a clear answer:
 
 ```text

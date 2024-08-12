@@ -17,8 +17,7 @@ With over 770 attendees and four different tracks, it was obviously not possible
 
 
 ## We are all UX
-<center><img style="width: 50%" src="{{ site.url }}{{ site.baseurl }}/img/blog/droidconit16/wereallux.jpg" alt="We are all UX"></center>
-
+![We are all UX](./wereallux.jpg)
 The holy grail in app development is to have an amazing user experience. While app performance and feature set are obviously important, you must also understand your users, simplify main use cases and have a delightful design.
 
 Do you really think a developer or designer alone can create such a great UX? NO, off course not! They'll both have to work together and synergize to really blow the users of their feet. We need more pairing between developers and designers folks!
@@ -59,8 +58,7 @@ The best advice here was:
 
 
 ## Other hot topics
-<center><img style="width: 50%" src="{{ site.url }}{{ site.baseurl }}/img/blog/droidconit16/android_cookie.jpg" alt="Android cookies"></center>
-
+![Android cookies](./android_cookie.jpg)
 Besides the three main themes, other topics varied from Kotlin, over library distribution to (MVP) architecture and app store optimizations. Awesome sources of inspiration, brought by even more awesome speakers.
 
 My key takeaways:
