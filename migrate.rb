@@ -17,7 +17,7 @@ FileUtils.mkdir_p(output_dir)
 csv_file = File.join(output_dir, 'to-download.csv')
 CSV.open(csv_file, 'w', headers: ['url', 'path'], write_headers: true) do |csv|
   # Iterate through each markdown file in the input directory
-  Dir.glob(File.join(input_dir, '*.md')).each do |file_path|
+  Dir.glob(File.join(input_dir, '*.md')).each_with_index do |file_path, index|
     # Extract the date and post name from the file name
     file_name = File.basename(file_path, '.md')
     date, post_name = file_name.split('-', 4)[0..2].join('-'), file_name.split('-', 4)[3]
@@ -27,7 +27,7 @@ CSV.open(csv_file, 'w', headers: ['url', 'path'], write_headers: true) do |csv|
     end
 
     # Create new post directory
-    post_dir = File.join(output_dir, post_name)
+    post_dir = File.join(output_dir, sprintf("%03d-", index+1) +post_name)
     FileUtils.mkdir_p(post_dir)
 
     # Read and parse the markdown file
@@ -39,6 +39,8 @@ CSV.open(csv_file, 'w', headers: ['url', 'path'], write_headers: true) do |csv|
     front_matter['date'] = date
     if post_name.start_with?( "yearinreview")
       front_matter['slug'] = "yearinreview"
+    elsif
+      front_matter['slug'] = post_name
     end
 
     # Handle the teaser image
