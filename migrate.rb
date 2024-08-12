@@ -2,6 +2,7 @@ require 'fileutils'
 require 'yaml'
 require 'csv'
 require 'uri'
+require 'nokogiri'
 require 'pry'
 require 'pry-byebug'
 
@@ -36,7 +37,7 @@ CSV.open(csv_file, 'w', headers: ['url', 'path'], write_headers: true) do |csv|
 
     # Add the date to the front matter
     front_matter['date'] = date
-    if post_name.start_with?("yearinreview")
+    if post_name.start_with?( "yearinreview")
       front_matter['slug'] = "yearinreview"
     end
 
@@ -60,6 +61,40 @@ CSV.open(csv_file, 'w', headers: ['url', 'path'], write_headers: true) do |csv|
       end
     end
 
+    # Modify image references in the post body
+    modified_body_lines = []
+    within_code_block = false
+
+    body.each_line do |line|
+      if line.strip.start_with?('```')
+        within_code_block = !within_code_block
+      end
+
+      if !within_code_block && line =~ /<img.*src=.*alt=.*>/
+        img_tag = line
+        until img_tag.include?('/>') || img_tag.include?('>')
+          next_line = body.lines.next
+          img_tag += next_line
+        end
+
+        doc = Nokogiri::HTML.fragment(img_tag)
+        img = doc.at('img')
+        if img
+          src = img['src']
+          alt = img['alt']
+          filename = File.basename(src)
+          markdown_img = "![#{alt}](./#{filename})"
+          modified_body_lines << markdown_img
+        else
+          modified_body_lines << line
+        end
+      else
+        modified_body_lines << line
+      end
+    end
+
+    modified_body = modified_body_lines.join
+
     # Handle imgcredit and add URL to CSV if it contains a hyperlink
     imgcredit = front_matter['header']['imgcredit']
     url = URI.extract(imgcredit, ['http', 'https']).first
@@ -68,7 +103,7 @@ CSV.open(csv_file, 'w', headers: ['url', 'path'], write_headers: true) do |csv|
     end
 
     # Write the updated front matter and body to the new markdown file
-    new_content = [front_matter.to_yaml.strip, '---', body].join("\n")
+    new_content = [front_matter.to_yaml.strip, '---', modified_body].join("\n")
     File.write(File.join(post_dir, 'index.md'), new_content)
   end
 end
