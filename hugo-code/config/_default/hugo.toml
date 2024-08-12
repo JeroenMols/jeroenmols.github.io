@@ -10,7 +10,7 @@ defaultContentLanguage = "en"
 
 enableRobotsTXT = true
 paginate = 10
-summaryLength = 0
+summaryLength = 25
 
 buildDrafts = false
 buildFuture = false
@@ -65,3 +65,8 @@ enableEmoji = true
       name = 'fragmentrefs'
       type = 'fragments'
       weight = 10
+
+[permalinks]
+  [permalinks.page]
+    posts = '/blog/:year/:month/:day/:filename/'
+    tutorials = '/training/:slug/'
