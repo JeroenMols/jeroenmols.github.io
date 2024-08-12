@@ -36,7 +36,7 @@ CSV.open(csv_file, 'w', headers: ['url', 'path'], write_headers: true) do |csv|
 
     # Add the date to the front matter
     front_matter['date'] = date
-    if post_name == "yearinreview"
+    if post_name.start_with?("yearinreview")
       front_matter['slug'] = "yearinreview"
     end
 
