@@ -4,3 +4,6 @@ secret
 _secret
 jekyll-code/.jekyll-cache
 jekyll-code/vendor
+hugo-code/public
+hugo-code/resources
+.hugo_build.lock
