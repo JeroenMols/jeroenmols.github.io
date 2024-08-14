@@ -31,16 +31,16 @@ Without any further a do, lets get to it and start configuring BitBucket.
 
 Login to Bitbucket and create a new private repository called `maven_repository`.
 
-[![Create new BitBucket repository]({{ site.url }}{{ site.baseurl }}/img/blog/wagongit/createrepository.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/wagongit/createrepository.png)
+![Create new BitBucket repository](createrepository.png)
 
 Checkout the repository locally, create a `README.md` file and commit that file to your local branch. Now push that branch to BitBucket, BUT make sure to push it to a remote branch called "releases". (this is key, as the plugin we'll use later on depends on this)
 
-[![BitBucket repository with main branch releases.]({{ site.url }}{{ site.baseurl }}/img/blog/wagongit/releasebranch.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/wagongit/releasebranch.png)
+![BitBucket repository with main branch releases.](releasebranch.png)
 
 > **Troubleshooting releases branch**
 > If you accidentally push your local branch to a remote called `master`, create a new branch locally called releases, push that to a remote `releases` and change your main branch in the BitBucket settings for that repository.
 >
-> [![Change the main branch from master to releases]({{ site.url }}{{ site.baseurl }}/img/blog/wagongit/configuremainbranch.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/wagongit/configuremainbranch.png)
+> ![Change the main branch from master to releases](configuremainbranch.png)
 >
 > You can safely remove origin/master if you want.
 
@@ -77,9 +77,9 @@ Now you can simply create a new release by running the following command:
 
 And check BitBucket for the resulting artifacts.
 
-[![Release commit of a Maven upload to BitBucket.]({{ site.url }}{{ site.baseurl }}/img/blog/wagongit/releasecommits.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/wagongit/releasecommits.png)
+![Release commit of a Maven upload to BitBucket.](releasecommits.png)
 
-[![File details of a release commit.]({{ site.url }}{{ site.baseurl }}/img/blog/wagongit/releasecommitdetails.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/wagongit/releasecommitdetails.png)
+![File details of a release commit.](releasecommitdetails.png)
 
 
 ## Unique versions only
@@ -111,7 +111,7 @@ uploadArchives.dependsOn lookForArtifacts
 
 Running `./gradlew uploadArchives` now successfully creates a release.
 
-[![Check for existing artifacts before uploadArchives.]({{ site.url }}{{ site.baseurl }}/img/blog/wagongit/checkforartifacts.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/wagongit/checkforartifacts.png)
+![Check for existing artifacts before uploadArchives.](checkforartifacts.png)
 
 
 ## Consuming artifacts

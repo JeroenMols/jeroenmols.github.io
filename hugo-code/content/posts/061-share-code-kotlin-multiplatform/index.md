@@ -22,7 +22,7 @@ Read on to learn how to share part of your code between Android and Java (Jvm), 
 ## Problem description
 In a typical Kotlin multiplatform project, there is a `commonMain` `SourceSet` (blue) which defines both common code and `expected` code for specific `SourceSets` (orange):
 
-[![Kotlin multiplatform project overview](/img/blog/sharecodemultiplatform/multiplatform_project.png){: .align-center}](/img/blog/sharecodemultiplatform/multiplatform_project.png)
+![Kotlin multiplatform project overview](multiplatform_project.png)
 
 Besides making use of the common code, the specific `SourceSets` also must provide `actual` implementations for the expected code.
 
@@ -34,7 +34,7 @@ So the challenge at hand is to share most `actual` implementations across `Andro
 
 Visually speaking we would like to accomplish the following:
 
-[![Desired code sharing between Android and Jvm](/img/blog/sharecodemultiplatform/codeshare_androidjvm.png){: .align-center}](/img/blog/sharecodemultiplatform/codeshare_androidjvm.png)
+![Desired code sharing between Android and Jvm](codeshare_androidjvm.png)
 
 ## Approach 1: New sourceset
 Inspired by [an example](https://github.com/h0tk3y/k-new-mpp-samples/blob/master/split-actuals/build.gradle) from [Sergey Igushkin](https://twitter.com/h07k3y?lang=en), let's add a new sourceSet `commonJvmAndroid` that will have the shared `actual` implementations across `Android` and `Jvm`.

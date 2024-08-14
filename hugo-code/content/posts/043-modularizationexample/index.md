@@ -13,24 +13,18 @@ tags:
 - sample
 date: '2019-04-02'
 slug: modularizationexample
+series: ["Modularization"]
+series_order: 3
 ---
 
 With a clear view on how multi-module apps should be architected, let's dive into a real-life practical example.
 
 We'll discover how the architecture results in a clear application structure, how navigation is handled, how to use staged rollouts, how to test everything and even look at a production app that is using this architecture.
 
->
-This post is part of an in depth series on modularization:
-- [Part 1: Why you should care]({{ site.baseurl }}{% link blog/_posts/2019-03-06-modularizationwhy.md %})
-- [Part 2: A successful multi-module architecture]({{ site.baseurl }}{% link blog/_posts/2019-03-18-modularizationarchitecture.md %})
-- [Part 3: Real-life example]({{ site.baseurl }}{% link blog/_posts/2019-04-02-modularizationexample.md %})
-- [Part 4: How to approach]({{ site.baseurl }}{% link blog/_posts/2019-04-24-modularizationhow.md %})
-- [Part 5: Lessons learned]({{ site.baseurl }}{% link blog/_posts/2019-06-12-modularizationtips.md %})
-
 ## Source code
 All source code for this blog post is available on [Github](https://github.com/JeroenMols/ModularizationExample).
 
-This is not a fully functional app, but rather a highly focussed example that only concentrates on demonstrating the [modularization architecture]({{ site.baseurl }}{% link blog/_posts/2019-03-18-modularizationarchitecture.md %}).
+This is not a fully functional app, but rather a highly focussed example that only concentrates on demonstrating the [modularization architecture]({{< ref "042-modularizationarchitecture" >}}).
 
 ## Application structure
 One of the key benefits of the three-layer app-features-libraries architecture is supposed to be clear navigation throughout the app and source code. So let's investigate if that promise holds true.
@@ -57,7 +51,7 @@ But what do the features themselves do?
 
 We'll let's have a look at their respective navigation graphs! First up is the [dashboard](https://github.com/JeroenMols/ModularizationExample/blob/master/features/dashboard/src/main/res/navigation/dashboard_graph.xml):
 
-[![Dashboard feature structure]({{ site.url }}{{ site.baseurl }}/img/blog/modularizationexample/graph_dashboard.jpg)]({{ site.url }}{{ site.baseurl }}/img/blog/modularizationexample/graph_dashboard.jpg){: .align-center}
+![Dashboard feature structure](graph_dashboard.jpg)
 
 Clearly, this app seems to be about photos!
 
@@ -65,26 +59,26 @@ But the navigation graph looks a bit odd (no destinations), this is because this
 
 So let's have a look at the [DashboardActivity](https://github.com/JeroenMols/ModularizationExample/blob/master/features/dashboard/src/main/res/layout/activity_dashboard.xml) more closely:
 
-[![Dashboard activity has three tabs]({{ site.url }}{{ site.baseurl }}/img/blog/modularizationexample/dashboard_activity.jpg)]({{ site.url }}{{ site.baseurl }}/img/blog/modularizationexample/dashboard_activity.jpg){: .align-center}
+![Dashboard activity has three tabs](dashboard_activity.jpg)
 
 Here we go, the main dashboard consists out of three tabs: photos, albums and social.
 
 Now let's have a look at the [Login feature](https://github.com/JeroenMols/ModularizationExample/blob/master/features/login/src/main/res/navigation/login_graph.xml):
 
-[![Login feature structure]({{ site.url }}{{ site.baseurl }}/img/blog/modularizationexample/graph_login.jpg)]({{ site.url }}{{ site.baseurl }}/img/blog/modularizationexample/graph_login.jpg){: .align-center}
+![Login feature structure](graph_login.jpg)
 
 In one visual overview you can see that the login screen consists out of three screens that link together as a flow. The navigation graph even displays the nave of every screen on top so you can easily navigate to it!
 
 Similarly, zooming into the [Sharing module](https://github.com/JeroenMols/ModularizationExample/blob/master/features/sharing/src/main/res/navigation/sharing_graph.xml) immediately explains what this feature is all about:
 
-[![Sharing feature structure]({{ site.url }}{{ site.baseurl }}/img/blog/modularizationexample/graph_sharing.jpg)]({{ site.url }}{{ site.baseurl }}/img/blog/modularizationexample/graph_sharing.jpg){: .align-center}
+![Sharing feature structure](graph_sharing.jpg)
 
 Again, a picture says more than a 1000 lines of code!
 
 Due to the way feature modules are defined, this architecture splits your app hierarchically, similar to how a user navigates through your app. This in combination with a visual represenation of each feature (navigation graph) helps to understand the app structure, the navigation between screens and find back the name of screens.
 
 ## Navigation
-As navigation seems to be one of the key problems people are facing in multi-modules apps (see [my previous article]({{ site.baseurl }}{% link blog/_posts/2019-03-18-modularizationarchitecture.md %})), let's explore the two different modes of navigation:
+As navigation seems to be one of the key problems people are facing in multi-modules apps (see [my previous article]({{< ref "042-modularizationarchitecture" >}})), let's explore the two different modes of navigation:
 
 1. within a feature
 2. between features
@@ -237,7 +231,7 @@ object Actions {
 ```
 
 ## Feature rewrites/refactors
-As you probably already know, [I don't believe in-app rewrites]({{ site.baseurl }}{% link blog/_posts/2019-02-20-tacklelegacy.md %}). However, refactoring by itself can also be frustrating and take a long time to provide results. So how do you get your app in better shape?
+As you probably already know, [I don't believe in-app rewrites]({{< ref "040-tacklelegacy" >}}). However, refactoring by itself can also be frustrating and take a long time to provide results. So how do you get your app in better shape?
 
 Wouldn't it be nice if you could aggressively refactor or even rewrite parts of your app without having to worry about a risky release?
 
@@ -321,7 +315,7 @@ While this architecture sounds good in theory and the example looks nice on pape
 
 Well, I'm glad you ask! Because this is exactly the way that the [Philips Hue app](https://play.google.com/store/apps/details?id=com.philips.lighting.hue2) is modularized:
 
-![Modularized app example]({{ site.url }}{{ site.baseurl }}/img/blog/modularizationexample/modularized_example.png){: .align-center}
+![Modularized app example](modularized_example.png)
 
 All features are independent, self-contained and they don't rely on each other. There is only one single app module.
 
@@ -338,4 +332,4 @@ The three-layer app-features-libraries architecture addresses quite some fundame
 
 All source code is available on [Github](https://github.com/JeroenMols/ModularizationExample).
 
-Make sure to follow me on [Mastodon](https://androiddev.social/@Jeroenmols) and let's investigate how you can start modularizing an existing app [in part 4]({{ site.baseurl }}{% link blog/_posts/2019-04-24-modularizationhow.md %}).
+Make sure to follow me on [Mastodon](https://androiddev.social/@Jeroenmols) and let's investigate how you can start modularizing an existing app [in part 4]({{< ref "044-modularizationhow" >}}).

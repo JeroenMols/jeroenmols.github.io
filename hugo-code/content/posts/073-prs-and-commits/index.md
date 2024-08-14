@@ -46,7 +46,12 @@ So I've personally given up on my commit size and message hygiene and moved my e
 
 ## Wrap up
 
-<p style="color: #646769; background: #f2f3f3; padding: 20px;">This site is 100% tracker free, :heart: for liking my post on <a href="https://androiddev.social/@Jeroenmols/110612136335930968">Mastodon</a> or <a href="https://www.linkedin.com/posts/jeroenmols_gaming-the-pull-request-review-system-activity-7079176881228406784-uR2v">Linkedin</a> to let me know you've read this.</p>
+{{< alert icon="code" >}}
+  {{< notrackers 
+    mastodon="110612136335930968" 
+    linkedin="jeroenmols_gaming-the-pull-request-review-system-activity-7079176881228406784-uR2v" 
+    >}}
+{{< /alert >}}
 
 Sometimes it's good to be a little selfish! Optimize your pull requests to be reviewed as quickly as possible and increase your overall impact and happiness.
 

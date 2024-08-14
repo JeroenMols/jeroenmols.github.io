@@ -32,7 +32,7 @@ Besides that, I actually found more time than expected to grow technically. As s
 - Made plans for building a house
 - Taught my daughter how to fist bump and say Yolo #awesomedad
 
-![Render of our house]({{ site.url }}{{ site.baseurl }}/img/blog/yearinreview16/house.png){: .align-center}
+![Render of our house](house.png)
 
 Next year construction of our dream house will start, so time will once again be a scarce resource. And since I don't want to give in on quality time with my daughter, I'll just try to keep up my current blogging and speaking efforts. However, it would be really cool if I could speak at a conference outside Europe!
 

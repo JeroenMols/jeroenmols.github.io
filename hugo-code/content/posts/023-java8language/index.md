@@ -187,7 +187,7 @@ While this all might seem a bit overwhelming, Android Studio actually offers ama
 
 Just use `alt/option` + `enter` to convert a functional interface to a lamba or a lambda to a method reference.
 
-![Java 8 language quick fixes]({{ site.url }}{{ site.baseurl }}/img/blog/java8language/androidstudioconversion.gif){: .align-center}
+![Java 8 language quick fixes](androidstudioconversion.gif)
 
 This is a great way to get familiar with these new features and allows you to write code like you're used to. After enough quick fixes by Android Studio you'll learn in what cases a lambda or method reference would be possible and start writing them yourself.
 

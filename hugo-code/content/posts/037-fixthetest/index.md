@@ -332,7 +332,7 @@ Simply put, this test is flaky. It will only fail very rarely, but still it will
 
 Reason for this is that the `expectedTime` isn't the time used by the `TimeFormatter` and hence there will be a slight difference (~ ns) between both. When rounding works against us, this could actually end up in a real formatted ms difference.
 
-And flakiness in tests, well... no matter how infrequent, we should have a [zero tolerance policy]({{ site.baseurl }}{% link blog/_posts/2017-02-16-unittests.md%}) towards them. This is because flakiness can completely destroy the confidence of the team in the test suite.
+And flakiness in tests, well... no matter how infrequent, we should have a [zero tolerance policy]({{< ref "018-unittests" >}}) towards them. This is because flakiness can completely destroy the confidence of the team in the test suite.
 
 Fortunately this can easily be fixed by passing the current time into the `TimeFormatter`.
 

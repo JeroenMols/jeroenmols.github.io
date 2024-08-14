@@ -32,7 +32,7 @@ This blogpost will explain the mechanism, its advantages, limitations and provid
 ## Basic principle
 All resource names follow a simple convention.
 
-![what_where_description_size]({{ site.url }}{{ site.baseurl }}/img/blog/resourcenaming/whatwheredescriptionsize.jpg){: .align-center}
+![what_where_description_size](whatwheredescriptionsize.jpg)
 
 Let's first describe every element briefly. After the advantages, we'll see how this applies to each resource type.
 
@@ -48,9 +48,9 @@ Differentiate multiple elements in one screen. <br> (e.g. `title`)
 ### &lt;SIZE&gt; (optional)
 Either a precise size or size bucket. Optionally used for drawables and dimensions. <br>  (e.g. `24dp`, `small`))
 
-[![Resource naming cheat sheet]({{ site.url }}{{ site.baseurl }}/img/blog/resourcenaming/resourcenaming_cheatsheet.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/resourcenaming/resourcenaming_cheatsheet.pdf)
+[![Resource naming cheat sheet](resourcenaming_cheatsheet.png)](resourcenaming_cheatsheet.pdf)
 
-Download and print the [cheat sheet]({{ site.url }}{{ site.baseurl }}/img/blog/resourcenaming/resourcenaming_cheatsheet.pdf) for easy reference.
+Download and print the [cheat sheet](resourcenaming_cheatsheet.pdf) for easy reference.
 
 ## Advantages
 
@@ -73,7 +73,7 @@ Download and print the [cheat sheet]({{ site.url }}{{ site.baseurl }}/img/blog/r
 ## Layouts
 Layouts are relatively simple, as there usually are only a few layouts per screen. Therefore the rule can be simplified to:
 
-![what_where.xml]({{ site.url }}{{ site.baseurl }}/img/blog/resourcenaming/layouts.png){: .align-center}
+![what_where.xml](layouts.png)
 
 Where `<WHAT>` is one of the following:
 
@@ -97,11 +97,11 @@ Examples:
 ## Strings
 The `<WHAT>` part for Strings is irrelevant. So either we use `<WHERE>` to indicate where the string will be used:
 
-![where_description.xml]({{ site.url }}{{ site.baseurl }}/img/blog/resourcenaming/strings.png){: .align-center}
+![where_description.xml](strings.png)
 
 or `all` if the string is reused throughout the app:
 
-![all_description.xml]({{ site.url }}{{ site.baseurl }}/img/blog/resourcenaming/strings2.png){: .align-center}
+![all_description.xml](strings2.png)
 
 Examples:
 
@@ -116,11 +116,11 @@ Examples:
 ## Drawables
 The `<WHAT>` part for Drawables is irrelevant. So either we use `<WHERE>` to indicate where the drawable will be used:
 
-![where_description_size.xml]({{ site.url }}{{ site.baseurl }}/img/blog/resourcenaming/drawables.png){: .align-center}
+![where_description_size.xml](drawables.png)
 
 or `all` if the drawable is reused throughout the app:
 
-![all_description_size.xml]({{ site.url }}{{ site.baseurl }}/img/blog/resourcenaming/drawables2.png){: .align-center}
+![all_description_size.xml](drawables2.png)
 
 Optionally you can add a `<SIZE>` argument, which can be an actual size "24dp" or a size qualifier "small".
 
@@ -135,7 +135,7 @@ Examples:
 ## IDs
 For IDs, `<WHAT>` is the class name of the xml element it belongs to. Next is the screen the ID is in, followed by an optional description to distinguish similar elements in one screen.
 
-![what_where_description.xml]({{ site.url }}{{ site.baseurl }}/img/blog/resourcenaming/ids.png){: .align-center}
+![what_where_description.xml](ids.png)
 
 Examples:
 
@@ -149,11 +149,11 @@ Apps should only define a limited set of dimensions, which are constantly reused
 
 Therefore you should mostly use:
 
-![what_all_description_size.xml]({{ site.url }}{{ site.baseurl }}/img/blog/resourcenaming/dimensions2.png){: .align-center}
+![what_all_description_size.xml](dimensions2.png)
 
 and optionally use the screen specific variant:
 
-![what_where_description_size.xml]({{ site.url }}{{ site.baseurl }}/img/blog/resourcenaming/dimensions.png){: .align-center}
+![what_where_description_size.xml](dimensions.png)
 
 Where `<WHAT>` is one of the following:
 
@@ -193,7 +193,7 @@ The proposed scheme currently does not yet support all resource types. For some 
 
 
 ## Wrap-up
-That's it! A clean simple and easy to use resource naming scheme. Don't forget to download the [cheat sheet]({{ site.url }}{{ site.baseurl }}/img/blog/resourcenaming/resourcenaming_cheatsheet.pdf) for easy reference!
+That's it! A clean simple and easy to use resource naming scheme. Don't forget to download the [cheat sheet](resourcenaming_cheatsheet.pdf) for easy reference!
 
 Even though this scheme doesn't (yet) cover all resource types, it does provide an easy to use solution for where most naming pain currently is. In a future blogpost I'll also make a suggestion for the other ones.
 

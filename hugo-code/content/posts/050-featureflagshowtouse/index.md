@@ -13,16 +13,13 @@ tags:
 - tools
 date: '2019-08-20'
 slug: featureflagshowtouse
+series: ["Feature flags"]
+series_order: 2
 ---
 
 Empowered with what feature flags are and why they are useful, let's see how we can actually integrate them into an app. And how can we roll them out to our users?
 
 This mini-series will explain the benefits of using feature flags and propose a handy architecture that enables local feature flag configuration, remote configuration, and easy testability.
-
-> This blog post is part of a series on feature flags:
-- Part 1: [Why you should care]({{ site.baseurl }}{% link blog/_posts/2019-08-13-featureflags.md %})
-- Part 2: [How to use]({{ site.baseurl }}{% link blog/_posts/2019-08-20-featureflagshowtouse.md %})
-- Part 3: [A successful architecture]({{ site.baseurl }}{% link blog/_posts/2019-09-12-featureflagsarchitecture.md %})
 
 ## Integrating feature flags
 Roughly there are two ways you could use a feature flag: for new features and existing features.
@@ -40,7 +37,7 @@ if (isFeatureEnabled(POWER_ON_BEHAVIOR)) {
 }
 ```
 
-![Feature flagging a new feature by showing or hiding a menu item]({{ site.url }}{{ site.baseurl }}/img/blog/featureflagshowtouse/featureflag_menuitem.png)
+![Feature flagging a new feature by showing or hiding a menu item](featureflag_menuitem.png)
 
 The same principle can also be used for showing an extra tab or an extra UI element that gives access to the new feature. Some features might even require several if statements in several locations, but try to avoid that if you can as that complicates things.
 
@@ -83,7 +80,7 @@ class GeofenceIntentService : IntentService() {
 ```
 
 ## Rollout
-What would you choose: a big bang feature release to all users or gradually rolling out a feature? Well, thanks to the [first post]({{ site.baseurl }}{% link blog/_posts/2019-08-13-featureflags.md %}) we know the second option is a lot less risky.
+What would you choose: a big bang feature release to all users or gradually rolling out a feature? Well, thanks to the [first post]({{< ref "049-featureflags" >}}) we know the second option is a lot less risky.
 
 In reality, however, your marketing department might want to create some buzz around the newly launched feature. In that case, you must do a big bang roll out to all users or some users reading the announcement wouldn't have access to the feature yet!
 
@@ -95,13 +92,13 @@ To combine the best of both worlds, you can strive to roll out as many features 
 
 A key aspect in doing this successfully is adding extra analytics events, defining clear KPIs and putting a dashboard in place to monitor everything.
 
-![Dashboard to monitor the roll out of a new feature]({{ site.url }}{{ site.baseurl }}/img/blog/featureflagshowtouse/dashboard.png)
+![Dashboard to monitor the roll out of a new feature](dashboard.png)
 
 In the above dashboard, the performance of both old and rewritten features is measured. The Y-axis indicates how many users successfully completed the feature and the X-axis shows how long it took them to complete it. Here the rewritten feature clearly outperform the old feature and we should fully remove the old one in the next release.
 
 When you can't roll out a feature gradually, you can still derisk its launch using remote feature flags. Just make sure to wrap up feature development early so you have time to use a remote feature flag to test it in your beta community. This allows learning how the code behaves in the wild, while still allowing you to promote that exact build to production (with feature flag turned off).
 
-![How to roll out a feature flag in a non gradual, big bang fashion]({{ site.url }}{{ site.baseurl }}/img/blog/featureflagshowtouse/featureflags_rolloutnongradual.jpg)
+![How to roll out a feature flag in a non gradual, big bang fashion](featureflags_rolloutnongradual.jpg)
 
 Once confident that the feature works well in beta, you can hardcode the feature flag to be on in the next app release. Better to still leave both code paths in your code base at this stage though, that still provides an easy way to hotfix, you never know. Once the code is behaving properly in production, you can remove the old code path.
 
@@ -110,4 +107,4 @@ Finally, note that it's crucial to roll out features as quickly as possible. Thi
 ## Wrap-up
 Feature flags can help in releasing new features and improvements on existing functionality. Always try to roll out features gradually, if that's not possible, rely on your beta community to test the feature prior to release,
 
-Make sure you follow me on [Mastodon](https://androiddev.social/@Jeroenmols) or continue to [part 3]({{ site.baseurl }}{% link blog/_posts/2019-09-12-featureflagsarchitecture.md %}) to learn more about an architecture to integrate feature flags into your app.
+Make sure you follow me on [Mastodon](https://androiddev.social/@Jeroenmols) or continue to [part 3]({{< ref "051-featureflagsarchitecture" >}}) to learn more about an architecture to integrate feature flags into your app.

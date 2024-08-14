@@ -12,19 +12,13 @@ tags:
 - tips
 date: '2019-06-12'
 slug: modularizationtips
+series: ["Modularization"]
+series_order: 5
 ---
 
 Wrapping up this series on modularization I'd like to share some of the things we've learned at Philips Hue while going through this process the past year.
 
 Part five of this series will share quite a few useful tips and tricks for modularizing apps.
-
->
-This post is part of an in depth series on modularization:
-- [Part 1: Why you should care]({{ site.baseurl }}{% link blog/_posts/2019-03-06-modularizationwhy.md %})
-- [Part 2: A successful multi-module architecture]({{ site.baseurl }}{% link blog/_posts/2019-03-18-modularizationarchitecture.md %})
-- [Part 3: Real-life example]({{ site.baseurl }}{% link blog/_posts/2019-04-02-modularizationexample.md %})
-- [Part 4: How to approach]({{ site.baseurl }}{% link blog/_posts/2019-04-24-modularizationhow.md %})
-- [Part 5: Lessons learned]({{ site.baseurl }}{% link blog/_posts/2019-06-12-modularizationtips.md %})
 
 ## Configuring modules
 In order to drive modularization it's very important to make creating a new module as simple as possible:
@@ -60,7 +54,7 @@ subprojects {
 
 The block above will dynamically look for all `android` or `android-library` modules and configure the `android` block with all default values. That way each module will use the same `minSdk`, `buildTools`, `testRunner`, `javaVersion`,...
 
-This won't just avoid issues like [dangerous permissions sneaking into your app]({{ site.baseurl }}{% link blog/_posts/2018-08-02-phonestatepermission.md %}), but will also make it very easy to bump the target/minimum SDK and will simplify configuring submodules to just listing the dependencies.
+This won't just avoid issues like [dangerous permissions sneaking into your app]({{< ref "033-phonestatepermission" >}}), but will also make it very easy to bump the target/minimum SDK and will simplify configuring submodules to just listing the dependencies.
 
 For instance the [Login feature](https://github.com/JeroenMols/ModularizationExample/blob/master/features/login/build.gradle) `build.gradle` is:
 
@@ -105,7 +99,7 @@ Then you can simply run `./gradlew projectDependencyGraph` to get a graphical ov
 Project module dependency graph created at ~/ModularizationExample/build/reports/dependency-graph/project.dot.png
 ```
 
-![Module graph of modularization example]({{ site.url }}{{ site.baseurl }}/img/blog/modularizationtips/module_graph.png)
+![Module graph of modularization example](module_graph.png)
 
 Android modules are shown in <font color="#baffc9">green</font>, Java modules in <font color="#ffb3ba">pink</font> and Kotlin multiplatform modules in <font color="#ffd2b3">orange</font>.
 
@@ -151,7 +145,7 @@ When you scale up the number of modules, your root git folder might become quite
 
 In order to directly generate a module in one of the subfolders, go to `File > New > New Module` in Android studio and prefix the module name with `features:` to directly create the module in the `features` folder.
 
-![Create module directly in subfolder by prefixing the name with a colon]({{ site.url }}{{ site.baseurl }}/img/blog/modularizationtips/create_submodule.png)
+![Create module directly in subfolder by prefixing the name with a colon](create_submodule.png)
 
 Alternatively, you can also create the new module, and drag it to the correct subfolder. In that case, just make sure to also update the module reference in `settings.gradle` after you do that.
 
@@ -176,7 +170,7 @@ This doesn't just avoid getting very long package names, but it will also logica
 ### Layout previews
 When looking at the layout preview of any layout resource in a submodule, it is shown by default in the wrong theme:
 
-![Layout preview by default shows wrong theme]({{ site.url }}{{ site.baseurl }}/img/blog/modularizationtips/preview_wrong_theme.jpg){: .align-center}
+![Layout preview by default shows wrong theme](preview_wrong_theme.jpg)
 
 This makes sense, as our submodules don't know anything about the application theme set in the main `app` module manifest.
 
@@ -196,7 +190,7 @@ While you can manually change the theme from the drop-down menu, you can also te
 
 That way the layout previews will be shown in the correct theme by default!
 
-![Layout preview shows correct theme when application theme attribute set in module manifest]({{ site.url }}{{ site.baseurl }}/img/blog/modularizationtips/preview_right_theme.jpg){: .align-center}
+![Layout preview shows correct theme when application theme attribute set in module manifest](preview_right_theme.jpg)
 
 ### Restrict visibility
 In order to ensure different modules are properly decoupled, I highly recommend marking each class with an `internal` modifier unless it is part of the public API.
@@ -281,9 +275,9 @@ The following dependencies have later milestone versions:
 ```
 
 ## Speed up builds
-Remember that speeding up builds was an important [reason to modularize]({{ site.baseurl }}{% link blog/_posts/2019-03-06-modularizationwhy.md %}) apps. One of the most intriguing ways Gradle accomplishes this is by being smart about whether a code change will also require other modules to be recompiled.
+Remember that speeding up builds was an important [reason to modularize]({{< ref "041-modularizationwhy" >}}) apps. One of the most intriguing ways Gradle accomplishes this is by being smart about whether a code change will also require other modules to be recompiled.
 
-While you can find the [full explanation here]({{ site.baseurl }}{% link blog/_posts/2017-06-14-androidstudio3.md %}), it suffices to say here that you should always strive to `implementation` dependencies instead of `api`.
+While you can find the [full explanation here]({{< ref "022-androidstudio3" >}}), it suffices to say here that you should always strive to `implementation` dependencies instead of `api`.
 
 ```groovy
 dependencies {

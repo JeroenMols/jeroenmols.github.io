@@ -21,7 +21,7 @@ In this blog post, we'll look at a case study on how we added support for these 
 ## Unique Challenge
 At Philips Hue we've heavily optimized the information density so users can control the maximum amount of rooms/zones (cards) within one screen:
 
-![Philips Hue home screen design]({{ site.url }}{{ site.baseurl }}/img/blog/androidqgestures/hue_homescreen.png){: .align-center .width-half}
+<center><img width="50%" height="50%" src="hue_homescreen.png" alt="Philips Hue home screen design"></center>
 
 There are three main optimizations we made to allow the maximum amount of cards to fit:
 
@@ -34,7 +34,7 @@ Let's investigate how these created some unique challenges to prepare our app fo
 ## Edge to edge Brightness sliders
 To start, as the cards go nearly edge to edge, moving the bottom aligned brightness slider isn't possible when the thumb is near the min or max. Instead, the back gesture is triggered:
 
-![Back navigation gestures prevent from moving the brightness slider]({{ site.url }}{{ site.baseurl }}/img/blog/androidqgestures/no_exclusions.gif){: .align-center}
+![Back navigation gestures prevent from moving the brightness slider](no_exclusions.gif)
 
 Fortunately, Android Q offers a way to tell the Android system that it shouldn't intercept gestures in a particular area of the screen using [`setSystemGestureExclusionRects`](https://developer.android.com/reference/android/view/View#setSystemGestureExclusionRects(java.util.List%3Candroid.graphics.Rect%3E)):
 
@@ -135,7 +135,7 @@ if (!switch.checked) {
 
 The end result is pretty neat:
 
-![Back navigation gestures with min/max exclusions for brightness slider]({{ site.url }}{{ site.baseurl }}/img/blog/androidqgestures/minmax_exclusions.gif){: .align-center}
+![Back navigation gestures with min/max exclusions for brightness slider](minmax_exclusions.gif)
 
 - When thumb is near max/min: you can swipe back from the opposite edge
 - When thumb is not near max/min: you can swipe back from both edges
@@ -143,7 +143,7 @@ The end result is pretty neat:
 ## Crosstalk with brightness sliders
 Unfortunately, all isn't good just yet, because in very rare cases back navigation would still accidentally cause `onTouchEvent` of our custom brightness slider to also be called:
 
-![Back navigation gestures first causes brightness slider to jump to max before navigating back]({{ site.url }}{{ site.baseurl }}/img/blog/androidqgestures/crosstalk_exclusion.gif){: .align-center}
+![Back navigation gestures first causes brightness slider to jump to max before navigating back](crosstalk_exclusion.gif)
 
 Imagine a user opening our app, lowering the brightness of a room and then navigating back just to see the brightness jumping back to 100% right before the app exits... infuriating!
 

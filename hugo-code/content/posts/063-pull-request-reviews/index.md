@@ -70,7 +70,7 @@ What if, despite all processes, main is suddenly broken?
 
 A common scenario for me is that end-to-end tests suddenly start failing. Either due to a backend change or due to a change on [Firebase tests lab](https://firebase.google.com/docs/test-lab/). In this case, main will still compile, but the builds for all open pull requests would fail.
 
-[![All pull request builds are failing due to an issue with the end-to-end tests]({{ site.url }}{{ site.baseurl }}/img/blog/pullrequestreview/failed_builds.png)]({{ site.url }}{{ site.baseurl }}/img/blog/pullrequestreview/failed_builds.png)
+![All pull request builds are failing due to an issue with the end-to-end tests](failed_builds.png)
 
 An even worse situation is when two incompatible changes are merged, breaking main compilation as a result. That is even more impactful as it also breaks compilation for all developers starting from or rebasing onto the latest main.
 

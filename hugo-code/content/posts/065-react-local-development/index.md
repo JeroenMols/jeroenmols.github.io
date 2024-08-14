@@ -19,7 +19,7 @@ Traveling by train or plane and want to test your react app on your mobile phone
 
 1. Connect your phone to your laptop using a USB cable
 2. Enable `USB tethering`
-  - Android: System settings > Network & internet > Hotspot & tethering > USB tethering
+    - Android: System settings > Network & internet > Hotspot & tethering > USB tethering
 3. Start your react server on your laptop `npm start`
 4. Open your servers `ip:port` on your phone
 

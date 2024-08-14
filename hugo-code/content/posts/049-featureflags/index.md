@@ -13,16 +13,13 @@ tags:
 - tools
 date: '2019-08-13'
 slug: featureflags
+series: ["Feature flags"]
+series_order: 1
 ---
 
 A key ingredient to speed up modern software development is feature flags. But what is a feature flag precisely? Why should you care about them? How do you integrate them into your codebase? And how can we make them easy to use?
 
 This mini-series will explain the benefits of using feature flags and propose a handy architecture that enables local feature flag configuration, remote configuration, and easy testability.
-
-> This blog post is part of a series on feature flags:
-- Part 1: [Why you should care]({{ site.baseurl }}{% link blog/_posts/2019-08-13-featureflags.md %})
-- Part 2: [How to use]({{ site.baseurl }}{% link blog/_posts/2019-08-20-featureflagshowtouse.md %})
-- Part 3: [A successful architecture]({{ site.baseurl }}{% link blog/_posts/2019-09-12-featureflagsarchitecture.md %})
 
 ## What is a feature flag
 In essence, a feature flag is simply a `Boolean` that determines whether something is "on" or "of":
@@ -61,7 +58,7 @@ The key benefit of using feature flags is that they decouple development from ap
 
 First and foremost, feature flags help developers because incomplete features can be merged! This allows to split a feature into many small increments and merge those branches one by one.
 
-![Thanks to feature flags, development of new features can be split into many small increments]({{ site.url }}{{ site.baseurl }}/img/blog/featureflags/smaller_branches.png)
+![Thanks to feature flags, development of new features can be split into many small increments](smaller_branches.png)
 
 These smaller branches aren't just easier to review (fewer files), but they are also easier to merge. This is because their difference with master is small causing a lot less merge conflicts. When merging is painless, it will happen more often and hence development will speed up.
 
@@ -94,7 +91,7 @@ In terms of feature flag values, we are going to restrict ourselves to just bool
 
 We do need more than just feature flags though! Apps typically also have a dynamic configuration that you only use in the debug build type: logging, leak canary, espresso idling resources, development backend, bypass onboarding, simulate a crash... All of these are "test settings" that facilitate testing or debugging your app. Wouldn't it be nice if you could also turn these on or off using a built-in UI?
 
-![Feature flags allow to toggle features on or off, whereas test stettings allow to dynamically configure the behavior of the app]({{ site.url }}{{ site.baseurl }}/img/blog/featureflags/testsettings.png){: .align-center .width-half}
+<center><img width="50%" height="50%" src="testsettings.png" alt="Feature flags allow to toggle features on or off, whereas test stettings allow to dynamically configure the behavior of the app" /></center>
 
 Tests settings don't just ease development and testing, but they also reduce the need to build flavors. Instead of having a separate flavor for leak canary or logging or espresso idling resources or ... these now become a configuration that you can turn on or off on demand!
 
@@ -115,4 +112,4 @@ Finally, we should be able to easily toggle feature flags on/off in automated te
 ## Wrap-up
 Feature flags are an incredibly powerful tool to speed up development: they allow to merge incomplete features and derisk app release by allowing gradual rollouts. They should be incredibly easy to add, usable in automated tests and you should be able to toggle them remotely for production use and locally for development and testing.
 
-Make sure you follow me on [Mastodon](https://androiddev.social/@Jeroenmols) and read on in [part 2]({{ site.baseurl }}{% link blog/_posts/2019-08-20-featureflagshowtouse.md %}) that covers how you can use and release feature flags.
+Make sure you follow me on [Mastodon](https://androiddev.social/@Jeroenmols) and read on in [part 2]({{< ref "050-featureflagshowtouse" >}}) that covers how you can use and release feature flags.

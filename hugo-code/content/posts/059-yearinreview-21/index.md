@@ -26,7 +26,7 @@ However, working such long days also meant I pushed myself beyond my limits and 
 
 Further, I've also built and designed my own custom Lego set: [Radio-Controlled Flip Over Stunt Car](http://bit.ly/legostuntcar):
 
-[![Radio-Controlled Flip Over Stunt Car]({{ site.url }}{{ site.baseurl }}/img/blog/yearinreview20/lego-ideas.jpg){: .align-center}](http://bit.ly/legostuntcar)
+![Radio-Controlled Flip Over Stunt Car](lego-ideas.jpg)
 
 Please give me a [vote](http://bit.ly/legostuntcar)!!! If I make it to 10k supporters, Lego might actually make it into an official set. 🤞
 

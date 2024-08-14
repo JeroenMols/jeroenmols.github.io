@@ -77,7 +77,9 @@ As the negative was clearly overshadowing the positive, I always tried to spin i
 
 But despite my good intentions however, in my spinning I came across as dismissive of other people's complaints. It's not because we had a few minor successes that all our other challenges weren't real anymore. Even worse, I made people feel as if they didn't have the right to complain.
 
-> Learning 1: When something is bad or someone complains, acknowledge it and empathize. People have the right to complain. Stuff sometimes simply sucks.
+{{< alert icon="edit" >}}
+**Learning 1:** When something is bad or someone complains, acknowledge it and empathize. People have the right to complain. Stuff sometimes simply sucks.
+{{< /alert >}}
 
 Once the dust settles down, try to open a constructive conversation on how to make things better. One of my favorite questions here is: "What will we do differently tomorrow to make this better?"
 
@@ -88,7 +90,9 @@ However, by always putting myself last I wasn't getting a lot of job satisfactio
 
 And it turns out that having low energy levels myself, also influences how I'm able to impact the rest of the team. So I decided to drop quite a few of my tasks or delegate them to others so that I could also focus on writing more code. This brought me closer to the team, made me feel happier and increased my energy level to empower people to drive things forward.
 
-> Learning 2: You can't do your job well if you're low on energy, make sure to also do challenging/exciting tasks.
+{{< alert icon="edit" >}}
+**Learning 2:** You can't do your job well if you're low on energy, make sure to also do challenging/exciting tasks.
+{{< /alert >}}
 
 Examples of tasks I delegated are architecture documentation, architecture plans, attending feature team meetings, redirect external questions to other team members, giving access to tools, high-level estimations...
 
@@ -112,14 +116,18 @@ To give you an idea of how far I took this: I even disclosed to my team that I f
 
 Opening up like that made me feel very vulnerable (and my direct approach definitely surprised some team members). But the team really appreciated the openness and respected me for taking my job seriously.
 
-> Learning 3: Be open and transparent, especially about bad news or difficult matters. Openness is a key cornerstone of building trust between people.
+{{< alert icon="edit" >}}
+**Learning 3:** Be open and transparent, especially about bad news or difficult matters. Openness is a key cornerstone of building trust between people.
+{{< /alert >}}
 
 ## 4. Lead by example
 During our standup, I would say I was going to do X, but because I had so many interruptions and meetings, I often never got around to actually doing it. This was especially inconvenient during times where we struggled to get things done and make our codebase better.
 
 Actually, this even made it seem like special rules applied to me! How can I expect us as a team to deliver on our committed work if I don't deliver on my commitments myself?
 
-> Learning 4: Exhibit the good behaviors yourself that you expect from others.
+{{< alert icon="edit" >}}
+**Learning 4:** Exhibit the good behaviors yourself that you expect from others.
+{{< /alert >}}
 
 While this is (in retrospect) my most obvious learning, in practice it hit me quite hard when I got this feedback... But I learned and even though it was hard to turn around, I now deliver on what I say I will. Which, in my case, involves saying no or postponing/delegating other work.
 
@@ -132,7 +140,10 @@ And this can be done in very simple ways! I would trigger the team at least once
 
 Getting closer together as a team increased the trust between people and the fun we were having. To me this is probably the biggest reason why we ended up being successful. We managed to fully integrate testers and developers, everyone took their share of dull work and we made everyone jointly accountable for app quality.
 
-> Learning 5: Focus on the fun, plan regular activities that bring people closer together. It doesn't need to be big: small ad hoc events during work time work really well.
+{{< alert icon="edit" >}}
+**Learning 5:** Focus on the fun, plan regular activities that bring people closer together. It doesn't need to be big: small ad hoc events during work time work really well.
+{{< /alert >}}
+
 
 Interestingly, "building a team" wasn't part of my original role. Over time though, I realized that this is also a key part of being a lead. However, I made sure not to organize most events myself, I just made sure someone was.
 
@@ -151,9 +162,12 @@ I asked my team a while ago what they expected me to do (see below) and interest
 
 So I took their advice and changed my priorities.
 
-![Answers to what my team expected of me]({{ site.url }}{{ site.baseurl }}/img/blog/lessonsleaddeveloper/team_survey.png)
+![Answers to what my team expected of me](team_survey.png)
 
-> Learning 6: Leverage the power of the team, they can help you get more things done and have valuable insights about the project and your role.
+{{< alert icon="edit" >}}
+**Learning 6:** Leverage the power of the team, they can help you get more things done and have valuable insights about the project and your role.
+{{< /alert >}}
+
 
 ## 7. Have faith
 To be fair, my tenure as a lead developer definitely wasn't a walk in the park. The legacy code and inconvenient timings of internal projects proved to be a real challenge and strongly affected our team mindset. And once a team gets in a negative vibe, it is very hard to turn that around.
@@ -182,7 +196,9 @@ And funny thing, because of these successes, people actually slowly but surely s
 
 > Learning 7: getting to a cohesive, highly performant and fun team can be quite challenging. But have faith, stay positive, persist and reach out for help. Together as a team, you can do this!
 
-I'm incredibly proud of what we've accomplished as a team and humbled that I got the opportunity to lead such an amazing group of people.
+{{< alert icon="edit" >}}
+**Learning 7:** Getting to a cohesive, highly performant and fun team can be quite challenging. But have faith, stay positive, persist and reach out for help. Together as a team, you can do this!
+{{< /alert >}}
 
 ## *. Other learnings
 To keep the length of this post under control, I'm just going to briefly mention my runner-up learnings:
@@ -207,7 +223,9 @@ With everything we've learned building our mobile engineering culture at Philips
 ## Wrap-up
 Two years in being a team lead, I'm incredibly proud of what we accomplished as a team: we can release ridiculously fast, dramatically improved our codebase, streamlined our processes and increased our output by a factor of 4x. This isn't just visible in the joy/pride the team takes in working on our app, but user sentiment is also going up fast.
 
-> We're on track to hit our original team goal that we set 2 years ago of being a 4 ⭐️ rated app (4.4!) in August!
+{{< alert icon= "fire">}}
+We're on track to hit our original team goal that we set 2 years ago of being a 4 ⭐️ rated app (4.4!) in August!
+{{< /alert >}}
 
 The ride to get there was rough though and despite my good intentions, I made many mistakes. However, by keeping on investing in the team and myself we were able to get our app on track!
 

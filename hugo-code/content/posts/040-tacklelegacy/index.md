@@ -103,7 +103,7 @@ By this time I hope nobody renames classes by hand anymore? (e.g. rename class, 
 
 Really really powerful stuff there. And it doesn’t just reduce regression, it also removes a lot of dull repetitive work from your plate allowing you to focus on the interesting challenges.
 
-I can help you get started with posts on [code navigation]({{ site.baseurl }}{% link blog/_posts/2018-02-22-androidstudioshortcuts.md %}) and [refactoring]({{ site.baseurl }}{% link blog/_posts/2018-04-26-androidstudioshortcuts2.md %}) in Android Studio.
+I can help you get started with posts on [code navigation]({{< ref "030-androidstudioshortcuts" >}}) and [refactoring]({{< ref "031-androidstudioshortcuts2" >}}) in Android Studio.
 
 ## 5. Have faith
 > We choose to go to the Moon, not because it is easy, but because it is hard; JFK

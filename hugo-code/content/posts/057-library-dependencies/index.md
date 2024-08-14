@@ -14,29 +14,26 @@ tags:
 - kotlin
 date: '2020-11-11'
 slug: library-dependencies
+series: ["Android library development"]
+series_order: 3
 ---
 
 Ever had a build failure while integrating an SDK? Wonder how you can avoid your SDK customers having dependency conflicts? How many transitive dependencies should your SDK have?
 
 This post will cover how transitive dependencies of an Android library affect Apps integrating it.
 
-> This blog post is part of a series on Android libraries:
-- Part 1: [Getting started]({{ site.baseurl }}{% link blog/_posts/2020-10-28-library-gettingstarted.md %})
-- Part 2: [Modularization]({{ site.baseurl }}{% link blog/_posts/2020-11-04-library-modularization.md %})
-- Part 3: [Transitive dependencies]({{ site.baseurl }}{% link blog/_posts/2020-11-11-library-dependencies.md %})
-
 ## Introduction
-> This post assumes familiarity with transitive dependencies and how Maven handles those. You can learn all about that and much more in [the first part]({{ site.baseurl }}{% link blog/_posts/2020-10-28-library-gettingstarted.md %}) of this series.
+> This post assumes familiarity with transitive dependencies and how Maven handles those. You can learn all about that and much more in [the first part]({{< ref "055-library-gettingstarted" >}}) of this series.
 
 Assume there is an existing application `CustomerApp` that is about to start using our library:
 
-[![Customer app about to integrate a new library]({{ site.url }}{{ site.baseurl }}/img/blog/librarydependencies/customerapp_before.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/librarydependencies/customerapp_before.png)
+![Customer app about to integrate a new library](customerapp_before.png)
 
 Before integration, they have a single dependency on `Another library` that transitively depends on `Transitive dependency 1`.
 
 Now when they integrate the new `library`:
 
-[![Customer app after integrating a new library]({{ site.url }}{{ site.baseurl }}/img/blog/librarydependencies/customerapp_after.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/librarydependencies/customerapp_after.png)
+![Customer app after integrating a new library](customerapp_after.png)
 
 They don't just start to depend on `library`, but they also depend on all its transitive dependencies `Transitive dependency 1` and `Transitive dependency 2`.
 
@@ -63,7 +60,7 @@ dependencies {
 
 And that both `library` and `anotherLibary` depend on a different version of a common dependency like `OkHttp`.
 
-[![Customer app after integrating a new library]({{ site.url }}{{ site.baseurl }}/img/blog/librarydependencies/dependency_versions.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/librarydependencies/dependency_versions.png)
+![Customer app after integrating a new library](dependency_versions.png)
 
 Now building `CustomerApp` would fail, because Gradle can't know what `OkHttp` version to pick: `v3` or `v4`?
 
@@ -171,7 +168,7 @@ These artifacts are mostly similar but optimized for different use cases.
 
 So for a `CustomerApp` with two `libraries` dependencies that transitive rely on a different `protobuf` artifact:
 
-[![Customer app with incompatible transitive dependencies]({{ site.url }}{{ site.baseurl }}/img/blog/librarydependencies/dependency_incompatible.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/librarydependencies/dependency_incompatible.png)
+![Customer app with incompatible transitive dependencies](dependency_incompatible.png)
 
 Compilation will fail! Because both `protobuf-java` and `protobuf-javalite` define the same/similar classes in the same namespace:
 
@@ -237,7 +234,7 @@ We'll take [`pbandk`](https://github.com/streem/pbandk) as an example, a very pr
 
 Imagine that `library` depends on `pbandk`, which unfortunately depends on the non-optimized version of `protobuf`, causing a build failure when integrated into the `CustomerApp`:
 
-[![Library dependency has incompatible transitive dependency]({{ site.url }}{{ site.baseurl }}/img/blog/librarydependencies/dependency_incompatible_pbandk.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/librarydependencies/dependency_incompatible_pbandk.png)
+![Library dependency has incompatible transitive dependency](dependency_incompatible_pbandk.png)
 
 Now to fix this, we need to ensure that `protobuf-java` doesn't get transitively added to `CustomerApp` after adding a dependency on `library`.
 
@@ -283,7 +280,7 @@ pom.withXml {
 
 And don't forget to also add `protobuf-javalite` as a direct transitive dependency to the `library`. This is needed to ensure the SDK also works in apps that don't rely on `protobuf-javalite` yet.
 
-[![Library dependency has incompatible transitive dependency]({{ site.url }}{{ site.baseurl }}/img/blog/librarydependencies/dependency_incompatible_pbandkfix.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/librarydependencies/dependency_incompatible_pbandkfix.png)
+![Library dependency has incompatible transitive dependency](dependency_incompatible_pbandkfix.png)
 
 > Note that the `pbandk` example is just as an illustration. The library is still under active development and there is an [open issue](https://github.com/streem/pbandk/issues/91) to address this.
 

@@ -23,7 +23,7 @@ Well, look no further! In this blog post, we will explore how to generate an int
 
 Can't wait to see the result of what we're going to build, get a sneak peak of the result here:
 
-👉 [Interactive system architecture diagram]({{ site.url }}{{ site.baseurl }}/img/blog/interactive-architecture-diagram/system_architecture.html){:target="\_blank"}.
+👉 <a href="system_architecture" target="blank">Interactive system architecture diagram</a>.
 
 ## Building a Diagram with Graphviz
 
@@ -55,13 +55,13 @@ $ dot -Tsvg diagram.dot -o diagram.svg
 
 Which will yield the following diagram:
 
-![Graphviz diagram example]({{ site.url }}{{ site.baseurl }}/img/blog/interactive-architecture-diagram/sample.svg){: .align-center}
+![Graphviz diagram example](sample.svg)
 
 While this is a very simple example of a Graphviz diagram, it is possible to create more complex and better-looking ones.
 
 For the sake of example, let's take [the diagram defined here](https://github.com/JeroenMols/architecturediagrams/blob/main/diagram.dot) and build an interactive version of that.
 
-![Graphviz architecture diagram]({{ site.url }}{{ site.baseurl }}/img/blog/interactive-architecture-diagram/diagram.svg){: .align-center}
+![Graphviz architecture diagram](diagram.svg)
 
 Here are my pro tips for Graphviz to create the layout you want:
 
@@ -117,7 +117,7 @@ digraph architecture {
 
 ## Bringing It All Together: The Final Example
 
-Now that we know how to prepare the SVG and create the HTML file, let's add sections and URLs for all diagram components. You can admire [the result here]({{ site.url }}{{ site.baseurl }}/img/blog/interactive-architecture-diagram/system_architecture.html){:target="\_blank"}.
+Now that we know how to prepare the SVG and create the HTML file, let's add sections and URLs for all diagram components. You can admire <a href="system_architecture" target="blank">result here</a>.
 
 Pretty dope, isn't it? 😎
 
@@ -133,7 +133,12 @@ Here's the [Github repository](https://github.com/JeroenMols/architecturediagram
 
 ## Wrap up
 
-<p style="color: #646769; background: #f2f3f3; padding: 20px;">This site is 100% tracker free, :heart: for liking my post on <a href="https://androiddev.social/@Jeroenmols/110516305062438230">Mastodon</a> or <a href="https://www.linkedin.com/posts/jeroenmols_interactive-versionable-architecture-diagrams-activity-7073042645714919424-nmgc?utm_source=share&utm_medium=member_desktop">Linkedin</a> to let me know you've read this.</p>
+{{< alert icon="code" >}}
+  {{< notrackers 
+    mastodon="110516305062438230" 
+    linkedin="jeroenmols_interactive-versionable-architecture-diagrams-activity-7073042645714919424-nmgc" 
+    >}}
+{{< /alert >}}
 
 By leveraging Graphviz and directly embedding an SVG diagram in an HTML document, you can create visually appealing diagrams that are interactive.
 

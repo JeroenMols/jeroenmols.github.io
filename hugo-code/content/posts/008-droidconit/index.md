@@ -32,7 +32,7 @@ The best advice I got was:
 
 
 ## Optimizing layouts
-![Loving lean layouts]({{ site.url }}{{ site.baseurl }}/img/blog/droidconit16/leanlayouts.jpg){: .align-center}
+![Loving lean layouts](leanlayouts.jpg)
 
 Screens containing a lot of views can sometimes render slowly. Mostly caused by deeply nested view hierarchies and/or using RelativeLayouts as a root element. Using "heavy" layouts in lists or increased nesting makes these problems multiplicative instead of simply additive.
 
@@ -45,7 +45,7 @@ The best advice in this track was:
 
 
 ## DEX diet
-![ClassyShark]({{ site.url }}{{ site.baseurl }}/img/blog/droidconit16/classyshark.png){: .align-center}
+![ClassyShark](classyshark.png)
 
 Hitting the DEX method limit or trying to improve your app security? As a real Proguard expert you created an amazing configuration and now all those problems are gone. Or are they?
 
@@ -109,4 +109,4 @@ Alessandro Martellucci
 ## Credits
 Thanks to the entire Droidcon Italy team for organizing such a great conference and to all sponsers for their support.
 
-![Droidcon Italy team]({{ site.url }}{{ site.baseurl }}/img/blog/droidconit16/droidconit_team.jpg){: .align-center}
+![Droidcon Italy team](droidconit_team.jpg)

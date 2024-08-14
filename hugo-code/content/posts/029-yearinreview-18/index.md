@@ -32,7 +32,7 @@ Further, I'm super proud of all my community efforts:
 
 But leave no mistake, my family is and will always be the most important thing in the world!
 
-![Status of our house]({{ site.url }}{{ site.baseurl }}/img/blog/yearinreview17/house.jpg){: .align-center}
+![Status of our house](house.jpg)
 
 Looking forward to next year, stuff is going to be intense for sure! We'll complete the construction of our house, our daughter will start going to school, our son will likely learn how to walk,... and I don't want to miss a second of all that. Which means #latenightblogging. :)
 

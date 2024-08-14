@@ -56,7 +56,7 @@ For the [Plaid Link Android SDK located](https://bintray.com/plaid/link-android/
 - `<group-id-slash-separated>`: `com.plaid.link` - group id with `.` replaced by `/`
 - `<artifact-id>`: `sdk-core` - artifact id
 
-[![Bintray and Maven credentials to construct versions url](/img/blog/migrateartifactsmaven/jcenter_info.png){: .align-center}](/img/blog/migrateartifactsmaven/jcenter_info.png)
+![Bintray and Maven credentials to construct versions url](jcenter_info.png)
 
 Resulting in the [following url](https://dl.bintray.com/plaid/link-android/com/plaid/link/sdk-core):
 

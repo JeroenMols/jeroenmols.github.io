@@ -25,7 +25,7 @@ This means:
 
 So accessing our development server at `https://jmols.local:3000` results in the following error:
 
-[![Error trying to connect to the connect to a local network IP/MDNS address]({{ site.url }}{{ site.baseurl }}/img/blog/developmentserveremulator/error.png)]({{ site.url }}{{ site.baseurl }}/img/blog/developmentserveremulator/error.png){: .align-center}
+![Error trying to connect to the connect to a local network IP/MDNS address](error.png)
 
 ## Method 1: use your computers IP address
 > Huge thanks to [Eduard-Cristian Boloș](https://androiddev.social/@EdyBolos) for suggesting this solution.
@@ -118,7 +118,13 @@ adb reverse tcp:3000 tcp:3000
 Similarly to the loopback address, this solution isn't suitable for a physical device.
 
 ## Wrap-up
-<p style="color: #646769; background: #f2f3f3; padding: 20px;">This site is 100% tracker free, :heart: for liking my post on <a href="https://androiddev.social/@Jeroenmols/109749532076281170">Mastodon</a> or <a href="https://www.linkedin.com/posts/jeroenmols_androiddev-server-react-activity-7023970812340641792-jtiW">Linkedin</a> to let me know you've read this.</p>
+
+{{< alert icon="code" >}}
+  {{< notrackers 
+    mastodon="109749532076281170" 
+    linkedin="jeroenmols_androiddev-server-react-activity-7023970812340641792-jtiW"
+    >}}
+{{< /alert >}}
 
 Depending on your situation, there are several ways to connect an emulator to a local server. A universal - though complicated way - is to make `etc/hosts` writable so you can access your development server using your local MDNS name.
 

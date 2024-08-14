@@ -14,19 +14,14 @@ tags:
 - android
 date: '2019-03-18'
 slug: modularizationarchitecture
+series: ["Modularization"]
+series_order: 2
 ---
 
 Now that we've established that modularization is a really good thing to strive for, how should a modularized app look like? How are the different modules connected? And how does this look for a real app?
 
 This second part will explore a simple, yet very effective approach to modularizing apps. It will cover in depth the different kinds of modules and present the benefits of this approach.
 
->
-This post is part of an in depth series on modularization:
-- [Part 1: Why you should care]({{ site.baseurl }}{% link blog/_posts/2019-03-06-modularizationwhy.md %})
-- [Part 2: A successful multi-module architecture]({{ site.baseurl }}{% link blog/_posts/2019-03-18-modularizationarchitecture.md %})
-- [Part 3: Real-life example]({{ site.baseurl }}{% link blog/_posts/2019-04-02-modularizationexample.md %})
-- [Part 4: How to approach]({{ site.baseurl }}{% link blog/_posts/2019-04-24-modularizationhow.md %})
-- [Part 5: Lessons learned]({{ site.baseurl }}{% link blog/_posts/2019-06-12-modularizationtips.md %})
 ## Disclaimer
 This is by no means the only way to modularize an app, but it does offer some key benefits that we will touch upon later.
 
@@ -40,7 +35,7 @@ Chances are high that will open a new full-screen part of the app, often consist
 
 Have a look at gmail for instance:
 
-[![Modularized architecture]({{ site.url }}{{ site.baseurl }}/img/blog/modularizationarchitecture/gmail_structure.jpg){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/modularizationarchitecture/gmail_structure.jpg)
+![Modularized architecture](gmail_structure.jpg)
 
 Simplified, it consists of a main screen (inbox) with an app drawer, a compose button and email items in the inbox. Clicking one of these elements leads you to a new full screen "feature":
 
@@ -63,7 +58,7 @@ While splitting your app into several features, all of those features will likel
 
 Bringing that all together yields:
 
-![Modularized architecture with one App module, several features modules and several library modules]({{ site.url }}{{ site.baseurl }}/img/blog/modularizationarchitecture/modularized_architecture.png){: .align-center}
+![Modularized architecture with one App module, several features modules and several library modules](modularized_architecture.png)
 
 This architecture basically splits an app into three levels of modules:
 
@@ -97,7 +92,7 @@ Hence there is no need for very large and complex navigation controllers! Featur
 
 Even more, the navigation component gives every feature a clear visual representation of its UI flow. That allows to quickly figure out what a feature does. E.g. What does the game feature do?
 
-![Navigation within a feature]({{ site.url }}{{ site.baseurl }}/img/blog/modularizationarchitecture/feature_navigation.png){: .align-center}
+![Navigation within a feature](feature_navigation.png)
 
  Finally no more guessing how a particular screen was named, just jump to the right feature, look for the screen and you'll find the fragment/views without having to guess/remember their name.
 
@@ -151,4 +146,4 @@ Recapping, this simple, three-layered architecture of app, features and librarie
 - simplifies experimenting with new technologies: quickly achieve end-to-end benefits within feature + low cost of bad technology choice (isolated from rest of the app)
 - allows staged rollout of rewritten features using feature toggles
 
-Make sure to follow me on [Mastodon](https://androiddev.social/@Jeroenmols) and let's study a detailed example of this architecture [in part 3]({{ site.baseurl }}{% link blog/_posts/2019-04-02-modularizationexample.md %}).
+Make sure to follow me on [Mastodon](https://androiddev.social/@Jeroenmols) and let's study a detailed example of this architecture [in part 3]({{< ref "043-modularizationexample" >}}).

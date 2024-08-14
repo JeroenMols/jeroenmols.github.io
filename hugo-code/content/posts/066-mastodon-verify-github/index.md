@@ -56,7 +56,7 @@ The webpage content looks like this:
 
 And my [Mastodon profile](https://androiddev.social/@Jeroenmols), now looks like this:
 
-![Mastondon profile]({{ site.url }}{{ site.baseurl }}/img/blog/mastodonverifygithub/mastodon-profile.png){: .align-center}
+![Mastondon profile](mastodon-profile.png)
 
 That's it!
 

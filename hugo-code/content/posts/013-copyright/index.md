@@ -48,11 +48,11 @@ To apply a license, simply distribute a license together with your source code e
 
 This is how I did it in the my library [LandscapeVideoCamera](https://github.com/JeroenMols/LandscapeVideoCamera).
 
-[![License for Landscape Video Camera]({{ site.url }}{{ site.baseurl }}/img/blog/copyright/landscapevideocameralicense.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/copyright/landscapevideocameralicense.png)
+![License for Landscape Video Camera](landscapevideocameralicense.png)
 
 And at the top of every file:
 
-[![Copyright notice for Landscape Video Camera]({{ site.url }}{{ site.baseurl }}/img/blog/copyright/landscapevideocameralicense2.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/copyright/landscapevideocameralicense2.png)
+![Copyright notice for Landscape Video Camera](landscapevideocameralicense2.png)
 
 
 ### Using code
@@ -78,7 +78,7 @@ As you're likely not a legal ninja, you must be wondering:
 
 Well there is a great website explaining the ins and outs of various licenses: [choosealicense.com](http://choosealicense.com/).
 
-[![Choose a license: great website to learn everything about licenses]({{ site.url }}{{ site.baseurl }}/img/blog/copyright/choosealicense.png){: .align-center}](http://choosealicense.com/)
+![Choose a license: great website to learn everything about licenses](choosealicense.png)
 
 Obviously if you work for a larger corporation like me, you should also involve your legal department.
 
@@ -105,27 +105,27 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ```
 
-[![Add a new copyright profile]({{ site.url }}{{ site.baseurl }}/img/blog/copyright/copyrightapache.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/copyright/copyrightapache.png)
+![Add a new copyright profile](copyrightapache.png)
 
 Note that you can use the flag `$today.year` to denote the current year.
 
 Optionally, the formatting pane allows you to tweak the copyright notice for every file type (Java, Xml, Groovy,...)
 
-[![Optionally tweak the copyright look and feel]({{ site.url }}{{ site.baseurl }}/img/blog/copyright/copyrightformatting.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/copyright/copyrightformatting.png)
+![Optionally tweak the copyright look and feel](copyrightformatting.png)
 
 Now select the "default project copyright" in the main Copyright pane and you're fancy new copyright will be added to every new file you create.
 
-[![Select your configured copyright profile]({{ site.url }}{{ site.baseurl }}/img/blog/copyright/copyrightselect.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/copyright/copyrightselect.png)
+![Select your configured copyright profile](copyrightselect.png)
 
 To update or add the notice to all your existing files, simply right click any file in the project pane and select "Update copyright...".
 
-[![Update existing copyright of files]({{ site.url }}{{ site.baseurl }}/img/blog/copyright/copyrightupdate.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/copyright/copyrightupdate.png)
+![Update existing copyright of files](copyrightupdate.png)
 
-[![Choose what scope to apply the copyright headers to]({{ site.url }}{{ site.baseurl }}/img/blog/copyright/copyrightscope.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/copyright/copyrightscope.png)
+![Choose what scope to apply the copyright headers to](copyrightscope.png)
 
 That's it! You now have a one click way of ensuring your copyright notices are up to date.
 
-[![Copyright notice added to source code]({{ site.url }}{{ site.baseurl }}/img/blog/copyright/copyrightdone.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/copyright/copyrightdone.png)
+![Copyright notice added to source code](copyrightdone.png)
 
 ## Wrap-up
 Copyright is not something to mess around with and you can face cause serious legal consequences if you don't. Even your open source projects should have a proper copyright notice. Fortunately [choosealicense.com](http://choosealicense.com/) and Android Studio help you choose and apply the correct license.

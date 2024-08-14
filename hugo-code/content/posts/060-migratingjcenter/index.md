@@ -156,7 +156,7 @@ dependencies {
 
 With this solution, Gradle will first look for the artifact in the `google()` repository, then in `mavenCentral()` and finally in `jcenter()` if the artifact is on the explicit allow list.
 
-# Published artifacts to Bintray/JCenter
+## Published artifacts to Bintray/JCenter
 These are artifacts you've published to `jcenter()` yourself.
 
 Roughly there are two things that you'll need to do:

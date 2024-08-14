@@ -116,7 +116,7 @@ inner class TestFragment : BaseFragment() {
 
 Fortunately Android Studio also warns you about recursion with an indicator:
 
-![Android Studio recursive function indicator]({{ site.url }}{{ site.baseurl }}/img/blog/kotlinstackoverflow/androidstudio_warning.png){: .align-center}
+![Android Studio recursive function indicator](androidstudio_warning.png)
 
 ## Wrap-up
 This post indicates an interesting case where methods/properties get linked incorrectly when inheriting from a Java class in Kotlin. Fortunately, Android Studio and the decompiled bytecode clearly indicate what is going wrong.

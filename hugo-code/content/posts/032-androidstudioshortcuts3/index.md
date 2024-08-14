@@ -12,17 +12,13 @@ tags:
 - navigation
 date: '2018-07-16'
 slug: androidstudioshortcuts3
+series: ["Android Studio shortcuts"]
+series_order: 3
 ---
 
 Not only can anything in Android Studio be controlled with a keyboard shortcut, it offers many more simple tricks to make you more productive.
 
 To conclude this series, we will look at how you can control the interface, invoke every (!) action and point you to even more advanced features.
-
->
-This post is part of a series with practical examples on how you to get the most out of Android Studio:
-- [Part 1: Code navigation]({{ site.baseurl }}{% link blog/_posts/2018-02-22-androidstudioshortcuts.md %})
-- [Part 2: Refactoring]({{ site.baseurl }}{% link blog/_posts/2018-04-26-androidstudioshortcuts2.md %})
-- [Part 3: Taming the interface]({{ site.baseurl }}{% link blog/_posts/2018-07-16-androidstudioshortcuts3.md %})
 
 
 ## TL;DR
@@ -50,70 +46,38 @@ Wouldn't it be cool if we never have to use our mouse again?
 
 First of all you can use `⌥ + number` to open/close different Android Studio views (e.g. Logcat, Project view,...)
 
-<figure>
-  <img src="{{ site.url }}{{ site.baseurl }}/img/blog/androidstudioshortcuts3/openviews.gif"
-       alt="Use `⌥ + number` to open/close different Android Studio views"/>
-  <figcaption>Use `⌥ + number` to open/close different Android Studio views</figcaption>
-</figure>
+![Use `⌥ + number` to open/close different Android Studio views](openviews.gif "Use `⌥ + number` to open/close different Android Studio views")
 
 You can shrink/enlarge the views above using `⇧ + ⌘ + ↑` and `⇧ + ⌘ + ↓` respectively,
 
-<figure>
-  <img src="{{ site.url }}{{ site.baseurl }}/img/blog/androidstudioshortcuts3/expandshrinkviews.gif"
-       alt="Use `⇧ + ⌘ + ↑` and `⇧ + ⌘ + ↓` to shrink or enlarge views"/>
-  <figcaption>Use `⇧ + ⌘ + ↑` and `⇧ + ⌘ + ↓` to shrink or enlarge views</figcaption>
-</figure>
+![Use `⇧ + ⌘ + ↑` and `⇧ + ⌘ + ↓` to shrink or enlarge views](expandshrinkviews.gif "Use `⇧ + ⌘ + ↑` and `⇧ + ⌘ + ↓` to shrink or enlarge views")
 
 Note that this will also work with `⇧ + ⌘ + →` and `⇧ + ⌘ + ←` for side views.
 
 Or close all views with `⇧ + ⌘ + F12` to have a clutter free interface,
 
-<figure>
-  <img src="{{ site.url }}{{ site.baseurl }}/img/blog/androidstudioshortcuts3/closeallviews.gif"
-       alt="Use `⇧ + ⌘ + F12` to close all views"/>
-  <figcaption>Use `⇧ + ⌘ + F12` to close all views</figcaption>
-</figure>
+![Use `⇧ + ⌘ + F12` to close all views](closeallviews.gif "Use `⇧ + ⌘ + F12` to close all views")
 
 When you have multiple tabs open, `⇧ + ⌘ + [` and `⇧ + ⌘ + ]` come in handy to cycle between tabs.
 
-<figure>
-  <img src="{{ site.url }}{{ site.baseurl }}/img/blog/androidstudioshortcuts3/changetabs.gif"
-       alt="Use `⇧ + ⌘ + [` and `⇧ + ⌘ + ]` to cycle between tabs"/>
-  <figcaption>Use `⇧ + ⌘ + [` and `⇧ + ⌘ + ]` to cycle between tabs</figcaption>
-</figure>
+![Use `⇧ + ⌘ + [` and `⇧ + ⌘ + ]` to cycle between tabs](changetabs.gif "Use `⇧ + ⌘ + [` and `⇧ + ⌘ + ]` to cycle between tabs")
 
 If you're designing layouts, you can use `^ + ⇧ + →` and `^ + ⇧ + ←` to switch between design and text view.
 
-<figure>
-  <img src="{{ site.url }}{{ site.baseurl }}/img/blog/androidstudioshortcuts3/switchdesignxml.gif"
-       alt="Use `^ + ⇧ + →` and `^ + ⇧ + ←` to switch between design and text view"/>
-  <figcaption>Use `^ + ⇧ + →` and `^ + ⇧ + ←` to switch between design and text view</figcaption>
-</figure>
+![Use `^ + ⇧ + →` and `^ + ⇧ + ←` to switch between design and text view](switchdesignxml.gif "Use `^ + ⇧ + →` and `^ + ⇧ + ←` to switch between design and text view")
 
 And whenever you have a dialog open you can use `⌥` to highlight what letters you can press to invoke the respective buttons. E.g. in the example below `⌥ + R` is used to press the replace button.
 
-<figure>
-  <img src="{{ site.url }}{{ site.baseurl }}/img/blog/androidstudioshortcuts3/controlinterface.gif"
-       alt="Use `⌥` to highlight what letters you can press to invoke the respective buttons"/>
-  <figcaption>Use `⌥` to highlight what letters you can press to invoke the respective buttons</figcaption>
-</figure>
+![Use `⌥` to highlight what letters you can press to invoke the respective buttons](controlinterface.gif "Use `⌥` to highlight what letters you can press to invoke the respective buttons")
 
 Note that pressing `⌥` helps in a lot more situations such as in the find and replace window. (notice the subtle underline)
 
-<figure>
-  <img src="{{ site.url }}{{ site.baseurl }}/img/blog/androidstudioshortcuts3/althighlighting.gif"
-       alt="Pressing `⌥` reveals you can use `⌥ + p` to replace the next occurrence"/>
-  <figcaption>Pressing `⌥` reveals you can use `⌥ + p` to replace the next occurrence</figcaption>
-</figure>
+![Pressing `⌥` reveals you can use `⌥ + p` to replace the next occurrence](althighlighting.gif "Pressing `⌥` reveals you can use `⌥ + p` to replace the next occurrence")
 
 ## Shortcut lookup
 If there is one shortcut you should really remember, then that is `⌘ + ⇧ + A`. That one allows you to invoke any Android Studio action using your keyboard.
 
-<figure>
-  <img src="{{ site.url }}{{ site.baseurl }}/img/blog/androidstudioshortcuts3/searchactions.gif"
-       alt="Use `⌘ + ⇧ + A` to search for any action."/>
-  <figcaption>Use `⌘ + ⇧ + A` to search for any action.</figcaption>
-</figure>
+![Use `⌘ + ⇧ + A` to search for any action.](searchactions.gif "Use `⌘ + ⇧ + A` to search for any action.")
 
 Note that this also serves as a useful shortcut lookup tool. Next to every action the corresponding shortcut will be displayed (if there is one).
 

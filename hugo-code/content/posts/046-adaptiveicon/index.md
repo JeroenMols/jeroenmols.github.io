@@ -19,7 +19,7 @@ As various Android launchers, versions or devices might resize/reshape your icon
 ## Background
 For various years, different device manufacturers have been reshaping icons to make them fit their custom skin of Android. Unfortunately, there wasn't a clear contract in place to do that reshaping, leading to some pretty bad results:
 
-![Badly resized Philips Hue icons]({{ site.url }}{{ site.baseurl }}/img/blog/adaptiveicon/poor_icon_shapes.png)
+![Badly resized Philips Hue icons](poor_icon_shapes.png)
 
 Shadows overlayed on top of the Philips wordmark, part of the Hue text cut off and a teardrop shape that looked really weird are just a few of the problems.
 
@@ -30,20 +30,20 @@ Inspired by [this blog post from Nick Butcher](https://medium.com/google-design/
 
 Hence we decided to use a gradient as the background layer:
 
-![Adaptive icon background]({{ site.url }}{{ site.baseurl }}/img/blog/adaptiveicon/icon_background.png){: .align-center}
+![Adaptive icon background](icon_background.png)
 
 Notice how the gradient gets lighter towards the top and darker towards the bottom. It also contains a darker shade of red on the left side and a darker shade of blue on the right.
 
 The foreground of the icon, however, consists out of a static blue "Philips" word mark and a plain white background with "Hue" cut out from that:
 
-![Adaptive icon foreground]({{ site.url }}{{ site.baseurl }}/img/blog/adaptiveicon/icon_foreground.png){: .align-center}
+![Adaptive icon foreground](icon_foreground.png)
 
 Now when the icon will be dragged or pressed, the foreground will move independently of the background causing the "Hue" cutout to hover over different parts of the gradient. This creates a very nice effect where the Hue logo slightly changes colors!
 
 ## Implementation
 In Android Studio, right-click your project and select "New > Image asset".
 
-![Create image asset]({{ site.url }}{{ site.baseurl }}/img/blog/adaptiveicon/create_image_asset.png){: .align-center}
+![Create image asset](create_image_asset.png)
 
 For the best scaling quality and minimal icon size, we use a vector asset as the foreground layer. This wasn't possible for the gradient though due to the complexity of that asset, so for that we use a webp background.
 
@@ -71,12 +71,12 @@ In the Android manifest you simply reference both resources in order to use them
 ```
 
 > Note: `ic_launcher_round.xml` got introduced with the launch of the Google Pixel (Android N) and has since been replaced with the more powerful adaptive icon. <br /> However you can still provide a rounded icon to avoid that Android N devices show your square item in a round bounding box:
-![Boxed icon when no round variant is provided]({{ site.url }}{{ site.baseurl }}/img/blog/adaptiveicon/boxed_icon.png){: .align-center}
+![Boxed icon when no round variant is provided](boxed_icon.png)
 
 ## End result
 Bringing it all together, we now have an icon that not only adapts to any device launcher, but also has a nice subtle color effect on the Hue letters while moving.
 
-![Adaptive icon Philips Hue]({{ site.url }}{{ site.baseurl }}/img/blog/adaptiveicon/adaptive_icon.gif){: .align-center}
+<img src="result.gif" alt="Adaptive icon Philips Hue" />
 
 Notice for instance how the letter "e" changes from green to blue while moving right.
 

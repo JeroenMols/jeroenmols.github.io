@@ -45,7 +45,13 @@ You're in full control whether you decide to reach out or not!
 I'll keep doing my best to provide you with interesting content (which is a ton of work) and hence appreciate every single like or shoutout.
 
 ## Wrap-up
-<p style="color: #646769; background: #f2f3f3; padding: 20px;">This site is 100% tracker free, :heart: for liking my post on <a href="https://androiddev.social/@Jeroenmols/109773847044031984">Mastodon</a> or <a href="https://www.linkedin.com/posts/jeroenmols_removing-all-trackers-from-my-website-activity-7025526545435754496-JCWo">Linkedin</a> to let me know you've read this.</p>
+
+{{< alert icon="code" >}}
+  {{< notrackers 
+    mastodon="109773847044031984" 
+    linkedin="jeroenmols_removing-all-trackers-from-my-website-activity-7025526545435754496-JCWo" 
+    >}}
+{{< /alert >}}
 
 My website is now fully tracker and advertisement free, I'll do my best to guarantee your privacy moving forward.
 

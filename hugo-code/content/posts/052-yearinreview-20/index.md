@@ -38,13 +38,13 @@ Further 2019 highlights include:
 - Wrote [14 blog posts](http://jeroenmols.com/blog/), including two quite ambitious in-depth series
 - Gave my first [talk on inclusion](https://speakerdeck.com/jeroenmols/inclusive-communication) at the GDE summit
 - Open-sourced two [sample apps](https://github.com/JeroenMols) on Github
-- Wrote an [honest, self critical retrospective]({{ site.baseurl }}{% link blog/_posts/2019-08-06-lessonsleaddeveloper.md %}) on my experiences leading the team at Philips Hue
+- Wrote an [honest, self critical retrospective]({{< ref "048-lessonsleaddeveloper" >}}) on my experiences leading the team at Philips Hue
 - Doubled my [Twitter](https://twitter.com/molsjeroen) followers to more than 6300
 - Got featured a whopping 11 times in [Android weekly](http://androidweekly.net/search?keyword=jeroen+mols&commit=Search)
 - Started working remotely
 - Took many steps to reduce my impact on the environment: cycle more, remote work, carry reusable cup, avoid single-use items,...
 
-![Cycling kids to school]({{ site.url }}{{ site.baseurl }}/img/blog/yearinreview19/cargobike.jpg){: .align-center}
+![Cycling kids to school](cargobike.jpg)
 
 In 2020, I'm going to focus on living a healthier lifestyle: exercise more, eat healthier and get better sleep. Further, I want to continue enjoying the little things in life and do silly stuff with my kids.
 

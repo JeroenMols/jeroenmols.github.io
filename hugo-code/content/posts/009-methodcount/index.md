@@ -42,11 +42,11 @@ apply plugin: 'com.getkeepsafe.dexcount'
 
 Running a normal project build `./gradlew assembleDebug` will now print out the current method count in the console:
 
-[![Method count output of template project with full Google Play Services]({{ site.url }}{{ site.baseurl }}/img/blog/methodcount/methodcount_output.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/methodcount/methodcount_output.png)
+![Method count output of template project with full Google Play Services](methodcount_output.png)
 
 and generate an interactive graphical report in the outputs folder `build/outputs/dexcount/debugChart`:
 
-[![Method count graphical output of template project with full Google Play Services]({{ site.url }}{{ site.baseurl }}/img/blog/methodcount/methodcount_graphic.gif){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/methodcount/dexcount-googleplayservices/debugChart/index.html)
+<a href="/blog/methodcount/dexcount-googleplayservices/debugChart" target="blank">![Method count graphical output of template project with full Google Play Services](methodcount_graphic.gif)</a>
 
 Click the graphic above to interact with it.
 
@@ -96,7 +96,7 @@ Well this is possible, but you'll have to manually specify which parts of the li
 
 Let's reproduce one of the projects I recently started working on as an example. Guava was used throughout the app extensively, making it very hard/risky to remove. But because of the huge method count we were constantly flirting with the 65k method limit and had to enable multidex.
 
-[![Method count graphical output of sample project with Guava]({{ site.url }}{{ site.baseurl }}/img/blog/methodcount/methodcount_graphic_guava.gif){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/methodcount/dexcount-guava/debugChart/index.html)
+<a href="/blog/methodcount/dexcount-guava/debugChart" target="blank">![Method count graphical output of sample project with Guava](methodcount_graphic.gif)</a>
 
 First of all you need to know what parts of the library the app was actually using. This can easily be done by running the following command in your `src` folder.
 
@@ -106,7 +106,7 @@ grep -roh . -e 'com.google.common.*' | sort | uniq
 
 This simply looks for all import statements starting with the library prefix (for Guava that is `com.google.common`), removes all clutter from the grep output, sorts it and takes all unique references.
 
-[![Grep output for references to Guava in an existing project]({{ site.url }}{{ site.baseurl }}/img/blog/methodcount/grep_output.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/methodcount/grep_output.png)
+![Grep output for references to Guava in an existing project](grep_output.png)
 
 Next we'll create a simple Proguard configuration that keeps all top level packages, without any obfuscation or optimizations.
 
@@ -135,7 +135,7 @@ Now we'll use a little Gradle script that takes a library as an input, runs Prog
 
 Looking at our example, this simple process saved us 4000 methods and we are only just above the dex method limit.
 
-[![Method count graphical output of sample project with stripped out Guava]({{ site.url }}{{ site.baseurl }}/img/blog/methodcount/methodcount_graphic_packageshrink.gif){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/methodcount/dexcount-packageshrink/debugChart/index.html)
+<a href="/blog/methodcount/dexcount-packageshrink/debugChart" target="blank">![Method count graphical output of sample project with stripped out Guava](methodcount_graphic_packageshrink.gif)</a>
 
 Back to the drawing board, because this isn't nearly enough! Turns out the `collect` package by itself has over 8000 methods, so I decided to just keep certain classes instead of the entire package.
 
@@ -202,7 +202,7 @@ This more aggressive approach will most likely cause some compile errors when yo
 
 Resulting in an extra decrease of almost 4500 methods, which brings the total removed methods to 8500!
 
-[![Method count graphical output of sample project with aggressively stripped out Guava]({{ site.url }}{{ site.baseurl }}/img/blog/methodcount/methodcount_graphic_agressiveshrink.gif){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/methodcount/dexcount-agressiveshrink/debugChart/index.html)
+<a href="/blog/methodcount/dexcount-agressiveshrink/debugChart" target="blank">![Method count graphical output of sample project with aggressively stripped out Guava](methodcount_graphic_agressiveshrink.gif)</a>
 
 Further our build times have not only improved because we no longer need multidexing, but also because the compiler now has less code to process.
 

@@ -18,7 +18,7 @@ After organizing Droidcon Paris for several year, the organizers decided to move
 In this post I'd like to share some general themes, my personal highlights and all of the slides I could gather from socials.
 
 ## Details matter
-![Make sure your app doesn't launch with a blank screen]({{ site.url }}{{ site.baseurl }}/img/blog/androidmakers17/launchscreen.png){: .align-center}
+![Make sure your app doesn't launch with a blank screen](launchscreen.png)
 
 Building a world class app doesn't just require good engineering practices, but you literally have to handle details on every front.
 
@@ -31,7 +31,7 @@ My key takeaways:
 - API design is basically designing future regrets
 
 ## Productivity
-![The Android testing pyramid]({{ site.url }}{{ site.baseurl }}/img/blog/androidmakers17/testingpyramid.png){: .align-center}
+![The Android testing pyramid](testingpyramid.png)
 
 As projects get more complex, it becomes crucial (for your own sanity) to have the right engineering practices in place. Try and leverage your continuous integration to automatically build, test and statically analyze your pull requests before merging.
 
@@ -91,6 +91,6 @@ While the conference organizers will publish all slides very soon, I can image t
 - [Le design mobile c’est pas facile](https://www.slideshare.net/aerilys/le-design-mobile-cest-pas-facile-74910698) by Quentin Sallat
 
 ## Credits
-![The awesome Android makers organizing team]({{ site.url }}{{ site.baseurl }}/img/blog/androidmakers17/team.jpg){: .align-center}
+![The awesome Android makers organizing team](team.jpg)
 
 Thanks to the entire Android Makers team for organizing a great conference and to all sponsors for supporting. Hope to see you all next year!

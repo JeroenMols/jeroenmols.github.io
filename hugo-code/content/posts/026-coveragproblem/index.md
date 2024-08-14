@@ -101,7 +101,7 @@ Even if coverage wouldn't be flawed, it still would be a mistake to try and get 
 
 Think about UI animations, communication between Threads, operations on filesystem,...
 
-![Everything can be tested, but at some point the effort gets bigger than the value you could get out of those tests.]({{ site.url }}{{ site.baseurl }}/img/blog/coverageproblem/effortvalue.png){: .align-center}
+![Everything can be tested, but at some point the effort gets bigger than the value you could get out of those tests.](effortvalue.png)
 
 Trying to test complex things doesn't just take way to much effort. The resulting tests usually also tend to be so complex that they will end up being a maintenance burden. Wasted effort with hardly any value in return.
 
@@ -115,7 +115,7 @@ Why not use it to identify parts of your app that should get some extra testing 
 
 Or how about automatically adding a coverage report to every pull request? This is something I do for all my [open source projects](https://github.com/JeroenMols/LandscapeVideoCamera/pull/49).
 
-![Code coverage on pull requests]({{ site.url }}{{ site.baseurl }}/img/blog/coverageproblem/coveragereport.png){: .align-center}
+![Code coverage on pull requests](coveragereport.png)
 
 So the next time your boss asks you to have 100% code coverage, you know what to do:
 

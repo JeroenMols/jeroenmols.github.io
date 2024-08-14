@@ -25,11 +25,11 @@ Assume now that the app consists out of a single screen that:
 - either shows today's events if user is logged in
 - otherwise shows a placeholder + login button
 
-[![Main screens shows either list of events or a placeholder with login button]({{ site.url }}{{ site.baseurl }}/img/blog/fragmentback/app_explanation.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/fragmentback/app_explanation.png)
+![Main screens shows either list of events or a placeholder with login button](app_explanation.png)
 
 The login is a two-step flow that consists out of a `UserNameFragment` and a `PasswordFragment`. Afterwards, the app navigates back to the main screen to show the events.
 
-[![Event app with login flow simplified]({{ site.url }}{{ site.baseurl }}/img/blog/fragmentback/app_flow_simplified.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/fragmentback/app_flow_simplified.png)
+![Event app with login flow simplified](app_flow_simplified.png)
 
 Note that for simplicity we don't display the events when navigating back, but instead show the placeholder screen again after successful login.
 
@@ -51,7 +51,7 @@ fun onLoginSuccess() {
 
 But that gives surprising results:
 
-![Password fragment is back to haunt us]({{ site.url }}{{ site.baseurl }}/img/blog/fragmentback/fragmentback_ghost.gif){: .align-center}
+![Password fragment is back to haunt us](fragmentback_ghost.gif)
 
 The `PasswordFragment` is back to haunt us!
 
@@ -94,7 +94,7 @@ transaction.remove(null).add(todayFragment)
 
 Hence nothing is removed and the `TodayFragment` is added leaving the users with both the `PasswordFragment` and `TodayFragment`.
 
-![Haunting password fragment]({{ site.url }}{{ site.baseurl }}/img/blog/fragmentback/app_haunting.png){: .align-center}
+![Haunting password fragment](app_haunting.png)
 
 ## Part 3: mystery solved
 As a first stab, you could say that this problem is caused by transaction three not being added to the back stack. So why not also add that transaction and do a double back.

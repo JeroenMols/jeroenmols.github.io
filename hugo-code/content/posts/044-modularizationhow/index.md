@@ -12,19 +12,13 @@ tags:
 - how to
 date: '2019-04-24'
 slug: modularizationhow
+series: ["Modularization"]
+series_order: 4
 ---
 
 Now that we have a clear idea of how a modularized app could look like how can this be applied to an existing app?
 
 Part four will dive deeper into how existing apps can be sliced and how you can gradually migrate to a fully modularized architecture.
-
->
-This post is part of an in depth series on modularization:
-- [Part 1: Why you should care]({{ site.baseurl }}{% link blog/_posts/2019-03-06-modularizationwhy.md %})
-- [Part 2: A successful multi-module architecture]({{ site.baseurl }}{% link blog/_posts/2019-03-18-modularizationarchitecture.md %})
-- [Part 3: Real-life example]({{ site.baseurl }}{% link blog/_posts/2019-04-02-modularizationexample.md %})
-- [Part 4: How to approach]({{ site.baseurl }}{% link blog/_posts/2019-04-24-modularizationhow.md %})
-- [Part 5: Lessons learned]({{ site.baseurl }}{% link blog/_posts/2019-06-12-modularizationtips.md %})
 
 ## Modularization strategy
 Roughly speaking there are two strategies you can take:
@@ -33,11 +27,11 @@ Roughly speaking there are two strategies you can take:
 - keep the old app and push code down
 
 ### Pull code up
-![Modularized app example]({{ site.url }}{{ site.baseurl }}/img/blog/modularizationhow/modularisation_pullup.png){: .align-center}
+![Modularized app example](modularisation_pullup.png)
 
 In this approach, the old app gets converted to an Android library module and a new app module is created on top of that. This allows to gradually pull up code (features and libraries) from the old app module into a new module.
 
-When all code is pulled up, the old app module is removed and what's left is the [architecture]({{ site.baseurl }}{% link blog/_posts/2019-03-18-modularizationarchitecture.md %}) we were striving for.
+When all code is pulled up, the old app module is removed and what's left is the [architecture]({{< ref "042-modularizationarchitecture" >}}) we were striving for.
 
 Conceptually this is very simple and it has one huge advantage: (almost) no dependency problems!
 
@@ -54,7 +48,7 @@ There are also some disadvantages, unfortunately:
 At Philips Hue, we heavily used Butterknife so this approach turned out to be impractical for us. Mainly due to the large number of upfront changes to prepare the `old app module`.
 
 ### Push code down
-![Modularized app example]({{ site.url }}{{ site.baseurl }}/img/blog/modularizationhow/modularisation_pushdown.png){: .align-center}
+![Modularized app example](modularisation_pushdown.png)
 
 Alternatively, the old `app module` can also just remain in place and modules are extracted from that downwards one by one.
 
@@ -105,4 +99,4 @@ While doing all this work, nearly all parts of the code will be touched at some 
 ## Wrap-up
 Generally speaking, there are two strategies to modularize an existing app: pull code up or push code down. Make sure to make a big initial push towards modularization to reap the benefits as soon as possible, clean up the module APIs and see if you can take some code improvements along.
 
-Make sure to follow me on [Mastodon](https://androiddev.social/@Jeroenmols) and read on to learn some tips and lessons learned while modularizing [in part 5]({{ site.baseurl }}{% link blog/_posts/2019-06-12-modularizationtips.md %}).
+Make sure to follow me on [Mastodon](https://androiddev.social/@Jeroenmols) and read on to learn some tips and lessons learned while modularizing [in part 5]({{< ref "045-modularizationtips" >}}).

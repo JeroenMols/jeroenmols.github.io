@@ -28,7 +28,7 @@ Profiling your Gradle build speed can easily be done using the `--profile` optio
 
 When profiling a project recently, I noticed something surprising in the generated report:
 
-[![Jacoco task takes up 14% of the build time! (report located in the `build/reports/profile` folder)]({{ site.url }}{{ site.baseurl }}/img/blog/coveragecost/buildtime.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/coveragecost/buildtime.png)
+![Jacoco task takes up 14% of the build time!](buildtime.png)
 
 The Jacoco task takes up almost 12 second, accounting for 14% of the build time!
 

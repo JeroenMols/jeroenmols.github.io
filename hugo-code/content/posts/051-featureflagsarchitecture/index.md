@@ -12,19 +12,16 @@ tags:
 - feature flags
 date: '2019-09-12'
 slug: featureflagsarchitecture
+series: ["Feature flags"]
+series_order: 3
 ---
 
 Now that we know how feature flags can help us release faster, it's time to dive into the actual implementation details. How can we easily define feature flags? How to configure them both locally as remotely? And use them in our testing?
 
 This post will present a simple, powerful architecture to manage feature flags and comes with a [full example on Github](https://github.com/JeroenMols/FeatureFlagExample).
 
-> This blog post is part of a series on feature flags:
-- Part 1: [Why you should care]({{ site.baseurl }}{% link blog/_posts/2019-08-13-featureflags.md %})
-- Part 2: [How to use]({{ site.baseurl }}{% link blog/_posts/2019-08-20-featureflagshowtouse.md %})
-- Part 3: [A successful architecture]({{ site.baseurl }}{% link blog/_posts/2019-09-12-featureflagsarchitecture.md %})
-
 ## Creating new feature flags
-As discussed in [part 1]({{ site.baseurl }}{% link blog/_posts/2019-08-13-featureflags.md %}), the easier it is to add feature flags, the more likely developers will use the system. At its core a `Feature` is something very simple:
+As discussed in [part 1]({{< ref "049-featureflags" >}}), the easier it is to add feature flags, the more likely developers will use the system. At its core a `Feature` is something very simple:
 
 ```kotlin
 interface Feature {
@@ -269,12 +266,12 @@ But you can even enable the `FirebaseFeatureFlagProvider` in the debug build. Th
 
 In release, however, the `FeatureFlag` value is taken from Firebase when the `FeatureFlag` was made remotely available (using `hasFeature()` in `FirebaseFeatureFlagProvider`). If not, the value from `StoreFeatureFlagProvider` is used.
 
-![Different FeatureFlagProviders and their priority for every build type]({{ site.url }}{{ site.baseurl }}/img/blog/featureflagarchitecture/featureflagprovider_priority.png)
+![Different FeatureFlagProviders and their priority for every build type](featureflagprovider_priority.png)
 
 ## Showing the flags in a UI
 Within the developer version of our app, we want to be able to both see the status of all `Features` and `TestSettings` and also toggle each one on or off. Basically, we want to automatically generate a UI like this:
 
-![Test settings activity to dynamically configure behavior in the app]({{ site.url }}{{ site.baseurl }}/img/blog/featureflagarchitecture/testsettings.png)
+![Test settings activity to dynamically configure behavior in the app](testsettings.png)
 
 To show all of the `Features`, we can simply define a custom `RecyclerView` that displays an `Array` of `Features`.
 
@@ -456,7 +453,7 @@ object RuntimeBehavior {
 ## Putting it all together
 When we look at all of the classes involved we get the following overview:
 
-![Feature flag architecture]({{ site.url }}{{ site.baseurl }}/img/blog/featureflagarchitecture/featureflag_architecture.png)
+![Feature flag architecture](featureflag_architecture.png)
 
 While that might seem a bit overwhelming, it consists of a lot of very small classes that are very easy to understand:
 
@@ -469,7 +466,7 @@ And based on these classes, a local UI is automagically generated to toggle the 
 I've created a full Github sample project where you can see all code in action [here](https://github.com/JeroenMols/FeatureFlagExample)
 
 ## Bonus
-When combining this Feature Flag architecture with my previous [modularization architecture]({{ site.baseurl }}{% link blog/_posts/2019-03-18-modularizationarchitecture.md %}), all UI classes can be moved to their own feature module `test-settings` that is only included into the `app` module for debug builds:
+When combining this Feature Flag architecture with my previous [modularization architecture]({{< ref "042-modularizationarchitecture" >}}), all UI classes can be moved to their own feature module `test-settings` that is only included into the `app` module for debug builds:
 
 ```groovy
 dependencies {

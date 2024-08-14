@@ -29,7 +29,7 @@ My key takeaways:
 
 
 ## IoT
-![Philips Hue Coffee]({{ site.url }}{{ site.baseurl }}/img/blog/droidconde16/iotcoffee.jpg){: .align-center}
+![Philips Hue Coffee](iotcoffee.jpg)
 
 Interest in IoT products is steadily increasing, but as a developer it is still not easy to create IoT apps. Properly handling things like Bluetooth LE keeps on being plagued by device specific issues. And seemingly simple problems like properly handling a user sign in are still extremely complex.
 
@@ -41,7 +41,7 @@ My key takeaways:
 
 
 ## Designing for the next billion
-![Designing for the next billion]({{ site.url }}{{ site.baseurl }}/img/blog/droidconde16/nextbillion.jpg){: .align-center}
+![Designing for the next billion](nextbillion.jpg)
 
 Where we used to be educated that "a developer phone is not a user phone", this message is now morphing towards people in emerging markets. Designing for such markets doesn't only require functional changes like developing for offline first, but it even requires you to completely think your UX.
 
@@ -53,7 +53,7 @@ My key takeaways:
 
 
 ## Other hot topics
-![You can use alpha values for button states in XML]({{ site.url }}{{ site.baseurl }}/img/blog/droidconde16/alphastates.jpg){: .align-center}
+![You can use alpha values for button states in XML](alphastates.jpg)
 
 Besides these, also a lot of attention was spent on testing and tooling. There were great talks about styling, theming and creating custom views. And many sessions also dived deeper into optimizing your apps performance. Bit unfortunate that there weren't any more talks on the new Android N features.
 
@@ -66,7 +66,7 @@ My key takeaways:
 
 
 ## Sketchnoting
-![Corey Leigh Latislaw creating a sketch note]({{ site.url }}{{ site.baseurl }}/img/blog/droidconde16/sketchnoting.jpg){: .align-center}
+![Corey Leigh Latislaw creating a sketch note](sketchnoting.jpg)
 
 Sketch notes are really awesome! In this, creative people summarize a talk into a very cool one pager. This doesn't only look great, but it's also by far the easiest way to get a high level view of a talk.
 

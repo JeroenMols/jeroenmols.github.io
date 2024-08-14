@@ -13,16 +13,13 @@ tags:
 - kotlin
 date: '2020-10-28'
 slug: library-gettingstarted
+series: ["Android library development"]
+series_order: 1
 ---
 
 Having switched to Android SDK development over the past year, I've run into quite a few interesting and unexpected challenges. So how does library development differ from app development?
 
 This mini-series will cover the differences between SDK and App development, and explore some interesting challenges around SDK modularization and transitive dependencies.
-
-> This blog post is part of a series on Android libraries:
-- Part 1: [Getting started]({{ site.baseurl }}{% link blog/_posts/2020-10-28-library-gettingstarted.md %})
-- Part 2: [Modularization]({{ site.baseurl }}{% link blog/_posts/2020-11-04-library-modularization.md %})
-- Part 3: [Transitive dependencies]({{ site.baseurl }}{% link blog/_posts/2020-11-11-library-dependencies.md %})
 
 ## Introduction
 Before kicking off the meat of this series, let's have a quick look at how SDK development differs from app development. If you're already familiar with these concepts, feel free to skip to the next article!
@@ -35,7 +32,7 @@ A getting started Android SDK project typically contain of at least two modules:
 - `app` module to test out the SDK
 - `library` module that contains all SDK code and resources
 
-[![Project with app and library module]({{ site.url }}{{ site.baseurl }}/img/blog/librarygettingstarted/app_with_projectlibrary.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/librarygettingstarted/app_with_projectlibrary.png)
+![Project with app and library module](app_with_projectlibrary.png)
 
 In this, the `app` module has a direct dependency on the `library` module:
 
@@ -89,7 +86,7 @@ dependencies {
 
 Resulting in the following project setup:
 
-[![App that consumes library through Maven]({{ site.url }}{{ site.baseurl }}/img/blog/librarygettingstarted/app_with_externallibrary.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/librarygettingstarted/app_with_externallibrary.png)
+![App that consumes library through Maven](app_with_externallibrary.png)
 
 To make this possible, the library needs to be deployed to a public Maven repository such [Maven Central](https://search.maven.org/) or [Bintray](https://bintray.com/) (jcenter). Which can be done by configuring the Gradle publishing plugin.
 
@@ -99,11 +96,11 @@ To make this possible, the library needs to be deployed to a public Maven reposi
 ## External dependencies
 But as the `library` evolves, it might also start depending on Maven dependencies of its own! Imagine that the `library` would also depend on `OkHttp`:
 
-[![Project with app and library module that has an external dependency]({{ site.url }}{{ site.baseurl }}/img/blog/librarygettingstarted/library_with_externaldependency.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/librarygettingstarted/library_with_externaldependency.png)
+![Project with app and library module that has an external dependency](library_with_externaldependency.png)
 
 This means that the customer application needs to depend on both `library` and `OkHttp`:
 
-[![Project with app and library module that has an external dependency]({{ site.url }}{{ site.baseurl }}/img/blog/librarygettingstarted/app_with_library_with_externaldependency.png){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/librarygettingstarted/app_with_library_with_externaldependency.png)
+![Project with app and library module that has an external dependency](app_with_library_with_externaldependency.png)
 
 Why?
 
@@ -181,6 +178,6 @@ Therefore it is always important to test the actual SDK artifact as a Maven depe
 ## Wrap-up
 Android libraries are built into a special `.aar` format that includes all code and resources. For all its external dependencies, a `pom.xml` needs to be deployed alongside to the Maven repository.
 
-Don't forget to follow me on [Mastodon](https://androiddev.social/@Jeroenmols) and enjoy reading the next post on [SDK modularization]({{ site.baseurl }}{% link blog/_posts/2020-11-04-library-modularization.md %})!
+Don't forget to follow me on [Mastodon](https://androiddev.social/@Jeroenmols) and enjoy reading the next post on [SDK modularization]({{< ref "056-library-modularization" >}})!
 
 Feel free to leave a comment below!

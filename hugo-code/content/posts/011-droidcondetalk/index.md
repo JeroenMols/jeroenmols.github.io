@@ -46,4 +46,4 @@ A fully working sample project with all principles is available [on Github](http
 
 
 ## Audience
-[![Quite some people interested in my talk]({{ site.url }}{{ site.baseurl }}/img/blog/droidconde16talk/audience.jpg){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/droidconde16talk/audience.jpg)
+![Quite some people interested in my talk](audience.jpg)

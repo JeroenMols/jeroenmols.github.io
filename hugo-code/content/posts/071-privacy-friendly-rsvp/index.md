@@ -67,11 +67,11 @@ Guests decide what, when and whether to send. All without having to provide any 
 
 Let's build a slightly more attractive looking RSVP page:
 
-[![Privacy friendly RSVP desktop]({{ site.url }}{{ site.baseurl }}/img/blog/privacy-friendly-rsvp/desktop.jpg){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/privacy-friendly-rsvp/desktop.jpg)
+![Privacy friendly RSVP desktop](desktop.jpg)
 
 That looks on mobile like:
 
-[![Privacy friendly RSVP mobile]({{ site.url }}{{ site.baseurl }}/img/blog/privacy-friendly-rsvp/mobile.jpg){: .align-center}]({{ site.url }}{{ site.baseurl }}/img/blog/privacy-friendly-rsvp/mobile.jpg)
+![Privacy friendly RSVP mobile](mobile.jpg)
 
 This can be achieved by starting from the following HTML:
 
@@ -214,7 +214,12 @@ Party on! 🎉
 
 ## Wrap up
 
-<p style="color: #646769; background: #f2f3f3; padding: 20px;">This site is 100% tracker free, :heart: for liking my post on <a href="https://androiddev.social/@Jeroenmols/110101372976132453">Mastodon</a> or <a href="https://www.linkedin.com/posts/jeroenmols_a-privacy-friendly-rsvp-for-events-activity-7046488707721289728-VGDJ">Linkedin</a> to let me know you've read this.</p>
+{{< alert icon="code" >}}
+  {{< notrackers 
+    mastodon="110101372976132453" 
+    linkedin="jeroenmols_a-privacy-friendly-rsvp-for-events-activity-7046488707721289728-VGDJ" 
+    >}}
+{{< /alert >}}
 
 You don't have to sacrifice privacy for convenience when it comes to event planning. A simple HTML website with a button to send an email is a privacy-friendly RSVP alternative!
 

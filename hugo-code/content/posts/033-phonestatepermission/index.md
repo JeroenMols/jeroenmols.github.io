@@ -22,16 +22,16 @@ Sprint comes to an end and we're happy to deliver a new release of our app. Afte
 
 While everything looks fine at first, after a while we see users complaining:
 
-![Users complaining: Why does this app want to know if I'm in a phone call and who I'm calling?]({{ site.url }}{{ site.baseurl }}/img/blog/phonestatepermission/userreview.png){: .align-center}
+![Users complaining: Why does this app want to know if I'm in a phone call and who I'm calling?](userreview.png)
 
 Honestly we were completely taken aback by this... But sure enough looking at the play store:
 
-![Google play store permissions]({{ site.url }}{{ site.baseurl }}/img/blog/phonestatepermission/permissionsoverview.png){: .align-center}
+![Google play store permissions](permissionsoverview.png)
 
 ## Root cause
 If you ever run into a similar issue, the Android Studio merged manifest view is the way to go. Just open your manifest and click the `Merged manifest` tab at the bottom.
 
-![Google play store permissions]({{ site.url }}{{ site.baseurl }}/img/blog/phonestatepermission/mergedmanifest.png){: .align-center }
+![Google play store permissions](mergedmanifest.png)
 
 Sure enough, the `READ_PHONE_STATE` permission is there.
 
@@ -68,7 +68,7 @@ And because we didn't explicitly set the targetSdk, a targetSdk of 1 is assumed 
 
 To be fair, the documentation does warn you about this:
 
-![Google play store permissions]({{ site.url }}{{ site.baseurl }}/img/blog/phonestatepermission/permissiondisclaimer.png){: .align-center}
+![Google play store permissions](permissiondisclaimer.png)
 
 But still... wow!
 

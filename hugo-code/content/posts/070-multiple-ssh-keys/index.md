@@ -42,6 +42,11 @@ I'm explicitly defining each host, but you could also assign a SSH key to all re
 
 That's it!
 
-<p style="color: #646769; background: #f2f3f3; padding: 20px;">This site is 100% tracker free, :heart: for liking my post on <a href="https://androiddev.social/@Jeroenmols/109819480309091738">Mastodon</a> or <a href="https://www.linkedin.com/feed/update/urn:li:share:7028447120189726720/">Linkedin</a> to let me know you've read this.</p>
+{{< alert icon="code" >}}
+  {{< notrackers 
+    mastodon="109819480309091738" 
+    linkedin="jeroenmols_using-multiple-ssh-keys-for-github-and-github-activity-7028447120680484864-xeNw" 
+    >}}
+{{< /alert >}}
 
 If this was helpful to you, consider [buying me a coffee](https://www.buymeacoffee.com/jeroen).

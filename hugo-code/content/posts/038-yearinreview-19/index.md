@@ -31,10 +31,10 @@ In 2018, I/we mostly invested in our family's future and:
 - Exclusively used Kotlin for every blog post and slide deck
 - Helped Pluralsight built a [Kotlin: App Fundamentals](https://app.pluralsight.com/score/skill-assessment/kotlin-app-fundamentals/intro?context=skills#/v2/landing) assessment
 
-![Garden view]({{ site.url }}{{ site.baseurl }}/img/blog/yearinreview18/christmas_tree.jpg){: .align-center}
+![Garden view](christmas_tree.jpg)
 
 Looking forward to next year, I'm planning on living more! I've bought quite a few Lego's I'd like to build, want to bring my kids to school by bike, spend more quality time with my wife and just professionally waste time on occasion. :)
 
-I'm going to try and increase my community efforts back to 2017 level and maybe experiment with some new formats, such as [my last blog post](https://jeroenmols.com/blog/2018/12/06/fixthetest/).
+I'm going to try and increase my community efforts back to 2017 level and maybe experiment with some new formats, such as [my last blog post]({{< ref "037-fixthetest" >}}).
 
 As always you can reach me on [Mastodon](https://androiddev.social/@Jeroenmols), or leave a comment below!

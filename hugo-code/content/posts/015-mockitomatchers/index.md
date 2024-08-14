@@ -20,7 +20,7 @@ This blogpost will demonstrate the power of custom Mockito matchers.
 ## Problem sketch
 Imagine a very simple example where a button in the UI sends a message to a User object that in its turn does the a WebService call.
 
-![Basic architecture of our situation to test]({{ site.url }}{{ site.baseurl }}/img/blog/mockitomatchers/architecture.png){: .align-center}
+![Basic architecture of our situation to test](architecture.png)
 
 We now want to verify that the User calls the `sendMessages()` method on the WebService with the appropriate arguments.
 

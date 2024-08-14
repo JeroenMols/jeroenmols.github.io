@@ -20,7 +20,7 @@ This blog post will detail all benefits of this change and guide you through the
 ## Problem situation
 To understand the limitations of the old Gradle plugin 2.0 build system, consider the following project with multiple layers of modules:
 
-![Base project with multiple modules]({{ site.url }}{{ site.baseurl }}/img/blog/androidstudio3/project.png){: .align-center}
+![Base project with multiple modules](project.png)
 
 Looking at the bottom most module, there are basically two different changes you could make:
 
@@ -32,20 +32,20 @@ Note: In what follows, all recompiled modules will be highlighted in red.
 ### Implementation change
 Since the external interface of the module doesn't change, Gradle will only recompile that module. All of its consuming modules will be left untouched.
 
-![Implementation change with Gradle 2.0]({{ site.url }}{{ site.baseurl }}/img/blog/androidstudio3/project_implementation.png){: .align-center}
+![Implementation change with Gradle 2.0](project_implementation.png)
 
 There is no problem in this scenario.
 
 ### ABI change
 When the external interface of a module changes however, also the modules consuming that module directly need to be recompiled.
 
-![Code change (ABI) with Gradle 2.0 compile dependencies]({{ site.url }}{{ site.baseurl }}/img/blog/androidstudio3/project_gradle_2.0_step1.png){: .align-center}
+![Code change (ABI) with Gradle 2.0 compile dependencies](project_gradle_2.0_step1.png)
 
 But those modules could be exposing parts of the bottom module directly through their own interface! So to be completely safe, they would also need to be recompiled. Same for the ones using those... and those... and...
 
 Hence Gradle would effectively need to recompile all modules.
 
-![Code change (ABI) with Gradle 2.0 compile dependencies]({{ site.url }}{{ site.baseurl }}/img/blog/androidstudio3/project_gradle_2.0_final.png){: .align-center}
+![Code change (ABI) with Gradle 2.0 compile dependencies](project_gradle_2.0_final.png)
 
 Now we do have a big problem: one code change causes all modules to be recompiled. The root cause for this is that Gradle doesn't know if you leak the interface of a module through another one or not.
 
@@ -73,11 +73,11 @@ dependencies {
 ### Migration guide
 In theory you can simply replace all `compile` dependencies with `api` dependencies, but that would still cause everything to be recompiled:
 
-![Code change (ABI) with Gradle 3.0 api dependencies]({{ site.url }}{{ site.baseurl }}/img/blog/androidstudio3/project_gradle_2.0_final.png){: .align-center}
+![Code change (ABI) with Gradle 3.0 api dependencies](project_gradle_2.0_final.png)
 
 So better approach is to replace all `compile` dependencies with `implementation` dependencies. And only where you leak a module's interface, you should use `api`. That should cause a lot less recompilation.
 
-![Code change (ABI) with Gradle 3.0 implementation dependencies]({{ site.url }}{{ site.baseurl }}/img/blog/androidstudio3/project_gradle_3.0.png){: .align-center}
+![Code change (ABI) with Gradle 3.0 implementation dependencies](project_gradle_3.0.png)
 
 Hopefully, this clarifies the ambiguity between `api` and `implementation`, as the official [migration guide](https://developer.android.com/studio/preview/features/new-android-plugin-migration.html#new_configurations) is quite cryptic.
 

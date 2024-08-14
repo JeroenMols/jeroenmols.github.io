@@ -12,19 +12,13 @@ tags:
 - software engineering
 date: '2019-03-06'
 slug: modularizationwhy
+series: ["Modularization"]
+series_order: 1
 ---
 
 Modularizing your app seems to be all the hype these days. But why should you actually care? What are the benefits for you and your team? How should a modularized app look like? And how do you start splitting your app?
 
 Part one of this blog post series will deep dive into the problems modularization solves and the unique opportunities it offers.
-
->
-This post is part of an in depth series on modularization:
-- [Part 1: Why you should care]({{ site.baseurl }}{% link blog/_posts/2019-03-06-modularizationwhy.md %})
-- [Part 2: A successful multi-module architecture]({{ site.baseurl }}{% link blog/_posts/2019-03-18-modularizationarchitecture.md %})
-- [Part 3: Real-life example]({{ site.baseurl }}{% link blog/_posts/2019-04-02-modularizationexample.md %})
-- [Part 4: How to approach]({{ site.baseurl }}{% link blog/_posts/2019-04-24-modularizationhow.md %})
-- [Part 5: Lessons learned]({{ site.baseurl }}{% link blog/_posts/2019-06-12-modularizationtips.md %})
 
 ## Why
 There is no short answer to this question, modularisation really has a lot going for it:
@@ -50,7 +44,7 @@ Both of these strategies aren't effective for single module apps as every code c
 
 With multiple modules, however, Gradle can build several modules in parallel and avoid building modules that have no code changed it already has a cached artifact for. This speeds up your incremental builds and even your clean builds if you use the [Gradle build cache](https://gradle.com/build-cache/).
 
-> Note: modules sometimes need to be recompiled even if they don't have direct code changes, but because a dependency changed. More info [here](https://jeroenmols.com/blog/2017/06/14/androidstudio3/).
+> Note: modules sometimes need to be recompiled even if they don't have direct code changes, but because a dependency changed. More info [here]({{< ref "022-androidstudio3" >}}).
 
 ### 2. Enable on demand delivery
 While you could argue that app size isn't a major concern in most western countries, the same cannot be said for all parts of the world. But no matter where your users are, saving bandwidth and on device storage is a nice thing to do.
@@ -121,4 +115,4 @@ On the other hand, modularization (if done well) can enable the payment flow to 
 ## Wrap-up
 Modularization is incredibly powerful to speed up your builds, simplify development and fundamentally scale your team. On top of that, it enables interesting use cases such as instant apps and makes it easier to experiment with new technologies.
 
-Make sure to follow me on [Mastodon](https://androiddev.social/@Jeroenmols) and learn how to architect a multi module app [by reading part 2]({{ site.baseurl }}{% link blog/_posts/2019-03-18-modularizationarchitecture.md %}).
+Make sure to follow me on [Mastodon](https://androiddev.social/@Jeroenmols) and learn how to architect a multi module app [by reading part 2]({{< ref "042-modularizationarchitecture" >}}).

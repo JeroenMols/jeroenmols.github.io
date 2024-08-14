@@ -43,7 +43,7 @@ My todo list:
   * Migrate to Firebase analytics, that now supports [custom parameters for events](https://support.google.com/firebase/answer/7397304)
   * Replace crash reporting with Crashlytics (finally). That will become the default Firebase crash reporting since [Google acquired Fabric](https://fabric.io/blog/fabric-joins-google).
   * Integrate [Firebase performance monitoring](https://firebase.google.com/docs/perf-mon/) to automatically measures app performance. This gives you detailed statistics about startup, requests times,... and allows you to filter those by country, devices, versions,... all with zero effort!
-  ![Firebase performance monitoring]({{ site.url }}{{ site.baseurl }}/img/blog/googleio17/firebase_performance.png){: .align-center}
+  ![Firebase performance monitoring](firebase_performance.png)
 * Look into [Android vitals](https://developer.android.com/topic/performance/vitals/index.html), a developer console feature to monitory overall app stability and performance.
 
 Recommended videos:
