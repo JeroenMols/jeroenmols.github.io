@@ -1,10 +1,6 @@
 ---
 title: Using VPN during MDNS server development
 published: true
-header:
-  teaser: img/blog/vpn-development/cover.jpeg
-  imgcredit: Photo by Dan NelsoUnsplash, https://unsplash.com/photos/ah-HeguOe9k,
-    cropped and resized
 tags:
 - vpn
 - fullstack
@@ -12,6 +8,8 @@ tags:
 - server
 date: '2023-07-24'
 slug: vpn-development
+featureimagecaption: Photo by Dan NelsoUnsplash, https://unsplash.com/photos/ah-HeguOe9k,
+  cropped and resized
 ---
 
 

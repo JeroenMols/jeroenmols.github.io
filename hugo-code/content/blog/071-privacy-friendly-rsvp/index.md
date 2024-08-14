@@ -1,10 +1,6 @@
 ---
 title: A privacy friendly RSVP for events
 published: true
-header:
-  teaser: img/blog/privacy-friendly-rsvp/privacy-friendly-rsvp.jpg
-  imgcredit: Photo by Nik from Unsplash, https://unsplash.com/photos/5dgHxsvJ170,
-    cropped and resized
 tags:
 - privacy
 - html
@@ -12,6 +8,8 @@ tags:
 - rsvp
 date: '2023-03-28'
 slug: privacy-friendly-rsvp
+featureimagecaption: Photo by Nik from Unsplash, https://unsplash.com/photos/5dgHxsvJ170,
+  cropped and resized
 ---
 
 

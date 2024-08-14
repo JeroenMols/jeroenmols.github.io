@@ -1,16 +1,14 @@
 ---
 title: The career opportunity called Kotlin
 published: true
-header:
-  teaser: img/blog/kotlinopportunity/kotlinopportunity.png
-  imgcredit: Official Kotlin logo by Jetbrains, https://kotlinlang.org/assets/images/open-graph/kotlin_250x250.png,
-    placed on grey background with drop shadow
 tags:
 - android
 - kotlin
 - career
 date: '2017-09-13'
 slug: kotlinopportunity
+featureimagecaption: Official Kotlin logo by Jetbrains, https://kotlinlang.org/assets/images/open-graph/kotlin_250x250.png,
+  placed on grey background with drop shadow
 ---
 
 This isn't another post about the benefits of using Kotlin. Hell, I'm not even going to cover any of its language features. Nor will I try to convince you to make the switch.

@@ -1,10 +1,6 @@
 ---
 title: Feature Flags - Why you should care
 published: true
-header:
-  teaser: img/blog/featureflags/featureflags.jpg
-  imgcredit: Photo by Gabriel on Unsplash, https://unsplash.com/photos/iynyPZ8shPk,
-    cropped
 tags:
 - android
 - firebase
@@ -15,6 +11,8 @@ date: '2019-08-13'
 slug: featureflags
 series: ["Feature flags"]
 series_order: 1
+featureimagecaption: Photo by Gabriel on Unsplash, https://unsplash.com/photos/iynyPZ8shPk,
+  cropped
 ---
 
 A key ingredient to speed up modern software development is feature flags. But what is a feature flag precisely? Why should you care about them? How do you integrate them into your codebase? And how can we make them easy to use?

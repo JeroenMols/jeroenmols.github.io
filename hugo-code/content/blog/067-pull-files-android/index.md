@@ -1,10 +1,6 @@
 ---
 title: Transfer many large files from Android
 published: true
-header:
-  teaser: img/blog/pull-files-android/pull-files-android.jpg
-  imgcredit: Photo by NegativeSpace, https://negativespace.co/white-android-mobile-device-macbook/,
-    resized and cropped
 tags:
 - android
 - adb
@@ -12,6 +8,8 @@ tags:
 - files
 date: '2022-12-17'
 slug: pull-files-android
+featureimagecaption: Photo by NegativeSpace, https://negativespace.co/white-android-mobile-device-macbook/,
+  resized and cropped
 ---
 
 Trying to get a large number of files from your Android phone, but Android File Transfer freezing up?

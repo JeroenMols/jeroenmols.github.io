@@ -1,16 +1,14 @@
 ---
 title: A little Kotlin puzzler
 published: true
-header:
-  teaser: img/blog/kotlinpuzzler/kotlinpuzzler.jpg
-  imgcredit: Photo by Ryoji Iwata on Unsplash, https://unsplash.com/photos/5siQcvSxCP8,
-    cropped and added Kotlin logo
 tags:
 - kotlin
 - lambda
 - puzzle
 date: '2018-09-25'
 slug: kotlinpuzzler
+featureimagecaption: Photo by Ryoji Iwata on Unsplash, https://unsplash.com/photos/5siQcvSxCP8,
+  cropped and added Kotlin logo
 ---
 
 Kotlin is an incredibly enjoyable, concise and powerful programming language. Yet sometimes also a bit confusing...

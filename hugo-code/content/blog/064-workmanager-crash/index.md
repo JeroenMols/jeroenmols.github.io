@@ -1,15 +1,13 @@
 ---
 title: The curious case of crashing Workers
 published: true
-header:
-  teaser: img/blog/workmanager-crash/workmanager-crash.jpg
-  imgcredit: Photo by Markus Spiske from Unsplash, https://unsplash.com/photos/8CWoXxaqGrs,
-    cropped and resized
 tags:
 - workmanager
 - crash
 date: '2022-04-27'
 slug: workmanager-crash
+featureimagecaption: Photo by Markus Spiske from Unsplash, https://unsplash.com/photos/8CWoXxaqGrs,
+  cropped and resized
 ---
 
 WorkManager is great to schedule background work on Android. However, since scheduled work lives outside of the app lifecycle, you might run into unexpected crashes.

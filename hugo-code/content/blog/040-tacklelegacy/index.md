@@ -1,16 +1,14 @@
 ---
 title: Five tips to get your code base in shape
 published: true
-header:
-  teaser: img/blog/tacklelegacy/tacklelegacy.jpg
-  imgcredit: Photo by The Creative Exchange on Unsplash, https://unsplash.com/photos/LEWYF8C5KIM,
-    cropped
 tags:
 - refactoring
 - architecture
 - software engineering
 date: '2019-02-20'
 slug: tacklelegacy
+featureimagecaption: Photo by The Creative Exchange on Unsplash, https://unsplash.com/photos/LEWYF8C5KIM,
+  cropped
 ---
 
 Are you living the dream? Is your code so clean it makes your eyes just tear a little? Can't think of anything you would still like to refactor? Never have any bugs? Using all the latest technologies?

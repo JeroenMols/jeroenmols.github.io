@@ -1,13 +1,11 @@
 ---
 title: Year in review 2017
 published: true
-header:
-  teaser: img/blog/yearinreview17/yearinreview17.jpg
-  imgcredit: Jeroen Mols
 tags:
 - review
 date: '2018-01-01'
 slug: yearinreview
+featureimagecaption: Jeroen Mols
 ---
 
 For the first time ever I have my `year in review` ready in time.

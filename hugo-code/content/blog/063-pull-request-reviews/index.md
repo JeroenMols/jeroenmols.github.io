@@ -1,10 +1,6 @@
 ---
 title: No, your pull request does not need a review
 published: true
-header:
-  teaser: img/blog/pullrequestreview/pullrequestreview.jpeg
-  imgcredit: Photo by Markus Winkler from Unsplash, https://unsplash.com/photos/-fRAIQHKcc0,
-    cropped and resized
 tags:
 - pull request
 - code review
@@ -12,6 +8,8 @@ tags:
 - team
 date: '2022-02-23'
 slug: pull-request-reviews
+featureimagecaption: Photo by Markus Winkler from Unsplash, https://unsplash.com/photos/-fRAIQHKcc0,
+  cropped and resized
 ---
 
 In the past years, my thoughts on pull request reviews have evolved considerably. Given that creating and reviewing pull requests are a core part of our work, let's talk about those.

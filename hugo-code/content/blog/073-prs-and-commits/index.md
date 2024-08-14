@@ -1,16 +1,14 @@
 ---
 title: Gaming the pull request review system
 published: true
-header:
-  teaser: img/blog/prs-and-commits/cover.jpg
-  imgcredit: Photo by Alexey Savchenko on Unsplash, https://unsplash.com/photos/k4Akpt5-Sfk,
-    cropped and resized
 tags:
 - pullrequest
 - commit
 - engineering
 date: '2023-06-26'
 slug: prs-and-commits
+featureimagecaption: Photo by Alexey Savchenko on Unsplash, https://unsplash.com/photos/k4Akpt5-Sfk,
+  cropped and resized
 ---
 
 

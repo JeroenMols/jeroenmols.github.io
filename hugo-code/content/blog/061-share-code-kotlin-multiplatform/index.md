@@ -1,10 +1,6 @@
 ---
 title: Share code between Android and Jvm in Kotlin multiplatform
 published: true
-header:
-  teaser: img/blog/sharecodemultiplatform/sharecodemultiplatform.jpg
-  imgcredit: Photo by Nathan Dumlao on Unsplash, https://unsplash.com/photos/8V_ehc1Kva0,
-    cropped and resized
 tags:
 - android
 - kotlin
@@ -13,6 +9,8 @@ tags:
 - gradle
 date: '2021-03-17'
 slug: share-code-kotlin-multiplatform
+featureimagecaption: Photo by Nathan Dumlao on Unsplash, https://unsplash.com/photos/8V_ehc1Kva0,
+  cropped and resized
 ---
 
 While Android supports most Java language features, it doesn't support every API that Java provides. On the other hand, Kotlin multiplatform only allows sharing code across all targets (commonMain), not a subset of targets (commonJvm).

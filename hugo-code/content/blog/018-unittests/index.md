@@ -1,15 +1,13 @@
 ---
 title: Write awesome unit tests
 published: true
-header:
-  teaser: img/blog/unittests/unittests.png
-  imgcredit: Alberto G., https://creativecommons.org/licenses/by/2.0/, cropped
 tags:
 - android
 - testing
 - cleancode
 date: '2017-02-16'
 slug: unittests
+featureimagecaption: Alberto G., https://creativecommons.org/licenses/by/2.0/, cropped
 ---
 
 If you can code, you can also write unit tests. Writing awesome tests on the other hand is a different story. Don't fool yourself: Unit testing code is production code that you will need to maintain, refactor and build upon for years to come.

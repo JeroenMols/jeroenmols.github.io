@@ -1,13 +1,11 @@
 ---
 title: Year in review 2015
 published: true
-header:
-  teaser: img/blog/yearinreview15/yearinreview15.png
-  imgcredit: Screenshot of Droidcon France video, https://www.youtube.com/watch?v=chlEInu88vw&t=19s
 tags:
 - review
 date: '2016-01-29'
 slug: yearinreview
+featureimagecaption: Screenshot of Droidcon France video, https://www.youtube.com/watch?v=chlEInu88vw&t=19s
 ---
 
 Finally found the time to write my `year in review`. #insomnia

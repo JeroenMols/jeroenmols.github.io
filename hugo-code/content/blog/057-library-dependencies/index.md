@@ -1,10 +1,6 @@
 ---
 title: Android library development - Dependencies
 published: true
-header:
-  teaser: img/blog/librarydependencies/librarydependencies.jpg
-  imgcredit: Photo by Joey Kyber from Pexels, https://www.pexels.com/photo/sea-nature-sunset-water-119562/,
-    cropped and resized
 tags:
 - android
 - library
@@ -16,6 +12,8 @@ date: '2020-11-11'
 slug: library-dependencies
 series: ["Android library development"]
 series_order: 3
+featureimagecaption: Photo by Joey Kyber from Pexels, https://www.pexels.com/photo/sea-nature-sunset-water-119562/,
+  cropped and resized
 ---
 
 Ever had a build failure while integrating an SDK? Wonder how you can avoid your SDK customers having dependency conflicts? How many transitive dependencies should your SDK have?

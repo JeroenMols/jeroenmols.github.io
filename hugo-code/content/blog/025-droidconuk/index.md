@@ -1,17 +1,15 @@
 ---
 title: Droidcon UK slides
 published: true
-header:
-  teaser: img/blog/droidconuk17/droidconuk.png
-  imgcredit: Droidcon UK logo combined with the union jack, http://uk.droidcon.com/
-    and https://pixabay.com/en/union-jack-british-flag-uk-english-1027898/, merged
-    together and cropped
 tags:
 - android
 - conference
 - droidconuk
 date: '2017-10-27'
 slug: droidconuk
+featureimagecaption: Droidcon UK logo combined with the union jack, http://uk.droidcon.com/
+  and https://pixabay.com/en/union-jack-british-flag-uk-english-1027898/, merged together
+  and cropped
 ---
 
 Had a blast visiting Droidcon UK this year and wanted to do a quick post to link to all of it's wonderful content.

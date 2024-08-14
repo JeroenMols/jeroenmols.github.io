@@ -1,10 +1,6 @@
 ---
 title: Android library development - Getting started
 published: true
-header:
-  teaser: img/blog/librarygettingstarted/librarygettingstarted.jpg
-  imgcredit: Photo by mentatdgt from Pexels, https://www.pexels.com/photo/library-photo-1319854/,
-    cropped and resized
 tags:
 - android
 - library
@@ -15,6 +11,8 @@ date: '2020-10-28'
 slug: library-gettingstarted
 series: ["Android library development"]
 series_order: 1
+featureimagecaption: Photo by mentatdgt from Pexels, https://www.pexels.com/photo/library-photo-1319854/,
+  cropped and resized
 ---
 
 Having switched to Android SDK development over the past year, I've run into quite a few interesting and unexpected challenges. So how does library development differ from app development?

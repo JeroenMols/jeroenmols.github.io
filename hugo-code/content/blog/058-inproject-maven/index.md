@@ -1,10 +1,6 @@
 ---
 title: Test library releases using an in project Maven repository
 published: true
-header:
-  teaser: img/blog/inprojectmaven/inprojectmaven.jpg
-  imgcredit: Photo by Andy Makely on Unsplash, https://unsplash.com/photos/0cn3wuj6Cmw,
-    cropped and resized
 tags:
 - android
 - library
@@ -14,6 +10,8 @@ tags:
 - kotlin
 date: '2020-12-02'
 slug: inproject-maven
+featureimagecaption: Photo by Andy Makely on Unsplash, https://unsplash.com/photos/0cn3wuj6Cmw,
+  cropped and resized
 ---
 
 Short, powerful post on how to test the release version of libraries directly within a project without having to deploy them to Maven first.

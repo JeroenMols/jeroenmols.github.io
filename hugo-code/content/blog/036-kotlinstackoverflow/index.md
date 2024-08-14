@@ -1,16 +1,14 @@
 ---
 title: Kotlin Stackoverflow error
 published: true
-header:
-  teaser: img/blog/kotlinstackoverflow/kotlin_stackoverflow.jpg
-  imgcredit: Photo by Olav Ahrens Røtne on Unsplash, https://unsplash.com/photos/MAEbdaFe4ps,
-    cropped and added Kotlin logo
 tags:
 - kotlin
 - stackoverflow
 - puzzle
 date: '2018-11-01'
 slug: kotlinstackoverflow
+featureimagecaption: Photo by Olav Ahrens Røtne on Unsplash, https://unsplash.com/photos/MAEbdaFe4ps,
+  cropped and added Kotlin logo
 ---
 
 Java interop is one of the best features of the Kotlin language, yet sometimes this also can cause unforeseen issues...

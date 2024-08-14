@@ -1,10 +1,6 @@
 ---
 title: Pro Android Studio - Code navigation
 published: true
-header:
-  teaser: img/blog/androidstudioshortcuts/androidstudioshortcuts.jpg
-  imgcredit: Photo by Manki Kim on Unsplash, https://unsplash.com/photos/BtHjHxh-D7I,
-    cropped
 tags:
 - androidstudio
 - tools
@@ -13,6 +9,8 @@ date: '2018-02-22'
 slug: androidstudioshortcuts
 series: ["Android Studio shortcuts"]
 series_order: 1
+featureimagecaption: Photo by Manki Kim on Unsplash, https://unsplash.com/photos/BtHjHxh-D7I,
+  cropped
 ---
 
 Struggling to navigate your code? Getting lost in deep inheritance hierarchies? Hard time figuring out relations between classes? Let's learn how to navigate code in Android Studio like a pro.

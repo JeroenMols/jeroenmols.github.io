@@ -1,15 +1,13 @@
 ---
 title: Git as a secure private Maven repository
 published: true
-header:
-  teaser: img/blog/wagongit/wagongit.png
-  imgcredit: Screenshot by Jeroen Mols
 tags:
 - android
 - maven
 - bitbucket
 date: '2016-02-05'
 slug: wagongit
+featureimagecaption: Screenshot by Jeroen Mols
 ---
 
 As my previous blogposts already covered how to set up a private Maven repository, you might wonder "Why again a Maven blogpost?". Well that's a fair question and the answer is twofold:

@@ -1,10 +1,6 @@
 ---
 title: Pro Android Studio - Taming the interface
 published: true
-header:
-  teaser: img/blog/androidstudioshortcuts3/androidstudioshortcuts3.jpg
-  imgcredit: Photo by Patrick Fore on Unsplash, https://unsplash.com/photos/YS_51ncQL5o,
-    cropped
 tags:
 - androidstudio
 - tools
@@ -14,6 +10,8 @@ date: '2018-07-16'
 slug: androidstudioshortcuts3
 series: ["Android Studio shortcuts"]
 series_order: 3
+featureimagecaption: Photo by Patrick Fore on Unsplash, https://unsplash.com/photos/YS_51ncQL5o,
+  cropped
 ---
 
 Not only can anything in Android Studio be controlled with a keyboard shortcut, it offers many more simple tricks to make you more productive.

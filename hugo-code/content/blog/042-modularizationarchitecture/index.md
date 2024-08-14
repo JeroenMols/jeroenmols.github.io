@@ -1,11 +1,6 @@
 ---
 title: Modularization - A successful architecture
 published: true
-header:
-  teaser: img/blog/modularizationarchitecture/modularization_architecture.jpg
-  imgcredit: Photo by Clement127 under Creative Commons license (CC BY-NC-ND 2.0),
-    https://www.flickr.com/photos/clement127/15979531229/in/photolist-qm4gV8-psTHjp-r8sByu-qyCDbr-qyeVjH-qm2TfT-rqk1Ny-qJ1gv6-pvWmo2-qXc2WN-rVaPtk-qnAGgV-qVHpxa-qfvWtQ-rmVbGE-qKCZqV-rpnk1k-qzGfAR-qtfBeD-qXGFYF-qCk82v-qEniZU-r6rPcR-rmZagg-qDxLQv-rhMC9h-rNEdMh-qvrGtY-rvNLWH-thaBRN-pKcux1-qNbfmt-s1RHzL-q8cXmp-qNkcms-r7MZrL-qM8Wk8-s8g8dp-r6rMjT-pZ5S4X-rdLsao-qfwn1E-r5QRTt-pJ7iTm-qr4XXW-rrrjvn-qNz5kX-qKeSAy-quHgFa-q7KuSE,
-    cropped
 tags:
 - modularization
 - architecture
@@ -16,6 +11,9 @@ date: '2019-03-18'
 slug: modularizationarchitecture
 series: ["Modularization"]
 series_order: 2
+featureimagecaption: Photo by Clement127 under Creative Commons license (CC BY-NC-ND
+  2.0), https://www.flickr.com/photos/clement127/15979531229/in/photolist-qm4gV8-psTHjp-r8sByu-qyCDbr-qyeVjH-qm2TfT-rqk1Ny-qJ1gv6-pvWmo2-qXc2WN-rVaPtk-qnAGgV-qVHpxa-qfvWtQ-rmVbGE-qKCZqV-rpnk1k-qzGfAR-qtfBeD-qXGFYF-qCk82v-qEniZU-r6rPcR-rmZagg-qDxLQv-rhMC9h-rNEdMh-qvrGtY-rvNLWH-thaBRN-pKcux1-qNbfmt-s1RHzL-q8cXmp-qNkcms-r7MZrL-qM8Wk8-s8g8dp-r6rMjT-pZ5S4X-rdLsao-qfwn1E-r5QRTt-pJ7iTm-qr4XXW-rrrjvn-qNz5kX-qKeSAy-quHgFa-q7KuSE,
+  cropped
 ---
 
 Now that we've established that modularization is a really good thing to strive for, how should a modularized app look like? How are the different modules connected? And how does this look for a real app?

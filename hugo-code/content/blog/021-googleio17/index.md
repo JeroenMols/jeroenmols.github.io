@@ -1,16 +1,14 @@
 ---
 title: 'My Google #io17 takeaways'
 published: true
-header:
-  teaser: img/blog/googleio17/googleio17.png
-  imgcredit: Google IO logo, https://goo.gl/photos/2SEYVcobcDepmt4PA, placed on white
-    background
 tags:
 - android
 - conference
 - googleio
 date: '2017-05-31'
 slug: googleio17
+featureimagecaption: Google IO logo, https://goo.gl/photos/2SEYVcobcDepmt4PA, placed
+  on white background
 ---
 
 Being my 2nd year at Google IO, I decided to do things differently: Besides taking notes during sessions, I also created a personal todo list. This contains all new (and even old) technologies I got triggered to look into.

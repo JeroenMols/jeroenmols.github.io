@@ -1,16 +1,14 @@
 ---
 title: The curious case of haunting fragments
 published: true
-header:
-  teaser: img/blog/fragmentback/fragmentback.jpg
-  imgcredit: Photo by Pixabay, https://www.pexels.com/photo/night-building-forest-trees-42263/,
-    cropped
 tags:
 - android
 - fragment
 - navigation
 date: '2017-12-18'
 slug: fragmentback
+featureimagecaption: Photo by Pixabay, https://www.pexels.com/photo/night-building-forest-trees-42263/,
+  cropped
 ---
 
 Do Fragment transactions and back navigation have no more secrets for you? Well then you should try to solve the mystery in this post, where a Fragment (literally) came to haunt us...

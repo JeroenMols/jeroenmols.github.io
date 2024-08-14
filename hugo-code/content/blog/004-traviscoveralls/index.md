@@ -1,10 +1,6 @@
 ---
 title: Level up GitHub builds with CI and code coverage
 published: true
-header:
-  teaser: img/blog/traviscoveralls/traviscoveralls.png
-  imgcredit: Travis logo (https://travis-ci.com) and Coveralls mascot from careers
-    page (https://coveralls.io/)
 tags:
 - android
 - tools
@@ -12,6 +8,8 @@ tags:
 - ci
 date: '2015-11-13'
 slug: traviscoveralls
+featureimagecaption: Travis logo (https://travis-ci.com) and Coveralls mascot from
+  careers page (https://coveralls.io/)
 ---
 
 

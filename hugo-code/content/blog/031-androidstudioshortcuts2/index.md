@@ -1,10 +1,6 @@
 ---
 title: Pro Android Studio - Refactoring
 published: true
-header:
-  teaser: img/blog/androidstudioshortcuts2/androidstudioshortcuts2.jpg
-  imgcredit: Photo by Ant Rozetsky on Unsplash, https://unsplash.com/photos/io7dX_1EFCg,
-    cropped
 tags:
 - androidstudio
 - tools
@@ -13,6 +9,8 @@ date: '2018-04-26'
 slug: androidstudioshortcuts2
 series: ["Android Studio shortcuts"]
 series_order: 2
+featureimagecaption: Photo by Ant Rozetsky on Unsplash, https://unsplash.com/photos/io7dX_1EFCg,
+  cropped
 ---
 
 Refactoring can be tedious and easily introduce bugs. The main reason for this is the number of manual steps involved: rename, move, copy-paste,... So wouldn't it make sense to automate this and have Android Studio do all the work for you?

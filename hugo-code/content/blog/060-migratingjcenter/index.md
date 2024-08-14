@@ -1,10 +1,6 @@
 ---
 title: Migrating away from JCenter
 published: true
-header:
-  teaser: img/blog/migratingjcenter/migratingjcenter.jpg
-  imgcredit: Photo by William Bossen from Unsplash, https://unsplash.com/photos/CeL6SfbXCx8,
-    cropped and resized
 tags:
 - android
 - library
@@ -15,6 +11,8 @@ tags:
 - gradle
 date: '2021-02-04'
 slug: migratingjcenter
+featureimagecaption: Photo by William Bossen from Unsplash, https://unsplash.com/photos/CeL6SfbXCx8,
+  cropped and resized
 ---
 
 This week JFrog - out of nowhere - announced to completely remove their Maven repository. Since they'll pull it offline already by May 2021 (!!!) it's time to urgently migrate away. This blogpost will guide how to get started.

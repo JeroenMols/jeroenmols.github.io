@@ -1,15 +1,13 @@
 ---
 title: Droidcon Berlin recap
 published: true
-header:
-  teaser: img/blog/droidconde16/droidconde.png
-  imgcredit: Droidcon Berlin logo, https://de.droidcon.com/, added background
 tags:
 - android
 - conference
 - droidcon
 date: '2016-06-18'
 slug: droidconde
+featureimagecaption: Droidcon Berlin logo, https://de.droidcon.com/, added background
 ---
 
 Having founded the entire Droidcon franchise in 2009, Droidcon Berlin is a magical conference to be at. Not only do they have an awesome lineup of speakers (including yours truly). But they also organize great after hour events. Further they're the first conference ever where I didn't have any Wi-Fi issues (looking at you #io16).

@@ -1,10 +1,6 @@
 ---
 title: Feature flags - A successful architecture
 published: true
-header:
-  teaser: img/blog/featureflagarchitecture/featureflagarchitecture.jpg
-  imgcredit: Background photo by Miguel Á. Padriñán (from Pexels), https://www.pexels.com/photo/defocused-image-of-lights-255379/,
-    cropped with app screenshot on top
 tags:
 - architecture
 - android
@@ -14,6 +10,8 @@ date: '2019-09-12'
 slug: featureflagsarchitecture
 series: ["Feature flags"]
 series_order: 3
+featureimagecaption: Background photo by Miguel Á. Padriñán (from Pexels), https://www.pexels.com/photo/defocused-image-of-lights-255379/,
+  cropped with app screenshot on top
 ---
 
 Now that we know how feature flags can help us release faster, it's time to dive into the actual implementation details. How can we easily define feature flags? How to configure them both locally as remotely? And use them in our testing?

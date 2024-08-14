@@ -1,15 +1,13 @@
 ---
 title: Removing all trackers from my website
 published: true
-header:
-  teaser: img/blog/removetrackers/cover.jpg
-  imgcredit: Screenshot of Brave browser privacy shield, resized and cropped
 tags:
 - website
 - privacy
 - trackers
 date: '2023-01-29'
 slug: remove-trackers
+featureimagecaption: Screenshot of Brave browser privacy shield, resized and cropped
 ---
 
 These past years I've grown to be more privacy-aware. And while this post isn't about how I'm increasing my personal privacy, I'd like to talk about how I'm increasing yours.

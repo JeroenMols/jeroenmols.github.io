@@ -1,10 +1,6 @@
 ---
 title: Feature Flags - How to use
 published: true
-header:
-  teaser: img/blog/featureflagshowtouse/featureflagshowtouse.jpg
-  imgcredit: Photo by SpaceX on Unsplash, https://unsplash.com/photos/OHOU-5UVIYQ,
-    cropped
 tags:
 - android
 - firebase
@@ -15,6 +11,8 @@ date: '2019-08-20'
 slug: featureflagshowtouse
 series: ["Feature flags"]
 series_order: 2
+featureimagecaption: Photo by SpaceX on Unsplash, https://unsplash.com/photos/OHOU-5UVIYQ,
+  cropped
 ---
 
 Empowered with what feature flags are and why they are useful, let's see how we can actually integrate them into an app. And how can we roll them out to our users?

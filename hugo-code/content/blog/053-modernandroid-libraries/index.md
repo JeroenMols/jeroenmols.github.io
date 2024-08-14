@@ -1,14 +1,12 @@
 ---
 title: Modern Android - Libraries
 published: false
-header:
-  teaser: img/blog/modernandroidlibraries/greenfield.jpg
-  imgcredit: Photo by FOX from Pexels, https://www.pexels.com/photo/shallow-focus-photography-of-green-grasses-during-daytime-212324/,
-    cropped and resized
 tags:
 -
 date: '2020-02-06'
 slug: modernandroid-libraries
+featureimagecaption: Photo by FOX from Pexels, https://www.pexels.com/photo/shallow-focus-photography-of-green-grasses-during-daytime-212324/,
+  cropped and resized
 ---
 
 With Kotlin becoming increasingly ubiquitous and Android architecture components getting mature, the way we built Android apps has evolved quite a bit. Having worked on a greenfield project at TransferWise recently, I'd like to share my library, architecture and other choices.

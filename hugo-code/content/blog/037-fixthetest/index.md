@@ -1,16 +1,14 @@
 ---
 title: Can you fix the test?
 published: true
-header:
-  teaser: img/blog/fixthetest/fixthetest.jpg
-  imgcredit: Photo by Daniel Cheung on Unsplash, https://unsplash.com/photos/ZqqlOZyGG7g,
-    cropped
 tags:
 - testing
 - kotlin
 - cleancode
 date: '2018-12-06'
 slug: fixthetest
+featureimagecaption: Photo by Daniel Cheung on Unsplash, https://unsplash.com/photos/ZqqlOZyGG7g,
+  cropped
 ---
 
 Learning from analyzing code is one of the greatest ways to improve your skills. Can you spot the mistakes in the tests below?

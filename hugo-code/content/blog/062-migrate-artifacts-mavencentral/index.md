@@ -1,10 +1,6 @@
 ---
 title: Migrate existing library artifacts from JCenter to Maven Central
 published: true
-header:
-  teaser: img/blog/migrateartifactsmaven/migrate_artifacts.jpg
-  imgcredit: Photo by Somya Dinkar from Pexels, https://www.pexels.com/photo/greyscale-photography-of-birds-3401967/,
-    cropped and resized
 tags:
 - script
 - migrate
@@ -13,6 +9,8 @@ tags:
 - maven
 date: '2021-03-24'
 slug: migrate-artifacts-mavencentral
+featureimagecaption: Photo by Somya Dinkar from Pexels, https://www.pexels.com/photo/greyscale-photography-of-birds-3401967/,
+  cropped and resized
 ---
 
 With JCenter shutting down, many are migrating to Maven Central. And while there are many posts on how to publish new artifacts, also all existing artifacts should be migrated away from JCenter.

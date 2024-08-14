@@ -1,10 +1,6 @@
 ---
 title: Supporting Android Q gestural navigation
 published: true
-header:
-  teaser: img/blog/androidqgestures/androidqgestures.png
-  imgcredit: Philips Hue app app screenshot, https://play.google.com/store/apps/details?id=com.philips.lighting.hue2,
-    cropped and placed on dark background
 tags:
 - ui
 - androidq
@@ -12,6 +8,8 @@ tags:
 - gestures
 date: '2019-07-17'
 slug: androidqgestures
+featureimagecaption: Philips Hue app app screenshot, https://play.google.com/store/apps/details?id=com.philips.lighting.hue2,
+  cropped and placed on dark background
 ---
 
 From Android Q onwards devices can now operate in a fully gestural system navigation mode. In that mode, there is no longer an on-screen back button, instead users can swipe from both edges to navigate back.

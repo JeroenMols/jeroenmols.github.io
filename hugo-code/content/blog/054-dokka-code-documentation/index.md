@@ -1,10 +1,6 @@
 ---
 title: Kdoc for Android libraries using Dokka
 published: true
-header:
-  teaser: img/blog/dokkacodedocumentation/kdoc.jpg
-  imgcredit: Photo by picjumbo.com from Pexels, https://www.pexels.com/photo/white-printer-paper-196645/,
-    cropped and resized
 tags:
 - documentation
 - kdoc
@@ -13,6 +9,8 @@ tags:
 - kotlin
 date: '2020-02-19'
 slug: dokka-code-documentation
+featureimagecaption: Photo by picjumbo.com from Pexels, https://www.pexels.com/photo/white-printer-paper-196645/,
+  cropped and resized
 ---
 
 A great way to make your library easier to use it to generate code documentation for its public interface. The default way to do this in Kotlin is to generate KDoc using the official Dokka plugin.

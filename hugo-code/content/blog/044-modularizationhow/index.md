@@ -1,10 +1,6 @@
 ---
 title: Modularization - How to approach
 published: true
-header:
-  teaser: img/blog/modularizationhow/modularization_how.jpg
-  imgcredit: Photo by Clement127 under Creative Commons license (CC BY-NC-ND 2.0),
-    https://www.flickr.com/photos/clement127/15004844674, cropped
 tags:
 - modularization
 - architecture
@@ -14,6 +10,8 @@ date: '2019-04-24'
 slug: modularizationhow
 series: ["Modularization"]
 series_order: 4
+featureimagecaption: Photo by Clement127 under Creative Commons license (CC BY-NC-ND
+  2.0), https://www.flickr.com/photos/clement127/15004844674, cropped
 ---
 
 Now that we have a clear idea of how a modularized app could look like how can this be applied to an existing app?

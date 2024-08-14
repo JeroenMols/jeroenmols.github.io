@@ -1,14 +1,12 @@
 ---
 title: Year in review 2016
 published: true
-header:
-  teaser: img/blog/yearinreview16/yearinreview16.png
-  imgcredit: Photo by Java User Group Belgium, https://creativecommons.org/licenses/by-nc-sa/2.0/,
-    cropped
 tags:
 - review
 date: '2017-01-09'
 slug: yearinreview
+featureimagecaption: Photo by Java User Group Belgium, https://creativecommons.org/licenses/by-nc-sa/2.0/,
+  cropped
 ---
 
 It's that time of the year again to do a little personal retrospective.

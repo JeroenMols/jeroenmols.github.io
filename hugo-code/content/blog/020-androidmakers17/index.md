@@ -1,16 +1,14 @@
 ---
 title: Android Makers FR recap
 published: true
-header:
-  teaser: img/blog/androidmakers17/androidmakers.jpg
-  imgcredit: Android Makers logo and website background, http://androidmakers.fr/,
-    merged together
 tags:
 - android
 - conference
 - androidmakers
 date: '2017-04-11'
 slug: androidmakers17
+featureimagecaption: Android Makers logo and website background, http://androidmakers.fr/,
+  merged together
 ---
 
 After organizing Droidcon Paris for several year, the organizers decided to move on and experiment with a new format. This didn't just result in a well organized conference, but also in a fresh new vibe whilst still feeling familiar.

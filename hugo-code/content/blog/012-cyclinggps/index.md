@@ -1,14 +1,12 @@
 ---
 title: Turn Android into an awesome cycling GPS
 published: true
-header:
-  teaser: img/blog/cyclinggps/cyclinggps.png
-  imgcredit: Photo by Jeroen Mols
 tags:
 - cycling
 - howto
 date: '2016-07-21'
 slug: cyclinggps
+featureimagecaption: Photo by Jeroen Mols
 ---
 
 Cycling is all about exploring: visiting new places and making existing routes more fun with better streets. So there must be an app that allows to plan your route and start cycling right? Think again... there is currently no solution that offers turn by turn navigation for cyclists.

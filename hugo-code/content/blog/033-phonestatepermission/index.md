@@ -1,10 +1,6 @@
 ---
 title: How dangerous permissions sneak into apps
 published: true
-header:
-  teaser: img/blog/phonestatepermission/phonestatepermission.jpg
-  imgcredit: Photo by Skitterphoto on Pexels, https://www.pexels.com/photo/brown-wooden-mouse-trap-with-cheese-bait-on-top-633881/,
-    cropped
 tags:
 - android
 - permissions
@@ -13,6 +9,8 @@ tags:
 - post-mortem
 date: '2018-08-02'
 slug: phonestatepermission
+featureimagecaption: Photo by Skitterphoto on Pexels, https://www.pexels.com/photo/brown-wooden-mouse-trap-with-cheese-bait-on-top-633881/,
+  cropped
 ---
 
 This is a post-mortem where the very dangerous permission, `READ_PHONE_STATE`, unintentionally sneaked into our app. Here's how this could happen, how we debugged and finally how we solved it.

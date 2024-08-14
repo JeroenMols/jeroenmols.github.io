@@ -1,16 +1,14 @@
 ---
 title: Using multiple SSH keys for Github and Github enterprise
 published: true
-header:
-  teaser: img/blog/multiple-ssh/multiple-ssh.jpg
-  imgcredit: Photo by Samantha Lam from Unsplash, https://unsplash.com/photos/zFy6fOPZEu0,
-    cropped and resized
 tags:
 - ssh
 - terminal
 - tips
 date: '2023-02-06'
 slug: multiple-ssh-keys
+featureimagecaption: Photo by Samantha Lam from Unsplash, https://unsplash.com/photos/zFy6fOPZEu0,
+  cropped and resized
 ---
 
 Looking to configure multiple SSH keys on the same computer? For instance to use a different SSH key for your public and enterprise Github contributions.

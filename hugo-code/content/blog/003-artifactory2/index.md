@@ -1,9 +1,6 @@
 ---
 title: Getting the most out of Artifactory
 published: true
-header:
-  teaser: img/blog/artifactory2/artifactory2.png
-  imgcredit: Screenshot of Artifactory start up, https://www.jfrog.com
 tags:
 - android
 - tools
@@ -11,6 +8,7 @@ tags:
 - artifactory
 date: '2015-08-13'
 slug: artifactory2
+featureimagecaption: Screenshot of Artifactory start up, https://www.jfrog.com
 ---
 
 

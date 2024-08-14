@@ -1,10 +1,6 @@
 ---
 title: Modularization - Lessons learned
 published: true
-header:
-  teaser: img/blog/modularizationtips/modularization_tips.jpg
-  imgcredit: Photo by Clement127 under Creative Commons license (CC BY-NC-ND 2.0),
-    https://www.flickr.com/photos/clement127/14095823682/in/photolist-ntAMhN, cropped
 tags:
 - modularization
 - architecture
@@ -14,6 +10,9 @@ date: '2019-06-12'
 slug: modularizationtips
 series: ["Modularization"]
 series_order: 5
+featureimagecaption: Photo by Clement127 under Creative Commons license (CC BY-NC-ND
+  2.0), https://www.flickr.com/photos/clement127/14095823682/in/photolist-ntAMhN,
+  cropped
 ---
 
 Wrapping up this series on modularization I'd like to share some of the things we've learned at Philips Hue while going through this process the past year.

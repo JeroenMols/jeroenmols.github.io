@@ -1,10 +1,6 @@
 ---
 title: Android library development - Modularization
 published: true
-header:
-  teaser: img/blog/librarymodularization/librarymodularization.jpg
-  imgcredit: Photo by cottonbro from Pexels, https://www.pexels.com/photo/blue-and-black-audio-mixer-5658528/,
-    cropped and resized
 tags:
 - android
 - library
@@ -16,6 +12,8 @@ date: '2020-11-04'
 slug: library-modularization
 series: ["Android library development"]
 series_order: 2
+featureimagecaption: Photo by cottonbro from Pexels, https://www.pexels.com/photo/blue-and-black-audio-mixer-5658528/,
+  cropped and resized
 ---
 
 With modularization being all the hype, should you also modularize an SDK? Are fat aar files really needed? And how do you prevent internal APIs from being exposed on your public interface?

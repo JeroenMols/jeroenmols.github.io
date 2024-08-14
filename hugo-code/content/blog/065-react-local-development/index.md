@@ -1,16 +1,14 @@
 ---
 title: Test React app on mobile without Wi-Fi
 published: true
-header:
-  teaser: img/blog/offline-react-phone/offline-react-phone.png
-  imgcredit: React logo and Google material icons, https://reactjs.org/ and https://fonts.google.com/icons,
-    resized and composed together
 tags:
 - react
 - offline
 - tips
 date: '2022-11-19'
 slug: react-local-development
+featureimagecaption: React logo and Google material icons, https://reactjs.org/ and
+  https://fonts.google.com/icons, resized and composed together
 ---
 
 Traveling by train or plane and want to test your react app on your mobile phone? This quick post explains how to access your react development server from your phone without a Wi-Fi connection.

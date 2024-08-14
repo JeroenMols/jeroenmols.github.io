@@ -1,13 +1,11 @@
 ---
 title: Year in review 2020
 published: true
-header:
-  teaser: img/blog/yearinreview20/yearinreview20.jpg
-  imgcredit: Jeroen Mols
 tags:
 - review
 date: '2021-01-05'
 slug: yearinreview
+featureimagecaption: Jeroen Mols
 ---
 
 Well... I don't really know where to start this time. 2020 was quite the rollercoaster, with many downs... but fortunately also a few amazing ups. Let's focus on the good stuff.

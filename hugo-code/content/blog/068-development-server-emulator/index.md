@@ -1,9 +1,6 @@
 ---
 title: Android emulator access to local server
 published: true
-header:
-  teaser: img/blog/developmentserveremulator/cover.jpg
-  imgcredit: Screenshot of Google Chrome on Android emulator, resized and cropped
 tags:
 - android
 - adb
@@ -12,6 +9,8 @@ tags:
 - server
 date: '2023-01-25'
 slug: development-server-emulator
+featureimagecaption: Screenshot of Google Chrome on Android emulator, resized and
+  cropped
 ---
 
 How can you connect your app on an Android emulator to a development server running on the localhost of your computer?

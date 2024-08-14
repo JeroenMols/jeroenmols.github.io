@@ -1,13 +1,11 @@
 ---
 title: Year in review 2018
 published: true
-header:
-  teaser: img/blog/yearinreview18/yearinreview18.jpg
-  imgcredit: Jeroen Mols
 tags:
 - review
 date: '2019-01-01'
 slug: yearinreview
+featureimagecaption: Jeroen Mols
 ---
 
 Sitting in our own couch, in our own house, kids safely asleep upstairs,... The road here was brutal, but the result is extraordinary.

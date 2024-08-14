@@ -1,15 +1,13 @@
 ---
 title: Kotlinconf 2018 slides
 published: true
-header:
-  teaser: img/blog/kotlinconf18/kotlinconf18.jpg
-  imgcredit: Jeroen Mols
 tags:
 - android
 - conference
 - kotlinconf
 date: '2018-10-05'
 slug: kotlinconf18
+featureimagecaption: Jeroen Mols
 ---
 
 Was really great visiting Kotlinconf this year and I wanted to do a quick post to link to all of it's wonderful content.

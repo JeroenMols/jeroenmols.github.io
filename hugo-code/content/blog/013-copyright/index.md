@@ -1,16 +1,14 @@
 ---
 title: Why you should care about copyright
 published: true
-header:
-  teaser: img/blog/copyright/copyright.png
-  imgcredit: Photo by Ady Satria Herzegovina, https://creativecommons.org/publicdomain/zero/1.0/,
-    cropped
 tags:
 - android
 - copyright
 - tools
 date: '2016-08-03'
 slug: copyright
+featureimagecaption: Photo by Ady Satria Herzegovina, https://creativecommons.org/publicdomain/zero/1.0/,
+  cropped
 ---
 
 As die hard Android developers, copyright notices are usually not on top of our priority list. Yet large corporations always insist to add a copyright header. Why do they do that? Should you do that for your open source libraries?

@@ -1,9 +1,6 @@
 ---
 title: Why your app should crash
 published: true
-header:
-  teaser: img/blog/appcrash/appcrash.jpg
-  imgcredit: Photo by Kenny Louie, https://creativecommons.org/licenses/by/2.0/, cropped
 tags:
 - android
 - crashes
@@ -11,6 +8,8 @@ tags:
 - cleancode
 date: '2017-03-08'
 slug: appcrash
+featureimagecaption: Photo by Kenny Louie, https://creativecommons.org/licenses/by/2.0/,
+  cropped
 ---
 
 Too many times I've seen developers trying to avoid crashes at all cost. But are unhandled exceptions really that bad? And are null checks really the answer?

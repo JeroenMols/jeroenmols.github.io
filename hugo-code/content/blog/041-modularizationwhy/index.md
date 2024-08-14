@@ -1,11 +1,6 @@
 ---
 title: Modularization - Why you should care
 published: true
-header:
-  teaser: img/blog/modularizationwhy/modularization_why.jpg
-  imgcredit: Photo by Clement127 under Creative Commons license (CC BY-NC-ND 2.0),
-    https://www.flickr.com/photos/clement127/15074072753/in/photolist-oY3yE6-pCoFVW-oY3xhX-oY3tF8-pUB3jK-zrkR2h,
-    cropped
 tags:
 - modularization
 - architecture
@@ -14,6 +9,9 @@ date: '2019-03-06'
 slug: modularizationwhy
 series: ["Modularization"]
 series_order: 1
+featureimagecaption: Photo by Clement127 under Creative Commons license (CC BY-NC-ND
+  2.0), https://www.flickr.com/photos/clement127/15074072753/in/photolist-oY3yE6-pCoFVW-oY3xhX-oY3tF8-pUB3jK-zrkR2h,
+  cropped
 ---
 
 Modularizing your app seems to be all the hype these days. But why should you actually care? What are the benefits for you and your team? How should a modularized app look like? And how do you start splitting your app?

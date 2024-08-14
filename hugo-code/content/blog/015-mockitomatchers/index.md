@@ -1,16 +1,14 @@
 ---
 title: Extending Mockito
 published: true
-header:
-  teaser: img/blog/mockitomatchers/mockitomatchers.png
-  imgcredit: Image by Andrés Nieto Porras, https://creativecommons.org/licenses/by-sa/2.0/,
-    cropped
 tags:
 - android
 - mockito
 - testing
 date: '2016-10-31'
 slug: mockitomatchers
+featureimagecaption: Image by Andrés Nieto Porras, https://creativecommons.org/licenses/by-sa/2.0/,
+  cropped
 ---
 
 Due to its clean simple api, Mockito has become world's most popular Java mocking framework. After having covered [all of its basics](https://speakerdeck.com/jeroenmols/testing-made-sweet-with-a-mockito), it's time to spice things up and start extending Mockito.

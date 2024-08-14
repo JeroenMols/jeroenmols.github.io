@@ -1,15 +1,13 @@
 ---
 title: The 100% code coverage problem
 published: true
-header:
-  teaser: img/blog/coverageproblem/coverageproblem.png
-  imgcredit: Jeroen Mols
 tags:
 - android
 - testing
 - coverage
 date: '2017-11-28'
 slug: coveragproblem
+featureimagecaption: Jeroen Mols
 ---
 
 While you may be tempted to strive for 100% code coverage, that would be a horrible idea. Besides some code being hard to test, the concept of coverage is actually fundamentally limited.

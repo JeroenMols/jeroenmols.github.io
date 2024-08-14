@@ -1,16 +1,14 @@
 ---
 title: Testing LiveData in JUnit 4 and JUnit 5
 published: true
-header:
-  teaser: img/blog/livedatajunit5/livedatajunit5.jpg
-  imgcredit: Photo by James Pond on Unsplash, https://unsplash.com/photos/HUiSySuofY0,
-    cropped
 tags:
 - testing
 - architecture
 - livedata
 date: '2019-01-17'
 slug: livedatajunit5
+featureimagecaption: Photo by James Pond on Unsplash, https://unsplash.com/photos/HUiSySuofY0,
+  cropped
 ---
 
 Architecture components are one of the most exciting things that happened to Android in the past years. But how do you effectively go about and testing this?

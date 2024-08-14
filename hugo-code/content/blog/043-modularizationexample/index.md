@@ -1,11 +1,6 @@
 ---
 title: Modularization - Real-life example
 published: true
-header:
-  teaser: img/blog/modularizationexample/modularization_example.jpg
-  imgcredit: Photo by Clement127 under Creative Commons license (CC BY-NC-ND 2.0),
-    https://www.flickr.com/photos/clement127/17010613339/in/photolist-rVaQGT-qBjW5Z-ry7dPD-qByAzj-s5oEvb-yokSUJ-qzf5v9-qN8Tej-phQkcC-FKwGRd-dMHZnB-moYnBt-dPXdoD-p8Ndb4-ecKw2f-nop7oQ-dMHZxM-dMPwef-jZxvXT-jUJ6Kc-o3tyRE-f94Z3R-n9ckSx-jzACNK-HumEe9-CgRixd-o8xYEf-9pMezK-jZA7dm-omJq7k-mfDfvt-f94XRR-mPeg6M-9pMfng-poT5Tq-p9q1tW-G2SLdi-fSBMvH-9pMgVz-neCrEQ-qN8WjC-rKnKyF-s5vywx-A8YwXk-rpXwdw-FkoJ1w-smVwYF-s619UY-s5oBgA-qQDGNi,
-    cropped
 tags:
 - modularization
 - architecture
@@ -15,6 +10,9 @@ date: '2019-04-02'
 slug: modularizationexample
 series: ["Modularization"]
 series_order: 3
+featureimagecaption: Photo by Clement127 under Creative Commons license (CC BY-NC-ND
+  2.0), https://www.flickr.com/photos/clement127/17010613339/in/photolist-rVaQGT-qBjW5Z-ry7dPD-qByAzj-s5oEvb-yokSUJ-qzf5v9-qN8Tej-phQkcC-FKwGRd-dMHZnB-moYnBt-dPXdoD-p8Ndb4-ecKw2f-nop7oQ-dMHZxM-dMPwef-jZxvXT-jUJ6Kc-o3tyRE-f94Z3R-n9ckSx-jzACNK-HumEe9-CgRixd-o8xYEf-9pMezK-jZA7dm-omJq7k-mfDfvt-f94XRR-mPeg6M-9pMfng-poT5Tq-p9q1tW-G2SLdi-fSBMvH-9pMgVz-neCrEQ-qN8WjC-rKnKyF-s5vywx-A8YwXk-rpXwdw-FkoJ1w-smVwYF-s619UY-s5oBgA-qQDGNi,
+  cropped
 ---
 
 With a clear view on how multi-module apps should be architected, let's dive into a real-life practical example.

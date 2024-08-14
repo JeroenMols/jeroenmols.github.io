@@ -1,13 +1,11 @@
 ---
 title: Year in review 2019
 published: true
-header:
-  teaser: img/blog/yearinreview19/yearinreview19.jpg
-  imgcredit: Jeroen Mols
 tags:
 - review
 date: '2020-01-09'
 slug: yearinreview
+featureimagecaption: Jeroen Mols
 ---
 
 Getting up without being rushed, cycling my kids to school, cooking healthy salads for lunch, kids running into my arms when they get home... I'm quite happy with my new daily routine!

@@ -1,10 +1,6 @@
 ---
 title: Interactive versionable architecture diagrams
 published: true
-header:
-  teaser: img/blog/interactive-architecture-diagram/cover.jpeg
-  imgcredit: Photo by Tima Miroshnichenko from pexels,  https://www.pexels.com/photo/person-people-building-desk-6615230/,
-    cropped and resized
 tags:
 - graphviz
 - architecture
@@ -12,6 +8,8 @@ tags:
 - html
 date: '2023-06-09'
 slug: interactive-architecture-diagram
+featureimagecaption: Photo by Tima Miroshnichenko from pexels,  https://www.pexels.com/photo/person-people-building-desk-6615230/,
+  cropped and resized
 ---
 
 

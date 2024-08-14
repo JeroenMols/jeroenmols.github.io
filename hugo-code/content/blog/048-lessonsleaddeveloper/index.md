@@ -1,15 +1,13 @@
 ---
 title: Lessons learned being a lead developer
 published: true
-header:
-  teaser: img/blog/lessonsleaddeveloper/lessonsleaddeveloper.jpg
-  imgcredit: Photo by Signify, https://signify.com/, cropped
 tags:
 - team lead
 - software engineering
 - lessonslearned
 date: '2019-08-06'
 slug: lessonsleaddeveloper
+featureimagecaption: Photo by Signify, https://signify.com/, cropped
 ---
 
 Three years ago, we decided ramp up internal app development at Philips Hue. After interviewing candidates (78!) for six months, I became the lead Android developer of the freshly hired Android team.

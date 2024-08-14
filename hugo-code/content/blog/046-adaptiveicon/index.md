@@ -1,15 +1,13 @@
 ---
 title: Philips Hue adaptive icon
 published: true
-header:
-  teaser: img/blog/adaptiveicon/adaptive_icon.png
-  imgcredit: Philips Hue app icon, http://signify.com/, placed on dark background
 tags:
 - ui
 - android
 - adaptive icon
 date: '2019-07-03'
 slug: adaptiveicon
+featureimagecaption: Philips Hue app icon, http://signify.com/, placed on dark background
 ---
 
 Your icon is one of the most important assets in your app. With a bit of luck, users might even put it on their main launcher screen!

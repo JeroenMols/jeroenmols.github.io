@@ -1,17 +1,15 @@
 ---
 title: Verify Github profile link on Mastodon
 published: true
-header:
-  teaser: img/blog/mastodonverifygithub/mastodon-verify-github.png
-  imgcredit: Mastodon logo and screenshot of Mastodon Androiddev.social instance,
-    https://commons.wikimedia.org/wiki/File:Mastodon_logotype_%28simple%29_new_hue.svg
-    and androiddev.social, resized, cropped and composed together
 tags:
 - mastodon
 - github
 - tips
 date: '2022-11-26'
 slug: mastodon-verify-github
+featureimagecaption: Mastodon logo and screenshot of Mastodon Androiddev.social instance,
+  https://commons.wikimedia.org/wiki/File:Mastodon_logotype_%28simple%29_new_hue.svg
+  and androiddev.social, resized, cropped and composed together
 ---
 
 Looking to get a fancy verified checkmark on Mastodon for your Github account?
