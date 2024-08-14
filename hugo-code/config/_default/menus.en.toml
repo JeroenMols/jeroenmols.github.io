@@ -12,7 +12,7 @@
 
 [[main]]
   name = "Blog"
-  pageRef = "posts"
+  pageRef = "blog"
   pre = "edit" # pencil
   weight = 10
 
