@@ -10,6 +10,11 @@
 {{ $featured = resources.GetRemote $url }}
 {{ end }}
 
+{{ $caption := "test" }}
+{{ if .Params.featureimagecaption }}
+{{- $caption = .Params.featureimagecaption -}}
+{{ end }}
+
 {{- if not $featured }}
  {{ with .Site.Params.defaultBackgroundImage }}
   {{ if or (strings.HasPrefix . "http:") (strings.HasPrefix . "https:") }}
@@ -32,7 +37,7 @@
 {{- with $featured -}}
 
 {{ if $shouldAddHeaderSpace | default true}}
-<div id="hero" class="h-[150px] md:h-[200px]"></div>
+<div id="hero" class="h-[150px] md:h-[200px]" title="{{ $caption }}"></div>
 {{ end }}
 
 {{ if or $disableImageOptimization (strings.HasSuffix $featured ".svg")}}
