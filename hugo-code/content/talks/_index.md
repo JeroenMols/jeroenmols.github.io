@@ -1,5 +1,8 @@
+---
+layout: simple
+sharingLinks: false
+---
 # Talks
-
 I'm always eager to share my technical knowledge with fellow developers. Don't hesitate to <a href="https://twitter.com/molsjeroen" target="blank">contact me on Twitter</a> if you would like me to speak at your event!
 
 ### Upcoming talks:

@@ -22,11 +22,11 @@
   pre = "comment"
   weight = 20
 
-#[[main]]
-#  name = "Hire"
-#  pageRef = "hire"
-#  pre = "code"
-#  weight = 30
+[[main]]
+  name = "Hire"
+  pageRef = "hire"
+  pre = "code"
+  weight = 30
 
 #[[main]]
 #  name = "example sub-menu 2"
