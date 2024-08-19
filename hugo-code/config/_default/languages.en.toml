@@ -19,8 +19,7 @@ title = "Jeroen Mols"
   image = "img/profile_image.jpg"
   imageQuality = 96
   headline = "Software engineer, strong communicator and problem solver"
-  # TODO update bio
-  bio = "Jeroen Mols is a Google Developer Expert (GDE) in Android, the former lead Android developer at Philips Hue and an internationally recognized speaker. With a passion for complex systems and highly technical apps, Jeroen has helped realize four connected products and over 15 Android applications. Experienced in leading large teams, he can step beyond his developer role and provide technical leadership to others. He continuously challenges the status quo and mentors people surrounding him to grow. Shipping apps to millions of users, Jeroen has a thorough understanding of both the Android framework and how maintainable software should be crafted."
+  bio = "Jeroen Mols is a Google Developer Expert (GDE) in Android, the former lead Android developer at Philips Hue and an internationally recognized speaker. He is currently pushing his boundaries as a full stack developer at Plaid."
   links = [
     { email = "mailto:info@jeroenmols.com" },
     { github = "https://github.com/jeroenmols" },
