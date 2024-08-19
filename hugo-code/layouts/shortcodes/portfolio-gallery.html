@@ -37,8 +37,14 @@
     .gallery-item img:hover {
       transform: scale(1.05);
     }
-  
+
     @media (min-width: 600px) {
+      .gallery-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  
+    @media (min-width: 800px) {
       .gallery-container {
         grid-template-columns: repeat(3, 1fr);
       }
