@@ -1,8 +1,13 @@
 ---
-layout: simple
+layout: single
+title: Hire me
 sharingLinks: false
+showAuthor: false
+showAuthorBottom: false
+showDate: false
+showReadingTime: false
+showTableOfContents: false
 ---
-# Hire me
 Jeroen Mols is a Google Developer Expert (GDE) in Android, the former lead Android developer at Philips Hue and an internationally recognized speaker. With a passion for complex systems and highly technical apps, Jeroen has helped realize four connected products and over 15 Android applications. 
 
 Experienced in leading large teams, he can step beyond his developer role and provide technical leadership to others. He continuously challenges the status quo and mentors people surrounding him to grow. Shipping apps to millions of users, Jeroen has a thorough understanding of both the Android framework and how maintainable software should be crafted.
