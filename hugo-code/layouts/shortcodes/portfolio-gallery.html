@@ -2,7 +2,7 @@
     {{ $images := split (.Get "images") "," }}
     {{ range $index, $image := $images }}
       <div class="gallery-item">
-        <img src="{{ $image }}" alt="Gallery Image {{ $index }}" loading="lazy" onclick="openLightbox('{{ $image }}', this)" width="1024" height="724">
+        <img src="{{ $image }}" alt="Gallery Image {{ $index }}" loading="lazy" onclick="openLightbox('{{ $image }}', this)">
       </div>
     {{ end }}
   </div>
