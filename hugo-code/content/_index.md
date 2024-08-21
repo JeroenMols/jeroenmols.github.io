@@ -1,6 +1,2 @@
 <div style="height: 50px"></div>
 {{< portfolio-gallery images="images/Cognito_poster.jpg,images/Plaid_poster.jpg,images/Transferwise_poster.jpg,images/PhilipsHue3_poster.jpg,images/PhilipsHue2_poster.jpg,images/RemgeldFacturatie_poster.jpg,images/Demeyere_poster.jpg,images/Brickeffect_poster.jpg,images/Nieuwsblad_poster.jpg,images/LandscapeVideoCamera_poster.jpg,images/SaecoAvanti_poster.jpg,images/HuePos_poster.jpg,images/SmartAir_poster.jpg,images/eventapp_poster.jpg,images/Tomorrowland_poster.jpg,images/Eurosprinters_poster.jpg,images/AirStudio_poster.jpg,images/WiFileTransfer_poster.jpg,images/Videodagboek_onepager.jpg" >}}
-
-
-
-
