@@ -23,8 +23,8 @@
   weight = 20
 
 [[main]]
-  name = "Hire"
-  pageRef = "hire"
+  name = "About"
+  pageRef = "about"
   pre = "code"
   weight = 30
 

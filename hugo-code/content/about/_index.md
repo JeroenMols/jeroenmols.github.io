@@ -1,6 +1,6 @@
 ---
 layout: single
-title: Hire me
+title: About
 sharingLinks: false
 showAuthor: false
 showAuthorBottom: false
