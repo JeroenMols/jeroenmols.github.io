@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Software Engineering on Jeroen Mols</title>
+    <link>https://jeroenmols.com/tags/software-engineering/</link>
+    <description>Recent content in Software Engineering on Jeroen Mols</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>info@jeroenmols.com (Jeroen Mols)</managingEditor>
+    <webMaster>info@jeroenmols.com (Jeroen Mols)</webMaster>
+    <copyright>© 2024 Jeroen Mols</copyright>
+    <lastBuildDate>Tue, 20 Aug 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://jeroenmols.com/tags/software-engineering/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Feature Flags - How to use</title>
+      <link>https://jeroenmols.com/blog/2019/08/20/featureflagshowtouse/</link>
+      <pubDate>Tue, 20 Aug 2019 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2019/08/20/featureflagshowtouse/</guid>
+      <description>Empowered with what feature flags are and why they are useful, let&amp;rsquo;s see how we can actually integrate them into an app. And how can we roll them out to our users?</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2019/08/20/featureflagshowtouse/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Feature Flags - Why you should care</title>
+      <link>https://jeroenmols.com/blog/2019/08/13/featureflags/</link>
+      <pubDate>Tue, 13 Aug 2019 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2019/08/13/featureflags/</guid>
+      <description>A key ingredient to speed up modern software development is feature flags. But what is a feature flag precisely? Why should you care about them? How do you integrate them into your codebase?</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2019/08/13/featureflags/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Lessons learned being a lead developer</title>
+      <link>https://jeroenmols.com/blog/2019/08/06/lessonsleaddeveloper/</link>
+      <pubDate>Tue, 06 Aug 2019 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2019/08/06/lessonsleaddeveloper/</guid>
+      <description>Three years ago, we decided ramp up internal app development at Philips Hue. After interviewing candidates (78!) for six months, I became the lead Android developer of the freshly hired Android team.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2019/08/06/lessonsleaddeveloper/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Modularization - Lessons learned</title>
+      <link>https://jeroenmols.com/blog/2019/06/12/modularizationtips/</link>
+      <pubDate>Wed, 12 Jun 2019 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2019/06/12/modularizationtips/</guid>
+      <description>Wrapping up this series on modularization I&amp;rsquo;d like to share some of the things we&amp;rsquo;ve learned at Philips Hue while going through this process the past year.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2019/06/12/modularizationtips/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Modularization - How to approach</title>
+      <link>https://jeroenmols.com/blog/2019/04/24/modularizationhow/</link>
+      <pubDate>Wed, 24 Apr 2019 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2019/04/24/modularizationhow/</guid>
+      <description>Now that we have a clear idea of how a modularized app could look like how can this be applied to an existing app?
+Part four will dive deeper into how existing apps can be sliced and how you can gradually migrate to a fully modularized architecture.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2019/04/24/modularizationhow/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Modularization - Real-life example</title>
+      <link>https://jeroenmols.com/blog/2019/04/02/modularizationexample/</link>
+      <pubDate>Tue, 02 Apr 2019 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2019/04/02/modularizationexample/</guid>
+      <description>With a clear view on how multi-module apps should be architected, let&amp;rsquo;s dive into a real-life practical example.
+We&amp;rsquo;ll discover how the architecture results in a clear application structure, how navigation is handled, how to use staged rollouts, how to test everything and even look at a production app that is using this architecture.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2019/04/02/modularizationexample/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Modularization - A successful architecture</title>
+      <link>https://jeroenmols.com/blog/2019/03/18/modularizationarchitecture/</link>
+      <pubDate>Mon, 18 Mar 2019 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2019/03/18/modularizationarchitecture/</guid>
+      <description>Now that we&amp;rsquo;ve established that modularization is a really good thing to strive for, how should a modularized app look like? How are the different modules connected?</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2019/03/18/modularizationarchitecture/feature_navigation.png" />
+    </item>
+    
+    <item>
+      <title>Modularization - Why you should care</title>
+      <link>https://jeroenmols.com/blog/2019/03/06/modularizationwhy/</link>
+      <pubDate>Wed, 06 Mar 2019 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2019/03/06/modularizationwhy/</guid>
+      <description>Modularizing your app seems to be all the hype these days. But why should you actually care? What are the benefits for you and your team?</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2019/03/06/modularizationwhy/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Five tips to get your code base in shape</title>
+      <link>https://jeroenmols.com/blog/2019/02/20/tacklelegacy/</link>
+      <pubDate>Wed, 20 Feb 2019 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2019/02/20/tacklelegacy/</guid>
+      <description>Are you living the dream? Is your code so clean it makes your eyes just tear a little? Can&amp;rsquo;t think of anything you would still like to refactor?</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2019/02/20/tacklelegacy/featured.jpg" />
+    </item>
+    
+  </channel>
+</rss>

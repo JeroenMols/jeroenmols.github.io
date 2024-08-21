@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Adb on Jeroen Mols</title>
+    <link>https://jeroenmols.com/tags/adb/</link>
+    <description>Recent content in Adb on Jeroen Mols</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>info@jeroenmols.com (Jeroen Mols)</managingEditor>
+    <webMaster>info@jeroenmols.com (Jeroen Mols)</webMaster>
+    <copyright>© 2024 Jeroen Mols</copyright>
+    <lastBuildDate>Wed, 25 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://jeroenmols.com/tags/adb/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Android emulator access to local server</title>
+      <link>https://jeroenmols.com/blog/2023/01/25/development-server-emulator/</link>
+      <pubDate>Wed, 25 Jan 2023 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2023/01/25/development-server-emulator/</guid>
+      <description>How can you connect your app on an Android emulator to a development server running on the localhost of your computer?
+The problem # Since Android emulators create their own virtual network, they cannot access devices on your local network.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2023/01/25/development-server-emulator/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Transfer many large files from Android</title>
+      <link>https://jeroenmols.com/blog/2022/12/17/pull-files-android/</link>
+      <pubDate>Sat, 17 Dec 2022 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2022/12/17/pull-files-android/</guid>
+      <description>Trying to get a large number of files from your Android phone, but Android File Transfer freezing up?
+Here&amp;rsquo;s what I learned trying to pull ~170 Gb from my Pixel phone.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2022/12/17/pull-files-android/featured.jpg" />
+    </item>
+    
+  </channel>
+</rss>

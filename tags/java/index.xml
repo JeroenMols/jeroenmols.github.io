@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Java on Jeroen Mols</title>
+    <link>https://jeroenmols.com/tags/java/</link>
+    <description>Recent content in Java on Jeroen Mols</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>info@jeroenmols.com (Jeroen Mols)</managingEditor>
+    <webMaster>info@jeroenmols.com (Jeroen Mols)</webMaster>
+    <copyright>© 2024 Jeroen Mols</copyright>
+    <lastBuildDate>Fri, 21 Jul 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://jeroenmols.com/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Embracing Java 8 language features</title>
+      <link>https://jeroenmols.com/blog/2017/07/21/java8language/</link>
+      <pubDate>Fri, 21 Jul 2017 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2017/07/21/java8language/</guid>
+      <description>For years Android developers have been limited to Java 6 features. While RetroLambda or the experimental Jack toolchain would help, proper support from Google was notably missing.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2017/07/21/java8language/featured.jpg" />
+    </item>
+    
+  </channel>
+</rss>

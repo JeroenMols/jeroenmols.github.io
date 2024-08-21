@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Androidmakers on Jeroen Mols</title>
+    <link>https://jeroenmols.com/tags/androidmakers/</link>
+    <description>Recent content in Androidmakers on Jeroen Mols</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>info@jeroenmols.com (Jeroen Mols)</managingEditor>
+    <webMaster>info@jeroenmols.com (Jeroen Mols)</webMaster>
+    <copyright>© 2024 Jeroen Mols</copyright>
+    <lastBuildDate>Tue, 11 Apr 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://jeroenmols.com/tags/androidmakers/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Android Makers FR recap</title>
+      <link>https://jeroenmols.com/blog/2017/04/11/androidmakers17/</link>
+      <pubDate>Tue, 11 Apr 2017 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2017/04/11/androidmakers17/</guid>
+      <description>After organizing Droidcon Paris for several year, the organizers decided to move on and experiment with a new format. This didn&amp;rsquo;t just result in a well organized conference, but also in a fresh new vibe whilst still feeling familiar.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2017/04/11/androidmakers17/featured.jpg" />
+    </item>
+    
+  </channel>
+</rss>

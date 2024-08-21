@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cleancode on Jeroen Mols</title>
+    <link>https://jeroenmols.com/tags/cleancode/</link>
+    <description>Recent content in Cleancode on Jeroen Mols</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>info@jeroenmols.com (Jeroen Mols)</managingEditor>
+    <webMaster>info@jeroenmols.com (Jeroen Mols)</webMaster>
+    <copyright>© 2024 Jeroen Mols</copyright>
+    <lastBuildDate>Thu, 06 Dec 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://jeroenmols.com/tags/cleancode/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Can you fix the test?</title>
+      <link>https://jeroenmols.com/blog/2018/12/06/fixthetest/</link>
+      <pubDate>Thu, 06 Dec 2018 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2018/12/06/fixthetest/</guid>
+      <description>Learning from analyzing code is one of the greatest ways to improve your skills. Can you spot the mistakes in the tests below?
+This post brings a fun little quiz for both testing gurus as novices, with a deep dive into the how and why of awesome tests.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2018/12/06/fixthetest/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Why your app should crash</title>
+      <link>https://jeroenmols.com/blog/2017/03/08/appcrash/</link>
+      <pubDate>Wed, 08 Mar 2017 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2017/03/08/appcrash/</guid>
+      <description>Too many times I&amp;rsquo;ve seen developers trying to avoid crashes at all cost. But are unhandled exceptions really that bad? And are null checks really the answer?</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2017/03/08/appcrash/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Write awesome unit tests</title>
+      <link>https://jeroenmols.com/blog/2017/02/16/unittests/</link>
+      <pubDate>Thu, 16 Feb 2017 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2017/02/16/unittests/</guid>
+      <description>If you can code, you can also write unit tests. Writing awesome tests on the other hand is a different story. Don&amp;rsquo;t fool yourself: Unit testing code is production code that you will need to maintain, refactor and build upon for years to come.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2017/02/16/unittests/featured.png" />
+    </item>
+    
+    <item>
+      <title>A successful XML naming convention</title>
+      <link>https://jeroenmols.com/blog/2016/03/07/resourcenaming/</link>
+      <pubDate>Mon, 07 Mar 2016 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2016/03/07/resourcenaming/</guid>
+      <description>Do you remember the last time you had to dig into strings.xml to find the right String to use? Or that you manually had to go over all drawables to find the one you needed?</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2016/03/07/resourcenaming/featured.png" />
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Shortcuts on Jeroen Mols</title>
+    <link>https://jeroenmols.com/tags/shortcuts/</link>
+    <description>Recent content in Shortcuts on Jeroen Mols</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>info@jeroenmols.com (Jeroen Mols)</managingEditor>
+    <webMaster>info@jeroenmols.com (Jeroen Mols)</webMaster>
+    <copyright>© 2024 Jeroen Mols</copyright>
+    <lastBuildDate>Mon, 16 Jul 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://jeroenmols.com/tags/shortcuts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Pro Android Studio - Taming the interface</title>
+      <link>https://jeroenmols.com/blog/2018/07/16/androidstudioshortcuts3/</link>
+      <pubDate>Mon, 16 Jul 2018 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2018/07/16/androidstudioshortcuts3/</guid>
+      <description>Not only can anything in Android Studio be controlled with a keyboard shortcut, it offers many more simple tricks to make you more productive.
+To conclude this series, we will look at how you can control the interface, invoke every (!</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2018/07/16/androidstudioshortcuts3/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Pro Android Studio - Refactoring</title>
+      <link>https://jeroenmols.com/blog/2018/04/26/androidstudioshortcuts2/</link>
+      <pubDate>Thu, 26 Apr 2018 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2018/04/26/androidstudioshortcuts2/</guid>
+      <description>Refactoring can be tedious and easily introduce bugs. The main reason for this is the number of manual steps involved: rename, move, copy-paste,&amp;hellip; So wouldn&amp;rsquo;t it make sense to automate this and have Android Studio do all the work for you?</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2018/04/26/androidstudioshortcuts2/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Pro Android Studio - Code navigation</title>
+      <link>https://jeroenmols.com/blog/2018/02/22/androidstudioshortcuts/</link>
+      <pubDate>Thu, 22 Feb 2018 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2018/02/22/androidstudioshortcuts/</guid>
+      <description>Struggling to navigate your code? Getting lost in deep inheritance hierarchies? Hard time figuring out relations between classes? Let&amp;rsquo;s learn how to navigate code in Android Studio like a pro.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2018/02/22/androidstudioshortcuts/featured.jpg" />
+    </item>
+    
+  </channel>
+</rss>

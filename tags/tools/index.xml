@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tools on Jeroen Mols</title>
+    <link>https://jeroenmols.com/tags/tools/</link>
+    <description>Recent content in Tools on Jeroen Mols</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>info@jeroenmols.com (Jeroen Mols)</managingEditor>
+    <webMaster>info@jeroenmols.com (Jeroen Mols)</webMaster>
+    <copyright>© 2024 Jeroen Mols</copyright>
+    <lastBuildDate>Tue, 20 Aug 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://jeroenmols.com/tags/tools/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Feature Flags - How to use</title>
+      <link>https://jeroenmols.com/blog/2019/08/20/featureflagshowtouse/</link>
+      <pubDate>Tue, 20 Aug 2019 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2019/08/20/featureflagshowtouse/</guid>
+      <description>Empowered with what feature flags are and why they are useful, let&amp;rsquo;s see how we can actually integrate them into an app. And how can we roll them out to our users?</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2019/08/20/featureflagshowtouse/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Feature Flags - Why you should care</title>
+      <link>https://jeroenmols.com/blog/2019/08/13/featureflags/</link>
+      <pubDate>Tue, 13 Aug 2019 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2019/08/13/featureflags/</guid>
+      <description>A key ingredient to speed up modern software development is feature flags. But what is a feature flag precisely? Why should you care about them? How do you integrate them into your codebase?</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2019/08/13/featureflags/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Pro Android Studio - Taming the interface</title>
+      <link>https://jeroenmols.com/blog/2018/07/16/androidstudioshortcuts3/</link>
+      <pubDate>Mon, 16 Jul 2018 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2018/07/16/androidstudioshortcuts3/</guid>
+      <description>Not only can anything in Android Studio be controlled with a keyboard shortcut, it offers many more simple tricks to make you more productive.
+To conclude this series, we will look at how you can control the interface, invoke every (!</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2018/07/16/androidstudioshortcuts3/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Pro Android Studio - Refactoring</title>
+      <link>https://jeroenmols.com/blog/2018/04/26/androidstudioshortcuts2/</link>
+      <pubDate>Thu, 26 Apr 2018 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2018/04/26/androidstudioshortcuts2/</guid>
+      <description>Refactoring can be tedious and easily introduce bugs. The main reason for this is the number of manual steps involved: rename, move, copy-paste,&amp;hellip; So wouldn&amp;rsquo;t it make sense to automate this and have Android Studio do all the work for you?</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2018/04/26/androidstudioshortcuts2/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Pro Android Studio - Code navigation</title>
+      <link>https://jeroenmols.com/blog/2018/02/22/androidstudioshortcuts/</link>
+      <pubDate>Thu, 22 Feb 2018 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2018/02/22/androidstudioshortcuts/</guid>
+      <description>Struggling to navigate your code? Getting lost in deep inheritance hierarchies? Hard time figuring out relations between classes? Let&amp;rsquo;s learn how to navigate code in Android Studio like a pro.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2018/02/22/androidstudioshortcuts/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Embracing Java 8 language features</title>
+      <link>https://jeroenmols.com/blog/2017/07/21/java8language/</link>
+      <pubDate>Fri, 21 Jul 2017 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2017/07/21/java8language/</guid>
+      <description>For years Android developers have been limited to Java 6 features. While RetroLambda or the experimental Jack toolchain would help, proper support from Google was notably missing.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2017/07/21/java8language/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Implementation vs API dependency</title>
+      <link>https://jeroenmols.com/blog/2017/06/14/androidstudio3/</link>
+      <pubDate>Wed, 14 Jun 2017 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2017/06/14/androidstudio3/</guid>
+      <description>Upgrading to Android studio 3.0 territory will make building multi-module projects a lot faster, but it also means a breaking Gradle plugin API change unfortunately.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2017/06/14/androidstudio3/featured.png" />
+    </item>
+    
+    <item>
+      <title>The hidden cost of code coverage</title>
+      <link>https://jeroenmols.com/blog/2016/09/01/coveragecost/</link>
+      <pubDate>Thu, 01 Sep 2016 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2016/09/01/coveragecost/</guid>
+      <description>Code coverage is an awesome way to motivate you and your team to write more tests. But did you know that simply enabling it slows down your build significantly?</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2016/09/01/coveragecost/featured.png" />
+    </item>
+    
+    <item>
+      <title>Why you should care about copyright</title>
+      <link>https://jeroenmols.com/blog/2016/08/03/copyright/</link>
+      <pubDate>Wed, 03 Aug 2016 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2016/08/03/copyright/</guid>
+      <description>As die hard Android developers, copyright notices are usually not on top of our priority list. Yet large corporations always insist to add a copyright header.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2016/08/03/copyright/featured.png" />
+    </item>
+    
+    <item>
+      <title>Efficiently reducing your method count</title>
+      <link>https://jeroenmols.com/blog/2016/05/06/methodcount/</link>
+      <pubDate>Fri, 06 May 2016 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2016/05/06/methodcount/</guid>
+      <description>As green field projects are a rare breed, chances are that you&amp;rsquo;ve inherited a legacy code base. If you&amp;rsquo;re as lucky as me, that code base has over 65k methods causing the build times to be boringly slow.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2016/05/06/methodcount/featured.png" />
+    </item>
+    
+    <item>
+      <title>Level up GitHub builds with CI and code coverage</title>
+      <link>https://jeroenmols.com/blog/2015/11/13/traviscoveralls/</link>
+      <pubDate>Fri, 13 Nov 2015 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2015/11/13/traviscoveralls/</guid>
+      <description>Wouldn&amp;rsquo;t you love to have your open source projects built automatically by a continuous integration server? And to have a detailed code coverage report for all your unit tests?</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2015/11/13/traviscoveralls/featured.png" />
+    </item>
+    
+    <item>
+      <title>Getting the most out of Artifactory</title>
+      <link>https://jeroenmols.com/blog/2015/08/13/artifactory2/</link>
+      <pubDate>Thu, 13 Aug 2015 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2015/08/13/artifactory2/</guid>
+      <description>My previous blog post described how to set up your own private Maven repository with Artifactory in 30 minutes. This second and final part will make things more interesting and take your setup to the next level.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2015/08/13/artifactory2/featured.png" />
+    </item>
+    
+    <item>
+      <title>A private Maven repository for Android in 30 min</title>
+      <link>https://jeroenmols.com/blog/2015/08/06/artifactory/</link>
+      <pubDate>Thu, 06 Aug 2015 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2015/08/06/artifactory/</guid>
+      <description>Setting up your own Maven repository and uploading artifacts to it is quite a daunting task. As I went through this experience myself recently, I want to help others in setting up their own Maven repository via Artifactory and automate uploading artifacts using Gradle.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2015/08/06/artifactory/featured.png" />
+    </item>
+    
+  </channel>
+</rss>

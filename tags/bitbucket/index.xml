@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bitbucket on Jeroen Mols</title>
+    <link>https://jeroenmols.com/tags/bitbucket/</link>
+    <description>Recent content in Bitbucket on Jeroen Mols</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>info@jeroenmols.com (Jeroen Mols)</managingEditor>
+    <webMaster>info@jeroenmols.com (Jeroen Mols)</webMaster>
+    <copyright>© 2024 Jeroen Mols</copyright>
+    <lastBuildDate>Fri, 05 Feb 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://jeroenmols.com/tags/bitbucket/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Git as a secure private Maven repository</title>
+      <link>https://jeroenmols.com/blog/2016/02/05/wagongit/</link>
+      <pubDate>Fri, 05 Feb 2016 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2016/02/05/wagongit/</guid>
+      <description>As my previous blogposts already covered how to set up a private Maven repository, you might wonder &amp;ldquo;Why again a Maven blogpost?&amp;rdquo;. Well that&amp;rsquo;s a fair question and the answer is twofold:</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2016/02/05/wagongit/featured.png" />
+    </item>
+    
+  </channel>
+</rss>

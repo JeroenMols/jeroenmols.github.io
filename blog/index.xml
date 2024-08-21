@@ -1,0 +1,761 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blogs on Jeroen Mols</title>
+    <link>https://jeroenmols.com/blog/</link>
+    <description>Recent content in Blogs on Jeroen Mols</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>info@jeroenmols.com (Jeroen Mols)</managingEditor>
+    <webMaster>info@jeroenmols.com (Jeroen Mols)</webMaster>
+    <copyright>© 2024 Jeroen Mols</copyright>
+    <lastBuildDate>Mon, 24 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://jeroenmols.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Using VPN during MDNS server development</title>
+      <link>https://jeroenmols.com/blog/2023/07/24/vpn-development/</link>
+      <pubDate>Mon, 24 Jul 2023 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2023/07/24/vpn-development/</guid>
+      <description>Are you using a VPN on your mobile device? Do you need to disable that to access your development web server over MDNS on your mobile device?</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2023/07/24/vpn-development/featured.jpeg" />
+    </item>
+    
+    <item>
+      <title>Gaming the pull request review system</title>
+      <link>https://jeroenmols.com/blog/2023/06/26/prs-and-commits/</link>
+      <pubDate>Mon, 26 Jun 2023 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2023/06/26/prs-and-commits/</guid>
+      <description>As developers, we love to build cool things and ship them as fast as reasonably possible. And to get that done, here are a few things you can do to &amp;ldquo;game the system&amp;rdquo;.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2023/06/26/prs-and-commits/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Interactive versionable architecture diagrams</title>
+      <link>https://jeroenmols.com/blog/2023/06/09/interactive-architecture-diagram/</link>
+      <pubDate>Fri, 09 Jun 2023 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2023/06/09/interactive-architecture-diagram/</guid>
+      <description>Tired of building un-versionable, lifeless architecture diagrams? Wouldn&amp;rsquo;t it be great if you could add your diagram to Git, embed it in your documentation, and have clickable elements?</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2023/06/09/interactive-architecture-diagram/featured.jpeg" />
+    </item>
+    
+    <item>
+      <title>A privacy friendly RSVP for events</title>
+      <link>https://jeroenmols.com/blog/2023/03/28/privacy-friendly-rsvp/</link>
+      <pubDate>Tue, 28 Mar 2023 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2023/03/28/privacy-friendly-rsvp/</guid>
+      <description>Planning an event can be stressful, and the last thing you need is worrying about your guests&amp;rsquo; privacy. But don&amp;rsquo;t worry, I&amp;rsquo;ve got you covered with a privacy-friendly RSVP option.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2023/03/28/privacy-friendly-rsvp/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Using multiple SSH keys for Github and Github enterprise</title>
+      <link>https://jeroenmols.com/blog/2023/02/06/multiple-ssh-keys/</link>
+      <pubDate>Mon, 06 Feb 2023 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2023/02/06/multiple-ssh-keys/</guid>
+      <description>Looking to configure multiple SSH keys on the same computer? For instance to use a different SSH key for your public and enterprise Github contributions.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2023/02/06/multiple-ssh-keys/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Removing all trackers from my website</title>
+      <link>https://jeroenmols.com/blog/2023/01/29/remove-trackers/</link>
+      <pubDate>Sun, 29 Jan 2023 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2023/01/29/remove-trackers/</guid>
+      <description>These past years I&amp;rsquo;ve grown to be more privacy-aware. And while this post isn&amp;rsquo;t about how I&amp;rsquo;m increasing my personal privacy, I&amp;rsquo;d like to talk about how I&amp;rsquo;m increasing yours.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2023/01/29/remove-trackers/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Android emulator access to local server</title>
+      <link>https://jeroenmols.com/blog/2023/01/25/development-server-emulator/</link>
+      <pubDate>Wed, 25 Jan 2023 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2023/01/25/development-server-emulator/</guid>
+      <description>How can you connect your app on an Android emulator to a development server running on the localhost of your computer?
+The problem # Since Android emulators create their own virtual network, they cannot access devices on your local network.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2023/01/25/development-server-emulator/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Transfer many large files from Android</title>
+      <link>https://jeroenmols.com/blog/2022/12/17/pull-files-android/</link>
+      <pubDate>Sat, 17 Dec 2022 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2022/12/17/pull-files-android/</guid>
+      <description>Trying to get a large number of files from your Android phone, but Android File Transfer freezing up?
+Here&amp;rsquo;s what I learned trying to pull ~170 Gb from my Pixel phone.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2022/12/17/pull-files-android/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Verify Github profile link on Mastodon</title>
+      <link>https://jeroenmols.com/blog/2022/11/26/mastodon-verify-github/</link>
+      <pubDate>Sat, 26 Nov 2022 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2022/11/26/mastodon-verify-github/</guid>
+      <description>Looking to get a fancy verified checkmark on Mastodon for your Github account?
+This post details how I made this work.
+Steps # Before I get started, huge thanks to Simon Wilson for inspiring me with the original idea.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2022/11/26/mastodon-verify-github/featured.png" />
+    </item>
+    
+    <item>
+      <title>Test React app on mobile without Wi-Fi</title>
+      <link>https://jeroenmols.com/blog/2022/11/19/react-local-development/</link>
+      <pubDate>Sat, 19 Nov 2022 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2022/11/19/react-local-development/</guid>
+      <description>Traveling by train or plane and want to test your react app on your mobile phone? This quick post explains how to access your react development server from your phone without a Wi-Fi connection.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2022/11/19/react-local-development/featured.png" />
+    </item>
+    
+    <item>
+      <title>The curious case of crashing Workers</title>
+      <link>https://jeroenmols.com/blog/2022/04/27/workmanager-crash/</link>
+      <pubDate>Wed, 27 Apr 2022 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2022/04/27/workmanager-crash/</guid>
+      <description>WorkManager is great to schedule background work on Android. However, since scheduled work lives outside of the app lifecycle, you might run into unexpected crashes.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2022/04/27/workmanager-crash/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>No, your pull request does not need a review</title>
+      <link>https://jeroenmols.com/blog/2022/02/23/pull-request-reviews/</link>
+      <pubDate>Wed, 23 Feb 2022 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2022/02/23/pull-request-reviews/</guid>
+      <description>In the past years, my thoughts on pull request reviews have evolved considerably. Given that creating and reviewing pull requests are a core part of our work, let&amp;rsquo;s talk about those.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2022/02/23/pull-request-reviews/featured.jpeg" />
+    </item>
+    
+    <item>
+      <title>Migrate existing library artifacts from JCenter to Maven Central</title>
+      <link>https://jeroenmols.com/blog/2021/03/24/migrate-artifacts-mavencentral/</link>
+      <pubDate>Wed, 24 Mar 2021 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2021/03/24/migrate-artifacts-mavencentral/</guid>
+      <description>With JCenter shutting down, many are migrating to Maven Central. And while there are many posts on how to publish new artifacts, also all existing artifacts should be migrated away from JCenter.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2021/03/24/migrate-artifacts-mavencentral/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Share code between Android and Jvm in Kotlin multiplatform</title>
+      <link>https://jeroenmols.com/blog/2021/03/17/share-code-kotlin-multiplatform/</link>
+      <pubDate>Wed, 17 Mar 2021 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2021/03/17/share-code-kotlin-multiplatform/</guid>
+      <description>While Android supports most Java language features, it doesn&amp;rsquo;t support every API that Java provides. On the other hand, Kotlin multiplatform only allows sharing code across all targets (commonMain), not a subset of targets (commonJvm).</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2021/03/17/share-code-kotlin-multiplatform/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Migrating away from JCenter</title>
+      <link>https://jeroenmols.com/blog/2021/02/04/migratingjcenter/</link>
+      <pubDate>Thu, 04 Feb 2021 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2021/02/04/migratingjcenter/</guid>
+      <description>This week JFrog - out of nowhere - announced to completely remove their Maven repository. Since they&amp;rsquo;ll pull it offline already by May 2021 (!!!) it&amp;rsquo;s time to urgently migrate away.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2021/02/04/migratingjcenter/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Year in review 2020</title>
+      <link>https://jeroenmols.com/blog/2021/01/05/yearinreview/</link>
+      <pubDate>Tue, 05 Jan 2021 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2021/01/05/yearinreview/</guid>
+      <description>Well&amp;hellip; I don&amp;rsquo;t really know where to start this time. 2020 was quite the rollercoaster, with many downs&amp;hellip; but fortunately also a few amazing ups. Let&amp;rsquo;s focus on the good stuff.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2021/01/05/yearinreview/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Test library releases using an in project Maven repository</title>
+      <link>https://jeroenmols.com/blog/2020/12/02/inproject-maven/</link>
+      <pubDate>Wed, 02 Dec 2020 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2020/12/02/inproject-maven/</guid>
+      <description>Short, powerful post on how to test the release version of libraries directly within a project without having to deploy them to Maven first.
+As a bonus, there will also be an open-source example showcasing all of this in action.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2020/12/02/inproject-maven/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Android library development - Dependencies</title>
+      <link>https://jeroenmols.com/blog/2020/11/11/library-dependencies/</link>
+      <pubDate>Wed, 11 Nov 2020 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2020/11/11/library-dependencies/</guid>
+      <description>Ever had a build failure while integrating an SDK? Wonder how you can avoid your SDK customers having dependency conflicts? How many transitive dependencies should your SDK have?</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2020/11/11/library-dependencies/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Android library development - Modularization</title>
+      <link>https://jeroenmols.com/blog/2020/11/04/library-modularization/</link>
+      <pubDate>Wed, 04 Nov 2020 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2020/11/04/library-modularization/</guid>
+      <description>With modularization being all the hype, should you also modularize an SDK? Are fat aar files really needed? And how do you prevent internal APIs from being exposed on your public interface?</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2020/11/04/library-modularization/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Android library development - Getting started</title>
+      <link>https://jeroenmols.com/blog/2020/10/28/library-gettingstarted/</link>
+      <pubDate>Wed, 28 Oct 2020 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2020/10/28/library-gettingstarted/</guid>
+      <description>Having switched to Android SDK development over the past year, I&amp;rsquo;ve run into quite a few interesting and unexpected challenges. So how does library development differ from app development?</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2020/10/28/library-gettingstarted/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Kdoc for Android libraries using Dokka</title>
+      <link>https://jeroenmols.com/blog/2020/02/19/dokka-code-documentation/</link>
+      <pubDate>Wed, 19 Feb 2020 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2020/02/19/dokka-code-documentation/</guid>
+      <description>A great way to make your library easier to use it to generate code documentation for its public interface. The default way to do this in Kotlin is to generate KDoc using the official Dokka plugin.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2020/02/19/dokka-code-documentation/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Year in review 2019</title>
+      <link>https://jeroenmols.com/blog/2020/01/09/yearinreview/</link>
+      <pubDate>Thu, 09 Jan 2020 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2020/01/09/yearinreview/</guid>
+      <description>Getting up without being rushed, cycling my kids to school, cooking healthy salads for lunch, kids running into my arms when they get home&amp;hellip; I&amp;rsquo;m quite happy with my new daily routine!</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2020/01/09/yearinreview/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Feature flags - A successful architecture</title>
+      <link>https://jeroenmols.com/blog/2019/09/12/featureflagsarchitecture/</link>
+      <pubDate>Thu, 12 Sep 2019 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2019/09/12/featureflagsarchitecture/</guid>
+      <description>Now that we know how feature flags can help us release faster, it&amp;rsquo;s time to dive into the actual implementation details. How can we easily define feature flags?</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2019/09/12/featureflagsarchitecture/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Feature Flags - How to use</title>
+      <link>https://jeroenmols.com/blog/2019/08/20/featureflagshowtouse/</link>
+      <pubDate>Tue, 20 Aug 2019 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2019/08/20/featureflagshowtouse/</guid>
+      <description>Empowered with what feature flags are and why they are useful, let&amp;rsquo;s see how we can actually integrate them into an app. And how can we roll them out to our users?</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2019/08/20/featureflagshowtouse/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Feature Flags - Why you should care</title>
+      <link>https://jeroenmols.com/blog/2019/08/13/featureflags/</link>
+      <pubDate>Tue, 13 Aug 2019 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2019/08/13/featureflags/</guid>
+      <description>A key ingredient to speed up modern software development is feature flags. But what is a feature flag precisely? Why should you care about them? How do you integrate them into your codebase?</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2019/08/13/featureflags/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Lessons learned being a lead developer</title>
+      <link>https://jeroenmols.com/blog/2019/08/06/lessonsleaddeveloper/</link>
+      <pubDate>Tue, 06 Aug 2019 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2019/08/06/lessonsleaddeveloper/</guid>
+      <description>Three years ago, we decided ramp up internal app development at Philips Hue. After interviewing candidates (78!) for six months, I became the lead Android developer of the freshly hired Android team.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2019/08/06/lessonsleaddeveloper/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Supporting Android Q gestural navigation</title>
+      <link>https://jeroenmols.com/blog/2019/07/17/androidqgestures/</link>
+      <pubDate>Wed, 17 Jul 2019 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2019/07/17/androidqgestures/</guid>
+      <description>From Android Q onwards devices can now operate in a fully gestural system navigation mode. In that mode, there is no longer an on-screen back button, instead users can swipe from both edges to navigate back.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2019/07/17/androidqgestures/featured.png" />
+    </item>
+    
+    <item>
+      <title>Philips Hue adaptive icon</title>
+      <link>https://jeroenmols.com/blog/2019/07/03/adaptiveicon/</link>
+      <pubDate>Wed, 03 Jul 2019 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2019/07/03/adaptiveicon/</guid>
+      <description>Your icon is one of the most important assets in your app. With a bit of luck, users might even put it on their main launcher screen!</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2019/07/03/adaptiveicon/featured.png" />
+    </item>
+    
+    <item>
+      <title>Modularization - Lessons learned</title>
+      <link>https://jeroenmols.com/blog/2019/06/12/modularizationtips/</link>
+      <pubDate>Wed, 12 Jun 2019 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2019/06/12/modularizationtips/</guid>
+      <description>Wrapping up this series on modularization I&amp;rsquo;d like to share some of the things we&amp;rsquo;ve learned at Philips Hue while going through this process the past year.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2019/06/12/modularizationtips/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Modularization - How to approach</title>
+      <link>https://jeroenmols.com/blog/2019/04/24/modularizationhow/</link>
+      <pubDate>Wed, 24 Apr 2019 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2019/04/24/modularizationhow/</guid>
+      <description>Now that we have a clear idea of how a modularized app could look like how can this be applied to an existing app?
+Part four will dive deeper into how existing apps can be sliced and how you can gradually migrate to a fully modularized architecture.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2019/04/24/modularizationhow/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Modularization - Real-life example</title>
+      <link>https://jeroenmols.com/blog/2019/04/02/modularizationexample/</link>
+      <pubDate>Tue, 02 Apr 2019 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2019/04/02/modularizationexample/</guid>
+      <description>With a clear view on how multi-module apps should be architected, let&amp;rsquo;s dive into a real-life practical example.
+We&amp;rsquo;ll discover how the architecture results in a clear application structure, how navigation is handled, how to use staged rollouts, how to test everything and even look at a production app that is using this architecture.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2019/04/02/modularizationexample/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Modularization - A successful architecture</title>
+      <link>https://jeroenmols.com/blog/2019/03/18/modularizationarchitecture/</link>
+      <pubDate>Mon, 18 Mar 2019 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2019/03/18/modularizationarchitecture/</guid>
+      <description>Now that we&amp;rsquo;ve established that modularization is a really good thing to strive for, how should a modularized app look like? How are the different modules connected?</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2019/03/18/modularizationarchitecture/feature_navigation.png" />
+    </item>
+    
+    <item>
+      <title>Modularization - Why you should care</title>
+      <link>https://jeroenmols.com/blog/2019/03/06/modularizationwhy/</link>
+      <pubDate>Wed, 06 Mar 2019 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2019/03/06/modularizationwhy/</guid>
+      <description>Modularizing your app seems to be all the hype these days. But why should you actually care? What are the benefits for you and your team?</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2019/03/06/modularizationwhy/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Five tips to get your code base in shape</title>
+      <link>https://jeroenmols.com/blog/2019/02/20/tacklelegacy/</link>
+      <pubDate>Wed, 20 Feb 2019 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2019/02/20/tacklelegacy/</guid>
+      <description>Are you living the dream? Is your code so clean it makes your eyes just tear a little? Can&amp;rsquo;t think of anything you would still like to refactor?</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2019/02/20/tacklelegacy/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Testing LiveData in JUnit 4 and JUnit 5</title>
+      <link>https://jeroenmols.com/blog/2019/01/17/livedatajunit5/</link>
+      <pubDate>Thu, 17 Jan 2019 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2019/01/17/livedatajunit5/</guid>
+      <description>Architecture components are one of the most exciting things that happened to Android in the past years. But how do you effectively go about and testing this?</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2019/01/17/livedatajunit5/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Year in review 2018</title>
+      <link>https://jeroenmols.com/blog/2019/01/01/yearinreview/</link>
+      <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2019/01/01/yearinreview/</guid>
+      <description>Sitting in our own couch, in our own house, kids safely asleep upstairs,&amp;hellip; The road here was brutal, but the result is extraordinary.
+The past year was (hopefully) the busiest year of my entire life.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2019/01/01/yearinreview/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Can you fix the test?</title>
+      <link>https://jeroenmols.com/blog/2018/12/06/fixthetest/</link>
+      <pubDate>Thu, 06 Dec 2018 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2018/12/06/fixthetest/</guid>
+      <description>Learning from analyzing code is one of the greatest ways to improve your skills. Can you spot the mistakes in the tests below?
+This post brings a fun little quiz for both testing gurus as novices, with a deep dive into the how and why of awesome tests.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2018/12/06/fixthetest/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Kotlin Stackoverflow error</title>
+      <link>https://jeroenmols.com/blog/2018/11/01/kotlinstackoverflow/</link>
+      <pubDate>Thu, 01 Nov 2018 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2018/11/01/kotlinstackoverflow/</guid>
+      <description>Java interop is one of the best features of the Kotlin language, yet sometimes this also can cause unforeseen issues&amp;hellip;
+Puzzle # Disclaimer, the example below is a consequence of legacy code and only serves to demonstrate a Kotlin puzzler.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2018/11/01/kotlinstackoverflow/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Kotlinconf 2018 slides</title>
+      <link>https://jeroenmols.com/blog/2018/10/05/kotlinconf18/</link>
+      <pubDate>Fri, 05 Oct 2018 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2018/10/05/kotlinconf18/</guid>
+      <description>Was really great visiting Kotlinconf this year and I wanted to do a quick post to link to all of it&amp;rsquo;s wonderful content.
+Conference slides # While you will be able to find all recordings here, I often find it useful to be able to quickly scan through the slides.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2018/10/05/kotlinconf18/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>A little Kotlin puzzler</title>
+      <link>https://jeroenmols.com/blog/2018/09/25/kotlinpuzzler/</link>
+      <pubDate>Tue, 25 Sep 2018 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2018/09/25/kotlinpuzzler/</guid>
+      <description>Kotlin is an incredibly enjoyable, concise and powerful programming language. Yet sometimes also a bit confusing&amp;hellip;
+Puzzle # Have a look at the simple class below.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2018/09/25/kotlinpuzzler/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>How dangerous permissions sneak into apps</title>
+      <link>https://jeroenmols.com/blog/2018/08/02/phonestatepermission/</link>
+      <pubDate>Thu, 02 Aug 2018 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2018/08/02/phonestatepermission/</guid>
+      <description>This is a post-mortem where the very dangerous permission, READ_PHONE_STATE, unintentionally sneaked into our app. Here&amp;rsquo;s how this could happen, how we debugged and finally how we solved it.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2018/08/02/phonestatepermission/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Pro Android Studio - Taming the interface</title>
+      <link>https://jeroenmols.com/blog/2018/07/16/androidstudioshortcuts3/</link>
+      <pubDate>Mon, 16 Jul 2018 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2018/07/16/androidstudioshortcuts3/</guid>
+      <description>Not only can anything in Android Studio be controlled with a keyboard shortcut, it offers many more simple tricks to make you more productive.
+To conclude this series, we will look at how you can control the interface, invoke every (!</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2018/07/16/androidstudioshortcuts3/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Pro Android Studio - Refactoring</title>
+      <link>https://jeroenmols.com/blog/2018/04/26/androidstudioshortcuts2/</link>
+      <pubDate>Thu, 26 Apr 2018 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2018/04/26/androidstudioshortcuts2/</guid>
+      <description>Refactoring can be tedious and easily introduce bugs. The main reason for this is the number of manual steps involved: rename, move, copy-paste,&amp;hellip; So wouldn&amp;rsquo;t it make sense to automate this and have Android Studio do all the work for you?</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2018/04/26/androidstudioshortcuts2/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Pro Android Studio - Code navigation</title>
+      <link>https://jeroenmols.com/blog/2018/02/22/androidstudioshortcuts/</link>
+      <pubDate>Thu, 22 Feb 2018 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2018/02/22/androidstudioshortcuts/</guid>
+      <description>Struggling to navigate your code? Getting lost in deep inheritance hierarchies? Hard time figuring out relations between classes? Let&amp;rsquo;s learn how to navigate code in Android Studio like a pro.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2018/02/22/androidstudioshortcuts/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Year in review 2017</title>
+      <link>https://jeroenmols.com/blog/2018/01/01/yearinreview/</link>
+      <pubDate>Mon, 01 Jan 2018 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2018/01/01/yearinreview/</guid>
+      <description>For the first time ever I have my year in review ready in time.
+I&amp;rsquo;m sure I&amp;rsquo;ll never forget 2017. Not only did we start building our dream house, but more importantly, our family grew to 4 people!</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2018/01/01/yearinreview/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>MacOS update could not be installed</title>
+      <link>https://jeroenmols.com/blog/2017/12/26/macosupdate/</link>
+      <pubDate>Tue, 26 Dec 2017 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2017/12/26/macosupdate/</guid>
+      <description>Tonight after a routine MacOS update (10.13.2) disaster struck and my Mac got stuck in an update boot loop. After a few hours of panic, reading online and trial &amp;amp; error I managed to resolve it.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2017/12/26/macosupdate/featured.png" />
+    </item>
+    
+    <item>
+      <title>The curious case of haunting fragments</title>
+      <link>https://jeroenmols.com/blog/2017/12/18/fragmentback/</link>
+      <pubDate>Mon, 18 Dec 2017 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2017/12/18/fragmentback/</guid>
+      <description>Do Fragment transactions and back navigation have no more secrets for you? Well then you should try to solve the mystery in this post, where a Fragment (literally) came to haunt us&amp;hellip;</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2017/12/18/fragmentback/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>The 100% code coverage problem</title>
+      <link>https://jeroenmols.com/blog/2017/11/28/coveragproblem/</link>
+      <pubDate>Tue, 28 Nov 2017 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2017/11/28/coveragproblem/</guid>
+      <description>While you may be tempted to strive for 100% code coverage, that would be a horrible idea. Besides some code being hard to test, the concept of coverage is actually fundamentally limited.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2017/11/28/coveragproblem/featured.png" />
+    </item>
+    
+    <item>
+      <title>Droidcon UK slides</title>
+      <link>https://jeroenmols.com/blog/2017/10/27/droidconuk/</link>
+      <pubDate>Fri, 27 Oct 2017 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2017/10/27/droidconuk/</guid>
+      <description>Had a blast visiting Droidcon UK this year and wanted to do a quick post to link to all of it&amp;rsquo;s wonderful content.
+Conference slides # While you can find all recordings here, I often find it useful to be able to quickly scan through the slides.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2017/10/27/droidconuk/featured.png" />
+    </item>
+    
+    <item>
+      <title>The career opportunity called Kotlin</title>
+      <link>https://jeroenmols.com/blog/2017/09/13/kotlinopportunity/</link>
+      <pubDate>Wed, 13 Sep 2017 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2017/09/13/kotlinopportunity/</guid>
+      <description>This isn&amp;rsquo;t another post about the benefits of using Kotlin. Hell, I&amp;rsquo;m not even going to cover any of its language features. Nor will I try to convince you to make the switch.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2017/09/13/kotlinopportunity/featured.png" />
+    </item>
+    
+    <item>
+      <title>Embracing Java 8 language features</title>
+      <link>https://jeroenmols.com/blog/2017/07/21/java8language/</link>
+      <pubDate>Fri, 21 Jul 2017 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2017/07/21/java8language/</guid>
+      <description>For years Android developers have been limited to Java 6 features. While RetroLambda or the experimental Jack toolchain would help, proper support from Google was notably missing.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2017/07/21/java8language/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Implementation vs API dependency</title>
+      <link>https://jeroenmols.com/blog/2017/06/14/androidstudio3/</link>
+      <pubDate>Wed, 14 Jun 2017 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2017/06/14/androidstudio3/</guid>
+      <description>Upgrading to Android studio 3.0 territory will make building multi-module projects a lot faster, but it also means a breaking Gradle plugin API change unfortunately.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2017/06/14/androidstudio3/featured.png" />
+    </item>
+    
+    <item>
+      <title>My Google #io17 takeaways</title>
+      <link>https://jeroenmols.com/blog/2017/05/31/googleio17/</link>
+      <pubDate>Wed, 31 May 2017 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2017/05/31/googleio17/</guid>
+      <description>Being my 2nd year at Google IO, I decided to do things differently: Besides taking notes during sessions, I also created a personal todo list. This contains all new (and even old) technologies I got triggered to look into.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2017/05/31/googleio17/featured.png" />
+    </item>
+    
+    <item>
+      <title>Android Makers FR recap</title>
+      <link>https://jeroenmols.com/blog/2017/04/11/androidmakers17/</link>
+      <pubDate>Tue, 11 Apr 2017 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2017/04/11/androidmakers17/</guid>
+      <description>After organizing Droidcon Paris for several year, the organizers decided to move on and experiment with a new format. This didn&amp;rsquo;t just result in a well organized conference, but also in a fresh new vibe whilst still feeling familiar.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2017/04/11/androidmakers17/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Why your app should crash</title>
+      <link>https://jeroenmols.com/blog/2017/03/08/appcrash/</link>
+      <pubDate>Wed, 08 Mar 2017 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2017/03/08/appcrash/</guid>
+      <description>Too many times I&amp;rsquo;ve seen developers trying to avoid crashes at all cost. But are unhandled exceptions really that bad? And are null checks really the answer?</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2017/03/08/appcrash/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Write awesome unit tests</title>
+      <link>https://jeroenmols.com/blog/2017/02/16/unittests/</link>
+      <pubDate>Thu, 16 Feb 2017 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2017/02/16/unittests/</guid>
+      <description>If you can code, you can also write unit tests. Writing awesome tests on the other hand is a different story. Don&amp;rsquo;t fool yourself: Unit testing code is production code that you will need to maintain, refactor and build upon for years to come.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2017/02/16/unittests/featured.png" />
+    </item>
+    
+    <item>
+      <title>Using Mockito 2.x on Android</title>
+      <link>https://jeroenmols.com/blog/2017/01/17/mockitoandroid/</link>
+      <pubDate>Tue, 17 Jan 2017 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2017/01/17/mockitoandroid/</guid>
+      <description>The Mockito team is on fire lately! Not only did they add support to mock final classes and methods, but now they allow running Mockito directly onto an actual Android device.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2017/01/17/mockitoandroid/featured.png" />
+    </item>
+    
+    <item>
+      <title>Year in review 2016</title>
+      <link>https://jeroenmols.com/blog/2017/01/09/yearinreview/</link>
+      <pubDate>Mon, 09 Jan 2017 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2017/01/09/yearinreview/</guid>
+      <description>It&amp;rsquo;s that time of the year again to do a little personal retrospective.
+2016 passed by so quickly! I had a fantastic time playing around with (and taking care of) my wife and daughter.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2017/01/09/yearinreview/featured.png" />
+    </item>
+    
+    <item>
+      <title>Extending Mockito</title>
+      <link>https://jeroenmols.com/blog/2016/10/31/mockitomatchers/</link>
+      <pubDate>Mon, 31 Oct 2016 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2016/10/31/mockitomatchers/</guid>
+      <description>Due to its clean simple api, Mockito has become world&amp;rsquo;s most popular Java mocking framework. After having covered all of its basics, it&amp;rsquo;s time to spice things up and start extending Mockito.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2016/10/31/mockitomatchers/featured.png" />
+    </item>
+    
+    <item>
+      <title>The hidden cost of code coverage</title>
+      <link>https://jeroenmols.com/blog/2016/09/01/coveragecost/</link>
+      <pubDate>Thu, 01 Sep 2016 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2016/09/01/coveragecost/</guid>
+      <description>Code coverage is an awesome way to motivate you and your team to write more tests. But did you know that simply enabling it slows down your build significantly?</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2016/09/01/coveragecost/featured.png" />
+    </item>
+    
+    <item>
+      <title>Why you should care about copyright</title>
+      <link>https://jeroenmols.com/blog/2016/08/03/copyright/</link>
+      <pubDate>Wed, 03 Aug 2016 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2016/08/03/copyright/</guid>
+      <description>As die hard Android developers, copyright notices are usually not on top of our priority list. Yet large corporations always insist to add a copyright header.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2016/08/03/copyright/featured.png" />
+    </item>
+    
+    <item>
+      <title>Turn Android into an awesome cycling GPS</title>
+      <link>https://jeroenmols.com/blog/2016/07/21/cyclinggps/</link>
+      <pubDate>Thu, 21 Jul 2016 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2016/07/21/cyclinggps/</guid>
+      <description>Cycling is all about exploring: visiting new places and making existing routes more fun with better streets. So there must be an app that allows to plan your route and start cycling right?</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2016/07/21/cyclinggps/featured.png" />
+    </item>
+    
+    <item>
+      <title>Testing made sweet with a Mockito</title>
+      <link>https://jeroenmols.com/blog/2016/06/24/droidcondetalk/</link>
+      <pubDate>Fri, 24 Jun 2016 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2016/06/24/droidcondetalk/</guid>
+      <description>At Droidcon Berlin 2016 I had a great time talking about testing using the Mockito framework. While the talk wasn&amp;rsquo;t recorded unfortunately, the great folks at Voice Republic recorded an audio version which you can listen to as a podcast or together with the slides.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2016/06/24/droidcondetalk/featured.png" />
+    </item>
+    
+    <item>
+      <title>Droidcon Berlin recap</title>
+      <link>https://jeroenmols.com/blog/2016/06/18/droidconde/</link>
+      <pubDate>Sat, 18 Jun 2016 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2016/06/18/droidconde/</guid>
+      <description>Having founded the entire Droidcon franchise in 2009, Droidcon Berlin is a magical conference to be at. Not only do they have an awesome lineup of speakers (including yours truly).</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2016/06/18/droidconde/featured.png" />
+    </item>
+    
+    <item>
+      <title>Efficiently reducing your method count</title>
+      <link>https://jeroenmols.com/blog/2016/05/06/methodcount/</link>
+      <pubDate>Fri, 06 May 2016 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2016/05/06/methodcount/</guid>
+      <description>As green field projects are a rare breed, chances are that you&amp;rsquo;ve inherited a legacy code base. If you&amp;rsquo;re as lucky as me, that code base has over 65k methods causing the build times to be boringly slow.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2016/05/06/methodcount/featured.png" />
+    </item>
+    
+    <item>
+      <title>Droidcon Italy recap</title>
+      <link>https://jeroenmols.com/blog/2016/04/08/droidconit/</link>
+      <pubDate>Fri, 08 Apr 2016 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2016/04/08/droidconit/</guid>
+      <description>A conference about our favorite Green little robots? In sunny Italy? With great food and a party? Yeah, I can image how you must feel in case you missed it&amp;hellip; I on the other hand was fortunate enough to attend and speak at this awesome conference.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2016/04/08/droidconit/featured.png" />
+    </item>
+    
+    <item>
+      <title>A successful XML naming convention</title>
+      <link>https://jeroenmols.com/blog/2016/03/07/resourcenaming/</link>
+      <pubDate>Mon, 07 Mar 2016 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2016/03/07/resourcenaming/</guid>
+      <description>Do you remember the last time you had to dig into strings.xml to find the right String to use? Or that you manually had to go over all drawables to find the one you needed?</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2016/03/07/resourcenaming/featured.png" />
+    </item>
+    
+    <item>
+      <title>Git as a secure private Maven repository</title>
+      <link>https://jeroenmols.com/blog/2016/02/05/wagongit/</link>
+      <pubDate>Fri, 05 Feb 2016 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2016/02/05/wagongit/</guid>
+      <description>As my previous blogposts already covered how to set up a private Maven repository, you might wonder &amp;ldquo;Why again a Maven blogpost?&amp;rdquo;. Well that&amp;rsquo;s a fair question and the answer is twofold:</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2016/02/05/wagongit/featured.png" />
+    </item>
+    
+    <item>
+      <title>Year in review 2015</title>
+      <link>https://jeroenmols.com/blog/2016/01/29/yearinreview/</link>
+      <pubDate>Fri, 29 Jan 2016 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2016/01/29/yearinreview/</guid>
+      <description>Finally found the time to write my year in review. #insomnia
+2015 was a huge year for me! I even dare to say the biggest one of my life so far as I became a father of a lovely daughter Lene.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2016/01/29/yearinreview/featured.png" />
+    </item>
+    
+    <item>
+      <title>Level up GitHub builds with CI and code coverage</title>
+      <link>https://jeroenmols.com/blog/2015/11/13/traviscoveralls/</link>
+      <pubDate>Fri, 13 Nov 2015 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2015/11/13/traviscoveralls/</guid>
+      <description>Wouldn&amp;rsquo;t you love to have your open source projects built automatically by a continuous integration server? And to have a detailed code coverage report for all your unit tests?</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2015/11/13/traviscoveralls/featured.png" />
+    </item>
+    
+    <item>
+      <title>Getting the most out of Artifactory</title>
+      <link>https://jeroenmols.com/blog/2015/08/13/artifactory2/</link>
+      <pubDate>Thu, 13 Aug 2015 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2015/08/13/artifactory2/</guid>
+      <description>My previous blog post described how to set up your own private Maven repository with Artifactory in 30 minutes. This second and final part will make things more interesting and take your setup to the next level.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2015/08/13/artifactory2/featured.png" />
+    </item>
+    
+    <item>
+      <title>A private Maven repository for Android in 30 min</title>
+      <link>https://jeroenmols.com/blog/2015/08/06/artifactory/</link>
+      <pubDate>Thu, 06 Aug 2015 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2015/08/06/artifactory/</guid>
+      <description>Setting up your own Maven repository and uploading artifacts to it is quite a daunting task. As I went through this experience myself recently, I want to help others in setting up their own Maven repository via Artifactory and automate uploading artifacts using Gradle.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2015/08/06/artifactory/featured.png" />
+    </item>
+    
+    <item>
+      <title>How I created my blog</title>
+      <link>https://jeroenmols.com/blog/2015/04/25/blog-creation/</link>
+      <pubDate>Sat, 25 Apr 2015 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2015/04/25/blog-creation/</guid>
+      <description>For quite some months, I&amp;rsquo;ve been planning to create a website and start blogging about the things I&amp;rsquo;m passionate about. Last week, I finally decided to setup a portfolio and blog using GitHub pages and Jekyll.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2015/04/25/blog-creation/featured.png" />
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Lambda on Jeroen Mols</title>
+    <link>https://jeroenmols.com/tags/lambda/</link>
+    <description>Recent content in Lambda on Jeroen Mols</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>info@jeroenmols.com (Jeroen Mols)</managingEditor>
+    <webMaster>info@jeroenmols.com (Jeroen Mols)</webMaster>
+    <copyright>© 2024 Jeroen Mols</copyright>
+    <lastBuildDate>Tue, 25 Sep 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://jeroenmols.com/tags/lambda/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A little Kotlin puzzler</title>
+      <link>https://jeroenmols.com/blog/2018/09/25/kotlinpuzzler/</link>
+      <pubDate>Tue, 25 Sep 2018 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2018/09/25/kotlinpuzzler/</guid>
+      <description>Kotlin is an incredibly enjoyable, concise and powerful programming language. Yet sometimes also a bit confusing&amp;hellip;
+Puzzle # Have a look at the simple class below.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2018/09/25/kotlinpuzzler/featured.jpg" />
+    </item>
+    
+  </channel>
+</rss>

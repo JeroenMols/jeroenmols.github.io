@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Troubleshooting on Jeroen Mols</title>
+    <link>https://jeroenmols.com/tags/troubleshooting/</link>
+    <description>Recent content in Troubleshooting on Jeroen Mols</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>info@jeroenmols.com (Jeroen Mols)</managingEditor>
+    <webMaster>info@jeroenmols.com (Jeroen Mols)</webMaster>
+    <copyright>© 2024 Jeroen Mols</copyright>
+    <lastBuildDate>Tue, 26 Dec 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://jeroenmols.com/tags/troubleshooting/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MacOS update could not be installed</title>
+      <link>https://jeroenmols.com/blog/2017/12/26/macosupdate/</link>
+      <pubDate>Tue, 26 Dec 2017 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2017/12/26/macosupdate/</guid>
+      <description>Tonight after a routine MacOS update (10.13.2) disaster struck and my Mac got stuck in an update boot loop. After a few hours of panic, reading online and trial &amp;amp; error I managed to resolve it.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2017/12/26/macosupdate/featured.png" />
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Server on Jeroen Mols</title>
+    <link>https://jeroenmols.com/tags/server/</link>
+    <description>Recent content in Server on Jeroen Mols</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>info@jeroenmols.com (Jeroen Mols)</managingEditor>
+    <webMaster>info@jeroenmols.com (Jeroen Mols)</webMaster>
+    <copyright>© 2024 Jeroen Mols</copyright>
+    <lastBuildDate>Mon, 24 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://jeroenmols.com/tags/server/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Using VPN during MDNS server development</title>
+      <link>https://jeroenmols.com/blog/2023/07/24/vpn-development/</link>
+      <pubDate>Mon, 24 Jul 2023 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2023/07/24/vpn-development/</guid>
+      <description>Are you using a VPN on your mobile device? Do you need to disable that to access your development web server over MDNS on your mobile device?</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2023/07/24/vpn-development/featured.jpeg" />
+    </item>
+    
+    <item>
+      <title>Android emulator access to local server</title>
+      <link>https://jeroenmols.com/blog/2023/01/25/development-server-emulator/</link>
+      <pubDate>Wed, 25 Jan 2023 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2023/01/25/development-server-emulator/</guid>
+      <description>How can you connect your app on an Android emulator to a development server running on the localhost of your computer?
+The problem # Since Android emulators create their own virtual network, they cannot access devices on your local network.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2023/01/25/development-server-emulator/featured.jpg" />
+    </item>
+    
+  </channel>
+</rss>

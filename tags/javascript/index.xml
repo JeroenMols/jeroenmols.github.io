@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Javascript on Jeroen Mols</title>
+    <link>https://jeroenmols.com/tags/javascript/</link>
+    <description>Recent content in Javascript on Jeroen Mols</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>info@jeroenmols.com (Jeroen Mols)</managingEditor>
+    <webMaster>info@jeroenmols.com (Jeroen Mols)</webMaster>
+    <copyright>© 2024 Jeroen Mols</copyright>
+    <lastBuildDate>Tue, 28 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://jeroenmols.com/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A privacy friendly RSVP for events</title>
+      <link>https://jeroenmols.com/blog/2023/03/28/privacy-friendly-rsvp/</link>
+      <pubDate>Tue, 28 Mar 2023 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2023/03/28/privacy-friendly-rsvp/</guid>
+      <description>Planning an event can be stressful, and the last thing you need is worrying about your guests&amp;rsquo; privacy. But don&amp;rsquo;t worry, I&amp;rsquo;ve got you covered with a privacy-friendly RSVP option.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2023/03/28/privacy-friendly-rsvp/featured.jpg" />
+    </item>
+    
+  </channel>
+</rss>

@@ -1,699 +1,475 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url>
-<loc>https://jeroenmols.com/blog/2015/04/25/blog-creation/</loc>
-<lastmod>2015-04-25T00:00:00+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2015/08/06/artifactory/</loc>
-<lastmod>2015-08-06T00:00:00+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2015/08/13/artifactory2/</loc>
-<lastmod>2015-08-13T00:00:00+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2015/11/13/traviscoveralls/</loc>
-<lastmod>2015-11-13T00:00:00+01:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2016/01/29/yearinreview/</loc>
-<lastmod>2016-01-29T00:00:00+01:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2016/02/05/wagongit/</loc>
-<lastmod>2016-02-05T00:00:00+01:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2016/03/07/resourcenaming/</loc>
-<lastmod>2016-03-07T00:00:00+01:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2016/04/08/droidconit/</loc>
-<lastmod>2016-04-08T00:00:00+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2016/05/06/methodcount/</loc>
-<lastmod>2016-05-06T00:00:00+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2016/06/18/droidconde/</loc>
-<lastmod>2016-06-18T00:00:00+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2016/06/24/droidcondetalk/</loc>
-<lastmod>2016-06-24T00:00:00+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2016/07/21/cyclinggps/</loc>
-<lastmod>2016-07-21T00:00:00+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2016/08/03/copyright/</loc>
-<lastmod>2016-08-03T00:00:00+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2016/09/01/coveragecost/</loc>
-<lastmod>2016-09-01T00:00:00+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2016/10/31/mockitomatchers/</loc>
-<lastmod>2016-10-31T00:00:00+01:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2017/01/09/yearinreview/</loc>
-<lastmod>2017-01-09T00:00:00+01:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2017/01/17/mockitoandroid/</loc>
-<lastmod>2017-01-17T00:00:00+01:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2017/02/16/unittests/</loc>
-<lastmod>2017-02-16T00:00:00+01:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2017/03/08/appcrash/</loc>
-<lastmod>2017-03-08T00:00:00+01:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2017/04/11/androidmakers17/</loc>
-<lastmod>2017-04-11T00:00:00+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2017/05/31/googleio17/</loc>
-<lastmod>2017-05-31T00:00:00+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2017/06/14/androidstudio3/</loc>
-<lastmod>2017-06-14T00:00:00+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2017/07/21/java8language/</loc>
-<lastmod>2017-07-21T00:00:00+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2017/09/13/kotlinopportunity/</loc>
-<lastmod>2017-09-13T00:00:00+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2017/10/27/droidconuk/</loc>
-<lastmod>2017-10-27T00:00:00+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2017/11/28/coveragproblem/</loc>
-<lastmod>2017-11-28T00:00:00+01:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2017/12/18/fragmentback/</loc>
-<lastmod>2017-12-18T00:00:00+01:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2017/12/26/macosupdate/</loc>
-<lastmod>2017-12-26T00:00:00+01:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2018/01/01/yearinreview/</loc>
-<lastmod>2018-01-01T00:00:00+01:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2018/02/22/androidstudioshortcuts/</loc>
-<lastmod>2018-02-22T00:00:00+01:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2018/04/26/androidstudioshortcuts2/</loc>
-<lastmod>2018-04-26T00:00:00+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2018/07/16/androidstudioshortcuts3/</loc>
-<lastmod>2018-07-16T00:00:00+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2018/08/02/phonestatepermission/</loc>
-<lastmod>2018-08-02T00:00:00+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2018/09/25/kotlinpuzzler/</loc>
-<lastmod>2018-09-25T00:00:00+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2018/10/05/kotlinconf18/</loc>
-<lastmod>2018-10-05T00:00:00+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2018/11/01/kotlinstackoverflow/</loc>
-<lastmod>2018-11-01T00:00:00+01:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2018/12/06/fixthetest/</loc>
-<lastmod>2018-12-06T00:00:00+01:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2019/01/01/yearinreview/</loc>
-<lastmod>2019-01-01T00:00:00+01:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2019/01/17/livedatajunit5/</loc>
-<lastmod>2019-01-17T00:00:00+01:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2019/02/20/tacklelegacy/</loc>
-<lastmod>2019-02-20T00:00:00+01:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2019/03/06/modularizationwhy/</loc>
-<lastmod>2019-03-06T00:00:00+01:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2019/03/18/modularizationarchitecture/</loc>
-<lastmod>2019-03-18T00:00:00+01:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2019/04/02/modularizationexample/</loc>
-<lastmod>2019-04-02T00:00:00+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2019/04/24/modularizationhow/</loc>
-<lastmod>2019-04-24T00:00:00+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2019/06/12/modularizationtips/</loc>
-<lastmod>2019-06-12T00:00:00+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2019/07/03/adaptiveicon/</loc>
-<lastmod>2019-07-03T00:00:00+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2019/07/17/androidqgestures/</loc>
-<lastmod>2019-07-17T00:00:00+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2019/08/06/lessonsleaddeveloper/</loc>
-<lastmod>2019-08-06T00:00:00+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2019/08/13/featureflags/</loc>
-<lastmod>2019-08-13T00:00:00+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2019/08/20/featureflagshowtouse/</loc>
-<lastmod>2019-08-20T00:00:00+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2019/09/12/featureflagsarchitecture/</loc>
-<lastmod>2019-09-12T00:00:00+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2020/01/09/yearinreview/</loc>
-<lastmod>2020-01-09T00:00:00+01:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2020/02/19/dokka-code-documentation/</loc>
-<lastmod>2020-02-19T00:00:00+01:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2020/10/28/library-gettingstarted/</loc>
-<lastmod>2020-10-28T00:00:00+01:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2020/11/04/library-modularization/</loc>
-<lastmod>2020-11-04T00:00:00+01:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2020/11/11/library-dependencies/</loc>
-<lastmod>2020-11-11T00:00:00+01:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2020/12/02/inproject-maven/</loc>
-<lastmod>2020-12-02T00:00:00+01:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2021/01/05/yearinreview/</loc>
-<lastmod>2021-01-05T00:00:00+01:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2021/02/04/migratingjcenter/</loc>
-<lastmod>2021-02-04T00:00:00+01:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2021/03/17/share-code-kotlin-multiplatform/</loc>
-<lastmod>2021-03-17T00:00:00+01:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2021/03/24/migrate-artifacts-mavencentral/</loc>
-<lastmod>2021-03-24T00:00:00+01:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2022/02/23/pull-request-reviews/</loc>
-<lastmod>2022-02-23T00:00:00+01:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2022/04/27/workmanager-crash/</loc>
-<lastmod>2022-04-27T00:00:00+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2022/11/19/react-local-development/</loc>
-<lastmod>2022-11-19T00:00:00+01:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2022/11/26/mastodon-verify-github/</loc>
-<lastmod>2022-11-26T00:00:00+01:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2022/12/17/pull-files-android/</loc>
-<lastmod>2022-12-17T00:00:00+01:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2023/01/25/development-server-emulator/</loc>
-<lastmod>2023-01-25T00:00:00+01:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2023/01/29/remove-trackers/</loc>
-<lastmod>2023-01-29T00:00:00+01:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2023/02/06/multiple-ssh-keys/</loc>
-<lastmod>2023-02-06T00:00:00+01:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2023/03/28/privacy-friendly-rsvp/</loc>
-<lastmod>2023-03-28T00:00:00+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2023/06/09/interactive-architecture-diagram/</loc>
-<lastmod>2023-06-09T00:00:00+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2023/06/26/prs-and-commits/</loc>
-<lastmod>2023-06-26T00:00:00+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/2023/07/24/vpn-development/</loc>
-<lastmod>2023-07-24T00:00:00+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/categories/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/hireme/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/search/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/speaking/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/howto/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/android/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/tools/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/maven/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/artifactory/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/coverage/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/ci/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/review/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/bitbucket/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/resources/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/cleancode/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/conference/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/droidcon/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/proguard/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/methodcount/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/mockito/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/testing/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/cycling/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/copyright/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/gradle/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/crashes/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/architecture/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/androidmakers/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/googleio/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/java/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/kotlin/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/career/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/droidconuk/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/fragment/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/navigation/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/macos/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/update/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/troubleshooting/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/androidstudio/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/shortcuts/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/permissions/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/modules/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/manifest/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/post-mortem/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/lambda/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/puzzle/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/kotlinconf/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/stackoverflow/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/livedata/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/refactoring/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/software-engineering/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/modularization/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/sample/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/how-to/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/tips/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/ui/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/adaptive-icon/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/androidq/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/gestures/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/team-lead/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/lessonslearned/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/firebase/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/feature-flags/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/documentation/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/kdoc/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/dokka/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/library/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/transitive-dependencies/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/jcenter/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/bintray/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/multiplatform/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/code-sharing/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/script/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/migrate/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/mavencentral/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/pull-request/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/code-review/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/process/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/team/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/workmanager/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/crash/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/react/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/offline/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/mastodon/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/github/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/adb/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/backup/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/files/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/emulator/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/localhost/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/server/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/website/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/privacy/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/trackers/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/ssh/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/terminal/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/html/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/javascript/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/rsvp/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/graphviz/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/diagram/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/pullrequest/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/commit/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/engineering/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/vpn/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/tags/fullstack/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/categories/blog/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/page2/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/page3/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/page4/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/page5/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/page6/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/page7/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/blog/page8/</loc>
-</url>
-<url>
-<loc>https://jeroenmols.com/apps/brittenjeroen/privacy_policy.html</loc>
-<lastmod>2024-07-15T22:33:35+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/apps/jmmj/privacy_policy.html</loc>
-<lastmod>2024-07-15T22:33:35+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/apps/landscapevideocamera/privacy_policy.html</loc>
-<lastmod>2024-07-15T22:33:35+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/apps/remgeldfacturatie/privacy_policy.html</loc>
-<lastmod>2024-07-15T22:33:35+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/apps/sarahenjoery/privacy_policy.html</loc>
-<lastmod>2024-07-15T22:33:35+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/github.html</loc>
-<lastmod>2024-07-15T22:33:35+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/google04708ab412557d23.html</loc>
-<lastmod>2024-07-15T22:33:35+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/img/blog/interactive-architecture-diagram/system_architecture.html</loc>
-<lastmod>2024-07-15T22:33:35+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/img/blog/methodcount/dexcount-agressiveshrink/debugChart/</loc>
-<lastmod>2024-07-15T22:33:35+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/img/blog/methodcount/dexcount-googleplayservices/debugChart/</loc>
-<lastmod>2024-07-15T22:33:35+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/img/blog/methodcount/dexcount-guava/debugChart/</loc>
-<lastmod>2024-07-15T22:33:35+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/img/blog/methodcount/dexcount-packageshrink/debugChart/</loc>
-<lastmod>2024-07-15T22:33:35+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/img/blog/resourcenaming/resourcenaming_cheatsheet.pdf</loc>
-<lastmod>2024-07-15T22:33:35+02:00</lastmod>
-</url>
-<url>
-<loc>https://jeroenmols.com/remgeldfacturatie/</loc>
-<lastmod>2024-07-15T22:33:35+02:00</lastmod>
-</url>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <url>
+    <loc>https://jeroenmols.com/</loc>
+    <lastmod>2023-07-24T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/</loc>
+    <lastmod>2023-07-24T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2023/07/24/vpn-development/</loc>
+    <lastmod>2023-07-24T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2023/06/26/prs-and-commits/</loc>
+    <lastmod>2023-06-26T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2023/06/09/interactive-architecture-diagram/</loc>
+    <lastmod>2023-06-09T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2023/03/28/privacy-friendly-rsvp/</loc>
+    <lastmod>2023-03-28T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2023/02/06/multiple-ssh-keys/</loc>
+    <lastmod>2023-02-06T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2023/01/29/remove-trackers/</loc>
+    <lastmod>2023-01-29T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2023/01/25/development-server-emulator/</loc>
+    <lastmod>2023-01-25T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2022/12/17/pull-files-android/</loc>
+    <lastmod>2022-12-17T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2022/11/26/mastodon-verify-github/</loc>
+    <lastmod>2022-11-26T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2022/11/19/react-local-development/</loc>
+    <lastmod>2022-11-19T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2022/04/27/workmanager-crash/</loc>
+    <lastmod>2022-04-27T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2022/02/23/pull-request-reviews/</loc>
+    <lastmod>2022-02-23T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2021/03/24/migrate-artifacts-mavencentral/</loc>
+    <lastmod>2021-03-24T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2021/03/17/share-code-kotlin-multiplatform/</loc>
+    <lastmod>2021-03-17T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2021/02/04/migratingjcenter/</loc>
+    <lastmod>2021-02-04T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2021/01/05/yearinreview/</loc>
+    <lastmod>2021-01-05T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2020/12/02/inproject-maven/</loc>
+    <lastmod>2020-12-02T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2020/11/11/library-dependencies/</loc>
+    <lastmod>2020-11-11T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2020/11/04/library-modularization/</loc>
+    <lastmod>2020-11-04T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2020/10/28/library-gettingstarted/</loc>
+    <lastmod>2020-10-28T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2020/02/19/dokka-code-documentation/</loc>
+    <lastmod>2020-02-19T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2020/01/09/yearinreview/</loc>
+    <lastmod>2020-01-09T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2019/09/12/featureflagsarchitecture/</loc>
+    <lastmod>2019-09-12T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2019/08/20/featureflagshowtouse/</loc>
+    <lastmod>2019-08-20T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2019/08/13/featureflags/</loc>
+    <lastmod>2019-08-13T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2019/08/06/lessonsleaddeveloper/</loc>
+    <lastmod>2019-08-06T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2019/07/17/androidqgestures/</loc>
+    <lastmod>2019-07-17T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2019/07/03/adaptiveicon/</loc>
+    <lastmod>2019-07-03T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2019/06/12/modularizationtips/</loc>
+    <lastmod>2019-06-12T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2019/04/24/modularizationhow/</loc>
+    <lastmod>2019-04-24T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2019/04/02/modularizationexample/</loc>
+    <lastmod>2019-04-02T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2019/03/18/modularizationarchitecture/</loc>
+    <lastmod>2019-03-18T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2019/03/06/modularizationwhy/</loc>
+    <lastmod>2019-03-06T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2019/02/20/tacklelegacy/</loc>
+    <lastmod>2019-02-20T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2019/01/17/livedatajunit5/</loc>
+    <lastmod>2019-01-17T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2019/01/01/yearinreview/</loc>
+    <lastmod>2019-01-01T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2018/12/06/fixthetest/</loc>
+    <lastmod>2018-12-06T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2018/11/01/kotlinstackoverflow/</loc>
+    <lastmod>2018-11-01T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2018/10/05/kotlinconf18/</loc>
+    <lastmod>2018-10-05T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2018/09/25/kotlinpuzzler/</loc>
+    <lastmod>2018-09-25T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2018/08/02/phonestatepermission/</loc>
+    <lastmod>2018-08-02T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2018/07/16/androidstudioshortcuts3/</loc>
+    <lastmod>2018-07-16T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2018/04/26/androidstudioshortcuts2/</loc>
+    <lastmod>2018-04-26T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2018/02/22/androidstudioshortcuts/</loc>
+    <lastmod>2018-02-22T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2018/01/01/yearinreview/</loc>
+    <lastmod>2018-01-01T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2017/12/26/macosupdate/</loc>
+    <lastmod>2017-12-26T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2017/12/18/fragmentback/</loc>
+    <lastmod>2017-12-18T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2017/11/28/coveragproblem/</loc>
+    <lastmod>2017-11-28T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2017/10/27/droidconuk/</loc>
+    <lastmod>2017-10-27T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2017/09/13/kotlinopportunity/</loc>
+    <lastmod>2017-09-13T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2017/07/21/java8language/</loc>
+    <lastmod>2017-07-21T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2017/06/14/androidstudio3/</loc>
+    <lastmod>2017-06-14T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2017/05/31/googleio17/</loc>
+    <lastmod>2017-05-31T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2017/04/11/androidmakers17/</loc>
+    <lastmod>2017-04-11T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2017/03/08/appcrash/</loc>
+    <lastmod>2017-03-08T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2017/02/16/unittests/</loc>
+    <lastmod>2017-02-16T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2017/01/17/mockitoandroid/</loc>
+    <lastmod>2017-01-17T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2017/01/09/yearinreview/</loc>
+    <lastmod>2017-01-09T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2016/10/31/mockitomatchers/</loc>
+    <lastmod>2016-10-31T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2016/09/01/coveragecost/</loc>
+    <lastmod>2016-09-01T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2016/08/03/copyright/</loc>
+    <lastmod>2016-08-03T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2016/07/21/cyclinggps/</loc>
+    <lastmod>2016-07-21T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2016/06/24/droidcondetalk/</loc>
+    <lastmod>2016-06-24T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2016/06/18/droidconde/</loc>
+    <lastmod>2016-06-18T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2016/05/06/methodcount/</loc>
+    <lastmod>2016-05-06T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2016/04/08/droidconit/</loc>
+    <lastmod>2016-04-08T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2016/03/07/resourcenaming/</loc>
+    <lastmod>2016-03-07T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2016/02/05/wagongit/</loc>
+    <lastmod>2016-02-05T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2016/01/29/yearinreview/</loc>
+    <lastmod>2016-01-29T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2015/11/13/traviscoveralls/</loc>
+    <lastmod>2015-11-13T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2015/08/13/artifactory2/</loc>
+    <lastmod>2015-08-13T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2015/08/06/artifactory/</loc>
+    <lastmod>2015-08-06T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/blog/2015/04/25/blog-creation/</loc>
+    <lastmod>2015-04-25T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/github/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/google04708ab412557d23/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/about/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://jeroenmols.com/talks/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
 </urlset>

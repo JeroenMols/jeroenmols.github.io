@@ -1,2 +1,3 @@
-Disallow: /jb/
+User-agent: *
+Allow: /
 Sitemap: https://jeroenmols.com/sitemap.xml

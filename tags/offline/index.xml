@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Offline on Jeroen Mols</title>
+    <link>https://jeroenmols.com/tags/offline/</link>
+    <description>Recent content in Offline on Jeroen Mols</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>info@jeroenmols.com (Jeroen Mols)</managingEditor>
+    <webMaster>info@jeroenmols.com (Jeroen Mols)</webMaster>
+    <copyright>© 2024 Jeroen Mols</copyright>
+    <lastBuildDate>Sat, 19 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://jeroenmols.com/tags/offline/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Test React app on mobile without Wi-Fi</title>
+      <link>https://jeroenmols.com/blog/2022/11/19/react-local-development/</link>
+      <pubDate>Sat, 19 Nov 2022 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2022/11/19/react-local-development/</guid>
+      <description>Traveling by train or plane and want to test your react app on your mobile phone? This quick post explains how to access your react development server from your phone without a Wi-Fi connection.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2022/11/19/react-local-development/featured.png" />
+    </item>
+    
+  </channel>
+</rss>

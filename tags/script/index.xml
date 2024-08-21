@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Script on Jeroen Mols</title>
+    <link>https://jeroenmols.com/tags/script/</link>
+    <description>Recent content in Script on Jeroen Mols</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>info@jeroenmols.com (Jeroen Mols)</managingEditor>
+    <webMaster>info@jeroenmols.com (Jeroen Mols)</webMaster>
+    <copyright>© 2024 Jeroen Mols</copyright>
+    <lastBuildDate>Wed, 24 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://jeroenmols.com/tags/script/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Migrate existing library artifacts from JCenter to Maven Central</title>
+      <link>https://jeroenmols.com/blog/2021/03/24/migrate-artifacts-mavencentral/</link>
+      <pubDate>Wed, 24 Mar 2021 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2021/03/24/migrate-artifacts-mavencentral/</guid>
+      <description>With JCenter shutting down, many are migrating to Maven Central. And while there are many posts on how to publish new artifacts, also all existing artifacts should be migrated away from JCenter.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2021/03/24/migrate-artifacts-mavencentral/featured.jpg" />
+    </item>
+    
+  </channel>
+</rss>

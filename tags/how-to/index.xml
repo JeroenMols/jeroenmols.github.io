@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>How To on Jeroen Mols</title>
+    <link>https://jeroenmols.com/tags/how-to/</link>
+    <description>Recent content in How To on Jeroen Mols</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>info@jeroenmols.com (Jeroen Mols)</managingEditor>
+    <webMaster>info@jeroenmols.com (Jeroen Mols)</webMaster>
+    <copyright>© 2024 Jeroen Mols</copyright>
+    <lastBuildDate>Wed, 24 Apr 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://jeroenmols.com/tags/how-to/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Modularization - How to approach</title>
+      <link>https://jeroenmols.com/blog/2019/04/24/modularizationhow/</link>
+      <pubDate>Wed, 24 Apr 2019 00:00:00 +0000</pubDate>
+      <author>info@jeroenmols.com (Jeroen Mols)</author>
+      <guid>https://jeroenmols.com/blog/2019/04/24/modularizationhow/</guid>
+      <description>Now that we have a clear idea of how a modularized app could look like how can this be applied to an existing app?
+Part four will dive deeper into how existing apps can be sliced and how you can gradually migrate to a fully modularized architecture.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2019/04/24/modularizationhow/featured.jpg" />
+    </item>
+    
+  </channel>
+</rss>
