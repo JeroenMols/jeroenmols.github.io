@@ -12,6 +12,9 @@ fi
 ls | grep -v 'jekyll-code' | grep -v 'hugo-code'  | xargs rm -rf
 cd -
 echo ""
+echo "### Clearing Hugo"
+rm -rf public
+echo ""
 echo "### Running Hugo"
 hugo
 echo ""
