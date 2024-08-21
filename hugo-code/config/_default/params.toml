@@ -149,7 +149,7 @@ forgejoDefaultServer = "https://v8.next.forgejo.org"
 
 [buymeacoffee]
   identifier = "jeroen"
-  globalWidget = true
+  globalWidget = false
   globalWidgetMessage = "Support me"
   globalWidgetColor = "#f97316"
   globalWidgetPosition = "Right"
