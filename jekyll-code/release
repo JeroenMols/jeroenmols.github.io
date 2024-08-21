@@ -9,7 +9,7 @@ if [ ! -d jekyll-code ]; then
 echo "Aborting due to wrong folder"
 exit 1
 fi
-ls | grep -v 'jekyll-code' | xargs rm -rf
+ls | grep -v 'jekyll-code' | grep -v 'hugo-code' | xargs rm -rf
 cd -
 echo ""
 echo "### Running jekyll"

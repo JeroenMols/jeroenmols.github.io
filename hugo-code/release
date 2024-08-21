@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Deletes all existing generated files, reruns Hugo and copies the files to root
+
+echo ""
+echo "### Cleaning up resources"
+cd ../
+if [ ! -d hugo-code ]; then
+    echo "Aborting due to wrong folder"
+    exit 1
+fi
+ls | grep -v 'jekyll-code' | grep -v 'hugo-code'  | xargs rm -rf
+cd -
+echo ""
+echo "### Running Hugo"
+hugo
+echo ""
+echo "### Copying generated site"
+cp -r  public/* ../
+cp CNAME ../
+echo ""
+echo "### Done"
