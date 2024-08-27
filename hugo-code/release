@@ -16,7 +16,7 @@ echo "### Clearing Hugo"
 rm -rf public
 echo ""
 echo "### Running Hugo"
-hugo
+hugo --gc --minify
 echo ""
 echo "### Copying generated site"
 cp -r  public/* ../
