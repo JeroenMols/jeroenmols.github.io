@@ -1,26 +1,3 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Github on Jeroen Mols</title>
-    <link>https://jeroenmols.com/tags/github/</link>
-    <description>Recent content in Github on Jeroen Mols</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <managingEditor>info@jeroenmols.com (Jeroen Mols)</managingEditor>
-    <webMaster>info@jeroenmols.com (Jeroen Mols)</webMaster>
-    <copyright>© 2024 Jeroen Mols</copyright>
-    <lastBuildDate>Sat, 26 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://jeroenmols.com/tags/github/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Verify Github profile link on Mastodon</title>
-      <link>https://jeroenmols.com/blog/2022/11/26/mastodon-verify-github/</link>
-      <pubDate>Sat, 26 Nov 2022 00:00:00 +0000</pubDate>
-      <author>info@jeroenmols.com (Jeroen Mols)</author>
-      <guid>https://jeroenmols.com/blog/2022/11/26/mastodon-verify-github/</guid>
-      <description>Looking to get a fancy verified checkmark on Mastodon for your Github account?
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Github on Jeroen Mols</title><link>https://jeroenmols.com/tags/github/</link><description>Recent content in Github on Jeroen Mols</description><generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>info@jeroenmols.com (Jeroen Mols)</managingEditor><webMaster>info@jeroenmols.com (Jeroen Mols)</webMaster><copyright>© 2024 Jeroen Mols</copyright><lastBuildDate>Sat, 26 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://jeroenmols.com/tags/github/index.xml" rel="self" type="application/rss+xml"/><item><title>Verify Github profile link on Mastodon</title><link>https://jeroenmols.com/blog/2022/11/26/mastodon-verify-github/</link><pubDate>Sat, 26 Nov 2022 00:00:00 +0000</pubDate><author>info@jeroenmols.com (Jeroen Mols)</author><guid>https://jeroenmols.com/blog/2022/11/26/mastodon-verify-github/</guid><description>Looking to get a fancy verified checkmark on Mastodon for your Github account?
 This post details how I made this work.
-Steps # Before I get started, huge thanks to Simon Wilson for inspiring me with the original idea.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2022/11/26/mastodon-verify-github/featured.png" />
-    </item>
-    
-  </channel>
-</rss>
+Steps # Before I get started, huge thanks to Simon Wilson for inspiring me with the original idea.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2022/11/26/mastodon-verify-github/featured.png"/></item></channel></rss>

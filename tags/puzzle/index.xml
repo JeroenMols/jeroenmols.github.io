@@ -1,36 +1,3 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Puzzle on Jeroen Mols</title>
-    <link>https://jeroenmols.com/tags/puzzle/</link>
-    <description>Recent content in Puzzle on Jeroen Mols</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <managingEditor>info@jeroenmols.com (Jeroen Mols)</managingEditor>
-    <webMaster>info@jeroenmols.com (Jeroen Mols)</webMaster>
-    <copyright>© 2024 Jeroen Mols</copyright>
-    <lastBuildDate>Thu, 01 Nov 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://jeroenmols.com/tags/puzzle/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Kotlin Stackoverflow error</title>
-      <link>https://jeroenmols.com/blog/2018/11/01/kotlinstackoverflow/</link>
-      <pubDate>Thu, 01 Nov 2018 00:00:00 +0000</pubDate>
-      <author>info@jeroenmols.com (Jeroen Mols)</author>
-      <guid>https://jeroenmols.com/blog/2018/11/01/kotlinstackoverflow/</guid>
-      <description>Java interop is one of the best features of the Kotlin language, yet sometimes this also can cause unforeseen issues&amp;hellip;
-Puzzle # Disclaimer, the example below is a consequence of legacy code and only serves to demonstrate a Kotlin puzzler.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2018/11/01/kotlinstackoverflow/featured.jpg" />
-    </item>
-    
-    <item>
-      <title>A little Kotlin puzzler</title>
-      <link>https://jeroenmols.com/blog/2018/09/25/kotlinpuzzler/</link>
-      <pubDate>Tue, 25 Sep 2018 00:00:00 +0000</pubDate>
-      <author>info@jeroenmols.com (Jeroen Mols)</author>
-      <guid>https://jeroenmols.com/blog/2018/09/25/kotlinpuzzler/</guid>
-      <description>Kotlin is an incredibly enjoyable, concise and powerful programming language. Yet sometimes also a bit confusing&amp;hellip;
-Puzzle # Have a look at the simple class below.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2018/09/25/kotlinpuzzler/featured.jpg" />
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Puzzle on Jeroen Mols</title><link>https://jeroenmols.com/tags/puzzle/</link><description>Recent content in Puzzle on Jeroen Mols</description><generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>info@jeroenmols.com (Jeroen Mols)</managingEditor><webMaster>info@jeroenmols.com (Jeroen Mols)</webMaster><copyright>© 2024 Jeroen Mols</copyright><lastBuildDate>Thu, 01 Nov 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://jeroenmols.com/tags/puzzle/index.xml" rel="self" type="application/rss+xml"/><item><title>Kotlin Stackoverflow error</title><link>https://jeroenmols.com/blog/2018/11/01/kotlinstackoverflow/</link><pubDate>Thu, 01 Nov 2018 00:00:00 +0000</pubDate><author>info@jeroenmols.com (Jeroen Mols)</author><guid>https://jeroenmols.com/blog/2018/11/01/kotlinstackoverflow/</guid><description>Java interop is one of the best features of the Kotlin language, yet sometimes this also can cause unforeseen issues&amp;hellip;
+Puzzle # Disclaimer, the example below is a consequence of legacy code and only serves to demonstrate a Kotlin puzzler.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2018/11/01/kotlinstackoverflow/featured.jpg"/></item><item><title>A little Kotlin puzzler</title><link>https://jeroenmols.com/blog/2018/09/25/kotlinpuzzler/</link><pubDate>Tue, 25 Sep 2018 00:00:00 +0000</pubDate><author>info@jeroenmols.com (Jeroen Mols)</author><guid>https://jeroenmols.com/blog/2018/09/25/kotlinpuzzler/</guid><description>Kotlin is an incredibly enjoyable, concise and powerful programming language. Yet sometimes also a bit confusing&amp;hellip;
+Puzzle # Have a look at the simple class below.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2018/09/25/kotlinpuzzler/featured.jpg"/></item></channel></rss>

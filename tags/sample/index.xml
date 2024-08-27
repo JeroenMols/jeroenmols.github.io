@@ -1,25 +1,2 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Sample on Jeroen Mols</title>
-    <link>https://jeroenmols.com/tags/sample/</link>
-    <description>Recent content in Sample on Jeroen Mols</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <managingEditor>info@jeroenmols.com (Jeroen Mols)</managingEditor>
-    <webMaster>info@jeroenmols.com (Jeroen Mols)</webMaster>
-    <copyright>© 2024 Jeroen Mols</copyright>
-    <lastBuildDate>Tue, 02 Apr 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://jeroenmols.com/tags/sample/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Modularization - Real-life example</title>
-      <link>https://jeroenmols.com/blog/2019/04/02/modularizationexample/</link>
-      <pubDate>Tue, 02 Apr 2019 00:00:00 +0000</pubDate>
-      <author>info@jeroenmols.com (Jeroen Mols)</author>
-      <guid>https://jeroenmols.com/blog/2019/04/02/modularizationexample/</guid>
-      <description>With a clear view on how multi-module apps should be architected, let&amp;rsquo;s dive into a real-life practical example.
-We&amp;rsquo;ll discover how the architecture results in a clear application structure, how navigation is handled, how to use staged rollouts, how to test everything and even look at a production app that is using this architecture.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2019/04/02/modularizationexample/featured.jpg" />
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Sample on Jeroen Mols</title><link>https://jeroenmols.com/tags/sample/</link><description>Recent content in Sample on Jeroen Mols</description><generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>info@jeroenmols.com (Jeroen Mols)</managingEditor><webMaster>info@jeroenmols.com (Jeroen Mols)</webMaster><copyright>© 2024 Jeroen Mols</copyright><lastBuildDate>Tue, 02 Apr 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://jeroenmols.com/tags/sample/index.xml" rel="self" type="application/rss+xml"/><item><title>Modularization - Real-life example</title><link>https://jeroenmols.com/blog/2019/04/02/modularizationexample/</link><pubDate>Tue, 02 Apr 2019 00:00:00 +0000</pubDate><author>info@jeroenmols.com (Jeroen Mols)</author><guid>https://jeroenmols.com/blog/2019/04/02/modularizationexample/</guid><description>With a clear view on how multi-module apps should be architected, let&amp;rsquo;s dive into a real-life practical example.
+We&amp;rsquo;ll discover how the architecture results in a clear application structure, how navigation is handled, how to use staged rollouts, how to test everything and even look at a production app that is using this architecture.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2019/04/02/modularizationexample/featured.jpg"/></item></channel></rss>

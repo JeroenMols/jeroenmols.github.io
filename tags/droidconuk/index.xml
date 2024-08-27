@@ -1,25 +1,2 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Droidconuk on Jeroen Mols</title>
-    <link>https://jeroenmols.com/tags/droidconuk/</link>
-    <description>Recent content in Droidconuk on Jeroen Mols</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <managingEditor>info@jeroenmols.com (Jeroen Mols)</managingEditor>
-    <webMaster>info@jeroenmols.com (Jeroen Mols)</webMaster>
-    <copyright>© 2024 Jeroen Mols</copyright>
-    <lastBuildDate>Fri, 27 Oct 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://jeroenmols.com/tags/droidconuk/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Droidcon UK slides</title>
-      <link>https://jeroenmols.com/blog/2017/10/27/droidconuk/</link>
-      <pubDate>Fri, 27 Oct 2017 00:00:00 +0000</pubDate>
-      <author>info@jeroenmols.com (Jeroen Mols)</author>
-      <guid>https://jeroenmols.com/blog/2017/10/27/droidconuk/</guid>
-      <description>Had a blast visiting Droidcon UK this year and wanted to do a quick post to link to all of it&amp;rsquo;s wonderful content.
-Conference slides # While you can find all recordings here, I often find it useful to be able to quickly scan through the slides.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2017/10/27/droidconuk/featured.png" />
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Droidconuk on Jeroen Mols</title><link>https://jeroenmols.com/tags/droidconuk/</link><description>Recent content in Droidconuk on Jeroen Mols</description><generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>info@jeroenmols.com (Jeroen Mols)</managingEditor><webMaster>info@jeroenmols.com (Jeroen Mols)</webMaster><copyright>© 2024 Jeroen Mols</copyright><lastBuildDate>Fri, 27 Oct 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://jeroenmols.com/tags/droidconuk/index.xml" rel="self" type="application/rss+xml"/><item><title>Droidcon UK slides</title><link>https://jeroenmols.com/blog/2017/10/27/droidconuk/</link><pubDate>Fri, 27 Oct 2017 00:00:00 +0000</pubDate><author>info@jeroenmols.com (Jeroen Mols)</author><guid>https://jeroenmols.com/blog/2017/10/27/droidconuk/</guid><description>Had a blast visiting Droidcon UK this year and wanted to do a quick post to link to all of it&amp;rsquo;s wonderful content.
+Conference slides # While you can find all recordings here, I often find it useful to be able to quickly scan through the slides.</description><media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://jeroenmols.com/blog/2017/10/27/droidconuk/featured.png"/></item></channel></rss>
