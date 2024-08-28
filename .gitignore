@@ -1,10 +1,5 @@
-_site
 .DS_Store
 .idea
-secret
-_secret
-jekyll-code/.jekyll-cache
-jekyll-code/vendor
-hugo-code/public
-hugo-code/resources
+public
+resources
 .hugo_build.lock
