@@ -32,11 +32,11 @@
         <img
           class="my-0 rounded-md{{ with $nozoom }} nozoom{{ end }}{{ with $class }} {{ . }}{{ end }}"
           srcset="
-          src="{{ (.Resize "660x").RelPermalink }}"
           {{ (.Resize "330x webp").RelPermalink }} 330w,
           {{ (.Resize "660x webp").RelPermalink }} 660w,
           {{ (.Resize "1024x webp").RelPermalink }} 1024w,
           {{ (.Resize "1320x webp").RelPermalink }} 2x"
+          src="{{ (.Resize "660x webp").RelPermalink }}"
           alt="{{ $altText }}"
           width="1024px"
           height="724px"
