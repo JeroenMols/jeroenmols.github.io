@@ -12,13 +12,21 @@
     {{- $resource = resources.Get ($url.String) }}
   {{- end }}
   {{- with $resource }}
-      <img
-        class="my-0 rounded-md grid-w100 md:grid-w50 xl:grid-w33"
-        src="{{ (.Resize "1024x webp").RelPermalink }}"
-        alt="{{ $altText }}"
-      />
+    <img
+      class="my-0 rounded-md grid-w100 md:grid-w50 xl:grid-w33"
+      src="{{ (.Resize "1024x webp").RelPermalink }}"
+      alt="{{ $altText }}"
+      width="1024"
+      heigh="724"
+    />
   {{- else }}
-    <img class="my-0 rounded-md grid-w100 md:grid-w50 xl:grid-w33" src="{{ $url.String }}" alt="{{ $altText }}" />
+    <img 
+      class="my-0 rounded-md grid-w100 md:grid-w50 xl:grid-w33" 
+      src="{{ $url.String }}" 
+      alt="{{ $altText }}" 
+      width="1024"
+      heigh="724"
+    />
   {{- end }}
   
 {{- end -}}
