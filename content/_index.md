@@ -4,25 +4,25 @@
 
 
 <div class="gallery-container not-prose">
-    <div class="gallery-item">{{<figure src="images/Cognito_poster.jpg" class="gallery-item">}}</div>
-    <div class="gallery-item">{{<figure src="images/Plaid_poster.jpg" >}}</div>
-    <div class="gallery-item">{{<figure src="images/Transferwise_poster.jpg" >}}</div>
-    <div class="gallery-item">{{<figure src="images/PhilipsHue3_poster.jpg" >}}</div>
-    <div class="gallery-item">{{<figure src="images/PhilipsHue2_poster.jpg" >}}</div>
-    <div class="gallery-item">{{<figure src="images/RemgeldFacturatie_poster.jpg" >}}</div>
-    <div class="gallery-item">{{<figure src="images/Demeyere_poster.jpg" >}}</div>
-    <div class="gallery-item">{{<figure src="images/Brickeffect_poster.jpg" >}}</div>
-    <div class="gallery-item">{{<figure src="images/Nieuwsblad_poster.jpg" >}}</div>
-    <div class="gallery-item">{{<figure src="images/LandscapeVideoCamera_poster.jpg" >}}</div>
-    <div class="gallery-item">{{<figure src="images/SaecoAvanti_poster.jpg" >}}</div>
-    <div class="gallery-item">{{<figure src="images/HuePos_poster.jpg" >}}</div>
-    <div class="gallery-item">{{<figure src="images/SmartAir_poster.jpg" >}}</div>
-    <div class="gallery-item">{{<figure src="images/eventapp_poster.jpg" >}}</div>
-    <div class="gallery-item">{{<figure src="images/Tomorrowland_poster.jpg" >}}</div>
-    <div class="gallery-item">{{<figure src="images/Eurosprinters_poster.jpg" >}}</div>
-    <div class="gallery-item">{{<figure src="images/AirStudio_poster.jpg" >}}</div>
-    <div class="gallery-item">{{<figure src="images/WiFileTransfer_poster.jpg" >}}</div>
-    <div class="gallery-item">{{<figure src="images/Videodagboek_onepager.jpg" >}}</div>
+    <div class="gallery-item">{{<portfolio-figure src="images/Cognito_poster.jpg" >}}</div>
+    <div class="gallery-item">{{<portfolio-figure src="images/Plaid_poster.jpg" >}}</div>
+    <div class="gallery-item">{{<portfolio-figure src="images/Transferwise_poster.jpg" >}}</div>
+    <div class="gallery-item">{{<portfolio-figure src="images/PhilipsHue3_poster.jpg" >}}</div>
+    <div class="gallery-item">{{<portfolio-figure src="images/PhilipsHue2_poster.jpg" >}}</div>
+    <div class="gallery-item">{{<portfolio-figure src="images/RemgeldFacturatie_poster.jpg" >}}</div>
+    <div class="gallery-item">{{<portfolio-figure src="images/Demeyere_poster.jpg" >}}</div>
+    <div class="gallery-item">{{<portfolio-figure src="images/Brickeffect_poster.jpg" >}}</div>
+    <div class="gallery-item">{{<portfolio-figure src="images/Nieuwsblad_poster.jpg" >}}</div>
+    <div class="gallery-item">{{<portfolio-figure src="images/LandscapeVideoCamera_poster.jpg" >}}</div>
+    <div class="gallery-item">{{<portfolio-figure src="images/SaecoAvanti_poster.jpg" >}}</div>
+    <div class="gallery-item">{{<portfolio-figure src="images/HuePos_poster.jpg" >}}</div>
+    <div class="gallery-item">{{<portfolio-figure src="images/SmartAir_poster.jpg" >}}</div>
+    <div class="gallery-item">{{<portfolio-figure src="images/eventapp_poster.jpg" >}}</div>
+    <div class="gallery-item">{{<portfolio-figure src="images/Tomorrowland_poster.jpg" >}}</div>
+    <div class="gallery-item">{{<portfolio-figure src="images/Eurosprinters_poster.jpg" >}}</div>
+    <div class="gallery-item">{{<portfolio-figure src="images/AirStudio_poster.jpg" >}}</div>
+    <div class="gallery-item">{{<portfolio-figure src="images/WiFileTransfer_poster.jpg" >}}</div>
+    <div class="gallery-item">{{<portfolio-figure src="images/Videodagboek_onepager.jpg" >}}</div>
 </div>
 
 <style>
