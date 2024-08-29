@@ -4,7 +4,7 @@
 
 
 <div class="gallery-container not-prose">
-    <div class="gallery-item">{{<portfolio-figure src="images/Cognito_poster.jpg">}}</div>
+    <div class="gallery-item">{{<portfolio-figure src="images/Cognito_poster.jpg" >}}</div>
     <div class="gallery-item">{{<portfolio-figure src="images/Plaid_poster.jpg" >}}</div>
     <div class="gallery-item">{{<portfolio-figure src="images/Transferwise_poster.jpg" >}}</div>
     <div class="gallery-item">{{<portfolio-figure src="images/PhilipsHue3_poster.jpg" >}}</div>
