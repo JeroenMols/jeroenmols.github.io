@@ -33,13 +33,12 @@
           class="my-0 rounded-md{{ with $nozoom }} nozoom{{ end }}{{ with $class }} {{ . }}{{ end }}"
           srcset="
           {{ (.Resize "330x webp").RelPermalink }} 330w,
-          {{ (.Resize "660x webp").RelPermalink }} 660w,
-          {{ (.Resize "1024x webp").RelPermalink }} 1024w,
-          {{ (.Resize "1320x webp").RelPermalink }} 2x"
-          src="{{ (.Resize "660x webp").RelPermalink }}"
+          {{ (.Resize "660x webp").RelPermalink }} 2x"
+          src="{{ (.Resize "330x webp").RelPermalink }}"
           alt="{{ $altText }}"
-          width="1024px"
-          height="724px"
+          width="512px"
+          height="362px"
+          data-zoom-src="{{ (.Resize "2048x webp").RelPermalink }}"
         />
       {{- end }}
     {{- else }}
