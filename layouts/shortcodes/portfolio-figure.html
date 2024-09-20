@@ -31,7 +31,7 @@
       {{- else }}
         <img
           class="my-0 rounded-md{{ with $nozoom }} nozoom{{ end }}{{ with $class }} {{ . }}{{ end }}"
-          src="{{ (.Resize "320x webp").RelPermalink }}"
+          src="{{ (.Resize "320x webp Lanczos").RelPermalink }}"
           alt="{{ $altText }}"
           width="512px"
           height="362px"
