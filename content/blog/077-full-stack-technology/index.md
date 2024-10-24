@@ -278,4 +278,4 @@ And finally, we have the usual suspects: [EsLint](https://eslint.org/) and [Pret
 
 Even for a relatively simple to-do list application, there are a ton of technological choices that have to be made. I ended up going for a Golang backend with an in-memory database and a Svelte frontend running in an Electron shell. This exposed me to many new technologies and consequently, I learned a ton.
 
-Follow me for part 3 to learn about some interesting implementation details.
+Follow me for ([part 3]({{< ref "078-full-stack-implementation" >}})) to learn about some interesting implementation details.

@@ -97,7 +97,7 @@ These were my goals:
 
 Sounds boring? 
 
-Hell yes! But this series isn't about the specific app, it's about the technology choices ([part 2]({{< ref "077-full-stack-technology" >}})) and the implementation details (part 3).
+Hell yes! But this series isn't about the specific app, it's about the technology choices ([part 2]({{< ref "077-full-stack-technology" >}})) and the implementation details ([part 3]({{< ref "078-full-stack-implementation" >}})).
 
 ## Wrap up
 
