@@ -97,7 +97,7 @@ These were my goals:
 
 Sounds boring? 
 
-Hell yes! But this series isn't about the specific app, it's about the technology choices (part 2) and the implementation details (part 3).
+Hell yes! But this series isn't about the specific app, it's about the technology choices ([part 2]({{< ref "077-full-stack-technology" >}})) and the implementation details (part 3).
 
 ## Wrap up
 
@@ -105,4 +105,4 @@ Hell yes! But this series isn't about the specific app, it's about the technolog
 
 After pivoting my career to a Full Stack, I used side projects to deepen my understanding of this new field. While side projects are incredibly time-consuming, they are a hands-on tool to learn new things. 
 
-Follow me for part 2 to learn about the technology choices I made for my to-do list application.
+Follow me for [part 2]({{< ref "077-full-stack-technology" >}}) to learn about the technology choices I made for my to-do list application.

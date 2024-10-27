@@ -1,11 +1,12 @@
 ---
-title: Learning full stack - Technology choices
+title: Learning full stack - Tech stack
 tags:
  - full-stack
- - side-project
- - frontend
- - backend
-date: '2024-10-24'
+ - svelte
+ - golang
+ - typescript
+ - playwright
+date: '2024-10-27'
 slug: full-stack-technology
 featureimagecaption: Photo by Kelly Sikkema on Unsplash, https://unsplash.com/photos/yellow-flower-on-gray-surface-pXmyDPziB8w, resized and cropped
 series: ["Full stack development"]
@@ -273,6 +274,8 @@ And finally, we have the usual suspects: [EsLint](https://eslint.org/) and [Pret
 
 ## Wrap up
 
-<p style="color: #646769; background: #f2f3f3; padding: 20px;">This site is 100% tracker free, :heart: for liking my post on <a href="https://androiddev.social/@Jeroenmols/110770683160145866">Mastodon</a> or <a href="https://www.linkedin.com/posts/jeroenmols_fullstack-android-dns-activity-7089323809362604032-Tu2C?utm_source=share&utm_medium=member_desktop">Linkedin</a> to let me know you've read this.</p>
+<p style="color: #646769; background: #f2f3f3; padding: 20px;">This site is 100% tracker free, :heart: for liking my post on <a href="https://androiddev.social/@Jeroenmols">Mastodon</a> or <a href="https://www.linkedin.com/in/jeroenmols">Linkedin</a> to let me know you've read this.</p>
 
 Even for a relatively simple to-do list application, there are a ton of technological choices that have to be made. I ended up going for a Golang backend with an in-memory database and a Svelte frontend running in an Electron shell. This exposed me to many new technologies and consequently, I learned a ton.
+
+Follow me for part 3 to learn about some interesting implementation details.
