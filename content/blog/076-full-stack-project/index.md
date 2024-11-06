@@ -101,7 +101,7 @@ Hell yes! But this series isn't about the specific app, it's about the technolog
 
 ## Wrap up
 
-<p style="color: #646769; background: #f2f3f3; padding: 20px;">This site is 100% tracker free, :heart: for liking my post on <a href="https://androiddev.social/@Jeroenmols">Mastodon</a> or <a href="https://www.linkedin.com/in/jeroenmols/">Linkedin</a> to let me know you've read this.</p>
+<p style="color: #646769; background: #f2f3f3; padding: 20px;">This site is 100% tracker free, :heart: for liking my post on <a href="https://androiddev.social/@Jeroenmols/113381651933983438">Mastodon</a> or <a href="https://www.linkedin.com/posts/jeroenmols_learning-full-stack-project-activity-7256424784358436864-bcph">Linkedin</a> to let me know you've read this.</p>
 
 After pivoting my career to a Full Stack, I used side projects to deepen my understanding of this new field. While side projects are incredibly time-consuming, they are a hands-on tool to learn new things. 
 

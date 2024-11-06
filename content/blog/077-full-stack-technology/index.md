@@ -6,7 +6,7 @@ tags:
  - golang
  - typescript
  - playwright
-date: '2024-10-27'
+date: '2024-11-06'
 slug: full-stack-technology
 featureimagecaption: Photo by Kelly Sikkema on Unsplash, https://unsplash.com/photos/yellow-flower-on-gray-surface-pXmyDPziB8w, resized and cropped
 series: ["Full stack development"]
