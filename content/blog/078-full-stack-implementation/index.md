@@ -5,7 +5,7 @@ tags:
  - side-project
  - frontend
  - backend
-date: '2024-10-27'
+date: '2024-11-14'
 slug: full-stack-implementation
 featureimagecaption: Photo by Kelly Sikkema on Unsplash, https://unsplash.com/photos/white-printer-paper-on-brown-wooden-table-9OGNpJPVMZ8, resized and cropped
 series: ["Full stack development"]
@@ -444,7 +444,9 @@ rm -r ~/Library/Application\ Support/frontend-electron
 
 ## Wrap up
 
-<p style="color: #646769; background: #f2f3f3; padding: 20px;">This site is 100% tracker free, :heart: for liking my post on <a href="https://androiddev.social/@Jeroenmols">Mastodon</a> or <a href=https://www.linkedin.com/in/jeroenmols">Linkedin</a> to let me know you've read this.</p>
+{{< alert icon="code" >}}
+{{< notrackers mastodon="113437751016172886" linkedin="jeroenmols_learning-full-stack-tech-stack-activity-7260015958692450306--LyL" >}}
+{{< /alert >}}
 
 Overall I think the project turned out quite well and I'm happy with most of the choices I made. You can find all [source code on Github](https://github.com/JeroenMols/tasks) and try it out for yourself!
 

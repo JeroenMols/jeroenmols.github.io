@@ -132,7 +132,7 @@ The to-do list application has three main resources `Users`, `TodoLists`, and `T
 
 There are no special super-latency data requirements or need to store massive amounts of data. So a relational database suits well due to its reliability, proven track record, and a large community of experts to hire.
 
-However, I wanted this project to be super easy to run and hence went with a simple in-memory database. This avoids the need to [install, configure, and load up a schema](https://github.com/JeroenMols/finance-server?tab=readme-ov-file#setup-database) in a database server:
+However, I wanted this project to be super easy to run and hence went with a simple in-memory database. This avoids the need to [install, configure, and load up a schema](https://github.com/JeroenMols/finance-server?tab=readme-ov-file#setup-database) in a database server. Here's the setup guide I had to write for my previous project:
 
 ```markdown
 # Setup database
@@ -274,7 +274,9 @@ And finally, we have the usual suspects: [EsLint](https://eslint.org/) and [Pret
 
 ## Wrap up
 
-<p style="color: #646769; background: #f2f3f3; padding: 20px;">This site is 100% tracker free, :heart: for liking my post on <a href="https://androiddev.social/@Jeroenmols">Mastodon</a> or <a href="https://www.linkedin.com/in/jeroenmols">Linkedin</a> to let me know you've read this.</p>
+{{< alert icon="code" >}}
+{{< notrackers mastodon="113437751016172886" linkedin="jeroenmols_learning-full-stack-tech-stack-activity-7260015958692450306--LyL" >}}
+{{< /alert >}}
 
 Even for a relatively simple to-do list application, there are a ton of technological choices that have to be made. I ended up going for a Golang backend with an in-memory database and a Svelte frontend running in an Electron shell. This exposed me to many new technologies and consequently, I learned a ton.
 
