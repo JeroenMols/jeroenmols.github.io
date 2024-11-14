@@ -445,7 +445,7 @@ rm -r ~/Library/Application\ Support/frontend-electron
 ## Wrap up
 
 {{< alert icon="code" >}}
-{{< notrackers mastodon="113437751016172886" linkedin="jeroenmols_learning-full-stack-tech-stack-activity-7260015958692450306--LyL" >}}
+{{< notrackers mastodon="113480623702912726" linkedin="jeroenmols_learning-full-stack-implementation-details-activity-7262759679158579200-zuC-" >}}
 {{< /alert >}}
 
 Overall I think the project turned out quite well and I'm happy with most of the choices I made. You can find all [source code on Github](https://github.com/JeroenMols/tasks) and try it out for yourself!
